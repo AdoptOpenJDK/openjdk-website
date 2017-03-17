@@ -4,11 +4,15 @@ document.getElementById('logo').onclick = function() {
 }
 
 // set value for error container on every page
+/* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
+/* eslint-enable no-unused-vars */
 
 // returns the name of the user's OS.
 // modify this list to change how other functions search for downloads that match an OS.
+/* eslint-disable no-unused-vars */
 function detectOS() {
+  /* eslint-enable no-unused-vars */
   var OSName="UnknownOS";
   if (navigator.userAgent.indexOf("Win")!=-1) OSName="Win";
   if (navigator.userAgent.indexOf("Mac")!=-1) OSName="Mac";
@@ -19,7 +23,9 @@ function detectOS() {
 }
 
 // pass in the name of the repo (within this organisation only)
+/* eslint-disable no-unused-vars */
 function loadReleasesJSON(repo, loading, callback) {
+  /* eslint-enable no-unused-vars */
   if(msieversion() == true) {
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
@@ -54,9 +60,11 @@ function msieversion() {
 }
 
 // When index page loads, run:
+/* eslint-disable no-unused-vars */
 function onIndexLoad() {
   setDownloadSection();
 }
+/* eslint-enable no-unused-vars */
 
 // INDEX PAGE FUNCTIONS
 
@@ -65,12 +73,10 @@ function setDownloadSection() {
   const dlLatest = document.getElementById('dl-latest');
   const dlArchive = document.getElementById('dl-archive');
   const dlOther = document.getElementById('dl-other');
-  const dlNightly = document.getElementById('dl-nightly');
   const dlVersionText = document.getElementById('dl-version-text');
   const loadingSpan = document.getElementById('loading-index');
 
   var OS = detectOS();
-  var release = "";
 
   dlArchive.onclick = function() {
     window.location.href = './releases#archive';
@@ -79,10 +85,6 @@ function setDownloadSection() {
   dlOther.onclick = function() {
     window.location.href = './releases';
   }
-
-  /*dlNightly.onclick = function() {
-    window.location.href = './nightly';
-  }*/
 
   var latestLink = "";
   var loading = loadingSpan;
@@ -164,9 +166,11 @@ function setDownloadSection() {
 
 }
 
+var assetCounter2 = 0;
 // When nightly page loads, run:
+/* eslint-disable no-unused-vars */
 function onNightlyLoad() {
-  const OS = detectOS();
+  /* eslint-enable no-unused-vars */
   populateNightly();
 
   const latestButton = document.getElementById('latest-button');
@@ -273,10 +277,6 @@ function populateNightly() {
           var windowsDlContent = document.getElementById("nightly-windows-dl-content"+nightlyCounter);
           var macDlContent = document.getElementById("nightly-mac-dl-content"+nightlyCounter);
 
-          var linuxPlatformBlock = document.getElementById("linux-platform-block"+nightlyCounter);
-          var windowsPlatformBlock = document.getElementById("windows-platform-block"+nightlyCounter);
-          var macPlatformBlock = document.getElementById("mac-platform-block"+nightlyCounter);
-
           assetCounter2 = 0;
           assetArray.forEach(function() {     // iterate through the binaries attached to this release
             //console.log(assetCounter2);
@@ -324,9 +324,11 @@ function populateNightly() {
   });
 }
 
+var assetCounter2 = 0;
 // When releases page loads, run:
+/* eslint-disable no-unused-vars */
 function onReleasesLoad() {
-  const OS = detectOS();
+  /* eslint-enable no-unused-vars */
   setReleasesButtons();
 
   const archive = document.getElementById('archives-page');

@@ -1,6 +1,8 @@
+var assetCounter2 = 0;
 // When releases page loads, run:
+/* eslint-disable no-unused-vars */
 function onReleasesLoad() {
-  const OS = detectOS();
+  /* eslint-enable no-unused-vars */
   setReleasesButtons();
 
   const archive = document.getElementById('archives-page');

@@ -1,8 +1,10 @@
 {
-  "name": "GetOpenJDK website",
+  "name": "GetOpenJDK_website",
+  "repository": "https://github.com/AdoptOpenJDK/openjdk-website",
   "version": "1.0.0",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "lint": "eslint **/*.js"
   },
   "author": "Joe Brady",
   "devDependencies": {
@@ -17,6 +19,7 @@
     "gulp-sass": "^3.0.0",
     "gulp-uglify": "^2.0.0",
     "gulp-imagemin": "^3.1.1",
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "eslint": "^3.17.1"
   }
 }

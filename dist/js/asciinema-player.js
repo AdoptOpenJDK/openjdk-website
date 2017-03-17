@@ -1,3 +1,4 @@
+/*eslint-disable */
 /**
  * asciinema-player v2.4.1
  *

@@ -1,6 +1,8 @@
+var assetCounter2 = 0;
 // When nightly page loads, run:
+/* eslint-disable no-unused-vars */
 function onNightlyLoad() {
-  const OS = detectOS();
+  /* eslint-enable no-unused-vars */
   populateNightly();
 
   const latestButton = document.getElementById('latest-button');
@@ -106,10 +108,6 @@ function populateNightly() {
           var linuxDlContent = document.getElementById("nightly-linux-dl-content"+nightlyCounter);
           var windowsDlContent = document.getElementById("nightly-windows-dl-content"+nightlyCounter);
           var macDlContent = document.getElementById("nightly-mac-dl-content"+nightlyCounter);
-
-          var linuxPlatformBlock = document.getElementById("linux-platform-block"+nightlyCounter);
-          var windowsPlatformBlock = document.getElementById("windows-platform-block"+nightlyCounter);
-          var macPlatformBlock = document.getElementById("mac-platform-block"+nightlyCounter);
 
           assetCounter2 = 0;
           assetArray.forEach(function() {     // iterate through the binaries attached to this release
