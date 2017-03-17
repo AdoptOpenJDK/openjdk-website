@@ -1,0 +1,233 @@
+// GLOBAL CSS
+$mainblue: #152935;
+$maingrey: #F5F5F5;
+$brighterblue: #3D70B2;
+$accentgrey: #dadada;
+$tableblue-odd: #182336;
+$tableblue-even: #1F2F4E;
+
+
+.blue-bg {
+  background-color: $mainblue !important;
+  color: $maingrey !important;
+}
+
+.light-text {
+  color: $maingrey;
+}
+
+.grey-bg {
+  background-color: $maingrey;
+  color: $mainblue;
+}
+
+.dark-link, .dark-link:visited, a, a:visited {
+  color: $mainblue;
+  cursor: pointer;
+}
+
+.dark-link:hover, a:hover {
+  color: $brighterblue;
+}
+
+.light-link, .light-link:visited {
+  color: $maingrey;
+}
+
+.light-link:hover {
+  color: $brighterblue;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.hide {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.zero-margin {
+  margin: 0;
+}
+
+.margin-auto {
+  margin: 0 auto;
+}
+
+.margin-bottom {
+  margin-bottom: 4rem;
+}
+
+.large-title {
+  font-size: 3rem;
+  margin-top: 0;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.vertically-center-child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vertically-center-parent {
+  position: relative;
+}
+
+input {
+  padding: 0.5rem;
+  min-width: 12rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+// NAV CSS
+
+#logo {
+  margin: 2rem auto;
+  font-size: 1.4rem;
+  display: table;
+  cursor: pointer;
+}
+
+#logo div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#logo img {
+  width: 2rem;
+  margin-right: 0.6rem;
+  transform: translateY(0.1rem);
+}
+
+// MAIN CSS
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+main {
+  padding: 2rem 2rem 5rem 2rem;
+  text-align: center;
+}
+
+.home-main {
+  padding: 3rem 2rem 5rem 2rem;
+}
+
+#error-container {
+  text-align: center;
+  color: red;
+}
+
+.grey-button {
+  background-color: $accentgrey;
+  color: $mainblue;
+  border-radius: 0.2rem;
+  padding: 0 1.5rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0.2rem;
+}
+
+.grey-button:hover {
+  background-color: #e6e6e6;
+}
+
+.blue-button {
+  background-color: $brighterblue;
+  color: $maingrey;
+  border-radius: 0.2rem;
+  padding: 0 1.5rem;
+  line-height: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0.2rem;
+}
+
+.blue-button:hover {
+  background-color: rgb(68, 124, 195);
+}
+
+#search-error {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.github-logo {
+  width: 3rem;
+  margin: 0 auto;
+}
+
+#installation-container {
+  max-width: 50rem;
+  margin: auto;
+  text-align: left;
+}
+
+#installation-container li {
+  margin-top: 2rem;
+}
+
+pre {
+  background-color: #e8e8e8;
+  border-radius: 0.5rem;
+  box-shadow: rgb(195, 195, 195) 0px 2.5px 0px 0px;
+  box-sizing: border-box;
+  color: #585858;
+  font-family: Consolas, monospace;
+  overflow: auto;
+  padding: 1rem;
+  white-space: pre-wrap;
+}
+
+code {
+  box-sizing: border-box;
+  overflow: auto;
+  white-space: pre;
+}
+
+// FOOTER CSS
+
+footer {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+footer p {
+  max-width: 20rem;
+  margin: auto;
+}

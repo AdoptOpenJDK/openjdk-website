@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GetOpenJDK</title>
+  <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="dist/css/styles.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+
+<body class="blue-bg">
+
+  <nav>
+    <div id="logo">
+      <div><img src="dist/assets/squares-logo.png"></div>
+      <div><span>GetOpenJDK</span></div>
+    </div>
+  </nav>
+
+  <main class="grey-bg home-main">
+    <p id="intro">Java™ is a popular open-source programming language.  It is used extensively, from applications running large corporate systems to small computers running personal games.  The code for Java is open source and available at <a href="http://openjdk.java.net" target="_blank">OpenJDK™</a>.</p>
+
+    <div class="dl-container">
+      <h2 id="dl-text" class="animated fadeIn">Downloads</h2>
+      <div id='loading-index'><img src='dist/assets/loading_dots.gif' height='40' width='40'></div>
+
+      <div class="dl-button fadeIn invisible" id="dl-latest">
+        <div id="dl-version">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          <span>Latest release</span><br>
+        </div>
+        <div class="dl-description">(<span id="dl-version-text"></span>)</div>
+      </div>
+
+      <div id="error-container"></div>
+
+      <div class="dl-button dl-thin-button fadeIn invisible" id="dl-other">
+        <div>
+          <span>Other platforms</span>
+          <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <div class="dl-button dl-thin-button fadeIn invisible" id="dl-archive">
+        <div>
+          <span>Archive</span>
+          <i class="fa fa-archive" aria-hidden="true"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <a href="./installation" class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Installation&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+      <a href="https://github.com/breadbin/openjdk-build/issues" target="_blank"class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+      <a href="./getinvolved" id="dev-button" class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Get involved&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="align-center" style="margin-bottom: 1rem;">
+      <a href="https://github.com/breadbin" target="_blank" class="light-link no-underline">
+        <img src="dist/assets/GitHub.png" alt="" class="github-logo">
+        <p class="margin-auto">GitHub build repo</p>
+      </a>
+    </div>
+    <a href="https://github.com/breadbin/openjdk-build/issues" target="_blank"class="light-link no-underline">
+      <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
+    </a>
+    <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
+  </footer>
+
+  <script src="dist/js/app.min.js"></script>
+  <script>onIndexLoad();</script>
+</body>
+</html>

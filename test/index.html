@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests (Cards app)</title>
+  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <!-- BEGIN HTML ELEMENTS REQUIRED FOR TESTS -->
+  
+  <!-- END HTML ELEMENTS REQUIRED FOR TESTS -->
+
+  <script src="../node_modules/chai/chai.js"></script>
+  <script src="../node_modules/mocha/mocha.js"></script>
+  <script src="require.js"></script>
+  <script src="../dist/js/app.min.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="app-spec.js"></script>
+  <script>
+    mocha.run();
+  </script>
+</body>
+</html>

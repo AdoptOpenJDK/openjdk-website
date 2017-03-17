@@ -1,0 +1,52 @@
+@media all and (max-width: 650px) {
+
+  main {
+      padding: 2rem 1rem 5rem 1rem;
+  }
+
+  .dl-button {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 1.2rem;
+  }
+
+  .dl-button .dl-description {
+    transform: translate(-50%,-3.8rem);
+    left: 50%;
+  }
+
+  /*.archive-downloads, .archive-details {
+    width: 100%;
+    text-align: center;
+  }
+
+  .archive-platform-block div {
+    text-align: center;
+  }
+
+  .archive-platform-block .grey-button {
+    display: inline-block;
+    margin: 0 auto;
+  }*/
+
+  .latest-block {
+    display: inline-block;
+    vertical-align: top;
+    margin: 2rem 0 1rem 0;
+    width: 85%;
+  }
+
+  #latest-build-name {
+    font-size: 1.5rem;
+  }
+
+  input {
+    min-width: 0;
+    max-width: 80%;
+  }
+
+  .archive-container > div {
+    width: 90%;
+  }
+
+}

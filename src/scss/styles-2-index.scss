@@ -1,0 +1,73 @@
+$mainblue: #152935;
+$maingrey: #F5F5F5;
+$brighterblue: #3D70B2;
+$accentgrey: #dadada;
+
+main #intro {
+  max-width: 40rem;
+  margin: 0 auto;
+  width: 80%;
+}
+
+#loading-index {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0.1rem);
+}
+
+.dl-container {
+  margin: 0 auto;
+}
+
+.dl-button {
+  background-color: $brighterblue;
+  color: $maingrey;
+  border-radius: 0.2rem;
+  width: 20rem;
+  line-height: 5rem;
+  font-size: 1.5rem;
+  margin: 1.2rem 0.6rem 0 0.6rem;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#dl-text {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+}
+
+.dl-button #dl-version {
+  transform: translateY(-0.6rem);
+}
+
+.dl-button .dl-description {
+  transform: translate(7rem, -3.8rem);
+  font-size: 0.8rem;
+  position: absolute;
+}
+
+.dl-button:hover {
+  background-color: rgb(68, 124, 195);
+}
+
+.dl-button img {
+  filter: brightness(500%);
+  transform: translate(0, 0.8rem);
+}
+
+.dl-thin-button {
+  line-height: 2rem;
+  font-size: 1rem;
+  background-color: $accentgrey;
+  color: $mainblue;
+  display: block;
+  margin: 1rem auto;
+}
+
+.dl-thin-button:hover {
+  background-color: #e6e6e6;
+}
+
+.home-links {
+  padding: 0 1rem;
+}

@@ -1,0 +1,143 @@
+$mainblue: #152935;
+$maingrey: #F5F5F5;
+$brighterblue: #3D70B2;
+$accentgrey: #dadada;
+$tableblue-odd: #182336;
+$tableblue-even: #1F2F4E;
+
+// LATEST RELEASE CSS
+
+#latest-build-name {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+#latest-intro {
+  margin: 1rem 0;
+}
+
+#latest-metadata-table {
+  color: $maingrey;
+  margin: 0 auto;
+}
+
+#latest-metadata-table td {
+  padding: 0.5rem 1.5rem;
+}
+
+#latest-metadata-table td:first-child {
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+#latest-metadata-table td:last-child {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
+#latest-metadata-table td:nth-child(even) {
+  background-color: $tableblue-even;
+}
+
+#latest-metadata-table td:nth-child(odd) {
+  background-color: $tableblue-odd;
+}
+
+#latest-downloads-container {
+
+}
+
+.latest-block {
+  display: inline-block;
+  vertical-align: top;
+  margin: 3rem 2.5rem 1rem;
+}
+
+.latest-platform {
+  font-size: 1.5rem;
+}
+
+.latest-platform img {
+  height: 3.5rem
+}
+
+.latest-download-button {
+  background-color: $brighterblue;
+  color: $maingrey;
+  border-radius: 0.2rem;
+  min-width: 14rem;
+  line-height: 2.5rem;
+  cursor: pointer;
+  margin: 1rem 0;
+}
+
+.latest-download-button:hover {
+  background-color: rgb(68, 124, 195);
+}
+
+.latest-details {
+  font-size: 0.8rem;
+}
+
+.small-dl-text {
+  font-size: .7rem;
+  line-height: 1.2rem;
+  transform: translateY(-0.4rem);
+  color: rgba(255, 255, 255, 0.64);
+}
+
+// ARCHIVE CSS
+
+.archive-container {
+  margin: 3rem 0;
+  height: 14rem;
+  font-size: 0.8rem;
+}
+
+.archive-downloads, .archive-details, .archive-header {
+  padding: 0 2%;
+  background-color: #fff;
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  width: 16rem;
+  margin: 0 0.1rem;
+}
+
+.archive-header {
+  text-align: center;
+  padding: 0;
+  width: 18rem;
+}
+
+.archive-header h1 {
+  margin-top: 0;
+}
+
+.archive-downloads-container {
+  /*margin: 0 auto;*/
+  /*display: inline-block;*/
+}
+
+.archive-platform-block {
+  margin: 1rem 0;
+}
+
+.archive-platform-block div, .archive-platform-block a {
+  font-size: 0.8rem;
+}
+
+.archive-platform-block .grey-button {
+  margin-right: 1rem;
+  min-width: 5rem;
+}
+
+.archive-details div {
+  padding: 0.5rem 0;
+}
+
+/*.archive-details div:nth-child(even) {
+  background-color: $tableblue-even;
+}
+
+.archive-details div:nth-child(odd) {
+  background-color: $tableblue-odd;
+}*/
