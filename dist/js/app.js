@@ -22,10 +22,10 @@ function detectOS() {
 function loadReleasesJSON(repo, loading, callback) {
   if(msieversion() == true) {
     loading.innerHTML = "";
-    document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/breadbin/releases/releases' target='blank'>releases list on GitHub</a>.</p>";
+    document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://api.github.com/repos/breadbin/" + repo + "/releases");
+    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);
@@ -36,7 +36,7 @@ function loadReleasesJSON(repo, loading, callback) {
       } else {
         if(xobj.status != "200") {
           loading.innerHTML = "";
-          document.getElementById("error-container").innerHTML = "<p>Error... there's a problem fetching the releases. Please see the <a href='https://github.com/breadbin/releases/releases' target='blank'>releases list on GitHub</a>.</p>";
+          document.getElementById("error-container").innerHTML = "<p>Error... there's a problem fetching the releases. Please see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
         }
       }
     };
@@ -248,7 +248,7 @@ function populateNightly() {
         // populate the new entry with that release's information
         var publishedAt = (releasesJson[nightlyCounter].published_at);
         document.getElementById("nightly-release"+nightlyCounter).innerHTML = (releasesJson[nightlyCounter].name).slice(0, 12);
-        document.getElementById("nightly-release"+nightlyCounter).href = ("https://github.com/breadbin/nightly/releases/tag/" + releasesJson[nightlyCounter].name)
+        document.getElementById("nightly-release"+nightlyCounter).href = ("https://github.com/AdoptOpenJDK/nightly/releases/tag/" + releasesJson[nightlyCounter].name)
         document.getElementById("nightly-date"+nightlyCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY');
         document.getElementById("nightly-changelog"+nightlyCounter).href = releasesJson[nightlyCounter].name;
         document.getElementById("nightly-timestamp"+nightlyCounter).innerHTML = (releasesJson[nightlyCounter].name).slice(13, 25);
@@ -400,7 +400,7 @@ function populateLatest() {
       // populate the page with the release's information
       var publishedAt = (releasesJson[0].published_at);
       document.getElementById("latest-build-name").innerHTML = releasesJson[0].name;
-      document.getElementById("latest-build-name").href = ("https://github.com/breadbin/releases/releases/tag/" + releasesJson[0].name);
+      document.getElementById("latest-build-name").href = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + releasesJson[0].name);
       document.getElementById("latest-date").innerHTML = moment(publishedAt).format('Do MMMM YYYY');
       document.getElementById("latest-changelog").href = releasesJson[0].name;
       document.getElementById("latest-timestamp").innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
@@ -506,7 +506,7 @@ function populateArchive() {
         // populate the new entry with that release's information
         var publishedAt = (releasesJson[archiveCounter].published_at);
         document.getElementById("archive-release"+archiveCounter).innerHTML = releasesJson[archiveCounter].name;
-        document.getElementById("archive-release"+archiveCounter).href = ("https://github.com/breadbin/releases/releases/tag/" + releasesJson[archiveCounter].name);
+        document.getElementById("archive-release"+archiveCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + releasesJson[archiveCounter].name);
         document.getElementById("archive-date"+archiveCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY');
         document.getElementById("archive-changelog"+archiveCounter).href = releasesJson[archiveCounter].name;
         document.getElementById("archive-timestamp"+archiveCounter).innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));

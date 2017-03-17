@@ -1,9 +1,9 @@
 [
   {
-    "url": "https://api.github.com/repos/breadbin/openjdk-releases/releases/5686475",
-    "assets_url": "https://api.github.com/repos/breadbin/openjdk-releases/releases/5686475/assets",
-    "upload_url": "https://uploads.github.com/repos/breadbin/openjdk-releases/releases/5686475/assets{?name,label}",
-    "html_url": "https://github.com/breadbin/openjdk-releases/releases/tag/jdk8u152-b01",
+    "url": "https://api.github.com/repos/AdoptOpenJDK/openjdk-releases/releases/5686475",
+    "assets_url": "https://api.github.com/repos/AdoptOpenJDK/openjdk-releases/releases/5686475/assets",
+    "upload_url": "https://uploads.github.com/repos/AdoptOpenJDK/openjdk-releases/releases/5686475/assets{?name,label}",
+    "html_url": "https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/jdk8u152-b01",
     "id": 5686475,
     "tag_name": "jdk8u152-b01",
     "target_commitish": "master",
@@ -33,7 +33,7 @@
     "published_at": "2017-03-09T08:23:55Z",
     "assets": [
       {
-        "url": "https://api.github.com/repos/breadbin/openjdk-releases/releases/assets/3352455",
+        "url": "https://api.github.com/repos/AdoptOpenJDK/openjdk-releases/releases/assets/3352455",
         "id": 3352455,
         "name": "OpenJDK_X64_Linux-jdk8u152-b01.tar.gz",
         "label": "",
@@ -62,10 +62,10 @@
         "download_count": 12,
         "created_at": "2017-03-09T08:23:56Z",
         "updated_at": "2017-03-09T08:24:13Z",
-        "browser_download_url": "https://github.com/breadbin/openjdk-releases/releases/download/jdk8u152-b01/OpenJDK_X64_Linux-jdk8u152-b01.tar.gz"
+        "browser_download_url": "https://github.com/AdoptOpenJDK/openjdk-releases/releases/download/jdk8u152-b01/OpenJDK_X64_Linux-jdk8u152-b01.tar.gz"
       },
       {
-        "url": "https://api.github.com/repos/breadbin/openjdk-releases/releases/assets/3355576",
+        "url": "https://api.github.com/repos/AdoptOpenJDK/openjdk-releases/releases/assets/3355576",
         "id": 3355576,
         "name": "OpenJDK_X64_Mac-jdk8u152-b01.tar.gz",
         "label": null,
@@ -94,11 +94,11 @@
         "download_count": 19,
         "created_at": "2017-03-09T16:21:48Z",
         "updated_at": "2017-03-09T16:23:56Z",
-        "browser_download_url": "https://github.com/breadbin/openjdk-releases/releases/download/jdk8u152-b01/OpenJDK_X64_Mac-jdk8u152-b01.tar.gz"
+        "browser_download_url": "https://github.com/AdoptOpenJDK/openjdk-releases/releases/download/jdk8u152-b01/OpenJDK_X64_Mac-jdk8u152-b01.tar.gz"
       }
     ],
-    "tarball_url": "https://api.github.com/repos/breadbin/openjdk-releases/tarball/jdk8u152-b01",
-    "zipball_url": "https://api.github.com/repos/breadbin/openjdk-releases/zipball/jdk8u152-b01",
+    "tarball_url": "https://api.github.com/repos/AdoptOpenJDK/openjdk-releases/tarball/jdk8u152-b01",
+    "zipball_url": "https://api.github.com/repos/AdoptOpenJDK/openjdk-releases/zipball/jdk8u152-b01",
     "body": "Release of OpenJDK-jdk8u152-b01"
   }
 ]

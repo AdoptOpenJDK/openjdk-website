@@ -1,6 +1,6 @@
 # Readme
 
-## https://breadbin.github.io/openjdk-website/index
+## https://openjdk.github.io/openjdk-website/index
 
 See the [Contribution Guidelines](CONTRIBUTING.md).
 
@@ -18,7 +18,7 @@ You can use the following formats of URL extension after `<website>.com/api` to 
 
 `#platform=mac`
 
-Example: `https://breadbin.github.io/openjdk-website/api#platform=linux`
+Example: `https://openjdk.github.io/openjdk-website/api#platform=linux`
 
 ### Release search:
 
@@ -26,7 +26,7 @@ Example: `https://breadbin.github.io/openjdk-website/api#platform=linux`
 
 `#release=<release-name>` (e.g. `#release=jdk8u152-b01`)
 
-Example: `https://breadbin.github.io/openjdk-website/api#release=latest`
+Example: `https://openjdk.github.io/openjdk-website/api#release=latest`
 
 ### Combination of the two:
 

@@ -82,7 +82,7 @@ function populateNightly() {
         // populate the new entry with that release's information
         var publishedAt = (releasesJson[nightlyCounter].published_at);
         document.getElementById("nightly-release"+nightlyCounter).innerHTML = (releasesJson[nightlyCounter].name).slice(0, 12);
-        document.getElementById("nightly-release"+nightlyCounter).href = ("https://github.com/breadbin/nightly/releases/tag/" + releasesJson[nightlyCounter].name)
+        document.getElementById("nightly-release"+nightlyCounter).href = ("https://github.com/AdoptOpenJDK/nightly/releases/tag/" + releasesJson[nightlyCounter].name)
         document.getElementById("nightly-date"+nightlyCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY');
         document.getElementById("nightly-changelog"+nightlyCounter).href = releasesJson[nightlyCounter].name;
         document.getElementById("nightly-timestamp"+nightlyCounter).innerHTML = (releasesJson[nightlyCounter].name).slice(13, 25);

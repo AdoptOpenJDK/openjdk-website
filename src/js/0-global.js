@@ -22,10 +22,10 @@ function detectOS() {
 function loadReleasesJSON(repo, loading, callback) {
   if(msieversion() == true) {
     loading.innerHTML = "";
-    document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/breadbin/releases/releases' target='blank'>releases list on GitHub</a>.</p>";
+    document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://api.github.com/repos/breadbin/" + repo + "/releases");
+    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);
@@ -36,7 +36,7 @@ function loadReleasesJSON(repo, loading, callback) {
       } else {
         if(xobj.status != "200") {
           loading.innerHTML = "";
-          document.getElementById("error-container").innerHTML = "<p>Error... there's a problem fetching the releases. Please see the <a href='https://github.com/breadbin/releases/releases' target='blank'>releases list on GitHub</a>.</p>";
+          document.getElementById("error-container").innerHTML = "<p>Error... there's a problem fetching the releases. Please see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
         }
       }
     };

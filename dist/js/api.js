@@ -4,7 +4,7 @@ var extension = window.location.hash;
 loadRequest(repo, extension);
 
 function loadAPIJSON(repo, extension, callback) {
-  var url = ("https://api.github.com/repos/breadbin/" + repo + "/releases");
+  var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
   xobj.open('GET', url, true);

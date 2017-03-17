@@ -151,7 +151,7 @@
     ],
     [
       1.1e-05,
-      "Step 4 : RUN mkdir -p /openjdk/jdk8u\r\n"
+      "Step 4 : RUN mkdir -p /AdoptOpenJDK/jdk8u\r\n"
     ],
     [
       0.000229,
@@ -167,7 +167,7 @@
     ],
     [
       0.000845,
-      " ---> Using cache\r\n ---> 33227bad9b2f\r\nStep 7 : WORKDIR /openjdk/jdk8u/\r\n"
+      " ---> Using cache\r\n ---> 33227bad9b2f\r\nStep 7 : WORKDIR /AdoptOpenJDK/jdk8u/\r\n"
     ],
     [
       0.000289,
@@ -195,7 +195,7 @@
     ],
     [
       0.689878,
-      "Detected we're in docker\r\r\nMaking the working directory to store source files and extensions: /openjdk/jdk8u\r\r\n"
+      "Detected we're in docker\r\r\nMaking the working directory to store source files and extensions: /AdoptOpenJDK/jdk8u\r\r\n"
     ],
     [
       0.003288,
@@ -1171,7 +1171,7 @@
     ],
     [
       0.001518,
-      "find: `/openjdk/jdk8u/installedfreetype/lib': No such file or directory\r\r\n"
+      "find: `/AdoptOpenJDK/jdk8u/installedfreetype/lib': No such file or directory\r\r\n"
     ],
     [
       0.003992,
@@ -2551,7 +2551,7 @@
     ],
     [
       0.000196,
-      "cd builds/unix; ./configure  '--prefix=/openjdk/jdk8u/installedfreetype'\r\r\n"
+      "cd builds/unix; ./configure  '--prefix=/AdoptOpenJDK/jdk8u/installedfreetype'\r\r\n"
     ],
     [
       0.134663,
@@ -3231,599 +3231,599 @@
     ],
     [
       0.022032,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /openjdk/jdk8u/freetype-2.4.0/objs/ftsystem.lo builds/unix/ftsystem.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsystem.lo builds/unix/ftsystem.c\r\r\n"
     ],
     [
       0.024167,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" builds/unix/ftsystem.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftsystem.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" builds/unix/ftsystem.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftsystem.o\r\r\n"
     ],
     [
       0.080177,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" builds/unix/ftsystem.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftsystem.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" builds/unix/ftsystem.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsystem.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.072895,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /openjdk/jdk8u/freetype-2.4.0/objs/ftdebug.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftdebug.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftdebug.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftdebug.c\r\r\n"
     ],
     [
       0.020755,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /openjdk/jdk8u/freetype-2.4.0/src/base/ftdebug.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftdebug.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftdebug.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftdebug.o\r\r\n"
     ],
     [
       0.037379,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /openjdk/jdk8u/freetype-2.4.0/src/base/ftdebug.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftdebug.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftdebug.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftdebug.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.045434,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /openjdk/jdk8u/freetype-2.4.0/objs/ftinit.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftinit.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftinit.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftinit.c\r\r\n"
     ],
     [
       0.018363,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /openjdk/jdk8u/freetype-2.4.0/src/base/ftinit.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftinit.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftinit.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftinit.o\r\r\n"
     ],
     [
       0.06721,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /openjdk/jdk8u/freetype-2.4.0/src/base/ftinit.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftinit.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftinit.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftinit.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.063564,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbase.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftbase.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbase.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbase.c\r\r\n"
     ],
     [
       0.019032,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbase.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbase.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbase.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbase.o\r\r\n"
     ],
     [
       0.992282,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbase.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbase.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbase.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbase.o >/dev/null 2>&1\r\r\n"
     ],
     [
       1.097719,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbbox.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftbbox.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbbox.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbbox.c\r\r\n"
     ],
     [
       0.018076,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbbox.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbbox.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbbox.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbbox.o\r\r\n"
     ],
     [
       0.09625,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbbox.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbbox.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbbox.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbbox.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.107339,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbdf.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftbdf.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbdf.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbdf.c\r\r\n"
     ],
     [
       0.019594,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbdf.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbdf.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbdf.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbdf.o\r\r\n"
     ],
     [
       0.066864,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbdf.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbdf.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbdf.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbdf.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.068315,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbitmap.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftbitmap.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbitmap.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbitmap.c\r\r\n"
     ],
     [
       0.021287,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbitmap.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbitmap.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbitmap.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbitmap.o\r\r\n"
     ],
     [
       0.140338,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftbitmap.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftbitmap.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftbitmap.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbitmap.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.147818,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftcid.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftcid.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcid.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftcid.c\r\r\n"
     ],
     [
       0.01911,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftcid.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftcid.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftcid.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftcid.o\r\r\n"
     ],
     [
       0.067896,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftcid.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftcid.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftcid.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcid.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.070735,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftfstype.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftfstype.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftfstype.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftfstype.c\r\r\n"
     ],
     [
       0.02142,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftfstype.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftfstype.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftfstype.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftfstype.o\r\r\n"
     ],
     [
       0.06228,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftfstype.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftfstype.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftfstype.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftfstype.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.07067,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftgasp.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftgasp.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgasp.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftgasp.c\r\r\n"
     ],
     [
       0.017856,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftgasp.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftgasp.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftgasp.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftgasp.o\r\r\n"
     ],
     [
       0.066202,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftgasp.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftgasp.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftgasp.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgasp.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.061563,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftglyph.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftglyph.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftglyph.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftglyph.c\r\r\n"
     ],
     [
       0.022066,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftglyph.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftglyph.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftglyph.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftglyph.o\r\r\n"
     ],
     [
       0.106706,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftglyph.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftglyph.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftglyph.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftglyph.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.11275,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftgxval.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftgxval.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgxval.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftgxval.c\r\r\n"
     ],
     [
       0.017799,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftgxval.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftgxval.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftgxval.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftgxval.o\r\r\n"
     ],
     [
       0.068258,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftgxval.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftgxval.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftgxval.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgxval.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.067449,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftlcdfil.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftlcdfil.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlcdfil.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftlcdfil.c\r\r\n"
     ],
     [
       0.019489,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftlcdfil.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftlcdfil.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftlcdfil.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftlcdfil.o\r\r\n"
     ],
     [
       0.056664,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftlcdfil.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftlcdfil.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftlcdfil.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlcdfil.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.060836,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftmm.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftmm.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftmm.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftmm.c\r\r\n"
     ],
     [
       0.020087,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftmm.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftmm.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftmm.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftmm.o\r\r\n"
     ],
     [
       0.077311,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftmm.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftmm.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftmm.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftmm.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.072087,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftotval.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftotval.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftotval.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftotval.c\r\r\n"
     ],
     [
       0.021022,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftotval.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftotval.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftotval.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftotval.o\r\r\n"
     ],
     [
       0.064025,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftotval.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftotval.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftotval.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftotval.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.069653,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftpatent.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftpatent.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpatent.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftpatent.c\r\r\n"
     ],
     [
       0.018569,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftpatent.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftpatent.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftpatent.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftpatent.o\r\r\n"
     ],
     [
       0.087594,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftpatent.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftpatent.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftpatent.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpatent.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.090703,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftpfr.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftpfr.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpfr.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftpfr.c\r\r\n"
     ],
     [
       0.019239,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftpfr.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftpfr.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftpfr.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftpfr.o\r\r\n"
     ],
     [
       0.068865,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftpfr.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftpfr.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftpfr.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpfr.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.075473,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftstroke.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftstroke.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftstroke.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftstroke.c\r\r\n"
     ],
     [
       0.018927,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftstroke.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftstroke.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftstroke.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftstroke.o\r\r\n"
     ],
     [
       0.282017,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftstroke.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftstroke.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftstroke.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftstroke.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.275624,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftsynth.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftsynth.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsynth.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftsynth.c\r\r\n"
     ],
     [
       0.021164,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftsynth.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftsynth.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftsynth.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftsynth.o\r\r\n"
     ],
     [
       0.069182,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftsynth.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftsynth.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftsynth.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsynth.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.074105,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/fttype1.lo /openjdk/jdk8u/freetype-2.4.0/src/base/fttype1.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/fttype1.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/fttype1.c\r\r\n"
     ],
     [
       0.017057,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/fttype1.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/fttype1.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/fttype1.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/fttype1.o\r\r\n"
     ],
     [
       0.071418,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/fttype1.c -o /openjdk/jdk8u/freetype-2.4.0/objs/fttype1.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/fttype1.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/fttype1.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.067039,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftwinfnt.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftwinfnt.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftwinfnt.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftwinfnt.c\r\r\n"
     ],
     [
       0.019899,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftwinfnt.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftwinfnt.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftwinfnt.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftwinfnt.o\r\r\n"
     ],
     [
       0.061362,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftwinfnt.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftwinfnt.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftwinfnt.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftwinfnt.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.067543,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/base -o /openjdk/jdk8u/freetype-2.4.0/objs/ftxf86.lo /openjdk/jdk8u/freetype-2.4.0/src/base/ftxf86.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftxf86.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftxf86.c\r\r\n"
     ],
     [
       0.02009,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftxf86.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftxf86.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftxf86.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftxf86.o\r\r\n"
     ],
     [
       0.055432,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/base /openjdk/jdk8u/freetype-2.4.0/src/base/ftxf86.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftxf86.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/base/ftxf86.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftxf86.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.06195,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/truetype -o /openjdk/jdk8u/freetype-2.4.0/objs/truetype.lo /openjdk/jdk8u/freetype-2.4.0/src/truetype/truetype.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/truetype -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/truetype.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/truetype/truetype.c\r\r\n"
     ],
     [
       0.019252,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/truetype /openjdk/jdk8u/freetype-2.4.0/src/truetype/truetype.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/truetype.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/truetype /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/truetype/truetype.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/truetype.o\r\r\n"
     ],
     [
       1.138486,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/truetype /openjdk/jdk8u/freetype-2.4.0/src/truetype/truetype.c -o /openjdk/jdk8u/freetype-2.4.0/objs/truetype.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/truetype /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/truetype/truetype.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/truetype.o >/dev/null 2>&1\r\r\n"
     ],
     [
       1.139217,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/type1 -o /openjdk/jdk8u/freetype-2.4.0/objs/type1.lo /openjdk/jdk8u/freetype-2.4.0/src/type1/type1.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type1 -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type1/type1.c\r\r\n"
     ],
     [
       0.023449,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/type1 /openjdk/jdk8u/freetype-2.4.0/src/type1/type1.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/type1.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type1 /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type1/type1.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/type1.o\r\r\n"
     ],
     [
       0.51297,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/type1 /openjdk/jdk8u/freetype-2.4.0/src/type1/type1.c -o /openjdk/jdk8u/freetype-2.4.0/objs/type1.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type1 /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type1/type1.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.53325,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/cff -o /openjdk/jdk8u/freetype-2.4.0/objs/cff.lo /openjdk/jdk8u/freetype-2.4.0/src/cff/cff.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cff -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/cff.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cff/cff.c\r\r\n"
     ],
     [
       0.018608,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/cff /openjdk/jdk8u/freetype-2.4.0/src/cff/cff.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/cff.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cff /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cff/cff.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/cff.o\r\r\n"
     ],
     [
       0.833016,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/cff /openjdk/jdk8u/freetype-2.4.0/src/cff/cff.c -o /openjdk/jdk8u/freetype-2.4.0/objs/cff.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cff /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cff/cff.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/cff.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.824134,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/cid -o /openjdk/jdk8u/freetype-2.4.0/objs/type1cid.lo /openjdk/jdk8u/freetype-2.4.0/src/cid/type1cid.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cid -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1cid.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cid/type1cid.c\r\r\n"
     ],
     [
       0.019033,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/cid /openjdk/jdk8u/freetype-2.4.0/src/cid/type1cid.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/type1cid.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cid /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cid/type1cid.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/type1cid.o\r\r\n"
     ],
     [
       0.271672,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/cid /openjdk/jdk8u/freetype-2.4.0/src/cid/type1cid.c -o /openjdk/jdk8u/freetype-2.4.0/objs/type1cid.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cid /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cid/type1cid.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1cid.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.278768,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/pfr -o /openjdk/jdk8u/freetype-2.4.0/objs/pfr.lo /openjdk/jdk8u/freetype-2.4.0/src/pfr/pfr.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pfr -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pfr.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pfr/pfr.c\r\r\n"
     ],
     [
       0.017682,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/pfr /openjdk/jdk8u/freetype-2.4.0/src/pfr/pfr.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/pfr.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pfr /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pfr/pfr.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/pfr.o\r\r\n"
     ],
     [
       0.433556,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/pfr /openjdk/jdk8u/freetype-2.4.0/src/pfr/pfr.c -o /openjdk/jdk8u/freetype-2.4.0/objs/pfr.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pfr /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pfr/pfr.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pfr.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.440776,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/type42 -o /openjdk/jdk8u/freetype-2.4.0/objs/type42.lo /openjdk/jdk8u/freetype-2.4.0/src/type42/type42.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type42 -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type42.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type42/type42.c\r\r\n"
     ],
     [
       0.019167,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/type42 /openjdk/jdk8u/freetype-2.4.0/src/type42/type42.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/type42.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type42 /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type42/type42.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/type42.o\r\r\n"
     ],
     [
       0.261901,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/type42 /openjdk/jdk8u/freetype-2.4.0/src/type42/type42.c -o /openjdk/jdk8u/freetype-2.4.0/objs/type42.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type42 /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/type42/type42.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type42.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.263554,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/winfonts -o /openjdk/jdk8u/freetype-2.4.0/objs/winfnt.lo /openjdk/jdk8u/freetype-2.4.0/src/winfonts/winfnt.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/winfonts -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/winfnt.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/winfonts/winfnt.c\r\r\n"
     ],
     [
       0.019029,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/winfonts /openjdk/jdk8u/freetype-2.4.0/src/winfonts/winfnt.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/winfnt.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/winfonts /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/winfonts/winfnt.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/winfnt.o\r\r\n"
     ],
     [
       0.162277,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/winfonts /openjdk/jdk8u/freetype-2.4.0/src/winfonts/winfnt.c -o /openjdk/jdk8u/freetype-2.4.0/objs/winfnt.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/winfonts /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/winfonts/winfnt.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/winfnt.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.165147,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/pcf -o /openjdk/jdk8u/freetype-2.4.0/objs/pcf.lo /openjdk/jdk8u/freetype-2.4.0/src/pcf/pcf.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pcf -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pcf.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pcf/pcf.c\r\r\n"
     ],
     [
       0.017632,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/pcf /openjdk/jdk8u/freetype-2.4.0/src/pcf/pcf.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/pcf.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pcf /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pcf/pcf.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/pcf.o\r\r\n"
     ],
     [
       0.266605,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/pcf /openjdk/jdk8u/freetype-2.4.0/src/pcf/pcf.c -o /openjdk/jdk8u/freetype-2.4.0/objs/pcf.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pcf /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pcf/pcf.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pcf.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.267641,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/bdf -o /openjdk/jdk8u/freetype-2.4.0/objs/bdf.lo /openjdk/jdk8u/freetype-2.4.0/src/bdf/bdf.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/bdf -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/bdf.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/bdf/bdf.c\r\r\n"
     ],
     [
       0.018937,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/bdf /openjdk/jdk8u/freetype-2.4.0/src/bdf/bdf.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/bdf.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/bdf /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/bdf/bdf.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/bdf.o\r\r\n"
     ],
     [
       0.417302,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/bdf /openjdk/jdk8u/freetype-2.4.0/src/bdf/bdf.c -o /openjdk/jdk8u/freetype-2.4.0/objs/bdf.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/bdf /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/bdf/bdf.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/bdf.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.422841,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/sfnt -o /openjdk/jdk8u/freetype-2.4.0/objs/sfnt.lo /openjdk/jdk8u/freetype-2.4.0/src/sfnt/sfnt.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/sfnt -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/sfnt.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/sfnt/sfnt.c\r\r\n"
     ],
     [
       0.021474,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/sfnt /openjdk/jdk8u/freetype-2.4.0/src/sfnt/sfnt.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/sfnt.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/sfnt /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/sfnt/sfnt.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/sfnt.o\r\r\n"
     ],
     [
       1.0477,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/sfnt /openjdk/jdk8u/freetype-2.4.0/src/sfnt/sfnt.c -o /openjdk/jdk8u/freetype-2.4.0/objs/sfnt.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/sfnt /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/sfnt/sfnt.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/sfnt.o >/dev/null 2>&1\r\r\n"
     ],
     [
       1.033242,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/autofit -o /openjdk/jdk8u/freetype-2.4.0/objs/autofit.lo /openjdk/jdk8u/freetype-2.4.0/src/autofit/autofit.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/autofit -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/autofit.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/autofit/autofit.c\r\r\n"
     ],
     [
       0.021536,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/autofit /openjdk/jdk8u/freetype-2.4.0/src/autofit/autofit.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/autofit.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/autofit /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/autofit/autofit.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/autofit.o\r\r\n"
     ],
     [
       0.681777,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/autofit /openjdk/jdk8u/freetype-2.4.0/src/autofit/autofit.c -o /openjdk/jdk8u/freetype-2.4.0/objs/autofit.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/autofit /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/autofit/autofit.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/autofit.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.663765,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/pshinter -o /openjdk/jdk8u/freetype-2.4.0/objs/pshinter.lo /openjdk/jdk8u/freetype-2.4.0/src/pshinter/pshinter.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pshinter -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pshinter.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pshinter/pshinter.c\r\r\n"
     ],
     [
       0.018185,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/pshinter /openjdk/jdk8u/freetype-2.4.0/src/pshinter/pshinter.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/pshinter.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pshinter /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pshinter/pshinter.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/pshinter.o\r\r\n"
     ],
     [
       0.514004,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/pshinter /openjdk/jdk8u/freetype-2.4.0/src/pshinter/pshinter.c -o /openjdk/jdk8u/freetype-2.4.0/objs/pshinter.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pshinter /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/pshinter/pshinter.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pshinter.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.527931,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/raster -o /openjdk/jdk8u/freetype-2.4.0/objs/raster.lo /openjdk/jdk8u/freetype-2.4.0/src/raster/raster.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/raster -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/raster.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/raster/raster.c\r\r\n"
     ],
     [
       0.018299,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/raster /openjdk/jdk8u/freetype-2.4.0/src/raster/raster.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/raster.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/raster /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/raster/raster.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/raster.o\r\r\n"
     ],
     [
       0.316891,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/raster /openjdk/jdk8u/freetype-2.4.0/src/raster/raster.c -o /openjdk/jdk8u/freetype-2.4.0/objs/raster.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/raster /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/raster/raster.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/raster.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.329815,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/smooth -o /openjdk/jdk8u/freetype-2.4.0/objs/smooth.lo /openjdk/jdk8u/freetype-2.4.0/src/smooth/smooth.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/smooth -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/smooth.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/smooth/smooth.c\r\r\n"
     ],
     [
       0.018412,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/smooth /openjdk/jdk8u/freetype-2.4.0/src/smooth/smooth.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/smooth.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/smooth /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/smooth/smooth.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/smooth.o\r\r\n"
     ],
     [
       0.249884,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/smooth /openjdk/jdk8u/freetype-2.4.0/src/smooth/smooth.c -o /openjdk/jdk8u/freetype-2.4.0/objs/smooth.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/smooth /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/smooth/smooth.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/smooth.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.259267,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/cache -o /openjdk/jdk8u/freetype-2.4.0/objs/ftcache.lo /openjdk/jdk8u/freetype-2.4.0/src/cache/ftcache.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cache -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcache.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cache/ftcache.c\r\r\n"
     ],
     [
       0.020182,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/cache /openjdk/jdk8u/freetype-2.4.0/src/cache/ftcache.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftcache.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cache /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cache/ftcache.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftcache.o\r\r\n"
     ],
     [
       0.388995,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/cache /openjdk/jdk8u/freetype-2.4.0/src/cache/ftcache.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftcache.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cache /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/cache/ftcache.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcache.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.402575,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /openjdk/jdk8u/freetype-2.4.0/objs/ftgzip.lo /openjdk/jdk8u/freetype-2.4.0/src/gzip/ftgzip.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgzip.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/gzip/ftgzip.c\r\r\n"
     ],
     [
       0.020524,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /openjdk/jdk8u/freetype-2.4.0/src/gzip/ftgzip.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftgzip.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/gzip/ftgzip.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftgzip.o\r\r\n"
     ],
     [
       0.111709,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /openjdk/jdk8u/freetype-2.4.0/src/gzip/ftgzip.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftgzip.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/gzip/ftgzip.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgzip.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.121625,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/lzw -o /openjdk/jdk8u/freetype-2.4.0/objs/ftlzw.lo /openjdk/jdk8u/freetype-2.4.0/src/lzw/ftlzw.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/lzw -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlzw.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/lzw/ftlzw.c\r\r\n"
     ],
     [
       0.018347,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/lzw /openjdk/jdk8u/freetype-2.4.0/src/lzw/ftlzw.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftlzw.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/lzw /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/lzw/ftlzw.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftlzw.o\r\r\n"
     ],
     [
       0.138089,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/lzw /openjdk/jdk8u/freetype-2.4.0/src/lzw/ftlzw.c -o /openjdk/jdk8u/freetype-2.4.0/objs/ftlzw.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/lzw /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/lzw/ftlzw.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlzw.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.136887,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/psaux -o /openjdk/jdk8u/freetype-2.4.0/objs/psaux.lo /openjdk/jdk8u/freetype-2.4.0/src/psaux/psaux.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psaux -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psaux.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psaux/psaux.c\r\r\n"
     ],
     [
       0.020523,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/psaux /openjdk/jdk8u/freetype-2.4.0/src/psaux/psaux.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/psaux.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psaux /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psaux/psaux.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/psaux.o\r\r\n"
     ],
     [
       0.496879,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/psaux /openjdk/jdk8u/freetype-2.4.0/src/psaux/psaux.c -o /openjdk/jdk8u/freetype-2.4.0/objs/psaux.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psaux /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psaux/psaux.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psaux.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.519109,
-      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/openjdk/jdk8u/freetype-2.4.0/src/psnames -o /openjdk/jdk8u/freetype-2.4.0/objs/psnames.lo /openjdk/jdk8u/freetype-2.4.0/src/psnames/psmodule.c\r\r\n"
+      "./builds/unix/libtool --mode=compile gcc -pedantic -ansi  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB -DFT_CONFIG_CONFIG_H=\"<ftconfig.h>\" -DFT2_BUILD_LIBRARY -DFT_CONFIG_MODULES_H=\"<ftmodule.h>\"  -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psnames -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psnames.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psnames/psmodule.c\r\r\n"
     ],
     [
       0.017314,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/psnames /openjdk/jdk8u/freetype-2.4.0/src/psnames/psmodule.c  -fPIC -DPIC -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/psnames.o\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psnames /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psnames/psmodule.c  -fPIC -DPIC -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/psnames.o\r\r\n"
     ],
     [
       0.171212,
-      "libtool: compile:  gcc -pedantic -ansi -I/openjdk/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/openjdk/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/openjdk/jdk8u/freetype-2.4.0/src/psnames /openjdk/jdk8u/freetype-2.4.0/src/psnames/psmodule.c -o /openjdk/jdk8u/freetype-2.4.0/objs/psnames.o >/dev/null 2>&1\r\r\n"
+      "libtool: compile:  gcc -pedantic -ansi -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs -I./builds/unix -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/include -c -Wall -g -O2 -DFT_CONFIG_OPTION_SYSTEM_ZLIB \"-DFT_CONFIG_CONFIG_H=<ftconfig.h>\" -DFT2_BUILD_LIBRARY \"-DFT_CONFIG_MODULES_H=<ftmodule.h>\" -I/AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psnames /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/psnames/psmodule.c -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psnames.o >/dev/null 2>&1\r\r\n"
     ],
     [
       0.190427,
-      "gcc\t\t -o /openjdk/jdk8u/freetype-2.4.0/objs/apinames /openjdk/jdk8u/freetype-2.4.0/src/tools/apinames.c\r\r\n"
+      "gcc\t\t -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/apinames /AdoptOpenJDK/jdk8u/freetype-2.4.0/src/tools/apinames.c\r\r\n"
     ],
     [
       0.061085,
-      "/openjdk/jdk8u/freetype-2.4.0/objs/apinames -o/openjdk/jdk8u/freetype-2.4.0/objs/ftexport.sym  /openjdk/jdk8u/freetype-2.4.0/include/freetype/freetype.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftadvanc.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftbbox.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftbdf.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftbitmap.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftcache.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftchapters.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftcid.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fterrdef.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fterrors.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftgasp.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftglyph.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftgxval.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftgzip.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftimage.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftincrem.h /openjdk/jdk8u/"
+      "/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/apinames -o/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftexport.sym  /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/freetype.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftadvanc.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftbbox.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftbdf.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftbitmap.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftcache.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftchapters.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftcid.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fterrdef.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fterrors.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftgasp.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftglyph.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftgxval.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftgzip.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftimage.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftincrem.h /AdoptOpenJDK/jdk8u/"
     ],
     [
       2.4e-05,
-      "freetype-2.4.0/include/freetype/ftlcdfil.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftlist.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftlzw.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmac.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmm.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmodapi.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmoderr.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftotval.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftoutln.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftpfr.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftrender.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsizes.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsnames.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftstroke.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsynth.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsystem.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fttrigon.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fttypes.h /openjdk/jdk8u/"
+      "freetype-2.4.0/include/freetype/ftlcdfil.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftlist.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftlzw.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmac.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmm.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmodapi.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmoderr.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftotval.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftoutln.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftpfr.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftrender.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsizes.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsnames.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftstroke.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsynth.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsystem.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fttrigon.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fttypes.h /AdoptOpenJDK/jdk8u/"
     ],
     [
       2.8e-05,
-      "freetype-2.4.0/include/freetype/ftwinfnt.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftxf86.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/t1tables.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ttnameid.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/tttables.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/tttags.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ttunpat.h\r\r\n"
+      "freetype-2.4.0/include/freetype/ftwinfnt.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftxf86.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/t1tables.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ttnameid.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/tttables.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/tttags.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ttunpat.h\r\r\n"
     ],
     [
       0.009168,
-      "./builds/unix/libtool --mode=link gcc -o /openjdk/jdk8u/freetype-2.4.0/objs/libfreetype.la  /openjdk/jdk8u/freetype-2.4.0/objs/ftsystem.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftdebug.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftinit.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftbase.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftbbox.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftbdf.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftbitmap.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftcid.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftfstype.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftgasp.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftglyph.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftgxval.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftlcdfil.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftmm.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftotval.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftpatent.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftpfr.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftstroke.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftsynth.lo /openjdk/jdk8u/freetype-2.4.0/objs/fttype1.lo /openjdk/jdk8u/free"
+      "./builds/unix/libtool --mode=link gcc -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/libfreetype.la  /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsystem.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftdebug.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftinit.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbase.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbbox.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbdf.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbitmap.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcid.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftfstype.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgasp.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftglyph.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgxval.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlcdfil.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftmm.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftotval.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpatent.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpfr.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftstroke.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsynth.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/fttype1.lo /AdoptOpenJDK/jdk8u/free"
     ],
     [
       2e-05,
-      "type-2.4.0/objs/ftwinfnt.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftxf86.lo /openjdk/jdk8u/freetype-2.4.0/objs/truetype.lo /openjdk/jdk8u/freetype-2.4.0/objs/type1.lo /openjdk/jdk8u/freetype-2.4.0/objs/cff.lo /openjdk/jdk8u/freetype-2.4.0/objs/type1cid.lo /openjdk/jdk8u/freetype-2.4.0/objs/pfr.lo /openjdk/jdk8u/freetype-2.4.0/objs/type42.lo /openjdk/jdk8u/freetype-2.4.0/objs/winfnt.lo /openjdk/jdk8u/freetype-2.4.0/objs/pcf.lo /openjdk/jdk8u/freetype-2.4.0/objs/bdf.lo /openjdk/jdk8u/freetype-2.4.0/objs/sfnt.lo /openjdk/jdk8u/freetype-2.4.0/objs/autofit.lo /openjdk/jdk8u/freetype-2.4.0/objs/pshinter.lo /openjdk/jdk8u/freetype-2.4.0/objs/raster.lo /openjdk/jdk8u/freetype-2.4.0/objs/smooth.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftcache.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftgzip.lo /openjdk/jdk8u/freetype-2.4.0/objs/ftlzw.lo /openjdk/jdk8u/freetype-2.4.0/objs/psaux.lo /openjdk/jdk8u/freetype-2.4.0/objs/psnames.lo -rpath /openjdk/jdk8u/installedfreetype/lib -version-info 11:0:5 -lz -no-undefined \r\r\n"
+      "type-2.4.0/objs/ftwinfnt.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftxf86.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/truetype.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/cff.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1cid.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pfr.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type42.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/winfnt.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pcf.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/bdf.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/sfnt.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/autofit.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pshinter.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/raster.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/smooth.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcache.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgzip.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlzw.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psaux.lo /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psnames.lo -rpath /AdoptOpenJDK/jdk8u/installedfreetype/lib -version-info 11:0:5 -lz -no-undefined \r\r\n"
     ],
     [
       0.076227,
-      "libtool: link: gcc -shared  /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftsystem.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftdebug.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftinit.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbase.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbbox.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbdf.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftbitmap.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftcid.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftfstype.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftgasp.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftglyph.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftgxval.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftlcdfil.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftmm.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftotval.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftpatent.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftpfr.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftstroke.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftsynth.o /openjdk/jdk8u/freetype-2.4.0/objs"
+      "libtool: link: gcc -shared  /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftsystem.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftdebug.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftinit.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbase.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbbox.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbdf.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftbitmap.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftcid.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftfstype.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftgasp.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftglyph.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftgxval.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftlcdfil.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftmm.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftotval.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftpatent.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftpfr.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftstroke.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftsynth.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs"
     ],
     [
       4.2e-05,
-      "/.libs/fttype1.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftwinfnt.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftxf86.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/truetype.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/type1.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/cff.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/type1cid.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/pfr.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/type42.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/winfnt.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/pcf.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/bdf.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/sfnt.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/autofit.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/pshinter.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/raster.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/smooth.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftcache.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftgzip.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/ftlzw.o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/psaux.o /openjdk/jdk8u"
+      "/.libs/fttype1.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftwinfnt.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftxf86.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/truetype.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/type1.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/cff.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/type1cid.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/pfr.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/type42.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/winfnt.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/pcf.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/bdf.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/sfnt.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/autofit.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/pshinter.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/raster.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/smooth.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftcache.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftgzip.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/ftlzw.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/psaux.o /AdoptOpenJDK/jdk8u"
     ],
     [
       1.6e-05,
-      "/freetype-2.4.0/objs/.libs/psnames.o   -lz    -Wl,-soname -Wl,libfreetype.so.6 -o /openjdk/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.so.6.5.0\r\r\n"
+      "/freetype-2.4.0/objs/.libs/psnames.o   -lz    -Wl,-soname -Wl,libfreetype.so.6 -o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.so.6.5.0\r\r\n"
     ],
     [
       0.067135,
-      "libtool: link: (cd \"/openjdk/jdk8u/freetype-2.4.0/objs/.libs\" && rm -f \"libfreetype.so.6\" && ln -s \"libfreetype.so.6.5.0\" \"libfreetype.so.6\")\r\r\n"
+      "libtool: link: (cd \"/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs\" && rm -f \"libfreetype.so.6\" && ln -s \"libfreetype.so.6.5.0\" \"libfreetype.so.6\")\r\r\n"
     ],
     [
       0.006142,
-      "libtool: link: (cd \"/openjdk/jdk8u/freetype-2.4.0/objs/.libs\" && rm -f \"libfreetype.so\" && ln -s \"libfreetype.so.6.5.0\" \"libfreetype.so\")\r\r\n"
+      "libtool: link: (cd \"/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs\" && rm -f \"libfreetype.so\" && ln -s \"libfreetype.so.6.5.0\" \"libfreetype.so\")\r\r\n"
     ],
     [
       0.008263,
-      "libtool: link: ar cru /openjdk/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.a  /openjdk/jdk8u/freetype-2.4.0/objs/ftsystem.o /openjdk/jdk8u/freetype-2.4.0/objs/ftdebug.o /openjdk/jdk8u/freetype-2.4.0/objs/ftinit.o /openjdk/jdk8u/freetype-2.4.0/objs/ftbase.o /openjdk/jdk8u/freetype-2.4.0/objs/ftbbox.o /openjdk/jdk8u/freetype-2.4.0/objs/ftbdf.o /openjdk/jdk8u/freetype-2.4.0/objs/ftbitmap.o /openjdk/jdk8u/freetype-2.4.0/objs/ftcid.o /openjdk/jdk8u/freetype-2.4.0/objs/ftfstype.o /openjdk/jdk8u/freetype-2.4.0/objs/ftgasp.o /openjdk/jdk8u/freetype-2.4.0/objs/ftglyph.o /openjdk/jdk8u/freetype-2.4.0/objs/ftgxval.o /openjdk/jdk8u/freetype-2.4.0/objs/ftlcdfil.o /openjdk/jdk8u/freetype-2.4.0/objs/ftmm.o /openjdk/jdk8u/freetype-2.4.0/objs/ftotval.o /openjdk/jdk8u/freetype-2.4.0/objs/ftpatent.o /openjdk/jdk8u/freetype-2.4.0/objs/ftpfr.o /openjdk/jdk8u/freetype-2.4.0/objs/ftstroke.o /openjdk/jdk8u/freetype-2.4.0/objs/ftsynth.o /openjdk/jdk8u/freetype-2.4.0/objs/fttype1.o /openjdk/jdk8u/freetype-2.4.0/objs/ftwinfnt.o /openjd"
+      "libtool: link: ar cru /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.a  /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsystem.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftdebug.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftinit.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbase.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbbox.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbdf.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftbitmap.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcid.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftfstype.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgasp.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftglyph.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgxval.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlcdfil.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftmm.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftotval.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpatent.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftpfr.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftstroke.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftsynth.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/fttype1.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftwinfnt.o /openjd"
     ],
     [
       3.4e-05,
-      "k/jdk8u/freetype-2.4.0/objs/ftxf86.o /openjdk/jdk8u/freetype-2.4.0/objs/truetype.o /openjdk/jdk8u/freetype-2.4.0/objs/type1.o /openjdk/jdk8u/freetype-2.4.0/objs/cff.o /openjdk/jdk8u/freetype-2.4.0/objs/type1cid.o /openjdk/jdk8u/freetype-2.4.0/objs/pfr.o /openjdk/jdk8u/freetype-2.4.0/objs/type42.o /openjdk/jdk8u/freetype-2.4.0/objs/winfnt.o /openjdk/jdk8u/freetype-2.4.0/objs/pcf.o /openjdk/jdk8u/freetype-2.4.0/objs/bdf.o /openjdk/jdk8u/freetype-2.4.0/objs/sfnt.o /openjdk/jdk8u/freetype-2.4.0/objs/autofit.o /openjdk/jdk8u/freetype-2.4.0/objs/pshinter.o /openjdk/jdk8u/freetype-2.4.0/objs/raster.o /openjdk/jdk8u/freetype-2.4.0/objs/smooth.o /openjdk/jdk8u/freetype-2.4.0/objs/ftcache.o /openjdk/jdk8u/freetype-2.4.0/objs/ftgzip.o /openjdk/jdk8u/freetype-2.4.0/objs/ftlzw.o /openjdk/jdk8u/freetype-2.4.0/objs/psaux.o /openjdk/jdk8u/freetype-2.4.0/objs/psnames.o\r\r\n"
+      "k/jdk8u/freetype-2.4.0/objs/ftxf86.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/truetype.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/cff.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type1cid.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pfr.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/type42.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/winfnt.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pcf.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/bdf.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/sfnt.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/autofit.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/pshinter.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/raster.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/smooth.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftcache.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftgzip.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftlzw.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psaux.o /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/psnames.o\r\r\n"
     ],
     [
       0.016025,
-      "libtool: link: ranlib /openjdk/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.a\r\r\n"
+      "libtool: link: ranlib /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.a\r\r\n"
     ],
     [
       0.018441,
-      "libtool: link: ( cd \"/openjdk/jdk8u/freetype-2.4.0/objs/.libs\" && rm -f \"libfreetype.la\" && ln -s \"../libfreetype.la\" \"libfreetype.la\" )\r\r\n"
+      "libtool: link: ( cd \"/AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs\" && rm -f \"libfreetype.la\" && ln -s \"../libfreetype.la\" \"libfreetype.la\" )\r\r\n"
     ],
     [
       0.029896,
-      "./builds/unix/mkinstalldirs /openjdk/jdk8u/installedfreetype/lib                               \\\r\r\n                         /openjdk/jdk8u/installedfreetype/lib/pkgconfig                     \\\r\r\n                         /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/config \\\r\r\n                         /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/cache  \\\r\r\n                         /openjdk/jdk8u/installedfreetype/bin                               \\\r\r\n                         /openjdk/jdk8u/installedfreetype/share/aclocal\r\r\n"
+      "./builds/unix/mkinstalldirs /AdoptOpenJDK/jdk8u/installedfreetype/lib                               \\\r\r\n                         /AdoptOpenJDK/jdk8u/installedfreetype/lib/pkgconfig                     \\\r\r\n                         /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/config \\\r\r\n                         /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/cache  \\\r\r\n                         /AdoptOpenJDK/jdk8u/installedfreetype/bin                               \\\r\r\n                         /AdoptOpenJDK/jdk8u/installedfreetype/share/aclocal\r\r\n"
     ],
     [
       0.003798,
-      "mkdir -p -- /openjdk/jdk8u/installedfreetype/lib /openjdk/jdk8u/installedfreetype/lib/pkgconfig /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/config /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/cache /openjdk/jdk8u/installedfreetype/bin /openjdk/jdk8u/installedfreetype/share/aclocal\r\r\n"
+      "mkdir -p -- /AdoptOpenJDK/jdk8u/installedfreetype/lib /AdoptOpenJDK/jdk8u/installedfreetype/lib/pkgconfig /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/config /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/cache /AdoptOpenJDK/jdk8u/installedfreetype/bin /AdoptOpenJDK/jdk8u/installedfreetype/share/aclocal\r\r\n"
     ],
     [
       0.001821,
-      "./builds/unix/libtool --mode=install /usr/bin/install -c                             \\\r\r\n                                  /openjdk/jdk8u/freetype-2.4.0/objs/libfreetype.la /openjdk/jdk8u/installedfreetype/lib\r\r\n"
+      "./builds/unix/libtool --mode=install /usr/bin/install -c                             \\\r\r\n                                  /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/libfreetype.la /AdoptOpenJDK/jdk8u/installedfreetype/lib\r\r\n"
     ],
     [
       0.015336,
-      "libtool: install: /usr/bin/install -c /openjdk/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.so.6.5.0 /openjdk/jdk8u/installedfreetype/lib/libfreetype.so.6.5.0\r\r\n"
+      "libtool: install: /usr/bin/install -c /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.so.6.5.0 /AdoptOpenJDK/jdk8u/installedfreetype/lib/libfreetype.so.6.5.0\r\r\n"
     ],
     [
       0.00353,
-      "libtool: install: (cd /openjdk/jdk8u/installedfreetype/lib && { ln -s -f libfreetype.so.6.5.0 libfreetype.so.6 || { rm -f libfreetype.so.6 && ln -s libfreetype.so.6.5.0 libfreetype.so.6; }; })\r\r\n"
+      "libtool: install: (cd /AdoptOpenJDK/jdk8u/installedfreetype/lib && { ln -s -f libfreetype.so.6.5.0 libfreetype.so.6 || { rm -f libfreetype.so.6 && ln -s libfreetype.so.6.5.0 libfreetype.so.6; }; })\r\r\n"
     ],
     [
       0.001777,
-      "libtool: install: (cd /openjdk/jdk8u/installedfreetype/lib && { ln -s -f libfreetype.so.6.5.0 libfreetype.so || { rm -f libfreetype.so && ln -s libfreetype.so.6.5.0 libfreetype.so; }; })\r\r\n"
+      "libtool: install: (cd /AdoptOpenJDK/jdk8u/installedfreetype/lib && { ln -s -f libfreetype.so.6.5.0 libfreetype.so || { rm -f libfreetype.so && ln -s libfreetype.so.6.5.0 libfreetype.so; }; })\r\r\n"
     ],
     [
       0.001822,
-      "libtool: install: /usr/bin/install -c /openjdk/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.lai /openjdk/jdk8u/installedfreetype/lib/libfreetype.la\r\r\n"
+      "libtool: install: /usr/bin/install -c /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.lai /AdoptOpenJDK/jdk8u/installedfreetype/lib/libfreetype.la\r\r\n"
     ],
     [
       0.002486,
-      "libtool: install: /usr/bin/install -c /openjdk/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.a /openjdk/jdk8u/installedfreetype/lib/libfreetype.a\r\r\n"
+      "libtool: install: /usr/bin/install -c /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/.libs/libfreetype.a /AdoptOpenJDK/jdk8u/installedfreetype/lib/libfreetype.a\r\r\n"
     ],
     [
       0.005851,
-      "libtool: install: chmod 644 /openjdk/jdk8u/installedfreetype/lib/libfreetype.a\r\r\n"
+      "libtool: install: chmod 644 /AdoptOpenJDK/jdk8u/installedfreetype/lib/libfreetype.a\r\r\n"
     ],
     [
       0.001654,
-      "libtool: install: ranlib /openjdk/jdk8u/installedfreetype/lib/libfreetype.a\r\r\n"
+      "libtool: install: ranlib /AdoptOpenJDK/jdk8u/installedfreetype/lib/libfreetype.a\r\r\n"
     ],
     [
       0.038295,
-      "libtool: finish: PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin\" ldconfig -n /openjdk/jdk8u/installedfreetype/lib\r\r\n"
+      "libtool: finish: PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin\" ldconfig -n /AdoptOpenJDK/jdk8u/installedfreetype/lib\r\r\n"
     ],
     [
       0.005533,
@@ -3831,7 +3831,7 @@
     ],
     [
       0.000192,
-      "Libraries have been installed in:\r\r\n   /openjdk/jdk8u/installedfreetype/lib\r\r\n\r\r\nIf you ever happen to want to link against installed libraries\r\r\nin a given directory, LIBDIR, you must either use libtool, and\r\r\n"
+      "Libraries have been installed in:\r\r\n   /AdoptOpenJDK/jdk8u/installedfreetype/lib\r\r\n\r\r\nIf you ever happen to want to link against installed libraries\r\r\nin a given directory, LIBDIR, you must either use libtool, and\r\r\n"
     ],
     [
       2.4e-05,
@@ -3847,67 +3847,67 @@
     ],
     [
       0.000534,
-      "for P in /openjdk/jdk8u/freetype-2.4.0/include/freetype/freetype.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftadvanc.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftbbox.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftbdf.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftbitmap.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftcache.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftchapters.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftcid.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fterrdef.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fterrors.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftgasp.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftglyph.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftgxval.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftgzip.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftimage.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftincrem.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftlcdfil.h /openjdk/jdk8u/freetype-2.4.0/include/freet"
+      "for P in /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/freetype.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftadvanc.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftbbox.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftbdf.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftbitmap.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftcache.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftchapters.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftcid.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fterrdef.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fterrors.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftgasp.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftglyph.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftgxval.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftgzip.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftimage.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftincrem.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftlcdfil.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freet"
     ],
     [
       2e-05,
-      "ype/ftlist.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftlzw.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmac.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmm.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmodapi.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftmoderr.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftotval.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftoutln.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftpfr.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftrender.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsizes.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsnames.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftstroke.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsynth.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftsystem.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fttrigon.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/fttypes.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ftwinfnt.h /openjdk/jdk8u/freetype-2.4.0/include/freet"
+      "ype/ftlist.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftlzw.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmac.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmm.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmodapi.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftmoderr.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftotval.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftoutln.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftpfr.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftrender.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsizes.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsnames.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftstroke.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsynth.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftsystem.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fttrigon.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/fttypes.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ftwinfnt.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freet"
     ],
     [
       1.3e-05,
-      "ype/ftxf86.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/t1tables.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ttnameid.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/tttables.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/tttags.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/ttunpat.h ; do                           \\\r\r\n"
+      "ype/ftxf86.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/t1tables.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ttnameid.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/tttables.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/tttags.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/ttunpat.h ; do                           \\\r\r\n"
     ],
     [
       0.000152,
-      "          /usr/bin/install -c -m 644                                    \\\r\r\n            $P /openjdk/jdk8u/installedfreetype/include/freetype2/freetype ; \\\r\r\n        done\r\r\n"
+      "          /usr/bin/install -c -m 644                                    \\\r\r\n            $P /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype ; \\\r\r\n        done\r\r\n"
     ],
     [
       0.073061,
-      "for P in /openjdk/jdk8u/freetype-2.4.0/include/freetype/config/ftconfig.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/config/ftheader.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/config/ftmodule.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/config/ftoption.h /openjdk/jdk8u/freetype-2.4.0/include/freetype/config/ftstdlib.h  /openjdk/jdk8u/freetype-2.4.0/objs/ftmodule.h  ; do                                  \\\r\r\n          /usr/bin/install -c -m 644                                           \\\r\r\n            $P /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/config ; \\\r\r\n        done\r\r\n"
+      "for P in /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/config/ftconfig.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/config/ftheader.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/config/ftmodule.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/config/ftoption.h /AdoptOpenJDK/jdk8u/freetype-2.4.0/include/freetype/config/ftstdlib.h  /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftmodule.h  ; do                                  \\\r\r\n          /usr/bin/install -c -m 644                                           \\\r\r\n            $P /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/config ; \\\r\r\n        done\r\r\n"
     ],
     [
       0.015005,
-      "rm -f /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/cache/*\r\r\n"
+      "rm -f /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/cache/*\r\r\n"
     ],
     [
       0.001555,
-      "rmdir /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/cache\r\r\n"
+      "rmdir /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/cache\r\r\n"
     ],
     [
       0.000848,
-      "rm -f /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/internal/*\r\r\n"
+      "rm -f /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/internal/*\r\r\n"
     ],
     [
       0.00155,
-      "rmdir /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/internal\r\r\n"
+      "rmdir /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/internal\r\r\n"
     ],
     [
       0.00054,
-      "rmdir: failed to remove '/openjdk/jdk8u/installedfreetype/include/freetype2/freetype/internal': No such file or directory\r\r\n"
+      "rmdir: failed to remove '/AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/internal': No such file or directory\r\r\n"
     ],
     [
       0.000236,
-      "make: [install] Error 1 (ignored)\r\r\n/usr/bin/install -c -m 644 ./builds/unix/ft2unix.h \\\r\r\n          /openjdk/jdk8u/installedfreetype/include/ft2build.h\r\r\n"
+      "make: [install] Error 1 (ignored)\r\r\n/usr/bin/install -c -m 644 ./builds/unix/ft2unix.h \\\r\r\n          /AdoptOpenJDK/jdk8u/installedfreetype/include/ft2build.h\r\r\n"
     ],
     [
       0.001639,
-      "/usr/bin/install -c -m 644 ./builds/unix/ftconfig.h                        \\\r\r\n          /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/config/ftconfig.h\r\r\n"
+      "/usr/bin/install -c -m 644 ./builds/unix/ftconfig.h                        \\\r\r\n          /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/config/ftconfig.h\r\r\n"
     ],
     [
       0.00216,
-      "/usr/bin/install -c -m 644 /openjdk/jdk8u/freetype-2.4.0/objs/ftmodule.h                          \\\r\r\n          /openjdk/jdk8u/installedfreetype/include/freetype2/freetype/config/ftmodule.h\r\r\n"
+      "/usr/bin/install -c -m 644 /AdoptOpenJDK/jdk8u/freetype-2.4.0/objs/ftmodule.h                          \\\r\r\n          /AdoptOpenJDK/jdk8u/installedfreetype/include/freetype2/freetype/config/ftmodule.h\r\r\n"
     ],
     [
       0.002247,
-      "/usr/bin/install -c -m 755 ./builds/unix/freetype-config \\\r\r\n          /openjdk/jdk8u/installedfreetype/bin/freetype-config\r\r\n"
+      "/usr/bin/install -c -m 755 ./builds/unix/freetype-config \\\r\r\n          /AdoptOpenJDK/jdk8u/installedfreetype/bin/freetype-config\r\r\n"
     ],
     [
       0.001647,
-      "/usr/bin/install -c -m 644 ./builds/unix/freetype2.m4 \\\r\r\n          /openjdk/jdk8u/installedfreetype/share/aclocal/freetype2.m4\r\r\n"
+      "/usr/bin/install -c -m 644 ./builds/unix/freetype2.m4 \\\r\r\n          /AdoptOpenJDK/jdk8u/installedfreetype/share/aclocal/freetype2.m4\r\r\n"
     ],
     [
       0.001863,
-      "/usr/bin/install -c -m 644 ./builds/unix/freetype2.pc \\\r\r\n          /openjdk/jdk8u/installedfreetype/lib/pkgconfig/freetype2.pc\r\r\n"
+      "/usr/bin/install -c -m 644 ./builds/unix/freetype2.pc \\\r\r\n          /AdoptOpenJDK/jdk8u/installedfreetype/lib/pkgconfig/freetype2.pc\r\r\n"
     ],
     [
       0.002044,
@@ -4207,7 +4207,7 @@
     ],
     [
       0.002033,
-      "/openjdk/jdk8u/cacerts_area/security/cacerts: Java KeyStore\r\r\n"
+      "/AdoptOpenJDK/jdk8u/cacerts_area/security/cacerts: Java KeyStore\r\r\n"
     ],
     [
       0.000146,
@@ -4223,11 +4223,11 @@
     ],
     [
       0.000393,
-      "/openjdk/jdk8u/openjdk\r\r\n"
+      "/AdoptOpenJDK/jdk8u/openjdk\r\r\n"
     ],
     [
       0.178554,
-      "Not reconfiguring due to the presence of config.status in /openjdk/jdk8u\r\r\nBuilding the JDK: calling make images from /openjdk/jdk8u/openjdk\r\r\n"
+      "Not reconfiguring due to the presence of config.status in /AdoptOpenJDK/jdk8u\r\r\nBuilding the JDK: calling make images from /AdoptOpenJDK/jdk8u/openjdk\r\r\n"
     ],
     [
       0.046474,
@@ -4279,7 +4279,7 @@
     ],
     [
       1.147597,
-      "/openjdk/jdk8u/openjdk/jdk/src/share/native/sun/font/freetypeScaler.c: In function 'Java_sun_font_FreetypeFontScaler_getGlyphVectorOutlineNative':\r\r\n/openjdk/jdk8u/openjdk/jdk/src/share/native/sun/font/freetypeScaler.c:1320:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]\r\r\n     if (numGlyphs > 0 && 0xffffffffu / sizeof(jint) >= numGlyphs) {\r\r\n                                                     ^\r\r\n"
+      "/AdoptOpenJDK/jdk8u/AdoptOpenJDK/jdk/src/share/native/sun/font/freetypeScaler.c: In function 'Java_sun_font_FreetypeFontScaler_getGlyphVectorOutlineNative':\r\r\n/AdoptOpenJDK/jdk8u/AdoptOpenJDK/jdk/src/share/native/sun/font/freetypeScaler.c:1320:53: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]\r\r\n     if (numGlyphs > 0 && 0xffffffffu / sizeof(jint) >= numGlyphs) {\r\r\n                                                     ^\r\r\n"
     ],
     [
       0.427771,
@@ -5435,7 +5435,7 @@
     ],
     [
       0.066496,
-      "Your final .tar.gz is here...\r\r\n/openjdk/jdk8u\r\r\n"
+      "Your final .tar.gz is here...\r\r\n/AdoptOpenJDK/jdk8u\r\r\n"
     ],
     [
       0.003194,
@@ -5447,7 +5447,7 @@
     ],
     [
       0.628416,
-      "Copying to the host with docker cp 99edb4bc725b:/openjdk/jdk8u/OpenJDK.tar.gz /home/user/openjdk-build\r\n"
+      "Copying to the host with docker cp 99edb4bc725b:/AdoptOpenJDK/jdk8u/OpenJDK.tar.gz /home/user/openjdk-build\r\n"
     ],
     [
       0.928826,
