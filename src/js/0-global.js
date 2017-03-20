@@ -4,11 +4,15 @@ document.getElementById('logo').onclick = function() {
 }
 
 // set value for error container on every page
+/* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
+/* eslint-enable no-unused-vars */
 
 // returns the name of the user's OS.
 // modify this list to change how other functions search for downloads that match an OS.
+/* eslint-disable no-unused-vars */
 function detectOS() {
+  /* eslint-enable no-unused-vars */
   var OSName="UnknownOS";
   if (navigator.userAgent.indexOf("Win")!=-1) OSName="Win";
   if (navigator.userAgent.indexOf("Mac")!=-1) OSName="Mac";
@@ -19,7 +23,9 @@ function detectOS() {
 }
 
 // pass in the name of the repo (within this organisation only)
+/* eslint-disable no-unused-vars */
 function loadReleasesJSON(repo, loading, callback) {
+  /* eslint-enable no-unused-vars */
   if(msieversion() == true) {
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";

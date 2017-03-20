@@ -1,7 +1,9 @@
 // When index page loads, run:
+/* eslint-disable no-unused-vars */
 function onIndexLoad() {
   setDownloadSection();
 }
+/* eslint-enable no-unused-vars */
 
 // INDEX PAGE FUNCTIONS
 
@@ -10,12 +12,10 @@ function setDownloadSection() {
   const dlLatest = document.getElementById('dl-latest');
   const dlArchive = document.getElementById('dl-archive');
   const dlOther = document.getElementById('dl-other');
-  const dlNightly = document.getElementById('dl-nightly');
   const dlVersionText = document.getElementById('dl-version-text');
   const loadingSpan = document.getElementById('loading-index');
 
   var OS = detectOS();
-  var release = "";
 
   dlArchive.onclick = function() {
     window.location.href = './releases#archive';
@@ -24,10 +24,6 @@ function setDownloadSection() {
   dlOther.onclick = function() {
     window.location.href = './releases';
   }
-
-  /*dlNightly.onclick = function() {
-    window.location.href = './nightly';
-  }*/
 
   var latestLink = "";
   var loading = loadingSpan;

@@ -1,0 +1,18 @@
+env:
+  browser: true
+  node: true
+  es6: true
+rules:
+  no-console: 0
+  no-inner-declarations: 0
+globals:
+  moment: true
+  detectOS: true
+  loadReleasesJSON: true
+  errorContainer: true
+  
+  onIndexLoad: true
+  onNightlyLoad: true
+  onReleasesLoad: true
+
+extends: eslint:recommended
