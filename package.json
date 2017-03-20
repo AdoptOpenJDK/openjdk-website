@@ -1,5 +1,5 @@
 {
-  "name": "GetOpenJDK_website",
+  "name": "AdoptOpenJDK_website",
   "repository": "https://github.com/AdoptOpenJDK/openjdk-website",
   "version": "1.0.0",
   "scripts": {
