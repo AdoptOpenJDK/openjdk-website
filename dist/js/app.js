@@ -575,7 +575,7 @@ function populateArchive() {
       });
     } else {
       // report an error
-      errorContainer.innerHTML = "<p>Error... no archive releases have been found!</p>";
+      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases'>Latest release</a> page.</p>";
       document.getElementById("archive-loading").innerHTML = "";
     }
   });
