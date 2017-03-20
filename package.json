@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "gulp",
-    "lint": "eslint **/*.js"
+    "lint": "eslint **/*.js",
+    "test": "npm run lint"
   },
   "author": "Joe Brady",
   "devDependencies": {
