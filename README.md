@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/breadbin/openjdk-build.svg?branch=master)](https://travis-ci.org/breadbin/openjdk-build)
 # Readme
 
 ## https://openjdk.github.io/openjdk-website/index
