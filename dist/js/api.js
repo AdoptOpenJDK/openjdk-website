@@ -1,6 +1,7 @@
 var repo = "openjdk-releases";
 var extension = window.location.hash;
 var assetCounter2 = 0;
+
 loadRequest(repo, extension);
 
 function loadAPIJSON(repo, extension, callback) {
@@ -28,7 +29,6 @@ function loadRequest(repo, extension) {
       return x.prerelease === false && x.assets[0];
     }
     var releasesJson = JSON.parse(response).filter(checkIfProduction);
-
     // Edit releasesJson based on the user's query:
     // if the user has searched for the latest release or a specific release, search for that release. Else, return all releases.
     if(extension.indexOf("release=latest") >=0 ) {
@@ -92,7 +92,9 @@ function loadRequest(repo, extension) {
             linux_binary.size = ((Math.floor((assetArray[assetCounter2].size)/1024/1024)) + "MB");
             linux_binary.download_url = (assetArray[assetCounter2].browser_download_url);
             linux_binary.checksum = assetArray[assetCounter2].name;
-            if(!extension.indexOf("platform=") >=0 && !extension.indexOf("platform=linux") ==-1) {
+            if(extension.indexOf("platform=") >=0 && extension.indexOf("platform=linux") ==-1) {
+              //
+            } else {
               filteredAssets.push(linux_binary);
             }
 
@@ -103,7 +105,9 @@ function loadRequest(repo, extension) {
             windows_binary.size = ((Math.floor((assetArray[assetCounter2].size)/1024/1024)) + "MB");
             windows_binary.download_url = (assetArray[assetCounter2].browser_download_url);
             windows_binary.checksum = assetArray[assetCounter2].name;
-            if(!extension.indexOf("platform=") >=0 && !extension.indexOf("platform=windows") ==-1) {
+            if(extension.indexOf("platform=") >=0 && extension.indexOf("platform=windows") ==-1) {
+              //
+            } else {
               filteredAssets.push(windows_binary);
             }
 
@@ -114,7 +118,9 @@ function loadRequest(repo, extension) {
             mac_binary.size = ((Math.floor((assetArray[assetCounter2].size)/1024/1024)) + "MB");
             mac_binary.download_url = (assetArray[assetCounter2].browser_download_url);
             mac_binary.checksum = assetArray[assetCounter2].name;
-            if(!extension.indexOf("platform=") >=0 && !extension.indexOf("platform=mac") ==-1) {
+            if(extension.indexOf("platform=") >=0 && extension.indexOf("platform=mac") ==-1) {
+              //
+            } else {
               filteredAssets.push(mac_binary);
             }
           }
