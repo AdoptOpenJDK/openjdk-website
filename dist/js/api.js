@@ -1,4 +1,4 @@
-var repo = "releases";
+var repo = "openjdk-releases";
 var extension = window.location.hash;
 var assetCounter2 = 0;
 loadRequest(repo, extension);
