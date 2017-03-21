@@ -5,17 +5,6 @@ function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
   populateNightly();
 
-  const latestButton = document.getElementById('latest-button');
-  const archiveButton = document.getElementById('archive-button');
-
-  latestButton.onclick = function() {
-    window.location.href = './releases';
-  }
-
-  archiveButton.onclick = function() {
-    window.location.href = './releases#archive';
-  }
-
   // realtime search box
   var search = document.getElementById("search");
   var searchError = document.getElementById("search-error");

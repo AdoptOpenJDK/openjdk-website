@@ -17,14 +17,6 @@ function setDownloadSection() {
 
   var OS = detectOS();
 
-  dlArchive.onclick = function() {
-    window.location.href = './releases#archive';
-  }
-
-  dlOther.onclick = function() {
-    window.location.href = './releases';
-  }
-
   var latestLink = "";
   var loading = loadingSpan;
 
@@ -66,7 +58,7 @@ function setDownloadSection() {
       if(latestLink == "") {
         dlOther.className += " hide";
         dlText.innerHTML = ("Downloads");
-        latestLink = "./releases";
+        latestLink = "./releases.html";
       } else {
         var fullOSName = OS;
         if(OS == "Win") {
@@ -83,9 +75,7 @@ function setDownloadSection() {
     }
 
     // set the download button to use the 'latestLink' variable
-    dlLatest.onclick = function() {
-      window.location.href = latestLink;
-    }
+    dlLatest.href = latestLink;
 
     // remove the loading dots, make the buttons visible, with animated fade-in
     loadingSpan.innerHTML = "";
@@ -98,7 +88,7 @@ function setDownloadSection() {
 
     // animate the main download button
     setTimeout(function(){
-      dlLatest.className = "dl-button animated pulse";
+      dlLatest.className = "dl-button a-button animated pulse";
     }, 1000);
 
  });

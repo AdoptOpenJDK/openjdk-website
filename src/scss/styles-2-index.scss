@@ -48,11 +48,7 @@ main #intro {
 
 .dl-button:hover {
   background-color: rgb(68, 124, 195);
-}
-
-.dl-button img {
-  filter: brightness(500%);
-  transform: translate(0, 0.8rem);
+  color: $maingrey;
 }
 
 .dl-thin-button {
@@ -66,6 +62,7 @@ main #intro {
 
 .dl-thin-button:hover {
   background-color: #e6e6e6;
+  color: $mainblue;
 }
 
 .home-links {

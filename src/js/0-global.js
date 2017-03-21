@@ -1,8 +1,3 @@
-// set header logos to link to home
-document.getElementById('logo').onclick = function() {
-  window.location.href = "./index";
-}
-
 // set value for error container on every page
 /* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');

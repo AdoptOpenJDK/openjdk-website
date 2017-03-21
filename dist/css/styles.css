@@ -54,6 +54,9 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 .invisible {
   visibility: hidden; }
 
+.block {
+  display: block; }
+
 .inline-block {
   display: inline-block; }
 
@@ -97,7 +100,8 @@ input {
   margin: 2rem auto;
   font-size: 1.4rem;
   display: table;
-  cursor: pointer; }
+  cursor: pointer;
+  color: #F5F5F5; }
 
 #logo div {
   display: table-cell;
@@ -125,7 +129,7 @@ main {
 
 .grey-button {
   background-color: #dadada;
-  color: #152935;
+  color: #152935 !important;
   border-radius: 0.2rem;
   padding: 0 1.5rem;
   line-height: 2rem;
@@ -135,11 +139,12 @@ main {
   margin: 0.2rem; }
 
 .grey-button:hover {
-  background-color: #e6e6e6; }
+  background-color: #e6e6e6;
+  color: #152935 !important; }
 
 .blue-button {
   background-color: #3D70B2;
-  color: #F5F5F5;
+  color: #F5F5F5 !important;
   border-radius: 0.2rem;
   padding: 0 1.5rem;
   line-height: 2rem;
@@ -149,7 +154,11 @@ main {
   margin: 0.2rem; }
 
 .blue-button:hover {
-  background-color: #447cc3; }
+  background-color: #447cc3;
+  color: #F5F5F5 !important; }
+
+.a-button {
+  text-decoration: none; }
 
 #search-error {
   text-align: center;
@@ -229,11 +238,8 @@ main #intro {
   position: absolute; }
 
 .dl-button:hover {
-  background-color: #447cc3; }
-
-.dl-button img {
-  filter: brightness(500%);
-  transform: translate(0, 0.8rem); }
+  background-color: #447cc3;
+  color: #F5F5F5; }
 
 .dl-thin-button {
   line-height: 2rem;
@@ -244,7 +250,8 @@ main #intro {
   margin: 1rem auto; }
 
 .dl-thin-button:hover {
-  background-color: #e6e6e6; }
+  background-color: #e6e6e6;
+  color: #152935; }
 
 .home-links {
   padding: 0 1rem; }
@@ -326,8 +333,9 @@ th {
 .latest-platform img {
   height: 3.5rem; }
 
-.latest-download-button {
+a.latest-download-button {
   background-color: #3D70B2;
+  display: block;
   color: #F5F5F5;
   border-radius: 0.2rem;
   min-width: 14rem;
@@ -335,8 +343,9 @@ th {
   cursor: pointer;
   margin: 1rem 0; }
 
-.latest-download-button:hover {
-  background-color: #447cc3; }
+a.latest-download-button:hover {
+  background-color: #447cc3;
+  color: #F5F5F5; }
 
 .latest-details {
   font-size: 0.8rem; }

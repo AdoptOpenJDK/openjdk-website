@@ -58,6 +58,10 @@ $tableblue-even: #1F2F4E;
   visibility: hidden;
 }
 
+.block {
+  display: block;
+}
+
 .inline-block {
   display: inline-block;
 }
@@ -115,6 +119,7 @@ input {
   font-size: 1.4rem;
   display: table;
   cursor: pointer;
+  color: $maingrey;
 }
 
 #logo div {
@@ -151,7 +156,7 @@ main {
 
 .grey-button {
   background-color: $accentgrey;
-  color: $mainblue;
+  color: $mainblue !important;
   border-radius: 0.2rem;
   padding: 0 1.5rem;
   line-height: 2rem;
@@ -163,11 +168,12 @@ main {
 
 .grey-button:hover {
   background-color: #e6e6e6;
+  color: $mainblue !important;
 }
 
 .blue-button {
   background-color: $brighterblue;
-  color: $maingrey;
+  color: $maingrey !important;
   border-radius: 0.2rem;
   padding: 0 1.5rem;
   line-height: 2rem;
@@ -179,6 +185,11 @@ main {
 
 .blue-button:hover {
   background-color: rgb(68, 124, 195);
+  color: $maingrey !important;
+}
+
+.a-button {
+  text-decoration: none;
 }
 
 #search-error {
