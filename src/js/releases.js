@@ -3,7 +3,6 @@ var assetCounter2 = 0;
 /* eslint-disable no-unused-vars */
 function onReleasesLoad() {
   /* eslint-enable no-unused-vars */
-  setReleasesButtons();
 
   const archive = document.getElementById('archives-page');
   const latest = document.getElementById('latest-page');
@@ -32,26 +31,7 @@ function onReleasesLoad() {
     } else {
       hideArchive();
     }
-  }
-}
-
-// BOTH PAGES FUNCTIONS
-
-function setReleasesButtons() {
-  const archiveButton = document.getElementById('archive-button');
-  const latestButton = document.getElementById('latest-button');
-  const nightlyButton = document.getElementById('nightly-button');
-
-  archiveButton.onclick = function() {
-    window.location.href = './releases#archive';
-  }
-
-  latestButton.onclick = function() {
-    window.location.href = './releases';
-  }
-
-  nightlyButton.onclick = function() {
-    window.location.href = './nightly';
+    errorContainer.innerHTML = "";
   }
 }
 
@@ -110,9 +90,7 @@ function populateLatest() {
           document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
 
           var linuxLink = (assetArray[assetCounter2].browser_download_url);
-          linuxDlButton.onclick = function() {
-            window.location.href = linuxLink;
-          }
+          linuxDlButton.href = linuxLink;
           linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
 
         } else if(a.indexOf("WIN") >= 0) {
@@ -120,9 +98,7 @@ function populateLatest() {
           document.getElementById("latest-checksum-windows").href = (assetArray[assetCounter2].browser_download_url).replace("zip", "txt");
 
           var windowsLink = (assetArray[assetCounter2].browser_download_url);
-          windowsDlButton.onclick = function() {
-            window.location.href = windowsLink;
-          }
+          windowsDlButton.href = windowsLink;
           windowsPlatformBlock.className = windowsPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
 
         } else if(a.indexOf("MAC") >= 0) {
@@ -130,9 +106,7 @@ function populateLatest() {
           document.getElementById("latest-checksum-mac").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
 
           var macLink = (assetArray[assetCounter2].browser_download_url);
-          macDlButton.onclick = function() {
-            window.location.href = macLink;
-          }
+          macDlButton.href = macLink;
           macPlatformBlock.className = macPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
         }
         assetCounter2++;

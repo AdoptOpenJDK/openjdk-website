@@ -1,8 +1,3 @@
-// set header logos to link to home
-document.getElementById('logo').onclick = function() {
-  window.location.href = "./index";
-}
-
 // set value for error container on every page
 /* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
@@ -31,7 +26,7 @@ function loadReleasesJSON(repo, loading, callback) {
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
+    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases?client_id=094d102722ef2d86140f&client_secret=c4539c79564f5b96bf80b4b33fb04d5a1b68fb76");
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);
@@ -78,14 +73,6 @@ function setDownloadSection() {
 
   var OS = detectOS();
 
-  dlArchive.onclick = function() {
-    window.location.href = './releases#archive';
-  }
-
-  dlOther.onclick = function() {
-    window.location.href = './releases';
-  }
-
   var latestLink = "";
   var loading = loadingSpan;
 
@@ -127,7 +114,7 @@ function setDownloadSection() {
       if(latestLink == "") {
         dlOther.className += " hide";
         dlText.innerHTML = ("Downloads");
-        latestLink = "./releases";
+        latestLink = "./releases.html";
       } else {
         var fullOSName = OS;
         if(OS == "Win") {
@@ -144,9 +131,7 @@ function setDownloadSection() {
     }
 
     // set the download button to use the 'latestLink' variable
-    dlLatest.onclick = function() {
-      window.location.href = latestLink;
-    }
+    dlLatest.href = latestLink;
 
     // remove the loading dots, make the buttons visible, with animated fade-in
     loadingSpan.innerHTML = "";
@@ -159,7 +144,7 @@ function setDownloadSection() {
 
     // animate the main download button
     setTimeout(function(){
-      dlLatest.className = "dl-button animated pulse";
+      dlLatest.className = "dl-button a-button animated pulse";
     }, 1000);
 
  });
@@ -172,17 +157,6 @@ var assetCounter2 = 0;
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
   populateNightly();
-
-  const latestButton = document.getElementById('latest-button');
-  const archiveButton = document.getElementById('archive-button');
-
-  latestButton.onclick = function() {
-    window.location.href = './releases';
-  }
-
-  archiveButton.onclick = function() {
-    window.location.href = './releases#archive';
-  }
 
   // realtime search box
   var search = document.getElementById("search");
@@ -329,7 +303,6 @@ var assetCounter2 = 0;
 /* eslint-disable no-unused-vars */
 function onReleasesLoad() {
   /* eslint-enable no-unused-vars */
-  setReleasesButtons();
 
   const archive = document.getElementById('archives-page');
   const latest = document.getElementById('latest-page');
@@ -358,26 +331,7 @@ function onReleasesLoad() {
     } else {
       hideArchive();
     }
-  }
-}
-
-// BOTH PAGES FUNCTIONS
-
-function setReleasesButtons() {
-  const archiveButton = document.getElementById('archive-button');
-  const latestButton = document.getElementById('latest-button');
-  const nightlyButton = document.getElementById('nightly-button');
-
-  archiveButton.onclick = function() {
-    window.location.href = './releases#archive';
-  }
-
-  latestButton.onclick = function() {
-    window.location.href = './releases';
-  }
-
-  nightlyButton.onclick = function() {
-    window.location.href = './nightly';
+    errorContainer.innerHTML = "";
   }
 }
 
@@ -436,9 +390,7 @@ function populateLatest() {
           document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
 
           var linuxLink = (assetArray[assetCounter2].browser_download_url);
-          linuxDlButton.onclick = function() {
-            window.location.href = linuxLink;
-          }
+          linuxDlButton.href = linuxLink;
           linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
 
         } else if(a.indexOf("WIN") >= 0) {
@@ -446,9 +398,7 @@ function populateLatest() {
           document.getElementById("latest-checksum-windows").href = (assetArray[assetCounter2].browser_download_url).replace("zip", "txt");
 
           var windowsLink = (assetArray[assetCounter2].browser_download_url);
-          windowsDlButton.onclick = function() {
-            window.location.href = windowsLink;
-          }
+          windowsDlButton.href = windowsLink;
           windowsPlatformBlock.className = windowsPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
 
         } else if(a.indexOf("MAC") >= 0) {
@@ -456,9 +406,7 @@ function populateLatest() {
           document.getElementById("latest-checksum-mac").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
 
           var macLink = (assetArray[assetCounter2].browser_download_url);
-          macDlButton.onclick = function() {
-            window.location.href = macLink;
-          }
+          macDlButton.href = macLink;
           macPlatformBlock.className = macPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
         }
         assetCounter2++;

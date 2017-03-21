@@ -1,8 +1,3 @@
-// set header logos to link to home
-document.getElementById('logo').onclick = function() {
-  window.location.href = "./index";
-}
-
 // set value for error container on every page
 /* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
@@ -31,7 +26,7 @@ function loadReleasesJSON(repo, loading, callback) {
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
+    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases?client_id=094d102722ef2d86140f&client_secret=c4539c79564f5b96bf80b4b33fb04d5a1b68fb76");
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);

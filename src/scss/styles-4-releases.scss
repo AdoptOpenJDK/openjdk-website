@@ -41,10 +41,6 @@ $tableblue-even: #1F2F4E;
   background-color: $tableblue-odd;
 }
 
-#latest-downloads-container {
-
-}
-
 .latest-block {
   display: inline-block;
   vertical-align: top;
@@ -59,8 +55,9 @@ $tableblue-even: #1F2F4E;
   height: 3.5rem
 }
 
-.latest-download-button {
+a.latest-download-button {
   background-color: $brighterblue;
+  display: block;
   color: $maingrey;
   border-radius: 0.2rem;
   min-width: 14rem;
@@ -69,8 +66,9 @@ $tableblue-even: #1F2F4E;
   margin: 1rem 0;
 }
 
-.latest-download-button:hover {
+a.latest-download-button:hover {
   background-color: rgb(68, 124, 195);
+  color: $maingrey;
 }
 
 .latest-details {

@@ -18,10 +18,10 @@
 <body class="blue-bg">
 
   <nav>
-    <div id="logo">
+    <a id="logo" href="./index.html" class="a-button">
       <div><img src="dist/assets/squares-logo.png"></div>
       <div><span>AdoptOpenJDK</span></div>
-    </div>
+    </a>
   </nav>
 
   <main class="grey-bg">
@@ -35,12 +35,12 @@
       <div id="latest-container" class="invisible">
 
         <div id="latest-intro">
-          <div id="archive-button" class="grey-button">
+          <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
             <div>
               <span>Release archive</span>
               <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
             </div>
-          </div>
+          </a>
         </div>
 
         <table id="latest-metadata-table" cellspacing="0" cellpadding="0">
@@ -59,9 +59,9 @@
               <img src="dist/assets/linux.png">
               <div>Linux</div>
             </div>
-            <div class="latest-download-button" id="linux-dl-button">
+            <a href="" class="latest-download-button a-button" id="linux-dl-button">
               <div>Download <div class="small-dl-text">(tar.gz - <span id="latest-size-linux"></span> MB)</div></div>
-            </div>
+            </a>
             <div class="latest-details">
                 <p><a href="" class="dark-link" id="latest-checksum-linux" target="_blank">Checksum</a></p>
                 <p><strong>Requirements:</strong><br>GLIBC 2.5 and above</p>
@@ -74,9 +74,9 @@
               <img src="dist/assets/windows.png">
               <div>Windows</div>
             </div>
-            <div class="latest-download-button" id="windows-dl-button">
+            <a href="" class="latest-download-button a-button" id="windows-dl-button">
               <div>Download <div class="small-dl-text">(.zip - <span id="latest-size-windows"></span> MB)</div></div>
-            </div>
+            </a>
             <div class="latest-details">
               <p><a href="" class="dark-link" id="latest-checksum-windows" target="_blank">Checksum</a></p>
               <p><strong>Requirements:</strong><br>VS 2010 and above</p>
@@ -88,9 +88,9 @@
               <img src="dist/assets/mac.png">
               <div>macOS</div>
             </div>
-            <div class="latest-download-button" id="mac-dl-button">
+            <a href="" class="latest-download-button a-button" id="mac-dl-button">
               <div>Download <div class="small-dl-text">(tar.gz - <span id="latest-size-mac"></span>  MB)</div></div>
-            </div>
+            </a>
             <div class="latest-details">
               <p><a href="" class="dark-link" id="latest-checksum-mac" target="_blank">Checksum</a></p>
               <p><strong>Requirements:</strong><br>macOS 10.8 and above</p>
@@ -109,18 +109,18 @@
 
     <div id="archives-page">
       <h1 class="large-title">Archive</h1>
-      <div id="latest-button" class="blue-button">
+      <a href="./releases.html" id="latest-button" class="blue-button a-button">
         <div>
           <span>See the latest release</span>
           <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
         </div>
-      </div>
-      <div id="nightly-button" class="grey-button">
+      </a>
+      <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
         <div>
           <span>See the nightly builds</span>
           <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
         </div>
-      </div>
+      </a>
 
       <div id="archive-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
       <div id="archive-list"></div>
