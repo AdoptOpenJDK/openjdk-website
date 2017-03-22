@@ -41,7 +41,7 @@ function populateLatest() {
 
   var loading = document.getElementById("latest-loading");
 
-  loadReleasesJSON("openjdk-releases", loading, function(response) {
+  loadReleasesJSON("releases", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }
@@ -132,7 +132,7 @@ function populateArchive() {
   const archiveList = document.getElementById("archive-list");
   var loading = document.getElementById("archive-loading");
 
-  loadReleasesJSON("openjdk-releases", loading, function(response) {
+  loadReleasesJSON("releases", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }

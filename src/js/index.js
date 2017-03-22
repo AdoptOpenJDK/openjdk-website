@@ -20,7 +20,7 @@ function setDownloadSection() {
   var latestLink = "";
   var loading = loadingSpan;
 
-  loadReleasesJSON("openjdk-releases", loading, function(response) {
+  loadReleasesJSON("releases", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }

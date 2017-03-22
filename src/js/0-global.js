@@ -26,13 +26,12 @@ function loadReleasesJSON(repo, loading, callback) {
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
+    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + repo + ".json");
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);
     xobj.onreadystatechange = function() {
       if (xobj.readyState == 4 && xobj.status == "200") {
-        console.log("You have " + xobj.getResponseHeader('X-RateLimit-Remaining') + " GitHub API calls remaining for this hour");
         callback(xobj.responseText);
       } else {
         if(xobj.status != "200") {

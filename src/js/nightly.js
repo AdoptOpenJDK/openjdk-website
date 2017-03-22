@@ -48,7 +48,7 @@ function populateNightly() {
   const nightlyList = document.getElementById("nightly-table");
   var loading = document.getElementById("nightly-loading");
 
-  loadReleasesJSON("openjdk-nightly", loading, function(response) {
+  loadReleasesJSON("nightly", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }
