@@ -26,13 +26,12 @@ function loadReleasesJSON(repo, loading, callback) {
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
+    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + repo + ".json");
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);
     xobj.onreadystatechange = function() {
       if (xobj.readyState == 4 && xobj.status == "200") {
-        console.log("You have " + xobj.getResponseHeader('X-RateLimit-Remaining') + " GitHub API calls remaining for this hour");
         callback(xobj.responseText);
       } else {
         if(xobj.status != "200") {
@@ -76,7 +75,7 @@ function setDownloadSection() {
   var latestLink = "";
   var loading = loadingSpan;
 
-  loadReleasesJSON("openjdk-releases", loading, function(response) {
+  loadReleasesJSON("releases", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }
@@ -201,7 +200,7 @@ function populateNightly() {
   const nightlyList = document.getElementById("nightly-table");
   var loading = document.getElementById("nightly-loading");
 
-  loadReleasesJSON("openjdk-nightly", loading, function(response) {
+  loadReleasesJSON("nightly", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }
@@ -341,7 +340,7 @@ function populateLatest() {
 
   var loading = document.getElementById("latest-loading");
 
-  loadReleasesJSON("openjdk-releases", loading, function(response) {
+  loadReleasesJSON("releases", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }
@@ -432,7 +431,7 @@ function populateArchive() {
   const archiveList = document.getElementById("archive-list");
   var loading = document.getElementById("archive-loading");
 
-  loadReleasesJSON("openjdk-releases", loading, function(response) {
+  loadReleasesJSON("releases", loading, function(response) {
     function checkIfProduction(x) {
       return x.prerelease === false && x.assets[0];
     }
