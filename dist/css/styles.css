@@ -235,9 +235,10 @@ main .intro {
   transform: translateY(-0.6rem); }
 
 .dl-button .dl-description {
-  transform: translate(7rem, -3.8rem);
-  font-size: 0.8rem;
-  position: absolute; }
+  font-size: .8rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -3.8rem); }
 
 .dl-button:hover {
   background-color: #447cc3;

@@ -1,11 +1,11 @@
-var repo = "openjdk-releases";
+var repo = "releases";
 var extension = window.location.hash;
 var assetCounter2 = 0;
 
 loadRequest(repo, extension);
 
 function loadAPIJSON(repo, extension, callback) {
-  var url = ("https://api.github.com/repos/AdoptOpenJDK/" + repo + "/releases");
+  var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + repo + ".json");
   var xobj = new XMLHttpRequest();
   xobj.overrideMimeType("application/json");
   xobj.open('GET', url, true);
