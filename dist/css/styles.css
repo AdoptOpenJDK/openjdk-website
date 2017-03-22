@@ -516,19 +516,10 @@ a.latest-download-button:hover {
   a.dl-button .dl-description {
     transform: translate(-50%, -3.8rem);
     left: 50%; }
-  /*.archive-downloads, .archive-details {
-    width: 100%;
-    text-align: center;
-  }
-
-  .archive-platform-block div {
-    text-align: center;
-  }
-
-  .archive-platform-block .grey-button {
-    display: inline-block;
-    margin: 0 auto;
-  }*/
+  #menu-button {
+    margin-left: 0;
+    font-size: 1.5rem;
+    padding: 2.2rem 1rem; }
   .latest-block {
     display: inline-block;
     vertical-align: top;
