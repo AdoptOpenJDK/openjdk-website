@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Nightly builds - AdoptOpenJDK</title>
+  <title>AdoptOpenJDK - GetOpenJDK - Support</title>
   <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -12,7 +12,6 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
 </head>
 
 <body class="blue-bg">
@@ -24,38 +23,36 @@
     </a>
   </nav>
 
+  <!-- TODO Style should match installation page, it doesn't quite... -->
   <main class="grey-bg">
-    <div id="error-container"></div>
 
-    <h1 class="large-title">Nightly builds</h1>
+    <h1 class="margin-bottom">Support</h1>
 
-    <a href="./releases.html" id="latest-button" class="blue-button a-button">
-      <div>
-        <span>See the latest release</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+    <div id="support-container">
+      <div class="margin-bottom">
+        <h2 class="bold">WARNING!</h2>
+        <p class="support">
+          The AdoptOpenJDK OpenJDK binaries are <strong>not</strong> fully tested (i.e. JCK/TCK + further testing) and verified. If you want a formally tested
+          and verified Java binary then you can get one from a commercial vendor.
+        </p>
       </div>
-    </a>
 
-    <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
-      <div>
-        <span>Release archive</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+      <div class="margin-bottom">
+        <h2 class="bold">Community Support</h2>
+        <p class="support">
+          The OpenJDK community does not offer any official support for the binaries produced.  If you do have questions, comments, want to report a bug or
+          wish to contribute then choose from one of the options below:
+        </p>
       </div>
-    </a>
 
-    <h3 style="margin: 2rem 0 0 0;">Scroll horizontally to see all information <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
-
-    <input type="text" id="search" placeholder="Type to search">
-    <div id="search-error" class="hide">No search results</div>
-
-    <div id="nightly-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
-
-    <div id="nightly-list">
-      <table id="table-parent">
-        <tbody id="nightly-table">
-
-        </tbody>
-      </table>
+      <div style="margin-top: 3rem;">
+        <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" id="dev-button" class="no-underline home-links">
+          <h2 class="inline-block zero-margin">Mailing List&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+        </a>
+        <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" class="no-underline home-links">
+          <h2 class="inline-block zero-margin">Submit an Issue&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+        </a>
+      </div>
     </div>
 
   </main>
@@ -67,14 +64,12 @@
         <p class="margin-auto">GitHub build repo</p>
       </a>
     </div>
-    <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank" class="light-link no-underline">
+    <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank"class="light-link no-underline">
       <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
     </a>
     <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
   </footer>
 
   <script src="dist/js/app.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>
-  <script>onNightlyLoad();</script>
 </body>
 </html>

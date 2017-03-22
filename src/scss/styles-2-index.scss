@@ -3,9 +3,11 @@ $maingrey: #F5F5F5;
 $brighterblue: #3D70B2;
 $accentgrey: #dadada;
 
-main #intro {
+main .intro {
   max-width: 40rem;
-  margin: 0 auto;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   width: 80%;
 }
 

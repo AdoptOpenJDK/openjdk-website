@@ -201,9 +201,11 @@ footer p {
   max-width: 20rem;
   margin: auto; }
 
-main #intro {
+main .intro {
   max-width: 40rem;
-  margin: 0 auto;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
   width: 80%; }
 
 #loading-index {
@@ -484,3 +486,8 @@ a.latest-download-button:hover {
     max-width: 80%; }
   .archive-container > div {
     width: 90%; } }
+
+main .support {
+  max-width: 40rem;
+  margin: 0 auto;
+  width: 80%; }
