@@ -296,6 +296,9 @@ th {
   background-color: #152935;
   color: #F5F5F5; }
 
+#nightly-table tr td:nth-child(3), #nightly-table th:nth-child(3) {
+  display: none; }
+
 #latest-build-name {
   font-size: 3rem;
   font-weight: bold;
