@@ -9,6 +9,23 @@ main .intro {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+  line-height: 1.8rem;
+}
+
+main .intro i {
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+  transform: translateY(0.3rem);
+}
+
+main .intro a {
+  text-decoration: none;
+  color: $brighterblue;
+}
+
+main .intro a:hover {
+  text-decoration: underline;
+  color: $brighterblue;
 }
 
 #loading-index {

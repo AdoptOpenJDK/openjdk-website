@@ -261,7 +261,21 @@ main .intro {
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
-  width: 80%; }
+  width: 80%;
+  line-height: 1.8rem; }
+
+main .intro i {
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+  transform: translateY(0.3rem); }
+
+main .intro a {
+  text-decoration: none;
+  color: #3D70B2; }
+
+main .intro a:hover {
+  text-decoration: underline;
+  color: #3D70B2; }
 
 #loading-index {
   position: absolute;
