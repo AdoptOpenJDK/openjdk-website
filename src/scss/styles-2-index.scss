@@ -19,7 +19,7 @@ main #intro {
   margin: 0 auto;
 }
 
-.dl-button {
+a.dl-button {
   background-color: $brighterblue;
   color: $maingrey;
   border-radius: 0.2rem;
@@ -36,23 +36,23 @@ main #intro {
   margin-bottom: 0;
 }
 
-.dl-button #dl-version {
+a.dl-button #dl-version {
   transform: translateY(-0.6rem);
 }
 
-.dl-button .dl-description {
+a.dl-button .dl-description {
   font-size: .8rem;
   position: absolute;
   left: 50%;
   transform: translate(-50%,-3.8rem);
 }
 
-.dl-button:hover {
+a.dl-button:hover {
   background-color: rgb(68, 124, 195);
   color: $maingrey;
 }
 
-.dl-thin-button {
+a.dl-thin-button {
   line-height: 2rem;
   font-size: 1rem;
   background-color: $accentgrey;
@@ -61,7 +61,7 @@ main #intro {
   margin: 1rem auto;
 }
 
-.dl-thin-button:hover {
+a.dl-thin-button:hover {
   background-color: #e6e6e6;
   color: $mainblue;
 }
