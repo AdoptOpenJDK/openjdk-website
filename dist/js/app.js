@@ -3,6 +3,19 @@
 var errorContainer = document.getElementById('error-container');
 /* eslint-enable no-unused-vars */
 
+const menuOpen = document.getElementById('menu-button');
+const menuClose = document.getElementById('menu-close');
+const menu = document.getElementById('menu-container');
+
+menuOpen.onclick = function() {
+  menu.className = menu.className.replace( /(?:^|\s)slideOutLeft(?!\S)/g , ' slideInLeft' );
+  menu.className = menu.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated' );
+}
+
+menuClose.onclick = function() {
+  menu.className = menu.className.replace( /(?:^|\s)slideInLeft(?!\S)/g , ' slideOutLeft' );
+}
+
 // returns the name of the user's OS.
 // modify this list to change how other functions search for downloads that match an OS.
 /* eslint-disable no-unused-vars */

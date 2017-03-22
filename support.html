@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>AdoptOpenJDK - GetOpenJDK - Support</title>
+  <title>AdoptOpenJDK - Support</title>
   <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -16,21 +16,37 @@
 
 <body class="blue-bg">
 
+  <div id="menu-container" class="grey-bg hide slideInLeft">
+    <div id="menu-header">
+      <i id="menu-close" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+    </div>
+    <div id="menu-content">
+      <p><a href="./index.html">Home</a></p>
+      <p><a href="./releases.html">Latest release</a></p>
+      <p><a href="./releases.html#archive">Release archive</a></p>
+      <p><a href="./nightly.html">Nightly builds</a></p>
+      <p><a href="./installation.html">Installation</a></p>
+      <p><a href="./getinvolved.html">Get involved</a></p>
+      <p><a href="./support.html">Support</a></p>
+    </div>
+  </div>
+
   <nav>
+    <i id="menu-button" class="fa fa-bars" aria-hidden="true"></i>
     <a id="logo" href="./index.html" class="a-button">
       <div><img src="dist/assets/squares-logo.png"></div>
-      <div><span>AdoptOpenJDK - GetOpenJDK</span></div>
+      <div><span>AdoptOpenJDK</span></div>
     </a>
   </nav>
 
   <!-- TODO Style should match installation page, it doesn't quite... -->
   <main class="grey-bg">
 
-    <h1 class="margin-bottom">Support</h1>
+    <h1 class="margin-bottom large-title">Support</h1>
 
     <div id="support-container">
       <div class="margin-bottom">
-        <h2 class="bold">WARNING!</h2>
+        <h2 class="bold">WARNING</h2>
         <p class="support">
           The AdoptOpenJDK OpenJDK binaries are <strong>not</strong> fully tested (i.e. JCK/TCK + further testing) and verified. If you want a formally tested
           and verified Java binary then you can get one from a commercial vendor.

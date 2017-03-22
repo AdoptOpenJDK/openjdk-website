@@ -1,10 +1,12 @@
 // GLOBAL CSS
 $mainblue: #152935;
 $maingrey: #F5F5F5;
+$palegrey: #e6e6e6;
 $brighterblue: #3D70B2;
 $accentgrey: #dadada;
 $tableblue-odd: #182336;
 $tableblue-even: #1F2F4E;
+$headersize: 1.4rem;
 
 
 .blue-bg {
@@ -116,7 +118,7 @@ input {
 
 #logo {
   margin: 2rem auto;
-  font-size: 1.4rem;
+  font-size: $headersize;
   display: table;
   cursor: pointer;
   color: $maingrey;
@@ -133,11 +135,76 @@ input {
   transform: translateY(0.1rem);
 }
 
+#menu-button {
+  font-size: 2rem;
+  color: $maingrey;
+  position: absolute;
+  margin-left: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2rem 1rem;
+  top: 0;
+}
+
+#menu-button:hover {
+  color: $accentgrey;
+}
+
+#menu-container {
+  position: fixed;
+  background-color: $palegrey;
+  z-index: 100;
+  width: 90%;
+  max-width: 16rem;
+  padding: 0 2rem 2rem 2rem;
+  top: 0;
+  left: 0;
+  height: 100%;
+  animation-duration: 0.25s;
+}
+
+#menu-header {
+  background-color: $maingrey;
+  width: 20rem;
+  transform: translateX(-2rem);
+}
+
+#menu-close {
+  font-size: 2rem;
+  padding: 1.98rem;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+}
+
+#menu-close:hover {
+  color: $brighterblue;
+}
+
+#menu-content {
+  overflow: auto;
+  height: 80%;
+  margin: 2rem 0;
+}
+
+#menu-content a {
+  text-decoration: none;
+  display: block;
+  padding: .8rem 0;
+}
+
+#menu-content p {
+  border-bottom: 1px solid $accentgrey;
+  margin: 0;
+}
+
+
 // MAIN CSS
 
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+    height: 100%;
 }
 
 main {
@@ -167,7 +234,7 @@ main {
 }
 
 .grey-button:hover {
-  background-color: #e6e6e6;
+  background-color: $palegrey;
   color: $mainblue !important;
 }
 

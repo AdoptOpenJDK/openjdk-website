@@ -112,9 +112,64 @@ input {
   margin-right: 0.6rem;
   transform: translateY(0.1rem); }
 
+#menu-button {
+  font-size: 2rem;
+  color: #F5F5F5;
+  position: absolute;
+  margin-left: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2rem 1rem;
+  top: 0; }
+
+#menu-button:hover {
+  color: #dadada; }
+
+#menu-container {
+  position: fixed;
+  background-color: #e6e6e6;
+  z-index: 100;
+  width: 90%;
+  max-width: 16rem;
+  padding: 0 2rem 2rem 2rem;
+  top: 0;
+  left: 0;
+  height: 100%;
+  animation-duration: 0.25s; }
+
+#menu-header {
+  background-color: #F5F5F5;
+  width: 20rem;
+  transform: translateX(-2rem); }
+
+#menu-close {
+  font-size: 2rem;
+  padding: 1.98rem;
+  display: block;
+  text-align: center;
+  cursor: pointer; }
+
+#menu-close:hover {
+  color: #3D70B2; }
+
+#menu-content {
+  overflow: auto;
+  height: 80%;
+  margin: 2rem 0; }
+
+#menu-content a {
+  text-decoration: none;
+  display: block;
+  padding: .8rem 0; }
+
+#menu-content p {
+  border-bottom: 1px solid #dadada;
+  margin: 0; }
+
 html, body {
   max-width: 100%;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  height: 100%; }
 
 main {
   padding: 2rem 2rem 5rem 2rem;
@@ -206,7 +261,21 @@ main .intro {
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
-  width: 80%; }
+  width: 80%;
+  line-height: 1.8rem; }
+
+main .intro i {
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+  transform: translateY(0.3rem); }
+
+main .intro a {
+  text-decoration: none;
+  color: #3D70B2; }
+
+main .intro a:hover {
+  text-decoration: underline;
+  color: #3D70B2; }
 
 #loading-index {
   position: absolute;
@@ -461,19 +530,10 @@ a.latest-download-button:hover {
   a.dl-button .dl-description {
     transform: translate(-50%, -3.8rem);
     left: 50%; }
-  /*.archive-downloads, .archive-details {
-    width: 100%;
-    text-align: center;
-  }
-
-  .archive-platform-block div {
-    text-align: center;
-  }
-
-  .archive-platform-block .grey-button {
-    display: inline-block;
-    margin: 0 auto;
-  }*/
+  #menu-button {
+    margin-left: 0;
+    font-size: 1.5rem;
+    padding: 2.2rem 1rem; }
   .latest-block {
     display: inline-block;
     vertical-align: top;
