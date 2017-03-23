@@ -1,0 +1,39 @@
+{{> header title='Nightly builds - AdoptOpenJDK' }}
+
+<main class="grey-bg">
+  <div id="error-container"></div>
+
+  <h1 class="large-title">Nightly builds</h1>
+
+  <a href="./releases.html" id="latest-button" class="blue-button a-button">
+    <div>
+      <span>See the latest release</span>
+      <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+    </div>
+  </a>
+
+  <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
+    <div>
+      <span>Release archive</span>
+      <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+    </div>
+  </a>
+
+  <h3 style="margin: 2rem 0 0 0;">Scroll horizontally to see all information <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
+
+  <input type="text" id="search" placeholder="Type to search">
+  <div id="search-error" class="hide">No search results</div>
+
+  <div id="nightly-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+
+  <div id="nightly-list">
+    <table id="table-parent">
+      <tbody id="nightly-table">
+
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script>onNightlyLoad();</script>' }}

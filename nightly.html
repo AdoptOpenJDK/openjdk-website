@@ -12,7 +12,6 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-
 </head>
 
 <body class="blue-bg">
@@ -29,6 +28,7 @@
       <p><a href="./installation.html">Installation</a></p>
       <p><a href="./getinvolved.html">Get involved</a></p>
       <p><a href="./support.html">Support</a></p>
+      <!--<p><a href="./about.html">About</a></p>--> <!-- TO-DO: UN COMMENT TO ADD ABOUT PAGE TO MENU -->
     </div>
   </div>
 
@@ -40,57 +40,57 @@
     </a>
   </nav>
 
-  <main class="grey-bg">
-    <div id="error-container"></div>
+<main class="grey-bg">
+  <div id="error-container"></div>
 
-    <h1 class="large-title">Nightly builds</h1>
+  <h1 class="large-title">Nightly builds</h1>
 
-    <a href="./releases.html" id="latest-button" class="blue-button a-button">
-      <div>
-        <span>See the latest release</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-
-    <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
-      <div>
-        <span>Release archive</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-
-    <h3 style="margin: 2rem 0 0 0;">Scroll horizontally to see all information <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
-
-    <input type="text" id="search" placeholder="Type to search">
-    <div id="search-error" class="hide">No search results</div>
-
-    <div id="nightly-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
-
-    <div id="nightly-list">
-      <table id="table-parent">
-        <tbody id="nightly-table">
-
-        </tbody>
-      </table>
+  <a href="./releases.html" id="latest-button" class="blue-button a-button">
+    <div>
+      <span>See the latest release</span>
+      <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
     </div>
+  </a>
 
-  </main>
-
-  <footer>
-    <div class="align-center" style="margin-bottom: 1rem;">
-      <a href="https://github.com/AdoptOpenJDK" target="_blank" class="light-link no-underline">
-        <img src="dist/assets/GitHub.png" alt="" class="github-logo">
-        <p class="margin-auto">GitHub build repo</p>
-      </a>
+  <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
+    <div>
+      <span>Release archive</span>
+      <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
     </div>
-    <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank" class="light-link no-underline">
-      <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
-    </a>
-    <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
-  </footer>
+  </a>
 
-  <script src="dist/js/app.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>
-  <script>onNightlyLoad();</script>
+  <h3 style="margin: 2rem 0 0 0;">Scroll horizontally to see all information <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
+
+  <input type="text" id="search" placeholder="Type to search">
+  <div id="search-error" class="hide">No search results</div>
+
+  <div id="nightly-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+
+  <div id="nightly-list">
+    <table id="table-parent">
+      <tbody id="nightly-table">
+
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  <div class="align-center" style="margin-bottom: 1rem;">
+    <a href="https://github.com/AdoptOpenJDK" target="_blank" class="light-link no-underline">
+      <img src="dist/assets/GitHub.png" alt="" class="github-logo">
+      <p class="margin-auto">GitHub build repo</p>
+    </a>
+  </div>
+  <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank"class="light-link no-underline">
+    <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
+  </a>
+  <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
+</footer>
+
+<script src="dist/js/app.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>
+<script>onNightlyLoad();</script>
 </body>
 </html>

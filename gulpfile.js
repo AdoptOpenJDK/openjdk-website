@@ -7,16 +7,35 @@ const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const prefix = require('gulp-autoprefixer');
 const imagemin = require('gulp-imagemin');
+const handlebars = require('gulp-compile-handlebars');
 
 // default task
-gulp.task('default', ['scripts','styles','images','watch']);
+gulp.task('default', ['handlebars', 'scripts','styles','images','watch']);
 
 // watch task
-gulp.task('watch', function(){
+gulp.task('watch', function() {
+  gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], ['handlebars']);
   gulp.watch('./src/js/*.js', ['scripts']);
   gulp.watch('./src/scss/*.scss', ['styles']);
   gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'], ['images']);
 });
+
+// Handlebars HTML build task
+gulp.task('handlebars', function () {
+  var templateData = {
+  },
+  options = {
+      ignorePartials: true, // ignores unknown partials in the template, defaults to false
+      batch : ['./src/handlebars/partials']
+  }
+  return gulp.src('./src/handlebars/*.handlebars')
+      .pipe(handlebars(templateData, options))
+      .pipe(rename({
+        extname: '.html'
+      }))
+      .pipe(gulp.dest('./'));
+});
+
 
 // scripts task
 gulp.task('scripts', function() {
@@ -31,7 +50,7 @@ gulp.task('scripts', function() {
 });
 
 // styles task
-gulp.task('styles', function(){
+gulp.task('styles', function() {
   return gulp.src('./src/scss/*.scss')
     .pipe(sass())
     .pipe(prefix('last 2 versions'))
@@ -45,7 +64,7 @@ gulp.task('styles', function(){
 });
 
 // images task
-gulp.task('images', function(){
+gulp.task('images', function() {
   return gulp.src(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'])
     .pipe(imagemin())
     .pipe(gulp.dest('./dist/assets/'))
