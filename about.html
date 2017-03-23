@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AdoptOpenJDK - About</title>
+  <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="dist/css/styles.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+
+<body class="blue-bg">
+
+  <div id="menu-container" class="grey-bg hide slideInLeft">
+    <div id="menu-header">
+      <i id="menu-close" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+    </div>
+    <div id="menu-content">
+      <p><a href="./index.html">Home</a></p>
+      <p><a href="./releases.html">Latest release</a></p>
+      <p><a href="./releases.html#archive">Release archive</a></p>
+      <p><a href="./nightly.html">Nightly builds</a></p>
+      <p><a href="./installation.html">Installation</a></p>
+      <p><a href="./getinvolved.html">Get involved</a></p>
+      <p><a href="./support.html">Support</a></p>
+      <p><a href="./about.html">About</a></p>
+    </div>
+  </div>
+
+  <nav>
+    <i id="menu-button" class="fa fa-bars" aria-hidden="true"></i>
+    <a id="logo" href="./index.html" class="a-button">
+      <div><img src="dist/assets/squares-logo.png"></div>
+      <div><span>AdoptOpenJDK</span></div>
+    </a>
+  </nav>
+
+  <!-- TODO Style should match installation page, it doesn't quite... -->
+  <main class="grey-bg">
+
+    <h1 class="margin-bottom large-title">About</h1>
+
+    <div id="support-container">
+
+      <!-- TOOD this might be renamed to GetOpenJDK to avoid confusion -->
+      <div class="margin-bottom">
+        <h2 class="bold">About AdoptOpenJDK - GetOpenJDK</h2>
+        <p class="about">
+          This initiative came about following a discussion about the general lack of an open and reproducible build & test system for the OpenJDK source
+          across multiple platforms.  Practically, it's a reboot of the work that has already been done for a while in the OpenJDK project producing binaries
+          for developers and end users.
+        </p>
+
+        <p class="about">
+          The intention is to provide binaries and hardware access for all of the major platforms.
+
+          <!-- for the purposes of: -->
+
+          <!-- TODO enable this list once I figure out how to format it properly -->
+        <!--
+          <ul>
+            <li>Research and Development by academics, researchers and enthusiasts</li>
+            <li>An open, common, audited, build infrastructure for vendors to use (if they wish)</li>
+            <li>Providing binaries for bleeding edge early adopters</li>
+            <li>Providing a place to try out build infrastructure ideas that might one day be moved to OpenJDK proper</li>
+          </ul>
+          -->
+        </p>
+
+        <p class="about">
+          Although we will be making the binaries to the highest quality possible via jtreg, jcov test coverage and possibly other donated test
+          suites it is It is <strong>not</strong> the intention that the binaries produced will be professionally supported. See
+          <a href="./support.html">Support</a> for details.
+        </p>
+
+        <p class="about">
+          There may be some areas of overlap with other past/present efforts, but that's OK.  We expect any duplication to converge in due course and have
+          started working with other platform specific OpenJDK build efforts.
+        </p>
+
+        <p class="about">
+          Discussions will take place on the <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss">Mailing List</a>, or via
+          the <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues">Github issues</a>; and consensus recorded on this project website or the appropriate GitHub repo wiki as appropriate.
+        </p>
+      </div>
+
+      <div class="margin-bottom">
+        <h2 class="bold">Supported Forests</h2>
+        <p class="about">
+          We'll start with jdk8u (effectively Java 8) with test coverage from the open jtreg tests, providing jcov test coverage reports. Later on other popular
+          forests such as jdk9, jdk10, valhalla, shenandoah etc will be added.
+        </p>
+      </div>
+
+      <div class="margin-bottom">
+        <h2 class="bold">Supported Platforms</h2>
+        <p class="about">
+          We currently have Linux x64 and Mac OS X and are looking to rapidly add the other common Linux variants + Windows and Solaris.  We envisage some
+          strong collaboration can form here with IcedTea and other specific platform efforts!
+        </p>
+      </div>
+
+      <div class="margin-bottom">
+        <h2 class="bold">About the AdoptOpenJDK Community</h2>
+        <p class="about">
+          <a href="https://java.net/projects/adoptopenjdk/">AdoptOpenJDK</a> is a community of Java user group members, Java developers, Vendors who are
+          advocates of <a href="http://openjdk.java.net">OpenJDK</a>, the open source project which forms the basis of the Java™ programming language and
+          platform.
+        </p>
+        <p class="about">
+          Part of the group's activities occur at the <a href="http://openjdk.java.net/groups/adoption/">Adoption Group</a> on OpenJDK proper where you
+          can also join the <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss">Mailing List</a>.
+        </p>
+      </div>
+
+      <div class="margin-bottom">
+        <h2 class="bold">License</h2>
+        <p class="about">
+          Build scripts and other code to product the binaries, the website and other build infrastructure are licensed under
+          <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+          OpenJDK code itself is licensed under <a href=http://openjdk.java.net/legal/gplv2+ce.html">GPL v2 with Classpath Exception</a>.
+        </p>
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" id="dev-button" class="no-underline home-links">
+          <h2 class="inline-block zero-margin">Mailing List&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+        </a>
+        <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" class="no-underline home-links">
+          <h2 class="inline-block zero-margin">Submit an Issue&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="align-center" style="margin-bottom: 1rem;">
+      <a href="https://github.com/AdoptOpenJDK" target="_blank" class="light-link no-underline">
+        <img src="dist/assets/GitHub.png" alt="" class="github-logo">
+        <p class="margin-auto">GitHub build repo</p>
+      </a>
+    </div>
+    <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank"class="light-link no-underline">
+      <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
+    </a>
+    <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
+  </footer>
+
+  <script src="dist/js/app.min.js"></script>
+</body>
+</html>

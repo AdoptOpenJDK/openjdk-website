@@ -558,3 +558,10 @@ main .support {
   max-width: 40rem;
   margin: 0 auto;
   width: 80%; }
+
+main .about {
+  max-width: 40rem;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%; }
