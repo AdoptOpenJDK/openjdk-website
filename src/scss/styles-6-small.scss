@@ -4,6 +4,10 @@
       padding: 2rem 1rem 5rem 1rem;
   }
 
+  main .intro {
+    width: 100%;
+  }
+
   a.dl-button {
     width: 100%;
     margin: 0 auto;
@@ -13,6 +17,10 @@
   a.dl-button .dl-description {
     transform: translate(-50%,-3.8rem);
     left: 50%;
+  }
+
+  .home-links {
+    display: block;
   }
 
   #menu-button {
