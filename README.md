@@ -9,7 +9,9 @@ See the [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Using the releases API _(work in progress)_
 
-You can use the following formats of URL extension after `<website>.com/api` to return release data in JSON format:
+> Note: the current version of the releases API is only suitable for in-browser use. You cannot yet use cURL or Wget to access the API.
+
+You can use the following formats of URL extension after `http://adoptopenjdk.net/api` to return release data in JSON format:
 
 ### Platform filters:
 
@@ -19,7 +21,7 @@ You can use the following formats of URL extension after `<website>.com/api` to 
 
 `#platform=mac`
 
-Example: `https://openjdk.github.io/openjdk-website/api#platform=linux`
+Example: `http://adoptopenjdk.net/api#platform=linux`
 
 ### Release search:
 
@@ -27,10 +29,10 @@ Example: `https://openjdk.github.io/openjdk-website/api#platform=linux`
 
 `#release=<release-name>` (e.g. `#release=jdk8u152-b01`)
 
-Example: `https://openjdk.github.io/openjdk-website/api#release=latest`
+Example: `http://adoptopenjdk.net/api#release=latest`
 
 ### Combination of the two:
 
-e.g. `#platform=linux&release=latest`
+Example: `http://adoptopenjdk.net/api#platform=linux&release=latest`
 
-> Note: currently, the `platform` filter must appear before the `release` search in the string, i.e. the example.
+> Note: currently, the `platform` filter must appear before the `release` search in the string.
