@@ -116,6 +116,10 @@ input {
 
 // NAV CSS
 
+nav {
+  position: relative;
+}
+
 #logo {
   margin: 2rem auto;
   font-size: $headersize;
@@ -143,7 +147,8 @@ input {
   cursor: pointer;
   line-height: 1;
   padding: 2rem 1rem;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 #menu-button:hover {
