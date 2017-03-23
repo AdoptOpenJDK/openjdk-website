@@ -172,8 +172,7 @@ nav {
 
 html, body {
   max-width: 100%;
-  overflow-x: hidden;
-  height: 100%; }
+  overflow-x: hidden; }
 
 main {
   padding: 2rem 2rem 5rem 2rem;
