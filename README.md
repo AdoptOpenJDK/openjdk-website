@@ -1,9 +1,13 @@
 [![Build Status](https://travis-ci.org/AdoptOpenJDK/openjdk-website.svg?branch=master)](https://travis-ci.org/AdoptOpenJDK/openjdk-website)
-# Readme
+# README
 
-## https://openjdk.github.io/openjdk-website/index
+This repo contains the source code for http://www.adoptopenjdk.net
+
+# Developers
 
 See the [Contribution Guidelines](CONTRIBUTING.md).
+
+When pull requests are reviewed, accepted and merged an automatic pipeline job on http://ci.adoptopenjdk.net will deploy the latest changes.
 
 ---
 
