@@ -1,0 +1,57 @@
+{{> header title='AdoptOpenJDK' }}
+
+<main class="grey-bg home-main">
+  <p class="intro">
+    Java™ is the world's leading programming language and platform. The code for Java is <a href="http://openjdk.java.net/legal/gplv2+ce.html" target="_blank">open source</a> and available at
+    <a href="http://openjdk.java.net" target="_blank">OpenJDK</a>™. AdoptOpenJDK provides prebuilt OpenJDK binaries
+    from a fully open source set of <a href="https://github.com/AdoptOpenJDK/openjdk-build" target="_blank">build scripts</a> and infrastructure.
+  </p>
+  <p class="intro">
+    <i class="fa fa-info-circle" aria-hidden="true"></i> AdoptOpenJDK binaries are <strong>not</strong> professionally supported, see <a href="./support.html">Support</a> for details.
+  </p>
+
+  <div class="dl-container">
+    <h2 id="dl-text" class="animated fadeIn">Downloads</h2>
+    <div id='loading-index'><img src='dist/assets/loading_dots.gif' height='40' width='40'></div>
+
+    <a href="./releases.html" class="dl-button a-button fadeIn invisible" id="dl-latest">
+      <div id="dl-version">
+        <i class="fa fa-download" aria-hidden="true"></i>
+        <span>Latest release</span><br>
+      </div>
+      <div class="dl-description"><span id="dl-version-text"></span></div>
+    </a>
+
+    <div id="error-container"></div>
+
+    <a href="./releases.html" class="dl-button dl-thin-button a-button fadeIn invisible" id="dl-other">
+      <div>
+        <span>Other platforms</span>
+        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <a href="./releases.html#archive" class="dl-button dl-thin-button a-button fadeIn invisible" id="dl-archive">
+      <div>
+        <span>Archive</span>
+        <i class="fa fa-archive" aria-hidden="true"></i>
+      </div>
+    </a>
+
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <a href="./installation.html" class="no-underline home-links">
+      <h2 class="inline-block zero-margin">Installation&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+    </a>
+    <a href="./getinvolved.html" id="dev-button" class="no-underline home-links">
+      <h2 class="inline-block zero-margin">Get involved&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+    </a>
+    <a href="./support.html" class="no-underline home-links">
+      <h2 class="inline-block zero-margin">Support&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+    </a>
+  </div>
+
+</main>
+
+{{> footer script='<script>onIndexLoad();</script>' }}

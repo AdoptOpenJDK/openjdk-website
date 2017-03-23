@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>AdoptOpenJDK - Installation</title>
+  <title>Installation - AdoptOpenJDK</title>
   <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -28,6 +28,7 @@
       <p><a href="./installation.html">Installation</a></p>
       <p><a href="./getinvolved.html">Get involved</a></p>
       <p><a href="./support.html">Support</a></p>
+      <!--<p><a href="./about.html">About</a></p>--> <!-- TO-DO: UN COMMENT TO ADD ABOUT PAGE TO MENU -->
     </div>
   </div>
 
@@ -39,78 +40,80 @@
     </a>
   </nav>
 
-  <main class="grey-bg">
+<main class="grey-bg">
 
-    <h1 class="margin-bottom large-title">Installation</h1>
+  <h1 class="margin-bottom large-title">Installation</h1>
 
-    <!--<h3>Jump to:</h3>
-    <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#linux-mac">Linux and macOS</a></h3>
-    <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#windows">Windows</a></h3>-->
+  <!--<h3>Jump to:</h3>
+  <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#linux-mac">Linux and macOS</a></h3>
+  <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#windows">Windows</a></h3>-->
 
-    <div id="installation-container">
-      <div class="margin-bottom">
-        <h2 id="linux-mac" class="bold">Linux and macOS installation</h2>
-        <ol>
-          <li>Download the latest <code>tar.gz</code> from the <a href="./releases.html">Latest release</a> page to a directory that will not move or be deleted.</li>
-          <li>
-            Using Terminal, navigate to the location of this <code>tar.gz</code>:
-            <pre><code>cd &lt;path/to/your/directory&gt;</code></pre>
-          </li>
-          <li>
-            Extract the <code>tar.gz</code>. You can use the following command:
-            <pre><code>tar -xf &lt;filename&gt;.tar.gz</code></pre>
-          </li>
-          <li>
-            Add this version of Java™ to your PATH:
-            <pre><code>export PATH=$PWD/j2sdk-image/bin:$PATH</code></pre>
-          </li>
-          <li>
-            Check that it has installed correctly:
-            <pre><code>java -version</code></pre>
-          </li>
-        </ol>
-      </div>
-
-      <div class="margin-bottom">
-        <h2 id="windows" class="bold">Windows installation</h2>
-        <ol>
-          <li>Download the latest <code>.zip</code> from the <a href="./releases.html">Latest release</a> page to a directory that will not move or be deleted.</li>
-          <li>
-            Using the command prompt, navigate to the location of this <code>.zip</code>:
-            <pre><code>cd &lt;path\to\your\directory&gt;</code></pre>
-          </li>
-          <li>
-            Extract the <code>.zip</code>. You can use the following command:
-            <pre><code>unzip &lt;filename&gt;.zip</code></pre>
-          </li>
-          <li>
-            Add this version of Java™ to your PATH:
-            <pre><code>set PATH=%cd%\j2sdk-image\bin;%PATH%</code></pre>
-          </li>
-          <li>
-            Check that it has installed correctly:
-            <pre><code>java -version</code></pre>
-          </li>
-        </ol>
-      </div>
-
+  <div id="installation-container">
+    <div class="margin-bottom">
+      <h2 id="linux-mac" class="bold">Linux and macOS installation</h2>
+      <ol>
+        <li>Download the latest <code>tar.gz</code> from the <a href="./releases.html">Latest release</a> page to a directory that will not move or be deleted.</li>
+        <li>
+          Using Terminal, navigate to the location of this <code>tar.gz</code>:
+          <pre><code>cd &lt;path/to/your/directory&gt;</code></pre>
+        </li>
+        <li>
+          Extract the <code>tar.gz</code>. You can use the following command:
+          <pre><code>tar -xf &lt;filename&gt;.tar.gz</code></pre>
+        </li>
+        <li>
+          Add this version of Java™ to your PATH:
+          <pre><code>export PATH=$PWD/j2sdk-image/bin:$PATH</code></pre>
+        </li>
+        <li>
+          Check that it has installed correctly:
+          <pre><code>java -version</code></pre>
+        </li>
+      </ol>
     </div>
 
-  </main>
-
-  <footer>
-    <div class="align-center" style="margin-bottom: 1rem;">
-      <a href="https://github.com/AdoptOpenJDK" target="_blank" class="light-link no-underline">
-        <img src="dist/assets/GitHub.png" alt="" class="github-logo">
-        <p class="margin-auto">GitHub build repo</p>
-      </a>
+    <div class="margin-bottom">
+      <h2 id="windows" class="bold">Windows installation</h2>
+      <ol>
+        <li>Download the latest <code>.zip</code> from the <a href="./releases.html">Latest release</a> page to a directory that will not move or be deleted.</li>
+        <li>
+          Using the command prompt, navigate to the location of this <code>.zip</code>:
+          <pre><code>cd &lt;path\to\your\directory&gt;</code></pre>
+        </li>
+        <li>
+          Extract the <code>.zip</code>. You can use the following command:
+          <pre><code>unzip &lt;filename&gt;.zip</code></pre>
+        </li>
+        <li>
+          Add this version of Java™ to your PATH:
+          <pre><code>set PATH=%cd%\j2sdk-image\bin;%PATH%</code></pre>
+        </li>
+        <li>
+          Check that it has installed correctly:
+          <pre><code>java -version</code></pre>
+        </li>
+      </ol>
     </div>
-    <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank"class="light-link no-underline">
-      <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="align-center" style="margin-bottom: 1rem;">
+    <a href="https://github.com/AdoptOpenJDK" target="_blank" class="light-link no-underline">
+      <img src="dist/assets/GitHub.png" alt="" class="github-logo">
+      <p class="margin-auto">GitHub build repo</p>
     </a>
-    <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
-  </footer>
+  </div>
+  <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank"class="light-link no-underline">
+    <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
+  </a>
+  <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
+</footer>
 
-  <script src="dist/js/app.min.js"></script>
+<script src="dist/js/app.min.js"></script>
+
+
 </body>
 </html>

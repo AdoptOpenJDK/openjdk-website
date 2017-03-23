@@ -1,0 +1,62 @@
+{{> header title='Installation - AdoptOpenJDK' }}
+
+<main class="grey-bg">
+
+  <h1 class="margin-bottom large-title">Installation</h1>
+
+  <!--<h3>Jump to:</h3>
+  <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#linux-mac">Linux and macOS</a></h3>
+  <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#windows">Windows</a></h3>-->
+
+  <div id="installation-container">
+    <div class="margin-bottom">
+      <h2 id="linux-mac" class="bold">Linux and macOS installation</h2>
+      <ol>
+        <li>Download the latest <code>tar.gz</code> from the <a href="./releases.html">Latest release</a> page to a directory that will not move or be deleted.</li>
+        <li>
+          Using Terminal, navigate to the location of this <code>tar.gz</code>:
+          <pre><code>cd &lt;path/to/your/directory&gt;</code></pre>
+        </li>
+        <li>
+          Extract the <code>tar.gz</code>. You can use the following command:
+          <pre><code>tar -xf &lt;filename&gt;.tar.gz</code></pre>
+        </li>
+        <li>
+          Add this version of Java™ to your PATH:
+          <pre><code>export PATH=$PWD/j2sdk-image/bin:$PATH</code></pre>
+        </li>
+        <li>
+          Check that it has installed correctly:
+          <pre><code>java -version</code></pre>
+        </li>
+      </ol>
+    </div>
+
+    <div class="margin-bottom">
+      <h2 id="windows" class="bold">Windows installation</h2>
+      <ol>
+        <li>Download the latest <code>.zip</code> from the <a href="./releases.html">Latest release</a> page to a directory that will not move or be deleted.</li>
+        <li>
+          Using the command prompt, navigate to the location of this <code>.zip</code>:
+          <pre><code>cd &lt;path\to\your\directory&gt;</code></pre>
+        </li>
+        <li>
+          Extract the <code>.zip</code>. You can use the following command:
+          <pre><code>unzip &lt;filename&gt;.zip</code></pre>
+        </li>
+        <li>
+          Add this version of Java™ to your PATH:
+          <pre><code>set PATH=%cd%\j2sdk-image\bin;%PATH%</code></pre>
+        </li>
+        <li>
+          Check that it has installed correctly:
+          <pre><code>java -version</code></pre>
+        </li>
+      </ol>
+    </div>
+
+  </div>
+
+</main>
+
+{{> footer }}
