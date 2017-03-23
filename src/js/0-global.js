@@ -3,20 +3,21 @@
 var errorContainer = document.getElementById('error-container');
 /* eslint-enable no-unused-vars */
 
+// set variable names for menu elements
 const menuOpen = document.getElementById('menu-button');
 const menuClose = document.getElementById('menu-close');
 const menu = document.getElementById('menu-container');
 
 menuOpen.onclick = function() {
-  menu.className = menu.className.replace( /(?:^|\s)slideOutLeft(?!\S)/g , ' slideInLeft' );
-  menu.className = menu.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated' );
+  menu.className = menu.className.replace( /(?:^|\s)slideOutLeft(?!\S)/g , ' slideInLeft' ); // slide in animation
+  menu.className = menu.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated' ); // removes initial hidden property, activates animations
 }
 
 menuClose.onclick = function() {
-  menu.className = menu.className.replace( /(?:^|\s)slideInLeft(?!\S)/g , ' slideOutLeft' );
+  menu.className = menu.className.replace( /(?:^|\s)slideInLeft(?!\S)/g , ' slideOutLeft' ); // slide out animation
 }
 
-// returns the name of the user's OS.
+// this function returns the name of the user's OS.
 // modify this list to change how other functions search for downloads that match an OS.
 /* eslint-disable no-unused-vars */
 function detectOS() {
@@ -30,33 +31,32 @@ function detectOS() {
   return OSName;
 }
 
-// pass in the name of the repo (within this organisation only)
+// when using this function, pass in the name of the repo (options: releases, nightly)
 /* eslint-disable no-unused-vars */
 function loadReleasesJSON(repo, loading, callback) {
   /* eslint-enable no-unused-vars */
-  if(msieversion() == true) {
+  if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + repo + ".json");
+    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + repo + ".json"); // the URL of the JSON built in the website back-end
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);
     xobj.onreadystatechange = function() {
-      if (xobj.readyState == 4 && xobj.status == "200") {
+      if (xobj.readyState == 4 && xobj.status == "200") { // if the status is 'ok', run the callback function that has been passed in.
         callback(xobj.responseText);
-      } else {
-        if(xobj.status != "200") {
+      } else if(xobj.status != "200") { // if the status is NOT 'ok', remove the loading dots, and display an error:
           loading.innerHTML = "";
           document.getElementById("error-container").innerHTML = "<p>Error... there's a problem fetching the releases. Please see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
-        }
       }
     };
     xobj.send(null);
   }
 }
 
+// check for IE browser
 function msieversion() {
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE ");

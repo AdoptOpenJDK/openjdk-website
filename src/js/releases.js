@@ -4,9 +4,11 @@ var assetCounter2 = 0;
 function onReleasesLoad() {
   /* eslint-enable no-unused-vars */
 
+  // set variables for the two page sections contained within releases.html
   const archive = document.getElementById('archives-page');
   const latest = document.getElementById('latest-page');
 
+  // on load, check if it's the archive page, and run showArchive(); or hideArchive(); accordingly
   if(window.location.hash == "#archive") {
     showArchive();
   } else {
@@ -14,24 +16,26 @@ function onReleasesLoad() {
   }
 
   function showArchive() {
-    latest.className += " hide";
-    archive.className = archive.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
-    populateArchive();
+    latest.className += " hide"; // hide the 'Latest' page
+    archive.className = archive.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // show the 'Archive' page
+    populateArchive(); // populate the Archive page
   }
 
   function hideArchive() {
-    archive.className += " hide";
-    latest.className = latest.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
-    populateLatest();
+    archive.className += " hide"; // hide the 'Archive' page
+    latest.className = latest.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // show the 'Latest' page
+    populateLatest(); // populate the Latest page
   }
 
+  // If the hash changes in the URL while on the page, switch to the correct page accordingly.
   window.onhashchange = function(){
     if(window.location.hash == "#archive") {
+      errorContainer.innerHTML = ""; // reset the error message
       showArchive();
     } else {
+      errorContainer.innerHTML = ""; // reset the error message
       hideArchive();
     }
-    errorContainer.innerHTML = "";
   }
 }
 
@@ -39,13 +43,16 @@ function onReleasesLoad() {
 
 function populateLatest() {
 
-  var loading = document.getElementById("latest-loading");
+  var loading = document.getElementById("latest-loading"); // set variable for the loading dots
 
+  // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
   loadReleasesJSON("releases", loading, function(response) {
     function checkIfProduction(x) {
-      return x.prerelease === false && x.assets[0];
+      return x.prerelease === false && x.assets[0]; // used by the array filter method below.
     }
 
+    // Step 1: create a JSON from the XmlHttpRequest response
+    // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
     var releasesJson = JSON.parse(response).filter(checkIfProduction);
 
     // if there are releases...
@@ -83,16 +90,19 @@ function populateLatest() {
       assetCounter2 = 0;
       assetArray.forEach(function() {     // iterate through the binaries attached to this release
         var nameOfFile = (assetArray[assetCounter2].name);
-        var a = nameOfFile.toUpperCase();
-        // set the download links for this release
-        if(a.indexOf("LINUX") >= 0) {
-          document.getElementById("latest-size-linux").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-          document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
+        var a = nameOfFile.toUpperCase(); // make the name of the binary uppercase
+
+        // set the download links for this release...
+
+        if(a.indexOf("LINUX") >= 0) { // if the binary name contains 'LINUX':
+          document.getElementById("latest-size-linux").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024); // display the binary size
+          document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .txt extension)
 
           var linuxLink = (assetArray[assetCounter2].browser_download_url);
-          linuxDlButton.href = linuxLink;
-          linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+          linuxDlButton.href = linuxLink; // set the download button link for this platform
+          linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make this platform section visible (all platforms are invisible by default)
 
+          // repeat for Windows and Mac
         } else if(a.indexOf("WIN") >= 0) {
           document.getElementById("latest-size-windows").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
           document.getElementById("latest-checksum-windows").href = (assetArray[assetCounter2].browser_download_url).replace("zip", "txt");
@@ -113,33 +123,38 @@ function populateLatest() {
       });
 
       const latestContainer = document.getElementById("latest-container");
-      latestContainer.className += " animated fadeIn";
-      latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
+      latestContainer.className += " animated fadeIn"; // animate a fade-in of the entire 'latest page' section
+      latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , '' ); // make this section visible (invisible by default)
 
     } else {
       // report an error
       errorContainer.innerHTML = "<p>Error... no releases have been found!</p>";
-      document.getElementById("latest-loading").innerHTML = "";
+      document.getElementById("latest-loading").innerHTML = ""; // remove the loading dots
     }
   });
 }
+// END OF LATEST PAGE FUNCTIONS
 
 
 
 // ARCHIVE PAGE FUNCTIONS
 
 function populateArchive() {
+  // set variables for HTML elements
   const archiveList = document.getElementById("archive-list");
   var loading = document.getElementById("archive-loading");
 
+  // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
   loadReleasesJSON("releases", loading, function(response) {
-    function checkIfProduction(x) {
+    function checkIfProduction(x) { // used by the array filter method below.
       return x.prerelease === false && x.assets[0];
     }
 
+    // Step 1: create a JSON from the XmlHttpRequest response
+    // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
     var releasesJson = JSON.parse(response).filter(checkIfProduction);
 
-    // if there are releases prior to the latest one...
+    // if there are releases prior to the 'latest' one (i.e. archived releases)...
     if (typeof releasesJson[1] !== 'undefined') {
       // remove the loading dots
       document.getElementById("archive-loading").innerHTML = "";
@@ -173,7 +188,7 @@ function populateArchive() {
             assetCounter++;
           });
 
-          // build the download links section with these binaries
+          // set variables for the HTML elements
           var linuxDlButton = document.getElementById("archive-linux-dl"+archiveCounter);
           var windowsDlButton = document.getElementById("archive-windows-dl"+archiveCounter);
           var macDlButton = document.getElementById("archive-mac-dl"+archiveCounter);
@@ -181,19 +196,22 @@ function populateArchive() {
           var windowsPlatformBlock = document.getElementById("windows-platform-block"+archiveCounter);
           var macPlatformBlock = document.getElementById("mac-platform-block"+archiveCounter);
 
+          // build the download links section with these binaries...
+
           assetCounter2 = 0;
           assetArray.forEach(function() {     // iterate through the binaries attached to this release
             var nameOfFile = (assetArray[assetCounter2].name);
             var a = nameOfFile.toUpperCase();
             // set the download links for this release
             if(a.indexOf("LINUX") >= 0) {
-              document.getElementById("archive-linux-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-              document.getElementById("archive-linux-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
+              document.getElementById("archive-linux-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);// display the file size
+              document.getElementById("archive-linux-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .txt extension)
 
               var linuxLink = (assetArray[assetCounter2].browser_download_url);
-              linuxDlButton.href = linuxLink;
-              linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+              linuxDlButton.href = linuxLink; // set the download link
+              linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make this platform section visible (all platforms are invisible by default)
 
+              // repeated for Windows and Mac
             } else if(a.indexOf("WIN") >= 0) {
               document.getElementById("archive-windows-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
               document.getElementById("archive-windows-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("zip", "txt");
@@ -215,13 +233,13 @@ function populateArchive() {
 
         // show the new entry
         var container = document.getElementById(archiveCounter);
-        container.className += " animated fadeIn";
-        container.className = container.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+        container.className += " animated fadeIn"; // add the fade animation
+        container.className = container.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // remove the 'hide' class immediately afterwards
         // iterate to the next archive entry
         archiveCounter++;
 
       });
-    } else {
+    } else { // if there are no releases (beyond the latest one)...
       // report an error
       errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases'>Latest release</a> page.</p>";
       document.getElementById("archive-loading").innerHTML = "";

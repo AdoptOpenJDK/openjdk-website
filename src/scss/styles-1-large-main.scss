@@ -209,7 +209,7 @@ nav {
 html, body {
     max-width: 100%;
     overflow-x: hidden;
-    height: 100%;
+    // height: 100%;     // removed to see if this fixes scrolling issue on iPhone
 }
 
 main {
