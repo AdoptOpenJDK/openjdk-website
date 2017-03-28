@@ -115,7 +115,7 @@ function populateNightly() {
             // set the download links for this release
             if(a.indexOf("LINUX") >= 0) { //
               linuxDlButton.innerHTML = ("tar.gz (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
-              document.getElementById("nightly-linux-checksum"+nightlyCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .txt extension)
+              document.getElementById("nightly-linux-checksum"+nightlyCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
               var linuxLink = (assetArray[assetCounter2].browser_download_url);
               linuxDlButton.href = linuxLink; // set the download link
               linuxDlContent.className = linuxDlContent.className.replace( /(?:^|\s)invisible(?!\S)/g , '' ); // make this platform section visible (all platforms are invisible by default)
@@ -123,14 +123,14 @@ function populateNightly() {
               // repeated for Windows and Mac
             } else if(a.indexOf("WIN") >= 0) {
               windowsDlButton.innerHTML = (".zip (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)");
-              document.getElementById("nightly-windows-checksum"+nightlyCounter).href  = (assetArray[assetCounter2].browser_download_url).replace("zip", "txt");
+              document.getElementById("nightly-windows-checksum"+nightlyCounter).href  = (assetArray[assetCounter2].browser_download_url).replace("zip", "sha256.txt");
               var windowsLink = (assetArray[assetCounter2].browser_download_url);
               windowsDlButton.href = windowsLink;
               windowsDlContent.className = windowsDlContent.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
 
             } else if(a.indexOf("MAC") >= 0) {
               macDlButton.innerHTML = ("tar.gz (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)");
-              document.getElementById("nightly-mac-checksum"+nightlyCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt")
+              document.getElementById("nightly-mac-checksum"+nightlyCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt")
               var macLink = (assetArray[assetCounter2].browser_download_url);
               macDlButton.href = macLink;
               macDlContent.className = macDlContent.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );

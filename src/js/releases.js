@@ -96,7 +96,7 @@ function populateLatest() {
 
         if(a.indexOf("LINUX") >= 0) { // if the binary name contains 'LINUX':
           document.getElementById("latest-size-linux").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024); // display the binary size
-          document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .txt extension)
+          document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
 
           var linuxLink = (assetArray[assetCounter2].browser_download_url);
           linuxDlButton.href = linuxLink; // set the download button link for this platform
@@ -105,7 +105,7 @@ function populateLatest() {
           // repeat for Windows and Mac
         } else if(a.indexOf("WIN") >= 0) {
           document.getElementById("latest-size-windows").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-          document.getElementById("latest-checksum-windows").href = (assetArray[assetCounter2].browser_download_url).replace("zip", "txt");
+          document.getElementById("latest-checksum-windows").href = (assetArray[assetCounter2].browser_download_url).replace("zip", "sha256.txt");
 
           var windowsLink = (assetArray[assetCounter2].browser_download_url);
           windowsDlButton.href = windowsLink;
@@ -113,7 +113,7 @@ function populateLatest() {
 
         } else if(a.indexOf("MAC") >= 0) {
           document.getElementById("latest-size-mac").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-          document.getElementById("latest-checksum-mac").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
+          document.getElementById("latest-checksum-mac").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt");
 
           var macLink = (assetArray[assetCounter2].browser_download_url);
           macDlButton.href = macLink;
@@ -205,7 +205,7 @@ function populateArchive() {
             // set the download links for this release
             if(a.indexOf("LINUX") >= 0) {
               document.getElementById("archive-linux-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);// display the file size
-              document.getElementById("archive-linux-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .txt extension)
+              document.getElementById("archive-linux-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
 
               var linuxLink = (assetArray[assetCounter2].browser_download_url);
               linuxDlButton.href = linuxLink; // set the download link
@@ -214,7 +214,7 @@ function populateArchive() {
               // repeated for Windows and Mac
             } else if(a.indexOf("WIN") >= 0) {
               document.getElementById("archive-windows-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-              document.getElementById("archive-windows-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("zip", "txt");
+              document.getElementById("archive-windows-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("zip", "sha256.txt");
 
               var windowsLink = (assetArray[assetCounter2].browser_download_url);
               windowsDlButton.href = windowsLink;
@@ -222,7 +222,7 @@ function populateArchive() {
 
             } else if(a.indexOf("MAC") >= 0) {
               document.getElementById("archive-mac-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-              document.getElementById("archive-mac-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "txt");
+              document.getElementById("archive-mac-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt");
 
               var macLink = (assetArray[assetCounter2].browser_download_url);
               macDlButton.href = macLink;
