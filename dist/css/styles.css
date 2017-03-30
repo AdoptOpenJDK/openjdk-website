@@ -573,3 +573,18 @@ main.about a {
 main.about a:hover {
   text-decoration: underline;
   color: #3D70B2; }
+
+main.getinvolved p, main.getinvolved ul {
+  max-width: 40rem;
+  margin: 1rem auto;
+  width: 80%;
+  text-align: left;
+  line-height: 1.8rem; }
+
+main.getinvolved a {
+  text-decoration: none;
+  color: #3D70B2; }
+
+main.getinvolved a:hover {
+  text-decoration: underline;
+  color: #3D70B2; }
