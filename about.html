@@ -28,7 +28,7 @@
       <p><a href="./installation.html">Installation</a></p>
       <p><a href="./getinvolved.html">Get involved</a></p>
       <p><a href="./support.html">Support</a></p>
-      <!--<p><a href="./about.html">About</a></p>--> <!-- TO-DO: UN COMMENT TO ADD ABOUT PAGE TO MENU -->
+      <p><a href="./about.html">About</a></p>
     </div>
   </div>
 
@@ -47,73 +47,39 @@
 
     <div id="support-container">
 
-      <!-- TOOD this might be renamed to GetOpenJDK to avoid confusion -->
+      <!-- TODO this might be renamed to GetOpenJDK to avoid confusion -->
       <div class="margin-bottom">
         <h2 class="bold">About AdoptOpenJDK - GetOpenJDK</h2>
         <p>
-          This initiative came about following a discussion about the general lack of an open and reproducible build & test system for the OpenJDK source
-          across multiple platforms.  Practically, it's a reboot of the work that has already been done for a while in the OpenJDK project producing binaries
-          for developers and end users.
+          This initiative came about following a discussion about the general lack of an open and reproducible build & test system
+          for the OpenJDK source across multiple platforms.
         </p>
 
         <p>
           The intention is to provide binaries and hardware access for all of the major platforms, for the purposes of:
           <ul>
-            <li>Research and Development by academics, researchers and enthusiasts.</li>
+            <li>Allowing end users to have a reliable source of OpenJDK binaries for all platforms.</li>
+            <li>Research and Development by OpenJDK developers, academics and researchers.</li>
             <li>An open, common, audited, build infrastructure for vendors to use (if they wish).</li>
-            <li>Providing binaries for bleeding edge early adopters.</li>
-            <li>Providing a place to try out build infrastructure ideas that might one day be moved to OpenJDK proper.</li>
+            <li>Providing a place to try out build infrastructure ideas that might one day be re-implemented in the <a href="http://openjdk.java.net">OpenJDK</a> project.</li>
           </ul>
         </p>
-
-        <p>
-          Although we will be making the binaries to the highest quality possible via jtreg, jcov test coverage and possibly other donated test
-          suites. It is <strong>not</strong> the intention that the binaries produced will be professionally supported. See
-          <a href="./support.html">Support</a> for details.
-        </p>
-
-        <p>
-          There may be some areas of overlap with other past/present efforts, but that's OK.  We expect any duplication to converge in due course and have
-          started working with other platform specific OpenJDK build efforts.
-        </p>
-
-        <p>
-          Discussions will take place on the <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss">Mailing List</a>, or via
-          the <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues">Github issues</a>; and consensus recorded on this project website or the appropriate GitHub repo wiki as appropriate.
-        </p>
       </div>
 
-      <div class="margin-bottom">
-        <h2 class="bold">Supported Forests</h2>
-        <p>
-          We'll start with jdk8u (effectively Java 8) with test coverage from the open jtreg tests, providing jcov test coverage reports. Later on other popular
-          forests such as jdk9, jdk10, valhalla, shenandoah etc will be added.
-        </p>
-      </div>
-
-      <div class="margin-bottom">
-        <h2 class="bold">Supported Platforms</h2>
-        <p>
-          We currently have Linux x64 and Mac OS X and are looking to rapidly add the other common Linux variants + Windows and Solaris.  We envisage some
-          strong collaboration can form here with IcedTea and other specific platform efforts!
-        </p>
-      </div>
-
-      <div class="margin-bottom">
+      <div>
         <h2 class="bold">About the AdoptOpenJDK Community</h2>
         <p>
-          <a href="https://java.net/projects/adoptopenjdk/">AdoptOpenJDK</a> is a community of Java user group members, Java developers, Vendors who are
-          advocates of <a href="http://openjdk.java.net">OpenJDK</a>, the open source project which forms the basis of the Java™ programming language and
+          <a href="https://java.net/projects/adoptopenjdk/">AdoptOpenJDK</a> is a community of Java user group members, Java developers and vendors who are
+          advocates of <a href="http://openjdk.java.net">OpenJDK</a>, the open source project which forms the basis of the Java programming language and
           platform.
         </p>
         <p>
-          Part of the group's activities occur at the <a href="http://openjdk.java.net/groups/adoption/">Adoption Group</a> on OpenJDK proper where you
-          can also join the <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss">Mailing List</a>.
+          Part of the group's activities occur at the <a href="http://openjdk.java.net/groups/adoption/">Adoption Group</a> on the <a href="http://openjdk.java.net">OpenJDK</a> project.
         </p>
       </div>
 
       <div class="margin-bottom">
-        <h2 class="bold">License</h2>
+        <h2 class="bold">License(s)</h2>
         <p>
           Build scripts and other code to product the binaries, the website and other build infrastructure are licensed under
           <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.

@@ -1,13 +1,77 @@
 {{> header title='Get Involved - AdoptOpenJDK' }}
 
-<main class="grey-bg align-center">
+<main class="grey-bg align-center getinvolved">
 
   <h1>Get involved</h1>
 
-  <p><a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" target="_blank">Join the mailing list</a></p>
-  <p><a href="https://github.com/AdoptOpenJDK/openjdk-build/wiki" target="_blank">See the build wiki on GitHub</a></p>
-  <p><a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank">Having issues? Report them here</a></p>
+  <div class="margin-bottom">
+    <h2 class="bold">I'm a Java / OpenJDK User</h2>
+    <p>
+      We provide solidly made binaries to the highest quality possible utilising existing OpenJDK test suites
+      (via jtreg, jcov test coverage) and possibly other OSS donated test suites. However, these binaries are
+      <strong>not</strong> professionally supported.  See <a href="./support.html">Support</a> for details.
+    </p>
 
+    <h3 class="bold">Available Platforms</h3>
+    <p>
+      We currently have Linux x64 and Mac OS X and are looking to rapidly add the other common Linux variants + Windows and
+      Solaris.  We envisage some strong collaboration can form here with <a href="http://icedtea.classpath.org/wiki/Main_Page">IcedTea</a> and other
+      specific platform efforts!
+    </p>
+
+  </div>
+
+  <div class="margin-bottom">
+    <h2 class="bold">I'm an OpenJDK Developer</h2>
+    <p>
+      We anticipate that this effort will lead to an easier way for OpenJDK developers to submit, review and test patches for
+      multiple platforms <strong>before</strong> submitting to the <a href="http://openjdk.java.net">OpenJDK project</a>.
+    </p>
+
+    <h3 class="bold">Source Forests</h3>
+    <p>
+      We've started with jdk8u (effectively Java 8) with test coverage from the open jtreg tests, providing jcov test coverage reports.
+      Later on other popular forests such as jdk9, jdk10, valhalla, shenandoah etc will be added.
+    </p>
+
+    <p>
+      There may be some areas of overlap with other past/present efforts, but that's OK.  We expect any duplication to
+      converge in due course and have started working with other platform specific OpenJDK build efforts.
+    </p>
+
+  </div>
+
+  <div class="margin-bottom">
+    <h2 class="bold">I'm an Adopt OpenJDK Developer</h2>
+
+    <p>
+      Discussions take place on the <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss">Mailing List</a>, or via
+      the <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues">openjdk-build issues</a>; and consensus recorded on this project website or the
+      appropriate GitHub repo (wiki) as appropriate:
+
+    <ul>
+      <li><a href="https://github.com/AdoptOpenJDK/openjdk-build" target="_blank">openjdk-build</a> -
+          <a href="https://github.com/AdoptOpenJDK/openjdk-build/wiki" target="_blank">(wiki)</a>
+          - Build scripts and other infrastructure to create binaries</li>
+      <li><a href="https://github.com/AdoptOpenJDK/openjdk-website" target="_blank">openjdk-website</a> -
+          <a href="https://github.com/AdoptOpenJDK/openjdk-website/wiki" target="_blank">(wiki)</a>
+          - This website</li>
+      <li><a href="https://github.com/AdoptOpenJDK/openjdk-website-backend" target="_blank">openjdk-website-backend</a> -
+          <a href="https://github.com/AdoptOpenJDK/openjdk-website-backend/wiki" target="_blank">(wiki)</a>
+          - Scripts to integrate GitHub with this website</li>
+      <li><a href="https://github.com/AdoptOpenJDK/openjdk-releases" target="_blank">openjdk-releases</a> -
+          <a href="https://github.com/AdoptOpenJDK/openjdk-releases/wiki" target="_blank">(wiki)</a>
+          - OpenJDK tagged releases</li>
+      <li><a href="https://github.com/AdoptOpenJDK/openjdk-nightly" target="_blank">openjdk-nightly</a> -
+          <a href="https://github.com/AdoptOpenJDK/openjdk-nightly/wiki" target="_blank">(wiki)</a>
+          - Nightly releases</li>
+      <li><a href="https://github.com/AdoptOpenJDK/openjdk-jdk8u" target="_blank">openjdk-jdk8u</a> -
+          <a href="https://github.com/AdoptOpenJDK/openjdk-jdk8u/wiki" target="_blank">(wiki)</a>
+          - A clone of the OpenJDK jdk8u forest</li>
+    </ul>
+    </p>
+  </div>
+  
   <!--<p><asciinema-player autoplay=true loop=true  preload=true src="dist/assets/asciicast-107176.json" cols="70" rows="15"></asciinema-player></p>-->
 
 </main>
