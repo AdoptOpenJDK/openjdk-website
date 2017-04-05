@@ -137,9 +137,9 @@ function setDownloadSection() {
       else { // if there IS a matching binary for the user's OS:
         var fullOSName = OS; // defaults this variable to be the detected OS name
         if(OS == "Win") {
-          fullOSName = "Windows"; // 'Win' is not user friendly - make it 'Windows'.
+          fullOSName = "Windows x86-64"; // 'Win' is not user friendly - make it 'Windows'.
         } else if (OS == "Mac") {
-          fullOSName = "macOS"; // 'macOS' is the official OS name.
+          fullOSName = "macOS x86-64"; // 'macOS' is the official OS name.
         }
         dlText.innerHTML = ("Download for " + fullOSName); // set the text to be OS-specific, using the full OS name.
       }
@@ -160,6 +160,10 @@ function setDownloadSection() {
     dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
     dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
     dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
+
+    dlLatest.onclick = function() {
+      document.getElementById('installation-link').className += " animated pulse infinite transition-bright";
+    };
 
     // animate the main download button shortly after the initial animation has finished.
     setTimeout(function(){
@@ -291,9 +295,9 @@ function populateNightly() {
             } else if(a.indexOf("X64_LINUX") >= 0) {
               document.getElementById("platform-block"+tableRowCounter).innerHTML = "Linux x86-64";
             } else if (a.indexOf("WIN") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "Windows";
+              document.getElementById("platform-block"+tableRowCounter).innerHTML = "Windows x86-64";
             } else if (a.indexOf("MAC") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "macOS";
+              document.getElementById("platform-block"+tableRowCounter).innerHTML = "macOS x86-64";
             }
 
             var fileExtension = "tar.gz"; // TODO: this should not be hard-coded - it should use an abstracted function, such as 'getFileExt(platform);'
@@ -506,7 +510,7 @@ function populateArchive() {
         // get the current content of the archive list div
         var currentArchiveContent = archiveList.innerHTML;
         // add an empty, hidden entry to the archive list, with the archiveCounter suffixed to every ID
-        var newArchiveContent = currentArchiveContent += ("<div class='archive-container hide' id='"+archiveCounter+"'><div class='archive-header blue-bg vertically-center-parent'><div class='vertically-center-child full-width'><div><h1><a href='' id='archive-release"+archiveCounter+"' class='light-link' target='blank'></a></h1></div><div id='archive-date"+archiveCounter+"'></div></div></div><div class='archive-downloads vertically-center-parent'><div class='archive-downloads-container vertically-center-child'><div id='linux-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Linux x86-64</div><a class='grey-button no-underline' href='' id='archive-linux-dl"+archiveCounter+"'>tar.gz (<span id='archive-linux-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-linux-checksum"+archiveCounter+"'>Checksum</a></div><div id='windows-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Windows</div><a class='grey-button no-underline' href='' id='archive-windows-dl"+archiveCounter+"'>.zip (<span id='archive-windows-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-windows-checksum"+archiveCounter+"'>Checksum</a></div><div id='mac-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>macOS</div><a class='grey-button no-underline' href='' id='archive-mac-dl"+archiveCounter+"'>tar.gz (<span id='archive-mac-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-mac-checksum"+archiveCounter+"'>Checksum</a></div></div></div><div class='archive-details align-left vertically-center-parent'><div class='vertically-center-child'><!--<div><strong><a href='' class='dark-link' id='archive-changelog"+archiveCounter+"'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong><span id='archive-timestamp"+archiveCounter+"'></span></div><!--<div><strong>Build number: </strong><span id='archive-buildnumber"+archiveCounter+"'></span></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link' id='archive-commitref"+archiveCounter+"'></a></div>--></div></div></div>");
+        var newArchiveContent = currentArchiveContent += ("<div class='archive-container hide' id='"+archiveCounter+"'><div class='archive-header blue-bg vertically-center-parent'><div class='vertically-center-child full-width'><div><h1><a href='' id='archive-release"+archiveCounter+"' class='light-link' target='blank'></a></h1></div><div id='archive-date"+archiveCounter+"'></div></div></div><div class='archive-downloads vertically-center-parent'><div class='archive-downloads-container vertically-center-child'><div id='linux-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Linux x86-64</div><a class='grey-button no-underline' href='' id='archive-linux-dl"+archiveCounter+"'>tar.gz (<span id='archive-linux-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-linux-checksum"+archiveCounter+"'>Checksum</a></div><div id='windows-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Windows x86-64</div><a class='grey-button no-underline' href='' id='archive-windows-dl"+archiveCounter+"'>.zip (<span id='archive-windows-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-windows-checksum"+archiveCounter+"'>Checksum</a></div><div id='mac-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>macOS x86-64</div><a class='grey-button no-underline' href='' id='archive-mac-dl"+archiveCounter+"'>tar.gz (<span id='archive-mac-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-mac-checksum"+archiveCounter+"'>Checksum</a></div></div></div><div class='archive-details align-left vertically-center-parent'><div class='vertically-center-child'><!--<div><strong><a href='' class='dark-link' id='archive-changelog"+archiveCounter+"'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong><span id='archive-timestamp"+archiveCounter+"'></span></div><!--<div><strong>Build number: </strong><span id='archive-buildnumber"+archiveCounter+"'></span></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link' id='archive-commitref"+archiveCounter+"'></a></div>--></div></div></div>");
         archiveList.innerHTML = newArchiveContent;
         // populate the new entry with that release's information
         var publishedAt = (releasesJson[archiveCounter].published_at);

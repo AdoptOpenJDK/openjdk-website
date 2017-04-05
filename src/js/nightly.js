@@ -119,9 +119,9 @@ function populateNightly() {
             } else if(a.indexOf("X64_LINUX") >= 0) {
               document.getElementById("platform-block"+tableRowCounter).innerHTML = "Linux x86-64";
             } else if (a.indexOf("WIN") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "Windows";
+              document.getElementById("platform-block"+tableRowCounter).innerHTML = "Windows x86-64";
             } else if (a.indexOf("MAC") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "macOS";
+              document.getElementById("platform-block"+tableRowCounter).innerHTML = "macOS x86-64";
             }
 
             var fileExtension = "tar.gz"; // TODO: this should not be hard-coded - it should use an abstracted function, such as 'getFileExt(platform);'

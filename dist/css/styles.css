@@ -353,6 +353,10 @@ a.dl-thin-button:hover {
 .home-links {
   padding: 0 1rem; }
 
+h2.transition-bright {
+  color: #0085ff;
+  transition-duration: 1s; }
+
 .divider {
   margin: 0 0.2rem; }
 
