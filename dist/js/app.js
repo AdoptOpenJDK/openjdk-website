@@ -258,7 +258,7 @@ function populateNightly() {
           var nameOfFile = (assetArray[assetCounter2].name);
           var a = nameOfFile.toUpperCase(); // make the name of the binary uppercase
 
-          if(a.indexOf(".ZIP") >= 0 || a.indexOf(".TAR.GZ") >= 0) { // if the file is a binary, create a row in the table for it...
+          if(a.indexOf(".ZIP") >= 0 || a.indexOf(".TAR.GZ") >= 0) { // TODO: this should search a list of accepted file extensions, not be hard-coded, abstracted instead
 
             // get the current content of the nightly list div
             var currentNightlyContent = nightlyList.innerHTML;
@@ -296,13 +296,13 @@ function populateNightly() {
               document.getElementById("platform-block"+tableRowCounter).innerHTML = "macOS";
             }
 
-            var format = "tar.gz"; //
+            var fileExtension = "tar.gz"; // TODO: this should not be hard-coded - it should use an abstracted function, such as 'getFileExt(platform);'
+
             // set the contents of this table row
-            dlButton.innerHTML = (format + " (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
-            document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
+            dlButton.innerHTML = (fileExtension + " (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
+            document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace(fileExtension, "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
             var link = (assetArray[assetCounter2].browser_download_url);
             dlButton.href = link; // set the download link
-            //dlContent.className = dlContent.className.replace( /(?:^|\s)invisible(?!\S)/g , '' ); // make this platform section visible (all platforms are invisible by default)
 
             // show the new row
             var trElement = document.getElementById(tableRowCounter);
@@ -581,7 +581,7 @@ function populateArchive() {
       });
     } else { // if there are no releases (beyond the latest one)...
       // report an error
-      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases'>Latest release</a> page.</p>";
+      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases.html'>Latest release</a> page.</p>";
       document.getElementById("archive-loading").innerHTML = "";
     }
   });

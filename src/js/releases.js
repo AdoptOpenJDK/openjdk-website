@@ -243,7 +243,7 @@ function populateArchive() {
       });
     } else { // if there are no releases (beyond the latest one)...
       // report an error
-      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases'>Latest release</a> page.</p>";
+      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases.html'>Latest release</a> page.</p>";
       document.getElementById("archive-loading").innerHTML = "";
     }
   });
