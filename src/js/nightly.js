@@ -1,4 +1,3 @@
-var assetCounter2 = 0;
 // When nightly page loads, run:
 /* eslint-disable no-unused-vars */
 function onNightlyLoad() {
@@ -101,7 +100,7 @@ function populateNightly() {
 
             // set variables for HTML elements.
             var dlButton = document.getElementById("nightly-dl"+tableRowCounter);
-            var dlContent = document.getElementById("nightly-dl-content"+tableRowCounter);
+            //var dlContent = document.getElementById("nightly-dl-content"+tableRowCounter);
 
             // populate the new entry with that release's information
             var publishedAt = (releasesJson[nightlyReleaseCounter].published_at);
@@ -149,12 +148,10 @@ function populateNightly() {
 
       });
 
+      // if the table has a scroll bar, show text describing how to horizontally scroll
       var scrollText = document.getElementById('scroll-text');
       var tableDisplayWidth = document.getElementById('nightly-list').clientWidth;
       var tableScrollWidth = document.getElementById('nightly-list').scrollWidth;
-
-      console.log(tableDisplayWidth + " " + tableScrollWidth);
-
       if (tableDisplayWidth != tableScrollWidth) {
         scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
       }
