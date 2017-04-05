@@ -18,12 +18,14 @@ function onReleasesLoad() {
   function showArchive() {
     latest.className += " hide"; // hide the 'Latest' page
     archive.className = archive.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // show the 'Archive' page
+    errorContainer.style.color = "black";
     populateArchive(); // populate the Archive page
   }
 
   function hideArchive() {
     archive.className += " hide"; // hide the 'Archive' page
     latest.className = latest.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // show the 'Latest' page
+    errorContainer.style.color = "red";
     populateLatest(); // populate the Latest page
   }
 
@@ -94,7 +96,7 @@ function populateLatest() {
 
         // set the download links for this release...
 
-        if(a.indexOf("LINUX") >= 0) { // if the binary name contains 'LINUX':
+        if(a.indexOf("X64_LINUX") >= 0) { // if the binary name contains 'LINUX':
           document.getElementById("latest-size-linux").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024); // display the binary size
           document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
 
@@ -203,7 +205,7 @@ function populateArchive() {
             var nameOfFile = (assetArray[assetCounter2].name);
             var a = nameOfFile.toUpperCase();
             // set the download links for this release
-            if(a.indexOf("LINUX") >= 0) {
+            if(a.indexOf("X64_LINUX") >= 0) {
               document.getElementById("archive-linux-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);// display the file size
               document.getElementById("archive-linux-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
 

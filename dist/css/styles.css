@@ -393,7 +393,7 @@ th {
   color: #F5F5F5; }
 
 #nightly-table tr td:nth-child(3), #nightly-table th:nth-child(3) {
-  display: none; }
+  /*display: none;*/ }
 
 #latest-build-name {
   font-size: 3rem;
@@ -490,6 +490,7 @@ a.latest-download-button:hover {
 
 .archive-platform-block .grey-button {
   margin-right: 1rem;
+  margin-left: 0;
   min-width: 5rem; }
 
 .archive-details div {
