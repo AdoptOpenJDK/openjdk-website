@@ -222,8 +222,8 @@ main {
   text-align: center;
   margin-top: 2rem; }
 
-.github-logo {
-  width: 3rem;
+.footer-logo {
+  height: 3rem;
   margin: 0 auto; }
 
 #installation-container {
@@ -258,6 +258,9 @@ footer {
 footer p {
   max-width: 20rem;
   margin: auto; }
+
+.footer-icon {
+  margin: 0 1rem 1.5rem 1rem; }
 
 /* The alert message box */
 .alert {
