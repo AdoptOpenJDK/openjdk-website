@@ -269,8 +269,8 @@ main {
   margin-top: 2rem;
 }
 
-.github-logo {
-  width: 3rem;
+.footer-logo {
+  height: 3rem;
   margin: 0 auto;
 }
 
@@ -314,6 +314,14 @@ footer p {
   max-width: 20rem;
   margin: auto;
 }
+
+.footer-icon {
+  margin: 0 1rem 1.5rem 1rem;
+}
+
+
+// STAGING SERVER BANNER CSS
+
 /* The alert message box */
 .alert {
    padding: 20px;
