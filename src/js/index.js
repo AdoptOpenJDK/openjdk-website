@@ -69,9 +69,9 @@ function setDownloadSection() {
       else { // if there IS a matching binary for the user's OS:
         var fullOSName = OS; // defaults this variable to be the detected OS name
         if(OS == "Win") {
-          fullOSName = "Windows"; // 'Win' is not user friendly - make it 'Windows'.
+          fullOSName = "Windows x86-64"; // 'Win' is not user friendly - make it 'Windows'.
         } else if (OS == "Mac") {
-          fullOSName = "macOS"; // 'macOS' is the official OS name.
+          fullOSName = "macOS x86-64"; // 'macOS' is the official OS name.
         }
         dlText.innerHTML = ("Download for " + fullOSName); // set the text to be OS-specific, using the full OS name.
       }
@@ -92,6 +92,10 @@ function setDownloadSection() {
     dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
     dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
     dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
+
+    dlLatest.onclick = function() {
+      document.getElementById('installation-link').className += " animated pulse infinite transition-bright";
+    };
 
     // animate the main download button shortly after the initial animation has finished.
     setTimeout(function(){

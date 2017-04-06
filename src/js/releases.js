@@ -18,12 +18,14 @@ function onReleasesLoad() {
   function showArchive() {
     latest.className += " hide"; // hide the 'Latest' page
     archive.className = archive.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // show the 'Archive' page
+    errorContainer.style.color = "black";
     populateArchive(); // populate the Archive page
   }
 
   function hideArchive() {
     archive.className += " hide"; // hide the 'Archive' page
     latest.className = latest.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // show the 'Latest' page
+    errorContainer.style.color = "red";
     populateLatest(); // populate the Latest page
   }
 
@@ -65,11 +67,11 @@ function populateLatest() {
       document.getElementById("latest-build-name").innerHTML = releasesJson[0].name;
       document.getElementById("latest-build-name").href = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + releasesJson[0].name);
       document.getElementById("latest-date").innerHTML = moment(publishedAt).format('Do MMMM YYYY');
-      document.getElementById("latest-changelog").href = releasesJson[0].name;
+      //document.getElementById("latest-changelog").href = releasesJson[0].name;
       document.getElementById("latest-timestamp").innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
-      document.getElementById("latest-buildnumber").innerHTML = releasesJson[0].id;
-      document.getElementById("latest-commitref").innerHTML = releasesJson[0].name;
-      document.getElementById("latest-commitref").href = releasesJson[0].name;
+      //document.getElementById("latest-buildnumber").innerHTML = releasesJson[0].id;
+      //document.getElementById("latest-commitref").innerHTML = releasesJson[0].name;
+      //document.getElementById("latest-commitref").href = releasesJson[0].name;
 
       // create an array of the details for each binary that is attached to a release
       var assetArray = [];
@@ -94,7 +96,7 @@ function populateLatest() {
 
         // set the download links for this release...
 
-        if(a.indexOf("LINUX") >= 0) { // if the binary name contains 'LINUX':
+        if(a.indexOf("X64_LINUX") >= 0) { // if the binary name contains 'LINUX':
           document.getElementById("latest-size-linux").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024); // display the binary size
           document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
 
@@ -166,18 +168,18 @@ function populateArchive() {
         // get the current content of the archive list div
         var currentArchiveContent = archiveList.innerHTML;
         // add an empty, hidden entry to the archive list, with the archiveCounter suffixed to every ID
-        var newArchiveContent = currentArchiveContent += ("<div class='archive-container hide' id='"+archiveCounter+"'><div class='archive-header blue-bg vertically-center-parent'><div class='vertically-center-child full-width'><div><h1><a href='' id='archive-release"+archiveCounter+"' class='light-link' target='blank'></a></h1></div><div id='archive-date"+archiveCounter+"'></div></div></div><div class='archive-downloads vertically-center-parent'><div class='archive-downloads-container vertically-center-child'><div id='linux-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Linux</div><a class='grey-button no-underline' href='' id='archive-linux-dl"+archiveCounter+"'>tar.gz (<span id='archive-linux-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-linux-checksum"+archiveCounter+"'>Checksum</a></div><div id='windows-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Windows</div><a class='grey-button no-underline' href='' id='archive-windows-dl"+archiveCounter+"'>.zip (<span id='archive-windows-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-windows-checksum"+archiveCounter+"'>Checksum</a></div><div id='mac-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>macOS</div><a class='grey-button no-underline' href='' id='archive-mac-dl"+archiveCounter+"'>tar.gz (<span id='archive-mac-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-mac-checksum"+archiveCounter+"'>Checksum</a></div></div></div><div class='archive-details align-left vertically-center-parent'><div class='vertically-center-child'><div><strong><a href='' class='dark-link' id='archive-changelog"+archiveCounter+"'>Changelog</a></strong></div><div><strong>Timestamp: </strong><span id='archive-timestamp"+archiveCounter+"'></span></div><div><strong>Build number: </strong><span id='archive-buildnumber"+archiveCounter+"'></span></div><div><strong>Commit: </strong><a href='' class='dark-link' id='archive-commitref"+archiveCounter+"'></a></div></div></div></div>");
+        var newArchiveContent = currentArchiveContent += ("<div class='archive-container hide' id='"+archiveCounter+"'><div class='archive-header blue-bg vertically-center-parent'><div class='vertically-center-child full-width'><div><h1><a href='' id='archive-release"+archiveCounter+"' class='light-link' target='blank'></a></h1></div><div id='archive-date"+archiveCounter+"'></div></div></div><div class='archive-downloads vertically-center-parent'><div class='archive-downloads-container vertically-center-child'><div id='linux-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Linux x86-64</div><a class='grey-button no-underline' href='' id='archive-linux-dl"+archiveCounter+"'>tar.gz (<span id='archive-linux-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-linux-checksum"+archiveCounter+"'>Checksum</a></div><div id='windows-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Windows x86-64</div><a class='grey-button no-underline' href='' id='archive-windows-dl"+archiveCounter+"'>.zip (<span id='archive-windows-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-windows-checksum"+archiveCounter+"'>Checksum</a></div><div id='mac-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>macOS x86-64</div><a class='grey-button no-underline' href='' id='archive-mac-dl"+archiveCounter+"'>tar.gz (<span id='archive-mac-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-mac-checksum"+archiveCounter+"'>Checksum</a></div></div></div><div class='archive-details align-left vertically-center-parent'><div class='vertically-center-child'><!--<div><strong><a href='' class='dark-link' id='archive-changelog"+archiveCounter+"'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong><span id='archive-timestamp"+archiveCounter+"'></span></div><!--<div><strong>Build number: </strong><span id='archive-buildnumber"+archiveCounter+"'></span></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link' id='archive-commitref"+archiveCounter+"'></a></div>--></div></div></div>");
         archiveList.innerHTML = newArchiveContent;
         // populate the new entry with that release's information
         var publishedAt = (releasesJson[archiveCounter].published_at);
         document.getElementById("archive-release"+archiveCounter).innerHTML = releasesJson[archiveCounter].name;
         document.getElementById("archive-release"+archiveCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + releasesJson[archiveCounter].name);
         document.getElementById("archive-date"+archiveCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY');
-        document.getElementById("archive-changelog"+archiveCounter).href = releasesJson[archiveCounter].name;
+        //document.getElementById("archive-changelog"+archiveCounter).href = releasesJson[archiveCounter].name;
         document.getElementById("archive-timestamp"+archiveCounter).innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
-        document.getElementById("archive-buildnumber"+archiveCounter).innerHTML = releasesJson[archiveCounter].id;
-        document.getElementById("archive-commitref"+archiveCounter).innerHTML = releasesJson[archiveCounter].name;
-        document.getElementById("archive-commitref"+archiveCounter).href = releasesJson[archiveCounter].name;
+        //document.getElementById("archive-buildnumber"+archiveCounter).innerHTML = releasesJson[archiveCounter].id;
+        //document.getElementById("archive-commitref"+archiveCounter).innerHTML = releasesJson[archiveCounter].name;
+        //document.getElementById("archive-commitref"+archiveCounter).href = releasesJson[archiveCounter].name;
 
         // set the download button links
           // create an array of the details for each binary that is attached to a release
@@ -203,7 +205,7 @@ function populateArchive() {
             var nameOfFile = (assetArray[assetCounter2].name);
             var a = nameOfFile.toUpperCase();
             // set the download links for this release
-            if(a.indexOf("LINUX") >= 0) {
+            if(a.indexOf("X64_LINUX") >= 0) {
               document.getElementById("archive-linux-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);// display the file size
               document.getElementById("archive-linux-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
 
@@ -241,7 +243,7 @@ function populateArchive() {
       });
     } else { // if there are no releases (beyond the latest one)...
       // report an error
-      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases'>Latest release</a> page.</p>";
+      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases.html'>Latest release</a> page.</p>";
       document.getElementById("archive-loading").innerHTML = "";
     }
   });
