@@ -353,6 +353,10 @@ a.dl-thin-button:hover {
 .home-links {
   padding: 0 1rem; }
 
+h2.transition-bright {
+  color: #0085ff;
+  transition-duration: 1s; }
+
 .divider {
   margin: 0 0.2rem; }
 
@@ -393,7 +397,7 @@ th {
   color: #F5F5F5; }
 
 #nightly-table tr td:nth-child(3), #nightly-table th:nth-child(3) {
-  display: none; }
+  /*display: none;*/ }
 
 #latest-build-name {
   font-size: 3rem;
@@ -490,6 +494,7 @@ a.latest-download-button:hover {
 
 .archive-platform-block .grey-button {
   margin-right: 1rem;
+  margin-left: 0;
   min-width: 5rem; }
 
 .archive-details div {
