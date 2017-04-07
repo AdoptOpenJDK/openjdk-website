@@ -76,11 +76,10 @@ function getFileExt(searchableName) {
 
 // set path to logos
 var logoPath = "/dist/assets/";
+console.log(logoPath); // TODO - REMOVE THIS LINE ONCE LOGOPATH IS USED
 
 // set value for error container on every page
-/* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
-/* eslint-enable no-unused-vars */
 
 // set variable names for menu elements
 const menuOpen = document.getElementById('menu-button');
@@ -98,9 +97,7 @@ menuClose.onclick = function() {
 
 // this function returns the name of the user's OS.
 // modify this list to change how other functions search for downloads that match an OS.
-/* eslint-disable no-unused-vars */
 function detectOS() {
-  /* eslint-enable no-unused-vars */
   var OSName="UnknownOS";
   if (navigator.userAgent.indexOf("Win")!=-1) OSName="Win";
   if (navigator.userAgent.indexOf("Mac")!=-1) OSName="Mac";
@@ -111,9 +108,7 @@ function detectOS() {
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
-/* eslint-disable no-unused-vars */
 function loadReleasesJSON(repo, loading, callback) {
-  /* eslint-enable no-unused-vars */
   if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";

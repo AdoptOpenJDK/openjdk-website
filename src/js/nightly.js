@@ -3,6 +3,7 @@
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
 
+
   populateNightly(); // run the function to populate the table on the Nightly page.
 
   // logic for the realtime search box:
