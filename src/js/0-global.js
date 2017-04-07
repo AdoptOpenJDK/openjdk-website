@@ -1,7 +1,85 @@
+// set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
+var platforms = [
+  {
+    officialName: "Linux x86-64",
+    searchableName: "X64_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux s390x",
+    searchableName: "S390X_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux ppc64le",
+    searchableName: "PPC64LE_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux arm",
+    searchableName: "ARM_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "macOS x86-64",
+    searchableName: "MAC",
+    logo: "mac.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Windows x86-64",
+    searchableName: "WIN",
+    logo: "windows.png",
+    fileExtension: ".zip"
+  }
+];
+
+// FUNCTIONS FOR GETTING PLATFORM DATA
+// allows us to use, for example, 'lookup["MAC"];'
+var lookup = {};
+for (var i = 0, len = platforms.length; i < len; i++) {
+    lookup[platforms[i].searchableName] = platforms[i];
+}
+
+// gets the 'searchableName' when you pass in the full filename.
+// If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
+function getSearchableName(filename) {
+  var platformCounter = 0;
+  var platform = "UNKNOWN";
+  platforms.forEach(function() {
+    if(filename.indexOf(platforms[platformCounter].searchableName) >= 0) {
+      platform = platforms[platformCounter].searchableName;
+    }
+    platformCounter++;
+  });
+  if(platform == "UNKNOWN") {
+    return false;
+  }
+  else {
+    return (lookup[platform].searchableName);
+  }
+}
+
+// gets the OFFICIAL NAME when you pass in 'searchableName'
+function getOfficialName(searchableName) {
+  return (lookup[searchableName].officialName);
+}
+
+// gets the FILE EXTENSION when you pass in 'searchableName'
+function getFileExt(searchableName) {
+  return (lookup[searchableName].fileExtension);
+}
+
+// set path to logos
+var logoPath = "/dist/assets/";
+console.log(logoPath); // TODO - REMOVE THIS LINE ONCE LOGOPATH IS USED
+
 // set value for error container on every page
-/* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
-/* eslint-enable no-unused-vars */
 
 // set variable names for menu elements
 const menuOpen = document.getElementById('menu-button');
@@ -19,9 +97,7 @@ menuClose.onclick = function() {
 
 // this function returns the name of the user's OS.
 // modify this list to change how other functions search for downloads that match an OS.
-/* eslint-disable no-unused-vars */
 function detectOS() {
-  /* eslint-enable no-unused-vars */
   var OSName="UnknownOS";
   if (navigator.userAgent.indexOf("Win")!=-1) OSName="Win";
   if (navigator.userAgent.indexOf("Mac")!=-1) OSName="Mac";
@@ -32,9 +108,7 @@ function detectOS() {
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
-/* eslint-disable no-unused-vars */
 function loadReleasesJSON(repo, loading, callback) {
-  /* eslint-enable no-unused-vars */
   if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";

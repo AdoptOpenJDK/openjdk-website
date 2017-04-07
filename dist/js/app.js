@@ -1,7 +1,85 @@
+// set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
+var platforms = [
+  {
+    officialName: "Linux x86-64",
+    searchableName: "X64_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux s390x",
+    searchableName: "S390X_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux ppc64le",
+    searchableName: "PPC64LE_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux arm",
+    searchableName: "ARM_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "macOS x86-64",
+    searchableName: "MAC",
+    logo: "mac.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Windows x86-64",
+    searchableName: "WIN",
+    logo: "windows.png",
+    fileExtension: ".zip"
+  }
+];
+
+// FUNCTIONS FOR GETTING PLATFORM DATA
+// allows us to use, for example, 'lookup["MAC"];'
+var lookup = {};
+for (var i = 0, len = platforms.length; i < len; i++) {
+    lookup[platforms[i].searchableName] = platforms[i];
+}
+
+// gets the 'searchableName' when you pass in the full filename.
+// If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
+function getSearchableName(filename) {
+  var platformCounter = 0;
+  var platform = "UNKNOWN";
+  platforms.forEach(function() {
+    if(filename.indexOf(platforms[platformCounter].searchableName) >= 0) {
+      platform = platforms[platformCounter].searchableName;
+    }
+    platformCounter++;
+  });
+  if(platform == "UNKNOWN") {
+    return false;
+  }
+  else {
+    return (lookup[platform].searchableName);
+  }
+}
+
+// gets the OFFICIAL NAME when you pass in 'searchableName'
+function getOfficialName(searchableName) {
+  return (lookup[searchableName].officialName);
+}
+
+// gets the FILE EXTENSION when you pass in 'searchableName'
+function getFileExt(searchableName) {
+  return (lookup[searchableName].fileExtension);
+}
+
+// set path to logos
+var logoPath = "/dist/assets/";
+console.log(logoPath); // TODO - REMOVE THIS LINE ONCE LOGOPATH IS USED
+
 // set value for error container on every page
-/* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
-/* eslint-enable no-unused-vars */
 
 // set variable names for menu elements
 const menuOpen = document.getElementById('menu-button');
@@ -19,9 +97,7 @@ menuClose.onclick = function() {
 
 // this function returns the name of the user's OS.
 // modify this list to change how other functions search for downloads that match an OS.
-/* eslint-disable no-unused-vars */
 function detectOS() {
-  /* eslint-enable no-unused-vars */
   var OSName="UnknownOS";
   if (navigator.userAgent.indexOf("Win")!=-1) OSName="Win";
   if (navigator.userAgent.indexOf("Mac")!=-1) OSName="Mac";
@@ -32,9 +108,7 @@ function detectOS() {
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
-/* eslint-disable no-unused-vars */
 function loadReleasesJSON(repo, loading, callback) {
-  /* eslint-enable no-unused-vars */
   if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
@@ -136,7 +210,9 @@ function setDownloadSection() {
       }
       else { // if there IS a matching binary for the user's OS:
         var fullOSName = OS; // defaults this variable to be the detected OS name
-        if(OS == "Win") {
+        if(OS == "Linux") {
+          fullOSName = "Linux x86-64"; // add 'x86-64'
+        } else if(OS == "Win") {
           fullOSName = "Windows x86-64"; // 'Win' is not user friendly - make it 'Windows'.
         } else if (OS == "Mac") {
           fullOSName = "macOS x86-64"; // 'macOS' is the official OS name.
@@ -179,6 +255,7 @@ function setDownloadSection() {
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
 
+
   populateNightly(); // run the function to populate the table on the Nightly page.
 
   // logic for the realtime search box:
@@ -216,6 +293,7 @@ function onNightlyLoad() {
   });
 
 }
+
 
 // NIGHTLY PAGE FUNCTIONS
 
@@ -255,65 +333,63 @@ function populateNightly() {
         });
 
         // build rows with the array of binaries...
-
         var assetCounter2 = 0;
         assetArray.forEach(function() {  // for each file attached to this release...
 
           var nameOfFile = (assetArray[assetCounter2].name);
-          var a = nameOfFile.toUpperCase(); // make the name of the binary uppercase
+          var a = nameOfFile.toUpperCase(); // make the name of the file uppercase
+          var thisPlatform = getSearchableName(a); // get the searchableName, e.g. MAC or X64_LINUX.
 
-          if(a.indexOf(".ZIP") >= 0 || a.indexOf(".TAR.GZ") >= 0) { // TODO: this should search a list of accepted file extensions, not be hard-coded, abstracted instead
+          // firstly, check if the platform name is recognised...
+          if(thisPlatform != false) {
+            var thisFileExtension = getFileExt(thisPlatform); // get an uppercase file extension associated with this platform
 
-            // get the current content of the nightly list div
-            var currentNightlyContent = nightlyList.innerHTML;
+            // secondly, check if the file has the expected file extension for that platform...
+            // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
+            if(a.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
-            // add an empty, hidden HTML template entry to the current nightly list, with the tableRowCounter suffixed to every ID
-            // to change the HTML of the nightly table rows/cells, you must change this template.
-            var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container hide' id='"+tableRowCounter+"'> <td class='nightly-header'> <div><strong><a href='' id='nightly-release"+tableRowCounter+"' class='dark-link' target='_blank'></a></strong></div> <div class='divider'> | </div> <div id='nightly-date"+tableRowCounter+"'></div> </td> <td id='platform-block"+tableRowCounter+"' class='nightly-platform-block'></td> <td id='downloads-block"+tableRowCounter+"' class='nightly-downloads-block'><div id='nightly-dl-content"+tableRowCounter+"'><a class='dark-link' href='' id='nightly-dl"+tableRowCounter+"'></a> <div class='divider'> | </div> <a href='' class='dark-link' id='nightly-checksum"+tableRowCounter+"'>Checksum</a> </div></td> <td class='nightly-details'> <!--<div><strong><a href='' class='dark-link' id='nightly-changelog"+tableRowCounter+"'>Changelog</a></strong></div> <div class='divider'> | </div>--> <div><strong>Timestamp: </strong><span id='nightly-timestamp"+tableRowCounter+"'></span></div> <!--<div class='divider'> | </div> <div><strong>Build number: </strong><span id='nightly-buildnumber"+tableRowCounter+"'></span></div>--> <!--<div class='divider'> | </div> <div><strong>Commit: </strong><a href='' class='dark-link' id='nightly-commitref"+tableRowCounter+"'></a></div>--> </td> </tr>");
+              // get the current content of the nightly list div
+              var currentNightlyContent = nightlyList.innerHTML;
 
-            // update the HTML container element with this new, blank, template row (hidden at this stage)
-            nightlyList.innerHTML = newNightlyContent;
+              // add an empty, hidden HTML template entry to the current nightly list, with the tableRowCounter suffixed to every ID
+              // to change the HTML of the nightly table rows/cells, you must change this template.
+              var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container hide' id='"+tableRowCounter+"'> <td class='nightly-header'> <div><strong><a href='' id='nightly-release"+tableRowCounter+"' class='dark-link' target='_blank'></a></strong></div> <div class='divider'> | </div> <div id='nightly-date"+tableRowCounter+"'></div> </td> <td id='platform-block"+tableRowCounter+"' class='nightly-platform-block'></td> <td id='downloads-block"+tableRowCounter+"' class='nightly-downloads-block'><div id='nightly-dl-content"+tableRowCounter+"'><a class='dark-link' href='' id='nightly-dl"+tableRowCounter+"'></a> <div class='divider'> | </div> <a href='' class='dark-link' id='nightly-checksum"+tableRowCounter+"'>Checksum</a> </div></td> <td class='nightly-details'> <!--<div><strong><a href='' class='dark-link' id='nightly-changelog"+tableRowCounter+"'>Changelog</a></strong></div> <div class='divider'> | </div>--> <div><strong>Timestamp: </strong><span id='nightly-timestamp"+tableRowCounter+"'></span></div> <!--<div class='divider'> | </div> <div><strong>Build number: </strong><span id='nightly-buildnumber"+tableRowCounter+"'></span></div>--> <!--<div class='divider'> | </div> <div><strong>Commit: </strong><a href='' class='dark-link' id='nightly-commitref"+tableRowCounter+"'></a></div>--> </td> </tr>");
 
-            // set variables for HTML elements.
-            var dlButton = document.getElementById("nightly-dl"+tableRowCounter);
-            //var dlContent = document.getElementById("nightly-dl-content"+tableRowCounter);
+              // update the HTML container element with this new, blank, template row (hidden at this stage)
+              nightlyList.innerHTML = newNightlyContent;
 
-            // populate the new entry with that release's information
-            var publishedAt = (releasesJson[nightlyReleaseCounter].published_at);
-            document.getElementById("nightly-release"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(0, 12); // the release name, minus the timestamp
-            document.getElementById("nightly-release"+tableRowCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + releasesJson[nightlyReleaseCounter].name) // the link to that release on GitHub
-            document.getElementById("nightly-date"+tableRowCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY'); // the timestamp converted into a readable date
-            //document.getElementById("nightly-changelog"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE. the link to the release changelog
-            document.getElementById("nightly-timestamp"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(13, 25); // the timestamp section of the build name
-            //document.getElementById("nightly-buildnumber"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].id; // TODO: currently this is the release ID
-            //document.getElementById("nightly-commitref"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE INFO TO BE AVAILABLE.
-            //document.getElementById("nightly-commitref"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE.
+              // set variables for HTML elements.
+              var dlButton = document.getElementById("nightly-dl"+tableRowCounter);
+              //var dlContent = document.getElementById("nightly-dl-content"+tableRowCounter);
 
-            // TODO: this should be abstracted - a global function should be able to search the filename for different content and return the correct platform name.
-            if(a.indexOf("S390X_LINUX") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "Linux s390x";
-            } else if(a.indexOf("X64_LINUX") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "Linux x86-64";
-            } else if (a.indexOf("WIN") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "Windows x86-64";
-            } else if (a.indexOf("MAC") >= 0) {
-              document.getElementById("platform-block"+tableRowCounter).innerHTML = "macOS x86-64";
+              // populate this new row with the release information
+              var publishedAt = (releasesJson[nightlyReleaseCounter].published_at);
+              document.getElementById("nightly-release"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(0, 12); // the release name, minus the timestamp
+              document.getElementById("nightly-release"+tableRowCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + releasesJson[nightlyReleaseCounter].name) // the link to that release on GitHub
+              document.getElementById("nightly-date"+tableRowCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY'); // the timestamp converted into a readable date
+              //document.getElementById("nightly-changelog"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE. the link to the release changelog
+              document.getElementById("nightly-timestamp"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(13, 25); // the timestamp section of the build name
+              //document.getElementById("nightly-buildnumber"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].id; // TODO: currently this is the release ID
+              //document.getElementById("nightly-commitref"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE INFO TO BE AVAILABLE.
+              //document.getElementById("nightly-commitref"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE.
+
+              // get the official name, e.g. Linux x86-64, and display it in this new row
+              var officialName = getOfficialName(thisPlatform);
+              document.getElementById("platform-block"+tableRowCounter).innerHTML = officialName;
+
+              // set the download section for this new row
+              dlButton.innerHTML = (thisFileExtension + " (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
+              document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
+              var link = (assetArray[assetCounter2].browser_download_url);
+              dlButton.href = link; // set the download link
+
+              // show the new row
+              var trElement = document.getElementById(tableRowCounter);
+              trElement.className += " animated fadeIn"; // add the fade animation
+              trElement.className = trElement.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // remove the 'hide' class immediately afterwards
+
+              tableRowCounter++;
             }
-
-            var fileExtension = "tar.gz"; // TODO: this should not be hard-coded - it should use an abstracted function, such as 'getFileExt(platform);'
-
-            // set the contents of this table row
-            dlButton.innerHTML = (fileExtension + " (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
-            document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace(fileExtension, "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
-            var link = (assetArray[assetCounter2].browser_download_url);
-            dlButton.href = link; // set the download link
-
-            // show the new row
-            var trElement = document.getElementById(tableRowCounter);
-            trElement.className += " animated fadeIn"; // add the fade animation
-            trElement.className = trElement.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // remove the 'hide' class immediately afterwards
-
-            tableRowCounter++;
           }
 
           assetCounter2++;
