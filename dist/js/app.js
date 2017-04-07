@@ -379,7 +379,7 @@ function populateNightly() {
 
               // set the download section for this new row
               dlButton.innerHTML = (thisFileExtension + " (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
-              document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
+              document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
               var link = (assetArray[assetCounter2].browser_download_url);
               dlButton.href = link; // set the download link
 
