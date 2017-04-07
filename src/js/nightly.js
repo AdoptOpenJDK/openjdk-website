@@ -129,10 +129,10 @@ function populateNightly() {
       document.getElementById("nightly-loading").innerHTML = ""; // remove the loading dots
     }
 
-    var table = document.getElementById("nightly-table");
     var searchError = document.getElementById("search-error");
 
     // logic for the realtime search box...
+    /* eslint-disable */
     var $rows = $('#nightly-table tr');
     $('#search').keyup(function() {
       var val = '^(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$',
@@ -152,6 +152,7 @@ function populateNightly() {
         searchError.className = "hide";
       }
     });
+    /* eslint-enable */
 
   });
 }
