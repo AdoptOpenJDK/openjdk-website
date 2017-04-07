@@ -1,3 +1,82 @@
+// set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
+var platforms = [
+  {
+    officialName: "Linux x86-64",
+    searchableName: "X64_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux s390x",
+    searchableName: "S390X_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux ppc64le",
+    searchableName: "PPC64LE_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Linux arm",
+    searchableName: "ARM_LINUX",
+    logo: "linux.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "macOS x86-64",
+    searchableName: "MAC",
+    logo: "mac.png",
+    fileExtension: ".tar.gz"
+  },
+  {
+    officialName: "Windows x86-64",
+    searchableName: "WIN",
+    logo: "windows.png",
+    fileExtension: ".zip"
+  }
+];
+
+// FUNCTIONS FOR GETTING PLATFORM DATA
+// allows us to use, for example, 'lookup["MAC"];'
+var lookup = {};
+for (var i = 0, len = platforms.length; i < len; i++) {
+    lookup[platforms[i].searchableName] = platforms[i];
+}
+
+// gets the 'searchableName' when you pass in the full filename.
+// If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
+function getSearchableName(filename) {
+  var platformCounter = 0;
+  var platform = "UNKNOWN";
+  platforms.forEach(function() {
+    if(filename.indexOf(platforms[platformCounter].searchableName) >= 0) {
+      platform = platforms[platformCounter].searchableName;
+    }
+    platformCounter++;
+  });
+  if(platform == "UNKNOWN") {
+    return false;
+  }
+  else {
+    return (lookup[platform].searchableName);
+  }
+}
+
+// gets the OFFICIAL NAME when you pass in 'searchableName'
+function getOfficialName(searchableName) {
+  return (lookup[searchableName].officialName);
+}
+
+// gets the FILE EXTENSION when you pass in 'searchableName'
+function getFileExt(searchableName) {
+  return (lookup[searchableName].fileExtension);
+}
+
+// set path to logos
+var logoPath = "/dist/assets/";
+
 // set value for error container on every page
 /* eslint-disable no-unused-vars */
 var errorContainer = document.getElementById('error-container');
