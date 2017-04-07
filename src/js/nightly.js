@@ -3,42 +3,7 @@
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
 
-
   populateNightly(); // run the function to populate the table on the Nightly page.
-
-  // logic for the realtime search box:
-  var search = document.getElementById("search");
-  var searchError = document.getElementById("search-error");
-
-  search.onkeyup = (function() {
-    var filter, found, table, tr, td, i, j;
-    filter = search.value.toUpperCase();
-    table = document.getElementById("nightly-table");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
-        for (j = 0; j < td.length; j++) {
-            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                found = true;
-            }
-        }
-        if (found) {
-            tr[i].style.display = "";
-            found = false;
-        } else {
-          if (tr[i].id != 'table-header'){
-            tr[i].style.display = "none";
-          }
-        }
-    }
-    if(document.getElementById('table-parent').offsetHeight < 45) {
-      table.style.visibility = "hidden";
-      searchError.className = "";
-    } else {
-      table.style.visibility = "";
-      searchError.className = "hide";
-    }
-  });
 
 }
 
@@ -46,6 +11,8 @@ function onNightlyLoad() {
 // NIGHTLY PAGE FUNCTIONS
 
 function populateNightly() {
+  const tableHead = document.getElementById("table-head");
+  const tableContainer = document.getElementById("nightly-list");
   const nightlyList = document.getElementById("nightly-table");
   var loading = document.getElementById("nightly-loading");
 
@@ -68,7 +35,7 @@ function populateNightly() {
       var nightlyReleaseCounter = 0;
       var tableRowCounter = 0;
 
-      nightlyList.innerHTML = ("<thead><tr id='table-header'><th>Release</th><th>Platform</th><th>Downloads</th><th>Release details</th></tr></thead>");
+      tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Platform</th><th>Downloads</th><th>Release details</th></tr>");
 
       releasesJson.forEach(function() {
 
@@ -161,5 +128,30 @@ function populateNightly() {
       errorContainer.innerHTML = "<p>Error... no releases have been found!</p>";
       document.getElementById("nightly-loading").innerHTML = ""; // remove the loading dots
     }
+
+    var table = document.getElementById("nightly-table");
+    var searchError = document.getElementById("search-error");
+
+    // logic for the realtime search box...
+    var $rows = $('#nightly-table tr');
+    $('#search').keyup(function() {
+      var val = '^(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$',
+          reg = RegExp(val, 'i'),
+          text;
+
+      $rows.show().filter(function() {
+          text = $(this).text().replace(/\s+/g, ' ');
+          return !reg.test(text);
+      }).hide();
+
+      if(document.getElementById('table-parent').offsetHeight < 45) {
+        tableContainer.style.visibility = "hidden";
+        searchError.className = "";
+      } else {
+        tableContainer.style.visibility = "";
+        searchError.className = "hide";
+      }
+    });
+
   });
 }
