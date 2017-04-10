@@ -68,7 +68,9 @@ function setDownloadSection() {
       }
       else { // if there IS a matching binary for the user's OS:
         var fullOSName = OS; // defaults this variable to be the detected OS name
-        if(OS == "Win") {
+        if(OS == "Linux") {
+          fullOSName = "Linux x86-64"; // add 'x86-64'
+        } else if(OS == "Win") {
           fullOSName = "Windows x86-64"; // 'Win' is not user friendly - make it 'Windows'.
         } else if (OS == "Mac") {
           fullOSName = "macOS x86-64"; // 'macOS' is the official OS name.
