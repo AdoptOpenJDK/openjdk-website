@@ -73,7 +73,7 @@ function populateLatest() {
       //document.getElementById("latest-commitref").innerHTML = releasesJson[0].name;
       //document.getElementById("latest-commitref").href = releasesJson[0].name;
 
-      // create an array of the details for each binary that is attached to a release
+      // create an array of the details for each asset that is attached to a release
       var assetArray = [];
       var assetCounter = 0;
       releasesJson[0].assets.forEach(function() {
@@ -81,46 +81,41 @@ function populateLatest() {
         assetCounter++;
       });
 
-      // build the download links section with these binaries
-      var linuxDlButton = document.getElementById("linux-dl-button");
-      var windowsDlButton = document.getElementById("windows-dl-button");
-      var macDlButton = document.getElementById("mac-dl-button");
-      var linuxPlatformBlock = document.getElementById("latest-linux");
-      var windowsPlatformBlock = document.getElementById("latest-windows");
-      var macPlatformBlock = document.getElementById("latest-mac");
-
+      // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
       assetCounter2 = 0;
-      assetArray.forEach(function() {     // iterate through the binaries attached to this release
+      assetArray.forEach(function() {
         var nameOfFile = (assetArray[assetCounter2].name);
-        var a = nameOfFile.toUpperCase(); // make the name of the binary uppercase
+        var a = nameOfFile.toUpperCase(); // make the name of the asset uppercase
+        var thisPlatform = getSearchableName(a); // get the searchableName, e.g. MAC or X64_LINUX.
 
-        // set the download links for this release...
+        // firstly, check if the platform name is recognised...
+        if(thisPlatform != false) {
 
-        if(a.indexOf("X64_LINUX") >= 0) { // if the binary name contains 'LINUX':
-          document.getElementById("latest-size-linux").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024); // display the binary size
-          document.getElementById("latest-checksum-linux").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
+          // secondly, check if the file has the expected file extension for that platform...
+          // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
+          var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
+          if(a.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
-          var linuxLink = (assetArray[assetCounter2].browser_download_url);
-          linuxDlButton.href = linuxLink; // set the download button link for this platform
-          linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make this platform section visible (all platforms are invisible by default)
+            // set values ready to be injected into the HTML
+            var thisLogo = getLogo(thisPlatform);
+            var thisOfficialName = getOfficialName(thisPlatform);
+            var thisBinaryLink = (assetArray[assetCounter2].browser_download_url);
+            var thisBinarySize = Math.floor((assetArray[assetCounter2].size)/1024/1024);
+            var thisChecksumLink = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt");
+            var thisRequirements = getRequirements(thisPlatform);
 
-          // repeat for Windows and Mac
-        } else if(a.indexOf("WIN") >= 0) {
-          document.getElementById("latest-size-windows").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-          document.getElementById("latest-checksum-windows").href = (assetArray[assetCounter2].browser_download_url).replace("zip", "sha256.txt");
+            // get the current content of the latest downloads container div
+            var latestContainer = document.getElementById("latest-downloads-container");
+            var currentLatestContent = latestContainer.innerHTML;
 
-          var windowsLink = (assetArray[assetCounter2].browser_download_url);
-          windowsDlButton.href = windowsLink;
-          windowsPlatformBlock.className = windowsPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+            // prepare a fully-populated HTML block for this platform
+            var newLatestContent = currentLatestContent += ("<div id='latest-"+ thisPlatform +"' class='latest-block'><div class='latest-platform'><img src='"+ thisLogo +"'><div>"+ thisOfficialName +"</div></div><a href='"+ thisBinaryLink +"' class='latest-download-button a-button' id='linux-dl-button'><div>Download <div class='small-dl-text'>("+ thisFileExtension +" - "+ thisBinarySize +" MB)</div></div></a><div class='latest-details'><p><a href='"+ thisChecksumLink +"' class='dark-link' id='latest-checksum-"+ thisPlatform +"' target='_blank'>Checksum</a></p><p><strong>Requirements:</strong><br>"+ thisRequirements +"</p></ul></div></div>");
 
-        } else if(a.indexOf("MAC") >= 0) {
-          document.getElementById("latest-size-mac").innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-          document.getElementById("latest-checksum-mac").href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt");
-
-          var macLink = (assetArray[assetCounter2].browser_download_url);
-          macDlButton.href = macLink;
-          macPlatformBlock.className = macPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+            // update the latest downloads container with this new platform block
+            latestContainer.innerHTML = newLatestContent;
+          }
         }
+
         assetCounter2++;
       });
 

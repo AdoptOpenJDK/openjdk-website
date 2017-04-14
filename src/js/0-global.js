@@ -70,6 +70,9 @@ function getSearchableName(filename) {
   }
 }
 
+// set path to logos
+var logoPath = "./dist/assets/";
+
 // gets the OFFICIAL NAME when you pass in 'searchableName'
 function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
@@ -80,9 +83,17 @@ function getFileExt(searchableName) {
   return (lookup[searchableName].fileExtension);
 }
 
-// set path to logos
-var logoPath = "/dist/assets/";
-console.log(logoPath); // TODO - REMOVE THIS LINE ONCE LOGOPATH IS USED
+// gets the LOGO WITH PATH when you pass in 'searchableName'
+function getLogo(searchableName) {
+  return (logoPath + (lookup[searchableName].logo));
+}
+
+// gets the PLATFORM REQUIREMENTS when you pass in 'searchableName'
+function getRequirements(searchableName) {
+  return (lookup[searchableName].requirements);
+}
+
+
 
 // set value for error container on every page
 var errorContainer = document.getElementById('error-container');
