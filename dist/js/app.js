@@ -4,37 +4,43 @@ var platforms = [
     officialName: "Linux x86-64",
     searchableName: "X64_LINUX",
     logo: "linux.png",
-    fileExtension: ".tar.gz"
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
   },
   {
     officialName: "Linux s390x",
     searchableName: "S390X_LINUX",
     logo: "linux.png",
-    fileExtension: ".tar.gz"
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
   },
   {
     officialName: "Linux ppc64le",
     searchableName: "PPC64LE_LINUX",
     logo: "linux.png",
-    fileExtension: ".tar.gz"
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
   },
   {
     officialName: "Linux arm",
     searchableName: "ARM_LINUX",
     logo: "linux.png",
-    fileExtension: ".tar.gz"
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
   },
   {
     officialName: "macOS x86-64",
     searchableName: "MAC",
     logo: "mac.png",
-    fileExtension: ".tar.gz"
+    fileExtension: ".tar.gz",
+    requirements: "macOS 10.8 and above"
   },
   {
     officialName: "Windows x86-64",
     searchableName: "WIN",
     logo: "windows.png",
-    fileExtension: ".zip"
+    fileExtension: ".zip",
+    requirements: "VS 2010 and above"
   }
 ];
 
