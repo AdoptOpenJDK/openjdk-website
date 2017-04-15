@@ -566,7 +566,6 @@ function populateLatest() {
 
 function populateArchive() {
   // set variables for HTML elements
-  const archiveList = document.getElementById("archive-list");
   var loading = document.getElementById("archive-loading");
 
   // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
@@ -580,87 +579,67 @@ function populateArchive() {
     var releasesJson = JSON.parse(response).filter(checkIfProduction);
 
     // if there are releases prior to the 'latest' one (i.e. archived releases)...
-    if (typeof releasesJson[1] !== 'undefined') {
+    if (typeof releasesJson[0] !== 'undefined') {
       // remove the loading dots
       document.getElementById("archive-loading").innerHTML = "";
+
+      var archiveTableBody = document.getElementById("archive-table-body");
 
       // for each release...
       var archiveCounter = 0;
       releasesJson.forEach(function() {
 
-        // get the current content of the archive list div
-        var currentArchiveContent = archiveList.innerHTML;
-        // add an empty, hidden entry to the archive list, with the archiveCounter suffixed to every ID
-        var newArchiveContent = currentArchiveContent += ("<div class='archive-container hide' id='"+archiveCounter+"'><div class='archive-header blue-bg vertically-center-parent'><div class='vertically-center-child full-width'><div><h1><a href='' id='archive-release"+archiveCounter+"' class='light-link' target='blank'></a></h1></div><div id='archive-date"+archiveCounter+"'></div></div></div><div class='archive-downloads vertically-center-parent'><div class='archive-downloads-container vertically-center-child'><div id='linux-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Linux x86-64</div><a class='grey-button no-underline' href='' id='archive-linux-dl"+archiveCounter+"'>tar.gz (<span id='archive-linux-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-linux-checksum"+archiveCounter+"'>Checksum</a></div><div id='windows-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>Windows x86-64</div><a class='grey-button no-underline' href='' id='archive-windows-dl"+archiveCounter+"'>.zip (<span id='archive-windows-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-windows-checksum"+archiveCounter+"'>Checksum</a></div><div id='mac-platform-block"+archiveCounter+"' class='archive-platform-block align-left hide'><div class='bold'>macOS x86-64</div><a class='grey-button no-underline' href='' id='archive-mac-dl"+archiveCounter+"'>tar.gz (<span id='archive-mac-size"+archiveCounter+"'></span> MB)</a><a href='' class='dark-link' id='archive-mac-checksum"+archiveCounter+"'>Checksum</a></div></div></div><div class='archive-details align-left vertically-center-parent'><div class='vertically-center-child'><!--<div><strong><a href='' class='dark-link' id='archive-changelog"+archiveCounter+"'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong><span id='archive-timestamp"+archiveCounter+"'></span></div><!--<div><strong>Build number: </strong><span id='archive-buildnumber"+archiveCounter+"'></span></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link' id='archive-commitref"+archiveCounter+"'></a></div>--></div></div></div>");
-        archiveList.innerHTML = newArchiveContent;
-        // populate the new entry with that release's information
-        var publishedAt = (releasesJson[archiveCounter].published_at);
-        document.getElementById("archive-release"+archiveCounter).innerHTML = releasesJson[archiveCounter].name;
-        document.getElementById("archive-release"+archiveCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + releasesJson[archiveCounter].name);
-        document.getElementById("archive-date"+archiveCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY');
-        //document.getElementById("archive-changelog"+archiveCounter).href = releasesJson[archiveCounter].name;
-        document.getElementById("archive-timestamp"+archiveCounter).innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
-        //document.getElementById("archive-buildnumber"+archiveCounter).innerHTML = releasesJson[archiveCounter].id;
-        //document.getElementById("archive-commitref"+archiveCounter).innerHTML = releasesJson[archiveCounter].name;
-        //document.getElementById("archive-commitref"+archiveCounter).href = releasesJson[archiveCounter].name;
+        // set values for this release, ready to inject into HTML
+        var publishedAt = releasesJson[archiveCounter].published_at;
+        var thisReleaseName = releasesJson[archiveCounter].name;
+        var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
+        var thisGitLink = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + thisReleaseName);
+        var thisTimestamp = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
+        var platformTableRows = ""; // an empty var where new table rows can be added for each platform
 
-        // set the download button links
-          // create an array of the details for each binary that is attached to a release
-          var assetArray = [];
-          var assetCounter = 0;
-          releasesJson[archiveCounter].assets.forEach(function() {
-            assetArray.push(releasesJson[archiveCounter].assets[assetCounter]);
-            assetCounter++;
-          });
+        // create an array of the details for each asset that is attached to this release
+        var assetArray = [];
+        var assetCounter = 0;
+        releasesJson[archiveCounter].assets.forEach(function() {
+          assetArray.push(releasesJson[archiveCounter].assets[assetCounter]);
+          assetCounter++;
+        });
 
-          // set variables for the HTML elements
-          var linuxDlButton = document.getElementById("archive-linux-dl"+archiveCounter);
-          var windowsDlButton = document.getElementById("archive-windows-dl"+archiveCounter);
-          var macDlButton = document.getElementById("archive-mac-dl"+archiveCounter);
-          var linuxPlatformBlock = document.getElementById("linux-platform-block"+archiveCounter);
-          var windowsPlatformBlock = document.getElementById("windows-platform-block"+archiveCounter);
-          var macPlatformBlock = document.getElementById("mac-platform-block"+archiveCounter);
+        // populate 'platformTableRows' with one row per binary for this release...
+        assetCounter2 = 0;
+        assetArray.forEach(function() {
+          var nameOfFile = (assetArray[assetCounter2].name);
+          var a = nameOfFile.toUpperCase(); // make the name of the asset uppercase
+          var thisPlatform = getSearchableName(a); // get the searchableName, e.g. MAC or X64_LINUX.
 
-          // build the download links section with these binaries...
+          // firstly, check if the platform name is recognised...
+          if(thisPlatform != false) {
 
-          assetCounter2 = 0;
-          assetArray.forEach(function() {     // iterate through the binaries attached to this release
-            var nameOfFile = (assetArray[assetCounter2].name);
-            var a = nameOfFile.toUpperCase();
-            // set the download links for this release
-            if(a.indexOf("X64_LINUX") >= 0) {
-              document.getElementById("archive-linux-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);// display the file size
-              document.getElementById("archive-linux-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
+            // secondly, check if the file has the expected file extension for that platform...
+            // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
+            var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
+            if(a.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
-              var linuxLink = (assetArray[assetCounter2].browser_download_url);
-              linuxDlButton.href = linuxLink; // set the download link
-              linuxPlatformBlock.className = linuxPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make this platform section visible (all platforms are invisible by default)
+              // set values ready to be injected into the HTML
+              var thisOfficialName = getOfficialName(thisPlatform);
+              var thisBinaryLink = (assetArray[assetCounter2].browser_download_url);
+              var thisBinarySize = Math.floor((assetArray[assetCounter2].size)/1024/1024);
+              var thisChecksumLink = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt");
 
-              // repeated for Windows and Mac
-            } else if(a.indexOf("WIN") >= 0) {
-              document.getElementById("archive-windows-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-              document.getElementById("archive-windows-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("zip", "sha256.txt");
-
-              var windowsLink = (assetArray[assetCounter2].browser_download_url);
-              windowsDlButton.href = windowsLink;
-              windowsPlatformBlock.className = windowsPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
-
-            } else if(a.indexOf("MAC") >= 0) {
-              document.getElementById("archive-mac-size"+archiveCounter).innerHTML = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-              document.getElementById("archive-mac-checksum"+archiveCounter).href = (assetArray[assetCounter2].browser_download_url).replace("tar.gz", "sha256.txt");
-
-              var macLink = (assetArray[assetCounter2].browser_download_url);
-              macDlButton.href = macLink;
-              macPlatformBlock.className = macPlatformBlock.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+              // prepare a fully-populated table row for this platform
+              platformTableRows += ("<tr class='"+ thisPlatform +"'><td class='bold'>"+ thisOfficialName +"</td><td><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisFileExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
             }
-            assetCounter2++;
-          });
+          }
 
-        // show the new entry
-        var container = document.getElementById(archiveCounter);
-        container.className += " animated fadeIn"; // add the fade animation
-        container.className = container.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // remove the 'hide' class immediately afterwards
-        // iterate to the next archive entry
+          assetCounter2++;
+        });
+
+        // create a new table row containing all release information, and the completed platform/binary table
+        var newArchiveContent = ("<tr><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td><td class='archive-details'><!--<div><strong><a href='' class='dark-link'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong>"+ thisTimestamp +"</div><!--<div><strong>Build number: </strong></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link'></a></div>--></td></tr>");
+
+        archiveTableBody.innerHTML += newArchiveContent;
+
+        // iterate to the next archived release
         archiveCounter++;
 
       });
