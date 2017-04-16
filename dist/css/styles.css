@@ -102,6 +102,12 @@ input {
   margin-top: 1rem;
   text-align: center; }
 
+.cursor-pointer {
+  cursor: pointer; }
+
+.animated.fadeIn {
+  animation-duration: 0.3s; }
+
 nav {
   position: relative; }
 
@@ -205,6 +211,10 @@ main {
 .grey-button:hover {
   background-color: #e6e6e6;
   color: #152935 !important; }
+
+.selected-grey {
+  background-color: #e6e6e6;
+  cursor: default; }
 
 .blue-button {
   background-color: #3D70B2;
@@ -473,7 +483,7 @@ a.latest-download-button:hover {
   overflow: auto; }
 
 .archive-container {
-  margin: 2rem auto;
+  margin: 0 auto;
   border-collapse: separate;
   border-spacing: .2rem 2rem;
   white-space: nowrap; }

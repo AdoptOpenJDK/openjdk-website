@@ -121,6 +121,15 @@ input {
   text-align: center;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.animated.fadeIn {
+  animation-duration: 0.3s;
+}
+
+
 // NAV CSS
 
 nav {
@@ -248,6 +257,11 @@ main {
 .grey-button:hover {
   background-color: $palegrey;
   color: $mainblue !important;
+}
+
+.selected-grey {
+  background-color: $palegrey;
+  cursor: default;
 }
 
 .blue-button {

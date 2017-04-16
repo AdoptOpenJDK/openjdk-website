@@ -56,7 +56,14 @@
 
     <div id="archive-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
-    <div id="archive-list">
+    <div id="filter-container" class="hide">
+      <h3 class="inline-block" style="margin: 2rem .5rem 1rem 0;">Filter by platform:</h3>
+      <select id="platform-dropdown">
+        <option value="ALL">All</option>
+      </select>
+    </div>
+
+    <div id="archive-list" class="hide">
       <table class='archive-container'>
         <tbody id='archive-table-body'></tbody>
       </table>

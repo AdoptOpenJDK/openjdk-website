@@ -199,7 +199,7 @@ function populateArchive() {
               var thisChecksumLink = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt");
 
               // prepare a fully-populated table row for this platform
-              platformTableRows += ("<tr class='"+ thisPlatform +"'><td class='bold'>"+ thisOfficialName +"</td><td><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisFileExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
+              platformTableRows += ("<tr class='platform-row "+ thisPlatform +"'><td class='bold'>"+ thisOfficialName +"</td><td><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisFileExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
             }
           }
 
@@ -207,7 +207,7 @@ function populateArchive() {
         });
 
         // create a new table row containing all release information, and the completed platform/binary table
-        var newArchiveContent = ("<tr><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td><td class='archive-details'><!--<div><strong><a href='' class='dark-link'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong>"+ thisTimestamp +"</div><!--<div><strong>Build number: </strong></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link'></a></div>--></td></tr>");
+        var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td><td class='archive-details'><!--<div><strong><a href='' class='dark-link'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong>"+ thisTimestamp +"</div><!--<div><strong>Build number: </strong></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link'></a></div>--></td></tr>");
 
         archiveTableBody.innerHTML += newArchiveContent;
 
@@ -215,6 +215,95 @@ function populateArchive() {
         archiveCounter++;
 
       });
+
+      // show the archive list and filter box, with fade-in animation
+      var archiveList = document.getElementById('archive-list');
+      var filterContainer = document.getElementById('filter-container');
+      archiveList.className = archiveList.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
+      filterContainer.className = filterContainer.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
+
+      // add a new entry to the platform filter drop-down list for each entry in the global 'platforms' array.
+      var platformDropDown = document.getElementById("platform-dropdown");
+      platforms.forEach(function(each) {
+        var op = new Option();
+        op.value = each.searchableName;
+        op.text = each.officialName;
+        platformDropDown.options.add(op);
+      });
+
+      // create an array that contains all of the drop-down list options, including 'ALL'.
+      function buildDropdownArray() {
+        var dropdownArray = [];
+        for (i = 0; i < platformDropDown.options.length; i++) {
+          dropdownArray.push(platformDropDown.options[i].value);
+        }
+        return dropdownArray;
+      }
+
+      // filters the platform rows and release rows based on a selected platform.
+      // pass in the 'searchableName' value of an object in the 'platforms' array, e.g. X64_LINUX
+      function filterByPlatform(selection) {
+        var dropdownArray = buildDropdownArray(); // get an array of the items in the dropdown platform selector
+        var index = dropdownArray.indexOf(selection); // find the index number of the selected platform in this array
+        dropdownArray.splice(index, 1); // remove this selected platform from the array
+        var notSelectedArray = dropdownArray; // create a new 'not selected' array (for clarity only)
+
+        // if the first, default entry ('All', or equivalent) is selected...
+        if(index == 0){
+          var thisPlatformRowArray = document.getElementsByClassName("platform-row"); // create an array containing all of the platform rows
+          for (i = 0; i < thisPlatformRowArray.length; i++) {
+            thisPlatformRowArray[i].className = thisPlatformRowArray[i].className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // un-hide all of these rows
+          }
+
+          var releaseRows = archiveTableBody.getElementsByClassName("release-row"); // create an array containing all of the release rows
+          for (i = 0; i < releaseRows.length; i++) {
+            releaseRows[i].className = releaseRows[i].className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // un-hide all of these rows
+          }
+        }
+        // else, if a specific platform is selected...
+        else {
+          var thisPlatformRowArray = document.getElementsByClassName(selection); // create an array containing all of the selected platform's rows
+          for (i = 0; i < thisPlatformRowArray.length; i++) {
+            thisPlatformRowArray[i].className = thisPlatformRowArray[i].className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make sure that these rows are not hidden
+          }
+
+          notSelectedArray.splice(0, 1); // remove the first, default entry ('All', or equivalent) to leave just the platforms that have not been selected
+
+           // for each of the non-selected platforms...
+          notSelectedArray.forEach(function(thisPlatform) {
+            var thisPlatformRowArray = document.getElementsByClassName(thisPlatform); // create an array containing all of this platform's rows
+
+            for (i = 0; i < thisPlatformRowArray.length; i++) {
+              thisPlatformRowArray[i].className += " hide"; // hide all of the rows for this platform
+            }
+          });
+
+          var releaseRows = archiveTableBody.getElementsByClassName("release-row"); // create an array containing all of the release rows
+
+          // for each of the release rows...
+          for (i = 0; i < releaseRows.length; i++) {
+            var platformBox = releaseRows[i].getElementsByTagName("TD")[1]; // get the second <td> element in this row (the one that contains the platforms)
+            var numberOfPlatformRows = platformBox.getElementsByTagName("TR").length; // get the number of platform rows
+            var numberOfHiddenPlatformRows = platformBox.getElementsByClassName(" hide").length; // get the number of hidden platform rows
+            if(numberOfPlatformRows == numberOfHiddenPlatformRows) { // if ALL of the platform rows are hidden...
+              if(releaseRows[i].className.indexOf("hide") == -1){ // and if this release row isn't ALREADY hidden...
+                releaseRows[i].className += " hide"; // hide this release row
+              }
+            }
+            else { // else, if there is at least one visible platform row...
+              releaseRows[i].className = releaseRows[i].className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make sure that this release row isn't hidden
+            }
+          }
+
+
+        }
+      }
+
+      // when the user selects a new platform filter, run the filterByPlatform function, passing in the value of the selection.
+      platformDropDown.onchange = function(){
+        filterByPlatform(this.value);
+      };
+
     } else { // if there are no releases (beyond the latest one)...
       // report an error
       errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases.html'>Latest release</a> page.</p>";
