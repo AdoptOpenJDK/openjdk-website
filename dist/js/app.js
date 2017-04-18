@@ -10,14 +10,14 @@ var platforms = [
   {
     officialName: "Linux s390x",
     searchableName: "S390X_LINUX",
-    logo: "linux.png",
+    logo: "s390x.png",
     fileExtension: ".tar.gz",
     requirements: "GLIBC 2.5 and above"
   },
   {
     officialName: "Linux ppc64le",
     searchableName: "PPC64LE_LINUX",
-    logo: "linux.png",
+    logo: "ppc64le.png",
     fileExtension: ".tar.gz",
     requirements: "GLIBC 2.5 and above"
   },
