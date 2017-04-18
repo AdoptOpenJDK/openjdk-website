@@ -1,8 +1,6 @@
-{{> header title='Releases - AdoptOpenJDK' }}
+{{> header title='Latest release - AdoptOpenJDK' }}
 
 <main class="grey-bg">
-
-  <!-- BEGINNING OF 'LATEST' PAGE -->
 
   <div id="latest-page">
     <p class="zero-margin">Latest release:</p><h1><a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></h1>
@@ -11,7 +9,7 @@
     <div id="latest-container" class="invisible">
 
       <div id="latest-intro">
-        <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
+        <a href="./archive.html" id="archive-button" class="grey-button a-button">
           <div>
             <span>Release archive</span>
             <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
@@ -35,46 +33,8 @@
 
   </div>
 
-  <!-- END OF 'LATEST' PAGE -->
-
-  <!-- BEGINNING OF 'ARCHIVES' PAGE -->
-
-  <div id="archives-page">
-    <h1 class="large-title">Archive</h1>
-    <a href="./releases.html" id="latest-button" class="blue-button a-button">
-      <div>
-        <span>See the latest release</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-    <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
-      <div>
-        <span>See the nightly builds</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-
-    <div id="archive-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
-
-    <div id="filter-container" class="hide">
-      <h3 class="inline-block" style="margin: 2rem .5rem 1rem 0;">Filter by platform:</h3>
-      <select id="platform-dropdown">
-        <option value="ALL">All</option>
-      </select>
-    </div>
-
-    <div id="archive-list" class="hide">
-      <table class='archive-container'>
-        <tbody id='archive-table-body'></tbody>
-      </table>
-    </div>
-
-  </div>
-
-
-  <!-- END OF 'ARCHIVES' PAGE -->
   <div id="error-container"></div>
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script>onReleasesLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script>onLatestLoad();</script>' }}

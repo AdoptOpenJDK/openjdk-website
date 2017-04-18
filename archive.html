@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About - AdoptOpenJDK</title>
+    <title>Archive - AdoptOpenJDK</title>
     <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -46,65 +46,43 @@
         w3IncludeHTML();
     </script>
 
-<!-- TODO Style should match installation page, it doesn't quite... -->
-  <main class="grey-bg about">
+<main class="grey-bg">
 
-    <h1 class="margin-bottom large-title">About</h1>
-
-    <div id="support-container">
-
-      <!-- TODO this might be renamed to GetOpenJDK to avoid confusion -->
-      <div class="margin-bottom">
-        <h2 class="bold">About AdoptOpenJDK - GetOpenJDK</h2>
-        <p>
-          This initiative came about following a discussion about the general lack of an open and reproducible build & test system
-          for the OpenJDK source across multiple platforms.
-        </p>
-
-        <p>
-          The intention is to provide binaries and hardware access for all of the major platforms, for the purposes of:
-          <ul>
-            <li>Allowing end users to have a reliable source of OpenJDK binaries for all platforms.</li>
-            <li>Research and Development by OpenJDK developers, academics and researchers.</li>
-            <li>An open, common, audited, build infrastructure for vendors to use (if they wish).</li>
-            <li>Providing a place to try out build infrastructure ideas that might one day be re-implemented in the <a href="http://openjdk.java.net">OpenJDK</a> project.</li>
-          </ul>
-        </p>
-      </div>
-
+  <div id="archives-page">
+    <h1 class="large-title">Archive</h1>
+    <a href="./releases.html" id="latest-button" class="blue-button a-button">
       <div>
-        <h2 class="bold">About the AdoptOpenJDK Community</h2>
-        <p>
-          <a href="https://java.net/projects/adoptopenjdk/">AdoptOpenJDK</a> is a community of Java user group members, Java developers and vendors who are
-          advocates of <a href="http://openjdk.java.net">OpenJDK</a>, the open source project which forms the basis of the Java programming language and
-          platform.
-        </p>
-        <p>
-          Part of the group's activities occur at the <a href="http://openjdk.java.net/groups/adoption/">Adoption Group</a> on the <a href="http://openjdk.java.net">OpenJDK</a> project.
-        </p>
+        <span>See the latest release</span>
+        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
       </div>
-
-      <div class="margin-bottom">
-        <h2 class="bold">License(s)</h2>
-        <p>
-          Build scripts and other code to product the binaries, the website and other build infrastructure are licensed under
-          <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
-          OpenJDK code itself is licensed under <a href="http://openjdk.java.net/legal/gplv2+ce.html">GPL v2 with Classpath Exception</a>.
-        </p>
+    </a>
+    <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
+      <div>
+        <span>See the nightly builds</span>
+        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
       </div>
+    </a>
 
-      <div style="margin-top: 3rem;">
-        <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" id="dev-button" class="no-underline home-links dark-link">
-          <h2 class="inline-block zero-margin">Mailing List&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
-        </a>
-        <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" class="no-underline home-links dark-link">
-          <h2 class="inline-block zero-margin">Submit an Issue&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
-        </a>
-      </div>
+    <div id="archive-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
+    <div id="filter-container" class="hide">
+      <h3 class="inline-block" style="margin: 2rem .5rem 1rem 0;">Filter by platform:</h3>
+      <select id="platform-dropdown">
+        <option value="ALL">All</option>
+      </select>
     </div>
 
-  </main>
+    <div id="archive-list" class="hide">
+      <table class='archive-container'>
+        <tbody id='archive-table-body'></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <div id="error-container"></div>
+
+</main>
 
 <footer>
   <div class="margin-auto">
@@ -130,7 +108,7 @@
 </footer>
 
 <script src="dist/js/app.min.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>
+<script>onArchiveLoad();</script>
 </body>
 </html>

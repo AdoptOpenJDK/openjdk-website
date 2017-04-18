@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Releases - AdoptOpenJDK</title>
+    <title>Latest release - AdoptOpenJDK</title>
     <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -25,7 +25,7 @@
         <div id="menu-content">
             <p><a href="./index.html">Home</a></p>
             <p><a href="./releases.html">Latest release</a></p>
-            <p><a href="./releases.html#archive">Release archive</a></p>
+            <p><a href="./archive.html">Release archive</a></p>
             <p><a href="./nightly.html">Nightly builds</a></p>
             <p><a href="./installation.html">Installation</a></p>
             <p><a href="./getinvolved.html">Get involved</a></p>
@@ -48,8 +48,6 @@
 
 <main class="grey-bg">
 
-  <!-- BEGINNING OF 'LATEST' PAGE -->
-
   <div id="latest-page">
     <p class="zero-margin">Latest release:</p><h1><a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></h1>
     <div id="latest-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
@@ -57,7 +55,7 @@
     <div id="latest-container" class="invisible">
 
       <div id="latest-intro">
-        <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
+        <a href="./archive.html" id="archive-button" class="grey-button a-button">
           <div>
             <span>Release archive</span>
             <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
@@ -81,44 +79,6 @@
 
   </div>
 
-  <!-- END OF 'LATEST' PAGE -->
-
-  <!-- BEGINNING OF 'ARCHIVES' PAGE -->
-
-  <div id="archives-page">
-    <h1 class="large-title">Archive</h1>
-    <a href="./releases.html" id="latest-button" class="blue-button a-button">
-      <div>
-        <span>See the latest release</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-    <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
-      <div>
-        <span>See the nightly builds</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-
-    <div id="archive-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
-
-    <div id="filter-container" class="hide">
-      <h3 class="inline-block" style="margin: 2rem .5rem 1rem 0;">Filter by platform:</h3>
-      <select id="platform-dropdown">
-        <option value="ALL">All</option>
-      </select>
-    </div>
-
-    <div id="archive-list" class="hide">
-      <table class='archive-container'>
-        <tbody id='archive-table-body'></tbody>
-      </table>
-    </div>
-
-  </div>
-
-
-  <!-- END OF 'ARCHIVES' PAGE -->
   <div id="error-container"></div>
 
 </main>
@@ -148,6 +108,6 @@
 
 <script src="dist/js/app.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>
-<script>onReleasesLoad();</script>
+<script>onLatestLoad();</script>
 </body>
 </html>
