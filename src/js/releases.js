@@ -1,4 +1,3 @@
-var assetCounter2 = 0;
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
 function onLatestLoad() {

@@ -134,7 +134,9 @@ function populateArchive() {
         }
         // else, if a specific platform is selected...
         else {
+          /* eslint-disable */
           var thisPlatformRowArray = document.getElementsByClassName(selection); // create an array containing all of the selected platform's rows
+          /* eslint-enable */
           for (i = 0; i < thisPlatformRowArray.length; i++) {
             thisPlatformRowArray[i].className = thisPlatformRowArray[i].className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make sure that these rows are not hidden
           }
@@ -143,14 +145,18 @@ function populateArchive() {
 
            // for each of the non-selected platforms...
           notSelectedArray.forEach(function(thisPlatform) {
+            /* eslint-disable */
             var thisPlatformRowArray = document.getElementsByClassName(thisPlatform); // create an array containing all of this platform's rows
+            /* eslint-enable */
 
             for (i = 0; i < thisPlatformRowArray.length; i++) {
               thisPlatformRowArray[i].className += " hide"; // hide all of the rows for this platform
             }
           });
 
+          /* eslint-disable */
           var releaseRows = archiveTableBody.getElementsByClassName("release-row"); // create an array containing all of the release rows
+          /* eslint-enable */
 
           // for each of the release rows...
           for (i = 0; i < releaseRows.length; i++) {
