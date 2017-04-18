@@ -22,29 +22,23 @@ function setDownloadSection() {
   var latestLink = ""; // reset the variable for the latest download button link to be empty.
 
   // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-  loadReleasesJSON("releases", loadingSpan, function(response) {
-    function checkIfProduction(x) { // used by the array filter method below.
-      return x.prerelease === false && x.assets[0];
-    }
-
-    // Step 1: create a JSON from the XmlHttpRequest response
-    // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
-    var releasesJson = JSON.parse(response).filter(checkIfProduction);
+  loadReleasesJSON("releases", "latest_release", loadingSpan, function(response) {
+    var releasesJson = JSON.parse(response);
 
     // if there are releases...
-    if (typeof releasesJson[0] !== 'undefined') {
+    if (typeof releasesJson !== 'undefined') {
       var newHTML = ""; // set the variable to be an empty string.
 
       // set the download button's version number to the latest release
-      newHTML = (releasesJson[0].tag_name);
+      newHTML = (releasesJson.tag_name);
       dlVersionText.innerHTML = newHTML;
 
       // create an array of the details for each binary that is attached to a release
       var assetArray = [];
       var assetCounter = 0;
       // create a new array that contains each 'asset' (binary) from the latest release:
-      releasesJson[0].assets.forEach(function() {
-        assetArray.push(releasesJson[0].assets[assetCounter]);
+      releasesJson.assets.forEach(function() {
+        assetArray.push(releasesJson.assets[assetCounter]);
         assetCounter++;
       });
 

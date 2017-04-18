@@ -13,7 +13,7 @@ function populateArchive() {
   var loading = document.getElementById("archive-loading");
 
   // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-  loadReleasesJSON("releases", loading, function(response) {
+  loadReleasesJSON("releases", "releases", loading, function(response) {
     function checkIfProduction(x) { // used by the array filter method below.
       return x.prerelease === false && x.assets[0];
     }

@@ -125,13 +125,13 @@ function detectOS() {
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
-function loadReleasesJSON(repo, loading, callback) {
+function loadReleasesJSON(repo, filename, loading, callback) {
   if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + repo + ".json"); // the URL of the JSON built in the website back-end
+    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + filename + ".json"); // the URL of the JSON built in the website back-end
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);

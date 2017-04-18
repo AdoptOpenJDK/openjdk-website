@@ -17,7 +17,7 @@ function populateNightly() {
   var loading = document.getElementById("nightly-loading");
 
   // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
-  loadReleasesJSON("nightly", loading, function(response) {
+  loadReleasesJSON("nightly", "nightly", loading, function(response) {
     function checkIfProduction(x) { // used by the array filter method below.
       return x.prerelease === false && x.assets[0];
     }
