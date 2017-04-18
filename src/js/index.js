@@ -53,9 +53,9 @@ function setDownloadSection() {
       assetArray.forEach(function() {     // iterate through the binaries attached to this release
         var nameOfFile = (assetArray[assetCounter2].name);
         // convert the name of the binary file, and the user's OS, to be uppercase:
-        var a = nameOfFile.toUpperCase();
-        var b = OS.toUpperCase();
-        if(a.indexOf(b) >= 0) { // check if the user's OS string matches part of this binary's name (e.g. ...LINUX...)
+        var uppercaseFilename = nameOfFile.toUpperCase();
+        var uppercaseOSname = OS.toUpperCase();
+        if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) { // check if the user's OS string matches part of this binary's name (e.g. ...LINUX...)
           latestLink = (assetArray[assetCounter2].browser_download_url); // set the link variable to be the download URL that matches the user's OS
         }
         assetCounter2++;

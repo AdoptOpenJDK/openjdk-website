@@ -52,8 +52,8 @@ function populateNightly() {
         assetArray.forEach(function() {  // for each file attached to this release...
 
           var nameOfFile = (assetArray[assetCounter2].name);
-          var a = nameOfFile.toUpperCase(); // make the name of the file uppercase
-          var thisPlatform = getSearchableName(a); // get the searchableName, e.g. MAC or X64_LINUX.
+          var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
+          var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
           // firstly, check if the platform name is recognised...
           if(thisPlatform != false) {
@@ -61,7 +61,7 @@ function populateNightly() {
             // secondly, check if the file has the expected file extension for that platform...
             // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
             var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
-            if(a.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+            if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
               // get the current content of the nightly list div
               var currentNightlyContent = nightlyList.innerHTML;

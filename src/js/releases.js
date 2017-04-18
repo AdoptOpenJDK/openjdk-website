@@ -85,8 +85,8 @@ function populateLatest() {
       assetCounter2 = 0;
       assetArray.forEach(function() {
         var nameOfFile = (assetArray[assetCounter2].name);
-        var a = nameOfFile.toUpperCase(); // make the name of the asset uppercase
-        var thisPlatform = getSearchableName(a); // get the searchableName, e.g. MAC or X64_LINUX.
+        var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
+        var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
         // firstly, check if the platform name is recognised...
         if(thisPlatform != false) {
@@ -94,7 +94,7 @@ function populateLatest() {
           // secondly, check if the file has the expected file extension for that platform...
           // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
           var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
-          if(a.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+          if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
             // set values ready to be injected into the HTML
             var thisLogo = getLogo(thisPlatform);
@@ -181,8 +181,8 @@ function populateArchive() {
         assetCounter2 = 0;
         assetArray.forEach(function() {
           var nameOfFile = (assetArray[assetCounter2].name);
-          var a = nameOfFile.toUpperCase(); // make the name of the asset uppercase
-          var thisPlatform = getSearchableName(a); // get the searchableName, e.g. MAC or X64_LINUX.
+          var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
+          var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
           // firstly, check if the platform name is recognised...
           if(thisPlatform != false) {
@@ -190,7 +190,7 @@ function populateArchive() {
             // secondly, check if the file has the expected file extension for that platform...
             // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
             var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
-            if(a.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+            if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
               // set values ready to be injected into the HTML
               var thisOfficialName = getOfficialName(thisPlatform);
