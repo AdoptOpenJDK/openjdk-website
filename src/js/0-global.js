@@ -4,37 +4,43 @@ var platforms = [
     officialName: "Linux x86-64",
     searchableName: "X64_LINUX",
     logo: "linux.png",
-    fileExtension: ".tar.gz"
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
   },
   {
     officialName: "Linux s390x",
     searchableName: "S390X_LINUX",
-    logo: "linux.png",
-    fileExtension: ".tar.gz"
+    logo: "s390x.png",
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
   },
   {
     officialName: "Linux ppc64le",
     searchableName: "PPC64LE_LINUX",
-    logo: "linux.png",
-    fileExtension: ".tar.gz"
+    logo: "ppc64le.png",
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
   },
-  {
+  /*{
     officialName: "Linux arm",
     searchableName: "ARM_LINUX",
     logo: "linux.png",
-    fileExtension: ".tar.gz"
-  },
+    fileExtension: ".tar.gz",
+    requirements: "GLIBC 2.5 and above"
+  },*/
+  /*{
+    officialName: "Windows x86-64",
+    searchableName: "WIN",
+    logo: "windows.png",
+    fileExtension: ".zip",
+    requirements: "VS 2010 and above"
+  }*/
   {
     officialName: "macOS x86-64",
     searchableName: "MAC",
     logo: "mac.png",
-    fileExtension: ".tar.gz"
-  },
-  {
-    officialName: "Windows x86-64",
-    searchableName: "WIN",
-    logo: "windows.png",
-    fileExtension: ".zip"
+    fileExtension: ".tar.gz",
+    requirements: "macOS 10.8 and above"
   }
 ];
 
@@ -64,6 +70,9 @@ function getSearchableName(filename) {
   }
 }
 
+// set path to logos
+var logoPath = "./dist/assets/";
+
 // gets the OFFICIAL NAME when you pass in 'searchableName'
 function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
@@ -74,9 +83,17 @@ function getFileExt(searchableName) {
   return (lookup[searchableName].fileExtension);
 }
 
-// set path to logos
-var logoPath = "/dist/assets/";
-console.log(logoPath); // TODO - REMOVE THIS LINE ONCE LOGOPATH IS USED
+// gets the LOGO WITH PATH when you pass in 'searchableName'
+function getLogo(searchableName) {
+  return (logoPath + (lookup[searchableName].logo));
+}
+
+// gets the PLATFORM REQUIREMENTS when you pass in 'searchableName'
+function getRequirements(searchableName) {
+  return (lookup[searchableName].requirements);
+}
+
+
 
 // set value for error container on every page
 var errorContainer = document.getElementById('error-container');
@@ -108,13 +125,13 @@ function detectOS() {
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
-function loadReleasesJSON(repo, loading, callback) {
+function loadReleasesJSON(repo, filename, loading, callback) {
   if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
   }
   else {
-    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + repo + ".json"); // the URL of the JSON built in the website back-end
+    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + filename + ".json"); // the URL of the JSON built in the website back-end
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', url, true);

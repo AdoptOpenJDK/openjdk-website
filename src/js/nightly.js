@@ -17,7 +17,7 @@ function populateNightly() {
   var loading = document.getElementById("nightly-loading");
 
   // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
-  loadReleasesJSON("nightly", loading, function(response) {
+  loadReleasesJSON("nightly", "nightly", loading, function(response) {
     function checkIfProduction(x) { // used by the array filter method below.
       return x.prerelease === false && x.assets[0];
     }
@@ -52,16 +52,16 @@ function populateNightly() {
         assetArray.forEach(function() {  // for each file attached to this release...
 
           var nameOfFile = (assetArray[assetCounter2].name);
-          var a = nameOfFile.toUpperCase(); // make the name of the file uppercase
-          var thisPlatform = getSearchableName(a); // get the searchableName, e.g. MAC or X64_LINUX.
+          var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
+          var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
           // firstly, check if the platform name is recognised...
           if(thisPlatform != false) {
-            var thisFileExtension = getFileExt(thisPlatform); // get an uppercase file extension associated with this platform
 
             // secondly, check if the file has the expected file extension for that platform...
             // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-            if(a.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+            var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
+            if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
               // get the current content of the nightly list div
               var currentNightlyContent = nightlyList.innerHTML;

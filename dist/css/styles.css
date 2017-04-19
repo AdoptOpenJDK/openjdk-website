@@ -82,6 +82,12 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 .vertical-align-top {
   vertical-align: top; }
 
+.fully-center-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
 .vertically-center-child {
   position: absolute;
   top: 50%;
@@ -95,6 +101,12 @@ input {
   min-width: 12rem;
   margin-top: 1rem;
   text-align: center; }
+
+.cursor-pointer {
+  cursor: pointer; }
+
+.animated.fadeIn {
+  animation-duration: 0.3s; }
 
 nav {
   position: relative; }
@@ -199,6 +211,10 @@ main {
 .grey-button:hover {
   background-color: #e6e6e6;
   color: #152935 !important; }
+
+.selected-grey {
+  background-color: #e6e6e6;
+  cursor: default; }
 
 .blue-button {
   background-color: #3D70B2;
@@ -463,61 +479,33 @@ a.latest-download-button:hover {
   transform: translateY(-0.4rem);
   color: rgba(255, 255, 255, 0.64); }
 
+#archive-list {
+  overflow: auto; }
+
 .archive-container {
-  margin: 3rem 0;
-  height: 14rem;
-  font-size: 0.8rem; }
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: .2rem 2rem;
+  white-space: nowrap; }
 
-.archive-downloads, .archive-details, .archive-header {
-  padding: 0 2%;
+.archive-container > tbody > tr > td {
+  padding: 1rem 2rem;
   background-color: #fff;
-  display: inline-block;
-  vertical-align: top;
-  height: 100%;
-  width: 16rem;
-  margin: 0 0.1rem; }
-
-.archive-header {
-  text-align: center;
-  padding: 0;
-  width: 18rem; }
-
-.archive-header h1 {
-  margin-top: 0; }
-
-.archive-downloads-container {
-  /*margin: 0 auto;*/
-  /*display: inline-block;*/ }
-
-.archive-platform-block {
-  margin: 1rem 0; }
-
-.archive-platform-block div, .archive-platform-block a {
+  margin: 3rem 0.1rem;
   font-size: 0.8rem; }
 
-.archive-platform-block .grey-button {
-  margin-right: 1rem;
-  margin-left: 0;
-  min-width: 5rem; }
+.archive-container .grey-button {
+  font-size: inherit; }
+
+.archive-platforms {
+  border-spacing: .5rem 0; }
 
 .archive-details div {
-  padding: 0.5rem 0; }
-
-/*.archive-details div:nth-child(even) {
-  background-color: $tableblue-even;
-}
-
-.archive-details div:nth-child(odd) {
-  background-color: $tableblue-odd;
-}*/
+  margin: 0.5rem auto; }
 
 @media all and (max-width: 1100px) {
   .latest-download-button {
-    min-width: 0; }
-  .archive-downloads {
-    width: 14rem; }
-  .archive-header {
-    width: 16rem; } }
+    min-width: 0; } }
 
 @media all and (max-width: 950px) {
   .vertically-center-parent {
@@ -525,21 +513,7 @@ a.latest-download-button:hover {
   .vertically-center-child {
     position: initial;
     top: initial;
-    transform: initial; }
-  .archive-container {
-    height: initial; }
-  .archive-container > div {
-    padding: 1rem;
-    display: block;
-    margin: auto;
-    width: 80%; }
-  .archive-platform-block, .archive-details {
-    text-align: center; }
-  .archive-platform-block > div:first-child {
-    display: inline-block;
-    margin-right: 0.5rem; }
-  .archive-container .archive-downloads, .archive-container .archive-details {
-    padding: 0.1rem 1rem; } }
+    transform: initial; } }
 
 @media all and (max-width: 800px) {
   #latest-metadata-table td {
@@ -580,9 +554,7 @@ a.latest-download-button:hover {
     font-size: 1.5rem; }
   input {
     min-width: 0;
-    max-width: 80%; }
-  .archive-container > div {
-    width: 90%; } }
+    max-width: 80%; } }
 
 main .support {
   max-width: 40rem;
