@@ -54,13 +54,11 @@ for (var i = 0, len = platforms.length; i < len; i++) {
 // gets the 'searchableName' when you pass in the full filename.
 // If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
 function getSearchableName(filename) {
-  var platformCounter = 0;
   var platform = "UNKNOWN";
-  platforms.forEach(function() {
-    if(filename.indexOf(platforms[platformCounter].searchableName) >= 0) {
-      platform = platforms[platformCounter].searchableName;
+  platforms.forEach(function(eachPlatform) {
+    if(filename.indexOf(eachPlatform.searchableName) >= 0) {
+      platform = eachPlatform.searchableName;
     }
-    platformCounter++;
   });
   if(platform == "UNKNOWN") {
     return false;

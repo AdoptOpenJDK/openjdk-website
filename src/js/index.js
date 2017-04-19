@@ -35,24 +35,20 @@ function setDownloadSection() {
 
       // create an array of the details for each binary that is attached to a release
       var assetArray = [];
-      var assetCounter = 0;
       // create a new array that contains each 'asset' (binary) from the latest release:
-      releasesJson.assets.forEach(function() {
-        assetArray.push(releasesJson.assets[assetCounter]);
-        assetCounter++;
+      releasesJson.assets.forEach(function(each) {
+        assetArray.push(each);
       });
 
       // set the 'latestLink' variable to be the download URL of the latest release for the user's OS
-      var assetCounter2 = 0;
-      assetArray.forEach(function() {     // iterate through the binaries attached to this release
-        var nameOfFile = (assetArray[assetCounter2].name);
+      assetArray.forEach(function(eachAsset) {     // iterate through the binaries attached to this release
+        var nameOfFile = (eachAsset.name);
         // convert the name of the binary file, and the user's OS, to be uppercase:
         var uppercaseFilename = nameOfFile.toUpperCase();
         var uppercaseOSname = OS.toUpperCase();
         if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) { // check if the user's OS string matches part of this binary's name (e.g. ...LINUX...)
-          latestLink = (assetArray[assetCounter2].browser_download_url); // set the link variable to be the download URL that matches the user's OS
+          latestLink = (eachAsset.browser_download_url); // set the link variable to be the download URL that matches the user's OS
         }
-        assetCounter2++;
       });
 
       if(latestLink == "") { // if there is no matching binary for the user's OS:

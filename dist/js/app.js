@@ -54,13 +54,11 @@ for (var i = 0, len = platforms.length; i < len; i++) {
 // gets the 'searchableName' when you pass in the full filename.
 // If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
 function getSearchableName(filename) {
-  var platformCounter = 0;
   var platform = "UNKNOWN";
-  platforms.forEach(function() {
-    if(filename.indexOf(platforms[platformCounter].searchableName) >= 0) {
-      platform = platforms[platformCounter].searchableName;
+  platforms.forEach(function(eachPlatform) {
+    if(filename.indexOf(eachPlatform.searchableName) >= 0) {
+      platform = eachPlatform.searchableName;
     }
-    platformCounter++;
   });
   if(platform == "UNKNOWN") {
     return false;
@@ -157,7 +155,6 @@ function msieversion() {
     else { return false; }
 }
 
-var assetCounter2 = 0;
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
 function onArchiveLoad() {
@@ -189,12 +186,11 @@ function populateArchive() {
       var archiveTableBody = document.getElementById("archive-table-body");
 
       // for each release...
-      var archiveCounter = 0;
-      releasesJson.forEach(function() {
+      releasesJson.forEach(function(eachRelease) {
 
         // set values for this release, ready to inject into HTML
-        var publishedAt = releasesJson[archiveCounter].published_at;
-        var thisReleaseName = releasesJson[archiveCounter].name;
+        var publishedAt = eachRelease.published_at;
+        var thisReleaseName = eachRelease.name;
         var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
         var thisGitLink = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + thisReleaseName);
         var thisTimestamp = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
@@ -202,16 +198,13 @@ function populateArchive() {
 
         // create an array of the details for each asset that is attached to this release
         var assetArray = [];
-        var assetCounter = 0;
-        releasesJson[archiveCounter].assets.forEach(function() {
-          assetArray.push(releasesJson[archiveCounter].assets[assetCounter]);
-          assetCounter++;
+        eachRelease.assets.forEach(function(each) {
+          assetArray.push(each);
         });
 
         // populate 'platformTableRows' with one row per binary for this release...
-        assetCounter2 = 0;
-        assetArray.forEach(function() {
-          var nameOfFile = (assetArray[assetCounter2].name);
+        assetArray.forEach(function(eachAsset) {
+          var nameOfFile = (eachAsset.name);
           var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
           var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
@@ -225,25 +218,20 @@ function populateArchive() {
 
               // set values ready to be injected into the HTML
               var thisOfficialName = getOfficialName(thisPlatform);
-              var thisBinaryLink = (assetArray[assetCounter2].browser_download_url);
-              var thisBinarySize = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-              var thisChecksumLink = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt");
+              var thisBinaryLink = (eachAsset.browser_download_url);
+              var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+              var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
 
               // prepare a fully-populated table row for this platform
               platformTableRows += ("<tr class='platform-row "+ thisPlatform +"'><td class='bold'>"+ thisOfficialName +"</td><td><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisFileExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
             }
           }
-
-          assetCounter2++;
         });
 
         // create a new table row containing all release information, and the completed platform/binary table
         var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td><td class='archive-details'><!--<div><strong><a href='' class='dark-link'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong>"+ thisTimestamp +"</div><!--<div><strong>Build number: </strong></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link'></a></div>--></td></tr>");
 
         archiveTableBody.innerHTML += newArchiveContent;
-
-        // iterate to the next archived release
-        archiveCounter++;
 
       });
 
@@ -386,24 +374,20 @@ function setDownloadSection() {
 
       // create an array of the details for each binary that is attached to a release
       var assetArray = [];
-      var assetCounter = 0;
       // create a new array that contains each 'asset' (binary) from the latest release:
-      releasesJson.assets.forEach(function() {
-        assetArray.push(releasesJson.assets[assetCounter]);
-        assetCounter++;
+      releasesJson.assets.forEach(function(each) {
+        assetArray.push(each);
       });
 
       // set the 'latestLink' variable to be the download URL of the latest release for the user's OS
-      var assetCounter2 = 0;
-      assetArray.forEach(function() {     // iterate through the binaries attached to this release
-        var nameOfFile = (assetArray[assetCounter2].name);
+      assetArray.forEach(function(eachAsset) {     // iterate through the binaries attached to this release
+        var nameOfFile = (eachAsset.name);
         // convert the name of the binary file, and the user's OS, to be uppercase:
         var uppercaseFilename = nameOfFile.toUpperCase();
         var uppercaseOSname = OS.toUpperCase();
         if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) { // check if the user's OS string matches part of this binary's name (e.g. ...LINUX...)
-          latestLink = (assetArray[assetCounter2].browser_download_url); // set the link variable to be the download URL that matches the user's OS
+          latestLink = (eachAsset.browser_download_url); // set the link variable to be the download URL that matches the user's OS
         }
-        assetCounter2++;
       });
 
       if(latestLink == "") { // if there is no matching binary for the user's OS:
@@ -487,26 +471,22 @@ function populateNightly() {
       document.getElementById("nightly-loading").innerHTML = "";
 
       // for each release...
-      var nightlyReleaseCounter = 0;
       var tableRowCounter = 0;
 
       tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Platform</th><th>Downloads</th><th>Release details</th></tr>");
 
-      releasesJson.forEach(function() {
+      releasesJson.forEach(function(eachRelease) {
 
         // create an array of the details for each binary that is attached to a release
         var assetArray = [];
-        var assetCounter = 0;
-        releasesJson[nightlyReleaseCounter].assets.forEach(function() {
-          assetArray.push(releasesJson[nightlyReleaseCounter].assets[assetCounter]);
-          assetCounter++;
+        eachRelease.assets.forEach(function(each) {
+          assetArray.push(each);
         });
 
         // build rows with the array of binaries...
-        var assetCounter2 = 0;
-        assetArray.forEach(function() {  // for each file attached to this release...
+        assetArray.forEach(function(eachAsset) {  // for each file attached to this release...
 
-          var nameOfFile = (assetArray[assetCounter2].name);
+          var nameOfFile = (eachAsset.name);
           var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
           var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
@@ -533,24 +513,24 @@ function populateNightly() {
               //var dlContent = document.getElementById("nightly-dl-content"+tableRowCounter);
 
               // populate this new row with the release information
-              var publishedAt = (releasesJson[nightlyReleaseCounter].published_at);
-              document.getElementById("nightly-release"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(0, 12); // the release name, minus the timestamp
-              document.getElementById("nightly-release"+tableRowCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + releasesJson[nightlyReleaseCounter].name) // the link to that release on GitHub
+              var publishedAt = (eachRelease.published_at);
+              document.getElementById("nightly-release"+tableRowCounter).innerHTML = (eachRelease.name).slice(0, 12); // the release name, minus the timestamp
+              document.getElementById("nightly-release"+tableRowCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + eachRelease.name) // the link to that release on GitHub
               document.getElementById("nightly-date"+tableRowCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY'); // the timestamp converted into a readable date
-              //document.getElementById("nightly-changelog"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE. the link to the release changelog
-              document.getElementById("nightly-timestamp"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(13, 25); // the timestamp section of the build name
-              //document.getElementById("nightly-buildnumber"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].id; // TODO: currently this is the release ID
-              //document.getElementById("nightly-commitref"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE INFO TO BE AVAILABLE.
-              //document.getElementById("nightly-commitref"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE.
+              //document.getElementById("nightly-changelog"+tableRowCounter).href = eachRelease.name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE. the link to the release changelog
+              document.getElementById("nightly-timestamp"+tableRowCounter).innerHTML = (eachRelease.name).slice(13, 25); // the timestamp section of the build name
+              //document.getElementById("nightly-buildnumber"+tableRowCounter).innerHTML = eachRelease.id; // TODO: currently this is the release ID
+              //document.getElementById("nightly-commitref"+tableRowCounter).innerHTML = eachRelease.name; // TODO: WAITING FOR THE INFO TO BE AVAILABLE.
+              //document.getElementById("nightly-commitref"+tableRowCounter).href = eachRelease.name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE.
 
               // get the official name, e.g. Linux x86-64, and display it in this new row
               var officialName = getOfficialName(thisPlatform);
               document.getElementById("platform-block"+tableRowCounter).innerHTML = officialName;
 
               // set the download section for this new row
-              dlButton.innerHTML = (thisFileExtension + " (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
-              document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
-              var link = (assetArray[assetCounter2].browser_download_url);
+              dlButton.innerHTML = (thisFileExtension + " (" + (Math.floor((eachAsset.size)/1024/1024)) + " MB)"); // display the file type and the file size
+              document.getElementById("nightly-checksum"+tableRowCounter).href = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
+              var link = (eachAsset.browser_download_url);
               dlButton.href = link; // set the download link
 
               // show the new row
@@ -561,13 +541,7 @@ function populateNightly() {
               tableRowCounter++;
             }
           }
-
-          assetCounter2++;
         });
-
-          // iterate to the next nightly release
-          nightlyReleaseCounter++;
-
       });
 
       // if the table has a scroll bar, show text describing how to horizontally scroll
@@ -647,16 +621,13 @@ function populateLatest() {
 
       // create an array of the details for each asset that is attached to a release
       var assetArray = [];
-      var assetCounter = 0;
-      releasesJson.assets.forEach(function() {
-        assetArray.push(releasesJson.assets[assetCounter]);
-        assetCounter++;
+      releasesJson.assets.forEach(function(each) {
+        assetArray.push(each);
       });
 
       // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
-      assetCounter2 = 0;
-      assetArray.forEach(function() {
-        var nameOfFile = (assetArray[assetCounter2].name);
+      assetArray.forEach(function(eachAsset) {
+        var nameOfFile = (eachAsset.name);
         var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
         var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
@@ -671,9 +642,9 @@ function populateLatest() {
             // set values ready to be injected into the HTML
             var thisLogo = getLogo(thisPlatform);
             var thisOfficialName = getOfficialName(thisPlatform);
-            var thisBinaryLink = (assetArray[assetCounter2].browser_download_url);
-            var thisBinarySize = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-            var thisChecksumLink = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt");
+            var thisBinaryLink = (eachAsset.browser_download_url);
+            var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+            var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
             var thisRequirements = getRequirements(thisPlatform);
 
             // get the current content of the latest downloads container div
@@ -687,8 +658,6 @@ function populateLatest() {
             latestContainer.innerHTML = newLatestContent;
           }
         }
-
-        assetCounter2++;
       });
 
       const latestContainer = document.getElementById("latest-container");

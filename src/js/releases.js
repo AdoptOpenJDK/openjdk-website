@@ -33,16 +33,13 @@ function populateLatest() {
 
       // create an array of the details for each asset that is attached to a release
       var assetArray = [];
-      var assetCounter = 0;
-      releasesJson.assets.forEach(function() {
-        assetArray.push(releasesJson.assets[assetCounter]);
-        assetCounter++;
+      releasesJson.assets.forEach(function(each) {
+        assetArray.push(each);
       });
 
       // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
-      assetCounter2 = 0;
-      assetArray.forEach(function() {
-        var nameOfFile = (assetArray[assetCounter2].name);
+      assetArray.forEach(function(eachAsset) {
+        var nameOfFile = (eachAsset.name);
         var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
         var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
@@ -57,9 +54,9 @@ function populateLatest() {
             // set values ready to be injected into the HTML
             var thisLogo = getLogo(thisPlatform);
             var thisOfficialName = getOfficialName(thisPlatform);
-            var thisBinaryLink = (assetArray[assetCounter2].browser_download_url);
-            var thisBinarySize = Math.floor((assetArray[assetCounter2].size)/1024/1024);
-            var thisChecksumLink = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt");
+            var thisBinaryLink = (eachAsset.browser_download_url);
+            var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+            var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
             var thisRequirements = getRequirements(thisPlatform);
 
             // get the current content of the latest downloads container div
@@ -73,8 +70,6 @@ function populateLatest() {
             latestContainer.innerHTML = newLatestContent;
           }
         }
-
-        assetCounter2++;
       });
 
       const latestContainer = document.getElementById("latest-container");

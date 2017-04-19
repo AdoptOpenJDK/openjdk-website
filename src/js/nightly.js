@@ -32,26 +32,22 @@ function populateNightly() {
       document.getElementById("nightly-loading").innerHTML = "";
 
       // for each release...
-      var nightlyReleaseCounter = 0;
       var tableRowCounter = 0;
 
       tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Platform</th><th>Downloads</th><th>Release details</th></tr>");
 
-      releasesJson.forEach(function() {
+      releasesJson.forEach(function(eachRelease) {
 
         // create an array of the details for each binary that is attached to a release
         var assetArray = [];
-        var assetCounter = 0;
-        releasesJson[nightlyReleaseCounter].assets.forEach(function() {
-          assetArray.push(releasesJson[nightlyReleaseCounter].assets[assetCounter]);
-          assetCounter++;
+        eachRelease.assets.forEach(function(each) {
+          assetArray.push(each);
         });
 
         // build rows with the array of binaries...
-        var assetCounter2 = 0;
-        assetArray.forEach(function() {  // for each file attached to this release...
+        assetArray.forEach(function(eachAsset) {  // for each file attached to this release...
 
-          var nameOfFile = (assetArray[assetCounter2].name);
+          var nameOfFile = (eachAsset.name);
           var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
           var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
@@ -78,24 +74,24 @@ function populateNightly() {
               //var dlContent = document.getElementById("nightly-dl-content"+tableRowCounter);
 
               // populate this new row with the release information
-              var publishedAt = (releasesJson[nightlyReleaseCounter].published_at);
-              document.getElementById("nightly-release"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(0, 12); // the release name, minus the timestamp
-              document.getElementById("nightly-release"+tableRowCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + releasesJson[nightlyReleaseCounter].name) // the link to that release on GitHub
+              var publishedAt = (eachRelease.published_at);
+              document.getElementById("nightly-release"+tableRowCounter).innerHTML = (eachRelease.name).slice(0, 12); // the release name, minus the timestamp
+              document.getElementById("nightly-release"+tableRowCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + eachRelease.name) // the link to that release on GitHub
               document.getElementById("nightly-date"+tableRowCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY'); // the timestamp converted into a readable date
-              //document.getElementById("nightly-changelog"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE. the link to the release changelog
-              document.getElementById("nightly-timestamp"+tableRowCounter).innerHTML = (releasesJson[nightlyReleaseCounter].name).slice(13, 25); // the timestamp section of the build name
-              //document.getElementById("nightly-buildnumber"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].id; // TODO: currently this is the release ID
-              //document.getElementById("nightly-commitref"+tableRowCounter).innerHTML = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE INFO TO BE AVAILABLE.
-              //document.getElementById("nightly-commitref"+tableRowCounter).href = releasesJson[nightlyReleaseCounter].name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE.
+              //document.getElementById("nightly-changelog"+tableRowCounter).href = eachRelease.name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE. the link to the release changelog
+              document.getElementById("nightly-timestamp"+tableRowCounter).innerHTML = (eachRelease.name).slice(13, 25); // the timestamp section of the build name
+              //document.getElementById("nightly-buildnumber"+tableRowCounter).innerHTML = eachRelease.id; // TODO: currently this is the release ID
+              //document.getElementById("nightly-commitref"+tableRowCounter).innerHTML = eachRelease.name; // TODO: WAITING FOR THE INFO TO BE AVAILABLE.
+              //document.getElementById("nightly-commitref"+tableRowCounter).href = eachRelease.name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE.
 
               // get the official name, e.g. Linux x86-64, and display it in this new row
               var officialName = getOfficialName(thisPlatform);
               document.getElementById("platform-block"+tableRowCounter).innerHTML = officialName;
 
               // set the download section for this new row
-              dlButton.innerHTML = (thisFileExtension + " (" + (Math.floor((assetArray[assetCounter2].size)/1024/1024)) + " MB)"); // display the file type and the file size
-              document.getElementById("nightly-checksum"+tableRowCounter).href = (assetArray[assetCounter2].browser_download_url).replace(thisFileExtension, ".sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
-              var link = (assetArray[assetCounter2].browser_download_url);
+              dlButton.innerHTML = (thisFileExtension + " (" + (Math.floor((eachAsset.size)/1024/1024)) + " MB)"); // display the file type and the file size
+              document.getElementById("nightly-checksum"+tableRowCounter).href = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
+              var link = (eachAsset.browser_download_url);
               dlButton.href = link; // set the download link
 
               // show the new row
@@ -106,13 +102,7 @@ function populateNightly() {
               tableRowCounter++;
             }
           }
-
-          assetCounter2++;
         });
-
-          // iterate to the next nightly release
-          nightlyReleaseCounter++;
-
       });
 
       // if the table has a scroll bar, show text describing how to horizontally scroll
