@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Releases - AdoptOpenJDK</title>
+    <title>Latest release - AdoptOpenJDK</title>
     <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -25,7 +25,7 @@
         <div id="menu-content">
             <p><a href="./index.html">Home</a></p>
             <p><a href="./releases.html">Latest release</a></p>
-            <p><a href="./releases.html#archive">Release archive</a></p>
+            <p><a href="./archive.html">Release archive</a></p>
             <p><a href="./nightly.html">Nightly builds</a></p>
             <p><a href="./installation.html">Installation</a></p>
             <p><a href="./getinvolved.html">Get involved</a></p>
@@ -48,8 +48,6 @@
 
 <main class="grey-bg">
 
-  <!-- BEGINNING OF 'LATEST' PAGE -->
-
   <div id="latest-page">
     <p class="zero-margin">Latest release:</p><h1><a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></h1>
     <div id="latest-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
@@ -57,7 +55,7 @@
     <div id="latest-container" class="invisible">
 
       <div id="latest-intro">
-        <a href="./releases.html#archive" id="archive-button" class="grey-button a-button">
+        <a href="./archive.html" id="archive-button" class="grey-button a-button">
           <div>
             <span>Release archive</span>
             <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
@@ -75,81 +73,12 @@
         </tr>
       </table>
 
-      <div id="latest-downloads-container">
-        <div id="latest-linux" class="latest-block hide">
-          <div class="latest-platform">
-            <img src="dist/assets/linux.png">
-            <div>Linux x86-64</div>
-          </div>
-          <a href="" class="latest-download-button a-button" id="linux-dl-button">
-            <div>Download <div class="small-dl-text">(tar.gz - <span id="latest-size-linux"></span> MB)</div></div>
-          </a>
-          <div class="latest-details">
-              <p><a href="" class="dark-link" id="latest-checksum-linux" target="_blank">Checksum</a></p>
-              <p><strong>Requirements:</strong><br>GLIBC 2.5 and above</p>
-            </ul>
-          </div>
-        </div>
-
-        <div id="latest-windows" class="latest-block hide">
-          <div class="latest-platform">
-            <img src="dist/assets/windows.png">
-            <div>Windows x86-64</div>
-          </div>
-          <a href="" class="latest-download-button a-button" id="windows-dl-button">
-            <div>Download <div class="small-dl-text">(.zip - <span id="latest-size-windows"></span> MB)</div></div>
-          </a>
-          <div class="latest-details">
-            <p><a href="" class="dark-link" id="latest-checksum-windows" target="_blank">Checksum</a></p>
-            <p><strong>Requirements:</strong><br>VS 2010 and above</p>
-          </div>
-        </div>
-
-        <div id="latest-mac" class="latest-block hide">
-          <div class="latest-platform">
-            <img src="dist/assets/mac.png">
-            <div>macOS x86-64</div>
-          </div>
-          <a href="" class="latest-download-button a-button" id="mac-dl-button">
-            <div>Download <div class="small-dl-text">(tar.gz - <span id="latest-size-mac"></span>  MB)</div></div>
-          </a>
-          <div class="latest-details">
-            <p><a href="" class="dark-link" id="latest-checksum-mac" target="_blank">Checksum</a></p>
-            <p><strong>Requirements:</strong><br>macOS 10.8 and above</p>
-          </div>
-        </div>
-
-      </div>
+      <div id="latest-downloads-container"></div>
 
     </div>
 
   </div>
 
-  <!-- END OF 'LATEST' PAGE -->
-
-  <!-- BEGINNING OF 'ARCHIVES' PAGE -->
-
-  <div id="archives-page">
-    <h1 class="large-title">Archive</h1>
-    <a href="./releases.html" id="latest-button" class="blue-button a-button">
-      <div>
-        <span>See the latest release</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-    <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
-      <div>
-        <span>See the nightly builds</span>
-        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-      </div>
-    </a>
-
-    <div id="archive-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
-    <div id="archive-list"></div>
-  </div>
-
-
-  <!-- END OF 'ARCHIVES' PAGE -->
   <div id="error-container"></div>
 
 </main>
@@ -179,6 +108,7 @@
 
 <script src="dist/js/app.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>
-<script>onReleasesLoad();</script>
+<script>onLatestLoad();</script>
+
 </body>
 </html>

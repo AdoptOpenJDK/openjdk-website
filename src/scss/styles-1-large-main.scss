@@ -97,6 +97,13 @@ $headersize: 1.4rem;
   vertical-align: top;
 }
 
+.fully-center-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .vertically-center-child {
   position: absolute;
   top: 50%;
@@ -113,6 +120,15 @@ input {
   margin-top: 1rem;
   text-align: center;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.animated.fadeIn {
+  animation-duration: 0.3s;
+}
+
 
 // NAV CSS
 
@@ -241,6 +257,11 @@ main {
 .grey-button:hover {
   background-color: $palegrey;
   color: $mainblue !important;
+}
+
+.selected-grey {
+  background-color: $palegrey;
+  cursor: default;
 }
 
 .blue-button {

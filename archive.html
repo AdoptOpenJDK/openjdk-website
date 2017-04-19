@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Support - AdoptOpenJDK</title>
+    <title>Archive - AdoptOpenJDK</title>
     <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -46,38 +46,41 @@
         w3IncludeHTML();
     </script>
 
-<!-- TODO Style should match installation page, it doesn't quite... -->
 <main class="grey-bg">
 
-  <h1 class="margin-bottom large-title">Support</h1>
+  <div id="archives-page">
+    <h1 class="large-title">Archive</h1>
+    <a href="./releases.html" id="latest-button" class="blue-button a-button">
+      <div>
+        <span>See the latest release</span>
+        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+      </div>
+    </a>
+    <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
+      <div>
+        <span>See the nightly builds</span>
+        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+      </div>
+    </a>
 
-  <div id="support-container">
-    <div class="margin-bottom">
-      <h2 class="bold">Quality</h2>
-      <p class="support">
-        The binaries that AdoptOpenJDK produces have passed the full OpenJDK test suite and other tests (donated by the community)
-        ensuring a good quality binary. However, they are <strong>not</strong> JCK/TCK compliant. If you want a formally (JCK/TCK)
-        tested and verified Java binary then you can get one from a commercial vendor.
-      </p>
+    <div id="archive-loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+
+    <div id="filter-container" class="hide">
+      <h3 class="inline-block" style="margin: 2rem .5rem 1rem 0;">Filter by platform:</h3>
+      <select id="platform-dropdown">
+        <option value="ALL">All</option>
+      </select>
     </div>
 
-    <div class="margin-bottom">
-      <h2 class="bold">Community Support</h2>
-      <p class="support">
-        The OpenJDK community does not offer any official support for the binaries produced.  If you do have questions, comments, want to report a bug or
-        wish to contribute then choose from one of the options below:
-      </p>
+    <div id="archive-list" class="hide">
+      <table class='archive-container'>
+        <tbody id='archive-table-body'></tbody>
+      </table>
     </div>
 
-    <div style="margin-top: 3rem;">
-      <a href="http://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" id="dev-button" class="no-underline home-links">
-        <h2 class="inline-block zero-margin">Mailing List&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
-      </a>
-      <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" class="no-underline home-links">
-        <h2 class="inline-block zero-margin">Submit an Issue&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
-      </a>
-    </div>
   </div>
+
+  <div id="error-container"></div>
 
 </main>
 
@@ -105,8 +108,8 @@
 </footer>
 
 <script src="dist/js/app.min.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>
+<script>onArchiveLoad();</script>
 
 </body>
 </html>
