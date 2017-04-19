@@ -91,7 +91,8 @@ function getRequirements(searchableName) {
   return (lookup[searchableName].requirements);
 }
 
-
+// set value for loading dots on every page
+var loading = document.getElementById("loading");
 
 // set value for error container on every page
 var errorContainer = document.getElementById('error-container');
@@ -123,7 +124,7 @@ function detectOS() {
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
-function loadReleasesJSON(repo, filename, loading, callback) {
+function loadReleasesJSON(repo, filename, callback) {
   if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
     loading.innerHTML = "";
     document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";

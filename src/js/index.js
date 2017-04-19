@@ -7,7 +7,6 @@ function onIndexLoad() {
 
 // INDEX PAGE FUNCTIONS
 
-//
 function setDownloadSection() {
   // set variables for all index page HTML elements that will be used by the JS
   const dlText = document.getElementById('dl-text');
@@ -15,14 +14,13 @@ function setDownloadSection() {
   const dlArchive = document.getElementById('dl-archive');
   const dlOther = document.getElementById('dl-other');
   const dlVersionText = document.getElementById('dl-version-text');
-  const loadingSpan = document.getElementById('loading-index');
 
   var OS = detectOS(); // set a variable as the user's OS
 
   var latestLink = ""; // reset the variable for the latest download button link to be empty.
 
   // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-  loadReleasesJSON("releases", "latest_release", loadingSpan, function(response) {
+  loadReleasesJSON("releases", "latest_release", function(response) {
     var releasesJson = JSON.parse(response);
 
     // if there are releases...
@@ -77,13 +75,10 @@ function setDownloadSection() {
     dlLatest.href = latestLink;
 
     // remove the loading dots, and make all buttons visible, with animated fade-in
-    loadingSpan.innerHTML = "";
-    dlLatest.className += " animated";
-    dlOther.className += " animated";
-    dlArchive.className += " animated";
-    dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
-    dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
-    dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , '' );
+    loading.innerHTML = "";
+    dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
+    dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
+    dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
 
     dlLatest.onclick = function() {
       document.getElementById('installation-link').className += " animated pulse infinite transition-bright";
