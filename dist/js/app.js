@@ -138,7 +138,9 @@ function detectOS() {
   var matchedOS = null;
   platforms.forEach(function(eachPlatform) {
     var thisPlatformMatchingString = eachPlatform.osDetectionString.toUpperCase();
+    /* eslint-disable */
     var platformFamily = platform.os.family.toUpperCase(); // platform.os.family is dependent on 'platform.js', loaded by index.html (injected in index.handlebars)
+    /* eslint-enable */
     if(thisPlatformMatchingString.indexOf(platformFamily) >= 0) { // if the detected 'platform family' string appears in the osDetectionString value of a platform...
       matchedOS = eachPlatform;
     }
@@ -242,7 +244,7 @@ function buildArchiveHTML(releasesJson) {
       var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
       // firstly, check if the platform name is recognised...
-      if(thisPlatform != false) {
+      if(thisPlatform) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
@@ -369,6 +371,7 @@ const dlText = document.getElementById('dl-text');
 const dlLatest = document.getElementById('dl-latest');
 const dlArchive = document.getElementById('dl-archive');
 const dlOther = document.getElementById('dl-other');
+const dlIcon = document.getElementById('dl-icon');
 const dlVersionText = document.getElementById('dl-version-text');
 
 // When index page loads, run:
@@ -443,6 +446,7 @@ function buildHomepageHTML(releasesJson) {
   // if there is NOT a matching binary for the user's OS...
   else {
     dlOther.className += " hide"; // hide the 'Other platforms' button
+    dlIcon.className += " hide"; // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlText.innerHTML = ("Downloads"); // change the text to be generic: 'Downloads'.
     dlLatest.href = "./releases.html"; // set the main download button's link to the latest releases page for all platforms.
   }
@@ -530,7 +534,7 @@ function buildNightlyHTML(releasesJson) {
       var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
       // firstly, check if the platform name is recognised...
-      if(thisPlatform != false) {
+      if(thisPlatform) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
@@ -667,7 +671,7 @@ function buildLatestHTML(releasesJson) {
     var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
     // firstly, check if the platform name is recognised...
-    if(thisPlatform != false) {
+    if(thisPlatform) {
 
       // secondly, check if the file has the expected file extension for that platform...
       // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)

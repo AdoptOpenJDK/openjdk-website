@@ -138,7 +138,9 @@ function detectOS() {
   var matchedOS = null;
   platforms.forEach(function(eachPlatform) {
     var thisPlatformMatchingString = eachPlatform.osDetectionString.toUpperCase();
+    /* eslint-disable */
     var platformFamily = platform.os.family.toUpperCase(); // platform.os.family is dependent on 'platform.js', loaded by index.html (injected in index.handlebars)
+    /* eslint-enable */
     if(thisPlatformMatchingString.indexOf(platformFamily) >= 0) { // if the detected 'platform family' string appears in the osDetectionString value of a platform...
       matchedOS = eachPlatform;
     }

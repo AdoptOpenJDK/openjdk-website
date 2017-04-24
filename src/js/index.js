@@ -3,6 +3,7 @@ const dlText = document.getElementById('dl-text');
 const dlLatest = document.getElementById('dl-latest');
 const dlArchive = document.getElementById('dl-archive');
 const dlOther = document.getElementById('dl-other');
+const dlIcon = document.getElementById('dl-icon');
 const dlVersionText = document.getElementById('dl-version-text');
 
 // When index page loads, run:
@@ -77,6 +78,7 @@ function buildHomepageHTML(releasesJson) {
   // if there is NOT a matching binary for the user's OS...
   else {
     dlOther.className += " hide"; // hide the 'Other platforms' button
+    dlIcon.className += " hide"; // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlText.innerHTML = ("Downloads"); // change the text to be generic: 'Downloads'.
     dlLatest.href = "./releases.html"; // set the main download button's link to the latest releases page for all platforms.
   }
