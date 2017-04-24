@@ -49,7 +49,7 @@ function buildLatestHTML(releasesJson) {
     var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
     // firstly, check if the platform name is recognised...
-    if(thisPlatform != false) {
+    if(thisPlatform) {
 
       // secondly, check if the file has the expected file extension for that platform...
       // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)

@@ -1,46 +1,66 @@
 // set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
+// GUIDE TO THE PLATFORMS ARRAY:
+// officialName: The 'legal name' or official name for the OS. This is displayed on most pages.
+// searchableName: a string that appears in the name of the binaries and checksums, that can be used to identify the platform.
+// logo: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
+// fileExtension: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
+// requirements: currently just displayed on the 'latest release' page. Should be a short string identifying the most important min. requirement of a machine to run the latest release.
+// architecture: 64 or 32. May be required for differentiation between future builds.
+// osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
 var platforms = [
   {
     officialName: "Linux x86-64",
     searchableName: "X64_LINUX",
     logo: "linux.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu Cygwin Symbian OS hpwOS webOS Tizen"
   },
   {
     officialName: "Linux s390x",
     searchableName: "S390X_LINUX",
     logo: "s390x.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "not-to-be-detected"
   },
   {
     officialName: "Linux ppc64le",
     searchableName: "PPC64LE_LINUX",
     logo: "ppc64le.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "not-to-be-detected"
   },
   /*{
     officialName: "Linux arm",
     searchableName: "ARM_LINUX",
     logo: "linux.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "not-to-be-detected"
   },*/
   /*{
     officialName: "Windows x86-64",
     searchableName: "WIN",
     logo: "windows.png",
     fileExtension: ".zip",
-    requirements: "VS 2010 and above"
+    requirements: "VS 2010 and above",
+    architecture: "64",
+    osDetectionString: "Windows Win"
   }*/
   {
     officialName: "macOS x86-64",
-    searchableName: "MAC",
+    searchableName: "X64_MAC",
     logo: "mac.png",
     fileExtension: ".tar.gz",
-    requirements: "macOS 10.8 and above"
+    requirements: "macOS 10.8 and above",
+    architecture: "64",
+    osDetectionString: "Mac OS X OSX macOS Macintosh"
   }
 ];
 
@@ -54,17 +74,17 @@ for (var i = 0, len = platforms.length; i < len; i++) {
 // gets the 'searchableName' when you pass in the full filename.
 // If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
 function getSearchableName(filename) {
-  var platform = "UNKNOWN";
+  var platform = null;
   platforms.forEach(function(eachPlatform) {
     if(filename.indexOf(eachPlatform.searchableName) >= 0) {
       platform = eachPlatform.searchableName;
     }
   });
-  if(platform == "UNKNOWN") {
-    return false;
+  if(platform) {
+    return (lookup[platform].searchableName);
   }
   else {
-    return (lookup[platform].searchableName);
+    return null;
   }
 }
 
@@ -111,16 +131,23 @@ menuClose.onclick = function() {
   menu.className = menu.className.replace( /(?:^|\s)slideInLeft(?!\S)/g , ' slideOutLeft' ); // slide out animation
 }
 
-// this function returns the name of the user's OS.
-// modify this list to change how other functions search for downloads that match an OS.
+// this function returns an object containing all information about the user's OS (from the 'platforms' array)
 function detectOS() {
-  var OSName="UnknownOS";
-  if (navigator.userAgent.indexOf("Win")!=-1) OSName="Win";
-  if (navigator.userAgent.indexOf("Mac")!=-1) OSName="Mac";
-  if (navigator.userAgent.indexOf("X11")!=-1) OSName="Linux";
-  if (navigator.userAgent.indexOf("Linux")!=-1) OSName="Linux";
-  if (navigator.userAgent.indexOf("obile")!=-1) OSName="UnknownOS";
-  return OSName;
+  // if the platform detection library's output matches the 'osDetectionString' of any platform object in the 'platforms' array...
+  // ...set the variable 'matchedOS' as the whole object. Else, 'matchedOS' will be null.
+  var matchedOS = null;
+  platforms.forEach(function(eachPlatform) {
+    var thisPlatformMatchingString = eachPlatform.osDetectionString.toUpperCase();
+    /* eslint-disable */
+    var platformFamily = platform.os.family.toUpperCase(); // platform.os.family is dependent on 'platform.js', loaded by index.html (injected in index.handlebars)
+    /* eslint-enable */
+    if(thisPlatformMatchingString.indexOf(platformFamily) >= 0) { // if the detected 'platform family' string appears in the osDetectionString value of a platform...
+      matchedOS = eachPlatform;
+    }
+  });
+
+  // if matchedOS has a value, return it
+  if(matchedOS){ return matchedOS; } else { return null; }
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
@@ -217,7 +244,7 @@ function buildArchiveHTML(releasesJson) {
       var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
       // firstly, check if the platform name is recognised...
-      if(thisPlatform != false) {
+      if(thisPlatform) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
@@ -339,6 +366,14 @@ function filterByPlatform(selection) {
   }
 }
 
+// set variables for all index page HTML elements that will be used by the JS
+const dlText = document.getElementById('dl-text');
+const dlLatest = document.getElementById('dl-latest');
+const dlArchive = document.getElementById('dl-archive');
+const dlOther = document.getElementById('dl-other');
+const dlIcon = document.getElementById('dl-icon');
+const dlVersionText = document.getElementById('dl-version-text');
+
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
 function onIndexLoad() {
@@ -349,89 +384,87 @@ function onIndexLoad() {
 // INDEX PAGE FUNCTIONS
 
 function setDownloadSection() {
-  // set variables for all index page HTML elements that will be used by the JS
-  const dlText = document.getElementById('dl-text');
-  const dlLatest = document.getElementById('dl-latest');
-  const dlArchive = document.getElementById('dl-archive');
-  const dlOther = document.getElementById('dl-other');
-  const dlVersionText = document.getElementById('dl-version-text');
-
-  var OS = detectOS(); // set a variable as the user's OS
-
-  var latestLink = ""; // reset the variable for the latest download button link to be empty.
-
   // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
   loadReleasesJSON("releases", "latest_release", function(response) {
     var releasesJson = JSON.parse(response);
 
-    // if there are releases...
-    if (typeof releasesJson !== 'undefined') {
-      var newHTML = ""; // set the variable to be an empty string.
-
-      // set the download button's version number to the latest release
-      newHTML = (releasesJson.tag_name);
-      dlVersionText.innerHTML = newHTML;
-
-      // create an array of the details for each binary that is attached to a release
-      var assetArray = [];
-      // create a new array that contains each 'asset' (binary) from the latest release:
-      releasesJson.assets.forEach(function(each) {
-        assetArray.push(each);
-      });
-
-      // set the 'latestLink' variable to be the download URL of the latest release for the user's OS
-      assetArray.forEach(function(eachAsset) {     // iterate through the binaries attached to this release
-        var nameOfFile = (eachAsset.name);
-        // convert the name of the binary file, and the user's OS, to be uppercase:
-        var uppercaseFilename = nameOfFile.toUpperCase();
-        var uppercaseOSname = OS.toUpperCase();
-        if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) { // check if the user's OS string matches part of this binary's name (e.g. ...LINUX...)
-          latestLink = (eachAsset.browser_download_url); // set the link variable to be the download URL that matches the user's OS
-        }
-      });
-
-      if(latestLink == "") { // if there is no matching binary for the user's OS:
-        dlOther.className += " hide"; // hide the 'Other platforms' button
-        dlText.innerHTML = ("Downloads"); // change the text to be generic: 'Downloads'.
-        latestLink = "./releases.html"; // change the main download button's link, now takes the user to the latest releases page for all platforms.
-      }
-      else { // if there IS a matching binary for the user's OS:
-        var fullOSName = OS; // defaults this variable to be the detected OS name
-        if(OS == "Linux") {
-          fullOSName = "Linux x86-64"; // add 'x86-64'
-        } else if(OS == "Win") {
-          fullOSName = "Windows x86-64"; // 'Win' is not user friendly - make it 'Windows'.
-        } else if (OS == "Mac") {
-          fullOSName = "macOS x86-64"; // 'macOS' is the official OS name.
-        }
-        dlText.innerHTML = ("Download for " + fullOSName); // set the text to be OS-specific, using the full OS name.
-      }
-
-    } else { // if there are no releases:
-      errorContainer.innerHTML = "<p>Error... no releases have been found!</p>";
-      //dlVersionText.innerHTML = "";
+    if (typeof releasesJson !== 'undefined') { // if there are releases...
+      buildHomepageHTML(releasesJson);
     }
+    else {
+      // report an error
+      errorContainer.innerHTML = "<p>Error... no releases have been found!</p>";
+      loading.innerHTML = ""; // remove the loading dots
+    }
+  });
+}
 
-    // set the download button to use the 'latestLink' variable
-    dlLatest.href = latestLink;
+function buildHomepageHTML(releasesJson) {
+  // set the download button's version number to the latest release
+  dlVersionText.innerHTML = releasesJson.tag_name;
 
-    // remove the loading dots, and make all buttons visible, with animated fade-in
-    loading.innerHTML = "";
-    dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
-    dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
-    dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
+  // create an array of the details for each binary that is attached to a release
+  var assetArray = [];
+  // create a new array that contains each 'asset' (binary) from the latest release:
+  releasesJson.assets.forEach(function(each) {
+    assetArray.push(each);
+  });
 
-    dlLatest.onclick = function() {
-      document.getElementById('installation-link').className += " animated pulse infinite transition-bright";
-    };
+  var OS = detectOS(); // set a variable as an object containing all information about the user's OS (from the global.js 'platforms' array)
+  var matchingBinary = null; // initially set this variable as null
 
-    // animate the main download button shortly after the initial animation has finished.
-    setTimeout(function(){
-      dlLatest.className = "dl-button a-button animated pulse";
-    }, 1000);
+  // if the OS has been detected...
+  if(OS) {
+    assetArray.forEach(function(eachAsset) {  // iterate through the assets attached to this release
+      var nameOfFile = eachAsset.name;
+      var uppercaseFilename = nameOfFile.toUpperCase();
+      var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. X64_MAC or X64_LINUX.
 
- });
+      // firstly, check if a valid searchableName has been returned (i.e. the platform is recognised)...
+      if(thisPlatform) {
 
+        // secondly, check if the file has the expected file extension for that platform...
+        // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
+        var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
+        if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+          var uppercaseOSname = OS.searchableName.toUpperCase();
+
+          // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
+          if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
+            matchingBinary = eachAsset.browser_download_url; // set the matchingBinary variable to the download URL that matches the user's OS
+          }
+        }
+      }
+    });
+  }
+
+  // if there IS a matching binary for the user's OS...
+  if(matchingBinary) {
+    dlLatest.href = matchingBinary; // set the main download button's link to be the binary's download url
+    dlText.innerHTML = ("Download for " + OS.officialName); // set the text to be OS-specific, using the full OS name.
+  }
+  // if there is NOT a matching binary for the user's OS...
+  else {
+    dlOther.className += " hide"; // hide the 'Other platforms' button
+    dlIcon.className += " hide"; // hide the download icon on the main button, to make it look less like you're going to get a download immediately
+    dlText.innerHTML = ("Downloads"); // change the text to be generic: 'Downloads'.
+    dlLatest.href = "./releases.html"; // set the main download button's link to the latest releases page for all platforms.
+  }
+
+  // remove the loading dots, and make all buttons visible, with animated fade-in
+  loading.innerHTML = "";
+  dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
+  dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
+  dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
+
+  dlLatest.onclick = function() {
+    document.getElementById('installation-link').className += " animated pulse infinite transition-bright";
+  };
+
+  // animate the main download button shortly after the initial animation has finished.
+  setTimeout(function(){
+    dlLatest.className = "dl-button a-button animated pulse";
+  }, 1000);
 }
 
 // set variables for HTML elements
@@ -501,7 +534,7 @@ function buildNightlyHTML(releasesJson) {
       var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
       // firstly, check if the platform name is recognised...
-      if(thisPlatform != false) {
+      if(thisPlatform) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
@@ -638,7 +671,7 @@ function buildLatestHTML(releasesJson) {
     var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
     // firstly, check if the platform name is recognised...
-    if(thisPlatform != false) {
+    if(thisPlatform) {
 
       // secondly, check if the file has the expected file extension for that platform...
       // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
