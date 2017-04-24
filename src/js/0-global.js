@@ -146,7 +146,6 @@ function detectOS() {
     }
   });
 
-  // if matchedOS has a value, return it
   if(matchedOS){ return matchedOS; } else { return null; }
 }
 

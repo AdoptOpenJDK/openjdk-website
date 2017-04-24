@@ -43,7 +43,7 @@ function buildHomepageHTML(releasesJson) {
   });
 
   var OS = detectOS(); // set a variable as an object containing all information about the user's OS (from the global.js 'platforms' array)
-  var matchingBinary = null; // initially set this variable as null
+  var matchingBinary = null;
 
   // if the OS has been detected...
   if(OS) {
@@ -63,7 +63,7 @@ function buildHomepageHTML(releasesJson) {
 
           // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
           if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
-            matchingBinary = eachAsset.browser_download_url; // set the matchingBinary variable to the download URL that matches the user's OS
+            matchingBinary = eachAsset; // set the matchingBinary variable to the object containing this binary
           }
         }
       }
@@ -72,8 +72,10 @@ function buildHomepageHTML(releasesJson) {
 
   // if there IS a matching binary for the user's OS...
   if(matchingBinary) {
-    dlLatest.href = matchingBinary; // set the main download button's link to be the binary's download url
+    dlLatest.href = matchingBinary.browser_download_url; // set the main download button's link to be the binary's download url
     dlText.innerHTML = ("Download for " + OS.officialName); // set the text to be OS-specific, using the full OS name.
+    var thisBinarySize = Math.floor((matchingBinary.size)/1024/1024);
+    dlVersionText.innerHTML += (" - " + thisBinarySize + " MB");
   }
   // if there is NOT a matching binary for the user's OS...
   else {

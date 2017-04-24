@@ -146,7 +146,6 @@ function detectOS() {
     }
   });
 
-  // if matchedOS has a value, return it
   if(matchedOS){ return matchedOS; } else { return null; }
 }
 
@@ -411,7 +410,7 @@ function buildHomepageHTML(releasesJson) {
   });
 
   var OS = detectOS(); // set a variable as an object containing all information about the user's OS (from the global.js 'platforms' array)
-  var matchingBinary = null; // initially set this variable as null
+  var matchingBinary = null;
 
   // if the OS has been detected...
   if(OS) {
@@ -431,7 +430,7 @@ function buildHomepageHTML(releasesJson) {
 
           // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
           if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
-            matchingBinary = eachAsset.browser_download_url; // set the matchingBinary variable to the download URL that matches the user's OS
+            matchingBinary = eachAsset; // set the matchingBinary variable to the object containing this binary
           }
         }
       }
@@ -440,8 +439,10 @@ function buildHomepageHTML(releasesJson) {
 
   // if there IS a matching binary for the user's OS...
   if(matchingBinary) {
-    dlLatest.href = matchingBinary; // set the main download button's link to be the binary's download url
+    dlLatest.href = matchingBinary.browser_download_url; // set the main download button's link to be the binary's download url
     dlText.innerHTML = ("Download for " + OS.officialName); // set the text to be OS-specific, using the full OS name.
+    var thisBinarySize = Math.floor((matchingBinary.size)/1024/1024);
+    dlVersionText.innerHTML += (" - " + thisBinarySize + " MB");
   }
   // if there is NOT a matching binary for the user's OS...
   else {
@@ -691,7 +692,7 @@ function buildLatestHTML(releasesJson) {
         var currentLatestContent = latestContainer.innerHTML;
 
         // prepare a fully-populated HTML block for this platform
-        var newLatestContent = currentLatestContent += ("<div id='latest-"+ thisPlatform +"' class='latest-block'><div class='latest-platform'><img src='"+ thisLogo +"'><div>"+ thisOfficialName +"</div></div><a href='"+ thisBinaryLink +"' class='latest-download-button a-button' id='linux-dl-button'><div>Download <div class='small-dl-text'>("+ thisFileExtension +" - "+ thisBinarySize +" MB)</div></div></a><div class='latest-details'><p><a href='"+ thisChecksumLink +"' class='dark-link' id='latest-checksum-"+ thisPlatform +"' target='_blank'>Checksum</a></p><p><strong>Requirements:</strong><br>"+ thisRequirements +"</p></ul></div></div>");
+        var newLatestContent = currentLatestContent += ("<div id='latest-"+ thisPlatform +"' class='latest-block'><div class='latest-platform'><img src='"+ thisLogo +"'><div>"+ thisOfficialName +"</div></div><a href='"+ thisBinaryLink +"' class='latest-download-button a-button' id='linux-dl-button'><div>Download <div class='small-dl-text'>"+ thisFileExtension +" - "+ thisBinarySize +" MB</div></div></a><div class='latest-details'><p><a href='"+ thisChecksumLink +"' class='dark-link' id='latest-checksum-"+ thisPlatform +"' target='_blank'>Checksum</a></p><p><strong>Requirements:</strong><br>"+ thisRequirements +"</p></ul></div></div>");
 
         // update the latest downloads container with this new platform block
         latestContainer.innerHTML = newLatestContent;
