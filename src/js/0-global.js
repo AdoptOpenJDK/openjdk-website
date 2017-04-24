@@ -15,7 +15,7 @@ var platforms = [
     fileExtension: ".tar.gz",
     requirements: "GLIBC 2.5 and above",
     architecture: "64",
-    osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu Cygwin Symbian OS hpwOS webOS Tizen"
+    osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
   },
   {
     officialName: "Linux s390x",
@@ -51,7 +51,7 @@ var platforms = [
     fileExtension: ".zip",
     requirements: "VS 2010 and above",
     architecture: "64",
-    osDetectionString: "Windows Win"
+    osDetectionString: "Windows Win Cygwin"
   }*/
   {
     officialName: "macOS x86-64",
@@ -146,7 +146,6 @@ function detectOS() {
     }
   });
 
-  // if matchedOS has a value, return it
   if(matchedOS){ return matchedOS; } else { return null; }
 }
 
