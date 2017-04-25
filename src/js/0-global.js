@@ -1,46 +1,66 @@
 // set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
+// GUIDE TO THE PLATFORMS ARRAY:
+// officialName: The 'legal name' or official name for the OS. This is displayed on most pages.
+// searchableName: a string that appears in the name of the binaries and checksums, that can be used to identify the platform.
+// logo: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
+// fileExtension: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
+// requirements: currently just displayed on the 'latest release' page. Should be a short string identifying the most important min. requirement of a machine to run the latest release.
+// architecture: 64 or 32. May be required for differentiation between future builds.
+// osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
 var platforms = [
   {
     officialName: "Linux x86-64",
     searchableName: "X64_LINUX",
     logo: "linux.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
   },
   {
     officialName: "Linux s390x",
     searchableName: "S390X_LINUX",
     logo: "s390x.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "not-to-be-detected"
   },
   {
     officialName: "Linux ppc64le",
     searchableName: "PPC64LE_LINUX",
     logo: "ppc64le.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "not-to-be-detected"
   },
   /*{
     officialName: "Linux arm",
     searchableName: "ARM_LINUX",
     logo: "linux.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above"
+    requirements: "GLIBC 2.5 and above",
+    architecture: "64",
+    osDetectionString: "not-to-be-detected"
   },*/
   /*{
     officialName: "Windows x86-64",
     searchableName: "WIN",
     logo: "windows.png",
     fileExtension: ".zip",
-    requirements: "VS 2010 and above"
+    requirements: "VS 2010 and above",
+    architecture: "64",
+    osDetectionString: "Windows Win Cygwin"
   }*/
   {
     officialName: "macOS x86-64",
-    searchableName: "MAC",
+    searchableName: "X64_MAC",
     logo: "mac.png",
     fileExtension: ".tar.gz",
-    requirements: "macOS 10.8 and above"
+    requirements: "macOS 10.8 and above",
+    architecture: "64",
+    osDetectionString: "Mac OS X OSX macOS Macintosh"
   }
 ];
 
@@ -54,17 +74,17 @@ for (var i = 0, len = platforms.length; i < len; i++) {
 // gets the 'searchableName' when you pass in the full filename.
 // If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
 function getSearchableName(filename) {
-  var platform = "UNKNOWN";
+  var platform = null;
   platforms.forEach(function(eachPlatform) {
     if(filename.indexOf(eachPlatform.searchableName) >= 0) {
       platform = eachPlatform.searchableName;
     }
   });
-  if(platform == "UNKNOWN") {
-    return false;
+  if(platform) {
+    return (lookup[platform].searchableName);
   }
   else {
-    return (lookup[platform].searchableName);
+    return null;
   }
 }
 
@@ -111,16 +131,22 @@ menuClose.onclick = function() {
   menu.className = menu.className.replace( /(?:^|\s)slideInLeft(?!\S)/g , ' slideOutLeft' ); // slide out animation
 }
 
-// this function returns the name of the user's OS.
-// modify this list to change how other functions search for downloads that match an OS.
+// this function returns an object containing all information about the user's OS (from the 'platforms' array)
 function detectOS() {
-  var OSName="UnknownOS";
-  if (navigator.userAgent.indexOf("Win")!=-1) OSName="Win";
-  if (navigator.userAgent.indexOf("Mac")!=-1) OSName="Mac";
-  if (navigator.userAgent.indexOf("X11")!=-1) OSName="Linux";
-  if (navigator.userAgent.indexOf("Linux")!=-1) OSName="Linux";
-  if (navigator.userAgent.indexOf("obile")!=-1) OSName="UnknownOS";
-  return OSName;
+  // if the platform detection library's output matches the 'osDetectionString' of any platform object in the 'platforms' array...
+  // ...set the variable 'matchedOS' as the whole object. Else, 'matchedOS' will be null.
+  var matchedOS = null;
+  platforms.forEach(function(eachPlatform) {
+    var thisPlatformMatchingString = eachPlatform.osDetectionString.toUpperCase();
+    /* eslint-disable */
+    var platformFamily = platform.os.family.toUpperCase(); // platform.os.family is dependent on 'platform.js', loaded by index.html (injected in index.handlebars)
+    /* eslint-enable */
+    if(thisPlatformMatchingString.indexOf(platformFamily) >= 0) { // if the detected 'platform family' string appears in the osDetectionString value of a platform...
+      matchedOS = eachPlatform;
+    }
+  });
+
+  if(matchedOS){ return matchedOS; } else { return null; }
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
