@@ -6,6 +6,7 @@ $brighterblue: #3D70B2;
 $accentgrey: #dadada;
 $tableblue-odd: #182336;
 $tableblue-even: #1F2F4E;
+$translucent-blue: rgba(21, 41, 53, 0.05);
 $headersize: 1.4rem;
 
 
@@ -38,6 +39,19 @@ $headersize: 1.4rem;
 
 .light-link:hover {
   color: $brighterblue;
+}
+
+.blue-link-section a {
+  text-decoration: none;
+}
+
+.blue-link-section a *, .blue-link-section a {
+  color: $brighterblue;
+  text-decoration: none;
+}
+
+.blue-link-section a *:hover, .blue-link-section a:hover {
+  text-decoration: underline;
 }
 
 .full-width {
@@ -80,6 +94,10 @@ $headersize: 1.4rem;
   margin-bottom: 4rem;
 }
 
+.margin-top-4 {
+  margin-top: 4rem;
+}
+
 .large-title {
   font-size: 3rem;
   margin-top: 0;
@@ -91,10 +109,6 @@ $headersize: 1.4rem;
 
 .align-center {
   text-align: center;
-}
-
-.float-right {
-  float: right;
 }
 
 .vertical-align-top {
@@ -324,13 +338,13 @@ main {
   margin-top: 2rem;
 }
 
-#installation-container {
+.info-page-container {
   max-width: 50rem;
   margin: auto;
   text-align: left;
 }
 
-#installation-container li {
+.info-page-container li {
   margin-top: 2rem;
 }
 
@@ -350,6 +364,12 @@ code {
   box-sizing: border-box;
   overflow: auto;
   white-space: pre;
+}
+
+.callout {
+  background-color: $translucent-blue;
+  border-left: 0.5rem solid $mainblue;
+  padding: 0.5rem 1rem;
 }
 
 // FOOTER CSS

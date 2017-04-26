@@ -94,3 +94,18 @@ h2.transition-bright {
   color: #0085ff;
   transition-duration: 1s;
 }
+
+#minor-links {
+  margin-top: 2rem;
+}
+
+@media all and (max-width: 300px) {
+  #minor-links a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  #minor-links span {
+    display: none;
+  }
+}

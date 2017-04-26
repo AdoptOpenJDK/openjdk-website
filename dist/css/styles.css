@@ -39,6 +39,16 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 .light-link:hover {
   color: #3D70B2; }
 
+.blue-link-section a {
+  text-decoration: none; }
+
+.blue-link-section a *, .blue-link-section a {
+  color: #3D70B2;
+  text-decoration: none; }
+
+.blue-link-section a *:hover, .blue-link-section a:hover {
+  text-decoration: underline; }
+
 .full-width {
   width: 100%; }
 
@@ -69,6 +79,9 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 .margin-bottom {
   margin-bottom: 4rem; }
 
+.margin-top-4 {
+  margin-top: 4rem; }
+
 .large-title {
   font-size: 3rem;
   margin-top: 0; }
@@ -78,9 +91,6 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 
 .align-center {
   text-align: center; }
-
-.float-right {
-  float: right; }
 
 .vertical-align-top {
   vertical-align: top; }
@@ -266,12 +276,12 @@ main {
   text-align: center;
   margin-top: 2rem; }
 
-#installation-container {
+.info-page-container {
   max-width: 50rem;
   margin: auto;
   text-align: left; }
 
-#installation-container li {
+.info-page-container li {
   margin-top: 2rem; }
 
 pre {
@@ -289,6 +299,11 @@ code {
   box-sizing: border-box;
   overflow: auto;
   white-space: pre; }
+
+.callout {
+  background-color: rgba(21, 41, 53, 0.05);
+  border-left: 0.5rem solid #152935;
+  padding: 0.5rem 1rem; }
 
 footer {
   padding: 2rem;
@@ -338,6 +353,40 @@ footer p {
 /* When moving the mouse over the close button */
 .closebtn:hover {
   color: black; }
+
+.sponsor-table {
+  border-collapse: separate;
+  border-spacing: 0 1rem; }
+
+.sponsor-table td {
+  padding: 2rem;
+  background-color: white; }
+
+.sponsor-table td img {
+  width: 8rem; }
+
+#services-grid {
+  margin: auto;
+  border-collapse: separate;
+  border-spacing: 3rem 2rem; }
+
+#services-grid tr {
+  text-align: center; }
+
+#services-grid td {
+  vertical-align: bottom;
+  display: inline-block;
+  margin: 2rem 3rem; }
+
+#services-grid img {
+  width: 8rem; }
+
+@media all and (max-width: 800px) {
+  .sponsor-table td {
+    padding: 1rem;
+    display: block; }
+  .sponsors {
+    text-align: center; } }
 
 main .intro {
   max-width: 40rem;
@@ -415,6 +464,16 @@ a.dl-thin-button:hover {
 h2.transition-bright {
   color: #0085ff;
   transition-duration: 1s; }
+
+#minor-links {
+  margin-top: 2rem; }
+
+@media all and (max-width: 300px) {
+  #minor-links a {
+    display: block;
+    margin: 0.5rem 0; }
+  #minor-links span {
+    display: none; } }
 
 .divider {
   margin: 0 0.2rem; }
@@ -611,14 +670,6 @@ main.about p, main.about ul {
   width: 80%;
   text-align: left;
   line-height: 1.8rem; }
-
-main.about a {
-  text-decoration: none;
-  color: #3D70B2; }
-
-main.about a:hover {
-  text-decoration: underline;
-  color: #3D70B2; }
 
 main.getinvolved p, main.getinvolved ul {
   max-width: 40rem;
