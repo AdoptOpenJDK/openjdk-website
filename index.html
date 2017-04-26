@@ -17,34 +17,56 @@
 </head>
 
 <body class="blue-bg">
-
-    <div id="menu-container" class="grey-bg hide slideInLeft">
-        <div id="menu-header">
-            <i id="menu-close" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-        </div>
-        <div id="menu-content">
-            <p><a href="./index.html">Home</a></p>
-            <p><a href="./releases.html">Latest release</a></p>
-            <p><a href="./archive.html">Release archive</a></p>
-            <p><a href="./nightly.html">Nightly builds</a></p>
-            <p><a href="./installation.html">Installation</a></p>
-            <p><a href="./getinvolved.html">Get involved</a></p>
-            <p><a href="./support.html">Support</a></p>
-            <p><a href="./about.html">About</a></p>
-        </div>
+  <div id="menu-container" class="grey-bg hide slideInLeft">
+    <div id="menu-header">
+        <i id="menu-close" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
     </div>
+    <div id="menu-content">
+        <p><a href="./index.html">Home</a></p>
+        <p><a href="./releases.html">Latest release</a></p>
+        <p><a href="./archive.html">Release archive</a></p>
+        <p><a href="./nightly.html">Nightly builds</a></p>
+        <p><a href="./installation.html">Installation</a></p>
+        <p><a href="./getinvolved.html">Get involved</a></p>
+        <p><a href="./support.html">Support</a></p>
+        <p><a href="./about.html">About</a></p>
+        <div class="align-center"><div id="menu-social-bar"><div class="social-icon align-center inline-block">
+    <a href="https://twitter.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+      <img src="dist/assets/twitter.png" alt="" class="social-logo">
+    </a>
+  </div>
+  <div class="social-icon align-center inline-block">
+    <a href="https://www.facebook.com/AdoptaJSR/" target="_blank" class="light-link no-underline">
+      <img src="dist/assets/facebook.png" alt="" class="social-logo">
+    </a>
+  </div>
+  </div></div>
+    </div>
+  </div>
+  <nav>
+      <i id="menu-button" class="fa fa-bars" aria-hidden="true"></i>
+      <a id="logo" href="./index.html" class="a-button">
+          <div><img src="dist/assets/squares-logo.png"></div>
+          <div><span>AdoptOpenJDK</span></div>
+      </a>
 
-    <nav>
-        <i id="menu-button" class="fa fa-bars" aria-hidden="true"></i>
-        <a id="logo" href="./index.html" class="a-button">
-            <div><img src="dist/assets/squares-logo.png"></div>
-            <div><span>AdoptOpenJDK</span></div>
-        </a>
-    </nav>
-    <div w3-include-html="./banner.html"></div>
-    <script>
-        w3IncludeHTML();
-    </script>
+      <div id="header-social-bar"><div class="social-icon align-center inline-block">
+  <a href="https://twitter.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+    <img src="dist/assets/twitter.png" alt="" class="social-logo">
+  </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.facebook.com/AdoptaJSR/" target="_blank" class="light-link no-underline">
+    <img src="dist/assets/facebook.png" alt="" class="social-logo">
+  </a>
+</div>
+</div>
+  </nav>
+
+  <div w3-include-html="./banner.html"></div>
+  <script>
+      w3IncludeHTML();
+  </script>
 
 <main class="grey-bg home-main">
   <p class="intro">
@@ -126,9 +148,18 @@
     </div>
   </div>
 
-  <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" target="_blank"class="light-link no-underline">
-    <p class="inline-block zero-margin" style="margin-bottom: 1rem;">Having issues?&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></p>
+  <div class="margin-auto" id="footer-social-bar"><div class="social-icon align-center inline-block">
+  <a href="https://twitter.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+    <img src="dist/assets/twitter.png" alt="" class="social-logo">
   </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.facebook.com/AdoptaJSR/" target="_blank" class="light-link no-underline">
+    <img src="dist/assets/facebook.png" alt="" class="social-logo">
+  </a>
+</div>
+</div>
+
   <p>Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
 </footer>
 

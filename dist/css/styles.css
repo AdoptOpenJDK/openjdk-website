@@ -79,6 +79,9 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 .align-center {
   text-align: center; }
 
+.float-right {
+  float: right; }
+
 .vertical-align-top {
   vertical-align: top; }
 
@@ -95,6 +98,18 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 
 .vertically-center-parent {
   position: relative; }
+
+.social-icon {
+  margin: 0 0.5rem; }
+
+.social-icon img {
+  height: 2rem;
+  margin: 0 auto;
+  opacity: 0.5;
+  transition-duration: 0.2s; }
+
+.social-icon img:hover {
+  opacity: 1; }
 
 input {
   padding: 0.5rem;
@@ -126,6 +141,14 @@ nav {
   width: 2rem;
   margin-right: 0.6rem;
   transform: translateY(0.1rem); }
+
+#header-social-bar {
+  position: absolute;
+  margin-right: 2rem;
+  line-height: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0; }
 
 #menu-button {
   font-size: 2rem;
@@ -181,6 +204,11 @@ nav {
 #menu-content p {
   border-bottom: 1px solid #dadada;
   margin: 0; }
+
+#menu-social-bar {
+  display: inline-block;
+  filter: brightness(0);
+  margin-top: 1rem; }
 
 html, body {
   max-width: 100%;
@@ -238,10 +266,6 @@ main {
   text-align: center;
   margin-top: 2rem; }
 
-.footer-logo {
-  height: 3rem;
-  margin: 0 auto; }
-
 #installation-container {
   max-width: 50rem;
   margin: auto;
@@ -276,7 +300,22 @@ footer p {
   margin: auto; }
 
 .footer-icon {
-  margin: 0 1rem 1.5rem 1rem; }
+  margin: 0 1rem 1.5rem 1rem;
+  transition-duration: 0.2s; }
+
+.footer-icon:hover {
+  opacity: 0.7; }
+
+.footer-icon a:hover {
+  color: #F5F5F5; }
+
+.footer-icon img {
+  height: 3rem;
+  margin: 0 auto; }
+
+#footer-social-bar {
+  margin-bottom: 1rem;
+  display: none; }
 
 /* The alert message box */
 .alert {
@@ -338,7 +377,8 @@ a.dl-button {
   font-size: 1.5rem;
   margin: 1.2rem 0.6rem 0 0.6rem;
   cursor: pointer;
-  display: inline-block; }
+  display: inline-block;
+  transition-duration: 0.1s; }
 
 #dl-text {
   margin-top: 2.5rem;
@@ -532,6 +572,10 @@ a.latest-download-button:hover {
     padding: 2rem 1rem 5rem 1rem; }
   main .intro {
     width: 100%; }
+  #header-social-bar {
+    display: none; }
+  #footer-social-bar {
+    display: block; }
   a.dl-button {
     width: 100%;
     margin: 0 auto;
