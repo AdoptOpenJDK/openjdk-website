@@ -290,11 +290,6 @@ main {
   margin-top: 2rem;
 }
 
-.footer-logo {
-  height: 3rem;
-  margin: 0 auto;
-}
-
 #installation-container {
   max-width: 50rem;
   margin: auto;
@@ -338,6 +333,35 @@ footer p {
 
 .footer-icon {
   margin: 0 1rem 1.5rem 1rem;
+  transition-duration: 0.2s;
+}
+
+.footer-icon:hover {
+  opacity: 0.7;
+}
+
+.footer-icon a:hover {
+  color: $maingrey;
+}
+
+.footer-icon img {
+  height: 3rem;
+  margin: 0 auto;
+}
+
+.social-icon {
+  margin: 0 0.5rem 1.5rem 0.5rem;
+}
+
+.social-icon img {
+  height: 2rem;
+  margin: 0 auto;
+  opacity: 0.5;
+  transition-duration: 0.2s;
+}
+
+.social-icon img:hover {
+  opacity: 1;
 }
 
 
