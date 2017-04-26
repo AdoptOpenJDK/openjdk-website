@@ -43,8 +43,10 @@
 * If you are unsure, it is best to begin by copying an existing `.handlebars` file, and deleting the content between the `<main>` tags.
 
 ### Menu system
-* The menu contents can be changed in `/src/handlebars/partials/header.handlebars`.
-* Add or update the entries within `<div id='menu-content'>...</div>`.
+* The menu contents can be changed in `/src/handlebars/partials/menu.handlebars`.
+
+### Social bar
+* The social bar contents can be changed in `/src/handlebars/partials/social-bar.handlebars`. It is shown in various places on the site depending on screen width.
 
 ### SCSS
 * Only use the units `rem` and `%`. __Do not__ use `em` or `px`.

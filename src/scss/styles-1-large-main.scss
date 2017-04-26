@@ -93,6 +93,10 @@ $headersize: 1.4rem;
   text-align: center;
 }
 
+.float-right {
+  float: right;
+}
+
 .vertical-align-top {
   vertical-align: top;
 }
@@ -112,6 +116,21 @@ $headersize: 1.4rem;
 
 .vertically-center-parent {
   position: relative;
+}
+
+.social-icon {
+  margin: 0 0.5rem;
+}
+
+.social-icon img {
+  height: 2rem;
+  margin: 0 auto;
+  opacity: 0.5;
+  transition-duration: 0.2s;
+}
+
+.social-icon img:hover {
+  opacity: 1;
 }
 
 input {
@@ -153,6 +172,15 @@ nav {
   width: 2rem;
   margin-right: 0.6rem;
   transform: translateY(0.1rem);
+}
+
+#header-social-bar {
+  position: absolute;
+  margin-right: 2rem;
+  line-height: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
 }
 
 #menu-button {
@@ -217,6 +245,12 @@ nav {
 #menu-content p {
   border-bottom: 1px solid $accentgrey;
   margin: 0;
+}
+
+#menu-social-bar {
+  display: inline-block;
+  filter: brightness(0);
+  margin-top: 1rem;
 }
 
 
@@ -349,19 +383,9 @@ footer p {
   margin: 0 auto;
 }
 
-.social-icon {
-  margin: 0 0.5rem 1.5rem 0.5rem;
-}
-
-.social-icon img {
-  height: 2rem;
-  margin: 0 auto;
-  opacity: 0.5;
-  transition-duration: 0.2s;
-}
-
-.social-icon img:hover {
-  opacity: 1;
+#footer-social-bar {
+  margin-bottom: 1rem;
+  display: none;
 }
 
 
