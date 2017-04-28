@@ -434,3 +434,23 @@ footer p {
 .closebtn:hover {
    color: black;
 }
+
+
+// GOOGLE TRANSLATION DROP DOWN STYLES
+
+.goog-te-gadget-simple {
+  padding: .25rem .4rem .4rem .4rem !important;
+  font-family: opensans !important;
+  font-size: 0.8rem !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+}
+img.goog-te-gadget-icon {
+  display: none !important;
+}
+.goog-te-menu-value span {
+  color: white !important;
+}
+.goog-te-menu-value span:nth-child(3) {
+  display: none !important;
+}
