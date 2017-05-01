@@ -10,6 +10,10 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
   font-weight: 300;
 }
 
+p {
+  line-height: 1.8rem;
+}
+
 @media all and (max-width: 800px) {
     html {
         font-size: 15px;

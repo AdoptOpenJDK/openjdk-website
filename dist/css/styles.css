@@ -7,6 +7,9 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
   font-family: sans-serif;
   font-weight: 300; }
 
+p {
+  line-height: 1.8rem; }
+
 @media all and (max-width: 800px) {
   html {
     font-size: 15px; } }
@@ -137,7 +140,7 @@ nav {
   position: relative; }
 
 #logo {
-  margin: 2rem auto;
+  margin: 2.15rem auto;
   font-size: 1.4rem;
   display: table;
   cursor: pointer;
@@ -362,7 +365,7 @@ footer p {
   border: none !important; }
 
 img.goog-te-gadget-icon {
-  display: none !important; }
+  margin-right: 0.2rem; }
 
 .goog-te-menu-value span {
   color: white !important; }
@@ -376,15 +379,14 @@ img.goog-te-gadget-icon {
 
 .sponsor-table td {
   padding: 2rem;
-  background-color: white; }
+  background-color: white;
+  line-height: 1.8rem; }
 
 .sponsor-table td img {
   width: 8rem; }
 
 #services-grid {
-  margin: auto;
-  border-collapse: separate;
-  border-spacing: 3rem 2rem; }
+  margin: auto; }
 
 #services-grid tr {
   text-align: center; }
@@ -517,7 +519,7 @@ th {
   display: inline-block; }
 
 .nightly-container > td {
-  padding: 0.4rem 1rem; }
+  padding: 0.5rem 1rem; }
 
 .nightly-container > td:nth-child(odd) {
   background-color: #d0d0d0; }
@@ -679,6 +681,9 @@ main .support {
   max-width: 40rem;
   margin: 0 auto;
   width: 80%; }
+
+main .support h2 {
+  text-align: center; }
 
 main.about p, main.about ul {
   max-width: 40rem;
