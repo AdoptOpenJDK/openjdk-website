@@ -216,7 +216,8 @@ nav {
 
 #menu-content p {
   border-bottom: 1px solid #dadada;
-  margin: 0; }
+  margin: 0;
+  line-height: 1.2rem; }
 
 #menu-social-bar {
   display: inline-block;
@@ -395,6 +396,12 @@ img.goog-te-gadget-icon {
   vertical-align: bottom;
   display: inline-block;
   margin: 2rem 3rem; }
+
+.sponsors img {
+  transition-duration: 0.2s; }
+
+.sponsors img:hover {
+  opacity: 0.5; }
 
 #services-grid img {
   width: 8rem; }
@@ -589,6 +596,9 @@ a.latest-download-button:hover {
 
 .latest-details {
   font-size: 0.8rem; }
+
+.latest-details p {
+  line-height: 1.2rem; }
 
 .small-dl-text {
   font-size: .7rem;

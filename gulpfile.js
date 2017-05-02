@@ -10,7 +10,7 @@ const imagemin = require('gulp-imagemin');
 const handlebars = require('gulp-compile-handlebars');
 
 // default task
-gulp.task('default', ['handlebars', 'scripts','styles','images','watch']);
+gulp.task('default', ['handlebars', 'scripts','styles','images','icon','watch']);
 
 // watch task
 gulp.task('watch', function() {
@@ -18,6 +18,7 @@ gulp.task('watch', function() {
   gulp.watch('./src/js/*.js', ['scripts']);
   gulp.watch('./src/scss/*.scss', ['styles']);
   gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'], ['images']);
+  gulp.watch('./src/assets/*.ico', ['icon']);
 });
 
 // Handlebars HTML build task
@@ -67,5 +68,11 @@ gulp.task('styles', function() {
 gulp.task('images', function() {
   return gulp.src(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'])
     .pipe(imagemin())
+    .pipe(gulp.dest('./dist/assets/'))
+});
+
+// icon task
+gulp.task('icon', function() {
+  return gulp.src('./src/assets/*.ico')
     .pipe(gulp.dest('./dist/assets/'))
 });
