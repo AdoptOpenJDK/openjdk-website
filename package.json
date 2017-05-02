@@ -24,6 +24,7 @@
     "gulp-uglify": "^2.1.2",
     "mocha": "^3.2.0",
     "open": "^0.0.5",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^1.2.2",
+    "util": "^0.10.3"
   }
 }

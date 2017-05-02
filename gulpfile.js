@@ -10,6 +10,7 @@ const prefix = require('gulp-autoprefixer');
 const imagemin = require('gulp-imagemin');
 const handlebars = require('gulp-compile-handlebars');
 const eslint = require('gulp-eslint');
+const gutil = require('gulp-util');
 
 // default task
 gulp.task('default', ['handlebars','scripts','styles','images','icon','watch']);
@@ -38,6 +39,7 @@ gulp.task('handlebars', function () {
   }
   return gulp.src('./src/handlebars/*.handlebars')
       .pipe(handlebars(templateData, options))
+      .on('error', gutil.log)
       .pipe(rename({
         extname: '.html'
       }))
@@ -49,8 +51,10 @@ gulp.task('handlebars', function () {
 gulp.task('scripts', function() {
   return gulp.src('./src/js/*.js')
     .pipe(concat('app.js'))
+    .on('error', gutil.log)
     .pipe(gulp.dest('./dist/js/'))
     .pipe(uglify())
+    .on('error', gutil.log)
     .pipe(rename({
       suffix: '.min'
     }))
@@ -61,10 +65,14 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
   return gulp.src('./src/scss/*.scss')
     .pipe(sass())
+    .on('error', gutil.log)
     .pipe(prefix('last 2 versions'))
+    .on('error', gutil.log)
     .pipe(concat('styles.css'))
+    .on('error', gutil.log)
     .pipe(gulp.dest('./dist/css/'))
     .pipe(cssmin())
+    .on('error', gutil.log)
     .pipe(rename({
       suffix: '.min'
     }))
@@ -75,6 +83,7 @@ gulp.task('styles', function() {
 gulp.task('images', function() {
   return gulp.src(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'])
     .pipe(imagemin())
+    .on('error', gutil.log)
     .pipe(gulp.dest('./dist/assets/'))
 });
 
