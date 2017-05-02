@@ -32,15 +32,12 @@ th {
   white-space: nowrap;
 }
 
-.nightly-container td, .nightly-container div {
-}
-
 .nightly-container div {
   display: inline-block;
 }
 
 .nightly-container > td {
-  padding: 0.4rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .nightly-container > td:nth-child(odd) {

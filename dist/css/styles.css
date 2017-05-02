@@ -1,11 +1,14 @@
 /**** RESPONSIVE MASTER SETTINGS ****/
 html {
-  font: 16px "Open Sans", helvetica, sans-serif;
-  font-weight: 100; }
+  font: 16px sans-serif;
+  font-weight: 300; }
 
 h1, h2, h3, h4, button, input, optgroup, select, textarea {
-  font-family: "Open Sans", helvetica, sans-serif;
-  font-weight: 100; }
+  font-family: sans-serif;
+  font-weight: 300; }
+
+p {
+  line-height: 1.8rem; }
 
 @media all and (max-width: 800px) {
   html {
@@ -39,6 +42,16 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 .light-link:hover {
   color: #3D70B2; }
 
+.blue-link-section a {
+  text-decoration: none; }
+
+.blue-link-section a *, .blue-link-section a {
+  color: #3D70B2;
+  text-decoration: none; }
+
+.blue-link-section a *:hover, .blue-link-section a:hover {
+  text-decoration: underline; }
+
 .full-width {
   width: 100%; }
 
@@ -69,6 +82,9 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 .margin-bottom {
   margin-bottom: 4rem; }
 
+.margin-top-4 {
+  margin-top: 4rem; }
+
 .large-title {
   font-size: 3rem;
   margin-top: 0; }
@@ -78,9 +94,6 @@ h1, h2, h3, h4, button, input, optgroup, select, textarea {
 
 .align-center {
   text-align: center; }
-
-.float-right {
-  float: right; }
 
 .vertical-align-top {
   vertical-align: top; }
@@ -127,7 +140,7 @@ nav {
   position: relative; }
 
 #logo {
-  margin: 2rem auto;
+  margin: 2.15rem auto;
   font-size: 1.4rem;
   display: table;
   cursor: pointer;
@@ -208,7 +221,7 @@ nav {
 #menu-social-bar {
   display: inline-block;
   filter: brightness(0);
-  margin-top: 1rem; }
+  margin: 1rem auto 3rem; }
 
 html, body {
   max-width: 100%;
@@ -266,12 +279,12 @@ main {
   text-align: center;
   margin-top: 2rem; }
 
-#installation-container {
+.info-page-container {
   max-width: 50rem;
   margin: auto;
   text-align: left; }
 
-#installation-container li {
+.info-page-container li {
   margin-top: 2rem; }
 
 pre {
@@ -289,6 +302,11 @@ code {
   box-sizing: border-box;
   overflow: auto;
   white-space: pre; }
+
+.callout {
+  background-color: rgba(21, 41, 53, 0.05);
+  border-left: 0.5rem solid #152935;
+  padding: 0.5rem 1rem; }
 
 footer {
   padding: 2rem;
@@ -338,6 +356,55 @@ footer p {
 /* When moving the mouse over the close button */
 .closebtn:hover {
   color: black; }
+
+.goog-te-gadget-simple {
+  padding: .25rem .4rem .4rem .4rem !important;
+  font-family: opensans !important;
+  font-size: 0.8rem !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: none !important; }
+
+img.goog-te-gadget-icon {
+  margin-right: 0.2rem; }
+
+.goog-te-menu-value span {
+  color: white !important; }
+
+.goog-te-menu-value span:nth-child(3) {
+  display: none !important; }
+
+.sponsor-table {
+  border-collapse: separate;
+  border-spacing: 0 1rem; }
+
+.sponsor-table td {
+  padding: 2rem;
+  background-color: white;
+  line-height: 1.8rem; }
+
+.sponsor-table td img {
+  width: 8rem; }
+
+#services-grid {
+  margin: auto; }
+
+#services-grid tr {
+  text-align: center; }
+
+#services-grid td {
+  vertical-align: bottom;
+  display: inline-block;
+  margin: 2rem 3rem; }
+
+#services-grid img {
+  width: 8rem; }
+
+@media all and (max-width: 800px) {
+  .sponsor-table td {
+    padding: 1rem;
+    display: block; }
+  .sponsors {
+    text-align: center; } }
 
 main .intro {
   max-width: 40rem;
@@ -416,6 +483,16 @@ h2.transition-bright {
   color: #0085ff;
   transition-duration: 1s; }
 
+#minor-links {
+  margin-top: 2rem; }
+
+@media all and (max-width: 300px) {
+  #minor-links a {
+    display: block;
+    margin: 0.5rem 0; }
+  #minor-links span {
+    display: none; } }
+
 .divider {
   margin: 0 0.2rem; }
 
@@ -442,7 +519,7 @@ th {
   display: inline-block; }
 
 .nightly-container > td {
-  padding: 0.4rem 1rem; }
+  padding: 0.5rem 1rem; }
 
 .nightly-container > td:nth-child(odd) {
   background-color: #d0d0d0; }
@@ -605,20 +682,15 @@ main .support {
   margin: 0 auto;
   width: 80%; }
 
+main .support h2 {
+  text-align: center; }
+
 main.about p, main.about ul {
   max-width: 40rem;
   margin: 1rem auto;
   width: 80%;
   text-align: left;
   line-height: 1.8rem; }
-
-main.about a {
-  text-decoration: none;
-  color: #3D70B2; }
-
-main.about a:hover {
-  text-decoration: underline;
-  color: #3D70B2; }
 
 main.getinvolved p, main.getinvolved ul {
   max-width: 40rem;

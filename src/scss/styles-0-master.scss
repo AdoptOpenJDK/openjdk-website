@@ -1,13 +1,17 @@
 /**** RESPONSIVE MASTER SETTINGS ****/
 
 html {
-    font: 16px "Open Sans", helvetica, sans-serif;
-    font-weight: 100;
+    font: 16px sans-serif;
+    font-weight: 300;
 }
 
 h1, h2, h3, h4, button, input, optgroup, select, textarea {
-  font-family: "Open Sans", helvetica, sans-serif;
-  font-weight: 100;
+  font-family: sans-serif;
+  font-weight: 300;
+}
+
+p {
+  line-height: 1.8rem;
 }
 
 @media all and (max-width: 800px) {
