@@ -14,24 +14,22 @@
     npm install
     ```
 
-3. Start the auto-build scripts
+3. Start the auto-build scripts, and leave them running
 
     ```
     npm start
     ```
 
-4. Make changes **only** in the `/src` directory
-    > Please note that `api.js` is an exception to this rule: it appears only in `/dist`, and should be edited there.
+    > NOTE: These build scripts enable you to view your changes locally. The build generates new files in two places: a new `/dist` directory (JS, CSS, images, etc), and `.html` files in the root directory. However, these files are ignored by .gitignore, and will not be included in commits.
 
-5. Open `/index.html` in any browser, and refresh the page after saving your changes to `/src`.
+4. Make changes in the `/src` directory. The auto-build scripts instantly pick up any newly saved changes, and include them in the output files and directories. Open `/index.html` in any browser to view the website locally, and refresh the page after saving your changes to `/src`.
 
 ---
 
 ## Contribution guidelines
 
 ### HTML (Handlebars) pt.1
-* **Do not** edit the `.html` files in the root directory. They are created and updated by the build process.
-* Instead, edit the `.handlebars` files in the `/src/handlebars` directory.
+* Edit the `.handlebars` files in the `/src/handlebars` directory. These are built into HTML.
 * 'Handlebars' files should only include the `<main>` element, containing the page's content, and `{{> header}}` / `{{> footer }}` tags.
 
 ### HTML (Handlebars) pt.2 (creating a new .handlebars file)
