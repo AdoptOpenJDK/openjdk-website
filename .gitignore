@@ -1,3 +1,7 @@
 node_modules
 npm-debug.log
 .idea
+dist
+*.html
+sitemap.xml
+robots.txt

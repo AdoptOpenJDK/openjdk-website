@@ -27,6 +27,14 @@
   margin: 2rem 3rem;
 }
 
+.sponsors img {
+  transition-duration: 0.2s;
+}
+
+.sponsors img:hover {
+  opacity: 0.5;
+}
+
 #services-grid img {
   width: 8rem;
 }
