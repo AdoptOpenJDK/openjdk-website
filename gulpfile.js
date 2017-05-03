@@ -12,7 +12,7 @@ const handlebars = require('gulp-compile-handlebars');
 const eslint = require('gulp-eslint');
 const gutil = require('gulp-util');
 const sitemap = require('gulp-sitemap');
-const robots = require('gulp-robots');
+//const robots = require('gulp-robots');
 
 // default task
 gulp.task('default', ['handlebars','scripts','styles','images','icon','watch']);
