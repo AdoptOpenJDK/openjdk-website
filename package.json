@@ -24,7 +24,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sitemap": "^4.2.0",
     "gulp-uglify": "^2.1.2",
-    "mocha": "^3.2.0",
+    "mocha": "^3.3.0",
     "open": "^0.0.5",
     "run-sequence": "^1.2.2",
     "util": "^0.10.3"
