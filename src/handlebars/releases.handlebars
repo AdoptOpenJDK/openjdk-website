@@ -3,27 +3,28 @@
 <main class="grey-bg">
 
   <div id="latest-page">
-    <p class="zero-margin">Latest release:</p><h1><a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></h1>
+    <h1 class="large-title">Latest release</h1>
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+
+    <div style="margin-bottom: 2rem;">
+      <a href="./archive.html" class="grey-button a-button">
+        <div>
+          <span>Release archive</span>
+          <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+        </div>
+      </a>
+    </div>
 
     <div id="latest-container" class="invisible">
 
-      <div id="latest-intro">
-        <a href="./archive.html" id="archive-button" class="grey-button a-button">
-          <div>
-            <span>Release archive</span>
-            <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-          </div>
-        </a>
-      </div>
-
       <table id="latest-metadata-table" cellspacing="0" cellpadding="0">
         <tr>
-          <td>Date: <span id="latest-date"></span></td>
-          <!--<td><a href="" class="light-link" id="latest-changelog" target="_blank">Changelog</a></td>-->
-          <td>Timestamp: <span id="latest-timestamp"></span></td>
-          <!--<td>Build number: <span id="latest-buildnumber"></span></td>-->
-          <!--<td>Commit ref: <a href="" class="light-link" id="latest-commitref" target="_blank"></a></td>-->
+          <td><strong>Name: </strong><a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></td>
+          <td><strong>Date: </strong><span id="latest-date"></span></td>
+          <!--<td><a href="" class="light-link" id="latest-changelog" target="_blank"><strong>Changelog</strong></a></td>-->
+          <td><strong>Timestamp: </strong><span id="latest-timestamp"></span></td>
+          <!--<td><strong>Build number: </strong><span id="latest-buildnumber"></span></td>-->
+          <!--<td><strong>Commit ref: </strong><a href="" class="light-link" id="latest-commitref" target="_blank"></a></td>-->
         </tr>
       </table>
 

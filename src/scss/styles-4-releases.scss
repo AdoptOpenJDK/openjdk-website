@@ -7,12 +7,6 @@ $tableblue-even: #1F2F4E;
 
 // LATEST RELEASE CSS
 
-#latest-build-name {
-  font-size: 3rem;
-  font-weight: bold;
-  margin: 0;
-}
-
 #latest-intro {
   margin: 1rem 0;
 }
@@ -20,25 +14,16 @@ $tableblue-even: #1F2F4E;
 #latest-metadata-table {
   color: $maingrey;
   margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0.3rem;
 }
 
 #latest-metadata-table td {
   padding: 0.5rem 1.5rem;
-}
-
-#latest-metadata-table td:first-child {
-  border-radius: 0.3rem 0 0 0.3rem;
-}
-#latest-metadata-table td:last-child {
-  border-radius: 0 0.3rem 0.3rem 0;
-}
-
-#latest-metadata-table td:nth-child(even) {
-  background-color: $tableblue-even;
-}
-
-#latest-metadata-table td:nth-child(odd) {
-  background-color: $tableblue-odd;
+  background-color: rgba(21, 41, 53, 0.075);
+  color: $mainblue;
+  margin: 0.3rem 0;
+  border-bottom: .2rem solid rgba(21, 41, 53, 0.15);
 }
 
 .latest-block {
