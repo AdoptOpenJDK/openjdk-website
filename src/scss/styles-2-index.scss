@@ -99,6 +99,12 @@ h2.transition-bright {
   margin-top: 2rem;
 }
 
+#minor-links span {
+  margin: 0 0.3rem;
+  color: $accentgrey;
+  font-size: 1.2rem;
+}
+
 @media all and (max-width: 300px) {
   #minor-links a {
     display: block;
