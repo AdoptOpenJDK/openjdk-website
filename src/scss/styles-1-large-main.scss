@@ -256,16 +256,49 @@ nav {
   padding: .8rem 0;
 }
 
-#menu-content p {
+#menu-content ul {
+  margin: 0;
+  padding: 0;
+}
+
+#menu-content li {
   border-bottom: 1px solid $accentgrey;
   margin: 0;
   line-height: 1.2rem;
+  list-style: none;
+}
+
+#menu-content .submenu > a > .twisty {
+  transition-duration: .3s;
+  margin-right: 0.5rem;
+  float: left;
+}
+
+#menu-content .submenu > ul {
+  display: none;
+}
+
+#menu-content .submenu > ul > li {
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  line-height: 0.9rem;
+  border-top: 1px solid $accentgrey;
+  border-bottom: none;
+  background-color: rgba(255,255,255,.4);
+}
+
+#menu-content .submenu.open > ul {
+  display: initial;
+}
+
+#menu-content .submenu.open > a > .twisty {
+  transform: rotate(90deg);
 }
 
 #menu-social-bar {
   display: inline-block;
   filter: brightness(0);
-  margin: 1rem auto 3rem;
+  margin: 1rem auto;
 }
 
 
