@@ -18,6 +18,9 @@
           <pre><code>cd &lt;path/to/your/directory&gt;</code></pre>
         </li>
         <li>
+          Optional: use the <a href="#sha256">checksum instructions</a> below to ensure the authenticity of your binary.
+        </li>
+        <li>
           Extract the <code>tar.gz</code>. You can use the following command:
           <pre><code>tar -xf &lt;filename&gt;.tar.gz</code></pre>
         </li>
@@ -41,6 +44,9 @@
           <pre><code>cd &lt;path\to\your\directory&gt;</code></pre>
         </li>
         <li>
+          Optional: use the <a href="#sha256">checksum instructions</a> below to ensure the authenticity of your binary.
+        </li>
+        <li>
           Extract the <code>.zip</code>. You can use the following command:
           <pre><code>unzip &lt;filename&gt;.zip</code></pre>
         </li>
@@ -53,6 +59,26 @@
           <pre><code>java -version</code></pre>
         </li>
       </ol>
+    </div>
+
+    <div>
+      <h2 id="sha256" class="bold">Checking the SHA-256 checksum</h2>
+      <p>Optionally, you can compare the SHA-256 checksum of your downloaded binary against the checksums that are provided for every release and nightly build.</p>
+      <p>Follow the instructions for your platform to generate a SHA-256 checksum of your downloaded binary, then open the corresponding <code>.txt</code> checksum file and ensure that it contains the same number.</p>
+      <ul>
+        <li>
+          <span>Linux: </span>
+          <pre><code>sha256sum path/to/file.tar.gz</code></pre>
+        </li>
+        <li>
+          <span>macOS: </span>
+          <pre><code>shasum -a 256 path/to/file.tar.gz</code></pre>
+        </li>
+        <li>
+          <span>Windows: </span>
+          <pre><code>certutil -hashfile path/to/file.zip SHA256</code></pre>
+        </li>
+      </ul>
     </div>
 
   </div>

@@ -181,3 +181,20 @@ function msieversion() {
     }
     else { return false; }
 }
+
+// build the menu twisties
+var submenus = document.getElementById("menu-content").getElementsByClassName("submenu");
+
+for (i = 0; i < submenus.length; i++) {
+  var twisty = document.createElement("span");
+  var twistyContent = document.createTextNode(">");
+  twisty.appendChild(twistyContent);
+  twisty.className = "twisty";
+
+  var thisLine = submenus[i].getElementsByTagName('a')[0];
+  thisLine.appendChild(twisty);
+
+  thisLine.onclick = function(){
+    this.parentNode.classList.toggle("open");
+  }
+}
