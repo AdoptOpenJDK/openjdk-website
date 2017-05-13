@@ -21,7 +21,20 @@
 
   <h3 id="scroll-text" class="hide" style="margin: 2rem 0 0 0;">Scroll horizontally to see all information <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
 
-  <input type="text" style="margin-top: 2rem;" class="block margin-auto" id="search" placeholder="Type to search">
+    <input type="text" style="margin-top: 2rem;" class="block margin-auto" id="search" placeholder="Type to search">
+
+    <div style="margin-top: 1rem;">
+      <span>View</span>
+      <select id="numberpicker">
+        <option value="10">10</option>
+        <option value="20" selected="selected">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <span>builds prior to: </span>
+      <input type="text" id="datepicker" style="margin-top: 0.5rem;">
+    </div>
+
   <div id="search-error" class="hide">No search results</div>
 
   <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
@@ -39,4 +52,4 @@
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>' script3='<script>onNightlyLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>' script3='<script>onNightlyLoad();</script>' }}

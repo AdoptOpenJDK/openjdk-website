@@ -54,6 +54,57 @@ th {
   color: $maingrey;
 }
 
+#datepicker {
+  min-width: 8rem;
+  width: 8rem;
+}
+
+#ui-datepicker-div {
+  padding: 0.4rem;
+  background-color: white;
+  text-align: center;
+}
+
+#ui-datepicker-div div {
+  display: inline-block;
+}
+
+#ui-datepicker-div div.ui-datepicker-header {
+  display: block;
+  padding: 0.6rem;
+}
+
+.ui-datepicker-title {
+  color: $mainblue;
+}
+
+.ui-datepicker-prev {
+  float: left;
+  color: $brighterblue;
+}
+
+.ui-datepicker-next {
+  float: right;
+  color: $brighterblue;
+}
+
+table.ui-datepicker-calendar {
+  border-collapse: separate;
+  border-spacing: 0.15rem;
+}
+
+table.ui-datepicker-calendar th, table.ui-datepicker-calendar td {
+  padding: 0.4rem 0.6rem;
+}
+
+table.ui-datepicker-calendar td {
+  background-color: rgba(21, 41, 53, 0.05);
+}
+
+.ui-datepicker-inline.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
+  display: inline-block !important;
+}
+
 // HIDES THE WINDOWS COLUMN IN THE NIGHTLY TABLE
 #nightly-table tr td:nth-child(3), #nightly-table th:nth-child(3) {
   /*display: none;*/

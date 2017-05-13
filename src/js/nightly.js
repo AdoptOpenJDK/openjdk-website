@@ -3,18 +3,32 @@ var tableHead = document.getElementById("table-head");
 var tableContainer = document.getElementById("nightly-list");
 var nightlyList = document.getElementById("nightly-table");
 var searchError = document.getElementById("search-error");
+var numberpicker = document.getElementById("numberpicker");
+var datepicker = document.getElementById("datepicker");
 
 // When nightly page loads, run:
 /* eslint-disable no-unused-vars */
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
-
+  setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 
+  numberpicker.onchange = function(){
+    setTableRange();
+  };
+  datepicker.onchange = function(){
+    setTableRange();
+  };
 }
 
 
 // NIGHTLY PAGE FUNCTIONS
+
+function setDatePicker() {
+  $(datepicker).datepicker();
+  var today = moment().format('MM/DD/YYYY');
+  datepicker.value = today;
+}
 
 function populateNightly() {
   // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
@@ -35,9 +49,6 @@ function populateNightly() {
       errorContainer.innerHTML = "<p>Error... no releases have been found!</p>";
       loading.innerHTML = ""; // remove the loading dots
     }
-
-    setSearchLogic();
-
   });
 }
 
@@ -83,7 +94,7 @@ function buildNightlyHTML(releasesJson) {
 
           // prepare a fully-populated HTML block for this release
           // to change the HTML of the nightly table rows/cells, you must change this template.
-          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td class='nightly-header'><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div><div class='divider'> | </div><div>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisFileExtension+" ("+thisBinarySize+" MB)</a><div class='divider'> | </div><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td><td class='nightly-details'><!--<div><strong><a href='put-changelog-link-here' class='dark-link'>Changelog</a></strong></div> <div class='divider'> | </div>--><div><strong>Timestamp: </strong>"+thisTimestamp+"</div><!--<div class='divider'> | </div> <div><strong>Commit: </strong><a href='put-commit-ref-link-here' class='dark-link'>put-commit-ref-here</a></div>--></td></tr>");
+          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td class='nightly-header'><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div><div class='divider'> | </div><div class='nightly-release-date'>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisFileExtension+" ("+thisBinarySize+" MB)</a><div class='divider'> | </div><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td><td class='nightly-details'><!--<div><strong><a href='put-changelog-link-here' class='dark-link'>Changelog</a></strong></div> <div class='divider'> | </div>--><div><strong>Timestamp: </strong>"+thisTimestamp+"</div><!--<div class='divider'> | </div> <div><strong>Commit: </strong><a href='put-commit-ref-link-here' class='dark-link'>put-commit-ref-here</a></div>--></td></tr>");
 
           // update the HTML container element with this new, blank, template row (hidden at this stage)
           nightlyList.innerHTML = newNightlyContent;
@@ -92,10 +103,12 @@ function buildNightlyHTML(releasesJson) {
     });
   });
 
+  setSearchLogic();
   loading.innerHTML = ""; // remove the loading dots
 
   // show the table, with animated fade-in
   nightlyList.className = nightlyList.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
+  setTableRange();
 
   // if the table has a scroll bar, show text describing how to horizontally scroll
   var scrollText = document.getElementById('scroll-text');
@@ -104,6 +117,27 @@ function buildNightlyHTML(releasesJson) {
   if (tableDisplayWidth != tableScrollWidth) {
     scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
   }
+}
+
+function setTableRange() {
+  var rows = $('#nightly-table tr');
+  var selectedDate = moment(datepicker.value, "MM-DD-YYYY").format();
+  var visibleRows = 0;
+
+  for (i = 0; i < rows.length; i++) {
+    var thisDate = rows[i].getElementsByClassName("nightly-release-date")[0].innerHTML;
+    var thisDateMoment = moment(thisDate, "Do MMMM YYYY").format();
+    var isAfter = moment(thisDateMoment).isAfter(selectedDate);
+    if(isAfter === true || visibleRows >= numberpicker.value) {
+      rows[i].classList.add("hide");
+    }
+    else {
+      rows[i].classList.remove("hide");
+      visibleRows++;
+    }
+  }
+
+  checkSearchResultsExist();
 }
 
 function setSearchLogic() {
@@ -120,13 +154,19 @@ function setSearchLogic() {
         return !reg.test(text);
     }).hide();
 
-    if(document.getElementById('table-parent').offsetHeight < 45) {
-      tableContainer.style.visibility = "hidden";
-      searchError.className = "";
-    } else {
-      tableContainer.style.visibility = "";
-      searchError.className = "hide";
-    }
+    checkSearchResultsExist();
   });
   /* eslint-enable */
+}
+
+function checkSearchResultsExist() {
+  var numOfVisibleRows = $("#nightly-table").find("tr:visible").length;
+  if(numOfVisibleRows == 0){
+    tableContainer.style.visibility = "hidden";
+    searchError.className = "";
+  }
+  else {
+    tableContainer.style.visibility = "";
+    searchError.className = "hide";
+  }
 }
