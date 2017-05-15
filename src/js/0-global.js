@@ -36,7 +36,7 @@ var platforms = [
     osDetectionString: "not-to-be-detected"
   },
   {
-    officialName: "ARM Linux",
+    officialName: "Linux arm64",
     searchableName: "ARM64_LINUX",
     logo: "arm.png",
     fileExtension: ".tar.gz",
