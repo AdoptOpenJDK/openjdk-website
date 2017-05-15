@@ -2,6 +2,7 @@ env:
   browser: true
   node: true
   es6: true
+  jquery: true
 rules:
   no-console: 0
   no-inner-declarations: 0
@@ -10,7 +11,7 @@ globals:
   detectOS: true
   loadReleasesJSON: true
   errorContainer: true
-  
+
   onIndexLoad: true
   onNightlyLoad: true
   onReleasesLoad: true

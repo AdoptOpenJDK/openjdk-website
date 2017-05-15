@@ -3,18 +3,32 @@ var tableHead = document.getElementById("table-head");
 var tableContainer = document.getElementById("nightly-list");
 var nightlyList = document.getElementById("nightly-table");
 var searchError = document.getElementById("search-error");
+var numberpicker = document.getElementById("numberpicker");
+var datepicker = document.getElementById("datepicker");
 
 // When nightly page loads, run:
 /* eslint-disable no-unused-vars */
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
-
+  setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 
+  numberpicker.onchange = function(){
+    setTableRange();
+  };
+  datepicker.onchange = function(){
+    setTableRange();
+  };
 }
 
 
 // NIGHTLY PAGE FUNCTIONS
+
+function setDatePicker() {
+  $(datepicker).datepicker();
+  var today = moment().format('MM/DD/YYYY');
+  datepicker.value = today;
+}
 
 function populateNightly() {
   // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
@@ -35,20 +49,13 @@ function populateNightly() {
       errorContainer.innerHTML = "<p>Error... no releases have been found!</p>";
       loading.innerHTML = ""; // remove the loading dots
     }
-
-    setSearchLogic();
-
   });
 }
 
 function buildNightlyHTML(releasesJson) {
-  loading.innerHTML = ""; // remove the loading dots
-
-  // for each release...
-  var tableRowCounter = 0;
-
   tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Platform</th><th>Downloads</th><th>Release details</th></tr>");
 
+  // for each release...
   releasesJson.forEach(function(eachRelease) {
 
     // create an array of the details for each binary that is attached to a release
@@ -72,50 +79,36 @@ function buildNightlyHTML(releasesJson) {
         var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
         if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
 
-          // get the current content of the nightly list div
+          // set values ready to be injected into the HTML
+          var publishedAt = eachRelease.published_at;
+          var thisReleaseName = eachRelease.name.slice(0, 12);
+          var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
+          var thisGitLink = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + eachRelease.name);
+          var thisOfficialName = getOfficialName(thisPlatform);
+          var thisBinaryLink = (eachAsset.browser_download_url);
+          var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
+          var thisTimestamp = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
+
           var currentNightlyContent = nightlyList.innerHTML;
 
-          // add an empty, hidden HTML template entry to the current nightly list, with the tableRowCounter suffixed to every ID
+          // prepare a fully-populated HTML block for this release
           // to change the HTML of the nightly table rows/cells, you must change this template.
-          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container hide' id='"+tableRowCounter+"'> <td class='nightly-header'> <div><strong><a href='' id='nightly-release"+tableRowCounter+"' class='dark-link' target='_blank'></a></strong></div> <div class='divider'> | </div> <div id='nightly-date"+tableRowCounter+"'></div> </td> <td id='platform-block"+tableRowCounter+"' class='nightly-platform-block'></td> <td id='downloads-block"+tableRowCounter+"' class='nightly-downloads-block'><div id='nightly-dl-content"+tableRowCounter+"'><a class='dark-link' href='' id='nightly-dl"+tableRowCounter+"'></a> <div class='divider'> | </div> <a href='' class='dark-link' id='nightly-checksum"+tableRowCounter+"'>Checksum</a> </div></td> <td class='nightly-details'> <!--<div><strong><a href='' class='dark-link' id='nightly-changelog"+tableRowCounter+"'>Changelog</a></strong></div> <div class='divider'> | </div>--> <div><strong>Timestamp: </strong><span id='nightly-timestamp"+tableRowCounter+"'></span></div> <!--<div class='divider'> | </div> <div><strong>Build number: </strong><span id='nightly-buildnumber"+tableRowCounter+"'></span></div>--> <!--<div class='divider'> | </div> <div><strong>Commit: </strong><a href='' class='dark-link' id='nightly-commitref"+tableRowCounter+"'></a></div>--> </td> </tr>");
+          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td class='nightly-header'><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div><div class='divider'> | </div><div class='nightly-release-date'>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisFileExtension+" ("+thisBinarySize+" MB)</a><div class='divider'> | </div><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td><td class='nightly-details'><!--<div><strong><a href='put-changelog-link-here' class='dark-link'>Changelog</a></strong></div> <div class='divider'> | </div>--><div><strong>Timestamp: </strong>"+thisTimestamp+"</div><!--<div class='divider'> | </div> <div><strong>Commit: </strong><a href='put-commit-ref-link-here' class='dark-link'>put-commit-ref-here</a></div>--></td></tr>");
 
           // update the HTML container element with this new, blank, template row (hidden at this stage)
           nightlyList.innerHTML = newNightlyContent;
-
-          // set variables for HTML elements.
-          var dlButton = document.getElementById("nightly-dl"+tableRowCounter);
-          //var dlContent = document.getElementById("nightly-dl-content"+tableRowCounter);
-
-          // populate this new row with the release information
-          var publishedAt = (eachRelease.published_at);
-          document.getElementById("nightly-release"+tableRowCounter).innerHTML = (eachRelease.name).slice(0, 12); // the release name, minus the timestamp
-          document.getElementById("nightly-release"+tableRowCounter).href = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + eachRelease.name) // the link to that release on GitHub
-          document.getElementById("nightly-date"+tableRowCounter).innerHTML = moment(publishedAt).format('Do MMMM YYYY'); // the timestamp converted into a readable date
-          //document.getElementById("nightly-changelog"+tableRowCounter).href = eachRelease.name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE. the link to the release changelog
-          document.getElementById("nightly-timestamp"+tableRowCounter).innerHTML = (eachRelease.name).slice(13, 25); // the timestamp section of the build name
-          //document.getElementById("nightly-buildnumber"+tableRowCounter).innerHTML = eachRelease.id; // TODO: currently this is the release ID
-          //document.getElementById("nightly-commitref"+tableRowCounter).innerHTML = eachRelease.name; // TODO: WAITING FOR THE INFO TO BE AVAILABLE.
-          //document.getElementById("nightly-commitref"+tableRowCounter).href = eachRelease.name; // TODO: WAITING FOR THE LINKS TO BE AVAILABLE.
-
-          // get the official name, e.g. Linux x86-64, and display it in this new row
-          var officialName = getOfficialName(thisPlatform);
-          document.getElementById("platform-block"+tableRowCounter).innerHTML = officialName;
-
-          // set the download section for this new row
-          dlButton.innerHTML = (thisFileExtension + " (" + (Math.floor((eachAsset.size)/1024/1024)) + " MB)"); // display the file type and the file size
-          document.getElementById("nightly-checksum"+tableRowCounter).href = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt"); // set the checksum link (relies on the checksum having the same name as the binary, but .sha256.txt extension)
-          var link = (eachAsset.browser_download_url);
-          dlButton.href = link; // set the download link
-
-          // show the new row, with animated fade-in
-          var trElement = document.getElementById(tableRowCounter);
-          trElement.className = trElement.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
-
-          tableRowCounter++;
         }
       }
     });
   });
+
+  setSearchLogic();
+  loading.innerHTML = ""; // remove the loading dots
+
+  // show the table, with animated fade-in
+  nightlyList.className = nightlyList.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
+  setTableRange();
 
   // if the table has a scroll bar, show text describing how to horizontally scroll
   var scrollText = document.getElementById('scroll-text');
@@ -126,9 +119,29 @@ function buildNightlyHTML(releasesJson) {
   }
 }
 
+function setTableRange() {
+  var rows = $('#nightly-table tr');
+  var selectedDate = moment(datepicker.value, "MM-DD-YYYY").format();
+  var visibleRows = 0;
+
+  for (i = 0; i < rows.length; i++) {
+    var thisDate = rows[i].getElementsByClassName("nightly-release-date")[0].innerHTML;
+    var thisDateMoment = moment(thisDate, "Do MMMM YYYY").format();
+    var isAfter = moment(thisDateMoment).isAfter(selectedDate);
+    if(isAfter === true || visibleRows >= numberpicker.value) {
+      rows[i].classList.add("hide");
+    }
+    else {
+      rows[i].classList.remove("hide");
+      visibleRows++;
+    }
+  }
+
+  checkSearchResultsExist();
+}
+
 function setSearchLogic() {
   // logic for the realtime search box...
-  /* eslint-disable */
   var $rows = $('#nightly-table tr');
   $('#search').keyup(function() {
     var val = '^(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$',
@@ -140,13 +153,18 @@ function setSearchLogic() {
         return !reg.test(text);
     }).hide();
 
-    if(document.getElementById('table-parent').offsetHeight < 45) {
-      tableContainer.style.visibility = "hidden";
-      searchError.className = "";
-    } else {
-      tableContainer.style.visibility = "";
-      searchError.className = "hide";
-    }
+    checkSearchResultsExist();
   });
-  /* eslint-enable */
+}
+
+function checkSearchResultsExist() {
+  var numOfVisibleRows = $("#nightly-table").find("tr:visible").length;
+  if(numOfVisibleRows == 0){
+    tableContainer.style.visibility = "hidden";
+    searchError.className = "";
+  }
+  else {
+    tableContainer.style.visibility = "";
+    searchError.className = "hide";
+  }
 }
