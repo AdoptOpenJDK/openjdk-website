@@ -26,7 +26,20 @@
 
 ---
 
+## Pull requests
+
+When pull requests are opened, contributors can use the [staging job on Jenkins](https://ci.adoptopenjdk.net/view/website/job/adoptopenjdk-website-staging/) to build the pull request and view it at [staging.adoptopenjdk.net](https://staging.adoptopenjdk.net).
+
+When pull requests are merged, they are automatically [built by Jenkins](https://ci.adoptopenjdk.net/view/website/job/adoptopenjdk-website-production/) into the [`gh-pages` branch](https://github.com/AdoptOpenJDK/openjdk-website/tree/gh-pages) on the openjdk-website repository, then deployed to the live site (as part of the GitHub Pages mechanism).
+
 ## Contribution guidelines
+
+### How is the website populated with data?
+The website uses JSON information from the [openjdk-releases](https://github.com/AdoptOpenJDK/openjdk-releases/releases) and [openjdk-nightly](https://github.com/AdoptOpenJDK/openjdk-nightly/releases) repositories on GitHub to populate each of the main pages.
+
+However, the website does not directly call the GitHub API, because this would quickly exceed GitHub's API rate limit. Instead, the [adoptopenjdk-website-backend](https://ci.adoptopenjdk.net/view/all/job/adoptopenjdk-website-backend/) Jenkins job calls the GitHub API on a regular basis throughout the day, checks for changes, and stores the returned JSON data in `.json` files on the [openjdk-website-backend](https://github.com/AdoptOpenJDK/openjdk-website-backend) repository on GitHub.
+
+The website's JavaScript then uses a GET request to access these `.json` files, and generates the necessary HTML to display the information on-screen.
 
 ### HTML (Handlebars) pt.1
 * Edit the `.handlebars` files in the `/src/handlebars` directory. These are built into HTML.
