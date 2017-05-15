@@ -35,15 +35,15 @@ var platforms = [
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
-  /*{
-    officialName: "Linux arm",
-    searchableName: "ARM_LINUX",
-    logo: "linux.png",
+  {
+    officialName: "ARM Linux",
+    searchableName: "ARM64_LINUX",
+    logo: "arm.png",
     fileExtension: ".tar.gz",
     requirements: "GLIBC 2.5 and above",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
-  },*/
+  },
   /*{
     officialName: "Windows x86-64",
     searchableName: "WIN",

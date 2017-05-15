@@ -142,7 +142,6 @@ function setTableRange() {
 
 function setSearchLogic() {
   // logic for the realtime search box...
-  /* eslint-disable */
   var $rows = $('#nightly-table tr');
   $('#search').keyup(function() {
     var val = '^(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$',
@@ -156,7 +155,6 @@ function setSearchLogic() {
 
     checkSearchResultsExist();
   });
-  /* eslint-enable */
 }
 
 function checkSearchResultsExist() {
