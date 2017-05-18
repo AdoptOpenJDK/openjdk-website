@@ -11,6 +11,10 @@ $tableblue-even: #1F2F4E;
   margin: 1rem 0;
 }
 
+#latest-build-name {
+  font-size: 1.5rem;
+}
+
 #latest-metadata-table {
   color: $maingrey;
   margin: 0 auto;
@@ -20,10 +24,16 @@ $tableblue-even: #1F2F4E;
 
 #latest-metadata-table td {
   padding: 0.5rem 1.5rem;
-  background-color: rgba(21, 41, 53, 0.075);
+  background-color: rgba(21, 41, 53, 0.05);
   color: $mainblue;
   margin: 0.3rem 0;
   border-bottom: .2rem solid rgba(21, 41, 53, 0.15);
+  border-radius: 0.2rem;
+}
+
+#latest-metadata-table td {
+  display: inline-block;
+  width: 80%;
 }
 
 #latest-downloads-container {
@@ -73,6 +83,10 @@ $tableblue-even: #1F2F4E;
   height: 3.5rem;
 }
 
+#latest-info img {
+  height: 4.5rem;
+}
+
 #latest-selector span {
   display: block;
   margin-top: 0.5rem;
@@ -85,7 +99,7 @@ $tableblue-even: #1F2F4E;
 #latest-info td {
   display: block;
   background-color: white;
-  padding: 2rem 2rem 4rem;
+  padding: 3rem 2rem;
 }
 
 .latest-block {
@@ -126,50 +140,3 @@ $tableblue-even: #1F2F4E;
   min-width: 12rem;
   box-sizing: border-box;
 }
-
-/*
-.latest-block {
-  display: inline-block;
-  vertical-align: top;
-  margin: 3rem 2.5rem 1rem;
-}
-
-.latest-platform {
-  font-size: 1.5rem;
-}
-
-.latest-platform img {
-  height: 3.5rem
-}
-
-a.latest-download-button {
-  background-color: $brighterblue;
-  display: block;
-  color: $maingrey;
-  border-radius: 0.2rem;
-  min-width: 14rem;
-  line-height: 2.5rem;
-  cursor: pointer;
-  margin: 1rem 0;
-}
-
-a.latest-download-button:hover {
-  background-color: rgb(68, 124, 195);
-  color: $maingrey;
-}
-
-.latest-details {
-  font-size: 0.8rem;
-}
-
-.latest-details p {
-  line-height: 1.2rem;
-}
-
-.small-dl-text {
-  font-size: .7rem;
-  line-height: 1.2rem;
-  transform: translateY(-0.4rem);
-  color: rgba(255, 255, 255, 0.64);
-}
-*/

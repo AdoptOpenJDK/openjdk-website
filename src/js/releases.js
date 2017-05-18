@@ -14,11 +14,7 @@ function populateLatest() {
     var releasesJson = JSON.parse(response);
 
     if (typeof releasesJson !== 'undefined') { // if there are releases...
-      // buildLatestHTML(releasesJson);
-      // DELETE THESE 3:
-      loading.innerHTML = ""; // remove the loading dots
-      const latestContainer = document.getElementById("latest-container");
-      latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
+      buildLatestHTML(releasesJson);
     }
     else {
       // report an error
@@ -45,6 +41,9 @@ function buildLatestHTML(releasesJson) {
     assetArray.push(each);
   });
 
+  latestSelectorHTML = "";
+  latestInfoHTML = "";
+
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
   assetArray.forEach(function(eachAsset) {
     var nameOfFile = (eachAsset.name);
@@ -66,23 +65,42 @@ function buildLatestHTML(releasesJson) {
         var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
         var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
 
-        // get the current content of the latest downloads container div
-        var latestContainer = document.getElementById("latest-downloads-container");
-        var currentLatestContent = latestContainer.innerHTML;
+        var thisInstallerLink = "Test";
+        var thisInstallerExtension = "Test";
+        var thisInstallerSize = "Test";
+
+        // if an installer exists for this platform
+        if(thisInstallerSize) {
+          var thisInstallerBlock = ("<div class='latest-block'><span>Installer</span><a href='" +thisInstallerLink+ "' class='latest-download-button a-button'><div>Download<div class='small-dl-text'>" +thisInstallerExtension+ " - " +thisInstallerSize+ " MB</div></div></a></div>");
+        }
+        else {
+          var thisInstallerBlock = "";
+        }
 
         // prepare a fully-populated HTML block for this platform
-        var newLatestContent = currentLatestContent += ("<div id='latest-"+ thisPlatform +"' class='latest-block'><div class='latest-platform'><img src='"+ thisLogo +"'><div>"+ thisOfficialName +"</div></div><a href='"+ thisBinaryLink +"' class='latest-download-button a-button' id='linux-dl-button'><div>Download <div class='small-dl-text'>"+ thisFileExtension +" - "+ thisBinarySize +" MB</div></div></a><div class='latest-details'><p><a href='"+ thisChecksumLink +"' class='dark-link' id='latest-checksum-"+ thisPlatform +"' target='_blank'>Checksum</a></p></ul></div></div>");
+        latestSelectorHTML += ("<td id='latest-selector-" +thisPlatform+ "' onclick='selectLatestPlatform(\"" +thisPlatform+ "\")'><img src='" +thisLogo+ "'><span>" +thisOfficialName+ "</span></td>");
+        latestInfoHTML += ("<td id='latest-info-" +thisPlatform+ "' class='hide'><img src='" +thisLogo+ "'><h2>" +thisOfficialName+ "</h2>" +thisInstallerBlock+ "<div class='latest-block'><span>Binary</span><a href='" +thisBinaryLink+ "' class='latest-download-button a-button'><div>Download<div class='small-dl-text'>" +thisFileExtension+ " - " +thisBinarySize+ " MB</div></div></a><a href='" +thisChecksumLink+ "' class='latest-checksum-button a-button grey-button'>Checksum</a></div></td>");
 
         // update the latest downloads container with this new platform block
-        latestContainer.innerHTML = newLatestContent;
       }
     }
   });
+
+  document.getElementById("latest-selector").innerHTML = latestSelectorHTML;
+  document.getElementById("latest-info").innerHTML = latestInfoHTML;
 
   loading.innerHTML = ""; // remove the loading dots
 
   const latestContainer = document.getElementById("latest-container");
   latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
+
+  // if the table has a scroll bar, show text describing how to horizontally scroll
+  var scrollText = document.getElementById('latest-scroll-text');
+  var tableDisplayWidth = document.getElementById('latest-selector').clientWidth;
+  var tableScrollWidth = document.getElementById('latest-selector').scrollWidth;
+  if (tableDisplayWidth != tableScrollWidth) {
+    scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+  }
 }
 
 function selectLatestPlatform(thisPlatform) {
