@@ -70,35 +70,3 @@ a.latest-download-button:hover {
   transform: translateY(-0.4rem);
   color: rgba(255, 255, 255, 0.64);
 }
-
-// ARCHIVE CSS
-
-#archive-list {
-  overflow: auto;
-}
-
-.archive-container {
-  margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: .2rem 2rem;
-  white-space: nowrap;
-}
-
-.archive-container>tbody>tr>td {
-  padding: 1rem 2rem;
-  background-color: #fff;
-  margin: 3rem 0.1rem;
-  font-size: 0.8rem;
-}
-
-.archive-container .grey-button {
-  font-size: inherit;
-}
-
-.archive-platforms {
-  border-spacing: .5rem 0;
-}
-
-.archive-details div {
-  margin: 0.5rem auto;
-}
