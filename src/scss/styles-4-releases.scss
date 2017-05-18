@@ -13,6 +13,7 @@ $tableblue-even: #1F2F4E;
 
 #latest-build-name {
   font-size: 1.5rem;
+  text-decoration: none;
 }
 
 #latest-metadata-table {
@@ -45,6 +46,7 @@ $tableblue-even: #1F2F4E;
   border-collapse: separate;
   border-spacing: 0;
   display: block;
+  margin-top: 1rem;
 }
 
 #latest-downloads-container table tbody {
@@ -57,7 +59,7 @@ $tableblue-even: #1F2F4E;
 
 #latest-scroll-text {
   font-size: 0.8rem;
-  margin: 1rem auto;
+  margin: 0 auto 1rem;
 }
 
 #latest-selector {
