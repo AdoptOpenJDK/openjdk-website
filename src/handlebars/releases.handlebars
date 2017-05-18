@@ -6,29 +6,98 @@
     <h1 class="large-title">Latest build</h1>
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
-    <div style="margin-bottom: 2rem;">
+    <!--<div style="margin-bottom: 2rem;">
       <a href="./archive.html" class="grey-button a-button">
         <div>
           <span>Build archive</span>
           <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
         </div>
       </a>
-    </div>
+    </div>-->
 
     <div id="latest-container" class="invisible">
 
       <table id="latest-metadata-table" cellspacing="0" cellpadding="0">
         <tr>
-          <td><strong>Name: </strong><a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></td>
-          <td><strong>Date: </strong><span id="latest-date"></span></td>
+          <td><strong>Name: </strong>jdk8u152-b04<a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></td>
+          <td><strong>Date: </strong>17th May 2017<span id="latest-date"></span></td>
+          <td><strong>Timestamp: </strong>201717051703<span id="latest-timestamp"></span></td>
           <!--<td><a href="" class="light-link" id="latest-changelog" target="_blank"><strong>Changelog</strong></a></td>-->
-          <td><strong>Timestamp: </strong><span id="latest-timestamp"></span></td>
-          <!--<td><strong>Build number: </strong><span id="latest-buildnumber"></span></td>-->
           <!--<td><strong>Commit ref: </strong><a href="" class="light-link" id="latest-commitref" target="_blank"></a></td>-->
         </tr>
       </table>
 
-      <div id="latest-downloads-container"></div>
+      <div id="latest-downloads-container">
+        <h2>Select a platform:</h2>
+        <h3 id="latest-scroll-text">(Scroll horizontally)</h3>
+
+        <table>
+          <tr id="latest-selector">
+            <td id='latest-selector-X64_LINUX' onclick='selectLatestPlatform("X64_LINUX")'>
+              <img src='./dist/assets/linux.png'>
+              <span>Linux x86-64</span>
+            </td>
+            <td id='latest-selector-X64_WIN' onclick='selectLatestPlatform("X64_WIN")'>
+              <img src='./dist/assets/windows.png'>
+              <span>Windows x86-64</span>
+            </td>
+            <td id='latest-selector-X64_MAC' onclick='selectLatestPlatform("X64_MAC")'>
+              <img src='./dist/assets/mac.png'>
+              <span>macOS x86-64</span>
+            </td>
+            <td id='latest-selector-S390X_LINUX' onclick='selectLatestPlatform("S390X_LINUX")'>
+              <img src='./dist/assets/s390x.png'>
+              <span>Linux s390x</span>
+            </td>
+            <td id='latest-selector-AARCH64_LINUX' onclick='selectLatestPlatform("AARCH64_LINUX")'>
+              <img src='./dist/assets/arm.png'>
+              <span>Linux aarch64</span>
+            </td>
+            <td id='latest-selector-PPC64LE_LINUX' onclick='selectLatestPlatform("PPC64LE_LINUX")'>
+              <img src='./dist/assets/ppc64le.png'>
+              <span>Linux ppc64le</span>
+            </td>
+          </tr>
+          <tr id="latest-info">
+            <td id='latest-info-X64_LINUX' class='hide'>
+              <h2>Linux x64-86</h2>
+              <div class="latest-block">
+                <span>Installer</span>
+                <a href="https://github.com/AdoptOpenJDK/openjdk-releases/releases/download/jdk8u152-b04/OpenJDK8_ppc64le_Linux_jdk8u152-b04.tar.gz" class="latest-download-button a-button">
+                  <div>Download
+                    <div class="small-dl-text">.dmg - 72 MB</div>
+                  </div>
+                </a>
+              </div>
+              <div class="latest-block">
+                <span>Binary</span>
+                <a href="https://github.com/AdoptOpenJDK/openjdk-releases/releases/download/jdk8u152-b04/OpenJDK8_ppc64le_Linux_jdk8u152-b04.tar.gz" class="latest-download-button a-button">
+                  <div>Download
+                    <div class="small-dl-text">.tar.gz - 72 MB</div>
+                  </div>
+                </a>
+                <a href="" class="latest-checksum-button a-button grey-button">Checksum</div></a>
+              </div>
+              </td>
+            <td id='latest-info-X64_WIN' class='hide'>
+              <span>Windows x86-64</span>
+            </td>
+            <td id='latest-info-X64_MAC' class='hide'>
+              <span>macOS x86-64</span>
+            </td>
+            <td id='latest-info-S390X_LINUX' class='hide'>
+              <span>Linux s390x</span>
+            </td>
+            <td id='latest-info-AARCH64_LINUX' class='hide'>
+              <span>Linux aarch64</span>
+            </td>
+            <td id='latest-info-PPC64LE_LINUX' class='hide'>
+              <span>Linux ppc64le</span>
+            </td>
+          </tr>
+        </table>
+
+      </div>
 
     </div>
 

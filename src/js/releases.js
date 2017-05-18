@@ -14,7 +14,11 @@ function populateLatest() {
     var releasesJson = JSON.parse(response);
 
     if (typeof releasesJson !== 'undefined') { // if there are releases...
-      buildLatestHTML(releasesJson);
+      // buildLatestHTML(releasesJson);
+      // DELETE THESE 3:
+      loading.innerHTML = ""; // remove the loading dots
+      const latestContainer = document.getElementById("latest-container");
+      latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
     }
     else {
       // report an error
@@ -30,9 +34,8 @@ function buildLatestHTML(releasesJson) {
   document.getElementById("latest-build-name").innerHTML = releasesJson.name;
   document.getElementById("latest-build-name").href = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + releasesJson.name);
   document.getElementById("latest-date").innerHTML = moment(publishedAt).format('Do MMMM YYYY');
-  //document.getElementById("latest-changelog").href = releasesJson.name;
   document.getElementById("latest-timestamp").innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
-  //document.getElementById("latest-buildnumber").innerHTML = releasesJson.id;
+  //document.getElementById("latest-changelog").href = releasesJson.name;
   //document.getElementById("latest-commitref").innerHTML = releasesJson.name;
   //document.getElementById("latest-commitref").href = releasesJson.name;
 
@@ -80,4 +83,20 @@ function buildLatestHTML(releasesJson) {
 
   const latestContainer = document.getElementById("latest-container");
   latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
+}
+
+function selectLatestPlatform(thisPlatform) {
+  var platformButtons = document.getElementById("latest-selector").getElementsByTagName("TD");
+  var platformInfoBoxes = document.getElementById("latest-info").getElementsByTagName("TD");
+
+  for (i = 0; i < platformButtons.length; i++) {
+    platformButtons[i].classList.remove("latest-highlight");
+    platformInfoBoxes[i].classList.add("hide");
+  }
+
+  var thisPlatformSelector = document.getElementById("latest-selector-" + thisPlatform);
+  var thisPlatformInfo = document.getElementById("latest-info-" + thisPlatform);
+
+  thisPlatformSelector.classList.add("latest-highlight");
+  thisPlatformInfo.classList.remove("hide");
 }

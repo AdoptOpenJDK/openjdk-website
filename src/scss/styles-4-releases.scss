@@ -26,6 +26,108 @@ $tableblue-even: #1F2F4E;
   border-bottom: .2rem solid rgba(21, 41, 53, 0.15);
 }
 
+#latest-downloads-container {
+  max-width: 80rem;
+  margin: 2rem auto auto;
+}
+
+#latest-downloads-container table {
+  border-collapse: separate;
+  border-spacing: 0;
+  display: block;
+}
+
+#latest-downloads-container table tbody {
+  display: inline-grid;
+}
+
+#latest-downloads-container table td {
+  border: 0.1rem solid $maingrey;
+}
+
+#latest-scroll-text {
+  font-size: 0.8rem;
+  margin: 1rem auto;
+}
+
+#latest-selector {
+  display: block;
+  overflow-x: auto;
+  background-color: rgba(#fff,.6);
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+#latest-selector td {
+  cursor: pointer;
+  min-width: 9.8rem;
+  padding: 2rem 0;
+}
+
+#latest-selector td:hover, #latest-selector td.latest-highlight {
+  color: $mainblue;
+  background-color: white;
+}
+
+#latest-selector img {
+  height: 3.5rem;
+}
+
+#latest-selector span {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+#latest-info {
+  display: block;
+}
+
+#latest-info td {
+  display: block;
+  background-color: white;
+  padding: 2rem 2rem 4rem;
+}
+
+.latest-block {
+  display: inline-block;
+  vertical-align: top;
+  margin: 1rem 1rem 0;
+}
+
+.latest-block a.latest-download-button {
+  background-color: $brighterblue;
+  display: block;
+  color: $maingrey;
+  border-radius: 0.2rem;
+  line-height: 2.5rem;
+  cursor: pointer;
+  margin: 1rem 0;
+  padding: 0 2.5rem;
+}
+
+.latest-block a.latest-download-button:hover {
+  background-color: rgb(68, 124, 195);
+  color: $maingrey;
+}
+
+.latest-block .small-dl-text {
+  font-size: .7rem;
+  line-height: 1.2rem;
+  transform: translateY(-0.4rem);
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.latest-block a.latest-checksum-button {
+  font-size: .9rem;
+  margin: 0;
+}
+
+.latest-block .a-button {
+  min-width: 12rem;
+  box-sizing: border-box;
+}
+
+/*
 .latest-block {
   display: inline-block;
   vertical-align: top;
@@ -70,3 +172,4 @@ a.latest-download-button:hover {
   transform: translateY(-0.4rem);
   color: rgba(255, 255, 255, 0.64);
 }
+*/
