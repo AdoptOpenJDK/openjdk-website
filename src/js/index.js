@@ -33,12 +33,12 @@ function setDownloadSection() {
 }
 
 function buildHomepageHTML(releasesJson) {
-  // set the download button's version number to the latest release
+  // set the download button's version number to the latest build
   dlVersionText.innerHTML = releasesJson.tag_name;
 
   // create an array of the details for each binary that is attached to a release
   var assetArray = [];
-  // create a new array that contains each 'asset' (binary) from the latest release:
+  // create a new array that contains each 'asset' (binary) from the latest build:
   releasesJson.assets.forEach(function(each) {
     assetArray.push(each);
   });
@@ -84,7 +84,7 @@ function buildHomepageHTML(releasesJson) {
     dlIcon.className += " hide"; // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.className = dlIcon2.className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // un-hide an arrow-right icon to show instead
     dlText.innerHTML = ("Downloads"); // change the text to be generic: 'Downloads'.
-    dlLatest.href = "./releases.html"; // set the main download button's link to the latest releases page for all platforms.
+    dlLatest.href = "./releases.html"; // set the main download button's link to the latest builds page for all platforms.
   }
 
   // remove the loading dots, and make all buttons visible, with animated fade-in
