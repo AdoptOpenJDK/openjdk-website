@@ -4,7 +4,7 @@
 // searchableName: a string that appears in the name of the binaries and checksums, that can be used to identify the platform.
 // logo: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
 // fileExtension: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
-// requirements: currently just displayed on the 'latest release' page. Should be a short string identifying the most important min. requirement of a machine to run the latest release.
+// requirements: currently just displayed on the 'latest build' page. Should be a short string identifying the most important min. requirement of a machine to run the latest build.
 // architecture: 64 or 32. May be required for differentiation between future builds.
 // osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
 var platforms = [
@@ -13,7 +13,6 @@ var platforms = [
     searchableName: "X64_LINUX",
     logo: "linux.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above",
     architecture: "64",
     osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
   },
@@ -22,7 +21,6 @@ var platforms = [
     searchableName: "S390X_LINUX",
     logo: "s390x.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -31,7 +29,6 @@ var platforms = [
     searchableName: "PPC64LE_LINUX",
     logo: "ppc64le.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -40,7 +37,6 @@ var platforms = [
     searchableName: "AARCH64_LINUX",
     logo: "arm.png",
     fileExtension: ".tar.gz",
-    requirements: "GLIBC 2.5 and above",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -49,7 +45,6 @@ var platforms = [
     searchableName: "X64_WIN",
     logo: "windows.png",
     fileExtension: ".zip",
-    requirements: "VS 2010 and above",
     architecture: "64",
     osDetectionString: "Windows Win Cygwin"
   },
@@ -58,7 +53,6 @@ var platforms = [
     searchableName: "X64_MAC",
     logo: "mac.png",
     fileExtension: ".tar.gz",
-    requirements: "macOS 10.8 and above",
     architecture: "64",
     osDetectionString: "Mac OS X OSX macOS Macintosh"
   }
@@ -104,11 +98,6 @@ function getFileExt(searchableName) {
 // gets the LOGO WITH PATH when you pass in 'searchableName'
 function getLogo(searchableName) {
   return (logoPath + (lookup[searchableName].logo));
-}
-
-// gets the PLATFORM REQUIREMENTS when you pass in 'searchableName'
-function getRequirements(searchableName) {
-  return (lookup[searchableName].requirements);
 }
 
 // set value for loading dots on every page
