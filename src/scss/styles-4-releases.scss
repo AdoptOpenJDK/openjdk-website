@@ -2,6 +2,7 @@ $mainblue: #152935;
 $maingrey: #F5F5F5;
 $brighterblue: #3D70B2;
 $accentgrey: #dadada;
+$palegrey: #e6e6e6;
 $tableblue-odd: #182336;
 $tableblue-even: #1F2F4E;
 
@@ -130,15 +131,28 @@ $tableblue-even: #1F2F4E;
   font-size: .7rem;
   line-height: 1.2rem;
   transform: translateY(-0.4rem);
-  color: rgba(255, 255, 255, 0.64);
+  color: rgba(255, 255, 255, .7);
 }
 
-.latest-block a.latest-checksum-button {
-  font-size: .9rem;
-  margin: 0;
-}
-
-.latest-block .a-button {
+.latest-block a.a-button {
   min-width: 12rem;
   box-sizing: border-box;
+}
+
+.latest-block a.a-button.binary-dl {
+  background-color: $accentgrey;
+  &:hover {
+    background-color: $palegrey;
+  }
+  div.large-dl-text {
+    color: $mainblue;
+  }
+  div.small-dl-text {
+    color: rgba(21, 41, 53, 0.7);
+  }
+}
+
+.latest-details p {
+  font-size: .8rem;
+  line-height: 1.2rem;
 }

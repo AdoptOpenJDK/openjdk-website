@@ -63,17 +63,17 @@ function buildArchiveHTML(releasesJson) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
-        if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+        var thisBinaryExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
+        if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
 
           // set values ready to be injected into the HTML
           var thisOfficialName = getOfficialName(thisPlatform);
           var thisBinaryLink = (eachAsset.browser_download_url);
           var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
+          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, ".sha256.txt");
 
           // prepare a fully-populated table row for this platform
-          platformTableRows += ("<tr class='platform-row "+ thisPlatform +"'><td>"+ thisOfficialName +"</td><td class='download-td'><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisFileExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
+          platformTableRows += ("<tr class='platform-row "+ thisPlatform +"'><td>"+ thisOfficialName +"</td><td class='download-td'><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisBinaryExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
         }
       }
     });
