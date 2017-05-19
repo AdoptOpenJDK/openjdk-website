@@ -17,4 +17,18 @@
     font-size: 2rem;
   }
 
+  #latest-info td {
+    display: block;
+  }
+
+  #latest-info .platform-section {
+    display: block;
+    border-right: none;
+    padding: 0;
+  }
+
+  #latest-info .content-section {
+    padding: 1rem 0 0;
+  }
+
 }

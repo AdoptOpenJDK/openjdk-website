@@ -46,12 +46,12 @@ $tableblue-even: #1F2F4E;
 #latest-downloads-container table {
   border-collapse: separate;
   border-spacing: 0;
-  display: block;
+  margin: auto;
   margin-top: 1rem;
 }
 
 #latest-downloads-container table tbody {
-  display: inline-grid;
+  display: inline;
 }
 
 #latest-downloads-container table td {
@@ -69,6 +69,7 @@ $tableblue-even: #1F2F4E;
   background-color: rgba(#fff,.6);
   vertical-align: top;
   box-sizing: border-box;
+  position: relative;
 }
 
 #latest-selector td {
@@ -100,15 +101,32 @@ $tableblue-even: #1F2F4E;
 }
 
 #latest-info td {
-  display: block;
   background-color: white;
   padding: 3rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#latest-info .platform-section {
+  display: inline-block;
+  padding: 2rem;
+  border-right: 0.2rem solid rgba(21,41,53,.15);
+  h2 {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+#latest-info .content-section {
+  display: inline-block;
+  margin: auto;
+  padding: 0 2rem;
 }
 
 .latest-block {
   display: inline-block;
   vertical-align: top;
-  margin: 1rem 1rem 0;
+  margin: 2rem 1rem 1rem;
 }
 
 .latest-block a.latest-download-button {
@@ -152,7 +170,7 @@ $tableblue-even: #1F2F4E;
   }
 }
 
-.latest-details p {
+.latest-block .latest-details p {
   font-size: .8rem;
   line-height: 1.2rem;
 }

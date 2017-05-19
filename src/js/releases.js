@@ -31,9 +31,6 @@ function buildLatestHTML(releasesJson) {
   document.getElementById("latest-build-name").href = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + releasesJson.name);
   document.getElementById("latest-date").innerHTML = moment(publishedAt).format('Do MMMM YYYY');
   document.getElementById("latest-timestamp").innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
-  //document.getElementById("latest-changelog").href = releasesJson.name;
-  //document.getElementById("latest-commitref").innerHTML = releasesJson.name;
-  //document.getElementById("latest-commitref").href = releasesJson.name;
 
   // create an array of the details for each asset that is attached to a release
   var assetArray = [];
@@ -87,7 +84,7 @@ function buildLatestHTML(releasesJson) {
 
         // prepare a fully-populated HTML block for this platform
         latestSelectorHTML += ("<td id='latest-selector-" +thisPlatform+ "' onclick='selectLatestPlatform(\"" +thisPlatform+ "\")'><img src='" +thisLogo+ "'><span>" +thisOfficialName+ "</span></td>");
-        latestInfoHTML += ("<td id='latest-info-" +thisPlatform+ "' class='hide'><img src='" +thisLogo+ "'><h2>" +thisOfficialName+ "</h2>" +thisInstallerBlock+ "<div class='latest-block'><span>Binary</span><a href='" +thisBinaryLink+ "' class='latest-download-button a-button " +binaryButtonCSS+ "'><div class='large-dl-text'>Download<div class='small-dl-text'>" +thisBinaryExtension+ " - " +thisBinarySize+ " MB</div></div></a><div class='latest-details'><p><a href='" +thisChecksumLink+ "' class='dark-link' target='_blank'>Checksum</a></p></div></div></td>");
+        latestInfoHTML += ("<td id='latest-info-" +thisPlatform+ "' class='hide'><div class='platform-section'><img src='" +thisLogo+ "'><h2>" +thisOfficialName+ "</h2></div><div class='content-section'>" +thisInstallerBlock+ "<div class='latest-block'><span>Binary</span><a href='" +thisBinaryLink+ "' class='latest-download-button a-button " +binaryButtonCSS+ "'><div class='large-dl-text'>Download<div class='small-dl-text'>" +thisBinaryExtension+ " - " +thisBinarySize+ " MB</div></div></a><div class='latest-details'><p><a href='" +thisChecksumLink+ "' class='dark-link' target='_blank'>Checksum</a></p></div></div></div></td>");
 
       }
     }
@@ -97,18 +94,24 @@ function buildLatestHTML(releasesJson) {
   document.getElementById("latest-selector").innerHTML = latestSelectorHTML;
   document.getElementById("latest-info").innerHTML = latestInfoHTML;
 
+  // if the table has a scroll bar, show text describing how to horizontally scroll
+  var scrollText = document.getElementById('latest-scroll-text');
+  var latestSelector = document.getElementById('latest-selector');
+  var tableDisplayWidth = latestSelector.clientWidth;
+  var tableScrollWidth = latestSelector.scrollWidth;
+  if (tableDisplayWidth != tableScrollWidth) {
+    scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+  }
+
+  var latestTable = document.getElementById('latest-table');
+  latestTable.style.display = "block";
+  latestTable.style.maxWidth = (tableScrollWidth + "px");
+
+
   loading.innerHTML = ""; // remove the loading dots
 
   const latestContainer = document.getElementById("latest-container");
   latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
-
-  // if the table has a scroll bar, show text describing how to horizontally scroll
-  var scrollText = document.getElementById('latest-scroll-text');
-  var tableDisplayWidth = document.getElementById('latest-selector').clientWidth;
-  var tableScrollWidth = document.getElementById('latest-selector').scrollWidth;
-  if (tableDisplayWidth != tableScrollWidth) {
-    scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
-  }
 }
 
 /* eslint-disable no-unused-vars */
