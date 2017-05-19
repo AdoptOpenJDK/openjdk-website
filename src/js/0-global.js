@@ -13,6 +13,7 @@ var platforms = [
     searchableName: "X64_LINUX",
     logo: "linux.png",
     fileExtension: ".tar.gz",
+    installerExtension: ".deb",
     architecture: "64",
     osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
   },
@@ -21,6 +22,7 @@ var platforms = [
     searchableName: "S390X_LINUX",
     logo: "s390x.png",
     fileExtension: ".tar.gz",
+    installerExtension: ".deb",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -29,6 +31,7 @@ var platforms = [
     searchableName: "PPC64LE_LINUX",
     logo: "ppc64le.png",
     fileExtension: ".tar.gz",
+    installerExtension: ".deb",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -37,6 +40,7 @@ var platforms = [
     searchableName: "AARCH64_LINUX",
     logo: "arm.png",
     fileExtension: ".tar.gz",
+    installerExtension: ".deb",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -45,6 +49,7 @@ var platforms = [
     searchableName: "X64_WIN",
     logo: "windows.png",
     fileExtension: ".zip",
+    installerExtension: ".txt",
     architecture: "64",
     osDetectionString: "Windows Win Cygwin"
   },
@@ -53,6 +58,7 @@ var platforms = [
     searchableName: "X64_MAC",
     logo: "mac.png",
     fileExtension: ".tar.gz",
+    installerExtension: ".dmg",
     architecture: "64",
     osDetectionString: "Mac OS X OSX macOS Macintosh"
   }
@@ -90,9 +96,14 @@ function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
 }
 
-// gets the FILE EXTENSION when you pass in 'searchableName'
+// gets the BINARY EXTENSION when you pass in 'searchableName'
 function getFileExt(searchableName) {
   return (lookup[searchableName].fileExtension);
+}
+
+// gets the INSTALLER EXTENSION when you pass in 'searchableName'
+function getInstallerExt(searchableName) {
+  return (lookup[searchableName].installerExtension);
 }
 
 // gets the LOGO WITH PATH when you pass in 'searchableName'
