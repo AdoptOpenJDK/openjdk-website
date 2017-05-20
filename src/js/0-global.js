@@ -9,7 +9,7 @@
 // osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
 var platforms = [
   {
-    officialName: "Linux x86-64",
+    officialName: "Linux x64",
     searchableName: "X64_LINUX",
     logo: "linux.png",
     binaryExtension: ".tar.gz",
@@ -18,7 +18,7 @@ var platforms = [
     osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
   },
   {
-    officialName: "Windows x86-64",
+    officialName: "Windows x64",
     searchableName: "X64_WIN",
     logo: "windows.png",
     binaryExtension: ".zip",
@@ -27,7 +27,7 @@ var platforms = [
     osDetectionString: "Windows Win Cygwin"
   },
   {
-    officialName: "macOS x86-64",
+    officialName: "macOS x64",
     searchableName: "X64_MAC",
     logo: "mac.png",
     binaryExtension: ".tar.gz",

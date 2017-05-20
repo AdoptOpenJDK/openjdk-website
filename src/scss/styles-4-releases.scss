@@ -110,7 +110,8 @@ $tableblue-even: #1F2F4E;
 #latest-info .platform-section {
   display: inline-block;
   padding: 2rem;
-  border-right: 0.2rem solid rgba(21,41,53,.15);
+  border-right: 0.2rem solid rgba(21,41,53,.1);
+  min-width: 10rem;
   h2 {
     margin-bottom: 0;
     white-space: nowrap;
