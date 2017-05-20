@@ -38,6 +38,17 @@ function buildLatestHTML(releasesJson) {
     assetArray.push(each);
   });
 
+  // create an array containing one object for each platform, ready to be populated with HTML blocks.
+  var htmlArray = [];
+  platforms.forEach(function(eachPlatform) {
+    var obj = new Object();
+    obj.searchableName = eachPlatform.searchableName;
+    obj.installerBlock = "";
+    obj.binaryBlock = "";
+    htmlArray.push(obj);
+  });
+
+  // create empty variables ready for the generated HTML
   var latestSelectorHTML = "";
   var latestInfoHTML = "";
 
@@ -47,50 +58,52 @@ function buildLatestHTML(releasesJson) {
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
     var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
-    // firstly, check if the platform name is recognised...
+    // check if the platform name is recognised...
     if(thisPlatform) {
 
-      // secondly, search the assetArray for an installer for this platform, and create an HTML block for it
-      var thisInstallerBlock = "";
-      var thisInstallerExtension = getInstallerExt(thisPlatform); // get the file extension associated with this platform
+      // get the index of the platform object inside htmlArray that matches the platform of this asset
+      var objIndex = htmlArray.findIndex(function(obj) { return obj.searchableName == thisPlatform; });
 
-      assetArray.forEach(function(eachAsset2) {
-        var nameOfFile2 = (eachAsset2.name);
-        var uppercaseFilename2 = nameOfFile2.toUpperCase();
-        // if the filename contains both the platform name and the matching installer extension, create an HTML block:
-        if(uppercaseFilename2.indexOf(thisInstallerExtension.toUpperCase()) >= 0 && uppercaseFilename2.indexOf(thisPlatform) >= 0) {
-          var thisInstallerLink = (eachAsset2.browser_download_url);
-          var thisInstallerSize = Math.floor((eachAsset2.size)/1024/1024);
-          thisInstallerBlock = ("<div class='latest-block'><span>Installer</span><a href='" +thisInstallerLink+ "' class='latest-download-button a-button installer-dl'><div class='large-dl-text'>Download<div class='small-dl-text'>" +thisInstallerExtension+ " - " +thisInstallerSize+ " MB</div></div></a></div>");
-        }
-      });
+      // if the filename contains both the platform name and the matching INSTALLER extension, add an HTML block to htmlArray
+      var thisInstallerExtension = getInstallerExt(thisPlatform);
+      if(uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
+        var thisInstallerLink = (eachAsset.browser_download_url);
+        var thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
+        htmlArray[objIndex].installerBlock = ("<div class='latest-block'><span>Installer</span><a href='" +thisInstallerLink+ "' class='latest-download-button a-button installer-dl'><div class='large-dl-text'>Download<div class='small-dl-text'>" +thisInstallerExtension+ " - " +thisInstallerSize+ " MB</div></div></a></div>");
+      }
 
-      // thirdly, check if this file is a binary by testing for the expected binary extension for that platform...
-      // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-      var thisBinaryExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
+      // if the filename contains both the platform name and the matching BINARY extension, add an HTML block to htmlArray
+      var thisBinaryExtension = getBinaryExt(thisPlatform);
       if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
-
-        // set values ready to be injected into the HTML
-        var thisLogo = getLogo(thisPlatform);
-        var thisOfficialName = getOfficialName(thisPlatform);
         var thisBinaryLink = (eachAsset.browser_download_url);
         var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
         var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, ".sha256.txt");
-
-        var binaryButtonCSS = "";
-        if(thisInstallerBlock != "") {
-          binaryButtonCSS = "binary-dl";
-        }
-
-        // prepare a fully-populated HTML block for this platform
-        latestSelectorHTML += ("<td id='latest-selector-" +thisPlatform+ "' onclick='selectLatestPlatform(\"" +thisPlatform+ "\")'><img src='" +thisLogo+ "'><span>" +thisOfficialName+ "</span></td>");
-        latestInfoHTML += ("<td id='latest-info-" +thisPlatform+ "' class='hide'><div class='platform-section'><img src='" +thisLogo+ "'><h2>" +thisOfficialName+ "</h2></div><div class='content-section'>" +thisInstallerBlock+ "<div class='latest-block'><span>Binary</span><a href='" +thisBinaryLink+ "' class='latest-download-button a-button " +binaryButtonCSS+ "'><div class='large-dl-text'>Download<div class='small-dl-text'>" +thisBinaryExtension+ " - " +thisBinarySize+ " MB</div></div></a><div class='latest-details'><p><a href='" +thisChecksumLink+ "' class='dark-link' target='_blank'>Checksum</a></p></div></div></div></td>");
-
+        htmlArray[objIndex].binaryBlock = ("<div class='latest-block'><span>Binary</span><a href='" +thisBinaryLink+ "' class='latest-download-button a-button'><div class='large-dl-text'>Download<div class='small-dl-text'>" +thisBinaryExtension+ " - " +thisBinarySize+ " MB</div></div></a><div class='latest-details'><p><a href='" +thisChecksumLink+ "' class='dark-link' target='_blank'>Checksum</a></p></div></div>");
       }
+
     }
   });
 
-  // update the latest downloads container with this new platform block
+  // iterate through htmlArray, creating HTML for each platform
+  htmlArray.forEach(function(eachPlatform) {
+    var thisPlatform = eachPlatform.searchableName;
+    var thisLogo = getLogo(thisPlatform);
+    var thisOfficialName = getOfficialName(thisPlatform);
+    var thisInstallerBlock = eachPlatform.installerBlock;
+    // if an installer is present, wrap the binary block HTML in a div that gives it grey button styling
+    var thisBinaryBlock = "";
+    if(thisInstallerBlock != "") {
+      thisBinaryBlock = ("<div class='inline-block binary-grey'>" + eachPlatform.binaryBlock + "</div>");
+    } else {
+      thisBinaryBlock = (eachPlatform.binaryBlock);
+    }
+
+    // prepare fully-populated selector and info sections for this platform, append them to the HTML block variables
+    latestSelectorHTML += ("<td id='latest-selector-" +thisPlatform+ "' onclick='selectLatestPlatform(\"" +thisPlatform+ "\")'><img src='" +thisLogo+ "'><span>" +thisOfficialName+ "</span></td>");
+    latestInfoHTML += ("<td id='latest-info-" +thisPlatform+ "' class='hide'><div class='platform-section'><img src='" +thisLogo+ "'><h2>" +thisOfficialName+ "</h2></div><div class='content-section'>" + thisInstallerBlock + thisBinaryBlock + "</div></td>");
+  });
+
+  // add all of the generated HTML to the latest downloads container
   document.getElementById("latest-selector").innerHTML = latestSelectorHTML;
   document.getElementById("latest-info").innerHTML = latestInfoHTML;
 

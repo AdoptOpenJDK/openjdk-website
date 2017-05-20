@@ -76,7 +76,7 @@ function buildNightlyHTML(releasesJson) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisBinaryExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
+        var thisBinaryExtension = getBinaryExt(thisPlatform); // get the file extension associated with this platform
         if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
 
           // set values ready to be injected into the HTML

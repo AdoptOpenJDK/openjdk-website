@@ -18,6 +18,24 @@ var platforms = [
     osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
   },
   {
+    officialName: "Windows x86-64",
+    searchableName: "X64_WIN",
+    logo: "windows.png",
+    binaryExtension: ".zip",
+    installerExtension: ".exe",
+    architecture: "64",
+    osDetectionString: "Windows Win Cygwin"
+  },
+  {
+    officialName: "macOS x86-64",
+    searchableName: "X64_MAC",
+    logo: "mac.png",
+    binaryExtension: ".tar.gz",
+    installerExtension: ".dmg",
+    architecture: "64",
+    osDetectionString: "Mac OS X OSX macOS Macintosh"
+  },
+  {
     officialName: "Linux s390x",
     searchableName: "S390X_LINUX",
     logo: "s390x.png",
@@ -43,24 +61,6 @@ var platforms = [
     installerExtension: "no-installer-available",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
-  },
-  {
-    officialName: "Windows x86-64",
-    searchableName: "X64_WIN",
-    logo: "windows.png",
-    binaryExtension: ".zip",
-    installerExtension: ".exe",
-    architecture: "64",
-    osDetectionString: "Windows Win Cygwin"
-  },
-  {
-    officialName: "macOS x86-64",
-    searchableName: "X64_MAC",
-    logo: "mac.png",
-    binaryExtension: ".tar.gz",
-    installerExtension: ".dmg",
-    architecture: "64",
-    osDetectionString: "Mac OS X OSX macOS Macintosh"
   }
 ];
 
@@ -97,7 +97,7 @@ function getOfficialName(searchableName) {
 }
 
 // gets the BINARY EXTENSION when you pass in 'searchableName'
-function getFileExt(searchableName) {
+function getBinaryExt(searchableName) {
   return (lookup[searchableName].binaryExtension);
 }
 
