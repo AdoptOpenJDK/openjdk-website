@@ -2,6 +2,7 @@ $mainblue: #152935;
 $maingrey: #F5F5F5;
 $brighterblue: #3D70B2;
 $accentgrey: #dadada;
+$palegrey: #e6e6e6;
 $tableblue-odd: #182336;
 $tableblue-even: #1F2F4E;
 
@@ -9,6 +10,11 @@ $tableblue-even: #1F2F4E;
 
 #latest-intro {
   margin: 1rem 0;
+}
+
+#latest-build-name {
+  font-size: 1.5rem;
+  text-decoration: none;
 }
 
 #latest-metadata-table {
@@ -20,53 +26,152 @@ $tableblue-even: #1F2F4E;
 
 #latest-metadata-table td {
   padding: 0.5rem 1.5rem;
-  background-color: rgba(21, 41, 53, 0.075);
+  background-color: rgba(21, 41, 53, 0.05);
   color: $mainblue;
   margin: 0.3rem 0;
   border-bottom: .2rem solid rgba(21, 41, 53, 0.15);
+  border-radius: 0.2rem;
+}
+
+#latest-metadata-table td {
+  display: inline-block;
+  width: 80%;
+}
+
+#latest-downloads-container {
+  max-width: 80rem;
+  margin: 2rem auto auto;
+}
+
+#latest-downloads-container table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+#latest-downloads-container table tbody {
+  display: inline;
+}
+
+#latest-downloads-container table td {
+  border: 0.1rem solid $maingrey;
+}
+
+#latest-scroll-text {
+  font-size: 0.8rem;
+  margin: 0 auto 1rem;
+}
+
+#latest-selector {
+  display: block;
+  overflow-x: auto;
+  background-color: rgba(#fff,.6);
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#latest-selector td {
+  cursor: pointer;
+  min-width: 9.8rem;
+  padding: 2rem 0;
+}
+
+#latest-selector td:hover, #latest-selector td.latest-highlight {
+  color: $mainblue;
+  background-color: white;
+}
+
+#latest-selector img {
+  height: 3.5rem;
+}
+
+#latest-info img {
+  height: 4.5rem;
+}
+
+#latest-selector span {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+#latest-info {
+  display: block;
+}
+
+#latest-info td {
+  background-color: white;
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#latest-info .platform-section {
+  display: inline-block;
+  padding: 2rem;
+  border-right: 0.2rem solid rgba(21,41,53,.1);
+  min-width: 10rem;
+  h2 {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+}
+
+#latest-info .content-section {
+  display: inline-block;
+  margin: auto;
+  padding: 0 2rem;
 }
 
 .latest-block {
   display: inline-block;
   vertical-align: top;
-  margin: 3rem 2.5rem 1rem;
+  margin: 2rem 1rem 1rem;
 }
 
-.latest-platform {
-  font-size: 1.5rem;
-}
-
-.latest-platform img {
-  height: 3.5rem
-}
-
-a.latest-download-button {
+.latest-block a.latest-download-button {
   background-color: $brighterblue;
   display: block;
   color: $maingrey;
   border-radius: 0.2rem;
-  min-width: 14rem;
   line-height: 2.5rem;
   cursor: pointer;
   margin: 1rem 0;
+  padding: 0 2.5rem;
 }
 
-a.latest-download-button:hover {
+.latest-block a.latest-download-button:hover {
   background-color: rgb(68, 124, 195);
   color: $maingrey;
 }
 
-.latest-details {
-  font-size: 0.8rem;
-}
-
-.latest-details p {
-  line-height: 1.2rem;
-}
-
-.small-dl-text {
+.latest-block .small-dl-text {
   font-size: .7rem;
   line-height: 1.2rem;
   transform: translateY(-0.4rem);
-  color: rgba(255, 255, 255, 0.64);
+  color: rgba(255, 255, 255, .7);
+}
+
+.latest-block a.a-button {
+  min-width: 12rem;
+  box-sizing: border-box;
+}
+
+.binary-grey .latest-block a.a-button {
+  background-color: $accentgrey;
+  &:hover {
+    background-color: $palegrey;
+  }
+  div.large-dl-text {
+    color: $mainblue;
+  }
+  div.small-dl-text {
+    color: rgba(21, 41, 53, 0.7);
+  }
+}
+
+.latest-block .latest-details p {
+  font-size: .8rem;
+  line-height: 1.2rem;
 }

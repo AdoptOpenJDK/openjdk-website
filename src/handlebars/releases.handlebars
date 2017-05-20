@@ -4,31 +4,45 @@
 
   <div id="latest-page">
     <h1 class="large-title">Latest build</h1>
-    <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
     <div style="margin-bottom: 2rem;">
-      <a href="./archive.html" class="grey-button a-button">
+      <a href="./archive.html" class="blue-button a-button">
         <div>
           <span>Build archive</span>
           <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
         </div>
       </a>
+      <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
+        <div>
+          <span>Nightly builds</span>
+          <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+        </div>
+      </a>
+
+      <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
     </div>
 
     <div id="latest-container" class="invisible">
 
+      <h2 style="margin-bottom: 0.6rem;">Build <strong><a href="" id="latest-build-name" target="_blank"></a></strong></h2>
+
       <table id="latest-metadata-table" cellspacing="0" cellpadding="0">
         <tr>
-          <td><strong>Name: </strong><a href="" id="latest-build-name" class="dark-link no-underline" target="_blank"></a></td>
           <td><strong>Date: </strong><span id="latest-date"></span></td>
-          <!--<td><a href="" class="light-link" id="latest-changelog" target="_blank"><strong>Changelog</strong></a></td>-->
           <td><strong>Timestamp: </strong><span id="latest-timestamp"></span></td>
-          <!--<td><strong>Build number: </strong><span id="latest-buildnumber"></span></td>-->
-          <!--<td><strong>Commit ref: </strong><a href="" class="light-link" id="latest-commitref" target="_blank"></a></td>-->
         </tr>
       </table>
 
-      <div id="latest-downloads-container"></div>
+      <div id="latest-downloads-container">
+        <h2 style="margin-bottom: 0.5rem;">Select a platform</h2>
+        <h3 id="latest-scroll-text" class="hide">(Scroll horizontally)</h3>
+
+        <table id="latest-table">
+          <tr id="latest-selector"></tr>
+          <tr id="latest-info"></tr>
+        </table>
+
+      </div>
 
     </div>
 

@@ -7,7 +7,7 @@
 
   <a href="./releases.html" id="latest-button" class="blue-button a-button">
     <div>
-      <span>See the latest build</span>
+      <span>Latest build</span>
       <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
     </div>
   </a>
@@ -19,21 +19,21 @@
     </div>
   </a>
 
-  <h3 id="scroll-text" class="hide" style="margin: 2rem 0 0 0;">Scroll horizontally to see all information <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
+  <input type="text" style="margin-top: 2rem;" class="block margin-auto" id="search" placeholder="Type to search">
 
-    <input type="text" style="margin-top: 2rem;" class="block margin-auto" id="search" placeholder="Type to search">
+  <div style="margin-top: 1rem;">
+    <span>View</span>
+    <select id="numberpicker">
+      <option value="10">10</option>
+      <option value="20" selected="selected">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+    <span>builds prior to: </span>
+    <input type="text" id="datepicker" style="margin-top: 0.5rem;">
+  </div>
 
-    <div style="margin-top: 1rem;">
-      <span>View</span>
-      <select id="numberpicker">
-        <option value="10">10</option>
-        <option value="20" selected="selected">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>
-      <span>builds prior to: </span>
-      <input type="text" id="datepicker" style="margin-top: 0.5rem;">
-    </div>
+  <h3 id="scroll-text" class="hide" style="margin: 2rem 0 0 0;">Scroll horizontally <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
 
   <div id="search-error" class="hide">No search results</div>
 

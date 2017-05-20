@@ -76,8 +76,8 @@ function buildNightlyHTML(releasesJson) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
-        if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+        var thisBinaryExtension = getBinaryExt(thisPlatform); // get the file extension associated with this platform
+        if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
 
           // set values ready to be injected into the HTML
           var publishedAt = eachRelease.published_at;
@@ -87,14 +87,14 @@ function buildNightlyHTML(releasesJson) {
           var thisOfficialName = getOfficialName(thisPlatform);
           var thisBinaryLink = (eachAsset.browser_download_url);
           var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
+          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, ".sha256.txt");
           var thisTimestamp = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
 
           var currentNightlyContent = nightlyList.innerHTML;
 
           // prepare a fully-populated HTML block for this release
           // to change the HTML of the nightly table rows/cells, you must change this template.
-          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td class='nightly-header'><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div><div class='divider'> | </div><div class='nightly-release-date'>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisFileExtension+" ("+thisBinarySize+" MB)</a><div class='divider'> | </div><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td><td class='nightly-details'><!--<div><strong><a href='put-changelog-link-here' class='dark-link'>Changelog</a></strong></div> <div class='divider'> | </div>--><div><strong>Timestamp: </strong>"+thisTimestamp+"</div><!--<div class='divider'> | </div> <div><strong>Commit: </strong><a href='put-commit-ref-link-here' class='dark-link'>put-commit-ref-here</a></div>--></td></tr>");
+          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td class='nightly-header'><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div><div class='divider'> | </div><div class='nightly-release-date'>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisBinaryExtension+" ("+thisBinarySize+" MB)</a><div class='divider'> | </div><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td><td class='nightly-details'><div><strong>Timestamp: </strong>"+thisTimestamp+"</div></td></tr>");
 
           // update the HTML container element with this new, blank, template row (hidden at this stage)
           nightlyList.innerHTML = newNightlyContent;

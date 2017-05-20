@@ -58,8 +58,8 @@ function buildHomepageHTML(releasesJson) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
-        if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+        var thisBinaryExtension = getBinaryExt(thisPlatform); // get the file extension associated with this platform
+        if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
           var uppercaseOSname = OS.searchableName.toUpperCase();
 
           // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)

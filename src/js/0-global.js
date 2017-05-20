@@ -3,24 +3,44 @@
 // officialName: The 'legal name' or official name for the OS. This is displayed on most pages.
 // searchableName: a string that appears in the name of the binaries and checksums, that can be used to identify the platform.
 // logo: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
-// fileExtension: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
+// binaryExtension: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
 // requirements: currently just displayed on the 'latest build' page. Should be a short string identifying the most important min. requirement of a machine to run the latest build.
 // architecture: 64 or 32. May be required for differentiation between future builds.
 // osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
 var platforms = [
   {
-    officialName: "Linux x86-64",
+    officialName: "Linux x64",
     searchableName: "X64_LINUX",
     logo: "linux.png",
-    fileExtension: ".tar.gz",
+    binaryExtension: ".tar.gz",
+    installerExtension: "no-installer-available",
     architecture: "64",
     osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
+  },
+  {
+    officialName: "Windows x64",
+    searchableName: "X64_WIN",
+    logo: "windows.png",
+    binaryExtension: ".zip",
+    installerExtension: ".exe",
+    architecture: "64",
+    osDetectionString: "Windows Win Cygwin"
+  },
+  {
+    officialName: "macOS x64",
+    searchableName: "X64_MAC",
+    logo: "mac.png",
+    binaryExtension: ".tar.gz",
+    installerExtension: ".dmg",
+    architecture: "64",
+    osDetectionString: "Mac OS X OSX macOS Macintosh"
   },
   {
     officialName: "Linux s390x",
     searchableName: "S390X_LINUX",
     logo: "s390x.png",
-    fileExtension: ".tar.gz",
+    binaryExtension: ".tar.gz",
+    installerExtension: "no-installer-available",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -28,7 +48,8 @@ var platforms = [
     officialName: "Linux ppc64le",
     searchableName: "PPC64LE_LINUX",
     logo: "ppc64le.png",
-    fileExtension: ".tar.gz",
+    binaryExtension: ".tar.gz",
+    installerExtension: "no-installer-available",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
   },
@@ -36,25 +57,10 @@ var platforms = [
     officialName: "Linux aarch64",
     searchableName: "AARCH64_LINUX",
     logo: "arm.png",
-    fileExtension: ".tar.gz",
+    binaryExtension: ".tar.gz",
+    installerExtension: "no-installer-available",
     architecture: "64",
     osDetectionString: "not-to-be-detected"
-  },
-  {
-    officialName: "Windows x86-64",
-    searchableName: "X64_WIN",
-    logo: "windows.png",
-    fileExtension: ".zip",
-    architecture: "64",
-    osDetectionString: "Windows Win Cygwin"
-  },
-  {
-    officialName: "macOS x86-64",
-    searchableName: "X64_MAC",
-    logo: "mac.png",
-    fileExtension: ".tar.gz",
-    architecture: "64",
-    osDetectionString: "Mac OS X OSX macOS Macintosh"
   }
 ];
 
@@ -90,9 +96,14 @@ function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
 }
 
-// gets the FILE EXTENSION when you pass in 'searchableName'
-function getFileExt(searchableName) {
-  return (lookup[searchableName].fileExtension);
+// gets the BINARY EXTENSION when you pass in 'searchableName'
+function getBinaryExt(searchableName) {
+  return (lookup[searchableName].binaryExtension);
+}
+
+// gets the INSTALLER EXTENSION when you pass in 'searchableName'
+function getInstallerExt(searchableName) {
+  return (lookup[searchableName].installerExtension);
 }
 
 // gets the LOGO WITH PATH when you pass in 'searchableName'

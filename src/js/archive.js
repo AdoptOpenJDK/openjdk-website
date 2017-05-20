@@ -63,23 +63,23 @@ function buildArchiveHTML(releasesJson) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisFileExtension = getFileExt(thisPlatform); // get the file extension associated with this platform
-        if(uppercaseFilename.indexOf((thisFileExtension.toUpperCase())) >= 0) {
+        var thisBinaryExtension = getBinaryExt(thisPlatform); // get the file extension associated with this platform
+        if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
 
           // set values ready to be injected into the HTML
           var thisOfficialName = getOfficialName(thisPlatform);
           var thisBinaryLink = (eachAsset.browser_download_url);
           var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisFileExtension, ".sha256.txt");
+          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, ".sha256.txt");
 
           // prepare a fully-populated table row for this platform
-          platformTableRows += ("<tr class='platform-row "+ thisPlatform +"'><td>"+ thisOfficialName +"</td><td class='download-td'><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisFileExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
+          platformTableRows += ("<tr class='platform-row "+ thisPlatform +"'><td>"+ thisOfficialName +"</td><td class='download-td'><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisBinaryExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
         }
       }
     });
 
     // create a new table row containing all release information, and the completed platform/binary table
-    var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td><td class='archive-details'><!--<div><strong><a href='' class='dark-link'>Changelog</a></strong></div>--><div><strong>Timestamp: </strong>"+ thisTimestamp +"</div><!--<div><strong>Build number: </strong></div>--><!--<div><strong>Commit: </strong><a href='' class='dark-link'></a></div>--></td></tr>");
+    var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td><td class='archive-details'><div><strong>Timestamp: </strong>"+ thisTimestamp +"</div></td></tr>");
 
     archiveTableBody.innerHTML += newArchiveContent;
 
