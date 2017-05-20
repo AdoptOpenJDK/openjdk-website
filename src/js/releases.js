@@ -107,6 +107,10 @@ function buildLatestHTML(releasesJson) {
   document.getElementById("latest-selector").innerHTML = latestSelectorHTML;
   document.getElementById("latest-info").innerHTML = latestInfoHTML;
 
+  var latestTable = document.getElementById('latest-table');
+  latestTable.style.display = "block";
+  latestTable.style.maxWidth = (tableScrollWidth + "px");
+
   // if the table has a scroll bar, show text describing how to horizontally scroll
   var scrollText = document.getElementById('latest-scroll-text');
   var latestSelector = document.getElementById('latest-selector');
@@ -115,11 +119,6 @@ function buildLatestHTML(releasesJson) {
   if (tableDisplayWidth != tableScrollWidth) {
     scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
   }
-
-  var latestTable = document.getElementById('latest-table');
-  latestTable.style.display = "block";
-  latestTable.style.maxWidth = (tableScrollWidth + "px");
-
 
   loading.innerHTML = ""; // remove the loading dots
 
