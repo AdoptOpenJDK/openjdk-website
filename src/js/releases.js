@@ -132,14 +132,21 @@ function selectLatestPlatform(thisPlatform) {
   var platformButtons = document.getElementById("latest-selector").getElementsByTagName("TD");
   var platformInfoBoxes = document.getElementById("latest-info").getElementsByTagName("TD");
 
+  var thisPlatformSelector = document.getElementById("latest-selector-" + thisPlatform);
+  var thisPlatformInfo = document.getElementById("latest-info-" + thisPlatform);
+
+  var alreadySelected = false;
+  if(thisPlatformSelector.classList.contains("latest-highlight")) {
+    alreadySelected = true;
+  }
+
   for (i = 0; i < platformButtons.length; i++) {
     platformButtons[i].classList.remove("latest-highlight");
     platformInfoBoxes[i].classList.add("hide");
   }
 
-  var thisPlatformSelector = document.getElementById("latest-selector-" + thisPlatform);
-  var thisPlatformInfo = document.getElementById("latest-info-" + thisPlatform);
-
-  thisPlatformSelector.classList.add("latest-highlight");
-  thisPlatformInfo.classList.remove("hide");
+  if(alreadySelected === false) {
+    thisPlatformSelector.classList.add("latest-highlight");
+    thisPlatformInfo.classList.remove("hide");
+  }
 }
