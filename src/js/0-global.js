@@ -24,7 +24,7 @@ var platforms = [
     binaryExtension: ".zip",
     installerExtension: ".exe",
     architecture: "64",
-    osDetectionString: "Windows Win Cygwin"
+    osDetectionString: "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
   },
   {
     officialName: "macOS x64",
