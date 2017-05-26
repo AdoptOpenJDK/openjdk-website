@@ -384,14 +384,14 @@ main {
 }
 
 pre {
-  background-color: #e8e8e8;
-  border-radius: 0.5rem;
-  box-shadow: rgb(195, 195, 195) 0px 2.5px 0px 0px;
+  background-color: $mainblue;
+  border-radius: 0.2rem;
   box-sizing: border-box;
-  color: #585858;
+  color: $accentgrey;
   font-family: Consolas, monospace;
   overflow: auto;
-  padding: 1rem;
+  padding: 0.6rem;
+  padding-left: 1rem;
   white-space: pre-wrap;
 }
 
@@ -399,6 +399,11 @@ code {
   box-sizing: border-box;
   overflow: auto;
   white-space: pre;
+}
+
+code.hljs {
+  padding: 0;
+  background: inherit;
 }
 
 .callout {
