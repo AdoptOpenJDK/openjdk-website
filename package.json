@@ -10,6 +10,7 @@
   },
   "author": "Joe Brady",
   "devDependencies": {
+    "browser-sync": "^2.18.12",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "gulp": "^3.9.1",
@@ -18,7 +19,9 @@
     "gulp-compile-handlebars": "^0.6.1",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^3.0.1",
+    "gulp-hash": "^4.1.1",
     "gulp-imagemin": "^3.2.0",
+    "gulp-inject": "^4.2.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-robots": "^2.0.4",

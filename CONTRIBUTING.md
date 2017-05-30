@@ -14,7 +14,7 @@
     npm install
     ```
 
-3. Start the auto-build scripts, and leave them running
+3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
     ```
     npm start
@@ -22,7 +22,9 @@
 
     > NOTE: These build scripts enable you to view your changes locally. The build generates new files in two places: a new `/dist` directory (JS, CSS, images, etc), and `.html` files in the root directory. However, these files are ignored by .gitignore, and will not be included in commits.
 
-4. Make changes in the `/src` directory. The auto-build scripts instantly pick up any newly saved changes, and include them in the output files and directories. Open `/index.html` in any browser to view the website locally, and refresh the page after saving your changes to `/src`.
+4. Make changes in the `/src` directory. Every time you save a file, the script instantly picks up any new changes and displays them in your BrowserSync-connected window.
+
+    > PRO TIP: Look in the Terminal/Command window immediately after you run `npm start`. BrowserSync provides 'Local' and 'External' Access URLs to view your latest changes live. If you have a phone or tablet connected to the same WiFi network, you can use the mobile browser to access the 'External' URL and view your latest changes in real-time. This makes it very easy to test your changes on different devices during development.
 
 ---
 
