@@ -1,6 +1,6 @@
 const gulp = require('gulp');
-const runSequence = require('run-sequence');
 
+const runSequence = require('run-sequence');
 const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
 const cssmin = require('gulp-minify-css');
