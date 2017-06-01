@@ -20,11 +20,13 @@
     npm start
     ```
 
-    > NOTE: These build scripts enable you to view your changes locally. The build generates new files in two places: a new `/dist` directory (JS, CSS, images, etc), and `.html` files in the root directory. However, these files are ignored by .gitignore, and will not be included in commits.
+    > **NOTE:** These build scripts enable you to view your changes locally. The build generates new files in two places: a new `/dist` directory (JS, CSS, images, etc), and `.html` files in the root directory. However, these files are ignored by .gitignore, and will not be included in commits.
 
 4. Make changes in the `/src` directory. Every time you save a file, the script instantly picks up any new changes and displays them in your BrowserSync-connected window.
 
-    > PRO TIP: Look in the Terminal/Command window immediately after you run `npm start`. BrowserSync provides 'Local' and 'External' Access URLs to view your latest changes live. If you have a phone or tablet connected to the same WiFi network, you can use the mobile browser to access the 'External' URL and view your latest changes in real-time. This makes it very easy to test your changes on different devices during development.
+    > **NOTE:** You cannot view the website locally by, for example, opening `index.html` in a browser. The files must be served on `localhost`, and BrowserSync should do this automatically for you on `npm start`.
+
+    > **PRO TIP:** Look in the Terminal/Command window immediately after you run `npm start`. BrowserSync provides 'Local' and 'External' Access URLs to view your latest changes live. If you have a phone or tablet connected to the same WiFi network, you can use the mobile browser to access the 'External' URL and view your latest changes in real-time. This makes it very easy to test your changes on different devices during development.
 
 ---
 
@@ -33,6 +35,8 @@
 When pull requests are opened, contributors can use the [staging job on Jenkins](https://ci.adoptopenjdk.net/view/website/job/adoptopenjdk-website-staging/) to build the pull request and view it at [staging.adoptopenjdk.net](https://staging.adoptopenjdk.net).
 
 When pull requests are merged, they are automatically [built by Jenkins](https://ci.adoptopenjdk.net/view/website/job/adoptopenjdk-website-production/) into the [`gh-pages` branch](https://github.com/AdoptOpenJDK/openjdk-website/tree/gh-pages) on the openjdk-website repository, then deployed to the live site (as part of the GitHub Pages mechanism).
+
+---
 
 ## Contribution guidelines
 
@@ -70,6 +74,7 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
 * However, if this is not enough, you can use `...medium.scss` and `...small.scss` to specify what happens to the CSS at two breakpoints.
 
 ### JS
+* Always run `npm test` to run a linter on your JS before pushing any changes / raising a PR.
 * Use `global.js` for global JavaScript functions.
 * Use individual `.js` files for functions that are specific to a page, such as `nightly.js`. For any functions that should happen 'on page load', call them from within the root function for that page, e.g. `onNightlyLoad(){...}`.
 * If you create a new `.handlebars` file that requires new JavaScript functions:
@@ -78,3 +83,46 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
   3. Write a new root function in this file such as `function onNightlyLoad(){...}`.
   4. Any functions that you want to run after the page has loaded should be called from here.
   5. Refer to the 'HTML (Handlebars)' section above for guidance on how to call this root function.
+
+---
+
+## Gulp / `gulpfile.js` / builds
+
+### What is Gulp?
+Gulp is an automated 'task runner'. Any repetitive tasks that a developer might need to complete on a regular basis can be automatically run by Gulp. For example, you can use Gulp to concatenate and minify your CSS and JS every time a change is made to any CSS or JS file. You can also use Gulp to run compilation or build tasks, such as converting SASS to CSS, generating sitemaps, testing code for lint errors, and more.
+
+### Using Gulp to build AdoptOpenJDK.net
+In this project, Gulp can be run in two different ways:
+1. `npm start` or just `gulp`: This continuously watches for changes to the source code during development, and re-builds/re-serves the output in a live, connected browser window each time a change is detected.
+2. `gulp build`: This runs the same build that is used by the Production and Staging servers. The key differences are that the `gulp.watch` processes are not started, BrowserSync is not started, a linter is run to check the JS, and a sitemap is generated.
+
+### Contributing to `gulpfile.js`
+
+#### The `gulpfile.js` structure
+- At the top of `gulpfile.js`, all of the add-on `npm` Gulp packages, such as `gulp-rename` and `gulp-concat`, are loaded into variables with `require(...);`.
+- Following this, all of the `gulp.task(...);` tasks are defined.
+- If you run, for example, `gulp scripts`, then just the `gulp.task('scripts'...` task would run. However, the first two tasks (`gulp default` and `gulp build`) are different - their sole purpose is to run _other_ tasks. They can be seen as 'parent' tasks, while the others are 'child' tasks.
+- For the purposes of this guide, we will run through what happens when you run `gulp default` (just `gulp` for short, or alternatively `npm start`).
+
+#### What happens, step-by-step, when I run `npm start`?
+1. The `gulp.task(default, function(){...});` parent task is started.
+2. Inside this task, the 'Run Sequence' package is used to define exactly when each of the child tasks will run.
+3. Task names inside an array run asynchronously (for efficiency, where a specified order is not required), in this case `['handlebars','scripts','styles','images','icon']`.
+4. Once these tasks have completed, the remaining tasks run synchronously in the specified order: `'inject','watch','browser-sync'`.
+
+  > **NOTE ON ERROR CATCHING:** `.on('error', gutil.log)` appears after every line of code that is likely to error. This is to improve the quality of Gulp's default error reporting if something goes wrong.
+
+#### Walkthroughs of each task:
+
+- `gulp.task('handlebars'...` - This task simply takes the `.handlebars` files from the `src/handlebars` directory, and converts them into HTML files, which are output into the root `/` directory. Along the way, there are 'partials' - `src/handlebars/partials/*.handlebars` files that are common to every page - header, footer, menu, etc. These partials are built into these HTML files at the specified location, e.g. `header.handlebars` appears at the top of each built HTML file. Variables are also sometimes passed into these partials, such as the `title` variable in the header, so a different title can appear in each page's header.
+- `gulp.task('scripts'...` - This task looks for all `.js` files inside the `src/js` directory. It then concatenates them together into one long JS file in alphabetical/numeric order (hence the importance of numbers at the beginning of the JS filenames), and creates a file in `dist/js` called `scripts.js`. This file's sole purpose is to allow for easier debugging (both manually by eye and automatically with `eslint`). Following this step, the Gulp task runs `uglify` to minify/compress the JS, adds the filename suffix `.min.js`, then adds a unique hash to the filename. This hash is important - whenever the JavaScript is changed, the hash changes, which forces both our browsers and Cloudflare to re-load the file, bypassing any cache that might have otherwise prevented a reload. Finally, the new hashed, minified JS file is output to the same `dist/js` directory.
+- `gulp.task('styles'...` - This task begins by compiling all `.scss` files in the `src/scss` directory to standard `css`. Following this step, the `styles` task follows the same process as `scripts` - it concatenates everything into a single `css` file, minifies it, and adds a hash. The result is two files output to `dist/css`: `styles.css` and `styles.min-******.css`
+- `gulp.task('images'...` - This task is very simple. It takes all images from the `src/assets` directory, compresses them, and outputs to the `dist/assets` directory.
+- `gulp.task('icon'...` - This task only copies icon files from `src/assets ` to `dist/assets`. This allows us to keep icon files in the same working directory (`src`) as everything else.
+- `gulp.task('inject'...` - This task begins by looking for the minified, hashed JS and CSS files in `dist`. It then injects links to these into each of the built HTML files, between special tags:
+    ```
+    <!-- inject:js -->
+    <!-- endinject -->
+    ```
+- `gulp.task('watch'...` - This task runs continuously. It watches for changes to files in the `src` directory, and re-runs the relevant task(s) whenever a change is detected. For instance, when a `.js` file is changed, the `scripts` and `inject` tasks are re-run, followed by a special browser reload function that keeps your browser window up-to-date with the changes you are making.
+- `gulp.task('browser-sync'...` - This task also runs continuously. It initially serves `index.html` on `localhost:3000` to emulate the website running on a server, then allows for instant reloads when the `watch` task detects and rebuilds changes. BrowserSync also logs an 'External Access URL' to the Terminal/command window that you can use to instantly test your changes to the website on WiFi-connected devices, such as mobiles and tablets.
