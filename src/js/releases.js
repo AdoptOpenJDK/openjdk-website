@@ -100,7 +100,7 @@ function buildLatestHTML(releasesJson) {
 
     // prepare fully-populated selector and info sections for this platform, append them to the HTML block variables
     latestSelectorHTML += ("<td id='latest-selector-" +thisPlatform+ "' onclick='selectLatestPlatform(\"" +thisPlatform+ "\")'><img alt='" +thisOfficialName+ " logo' src='" +thisLogo+ "'><span>" +thisOfficialName+ "</span></td>");
-    latestInfoHTML += ("<td id='latest-info-" +thisPlatform+ "' class='hide'><div class='platform-section'><img alt='" +thisOfficialName+ " src='" +thisLogo+ "'><h2>" +thisOfficialName+ "</h2></div><div class='content-section'>" + thisInstallerBlock + thisBinaryBlock + "</div></td>");
+    latestInfoHTML += ("<td id='latest-info-" +thisPlatform+ "' class='hide'><div class='platform-section'><img alt='" +thisOfficialName+ " logo' src='" +thisLogo+ "'><h2>" +thisOfficialName+ "</h2></div><div class='content-section'>" + thisInstallerBlock + thisBinaryBlock + "</div></td>");
   });
 
   // add all of the generated HTML to the latest downloads container
