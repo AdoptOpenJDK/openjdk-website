@@ -53,7 +53,7 @@ function populateNightly() {
 }
 
 function buildNightlyHTML(releasesJson) {
-  tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Date</th><th>Platform</th><th>Downloads</th><th>Checksum</th></tr>");
+  tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Date</th><th>Platform</th><th>Binary</th><th>Checksum</th></tr>");
 
   // for each release...
   releasesJson.forEach(function(eachRelease) {
