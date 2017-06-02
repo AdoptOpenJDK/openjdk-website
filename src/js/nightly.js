@@ -53,7 +53,7 @@ function populateNightly() {
 }
 
 function buildNightlyHTML(releasesJson) {
-  tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Platform</th><th>Downloads</th><th>Release details</th></tr>");
+  tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Date</th><th>Platform</th><th>Downloads</th><th>Checksum</th></tr>");
 
   // for each release...
   releasesJson.forEach(function(eachRelease) {
@@ -88,13 +88,12 @@ function buildNightlyHTML(releasesJson) {
           var thisBinaryLink = (eachAsset.browser_download_url);
           var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
           var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, ".sha256.txt");
-          var thisTimestamp = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
 
           var currentNightlyContent = nightlyList.innerHTML;
 
           // prepare a fully-populated HTML block for this release
           // to change the HTML of the nightly table rows/cells, you must change this template.
-          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td class='nightly-header'><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div><div class='divider'> | </div><div class='nightly-release-date'>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisBinaryExtension+" ("+thisBinarySize+" MB)</a><div class='divider'> | </div><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td><td class='nightly-details'><div><strong>Timestamp: </strong>"+thisTimestamp+"</div></td></tr>");
+          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div></td><td><div class='nightly-release-date'>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisBinaryExtension+" ("+thisBinarySize+" MB)</a></td><td><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td></tr>");
 
           // update the HTML container element with this new, blank, template row (hidden at this stage)
           nightlyList.innerHTML = newNightlyContent;
