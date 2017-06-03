@@ -43,7 +43,6 @@ function buildArchiveHTML(releasesJson) {
     var thisReleaseName = eachRelease.name;
     var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
     var thisGitLink = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + thisReleaseName);
-    var thisTimestamp = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
     var platformTableRows = ""; // an empty var where new table rows can be added for each platform
 
     // create an array of the details for each asset that is attached to this release
@@ -79,7 +78,7 @@ function buildArchiveHTML(releasesJson) {
     });
 
     // create a new table row containing all release information, and the completed platform/binary table
-    var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td><td class='archive-details'><div><strong>Timestamp: </strong>"+ thisTimestamp +"</div></td></tr>");
+    var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td></tr>");
 
     archiveTableBody.innerHTML += newArchiveContent;
 
