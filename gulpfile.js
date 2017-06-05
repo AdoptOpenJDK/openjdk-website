@@ -15,7 +15,7 @@ const gutil = require('gulp-util');
 const sitemap = require('gulp-sitemap');
 const hash = require('gulp-hash');
 const inject = require('gulp-inject');
-//const robots = require('gulp-robots');
+const robots = require('gulp-robots');
 
 // default task
 gulp.task('default', function() {
@@ -24,7 +24,7 @@ gulp.task('default', function() {
 
 // build task
 gulp.task('build', function() {
-  runSequence(['handlebars','scripts','styles','images','icon'],'inject','sitemap','lint');
+  runSequence(['handlebars','scripts','styles','images','icon'],'inject','sitemap','robots','lint');
 });
 
 // watch task
@@ -161,13 +161,13 @@ gulp.task('browser-sync', function() {
     });
 });
 
-// robots task - commented out unless required.
-/*gulp.task('robots', function () {
+// robots task
+gulp.task('robots', function () {
   gulp.src('index.html')
     .pipe(robots({
       useragent: '*',
       allow: ['/'],
-      disallow: ['cgi-bin/']
+      disallow: ['/404.html', '/banner.html']
     }))
     .pipe(gulp.dest('./'));
-});*/
+});
