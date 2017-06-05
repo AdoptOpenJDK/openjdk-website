@@ -1,4 +1,4 @@
-{{> header title='Archive | ' }}
+{{> header title='Archive | ' style1='<link rel="stylesheet" href="http://pagination.js.org/dist/2.0.7/pagination.css">' }}
 
 <main class="grey-bg">
 
@@ -27,6 +27,7 @@
     </div>
 
     <div id="archive-list" class="hide">
+      <div id="pagination-container"></div>
       <table class='archive-container'>
         <tbody id='archive-table-body'></tbody>
       </table>
@@ -35,7 +36,6 @@
   </div>
 
   <div id="error-container"></div>
-
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script>onArchiveLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="http://pagination.js.org/dist/2.0.7/pagination.min.js"></script>' script3='<script>onArchiveLoad();</script>' }}

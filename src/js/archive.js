@@ -1,6 +1,7 @@
 // set variables for HTML elements
 var platformDropDown = document.getElementById("platform-dropdown");
 var archiveTableBody = document.getElementById("archive-table-body");
+var archiveContentArray = [];
 
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
@@ -79,10 +80,10 @@ function buildArchiveHTML(releasesJson) {
 
     // create a new table row containing all release information, and the completed platform/binary table
     var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td></tr>");
-
-    archiveTableBody.innerHTML += newArchiveContent;
-
+    archiveContentArray.push(newArchiveContent);
   });
+
+  setPagination();
 
   loading.innerHTML = ""; // remove the loading dots
 
@@ -176,6 +177,27 @@ function filterByPlatform(selection) {
       }
     }
 
-
   }
+}
+
+function setPagination() {
+  var container = $('#pagination-container');
+  var options = {
+    dataSource: archiveContentArray,
+    pageSize: 5,
+    callback: function (response, pagination) {
+
+      var dataHtml = '';
+
+      $.each(response, function (index, item) {
+        dataHtml += item;
+      });
+
+      $('#archive-table-body').html(dataHtml);
+    }
+  };
+
+  container.pagination(options);
+
+  return container;
 }
