@@ -1,4 +1,4 @@
-{{> header title='Archive | ' }}
+{{> header title='Archive | ' style1='<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.css">' }}
 
 <main class="grey-bg">
 
@@ -19,14 +19,8 @@
 
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
-    <div id="filter-container" class="hide">
-      <h3 class="inline-block" style="margin: 2rem .5rem 1rem 0;">Filter by platform:</h3>
-      <select id="platform-dropdown">
-        <option value="ALL">All</option>
-      </select>
-    </div>
-
     <div id="archive-list" class="hide">
+      <div id="pagination-container"></div>
       <table class='archive-container'>
         <tbody id='archive-table-body'></tbody>
       </table>
@@ -35,7 +29,6 @@
   </div>
 
   <div id="error-container"></div>
-
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script>onArchiveLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.min.js"></script>' script3='<script>onArchiveLoad();</script>' }}
