@@ -22,7 +22,7 @@ var platforms = [
     searchableName: "X64_WIN",
     logo: "windows.png",
     binaryExtension: ".zip",
-    installerExtension: ".exe",
+    installerExtension: ".msi",
     architecture: "64",
     osDetectionString: "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
   },
