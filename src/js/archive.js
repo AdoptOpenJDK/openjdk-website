@@ -1,6 +1,7 @@
 // set variables for HTML elements
-var platformDropDown = document.getElementById("platform-dropdown");
-var archiveTableBody = document.getElementById("archive-table-body");
+// SEE COMMENTED-OUT FUNCTIONS BELOW
+// var platformDropDown = document.getElementById("platform-dropdown");
+//var archiveTableBody = document.getElementById("archive-table-body");
 var archiveContentArray = [];
 
 // When releases page loads, run:
@@ -89,9 +90,12 @@ function buildArchiveHTML(releasesJson) {
 
   // show the archive list and filter box, with fade-in animation
   var archiveList = document.getElementById('archive-list');
-  var filterContainer = document.getElementById('filter-container');
   archiveList.className = archiveList.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
-  filterContainer.className = filterContainer.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
+
+  /*
+  // SEE COMMENTED-OUT FUNCTIONS BELOW
+  //var filterContainer = document.getElementById('filter-container');
+  //filterContainer.className = filterContainer.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
 
   // add a new entry to the platform filter drop-down list for each entry in the global 'platforms' array.
   platforms.forEach(function(each) {
@@ -105,8 +109,11 @@ function buildArchiveHTML(releasesJson) {
   platformDropDown.onchange = function(){
     filterByPlatform(this.value);
   };
+  */
 }
 
+/*
+// FUNCTIONS COMMENTED OUT IN THE EVENT THAT WE NEED A FILTER IN FUTURE.
 // create an array that contains all of the drop-down list options, including 'ALL'.
 function buildDropdownArray() {
   var dropdownArray = [];
@@ -115,9 +122,11 @@ function buildDropdownArray() {
   }
   return dropdownArray;
 }
+*/
 
 // filters the platform rows and release rows based on a selected platform.
 // pass in the 'searchableName' value of an object in the 'platforms' array, e.g. X64_LINUX
+/*
 function filterByPlatform(selection) {
   var dropdownArray = buildDropdownArray(); // get an array of the items in the dropdown platform selector
   var index = dropdownArray.indexOf(selection); // find the index number of the selected platform in this array
@@ -138,9 +147,7 @@ function filterByPlatform(selection) {
   }
   // else, if a specific platform is selected...
   else {
-    /* eslint-disable */
     var thisPlatformRowArray = document.getElementsByClassName(selection); // create an array containing all of the selected platform's rows
-    /* eslint-enable */
     for (i = 0; i < thisPlatformRowArray.length; i++) {
       thisPlatformRowArray[i].className = thisPlatformRowArray[i].className.replace( /(?:^|\s)hide(?!\S)/g , '' ); // make sure that these rows are not hidden
     }
@@ -149,18 +156,14 @@ function filterByPlatform(selection) {
 
      // for each of the non-selected platforms...
     notSelectedArray.forEach(function(thisPlatform) {
-      /* eslint-disable */
       var thisPlatformRowArray = document.getElementsByClassName(thisPlatform); // create an array containing all of this platform's rows
-      /* eslint-enable */
 
       for (i = 0; i < thisPlatformRowArray.length; i++) {
         thisPlatformRowArray[i].className += " hide"; // hide all of the rows for this platform
       }
     });
 
-    /* eslint-disable */
     var releaseRows = archiveTableBody.getElementsByClassName("release-row"); // create an array containing all of the release rows
-    /* eslint-enable */
 
     // for each of the release rows...
     for (i = 0; i < releaseRows.length; i++) {
@@ -179,13 +182,14 @@ function filterByPlatform(selection) {
 
   }
 }
+*/
 
 function setPagination() {
   var container = $('#pagination-container');
   var options = {
     dataSource: archiveContentArray,
     pageSize: 5,
-    callback: function (response, pagination) {
+    callback: function (response) {
 
       var dataHtml = '';
 
@@ -198,6 +202,10 @@ function setPagination() {
   };
 
   container.pagination(options);
+
+  if(document.getElementById("pagination-container").getElementsByTagName("li").length <= 3){
+    document.getElementById("pagination-container").classList.add("hide");
+  }
 
   return container;
 }

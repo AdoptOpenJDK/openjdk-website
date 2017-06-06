@@ -1,4 +1,4 @@
-{{> header title='Archive | ' style1='<link rel="stylesheet" href="http://pagination.js.org/dist/2.0.7/pagination.css">' }}
+{{> header title='Archive | ' style1='<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.css">' }}
 
 <main class="grey-bg">
 
@@ -19,12 +19,14 @@
 
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
+    <!-- SEE THE COMMENTED-OUT FUNCTIONS IN ARCHIVE.JS
     <div id="filter-container" class="hide">
       <h3 class="inline-block" style="margin: 2rem .5rem 1rem 0;">Filter by platform:</h3>
       <select id="platform-dropdown">
         <option value="ALL">All</option>
       </select>
     </div>
+    -->
 
     <div id="archive-list" class="hide">
       <div id="pagination-container"></div>
@@ -38,4 +40,4 @@
   <div id="error-container"></div>
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="http://pagination.js.org/dist/2.0.7/pagination.min.js"></script>' script3='<script>onArchiveLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.min.js"></script>' script3='<script>onArchiveLoad();</script>' }}
