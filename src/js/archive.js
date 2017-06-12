@@ -13,7 +13,7 @@ function onArchiveLoad() {
 function populateArchive() {
 
   // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-  loadReleasesJSON("releases", "releases", function(response) {
+  loadReleasesJSON('releases', 'releases', function(response) {
     function checkIfProduction(x) { // used by the array filter method below.
       return x.prerelease === false && x.assets[0];
     }
@@ -27,8 +27,8 @@ function populateArchive() {
       buildArchiveHTML(releasesJson);
     } else { // if there are no releases (beyond the latest one)...
       // report an error, remove the loading dots
-      loading.innerHTML = "";
-      errorContainer.innerHTML = "<p>There are no archived releases yet! See the <a href='./releases.html'>Latest build</a> page.</p>";
+      loading.innerHTML = '';
+      errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html\'>Latest build</a> page.</p>';
     }
   });
 }
@@ -41,8 +41,8 @@ function buildArchiveHTML(releasesJson) {
     var publishedAt = eachRelease.published_at;
     var thisReleaseName = eachRelease.name;
     var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
-    var thisGitLink = ("https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/" + thisReleaseName);
-    var platformTableRows = ""; // an empty var where new table rows can be added for each platform
+    var thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/' + thisReleaseName);
+    var platformTableRows = ''; // an empty var where new table rows can be added for each platform
 
     // create an array of the details for each asset that is attached to this release
     var assetArray = [];
@@ -68,22 +68,22 @@ function buildArchiveHTML(releasesJson) {
           var thisOfficialName = getOfficialName(thisPlatform);
           var thisBinaryLink = (eachAsset.browser_download_url);
           var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, ".sha256.txt");
+          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, '.sha256.txt');
 
           // prepare a fully-populated table row for this platform
-          platformTableRows += ("<tr class='platform-row "+ thisPlatform +"'><td>"+ thisOfficialName +"</td><td class='download-td'><a class='grey-button no-underline' href='"+ thisBinaryLink +"'>"+ thisBinaryExtension +" ("+ thisBinarySize +" MB)</a></td><td><a href='"+ thisChecksumLink +"' class='dark-link'>Checksum</a></td></tr>");
+          platformTableRows += ('<tr class=\'platform-row '+ thisPlatform +'\'><td>'+ thisOfficialName +'</td><td class=\'download-td\'><a class=\'grey-button no-underline\' href=\''+ thisBinaryLink +'\'>'+ thisBinaryExtension +' ('+ thisBinarySize +' MB)</a></td><td><a href=\''+ thisChecksumLink +'\' class=\'dark-link\'>Checksum</a></td></tr>');
         }
       }
     });
 
     // create a new table row containing all release information, and the completed platform/binary table
-    var newArchiveContent = ("<tr class='release-row'><td class='blue-bg'><div><h1><a href='"+ thisGitLink +"' class='light-link' target='_blank'>"+ thisReleaseName +"</a></h1><h4>"+ thisReleaseDate +"</h4></div></td><td><table class='archive-platforms'>"+ platformTableRows +"</table></td></tr>");
+    var newArchiveContent = ('<tr class=\'release-row\'><td class=\'blue-bg\'><div><h1><a href=\''+ thisGitLink +'\' class=\'light-link\' target=\'_blank\'>'+ thisReleaseName +'</a></h1><h4>'+ thisReleaseDate +'</h4></div></td><td><table class=\'archive-platforms\'>'+ platformTableRows +'</table></td></tr>');
     archiveContentArray.push(newArchiveContent);
   });
 
   setPagination();
 
-  loading.innerHTML = ""; // remove the loading dots
+  loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation
   var archiveList = document.getElementById('archive-list');
@@ -109,8 +109,8 @@ function setPagination() {
 
   container.pagination(options);
 
-  if(document.getElementById("pagination-container").getElementsByTagName("li").length <= 3){
-    document.getElementById("pagination-container").classList.add("hide");
+  if(document.getElementById('pagination-container').getElementsByTagName('li').length <= 3){
+    document.getElementById('pagination-container').classList.add('hide');
   }
 
   return container;

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "gulp",
     "lint": "eslint **/*.js",
+    "lint-fix": "npm run lint --- --fix",
     "test": "npm run lint"
   },
   "author": "Joe Brady",

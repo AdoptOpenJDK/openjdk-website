@@ -155,7 +155,7 @@ gulp.task('sitemap', function () {
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: './'
         },
         notify: false
     });

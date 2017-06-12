@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 // set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
 // GUIDE TO THE PLATFORMS ARRAY:
 // officialName: The 'legal name' or official name for the OS. This is displayed on most pages.
@@ -9,58 +11,58 @@
 // osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
 var platforms = [
   {
-    officialName: "Linux x64",
-    searchableName: "X64_LINUX",
-    logo: "linux.png",
-    binaryExtension: ".tar.gz",
-    installerExtension: "no-installer-available",
-    architecture: "64",
-    osDetectionString: "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
+    officialName: 'Linux x64',
+    searchableName: 'X64_LINUX',
+    logo: 'linux.png',
+    binaryExtension: '.tar.gz',
+    installerExtension: 'no-installer-available',
+    architecture: '64',
+    osDetectionString: 'Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen'
   },
   {
-    officialName: "Windows x64",
-    searchableName: "X64_WIN",
-    logo: "windows.png",
-    binaryExtension: ".zip",
-    installerExtension: ".msi",
-    architecture: "64",
-    osDetectionString: "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
+    officialName: 'Windows x64',
+    searchableName: 'X64_WIN',
+    logo: 'windows.png',
+    binaryExtension: '.zip',
+    installerExtension: '.msi',
+    architecture: '64',
+    osDetectionString: 'Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP'
   },
   {
-    officialName: "macOS x64",
-    searchableName: "X64_MAC",
-    logo: "mac.png",
-    binaryExtension: ".tar.gz",
-    installerExtension: ".dmg",
-    architecture: "64",
-    osDetectionString: "Mac OS X OSX macOS Macintosh"
+    officialName: 'macOS x64',
+    searchableName: 'X64_MAC',
+    logo: 'mac.png',
+    binaryExtension: '.tar.gz',
+    installerExtension: '.dmg',
+    architecture: '64',
+    osDetectionString: 'Mac OS X OSX macOS Macintosh'
   },
   {
-    officialName: "Linux s390x",
-    searchableName: "S390X_LINUX",
-    logo: "s390x.png",
-    binaryExtension: ".tar.gz",
-    installerExtension: "no-installer-available",
-    architecture: "64",
-    osDetectionString: "not-to-be-detected"
+    officialName: 'Linux s390x',
+    searchableName: 'S390X_LINUX',
+    logo: 's390x.png',
+    binaryExtension: '.tar.gz',
+    installerExtension: 'no-installer-available',
+    architecture: '64',
+    osDetectionString: 'not-to-be-detected'
   },
   {
-    officialName: "Linux ppc64le",
-    searchableName: "PPC64LE_LINUX",
-    logo: "ppc64le.png",
-    binaryExtension: ".tar.gz",
-    installerExtension: "no-installer-available",
-    architecture: "64",
-    osDetectionString: "not-to-be-detected"
+    officialName: 'Linux ppc64le',
+    searchableName: 'PPC64LE_LINUX',
+    logo: 'ppc64le.png',
+    binaryExtension: '.tar.gz',
+    installerExtension: 'no-installer-available',
+    architecture: '64',
+    osDetectionString: 'not-to-be-detected'
   },
   {
-    officialName: "Linux aarch64",
-    searchableName: "AARCH64_LINUX",
-    logo: "arm.png",
-    binaryExtension: ".tar.gz",
-    installerExtension: "no-installer-available",
-    architecture: "64",
-    osDetectionString: "not-to-be-detected"
+    officialName: 'Linux aarch64',
+    searchableName: 'AARCH64_LINUX',
+    logo: 'arm.png',
+    binaryExtension: '.tar.gz',
+    installerExtension: 'no-installer-available',
+    architecture: '64',
+    osDetectionString: 'not-to-be-detected'
   }
 ];
 
@@ -89,7 +91,7 @@ function getSearchableName(filename) {
 }
 
 // set path to logos
-var logoPath = "./dist/assets/";
+var logoPath = './dist/assets/';
 
 // gets the OFFICIAL NAME when you pass in 'searchableName'
 function getOfficialName(searchableName) {
@@ -112,7 +114,7 @@ function getLogo(searchableName) {
 }
 
 // set value for loading dots on every page
-var loading = document.getElementById("loading");
+var loading = document.getElementById('loading');
 
 // set value for error container on every page
 var errorContainer = document.getElementById('error-container');
@@ -152,20 +154,20 @@ function detectOS() {
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadReleasesJSON(repo, filename, callback) {
   if(msieversion() == true) { // if the browser is IE, display an error with advice, because important website features do not work in IE.
-    loading.innerHTML = "";
-    document.getElementById("error-container").innerHTML = "<p>Internet Explorer is not supported. Please use another browser, or see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
+    loading.innerHTML = '';
+    document.getElementById('error-container').innerHTML = '<p>Internet Explorer is not supported. Please use another browser, or see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
   }
   else {
-    var url = ("https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-" + repo + "/master/" + filename + ".json"); // the URL of the JSON built in the website back-end
+    var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
     var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
+    xobj.overrideMimeType('application/json');
     xobj.open('GET', url, true);
     xobj.onreadystatechange = function() {
-      if (xobj.readyState == 4 && xobj.status == "200") { // if the status is 'ok', run the callback function that has been passed in.
+      if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
         callback(xobj.responseText);
-      } else if(xobj.status != "200") { // if the status is NOT 'ok', remove the loading dots, and display an error:
-          loading.innerHTML = "";
-          document.getElementById("error-container").innerHTML = "<p>Error... there's a problem fetching the releases. Please see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>";
+      } else if(xobj.status != '200') { // if the status is NOT 'ok', remove the loading dots, and display an error:
+          loading.innerHTML = '';
+          document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
       }
     };
     xobj.send(null);
@@ -175,7 +177,7 @@ function loadReleasesJSON(repo, filename, callback) {
 // check for IE browser
 function msieversion() {
     var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE ");
+    var msie = ua.indexOf('MSIE ');
     if (msie >= 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
       return true;
     }
@@ -183,18 +185,18 @@ function msieversion() {
 }
 
 // build the menu twisties
-var submenus = document.getElementById("menu-content").getElementsByClassName("submenu");
+var submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
 
 for (i = 0; i < submenus.length; i++) {
-  var twisty = document.createElement("span");
-  var twistyContent = document.createTextNode(">");
+  var twisty = document.createElement('span');
+  var twistyContent = document.createTextNode('>');
   twisty.appendChild(twistyContent);
-  twisty.className = "twisty";
+  twisty.className = 'twisty';
 
   var thisLine = submenus[i].getElementsByTagName('a')[0];
   thisLine.appendChild(twisty);
 
   thisLine.onclick = function(){
-    this.parentNode.classList.toggle("open");
+    this.parentNode.classList.toggle('open');
   }
 }
