@@ -4,19 +4,19 @@
 
 1. Install the `gulp` CLI
 
-    ```
+    ``` bash
     npm install --global gulp-cli
     ```
 
 2. Install the project devDependencies
 
-    ```
+    ``` bash
     npm install
     ```
 
 3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
-    ```
+    ``` bash
     npm start
     ```
 
@@ -43,7 +43,7 @@ When pull requests are merged, they are automatically [built by Jenkins](https:/
 ### How is the website populated with data?
 The website uses JSON information from the [openjdk-releases](https://github.com/AdoptOpenJDK/openjdk-releases/releases) and [openjdk-nightly](https://github.com/AdoptOpenJDK/openjdk-nightly/releases) repositories on GitHub to populate each of the main pages.
 
-However, the website does not directly call the GitHub API, because this would quickly exceed GitHub's API rate limit. Instead, the [adoptopenjdk-website-backend](https://ci.adoptopenjdk.net/view/all/job/adoptopenjdk-website-backend/) Jenkins job calls the GitHub API on a regular basis throughout the day, checks for changes, and stores the returned JSON data in `.json` files on the [openjdk-website-backend](https://github.com/AdoptOpenJDK/openjdk-website-backend) repository on GitHub.
+However, the website does not directly call the GitHub API, because this would quickly exceed GitHub's API rate limit. Instead, the [adoptopenjdk-website-backend](https://ci.adoptopenjdk.net/view/all/job/adoptopenjdk-website-backend/) Jenkins job calls the GitHub API on a regular basis throughout the day, checks for changes, and stores the returned JSON data in `.json` files in the two repositories.
 
 The website's JavaScript then uses a GET request to access these `.json` files, and generates the necessary HTML to display the information on-screen.
 
