@@ -1,10 +1,10 @@
 // set variables for HTML elements
-var tableHead = document.getElementById("table-head");
-var tableContainer = document.getElementById("nightly-list");
-var nightlyList = document.getElementById("nightly-table");
-var searchError = document.getElementById("search-error");
-var numberpicker = document.getElementById("numberpicker");
-var datepicker = document.getElementById("datepicker");
+var tableHead = document.getElementById('table-head');
+var tableContainer = document.getElementById('nightly-list');
+var nightlyList = document.getElementById('nightly-table');
+var searchError = document.getElementById('search-error');
+var numberpicker = document.getElementById('numberpicker');
+var datepicker = document.getElementById('datepicker');
 
 // When nightly page loads, run:
 /* eslint-disable no-unused-vars */
@@ -32,7 +32,7 @@ function setDatePicker() {
 
 function populateNightly() {
   // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
-  loadReleasesJSON("nightly", "nightly", function(response) {
+  loadReleasesJSON('nightly', 'nightly', function(response) {
     function checkIfProduction(x) { // used by the array filter method below.
       return x.prerelease === false && x.assets[0];
     }
@@ -46,14 +46,14 @@ function populateNightly() {
       buildNightlyHTML(releasesJson);
     } else { // if there are no releases...
       // report an error
-      errorContainer.innerHTML = "<p>Error... no releases have been found!</p>";
-      loading.innerHTML = ""; // remove the loading dots
+      errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+      loading.innerHTML = ''; // remove the loading dots
     }
   });
 }
 
 function buildNightlyHTML(releasesJson) {
-  tableHead.innerHTML = ("<tr id='table-header'><th>Release</th><th>Date</th><th>Platform</th><th>Binary</th><th>Checksum</th></tr>");
+  tableHead.innerHTML = ('<tr id=\'table-header\'><th>Release</th><th>Date</th><th>Platform</th><th>Binary</th><th>Checksum</th></tr>');
 
   // for each release...
   releasesJson.forEach(function(eachRelease) {
@@ -83,17 +83,17 @@ function buildNightlyHTML(releasesJson) {
           var publishedAt = eachRelease.published_at;
           var thisReleaseName = eachRelease.name.slice(0, 12);
           var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
-          var thisGitLink = ("https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/" + eachRelease.name);
+          var thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/' + eachRelease.name);
           var thisOfficialName = getOfficialName(thisPlatform);
           var thisBinaryLink = (eachAsset.browser_download_url);
           var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, ".sha256.txt");
+          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, '.sha256.txt');
 
           var currentNightlyContent = nightlyList.innerHTML;
 
           // prepare a fully-populated HTML block for this release
           // to change the HTML of the nightly table rows/cells, you must change this template.
-          var newNightlyContent = currentNightlyContent += ("<tr class='nightly-container'><td><div><strong><a href='"+thisGitLink+"' class='dark-link' target='_blank'>"+thisReleaseName+"</a></strong></div></td><td><div class='nightly-release-date'>"+thisReleaseDate+"</div></td><td class='nightly-platform-block'>"+thisOfficialName+"</td><td class='nightly-downloads-block'><div><a class='dark-link' href='"+thisBinaryLink+"'>"+thisBinaryExtension+" ("+thisBinarySize+" MB)</a></td><td><a href='"+thisChecksumLink+"' class='dark-link'>Checksum</a></div></td></tr>");
+          var newNightlyContent = currentNightlyContent += ('<tr class=\'nightly-container\'><td><div><strong><a href=\''+thisGitLink+'\' class=\'dark-link\' target=\'_blank\'>'+thisReleaseName+'</a></strong></div></td><td><div class=\'nightly-release-date\'>'+thisReleaseDate+'</div></td><td class=\'nightly-platform-block\'>'+thisOfficialName+'</td><td class=\'nightly-downloads-block\'><div><a class=\'dark-link\' href=\''+thisBinaryLink+'\'>'+thisBinaryExtension+' ('+thisBinarySize+' MB)</a></td><td><a href=\''+thisChecksumLink+'\' class=\'dark-link\'>Checksum</a></div></td></tr>');
 
           // update the HTML container element with this new, blank, template row (hidden at this stage)
           nightlyList.innerHTML = newNightlyContent;
@@ -103,7 +103,7 @@ function buildNightlyHTML(releasesJson) {
   });
 
   setSearchLogic();
-  loading.innerHTML = ""; // remove the loading dots
+  loading.innerHTML = ''; // remove the loading dots
 
   // show the table, with animated fade-in
   nightlyList.className = nightlyList.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
@@ -120,18 +120,18 @@ function buildNightlyHTML(releasesJson) {
 
 function setTableRange() {
   var rows = $('#nightly-table tr');
-  var selectedDate = moment(datepicker.value, "MM-DD-YYYY").format();
+  var selectedDate = moment(datepicker.value, 'MM-DD-YYYY').format();
   var visibleRows = 0;
 
   for (i = 0; i < rows.length; i++) {
-    var thisDate = rows[i].getElementsByClassName("nightly-release-date")[0].innerHTML;
-    var thisDateMoment = moment(thisDate, "Do MMMM YYYY").format();
+    var thisDate = rows[i].getElementsByClassName('nightly-release-date')[0].innerHTML;
+    var thisDateMoment = moment(thisDate, 'Do MMMM YYYY').format();
     var isAfter = moment(thisDateMoment).isAfter(selectedDate);
     if(isAfter === true || visibleRows >= numberpicker.value) {
-      rows[i].classList.add("hide");
+      rows[i].classList.add('hide');
     }
     else {
-      rows[i].classList.remove("hide");
+      rows[i].classList.remove('hide');
       visibleRows++;
     }
   }
@@ -157,13 +157,13 @@ function setSearchLogic() {
 }
 
 function checkSearchResultsExist() {
-  var numOfVisibleRows = $("#nightly-table").find("tr:visible").length;
+  var numOfVisibleRows = $('#nightly-table').find('tr:visible').length;
   if(numOfVisibleRows == 0){
-    tableContainer.style.visibility = "hidden";
-    searchError.className = "";
+    tableContainer.style.visibility = 'hidden';
+    searchError.className = '';
   }
   else {
-    tableContainer.style.visibility = "";
-    searchError.className = "hide";
+    tableContainer.style.visibility = '';
+    searchError.className = 'hide';
   }
 }
