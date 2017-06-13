@@ -16,15 +16,22 @@ const sitemap = require('gulp-sitemap');
 const hash = require('gulp-hash');
 const inject = require('gulp-inject');
 const robots = require('gulp-robots');
+const clean = require('gulp-clean');
 
 // default task
 gulp.task('default', function() {
-  runSequence(['handlebars','scripts','styles','images','icon'],'inject','watch','browser-sync');
+  runSequence('clean',['handlebars','scripts','styles','images','icon'],'inject','watch','browser-sync');
 });
 
 // build task
 gulp.task('build', function() {
-  runSequence(['handlebars','scripts','styles','images','icon'],'inject','sitemap','robots','lint');
+  runSequence('clean',['handlebars','scripts','styles','images','icon'],'inject','sitemap','robots','lint');
+});
+
+// clean task (deletes /dist dir)
+gulp.task('clean', function () {
+  return gulp.src('dist', {read: false})
+    .pipe(clean());
 });
 
 // watch task
@@ -47,17 +54,17 @@ gulp.task('handlebars', function () {
   var templateData = {
   },
   options = {
-      ignorePartials: true, // ignores unknown partials in the template, defaults to false
-      batch : ['./src/handlebars/partials']
+    ignorePartials: true, // ignores unknown partials in the template, defaults to false
+    batch : ['./src/handlebars/partials']
   }
 
   return gulp.src('./src/handlebars/*.handlebars')
-      .pipe(handlebars(templateData, options))
-      .on('error', gutil.log)
-      .pipe(rename({
-        extname: '.html'
-      }))
-      .pipe(gulp.dest('./'));
+    .pipe(handlebars(templateData, options))
+    .on('error', gutil.log)
+    .pipe(rename({
+      extname: '.html'
+    }))
+    .pipe(gulp.dest('./'));
 });
 
 
