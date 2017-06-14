@@ -71,7 +71,7 @@ function buildArchiveHTML(releasesJson) {
           ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
           ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
           ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-          ASSETOBJECT.thisVerified = true;
+          ASSETOBJECT.thisVerified = false;
 
           ASSETARRAY.push(ASSETOBJECT);
         }

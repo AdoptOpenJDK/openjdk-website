@@ -105,6 +105,15 @@ h2.transition-bright {
   font-size: 1.2rem;
 }
 
+#dl-latest span.tick {
+  top: 0.3rem;
+  right: -0.2rem;
+  margin-right: 0.2rem;
+  img {
+    height: 1.2rem;
+  }
+}
+
 @media all and (max-width: 300px) {
   #minor-links a {
     display: block;

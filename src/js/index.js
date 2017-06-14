@@ -77,6 +77,9 @@ function buildHomepageHTML(releasesJson) {
     dlText.innerHTML = ('Download for ' + OS.officialName); // set the text to be OS-specific, using the full OS name.
     var thisBinarySize = Math.floor((matchingBinary.size)/1024/1024);
     dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
+    if(matchingBinary.jck === true) {
+      document.getElementById('jck-approved-tick').classList.remove('hide');
+    }
   }
   // if there is NOT a matching binary for the user's OS...
   else {
