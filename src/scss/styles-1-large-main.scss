@@ -412,6 +412,49 @@ code.hljs {
   padding: 0.5rem 1rem;
 }
 
+/* TOOLTIP STYLING */
+[data-tooltip] {
+  display: inline-block;
+  position: relative;
+  cursor: default;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  display: block;
+  z-index: 50;
+}
+
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  display: none;
+  position: absolute;
+  background: $mainblue;
+  color: $maingrey;
+  padding: 0.4rem 0.5rem;
+  line-height: 1.2rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  top: 80%;
+  margin-top: 0.5rem;
+}
+
+[data-tooltip]:after {
+  content: '';
+  display: none;
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+  left: 50%;
+  top: 80%;
+  margin-top: 0.1rem;
+  border-width: 0 0.4rem 0.4rem;
+  border-bottom-color: $mainblue;
+  transform: translateX(-50%);
+}
+
 // FOOTER CSS
 
 footer {

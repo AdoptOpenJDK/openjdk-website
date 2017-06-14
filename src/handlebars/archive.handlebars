@@ -22,7 +22,43 @@
     <div id="archive-list" class="hide">
       <div id="pagination-container"></div>
       <table class='archive-container'>
-        <tbody id='archive-table-body'></tbody>
+        <tbody id='archive-table-body'>
+
+          <!-- BEGIN HANDLEBARS LIVE-RENDERED TEMPLATE -->
+          <script id="template" type="text/x-handlebars-template">
+            \{{#each htmlTemplate}}
+              <tr class='release-row'>
+                <td class='blue-bg'>
+                  <div>
+                    <h1><a href='\{{thisGitLink}}' class='light-link' target='_blank'>\{{thisReleaseName}}</a></h1>
+                    <h4>\{{thisReleaseDate}}</h4>
+                  </div>
+                </td>
+                <td>
+                  <table class='archive-platforms'>
+                    \{{#each thisPlatformAssets}}
+                      <tr class='platform-row \{{thisPlatform}}'>
+                        <td>\{{thisOfficialName}}</td>
+                        <td class='download-td'>
+                          <a class='grey-button no-underline' href='\{{thisBinaryLink}}'>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)
+                            \{{#if thisVerified}}
+                              <span class='tick' data-tooltip="This build is JCK approved."><img src='./dist/assets/tick.png' alt="This build is JCK approved."></span>
+                            \{{else}}
+                              <span class='tick' data-tooltip="This build is not JCK approved."><img src='./dist/assets/cross.png' alt="This build is not JCK approved."></span>
+                            \{{/if}}
+                          </a>
+                        </td>
+                        <td><a href='\{{thisChecksumLink}}' class='dark-link'>Checksum</a></td>
+                      </tr>
+                    \{{/each}}
+                  </table>
+                </td>
+              </tr>
+            \{{/each}}
+          </script>
+          <!-- END HANDLEBARS LIVE-RENDERED TEMPLATE -->
+
+        </tbody>
       </table>
     </div>
 
