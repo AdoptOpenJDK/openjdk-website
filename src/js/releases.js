@@ -69,7 +69,7 @@ function buildLatestHTML(releasesJson) {
       if(uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
         var thisInstallerLink = (eachAsset.browser_download_url);
         var thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
-        htmlArray[objIndex].installerBlock = ('<div class=\'latest-block\'><span>Installer</span><a href=\'' +thisInstallerLink+ '\' class=\'latest-download-button a-button installer-dl\'><div class=\'large-dl-text\'>Download<div class=\'small-dl-text\'>' +thisInstallerExtension+ ' - ' +thisInstallerSize+ ' MB</div></div></a></div>');
+        htmlArray[objIndex].installerBlock = ('<div class=\'latest-block\'><span>Installer</span><a href=\'' +thisInstallerLink+ '\' class=\'latest-download-button a-button installer-dl\'><div class=\'large-dl-text\'>Download<div class=\'small-dl-text\'><var installer-info>' +thisInstallerExtension+ ' - ' +thisInstallerSize+ ' MB</var></div></div></a></div>');
       }
 
       // if the filename contains both the platform name and the matching BINARY extension, add an HTML block to htmlArray
@@ -78,7 +78,7 @@ function buildLatestHTML(releasesJson) {
         var thisBinaryLink = (eachAsset.browser_download_url);
         var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
         var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, '.sha256.txt');
-        htmlArray[objIndex].binaryBlock = ('<div class=\'latest-block\'><span>Binary</span><a href=\'' +thisBinaryLink+ '\' class=\'latest-download-button a-button\'><div class=\'large-dl-text\'>Download<div class=\'small-dl-text\'>' +thisBinaryExtension+ ' - ' +thisBinarySize+ ' MB</div></div></a><div class=\'latest-details\'><p><a href=\'' +thisChecksumLink+ '\' class=\'dark-link\' target=\'_blank\'>Checksum</a></p></div></div>');
+        htmlArray[objIndex].binaryBlock = ('<div class=\'latest-block\'><span>Binary</span><a href=\'' +thisBinaryLink+ '\' class=\'latest-download-button a-button\'><div class=\'large-dl-text\'>Download<div class=\'small-dl-text\'><var binary-info>' +thisBinaryExtension+ ' - ' +thisBinarySize+ ' MB</var></div></div></a><div class=\'latest-details\'><p><a href=\'' +thisChecksumLink+ '\' class=\'dark-link\' target=\'_blank\'>Checksum</a></p></div></div>');
       }
 
     }
@@ -99,8 +99,8 @@ function buildLatestHTML(releasesJson) {
     }
 
     // prepare fully-populated selector and info sections for this platform, append them to the HTML block variables
-    latestSelectorHTML += ('<td id=\'latest-selector-' +thisPlatform+ '\' onclick=\'selectLatestPlatform("' +thisPlatform+ '")\'><img alt=\'' +thisOfficialName+ ' logo\' src=\'' +thisLogo+ '\'><span>' +thisOfficialName+ '</span></td>');
-    latestInfoHTML += ('<td id=\'latest-info-' +thisPlatform+ '\' class=\'hide\'><div class=\'platform-section\'><img alt=\'' +thisOfficialName+ ' logo\' src=\'' +thisLogo+ '\'><h2>' +thisOfficialName+ '</h2></div><div class=\'content-section\'>' + thisInstallerBlock + thisBinaryBlock + '</div></td>');
+    latestSelectorHTML += ('<td id=\'latest-selector-' +thisPlatform+ '\' onclick=\'selectLatestPlatform("' +thisPlatform+ '")\'><img alt=\'' +thisOfficialName+ ' logo\' src=\'' +thisLogo+ '\'><var platform-name>' +thisOfficialName+ '</var></td>');
+    latestInfoHTML += ('<td id=\'latest-info-' +thisPlatform+ '\' class=\'hide\'><div class=\'platform-section\'><img alt=\'' +thisOfficialName+ ' logo\' src=\'' +thisLogo+ '\'><h2><var platform-name>' +thisOfficialName+ '</var></h2></div><div class=\'content-section\'>' + thisInstallerBlock + thisBinaryBlock + '</div></td>');
   });
 
   // add all of the generated HTML to the latest downloads container

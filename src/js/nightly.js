@@ -93,7 +93,7 @@ function buildNightlyHTML(releasesJson) {
 
           // prepare a fully-populated HTML block for this release
           // to change the HTML of the nightly table rows/cells, you must change this template.
-          var newNightlyContent = currentNightlyContent += ('<tr class=\'nightly-container\'><td><div><strong><a href=\''+thisGitLink+'\' class=\'dark-link\' target=\'_blank\'>'+thisReleaseName+'</a></strong></div></td><td><div class=\'nightly-release-date\'>'+thisReleaseDate+'</div></td><td class=\'nightly-platform-block\'>'+thisOfficialName+'</td><td class=\'nightly-downloads-block\'><div><a class=\'dark-link\' href=\''+thisBinaryLink+'\'>'+thisBinaryExtension+' ('+thisBinarySize+' MB)</a></td><td><a href=\''+thisChecksumLink+'\' class=\'dark-link\'>Checksum</a></div></td></tr>');
+          var newNightlyContent = currentNightlyContent += ('<tr class=\'nightly-container\'><td><div><strong><a href=\''+thisGitLink+'\' class=\'dark-link\' target=\'_blank\'><var release-name>'+thisReleaseName+'</var></a></strong></div></td><td><div class=\'nightly-release-date\'>'+thisReleaseDate+'</div></td><td class=\'nightly-platform-block\'><var platform-name>'+thisOfficialName+'</var></td><td class=\'nightly-downloads-block\'><div><a class=\'dark-link\' href=\''+thisBinaryLink+'\'><var binary-info>'+thisBinaryExtension+' ('+thisBinarySize+' MB)</var></a></td><td><a href=\''+thisChecksumLink+'\' class=\'dark-link\'>Checksum</a></div></td></tr>');
 
           // update the HTML container element with this new, blank, template row (hidden at this stage)
           nightlyList.innerHTML = newNightlyContent;

@@ -84,6 +84,13 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
   4. Any functions that you want to run after the page has loaded should be called from here.
   5. Refer to the 'HTML (Handlebars)' section above for guidance on how to call this root function.
 
+### Adding a new platform/arch/OS (or removing one)
+* `0-global.js` contains a `platforms` array.
+* This array dictates which platforms appear across the website. Changing this array will update the every page accordingly.
+* Each platform is contained within an object, and has a range of values/attributes.
+* To add a new platform, copy an existing object `{...}` and paste it into the array in the desired order (remembering to use commas `,` to separate each object).
+* Then, update the values according to the comments above the platform array, which describe the types of values that you can put into each platform attribute.
+
 ### Images
 * As a general rule, use `.png` images, especially for logos and icons. For larger images with no transparent areas, use `.jpeg` / `.jpg`.
 * When adding new images to the website, there are two goals: consistency and compression.

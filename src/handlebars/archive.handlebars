@@ -30,7 +30,7 @@
               <tr class='release-row'>
                 <td class='blue-bg'>
                   <div>
-                    <h1><a href='\{{thisGitLink}}' class='light-link' target='_blank'>\{{thisReleaseName}}</a></h1>
+                    <h1><a href='\{{thisGitLink}}' class='light-link' target='_blank'><var release-name>\{{thisReleaseName}}</var></a></h1>
                     <h4>\{{thisReleaseDate}}</h4>
                   </div>
                 </td>
@@ -40,7 +40,7 @@
                       <tr class='platform-row \{{thisPlatform}}'>
                         <td>\{{thisOfficialName}}</td>
                         <td class='download-td'>
-                          <a class='grey-button no-underline' href='\{{thisBinaryLink}}'>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)
+                          <a class='grey-button no-underline' href='\{{thisBinaryLink}}'><var binary-info>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)</var>
                             \{{#if thisVerified}}
                               <span class='tick' data-tooltip="This build is JCK approved."><img src='./dist/assets/tick.png' alt="This build is JCK approved."></span>
                             \{{/if}}
