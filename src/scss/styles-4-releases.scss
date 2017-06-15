@@ -175,3 +175,12 @@ $tableblue-even: #1F2F4E;
   font-size: .8rem;
   line-height: 1.2rem;
 }
+
+#latest-table span.tick {
+  float: right;
+  position: absolute;
+  transform: translate(4rem, 0.85rem);
+  img {
+    height: 1.2rem;
+  }
+}

@@ -1,9 +1,10 @@
-var ARCHIVEDATA = new Object();
+var ARCHIVEDATA;
 
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
 function onArchiveLoad() {
   /* eslint-enable no-unused-vars */
+  ARCHIVEDATA = new Object();
   populateArchive(); // populate the Archive page
 }
 
@@ -87,7 +88,6 @@ function buildArchiveHTML(releasesJson) {
   document.getElementById('archive-table-body').innerHTML = template(ARCHIVEDATA);
 
   setPagination();
-
   loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation

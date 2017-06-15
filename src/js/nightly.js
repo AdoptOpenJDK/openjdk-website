@@ -1,4 +1,6 @@
 // set variables for HTML elements
+var NIGHTLYDATA;
+
 var tableHead = document.getElementById('table-head');
 var tableContainer = document.getElementById('nightly-list');
 var nightlyList = document.getElementById('nightly-table');
@@ -10,6 +12,7 @@ var datepicker = document.getElementById('datepicker');
 /* eslint-disable no-unused-vars */
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
+  NIGHTLYDATA = new Object();
   setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 
@@ -54,6 +57,7 @@ function populateNightly() {
 
 function buildNightlyHTML(releasesJson) {
   tableHead.innerHTML = ('<tr id=\'table-header\'><th>Release</th><th>Date</th><th>Platform</th><th>Binary</th><th>Checksum</th></tr>');
+  var NIGHTLYARRAY = [];
 
   // for each release...
   releasesJson.forEach(function(eachRelease) {
@@ -66,41 +70,38 @@ function buildNightlyHTML(releasesJson) {
 
     // build rows with the array of binaries...
     assetArray.forEach(function(eachAsset) {  // for each file attached to this release...
-
+      var NIGHTLYOBJECT = new Object();
       var nameOfFile = (eachAsset.name);
       var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
-      var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+      NIGHTLYOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
       // firstly, check if the platform name is recognised...
-      if(thisPlatform) {
+      if(NIGHTLYOBJECT.thisPlatform) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisBinaryExtension = getBinaryExt(thisPlatform); // get the file extension associated with this platform
-        if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
+        NIGHTLYOBJECT.thisBinaryExtension = getBinaryExt(NIGHTLYOBJECT.thisPlatform); // get the file extension associated with this platform
+        if(uppercaseFilename.indexOf(NIGHTLYOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
 
           // set values ready to be injected into the HTML
           var publishedAt = eachRelease.published_at;
-          var thisReleaseName = eachRelease.name.slice(0, 12);
-          var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
-          var thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/' + eachRelease.name);
-          var thisOfficialName = getOfficialName(thisPlatform);
-          var thisBinaryLink = (eachAsset.browser_download_url);
-          var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, '.sha256.txt');
+          NIGHTLYOBJECT.thisReleaseName = eachRelease.name.slice(0, 12);
+          NIGHTLYOBJECT.thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
+          NIGHTLYOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/' + eachRelease.name);
+          NIGHTLYOBJECT.thisOfficialName = getOfficialName(NIGHTLYOBJECT.thisPlatform);
+          NIGHTLYOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
+          NIGHTLYOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+          NIGHTLYOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(NIGHTLYOBJECT.thisBinaryExtension, '.sha256.txt');
 
-          var currentNightlyContent = nightlyList.innerHTML;
-
-          // prepare a fully-populated HTML block for this release
-          // to change the HTML of the nightly table rows/cells, you must change this template.
-          var newNightlyContent = currentNightlyContent += ('<tr class=\'nightly-container\'><td><div><strong><a href=\''+thisGitLink+'\' class=\'dark-link\' target=\'_blank\'><var release-name>'+thisReleaseName+'</var></a></strong></div></td><td><div class=\'nightly-release-date\'>'+thisReleaseDate+'</div></td><td class=\'nightly-platform-block\'><var platform-name>'+thisOfficialName+'</var></td><td class=\'nightly-downloads-block\'><div><a class=\'dark-link\' href=\''+thisBinaryLink+'\'><var binary-info>'+thisBinaryExtension+' ('+thisBinarySize+' MB)</var></a></td><td><a href=\''+thisChecksumLink+'\' class=\'dark-link\'>Checksum</a></div></td></tr>');
-
-          // update the HTML container element with this new, blank, template row (hidden at this stage)
-          nightlyList.innerHTML = newNightlyContent;
+          NIGHTLYARRAY.push(NIGHTLYOBJECT);
         }
       }
     });
   });
+
+  NIGHTLYDATA.htmlTemplate = NIGHTLYARRAY;
+  var template = Handlebars.compile(document.getElementById('template').innerHTML);
+  nightlyList.innerHTML = template(NIGHTLYDATA);
 
   setSearchLogic();
   loading.innerHTML = ''; // remove the loading dots
