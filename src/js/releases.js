@@ -6,6 +6,20 @@ function onLatestLoad() {
   /* eslint-enable no-unused-vars */
   RELEASEDATA = new Object();
   populateLatest(); // populate the Latest page
+
+  var scrollSelector = $("#latest-selector"), x;
+  $("#latest-selector-left-scroll").click(function() {
+    x = ((scrollSelector.width() / 2)) - scrollSelector.scrollLeft();
+    scrollSelector.animate({
+      scrollLeft: -x,
+    })
+  });
+  $("#latest-selector-right-scroll").click(function() {
+    x = ((scrollSelector.width() / 2)) + scrollSelector.scrollLeft();
+    scrollSelector.animate({
+      scrollLeft: x,
+    })
+  });
 }
 
 // LATEST PAGE FUNCTIONS
@@ -100,10 +114,11 @@ function buildLatestHTML(releasesJson) {
   latestTable.style.maxWidth = (tableScrollWidth + 'px');
 
   // if the table has a scroll bar, show text describing how to horizontally scroll
-  var scrollText = document.getElementById('latest-scroll-text');
   var tableDisplayWidth = latestSelector.clientWidth;
   if (tableDisplayWidth != tableScrollWidth) {
-    scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+    document.getElementById('latest-scroll-text').classList.remove('hide');
+    document.getElementById('latest-scroll-arrows').classList.remove('hide');
+    document.getElementById('latest-select-text').classList.add('hide');
   }
 
   loading.innerHTML = ''; // remove the loading dots

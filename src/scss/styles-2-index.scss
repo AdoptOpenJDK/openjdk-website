@@ -105,6 +105,11 @@ h2.transition-bright {
   font-size: 1.2rem;
 }
 
+#dl-latest {
+  position: relative;
+  z-index: 100;
+}
+
 #dl-latest span.tick {
   top: 0.3rem;
   right: -0.2rem;

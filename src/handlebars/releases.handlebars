@@ -34,8 +34,12 @@
       </table>
 
       <div id="latest-downloads-container">
-        <h2 style="margin-bottom: 0.5rem;">Select a platform</h2>
-        <h3 id="latest-scroll-text" class="hide">(Scroll horizontally)</h3>
+        <h2 id="latest-select-text" style="margin-bottom: 0.5rem;">Select a platform</h2>
+        <h3 id="latest-scroll-text" class="hide">Scroll to select a platform</h3>
+        <h1 id="latest-scroll-arrows" class="animated pulse hide">
+          <i id="latest-selector-left-scroll" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+          <i id="latest-selector-right-scroll" class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        </h1>
 
         <table id="latest-table">
 
@@ -114,4 +118,4 @@
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script>onLatestLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>' script3='<script>onLatestLoad();</script>' }}

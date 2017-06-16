@@ -39,7 +39,7 @@ $tableblue-even: #1F2F4E;
 }
 
 #latest-downloads-container {
-  max-width: 80rem;
+  max-width: 65rem;
   margin: 2rem auto auto;
 }
 
@@ -59,8 +59,17 @@ $tableblue-even: #1F2F4E;
 }
 
 #latest-scroll-text {
-  font-size: 0.8rem;
-  margin: 0 auto 1rem;
+  margin: 1rem auto;
+}
+
+#latest-scroll-arrows {
+  margin: 0;
+  i {
+    padding: 0 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    color: $brighterblue;
+  }
 }
 
 #latest-selector {
