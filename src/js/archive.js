@@ -1,10 +1,10 @@
-// set variables for HTML elements
-var archiveContentArray = [];
+var ARCHIVEDATA;
 
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
 function onArchiveLoad() {
   /* eslint-enable no-unused-vars */
+  ARCHIVEDATA = new Object();
   populateArchive(); // populate the Archive page
 }
 
@@ -34,15 +34,18 @@ function populateArchive() {
 }
 
 function buildArchiveHTML(releasesJson) {
+  var RELEASEARRAY = [];
+
   // for each release...
   releasesJson.forEach(function(eachRelease) {
+    var RELEASEOBJECT = new Object();
+    var ASSETARRAY = [];
 
     // set values for this release, ready to inject into HTML
     var publishedAt = eachRelease.published_at;
-    var thisReleaseName = eachRelease.name;
-    var thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
-    var thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/' + thisReleaseName);
-    var platformTableRows = ''; // an empty var where new table rows can be added for each platform
+    RELEASEOBJECT.thisReleaseName = eachRelease.name;
+    RELEASEOBJECT.thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
+    RELEASEOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/' + RELEASEOBJECT.thisReleaseName);
 
     // create an array of the details for each asset that is attached to this release
     var assetArray = [];
@@ -52,37 +55,39 @@ function buildArchiveHTML(releasesJson) {
 
     // populate 'platformTableRows' with one row per binary for this release...
     assetArray.forEach(function(eachAsset) {
+      var ASSETOBJECT = new Object();
       var nameOfFile = (eachAsset.name);
       var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
-      var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+      ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
       // firstly, check if the platform name is recognised...
-      if(thisPlatform) {
+      if(ASSETOBJECT.thisPlatform) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisBinaryExtension = getBinaryExt(thisPlatform); // get the file extension associated with this platform
-        if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
-
+        ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform); // get the file extension associated with this platform
+        if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
           // set values ready to be injected into the HTML
-          var thisOfficialName = getOfficialName(thisPlatform);
-          var thisBinaryLink = (eachAsset.browser_download_url);
-          var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, '.sha256.txt');
+          ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
+          ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
+          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+          ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+          ASSETOBJECT.thisVerified = false;
 
-          // prepare a fully-populated table row for this platform
-          platformTableRows += ('<tr class=\'platform-row '+ thisPlatform +'\'><td>'+ thisOfficialName +'</td><td class=\'download-td\'><a class=\'grey-button no-underline\' href=\''+ thisBinaryLink +'\'>'+ thisBinaryExtension +' ('+ thisBinarySize +' MB)</a></td><td><a href=\''+ thisChecksumLink +'\' class=\'dark-link\'>Checksum</a></td></tr>');
+          ASSETARRAY.push(ASSETOBJECT);
         }
       }
     });
 
-    // create a new table row containing all release information, and the completed platform/binary table
-    var newArchiveContent = ('<tr class=\'release-row\'><td class=\'blue-bg\'><div><h1><a href=\''+ thisGitLink +'\' class=\'light-link\' target=\'_blank\'>'+ thisReleaseName +'</a></h1><h4>'+ thisReleaseDate +'</h4></div></td><td><table class=\'archive-platforms\'>'+ platformTableRows +'</table></td></tr>');
-    archiveContentArray.push(newArchiveContent);
+    RELEASEOBJECT.thisPlatformAssets = ASSETARRAY;
+    RELEASEARRAY.push(RELEASEOBJECT);
   });
 
-  setPagination();
+  ARCHIVEDATA.htmlTemplate = RELEASEARRAY;
+  var template = Handlebars.compile(document.getElementById('template').innerHTML);
+  document.getElementById('archive-table-body').innerHTML = template(ARCHIVEDATA);
 
+  setPagination();
   loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation
@@ -92,8 +97,14 @@ function buildArchiveHTML(releasesJson) {
 
 function setPagination() {
   var container = $('#pagination-container');
+  var archiveRows = document.getElementById('archive-table-body').getElementsByClassName('release-row');
+  var paginationArrayHTML = [];
+  for (i = 0; i < archiveRows.length; i++) {
+    paginationArrayHTML.push(archiveRows[i].outerHTML);
+  }
+
   var options = {
-    dataSource: archiveContentArray,
+    dataSource: paginationArrayHTML,
     pageSize: 5,
     callback: function (response) {
 

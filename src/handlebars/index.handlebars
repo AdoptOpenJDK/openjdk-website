@@ -17,9 +17,11 @@
         <i id="dl-icon" class="fa fa-download" aria-hidden="true"></i>
         <span>Latest build</span>
         <i id="dl-icon-2" class="fa fa-arrow-circle-o-right hide" aria-hidden="true"></i>
-        <br>
       </div>
-      <div class="dl-description"><span id="dl-version-text" class="small-dl-text"></span></div>
+      <div class="dl-description">
+        <var id="dl-version-text" class="small-dl-text" release-version></var>
+        <span id="jck-approved-tick" class='tick hide' data-tooltip="This build is JCK approved."><img src='./dist/assets/tick.png' alt="This build is JCK approved."></span>
+      </div>
     </a>
 
     <div id="error-container"></div>

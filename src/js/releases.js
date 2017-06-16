@@ -1,8 +1,25 @@
+var RELEASEDATA;
+
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
 function onLatestLoad() {
   /* eslint-enable no-unused-vars */
-    populateLatest(); // populate the Latest page
+  RELEASEDATA = new Object();
+  populateLatest(); // populate the Latest page
+
+  var scrollSelector = $('#latest-selector'), x;
+  $('#latest-selector-left-scroll').click(function() {
+    x = ((scrollSelector.width() / 2)) - scrollSelector.scrollLeft();
+    scrollSelector.animate({
+      scrollLeft: -x,
+    })
+  });
+  $('#latest-selector-right-scroll').click(function() {
+    x = ((scrollSelector.width() / 2)) + scrollSelector.scrollLeft();
+    scrollSelector.animate({
+      scrollLeft: x,
+    })
+  });
 }
 
 // LATEST PAGE FUNCTIONS
@@ -38,74 +55,53 @@ function buildLatestHTML(releasesJson) {
     assetArray.push(each);
   });
 
-  // create an array containing one object for each platform, ready to be populated with HTML blocks.
-  var htmlArray = [];
-  platforms.forEach(function(eachPlatform) {
-    var obj = new Object();
-    obj.searchableName = eachPlatform.searchableName;
-    obj.installerBlock = '';
-    obj.binaryBlock = '';
-    htmlArray.push(obj);
-  });
-
-  // create empty variables ready for the generated HTML
-  var latestSelectorHTML = '';
-  var latestInfoHTML = '';
+  var ASSETARRAY = [];
 
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
   assetArray.forEach(function(eachAsset) {
+    var ASSETOBJECT = new Object();
     var nameOfFile = (eachAsset.name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
-    var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+    ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
     // check if the platform name is recognised...
-    if(thisPlatform) {
+    if(ASSETOBJECT.thisPlatform) {
 
-      // get the index of the platform object inside htmlArray that matches the platform of this asset
-      var objIndex = htmlArray.findIndex(function(obj) { return obj.searchableName == thisPlatform; });
+      ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
+      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
+      ASSETOBJECT.thisVerified = false;
 
-      // if the filename contains both the platform name and the matching INSTALLER extension, add an HTML block to htmlArray
-      var thisInstallerExtension = getInstallerExt(thisPlatform);
-      if(uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
-        var thisInstallerLink = (eachAsset.browser_download_url);
-        var thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
-        htmlArray[objIndex].installerBlock = ('<div class=\'latest-block\'><span>Installer</span><a href=\'' +thisInstallerLink+ '\' class=\'latest-download-button a-button installer-dl\'><div class=\'large-dl-text\'>Download<div class=\'small-dl-text\'>' +thisInstallerExtension+ ' - ' +thisInstallerSize+ ' MB</div></div></a></div>');
+      // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
+      ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
+      if(uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
+        ASSETOBJECT.thisPlatformExists = true;
+        ASSETOBJECT.thisInstallerExists = true;
+        ASSETOBJECT.thisInstallerLink = (eachAsset.browser_download_url);
+        ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
       }
 
-      // if the filename contains both the platform name and the matching BINARY extension, add an HTML block to htmlArray
-      var thisBinaryExtension = getBinaryExt(thisPlatform);
-      if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
-        var thisBinaryLink = (eachAsset.browser_download_url);
-        var thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-        var thisChecksumLink = (eachAsset.browser_download_url).replace(thisBinaryExtension, '.sha256.txt');
-        htmlArray[objIndex].binaryBlock = ('<div class=\'latest-block\'><span>Binary</span><a href=\'' +thisBinaryLink+ '\' class=\'latest-download-button a-button\'><div class=\'large-dl-text\'>Download<div class=\'small-dl-text\'>' +thisBinaryExtension+ ' - ' +thisBinarySize+ ' MB</div></div></a><div class=\'latest-details\'><p><a href=\'' +thisChecksumLink+ '\' class=\'dark-link\' target=\'_blank\'>Checksum</a></p></div></div>');
+      // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
+      ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
+      if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
+        ASSETOBJECT.thisPlatformExists = true;
+        ASSETOBJECT.thisBinaryExists = true;
+        ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
+        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+        ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+      }
+
+      if(ASSETOBJECT.thisPlatformExists === true){
+        ASSETARRAY.push(ASSETOBJECT);
       }
 
     }
   });
 
-  // iterate through htmlArray, creating HTML for each platform
-  htmlArray.forEach(function(eachPlatform) {
-    var thisPlatform = eachPlatform.searchableName;
-    var thisLogo = getLogo(thisPlatform);
-    var thisOfficialName = getOfficialName(thisPlatform);
-    var thisInstallerBlock = eachPlatform.installerBlock;
-    // if an installer is present, wrap the binary block HTML in a div that gives it grey button styling
-    var thisBinaryBlock = '';
-    if(thisInstallerBlock != '') {
-      thisBinaryBlock = ('<div class=\'inline-block binary-grey\'>' + eachPlatform.binaryBlock + '</div>');
-    } else {
-      thisBinaryBlock = (eachPlatform.binaryBlock);
-    }
-
-    // prepare fully-populated selector and info sections for this platform, append them to the HTML block variables
-    latestSelectorHTML += ('<td id=\'latest-selector-' +thisPlatform+ '\' onclick=\'selectLatestPlatform("' +thisPlatform+ '")\'><img alt=\'' +thisOfficialName+ ' logo\' src=\'' +thisLogo+ '\'><span>' +thisOfficialName+ '</span></td>');
-    latestInfoHTML += ('<td id=\'latest-info-' +thisPlatform+ '\' class=\'hide\'><div class=\'platform-section\'><img alt=\'' +thisOfficialName+ ' logo\' src=\'' +thisLogo+ '\'><h2>' +thisOfficialName+ '</h2></div><div class=\'content-section\'>' + thisInstallerBlock + thisBinaryBlock + '</div></td>');
-  });
-
-  // add all of the generated HTML to the latest downloads container
-  document.getElementById('latest-selector').innerHTML = latestSelectorHTML;
-  document.getElementById('latest-info').innerHTML = latestInfoHTML;
+  RELEASEDATA.htmlTemplate = ASSETARRAY;
+  var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
+  var templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
+  document.getElementById('latest-selector').innerHTML = templateSelector(RELEASEDATA);
+  document.getElementById('latest-info').innerHTML = templateInfo(RELEASEDATA);
 
   var latestTable = document.getElementById('latest-table');
   var latestSelector = document.getElementById('latest-selector');
@@ -114,10 +110,11 @@ function buildLatestHTML(releasesJson) {
   latestTable.style.maxWidth = (tableScrollWidth + 'px');
 
   // if the table has a scroll bar, show text describing how to horizontally scroll
-  var scrollText = document.getElementById('latest-scroll-text');
   var tableDisplayWidth = latestSelector.clientWidth;
   if (tableDisplayWidth != tableScrollWidth) {
-    scrollText.className = scrollText.className.replace( /(?:^|\s)hide(?!\S)/g , '' );
+    document.getElementById('latest-scroll-text').classList.remove('hide');
+    document.getElementById('latest-scroll-arrows').classList.remove('hide');
+    document.getElementById('latest-select-text').classList.add('hide');
   }
 
   loading.innerHTML = ''; // remove the loading dots

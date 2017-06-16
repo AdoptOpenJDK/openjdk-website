@@ -162,6 +162,9 @@ input {
   animation-duration: 0.3s;
 }
 
+var {
+  font-style: normal;
+}
 
 // NAV CSS
 
@@ -412,6 +415,51 @@ code.hljs {
   padding: 0.5rem 1rem;
 }
 
+/* TOOLTIP STYLING */
+[data-tooltip] {
+  display: inline-block;
+  position: relative;
+  cursor: default;
+}
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  display: block;
+  z-index: 50;
+}
+
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  display: none;
+  position: absolute;
+  background: $mainblue;
+  color: $maingrey;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  line-height: 1.2rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  top: 80%;
+  margin-top: 0.5rem;
+}
+
+[data-tooltip]:after {
+  content: '';
+  display: none;
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+  left: 50%;
+  top: 80%;
+  margin-top: 0.2rem;
+  border-width: 0 0.4rem 0.4rem;
+  border-bottom-color: $mainblue;
+  transform: translateX(-50%);
+}
+
 // FOOTER CSS
 
 footer {
@@ -473,24 +521,4 @@ footer p {
 /* When moving the mouse over the close button */
 .closebtn:hover {
    color: black;
-}
-
-
-// GOOGLE TRANSLATION DROP DOWN STYLES
-
-.goog-te-gadget-simple {
-  padding: .25rem .4rem .4rem .4rem !important;
-  font-family: opensans !important;
-  font-size: 0.8rem !important;
-  background-color: rgba(255, 255, 255, 0.2) !important;
-  border: none !important;
-}
-img.goog-te-gadget-icon {
-  margin-right: 0.2rem;
-}
-.goog-te-menu-value span {
-  color: white !important;
-}
-.goog-te-menu-value span:nth-child(3) {
-  display: none !important;
 }
