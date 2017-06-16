@@ -7,14 +7,14 @@ function onLatestLoad() {
   RELEASEDATA = new Object();
   populateLatest(); // populate the Latest page
 
-  var scrollSelector = $("#latest-selector"), x;
-  $("#latest-selector-left-scroll").click(function() {
+  var scrollSelector = $('#latest-selector'), x;
+  $('#latest-selector-left-scroll').click(function() {
     x = ((scrollSelector.width() / 2)) - scrollSelector.scrollLeft();
     scrollSelector.animate({
       scrollLeft: -x,
     })
   });
-  $("#latest-selector-right-scroll").click(function() {
+  $('#latest-selector-right-scroll').click(function() {
     x = ((scrollSelector.width() / 2)) + scrollSelector.scrollLeft();
     scrollSelector.animate({
       scrollLeft: x,
@@ -54,10 +54,6 @@ function buildLatestHTML(releasesJson) {
   releasesJson.assets.forEach(function(each) {
     assetArray.push(each);
   });
-
-  // create empty variables ready for the generated HTML
-  var latestSelectorHTML = '';
-  var latestInfoHTML = '';
 
   var ASSETARRAY = [];
 

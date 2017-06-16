@@ -23,5 +23,6 @@ globals:
   loading: true
   platforms: true
   i: true
+  Handlebars: true
 
 extends: eslint:recommended
