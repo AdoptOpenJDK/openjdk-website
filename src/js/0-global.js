@@ -153,10 +153,8 @@ function detectOS() {
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadReleasesJSON(repo, filename, callback) {
-    console.log("A");
     var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
     var xobj = new XMLHttpRequest();
-    xobj.overrideMimeType('application/json');
     xobj.open('GET', url, true);
     xobj.onreadystatechange = function () {
       if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
