@@ -84,6 +84,27 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
   4. Any functions that you want to run after the page has loaded should be called from here.
   5. Refer to the 'HTML (Handlebars)' section above for guidance on how to call this root function.
 
+### Adding a new platform/arch/OS (or removing one)
+* `0-global.js` contains a `platforms` array.
+* This array dictates which platforms appear across the website. Changing this array will update the every page accordingly.
+* Each platform is contained within an object, and has a range of values/attributes.
+* To add a new platform, copy an existing object `{...}` and paste it into the array in the desired order (remembering to use commas `,` to separate each object).
+* Then, update the values according to the comments above the platform array, which describe the types of values that you can put into each platform attribute.
+
+### Images
+* As a general rule, use `.png` images, especially for logos and icons. For larger images with no transparent areas, use `.jpeg` / `.jpg`.
+* When adding new images to the website, there are two goals: consistency and compression.
+* Ensure that there is no whitespace around the edges of your new image, as this will make it appear smaller than it should be.
+* Consider the other images on that page. Are you adding another image to a 'set' that already exists? E.g. a new logo on the Sponsors page, or a new platform icon to the Latest page.
+* If yes, look at the existing 'set' of images - they will either have a consistent height or a consistent width in pixels. You should reduce the size of your new image to match the rest of the 'set'.
+* If not, bear in mind that many people will be viewing the website on very high-resolution screens. As a general rule, you can make images look good on these screens by using an image that is approximately 2x larger than it needs to be, then using CSS to reduce the displayed size of the image to a suitable width or height.
+* Although the `gulp` task is set up to compress images automatically, it is good practice to use [tinypng.com](https://tinypng.com/) to reduce the file size first. This website is recommended because it produces consistent, high-quality results.
+* Add the new image to `/src/assets`, then re-run `npm start`.
+* Add it to a `.handlebars` file:
+```html
+<img src='./dist/assets/your-new-image.png' alt="Add a description of the image here">
+```
+
 ---
 
 ## Gulp / `gulpfile.js` / builds

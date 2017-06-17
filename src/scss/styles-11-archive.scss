@@ -47,3 +47,13 @@ $tableblue-even: #1F2F4E;
   margin: auto;
   margin: 2rem 1rem 0 1rem;
 }
+
+.archive-platforms span.tick {
+  float: right;
+  position: relative;
+  right: -0.7rem;
+  top: 0.3rem;
+  img {
+    height: 1.2rem;
+  }
+}

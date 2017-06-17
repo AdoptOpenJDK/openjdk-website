@@ -3,11 +3,11 @@
 // set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
 // GUIDE TO THE PLATFORMS ARRAY:
 // officialName: The 'legal name' or official name for the OS. This is displayed on most pages.
-// searchableName: a string that appears in the name of the binaries and checksums, that can be used to identify the platform.
+// searchableName: a string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.
 // logo: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
 // binaryExtension: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
 // requirements: currently just displayed on the 'latest build' page. Should be a short string identifying the most important min. requirement of a machine to run the latest build.
-// architecture: 64 or 32. May be required for differentiation between future builds.
+// architecture: 64 or 32. Not currently used. May be required for differentiation between future builds, primarily for displaying the architecture type.
 // osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
 var platforms = [
   {

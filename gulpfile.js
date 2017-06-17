@@ -54,7 +54,6 @@ gulp.task('handlebars', function () {
   var templateData = {
   },
   options = {
-    ignorePartials: true, // ignores unknown partials in the template, defaults to false
     batch : ['./src/handlebars/partials']
   }
 
