@@ -98,6 +98,26 @@ function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
 }
 
+function getPlatformOrder(searchableName) {
+  var index = platforms.findIndex(function(x) {
+    return x.searchableName == searchableName;
+  });
+  return index;
+}
+
+function orderPlatforms(inputArray) {
+  function compareOrder(a,b) {
+    if (a.thisPlatformOrder < b.thisPlatformOrder)
+      return -1;
+    if (a.thisPlatformOrder > b.thisPlatformOrder)
+      return 1;
+    return 0;
+  }
+
+  var orderedArray = inputArray.sort(compareOrder);
+  return orderedArray;
+}
+
 // gets the BINARY EXTENSION when you pass in 'searchableName'
 function getBinaryExt(searchableName) {
   return (lookup[searchableName].binaryExtension);

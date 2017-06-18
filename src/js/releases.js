@@ -68,6 +68,7 @@ function buildLatestHTML(releasesJson) {
     if(ASSETOBJECT.thisPlatform) {
 
       ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
+      ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisVerified = false;
 
@@ -96,6 +97,8 @@ function buildLatestHTML(releasesJson) {
 
     }
   });
+
+  ASSETARRAY = orderPlatforms(ASSETARRAY);
 
   RELEASEDATA.htmlTemplate = ASSETARRAY;
   var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
