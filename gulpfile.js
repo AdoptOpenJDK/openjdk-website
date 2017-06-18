@@ -17,6 +17,7 @@ const hash = require('gulp-hash');
 const inject = require('gulp-inject');
 const robots = require('gulp-robots');
 const clean = require('gulp-clean');
+const babel = require('gulp-babel');
 
 // default task
 gulp.task('default', function() {
@@ -39,7 +40,7 @@ gulp.task('watch', function() {
   gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], function() {
     runSequence('handlebars','inject', browserSync.reload);
   });
-  gulp.watch('./src/js/*.js', function() {
+  gulp.watch('./src/js/**/*.js', function() {
     runSequence('scripts','inject', browserSync.reload);
   });
   gulp.watch('./src/scss/*.scss', function() {
@@ -69,7 +70,8 @@ gulp.task('handlebars', function () {
 
 // scripts task
 gulp.task('scripts', function() {
-  return gulp.src('./src/js/*.js')
+  return gulp.src('./src/js/**/*.js')
+    .pipe(babel({presets: ['es2015']}))
     .pipe(concat('app.js'))
     .on('error', gutil.log)
     .pipe(gulp.dest('./dist/js/'))
