@@ -72,12 +72,15 @@ function buildArchiveHTML(releasesJson) {
           ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
           ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
           ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+          ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
           ASSETOBJECT.thisVerified = false;
 
           ASSETARRAY.push(ASSETOBJECT);
         }
       }
     });
+
+    ASSETARRAY = orderPlatforms(ASSETARRAY);
 
     RELEASEOBJECT.thisPlatformAssets = ASSETARRAY;
     RELEASEARRAY.push(RELEASEOBJECT);
@@ -88,6 +91,7 @@ function buildArchiveHTML(releasesJson) {
   document.getElementById('archive-table-body').innerHTML = template(ARCHIVEDATA);
 
   setPagination();
+  setTickLink();
   loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation

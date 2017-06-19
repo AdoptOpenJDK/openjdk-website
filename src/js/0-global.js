@@ -98,6 +98,25 @@ function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
 }
 
+function getPlatformOrder(searchableName) {
+  var index = platforms.findIndex(function(platform) {
+    return platform.searchableName == searchableName;
+  });
+  return index;
+}
+
+function orderPlatforms(inputArray) {
+  function compareOrder(thisAsset,nextAsset) {
+    if (thisAsset.thisPlatformOrder < nextAsset.thisPlatformOrder)
+      return -1;
+    if (thisAsset.thisPlatformOrder > nextAsset.thisPlatformOrder)
+      return 1;
+    return 0;
+  }
+  var orderedArray = inputArray.sort(compareOrder);
+  return orderedArray;
+}
+
 // gets the BINARY EXTENSION when you pass in 'searchableName'
 function getBinaryExt(searchableName) {
   return (lookup[searchableName].binaryExtension);
@@ -183,5 +202,20 @@ for (i = 0; i < submenus.length; i++) {
 
   thisLine.onclick = function(){
     this.parentNode.classList.toggle('open');
+  }
+}
+
+function setTickLink() {
+  var ticks = document.getElementsByClassName('tick');
+  for (i = 0; i < ticks.length; i++) {
+    ticks[i].addEventListener('click', function(event) {
+      var win = window.open('https://en.wikipedia.org/wiki/Technology_Compatibility_Kit', '_blank');
+      if (win) {
+          win.focus();
+      } else {
+          alert('New tab blocked - please allow popups.');
+      }
+      event.preventDefault();
+    });
   }
 }

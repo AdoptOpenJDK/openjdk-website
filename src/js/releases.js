@@ -68,6 +68,7 @@ function buildLatestHTML(releasesJson) {
     if(ASSETOBJECT.thisPlatform) {
 
       ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
+      ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisVerified = false;
 
@@ -97,6 +98,8 @@ function buildLatestHTML(releasesJson) {
     }
   });
 
+  ASSETARRAY = orderPlatforms(ASSETARRAY);
+
   RELEASEDATA.htmlTemplate = ASSETARRAY;
   var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
   var templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
@@ -116,6 +119,8 @@ function buildLatestHTML(releasesJson) {
     document.getElementById('latest-scroll-arrows').classList.remove('hide');
     document.getElementById('latest-select-text').classList.add('hide');
   }
+
+  setTickLink();
 
   loading.innerHTML = ''; // remove the loading dots
 
