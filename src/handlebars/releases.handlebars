@@ -67,9 +67,7 @@
                       <div class='latest-block'>
                         <span>Installer</span>
                         <a href='\{{thisInstallerLink}}' class='latest-download-button a-button installer-dl'>
-                          \{{#if thisVerified}}
-                            <span class='tick' data-tooltip="This build is JCK approved."><img src='./dist/assets/tick.png' alt="This build is JCK approved."></span>
-                          \{{/if}}
+                          {{> jck-tick }}
                           <div class='large-dl-text'>Download
                             <div class='small-dl-text'><var installer-info>\{{thisInstallerExtension}} - \{{thisInstallerSize}} MB</var></div>
                           </div>
@@ -84,9 +82,7 @@
                         <div class='latest-block'>
                           <span>Binary</span>
                           <a href='\{{thisBinaryLink}}' class='latest-download-button a-button'>
-                            \{{#if thisVerified}}
-                              <span class='tick' data-tooltip="This build is JCK approved."><img src='./dist/assets/tick.png' alt="This build is JCK approved."></span>
-                            \{{/if}}
+                            {{> jck-tick }}
                             <div class='large-dl-text'>Download
                               <div class='small-dl-text'><var binary-info>\{{thisBinaryExtension}} - \{{thisBinarySize}} MB</var></div>
                             </div>

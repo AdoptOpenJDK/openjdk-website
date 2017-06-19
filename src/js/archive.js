@@ -91,6 +91,7 @@ function buildArchiveHTML(releasesJson) {
   document.getElementById('archive-table-body').innerHTML = template(ARCHIVEDATA);
 
   setPagination();
+  setTickLink();
   loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation

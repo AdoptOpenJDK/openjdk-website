@@ -26,5 +26,6 @@ globals:
   Handlebars: true
   getPlatformOrder: true
   orderPlatforms: true
+  setTickLink: true
 
 extends: eslint:recommended

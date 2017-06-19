@@ -120,6 +120,8 @@ function buildLatestHTML(releasesJson) {
     document.getElementById('latest-select-text').classList.add('hide');
   }
 
+  setTickLink();
+
   loading.innerHTML = ''; // remove the loading dots
 
   const latestContainer = document.getElementById('latest-container');

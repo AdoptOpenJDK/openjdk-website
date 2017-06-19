@@ -79,6 +79,7 @@ function buildHomepageHTML(releasesJson) {
     dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
     if(matchingBinary.jck === true) {
       document.getElementById('jck-approved-tick').classList.remove('hide');
+      setTickLink();
     }
   }
   // if there is NOT a matching binary for the user's OS...
