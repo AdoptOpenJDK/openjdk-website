@@ -63,6 +63,15 @@ var platforms = [
     installerExtension: 'no-installer-available',
     architecture: '64',
     osDetectionString: 'not-to-be-detected'
+  },
+  {
+    officialName: 'AIX ppc64',
+    searchableName: 'PPC64_AIX',
+    logo: 'aix.png',
+    binaryExtension: '.tar.gz',
+    installerExtension: 'no-installer-available',
+    architecture: '64',
+    osDetectionString: 'not-to-be-detected'
   }
 ];
 
