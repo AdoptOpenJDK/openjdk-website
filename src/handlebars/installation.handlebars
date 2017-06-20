@@ -10,7 +10,7 @@
 
   <div class="info-page-container">
     <div class="margin-bottom">
-      <h2 id="linux-mac" class="bold">Linux and macOS installation</h2>
+      <h2 id="linux-mac" class="bold">Linux, AIX and macOS installation</h2>
       <ol>
         <li>Download the latest <code>tar.gz</code> from the <a href="./releases.html">Latest build</a> page to a directory that will not move or be deleted.</li>
         <li>
@@ -23,6 +23,8 @@
         <li>
           Extract the <code>tar.gz</code>. You can use the following command:
           <pre><code>tar -xf &lt;filename&gt;.tar.gz</code></pre>
+          Note: for <strong>AIX</strong>, use the following command:
+          <pre><code>gunzip -c &lt;filename&gt;.tar.gz | tar xf -</code></pre>
         </li>
         <li>
           Add this version of Java to your PATH:
@@ -71,7 +73,7 @@
           <pre><code>sha256sum path/to/file.tar.gz</code></pre>
         </li>
         <li>
-          <span>macOS: </span>
+          <span>macOS & AIX: </span>
           <pre><code>shasum -a 256 path/to/file.tar.gz</code></pre>
         </li>
         <li>
