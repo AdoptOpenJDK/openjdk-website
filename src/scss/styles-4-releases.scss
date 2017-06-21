@@ -39,12 +39,11 @@ $tableblue-even: #1F2F4E;
 }
 
 #latest-downloads-container {
-  max-width: 65rem;
+  //max-width: 65rem;
   margin: 2rem auto auto;
 }
 
 #latest-downloads-container table {
-  border-collapse: separate;
   border-spacing: 0;
   margin: auto;
   margin-top: 1rem;
@@ -55,7 +54,7 @@ $tableblue-even: #1F2F4E;
 }
 
 #latest-downloads-container table td {
-  border: 0.1rem solid $maingrey;
+  margin: 0.1rem;
 }
 
 #latest-scroll-text {
@@ -73,18 +72,21 @@ $tableblue-even: #1F2F4E;
 }
 
 #latest-selector {
-  display: block;
+  //display: block;
   overflow-x: auto;
-  background-color: rgba(#fff,.6);
+  background-color: $maingrey;
   vertical-align: top;
   box-sizing: border-box;
   position: relative;
 }
 
 #latest-selector td {
+  //display: inline-block;
   cursor: pointer;
   min-width: 9.8rem;
   padding: 2rem 0;
+  background-color: rgba(#fff,.6);
+  float: left;
 }
 
 #latest-selector td:hover, #latest-selector td.latest-highlight {
