@@ -38,61 +38,21 @@ $tableblue-even: #1F2F4E;
   width: 80%;
 }
 
-#latest-downloads-container {
-  //max-width: 65rem;
-  margin: 2rem auto auto;
-}
-
-#latest-downloads-container table {
-  border-spacing: 0;
-  margin: auto;
-  margin-top: 1rem;
-}
-
-#latest-downloads-container table tbody {
-  display: inline;
-}
-
-#latest-scroll-text {
-  margin: 1rem auto;
-}
-
-#latest-scroll-arrows {
-  margin: 0;
-  i {
-    padding: 0 1rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
-    color: $brighterblue;
-  }
-}
-
-.latest-table-border {
+.latest-grid-border {
   border: .1rem solid $maingrey;
 }
 
 #latest-selector {
-  //display: block;
-  overflow-x: auto;
-  background-color: $maingrey;
-  vertical-align: top;
-  box-sizing: border-box;
-  position: relative;
-}
-
-#latest-selector #latest-selector td {
-  display: inline-block;
-  white-space: nowrap;
-  padding: 0;
-}
-
-#latest-selector div.latest-selector-row {
-  display: inline-block;
-  float: left;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: auto;
+  // SET THIS MAX WIDTH PROPERTY TO CHANGE THE MAX # OF PLATFORMS THAT CAN APPEAR ON EACH ROW
+  max-width: 35rem;
 }
 
 #latest-selector div.latest-asset {
-  display: table-cell;
+  float: left;
   cursor: pointer;
   min-width: 9.8rem;
   padding: 2rem 0;
@@ -108,24 +68,26 @@ $tableblue-even: #1F2F4E;
   height: 3.5rem;
 }
 
-#latest-info img {
-  height: 4.5rem;
-}
-
 #latest-selector var {
   display: block;
   margin-top: 0.5rem;
 }
 
 #latest-info {
-  display: block;
+  display: inline-block;
+  max-width: 65rem;
+  margin: auto;
 }
 
-#latest-info td {
+#latest-info .latest-info-container {
   background-color: white;
   padding: 3rem 2rem;
   display: flex;
   justify-content: space-between;
+}
+
+#latest-info img {
+  height: 4.5rem;
 }
 
 #latest-info .platform-section {

@@ -99,37 +99,13 @@ function buildLatestHTML(releasesJson) {
   });
 
   ASSETARRAY = orderPlatforms(ASSETARRAY);
-  var GRIDROWS = [];
-  var gridMaxLength = 5;
 
-  while (ASSETARRAY.length > 0) {
-    var GRIDROW = new Object();
-    GRIDROW.assets = (ASSETARRAY.splice(0, gridMaxLength));
-    GRIDROWS.push(GRIDROW);
-  }
-
-  RELEASEDATA.htmlTemplate = GRIDROWS;
+  RELEASEDATA.htmlTemplate = ASSETARRAY;
 
   var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
   var templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
   document.getElementById('latest-selector').innerHTML = templateSelector(RELEASEDATA);
   document.getElementById('latest-info').innerHTML = templateInfo(RELEASEDATA);
-
-  var latestTable = document.getElementById('latest-table');
-  var latestSelector = document.getElementById('latest-selector');
-  var tableScrollWidth = latestSelector.scrollWidth;
-  latestTable.style.display = 'block';
-  latestTable.style.maxWidth = (tableScrollWidth + 'px');
-  latestSelector.style.display = 'block';
-  latestSelector.style.maxWidth = (tableScrollWidth + 'px');
-
-  // if the table has a scroll bar, show text describing how to horizontally scroll
-  var tableDisplayWidth = latestSelector.clientWidth;
-  if (tableDisplayWidth != tableScrollWidth) {
-    document.getElementById('latest-scroll-text').classList.remove('hide');
-    document.getElementById('latest-scroll-arrows').classList.remove('hide');
-    document.getElementById('latest-select-text').classList.add('hide');
-  }
 
   setTickLink();
 
@@ -154,7 +130,7 @@ function selectLatestPlatform(thisPlatform) {
 
 function unselectLatestPlatform() {
   var platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
-  var platformInfoBoxes = document.getElementById('latest-info').getElementsByTagName('TD');
+  var platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
 
   for (i = 0; i < platformButtons.length; i++) {
     platformInfoBoxes[i].classList.add('hide');
