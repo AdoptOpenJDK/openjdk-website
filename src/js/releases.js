@@ -99,8 +99,17 @@ function buildLatestHTML(releasesJson) {
   });
 
   ASSETARRAY = orderPlatforms(ASSETARRAY);
+  var GRIDROWS = [];
+  var gridMaxLength = 5;
 
-  RELEASEDATA.htmlTemplate = ASSETARRAY;
+  while (ASSETARRAY.length > 0) {
+    var GRIDROW = new Object();
+    GRIDROW.assets = (ASSETARRAY.splice(0, gridMaxLength));
+    GRIDROWS.push(GRIDROW);
+  }
+
+  RELEASEDATA.htmlTemplate = GRIDROWS;
+
   var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
   var templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
   document.getElementById('latest-selector').innerHTML = templateSelector(RELEASEDATA);
@@ -111,6 +120,8 @@ function buildLatestHTML(releasesJson) {
   var tableScrollWidth = latestSelector.scrollWidth;
   latestTable.style.display = 'block';
   latestTable.style.maxWidth = (tableScrollWidth + 'px');
+  latestSelector.style.display = 'block';
+  latestSelector.style.maxWidth = (tableScrollWidth + 'px');
 
   // if the table has a scroll bar, show text describing how to horizontally scroll
   var tableDisplayWidth = latestSelector.clientWidth;
@@ -131,24 +142,23 @@ function buildLatestHTML(releasesJson) {
 /* eslint-disable no-unused-vars */
 function selectLatestPlatform(thisPlatform) {
 /* eslint-enable no-unused-vars */
-  var platformButtons = document.getElementById('latest-selector').getElementsByTagName('TD');
-  var platformInfoBoxes = document.getElementById('latest-info').getElementsByTagName('TD');
 
   var thisPlatformSelector = document.getElementById('latest-selector-' + thisPlatform);
   var thisPlatformInfo = document.getElementById('latest-info-' + thisPlatform);
 
-  var alreadySelected = false;
-  if(thisPlatformSelector.classList.contains('latest-highlight')) {
-    alreadySelected = true;
-  }
+  unselectLatestPlatform();
+
+  document.getElementById('latest-selector').classList.add('hide');
+  thisPlatformInfo.classList.remove('hide');
+}
+
+function unselectLatestPlatform() {
+  var platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
+  var platformInfoBoxes = document.getElementById('latest-info').getElementsByTagName('TD');
 
   for (i = 0; i < platformButtons.length; i++) {
-    platformButtons[i].classList.remove('latest-highlight');
     platformInfoBoxes[i].classList.add('hide');
   }
 
-  if(alreadySelected === false) {
-    thisPlatformSelector.classList.add('latest-highlight');
-    thisPlatformInfo.classList.remove('hide');
-  }
+  document.getElementById('latest-selector').classList.remove('hide');
 }

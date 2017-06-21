@@ -53,10 +53,6 @@ $tableblue-even: #1F2F4E;
   display: inline;
 }
 
-#latest-downloads-container table td {
-  margin: 0.1rem;
-}
-
 #latest-scroll-text {
   margin: 1rem auto;
 }
@@ -71,6 +67,10 @@ $tableblue-even: #1F2F4E;
   }
 }
 
+.latest-table-border {
+  border: .1rem solid $maingrey;
+}
+
 #latest-selector {
   //display: block;
   overflow-x: auto;
@@ -80,16 +80,26 @@ $tableblue-even: #1F2F4E;
   position: relative;
 }
 
-#latest-selector td {
-  //display: inline-block;
+#latest-selector #latest-selector td {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0;
+}
+
+#latest-selector div.latest-selector-row {
+  display: inline-block;
+  float: left;
+}
+
+#latest-selector div.latest-asset {
+  display: table-cell;
   cursor: pointer;
   min-width: 9.8rem;
   padding: 2rem 0;
   background-color: rgba(#fff,.6);
-  float: left;
 }
 
-#latest-selector td:hover, #latest-selector td.latest-highlight {
+#latest-selector div.latest-asset:hover {
   color: $mainblue;
   background-color: white;
 }
@@ -120,13 +130,19 @@ $tableblue-even: #1F2F4E;
 
 #latest-info .platform-section {
   display: inline-block;
-  padding: 2rem;
+  padding: 1rem 2rem;
   border-right: 0.2rem solid rgba(21,41,53,.1);
   min-width: 10rem;
   h2 {
     margin-bottom: 0;
     white-space: nowrap;
   }
+}
+
+#latest-info .platform-section .latest-selector-back-button {
+  cursor: pointer;
+  color: $brighterblue;
+  margin-bottom: 0;
 }
 
 #latest-info .content-section {
