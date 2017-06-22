@@ -38,56 +38,28 @@ $tableblue-even: #1F2F4E;
   width: 80%;
 }
 
-#latest-downloads-container {
-  max-width: 65rem;
-  margin: 2rem auto auto;
-}
-
-#latest-downloads-container table {
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: auto;
-  margin-top: 1rem;
-}
-
-#latest-downloads-container table tbody {
-  display: inline;
-}
-
-#latest-downloads-container table td {
-  border: 0.1rem solid $maingrey;
-}
-
-#latest-scroll-text {
-  margin: 1rem auto;
-}
-
-#latest-scroll-arrows {
-  margin: 0;
-  i {
-    padding: 0 1rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
-    color: $brighterblue;
-  }
+.latest-grid-border {
+  border: .1rem solid $maingrey;
 }
 
 #latest-selector {
-  display: block;
-  overflow-x: auto;
-  background-color: rgba(#fff,.6);
-  vertical-align: top;
-  box-sizing: border-box;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: auto;
+  // SET THIS MAX WIDTH PROPERTY TO CHANGE THE MAX # OF PLATFORMS THAT CAN APPEAR ON EACH ROW
+  max-width: 35rem;
 }
 
-#latest-selector td {
+#latest-selector div.latest-asset {
+  float: left;
   cursor: pointer;
   min-width: 9.8rem;
   padding: 2rem 0;
+  background-color: rgba(#fff,.6);
 }
 
-#latest-selector td:hover, #latest-selector td.latest-highlight {
+#latest-selector div.latest-asset:hover {
   color: $mainblue;
   background-color: white;
 }
@@ -96,35 +68,43 @@ $tableblue-even: #1F2F4E;
   height: 3.5rem;
 }
 
-#latest-info img {
-  height: 4.5rem;
-}
-
 #latest-selector var {
   display: block;
   margin-top: 0.5rem;
 }
 
 #latest-info {
-  display: block;
+  display: inline-block;
+  max-width: 65rem;
+  margin: auto;
 }
 
-#latest-info td {
+#latest-info .latest-info-container {
   background-color: white;
   padding: 3rem 2rem;
   display: flex;
   justify-content: space-between;
 }
 
+#latest-info img {
+  height: 4.5rem;
+}
+
 #latest-info .platform-section {
   display: inline-block;
-  padding: 2rem;
+  padding: 1rem 2rem;
   border-right: 0.2rem solid rgba(21,41,53,.1);
   min-width: 10rem;
   h2 {
     margin-bottom: 0;
     white-space: nowrap;
   }
+}
+
+#latest-info .platform-section .latest-selector-back-button {
+  cursor: pointer;
+  color: $brighterblue;
+  margin-bottom: 0;
 }
 
 #latest-info .content-section {
