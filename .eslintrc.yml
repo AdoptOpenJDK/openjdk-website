@@ -10,7 +10,7 @@ rules:
 globals:
   moment: true
   detectOS: true
-  loadReleasesJSON: true
+  loadJSON: true
   errorContainer: true
   onIndexLoad: true
   onNightlyLoad: true
@@ -27,5 +27,6 @@ globals:
   getPlatformOrder: true
   orderPlatforms: true
   setTickLink: true
+  loadPlatformsThenData: true
 
 extends: eslint:recommended

@@ -17,19 +17,23 @@ function onIndexLoad() {
 // INDEX PAGE FUNCTIONS
 
 function setDownloadSection() {
-  // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-  loadReleasesJSON('releases', 'latest_release', function(response) {
-    var releasesJson = JSON.parse(response);
 
-    if (typeof releasesJson !== 'undefined') { // if there are releases...
-      buildHomepageHTML(releasesJson);
-    }
-    else {
-      // report an error
-      errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
-      loading.innerHTML = ''; // remove the loading dots
-    }
+  loadPlatformsThenData(function() {
+    // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
+    loadJSON('releases', 'latest_release', function(response) {
+      var releasesJson = JSON.parse(response);
+
+      if (typeof releasesJson !== 'undefined') { // if there are releases...
+        buildHomepageHTML(releasesJson);
+      }
+      else {
+        // report an error
+        errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+        loading.innerHTML = ''; // remove the loading dots
+      }
+    });
   });
+
 }
 
 function buildHomepageHTML(releasesJson) {

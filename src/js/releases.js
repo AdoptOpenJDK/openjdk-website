@@ -6,38 +6,24 @@ function onLatestLoad() {
   /* eslint-enable no-unused-vars */
   RELEASEDATA = new Object();
   populateLatest(); // populate the Latest page
-
-  var scrollSelector = $('#latest-selector'), x;
-  $('#latest-selector-left-scroll').click(function() {
-    x = ((scrollSelector.width() / 2)) - scrollSelector.scrollLeft();
-    scrollSelector.animate({
-      scrollLeft: -x,
-    })
-  });
-  $('#latest-selector-right-scroll').click(function() {
-    x = ((scrollSelector.width() / 2)) + scrollSelector.scrollLeft();
-    scrollSelector.animate({
-      scrollLeft: x,
-    })
-  });
 }
 
 // LATEST PAGE FUNCTIONS
 
 function populateLatest() {
-
-  // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-  loadReleasesJSON('releases', 'latest_release', function(response) {
-    var releasesJson = JSON.parse(response);
-
-    if (typeof releasesJson !== 'undefined') { // if there are releases...
-      buildLatestHTML(releasesJson);
-    }
-    else {
-      // report an error
-      errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
-      loading.innerHTML = ''; // remove the loading dots
-    }
+  loadPlatformsThenData(function() {
+    // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
+    loadJSON('releases', 'latest_release', function(response) {
+      var releasesJson = JSON.parse(response);
+      if (typeof releasesJson !== 'undefined') { // if there are releases...
+        buildLatestHTML(releasesJson);
+      }
+      else {
+        // report an error
+        errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+        loading.innerHTML = ''; // remove the loading dots
+      }
+    });
   });
 }
 

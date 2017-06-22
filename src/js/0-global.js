@@ -1,85 +1,14 @@
 /* eslint-disable no-unused-vars */
-
-// set platforms array - CHANGE THIS TO UPDATE WEBSITE PLATFORMS
-// GUIDE TO THE PLATFORMS ARRAY:
-// officialName: The 'legal name' or official name for the OS. This is displayed on most pages.
-// searchableName: a string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.
-// logo: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
-// binaryExtension: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
-// requirements: currently just displayed on the 'latest build' page. Should be a short string identifying the most important min. requirement of a machine to run the latest build.
-// architecture: 64 or 32. Not currently used. May be required for differentiation between future builds, primarily for displaying the architecture type.
-// osDetectionString: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
-var platforms = [
-  {
-    officialName: 'Linux x64',
-    searchableName: 'X64_LINUX',
-    logo: 'linux.png',
-    binaryExtension: '.tar.gz',
-    installerExtension: 'no-installer-available',
-    architecture: '64',
-    osDetectionString: 'Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen'
-  },
-  {
-    officialName: 'Windows x64',
-    searchableName: 'X64_WIN',
-    logo: 'windows.png',
-    binaryExtension: '.zip',
-    installerExtension: '.msi',
-    architecture: '64',
-    osDetectionString: 'Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP'
-  },
-  {
-    officialName: 'macOS x64',
-    searchableName: 'X64_MAC',
-    logo: 'mac.png',
-    binaryExtension: '.tar.gz',
-    installerExtension: '.dmg',
-    architecture: '64',
-    osDetectionString: 'Mac OS X OSX macOS Macintosh'
-  },
-  {
-    officialName: 'Linux s390x',
-    searchableName: 'S390X_LINUX',
-    logo: 's390x.png',
-    binaryExtension: '.tar.gz',
-    installerExtension: 'no-installer-available',
-    architecture: '64',
-    osDetectionString: 'not-to-be-detected'
-  },
-  {
-    officialName: 'Linux ppc64le',
-    searchableName: 'PPC64LE_LINUX',
-    logo: 'ppc64le.png',
-    binaryExtension: '.tar.gz',
-    installerExtension: 'no-installer-available',
-    architecture: '64',
-    osDetectionString: 'not-to-be-detected'
-  },
-  {
-    officialName: 'Linux aarch64',
-    searchableName: 'AARCH64_LINUX',
-    logo: 'arm.png',
-    binaryExtension: '.tar.gz',
-    installerExtension: 'no-installer-available',
-    architecture: '64',
-    osDetectionString: 'not-to-be-detected'
-  },
-  {
-    officialName: 'AIX ppc64',
-    searchableName: 'PPC64_AIX',
-    logo: 'aix.png',
-    binaryExtension: '.tar.gz',
-    installerExtension: 'no-installer-available',
-    architecture: '64',
-    osDetectionString: 'not-to-be-detected'
-  }
-];
-
-// FUNCTIONS FOR GETTING PLATFORM DATA
-// allows us to use, for example, 'lookup["MAC"];'
+var platforms = [];
 var lookup = {};
-for (var i = 0, len = platforms.length; i < len; i++) {
+var i = 0;
+
+function setLookup() {
+  // FUNCTIONS FOR GETTING PLATFORM DATA
+  // allows us to use, for example, 'lookup["MAC"];'
+  for (i = 0; i < platforms.length; i++) {
     lookup[platforms[i].searchableName] = platforms[i];
+  }
 }
 
 // gets the 'searchableName' when you pass in the full filename.
@@ -92,7 +21,7 @@ function getSearchableName(filename) {
     }
   });
   if(platform) {
-    return (lookup[platform].searchableName);
+    return platform;
   }
   else {
     return null;
@@ -180,21 +109,43 @@ function detectOS() {
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
-function loadReleasesJSON(repo, filename, callback) {
-    var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
-    var xobj = new XMLHttpRequest();
-    xobj.open('GET', url, true);
-    xobj.onreadystatechange = function () {
-      if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
-        callback(xobj.responseText);
-      } else if (
-        xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
-        xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
-        loading.innerHTML = '';
-        document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
-      }
-    };
-    xobj.send(null);
+function loadJSON(repo, filename, callback) {
+  var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
+
+  if(repo === 'adoptopenjdk.net') {
+    url = (filename);
+  }
+
+  var xobj = new XMLHttpRequest();
+  xobj.open('GET', url, true);
+  xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
+      callback(xobj.responseText);
+    } else if (
+      xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
+      xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
+      loading.innerHTML = '';
+      document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+    }
+  };
+  xobj.send(null);
+}
+
+function loadPlatformsThenData(callback) {
+  loadJSON('adoptopenjdk.net', './dist/json/config.json', function(response) {
+    var platformsJson = JSON.parse(response);
+
+    if (typeof platformsJson !== 'undefined') { // if there are releases...
+      platforms = platformsJson.platforms;
+      setLookup();
+      callback();
+    }
+    else {
+      // report an error
+      errorContainer.innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+      loading.innerHTML = ''; // remove the loading dots
+    }
+  });
 }
 
 // build the menu twisties
