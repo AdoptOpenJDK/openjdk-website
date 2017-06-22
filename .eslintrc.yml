@@ -10,7 +10,7 @@ rules:
 globals:
   moment: true
   detectOS: true
-  loadReleasesJSON: true
+  loadJSON: true
   errorContainer: true
   onIndexLoad: true
   onNightlyLoad: true

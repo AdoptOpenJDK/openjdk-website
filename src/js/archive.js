@@ -12,25 +12,28 @@ function onArchiveLoad() {
 
 function populateArchive() {
 
-  // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-  loadReleasesJSON('releases', 'releases', function(response) {
-    function checkIfProduction(x) { // used by the array filter method below.
-      return x.prerelease === false && x.assets[0];
-    }
+  loadPlatformsThenData(function() {
+    // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
+    loadJSON('releases', 'releases', function(response) {
+      function checkIfProduction(x) { // used by the array filter method below.
+        return x.prerelease === false && x.assets[0];
+      }
 
-    // Step 1: create a JSON from the XmlHttpRequest response
-    // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
-    var releasesJson = JSON.parse(response).filter(checkIfProduction);
+      // Step 1: create a JSON from the XmlHttpRequest response
+      // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
+      var releasesJson = JSON.parse(response).filter(checkIfProduction);
 
-    // if there are releases prior to the 'latest' one (i.e. archived releases)...
-    if (typeof releasesJson[0] !== 'undefined') {
-      buildArchiveHTML(releasesJson);
-    } else { // if there are no releases (beyond the latest one)...
-      // report an error, remove the loading dots
-      loading.innerHTML = '';
-      errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html\'>Latest build</a> page.</p>';
-    }
+      // if there are releases prior to the 'latest' one (i.e. archived releases)...
+      if (typeof releasesJson[0] !== 'undefined') {
+        buildArchiveHTML(releasesJson);
+      } else { // if there are no releases (beyond the latest one)...
+        // report an error, remove the loading dots
+        loading.innerHTML = '';
+        errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html\'>Latest build</a> page.</p>';
+      }
+    });
   });
+
 }
 
 function buildArchiveHTML(releasesJson) {

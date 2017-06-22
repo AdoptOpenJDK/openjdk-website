@@ -34,25 +34,29 @@ function setDatePicker() {
 }
 
 function populateNightly() {
-  // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
-  loadReleasesJSON('nightly', 'nightly', function(response) {
-    function checkIfProduction(x) { // used by the array filter method below.
-      return x.prerelease === false && x.assets[0];
-    }
 
-    // Step 1: create a JSON from the XmlHttpRequest response
-    // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
-    var releasesJson = JSON.parse(response).filter(checkIfProduction);
+  loadPlatformsThenData(function() {
+    // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
+    loadJSON('nightly', 'nightly', function(response) {
+      function checkIfProduction(x) { // used by the array filter method below.
+        return x.prerelease === false && x.assets[0];
+      }
 
-    // if there are releases...
-    if (typeof releasesJson[0] !== 'undefined') {
-      buildNightlyHTML(releasesJson);
-    } else { // if there are no releases...
-      // report an error
-      errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
-      loading.innerHTML = ''; // remove the loading dots
-    }
+      // Step 1: create a JSON from the XmlHttpRequest response
+      // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
+      var releasesJson = JSON.parse(response).filter(checkIfProduction);
+
+      // if there are releases...
+      if (typeof releasesJson[0] !== 'undefined') {
+        buildNightlyHTML(releasesJson);
+      } else { // if there are no releases...
+        // report an error
+        errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+        loading.innerHTML = ''; // remove the loading dots
+      }
+    });
   });
+  
 }
 
 function buildNightlyHTML(releasesJson) {

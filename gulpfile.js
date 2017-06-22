@@ -21,12 +21,12 @@ const babel = require('gulp-babel');
 
 // default task
 gulp.task('default', function() {
-  runSequence('clean',['handlebars','scripts','styles','images','icon'],'inject','watch','browser-sync');
+  runSequence('clean',['handlebars','platforms','scripts','styles','images','icon'],'inject','watch','browser-sync');
 });
 
 // build task
 gulp.task('build', function() {
-  runSequence('clean',['handlebars','scripts','styles','images','icon'],'inject','sitemap','robots','lint');
+  runSequence('clean',['handlebars','platforms','scripts','styles','images','icon'],'inject','sitemap','robots','lint');
 });
 
 // clean task (deletes /dist dir)
@@ -39,6 +39,9 @@ gulp.task('clean', function () {
 gulp.task('watch', function() {
   gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], function() {
     runSequence('handlebars','inject', browserSync.reload);
+  });
+  gulp.watch('./src/js/platforms/*.json', function() {
+    runSequence('platforms', browserSync.reload);
   });
   gulp.watch('./src/js/**/*.js', function() {
     runSequence('scripts','inject', browserSync.reload);
@@ -67,6 +70,11 @@ gulp.task('handlebars', function () {
     .pipe(gulp.dest('./'));
 });
 
+// platforms task
+gulp.task('platforms', function() {
+  return gulp.src('./src/js/platforms/*.json')
+    .pipe(gulp.dest('./dist/js/platforms/'));
+});
 
 // scripts task
 gulp.task('scripts', function() {

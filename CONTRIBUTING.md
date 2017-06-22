@@ -85,11 +85,19 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
   5. Refer to the 'HTML (Handlebars)' section above for guidance on how to call this root function.
 
 ### Adding a new platform/arch/OS (or removing one)
-* `0-global.js` contains a `platforms` array.
-* This array dictates which platforms appear across the website. Changing this array will update the every page accordingly.
+* `platforms.json` contains a `platforms` array.
+* This array dictates which platforms appear across the website and API. Changing this array will update the every page accordingly, for each specified platform that is available.
 * Each platform is contained within an object, and has a range of values/attributes.
 * To add a new platform, copy an existing object `{...}` and paste it into the array in the desired order (remembering to use commas `,` to separate each object).
-* Then, update the values according to the comments above the platform array, which describe the types of values that you can put into each platform attribute.
+* Then, update the values as follows:
+  - **officialName**: The 'legal name' or official name for the OS. This is displayed on most pages.
+  - **searchableName**: a string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.
+  - **logo**: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
+  - **binaryExtension**: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
+  - **requirements**: currently just displayed on the 'latest build' page. Should be a short string identifying the most important min. requirement of a machine to run the latest build.
+  - **architecture**: 64 or 32. Not currently used. May be required for differentiation between future builds, primarily for displaying the architecture type.
+  - **osDetectionString**: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
+
 
 ### Images
 * As a general rule, use `.png` images, especially for logos and icons. For larger images with no transparent areas, use `.jpeg` / `.jpg`.
