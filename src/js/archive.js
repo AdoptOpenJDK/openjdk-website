@@ -44,7 +44,9 @@ function buildArchiveHTML(releasesJson) {
     // set values for this release, ready to inject into HTML
     var publishedAt = eachRelease.published_at;
     RELEASEOBJECT.thisReleaseName = eachRelease.name;
-    RELEASEOBJECT.thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
+    RELEASEOBJECT.thisReleaseDay = moment(publishedAt).format('D');
+    RELEASEOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
+    RELEASEOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
     RELEASEOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/' + RELEASEOBJECT.thisReleaseName);
 
     // create an array of the details for each asset that is attached to this release
