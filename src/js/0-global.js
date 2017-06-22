@@ -110,25 +110,25 @@ function detectOS() {
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadJSON(repo, filename, callback) {
-    if(repo === 'adoptopenjdk.net') {
-      var url = (filename);
+  var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
+
+  if(repo === 'adoptopenjdk.net') {
+    url = (filename);
+  }
+
+  var xobj = new XMLHttpRequest();
+  xobj.open('GET', url, true);
+  xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
+      callback(xobj.responseText);
+    } else if (
+      xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
+      xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
+      loading.innerHTML = '';
+      document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
     }
-    else {
-      var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
-    }
-    var xobj = new XMLHttpRequest();
-    xobj.open('GET', url, true);
-    xobj.onreadystatechange = function () {
-      if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
-        callback(xobj.responseText);
-      } else if (
-        xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
-        xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
-        loading.innerHTML = '';
-        document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
-      }
-    };
-    xobj.send(null);
+  };
+  xobj.send(null);
 }
 
 function loadPlatformsThenData(callback) {
