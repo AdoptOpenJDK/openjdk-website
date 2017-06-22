@@ -86,7 +86,9 @@ function buildNightlyHTML(releasesJson) {
           // set values ready to be injected into the HTML
           var publishedAt = eachRelease.published_at;
           NIGHTLYOBJECT.thisReleaseName = eachRelease.name.slice(0, 12);
-          NIGHTLYOBJECT.thisReleaseDate = moment(publishedAt).format('Do MMMM YYYY');
+          NIGHTLYOBJECT.thisReleaseDay = moment(publishedAt).format('D');
+          NIGHTLYOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
+          NIGHTLYOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
           NIGHTLYOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/' + eachRelease.name);
           NIGHTLYOBJECT.thisOfficialName = getOfficialName(NIGHTLYOBJECT.thisPlatform);
           NIGHTLYOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
@@ -126,7 +128,7 @@ function setTableRange() {
 
   for (i = 0; i < rows.length; i++) {
     var thisDate = rows[i].getElementsByClassName('nightly-release-date')[0].innerHTML;
-    var thisDateMoment = moment(thisDate, 'Do MMMM YYYY').format();
+    var thisDateMoment = moment(thisDate, 'D MMMM YYYY').format();
     var isAfter = moment(thisDateMoment).isAfter(selectedDate);
     if(isAfter === true || visibleRows >= numberpicker.value) {
       rows[i].classList.add('hide');
