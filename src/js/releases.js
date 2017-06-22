@@ -118,8 +118,6 @@ function buildLatestHTML(releasesJson) {
 /* eslint-disable no-unused-vars */
 function selectLatestPlatform(thisPlatform) {
 /* eslint-enable no-unused-vars */
-
-  var thisPlatformSelector = document.getElementById('latest-selector-' + thisPlatform);
   var thisPlatformInfo = document.getElementById('latest-info-' + thisPlatform);
 
   unselectLatestPlatform();
