@@ -105,6 +105,12 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
 <img src='./dist/assets/your-new-image.png' alt="Add a description of the image here">
 ```
 
+### The Latest page grid system
+* You can easily change the maximum number of platforms that appear on the Latest page platform selector grid.
+* Just update the `max-width` property for `#latest-selector`, which you can find in `src/scss/styles-4-releases.scss`.
+* Adjust this and check what value looks the best on all window widths for the number of platforms currently on offer.
+* However, you can in theory select almost any value - it will not 'break' the layout, just change its behaviour.
+
 ---
 
 ## Gulp / `gulpfile.js` / builds
