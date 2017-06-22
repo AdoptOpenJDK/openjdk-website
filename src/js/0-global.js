@@ -132,7 +132,7 @@ function loadJSON(repo, filename, callback) {
 }
 
 function loadPlatformsThenData(callback) {
-  loadJSON('adoptopenjdk.net', './dist/js/platforms/platforms.json', function(response) {
+  loadJSON('adoptopenjdk.net', './dist/json/config.json', function(response) {
     var platformsJson = JSON.parse(response);
 
     if (typeof platformsJson !== 'undefined') { // if there are releases...

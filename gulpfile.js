@@ -72,8 +72,8 @@ gulp.task('handlebars', function () {
 
 // platforms task
 gulp.task('platforms', function() {
-  return gulp.src('./src/js/platforms/*.json')
-    .pipe(gulp.dest('./dist/js/platforms/'));
+  return gulp.src('./src/json/*.json')
+    .pipe(gulp.dest('./dist/json/'));
 });
 
 // scripts task
