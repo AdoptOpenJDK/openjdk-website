@@ -30,7 +30,7 @@ function populateLatest() {
 function buildLatestHTML(releasesJson) {
   // populate the page with the release's information
   var publishedAt = (releasesJson.published_at);
-  document.getElementById('latest-build-name').innerHTML = releasesJson.name;
+  document.getElementById('latest-build-name').innerHTML = '<var release-name>' + releasesJson.name + '</var>';
   document.getElementById('latest-build-name').href = ('https://github.com/AdoptOpenJDK/openjdk-releases/releases/tag/' + releasesJson.name);
   document.getElementById('latest-date').innerHTML = ('<var>' + moment(publishedAt).format('D') + '</var> ' + moment(publishedAt).format('MMMM') + ' <var>' + moment(publishedAt).format('YYYY') + '</var>');
   document.getElementById('latest-timestamp').innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
