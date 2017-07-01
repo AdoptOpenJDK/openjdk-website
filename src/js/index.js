@@ -17,9 +17,10 @@ function onIndexLoad() {
 // INDEX PAGE FUNCTIONS
 
 function setDownloadSection() {
-
   loadPlatformsThenData(function() {
     // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
+    var jsonName = ('latest_release_' + variant);
+
     loadJSON('releases', 'latest_release', function(response) {
       var releasesJson = JSON.parse(response);
 
@@ -94,6 +95,8 @@ function buildHomepageHTML(releasesJson) {
     dlText.innerHTML = ('Downloads'); // change the text to be generic: 'Downloads'.
     dlLatest.href = './releases.html'; // set the main download button's link to the latest builds page for all platforms.
   }
+
+  persistUrlQuery();
 
   // remove the loading dots, and make all buttons visible, with animated fade-in
   loading.innerHTML = '';

@@ -4,6 +4,7 @@ var RELEASEDATA;
 /* eslint-disable no-unused-vars */
 function onLatestLoad() {
   /* eslint-enable no-unused-vars */
+
   RELEASEDATA = new Object();
   populateLatest(); // populate the Latest page
 }
@@ -13,6 +14,8 @@ function onLatestLoad() {
 function populateLatest() {
   loadPlatformsThenData(function() {
     // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
+    var jsonName = ('latest_release_' + variant);
+
     loadJSON('releases', 'latest_release', function(response) {
       var releasesJson = JSON.parse(response);
       if (typeof releasesJson !== 'undefined') { // if there are releases...
@@ -94,6 +97,7 @@ function buildLatestHTML(releasesJson) {
   document.getElementById('latest-info').innerHTML = templateInfo(RELEASEDATA);
 
   setTickLink();
+  persistUrlQuery();
 
   loading.innerHTML = ''; // remove the loading dots
 

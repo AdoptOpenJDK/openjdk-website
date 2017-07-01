@@ -34,9 +34,10 @@ function setDatePicker() {
 }
 
 function populateNightly() {
-
   loadPlatformsThenData(function() {
     // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
+    var jsonName = ('nightly_' + variant);
+
     loadJSON('nightly', 'nightly', function(response) {
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
@@ -56,7 +57,7 @@ function populateNightly() {
       }
     });
   });
-  
+
 }
 
 function buildNightlyHTML(releasesJson) {
@@ -110,6 +111,8 @@ function buildNightlyHTML(releasesJson) {
   nightlyList.innerHTML = template(NIGHTLYDATA);
 
   setSearchLogic();
+  persistUrlQuery();
+
   loading.innerHTML = ''; // remove the loading dots
 
   // show the table, with animated fade-in

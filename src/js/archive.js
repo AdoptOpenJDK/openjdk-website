@@ -11,9 +11,10 @@ function onArchiveLoad() {
 // ARCHIVE PAGE FUNCTIONS
 
 function populateArchive() {
-
   loadPlatformsThenData(function() {
     // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
+    var jsonName = ('releases_' + variant);
+
     loadJSON('releases', 'releases', function(response) {
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
@@ -97,6 +98,8 @@ function buildArchiveHTML(releasesJson) {
 
   setPagination();
   setTickLink();
+  persistUrlQuery();
+
   loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation

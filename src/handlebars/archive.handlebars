@@ -17,9 +17,13 @@
       </div>
     </a>
 
+    <div id="error-container"></div>
+
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
     <div id="archive-list" class="hide">
+      <select id="variant-selector"></select>
+
       <div id="pagination-container"></div>
       <table class='archive-container'>
         <tbody id='archive-table-body'>
@@ -60,7 +64,6 @@
 
   </div>
 
-  <div id="error-container"></div>
 </main>
 
 {{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.min.js"></script>' script3='<script>onArchiveLoad();</script>' }}

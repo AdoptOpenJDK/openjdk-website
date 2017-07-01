@@ -415,6 +415,34 @@ code.hljs {
   padding: 0.5rem 1rem;
 }
 
+// SELECT ELEMENT - REMOVING DEFAULT STYLING
+select#variant-selector {
+  // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
+  display: none;
+  margin: auto;
+  margin-top: 2rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(../assets/arrow-down.png) 90%/10% no-repeat #fff;
+  border: 1px solid $accentgrey;
+  padding: 0.5rem 1.5rem;
+  padding-right: 3rem;
+  border-radius: 10rem;
+}
+
+select#variant-selector::-ms-expand {
+    display: none;
+}
+
+@media screen and (min-width:0\0) {
+  select#variant-selector {
+    background:none\9;
+    padding: 5px\9;
+  }
+}
+// END SELECT ELEMENT
+
 /* TOOLTIP STYLING */
 [data-tooltip] {
   display: inline-block;
