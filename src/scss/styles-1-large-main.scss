@@ -431,6 +431,11 @@ select#variant-selector {
   border-radius: 10rem;
 }
 
+select#variant-selector:focus {
+  outline:0;
+}
+
+
 select#variant-selector::-ms-expand {
     display: none;
 }
