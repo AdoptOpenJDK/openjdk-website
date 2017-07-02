@@ -98,7 +98,6 @@ function buildArchiveHTML(releasesJson) {
 
   setPagination();
   setTickLink();
-  persistUrlQuery();
 
   loading.innerHTML = ''; // remove the loading dots
 

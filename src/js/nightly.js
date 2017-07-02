@@ -111,7 +111,6 @@ function buildNightlyHTML(releasesJson) {
   nightlyList.innerHTML = template(NIGHTLYDATA);
 
   setSearchLogic();
-  persistUrlQuery();
 
   loading.innerHTML = ''; // remove the loading dots
 

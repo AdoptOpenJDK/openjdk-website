@@ -96,8 +96,6 @@ function buildHomepageHTML(releasesJson) {
     dlLatest.href = './releases.html'; // set the main download button's link to the latest builds page for all platforms.
   }
 
-  persistUrlQuery();
-
   // remove the loading dots, and make all buttons visible, with animated fade-in
   loading.innerHTML = '';
   dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );

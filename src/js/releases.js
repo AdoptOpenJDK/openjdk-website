@@ -97,7 +97,6 @@ function buildLatestHTML(releasesJson) {
   document.getElementById('latest-info').innerHTML = templateInfo(RELEASEDATA);
 
   setTickLink();
-  persistUrlQuery();
 
   loading.innerHTML = ''; // remove the loading dots
 
