@@ -4,14 +4,6 @@
     {
       "searchableName": "openjdk8",
       "officialName": "OpenJDK 8"
-    },
-    {
-      "searchableName": "openjdk9",
-      "officialName": "OpenJDK 9"
-    },
-    {
-      "searchableName": "openj9",
-      "officialName": "OpenJ9"
     }
   ],
   "platforms":
