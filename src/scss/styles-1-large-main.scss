@@ -424,11 +424,16 @@ select#variant-selector {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(../assets/arrow-down.png) 90%/10% no-repeat #fff;
+  background: url(../assets/arrow-down.png) 90%/10% no-repeat white;
   border: 1px solid $accentgrey;
   padding: 0.5rem 1.5rem;
   padding-right: 3rem;
   border-radius: 10rem;
+  cursor: pointer;
+}
+
+select#variant-selector:hover {
+  background-color: #eaebec;
 }
 
 select#variant-selector:focus {
