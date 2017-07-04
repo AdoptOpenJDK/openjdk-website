@@ -63,6 +63,15 @@
       "osDetectionString": "not-to-be-detected"
     },
     {
+      "officialName": "Linux arm32",
+      "searchableName": "ARM32_LINUX",
+      "logo": "arm.png",
+      "binaryExtension": ".tar.gz",
+      "installerExtension": "no-installer-available",
+      "architecture": "32",
+      "osDetectionString": "not-to-be-detected"
+    },
+    {
       "officialName": "AIX ppc64",
       "searchableName": "PPC64_AIX",
       "logo": "aix.png",
