@@ -113,7 +113,7 @@ function detectOS() {
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadJSON(repo, filename, callback) {
-  var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
+  var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
 
   if(repo === 'adoptopenjdk.net') {
     url = (filename);
@@ -197,12 +197,12 @@ function setUrlQuery(name, newValue) {
 
 function getQueryByName(name) {
   var url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
   var results = regex.exec(url);
   if (!results) return null;
   if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
 function persistUrlQuery() {
@@ -237,7 +237,7 @@ function setVariantSelector() {
     variantSelector.options.add(op);
     variantSelector.value = 'unknown';
     errorContainer.innerHTML = '<p>Error: no such variant. Please select a valid variant from the drop-down list.</p>';
-  };
+  }
 
   variantSelector.onchange = function() {
     setUrlQuery('variant', variantSelector.value);

@@ -18,10 +18,12 @@ function onIndexLoad() {
 
 function setDownloadSection() {
   loadPlatformsThenData(function() {
-    // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-    var jsonName = ('latest_release_' + variant);
 
-    loadJSON('releases', 'latest_release', function(response) {
+    // TODO - the repoName variable should be passed into loadJSON below as the first argument, replacing openjdk-releases.
+    // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
+    //var repoName = (variant + '-releases');
+
+    loadJSON('openjdk-releases', 'latest_release', function(response) {
       var releasesJson = JSON.parse(response);
 
       if (typeof releasesJson !== 'undefined') { // if there are releases...
