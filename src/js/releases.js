@@ -105,20 +105,31 @@ function buildLatestHTML(releasesJson) {
 
   const latestContainer = document.getElementById('latest-container');
   latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
+
+  displayLatestPlatform();
+  window.onhashchange = displayLatestPlatform;
 }
 
 /* eslint-disable no-unused-vars */
 function selectLatestPlatform(thisPlatform) {
 /* eslint-enable no-unused-vars */
-  var thisPlatformInfo = document.getElementById('latest-info-' + thisPlatform);
-
-  unselectLatestPlatform();
-
-  document.getElementById('latest-selector').classList.add('hide');
-  thisPlatformInfo.classList.remove('hide');
+  window.location.hash = thisPlatform.toLowerCase();
 }
 
-function unselectLatestPlatform() {
+function displayLatestPlatform() {
+  var platformHash = window.location.hash.substr(1).toUpperCase();
+  var thisPlatformInfo = document.getElementById('latest-info-' + platformHash);
+  if(thisPlatformInfo) {
+    unselectLatestPlatform('keep the hash');
+    document.getElementById('latest-selector').classList.add('hide');
+    thisPlatformInfo.classList.remove('hide');
+  }
+}
+
+function unselectLatestPlatform(keephash) {
+  if(!keephash){
+    history.pushState('', document.title, window.location.pathname + window.location.search);
+  }
   var platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
   var platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
 
