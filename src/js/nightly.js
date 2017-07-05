@@ -34,10 +34,14 @@ function setDatePicker() {
 }
 
 function populateNightly() {
-
   loadPlatformsThenData(function() {
-    // call the XmlHttpRequest function in global.js, passing in 'nightly' as the repo, and a long function as the callback.
-    loadJSON('nightly', 'nightly', function(response) {
+
+    // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-nightly.
+    // This can only be done after the repository name is updated from 'openjdk-nightly' to 'openjdk8-nightly'.
+
+    // var repoName = (variant + '-nightly');
+
+    loadJSON('openjdk-nightly', 'nightly', function(response) {
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
       }
@@ -56,7 +60,7 @@ function populateNightly() {
       }
     });
   });
-  
+
 }
 
 function buildNightlyHTML(releasesJson) {
@@ -110,6 +114,7 @@ function buildNightlyHTML(releasesJson) {
   nightlyList.innerHTML = template(NIGHTLYDATA);
 
   setSearchLogic();
+
   loading.innerHTML = ''; // remove the loading dots
 
   // show the table, with animated fade-in

@@ -11,10 +11,14 @@ function onArchiveLoad() {
 // ARCHIVE PAGE FUNCTIONS
 
 function populateArchive() {
-
   loadPlatformsThenData(function() {
-    // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-    loadJSON('releases', 'releases', function(response) {
+
+    // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
+    // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
+
+    // var repoName = (variant + '-releases');
+
+    loadJSON('openjdk-releases', 'releases', function(response) {
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
       }
@@ -97,6 +101,7 @@ function buildArchiveHTML(releasesJson) {
 
   setPagination();
   setTickLink();
+
   loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation

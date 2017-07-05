@@ -4,6 +4,7 @@ var RELEASEDATA;
 /* eslint-disable no-unused-vars */
 function onLatestLoad() {
   /* eslint-enable no-unused-vars */
+
   RELEASEDATA = new Object();
   populateLatest(); // populate the Latest page
 }
@@ -12,8 +13,13 @@ function onLatestLoad() {
 
 function populateLatest() {
   loadPlatformsThenData(function() {
-    // call the XmlHttpRequest function in global.js, passing in 'releases' as the repo, and a long function as the callback.
-    loadJSON('releases', 'latest_release', function(response) {
+
+    // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
+    // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
+
+    // var repoName = (variant + '-releases');
+
+    loadJSON('openjdk-releases', 'latest_release', function(response) {
       var releasesJson = JSON.parse(response);
       if (typeof releasesJson !== 'undefined') { // if there are releases...
         buildLatestHTML(releasesJson);
@@ -99,20 +105,31 @@ function buildLatestHTML(releasesJson) {
 
   const latestContainer = document.getElementById('latest-container');
   latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
+
+  displayLatestPlatform();
+  window.onhashchange = displayLatestPlatform;
 }
 
 /* eslint-disable no-unused-vars */
 function selectLatestPlatform(thisPlatform) {
 /* eslint-enable no-unused-vars */
-  var thisPlatformInfo = document.getElementById('latest-info-' + thisPlatform);
-
-  unselectLatestPlatform();
-
-  document.getElementById('latest-selector').classList.add('hide');
-  thisPlatformInfo.classList.remove('hide');
+  window.location.hash = thisPlatform.toLowerCase();
 }
 
-function unselectLatestPlatform() {
+function displayLatestPlatform() {
+  var platformHash = window.location.hash.substr(1).toUpperCase();
+  var thisPlatformInfo = document.getElementById('latest-info-' + platformHash);
+  if(thisPlatformInfo) {
+    unselectLatestPlatform('keep the hash');
+    document.getElementById('latest-selector').classList.add('hide');
+    thisPlatformInfo.classList.remove('hide');
+  }
+}
+
+function unselectLatestPlatform(keephash) {
+  if(!keephash){
+    history.pushState('', document.title, window.location.pathname + window.location.search);
+  }
   var platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
   var platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
 

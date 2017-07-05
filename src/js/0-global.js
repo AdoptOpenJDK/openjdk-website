@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 var platforms = [];
+var variants = [];
 var lookup = {};
 var i = 0;
+var variant = getQueryByName('variant');
+var variantSelector = document.getElementById('variant-selector');
 
 function setLookup() {
   // FUNCTIONS FOR GETTING PLATFORM DATA
@@ -110,7 +113,7 @@ function detectOS() {
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadJSON(repo, filename, callback) {
-  var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/openjdk-' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
+  var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
 
   if(repo === 'adoptopenjdk.net') {
     url = (filename);
@@ -133,10 +136,12 @@ function loadJSON(repo, filename, callback) {
 
 function loadPlatformsThenData(callback) {
   loadJSON('adoptopenjdk.net', './dist/json/config.json', function(response) {
-    var platformsJson = JSON.parse(response);
+    var configJson = JSON.parse(response);
 
-    if (typeof platformsJson !== 'undefined') { // if there are releases...
-      platforms = platformsJson.platforms;
+    if (typeof configJson !== 'undefined') { // if there are releases...
+      platforms = configJson.platforms;
+      variants = configJson.variants;
+      setVariantSelector();
       setLookup();
       callback();
     }
@@ -178,4 +183,63 @@ function setTickLink() {
       event.preventDefault();
     });
   }
+}
+
+function setUrlQuery(name, newValue) {
+  if(window.location.search.indexOf(name) >= 0) {
+    var currentValue = getQueryByName(name);
+    window.location.search = window.location.search.replace(currentValue, newValue);
+  }
+  else {
+    window.location.search += (name + '=' + newValue);
+  }
+}
+
+function getQueryByName(name) {
+  var url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  var results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function persistUrlQuery() {
+  var links = Array.apply(null, document.getElementsByTagName('a'));
+  links.forEach(function(eachLink) {
+    if(eachLink.href.indexOf(window.location.hostname) >= 0) {
+      eachLink.href = (eachLink.href + window.location.search);
+    }
+  });
+}
+
+function setVariantSelector() {
+  if(variantSelector.options.length === 0) {
+    variants.forEach(function(eachVariant) {
+      var op = new Option();
+      op.value = eachVariant.searchableName;
+      op.text = eachVariant.officialName;
+      variantSelector.options.add(op);
+    });
+  }
+
+  if(!variant) {
+    variant = variants[0].searchableName;
+  }
+
+  variantSelector.value = variant;
+
+  if(variantSelector.value === '') {
+    var op = new Option();
+    op.value = 'unknown';
+    op.text = 'Select a variant';
+    variantSelector.options.add(op);
+    variantSelector.value = 'unknown';
+    errorContainer.innerHTML = '<p>Error: no such variant. Please select a valid variant from the drop-down list.</p>';
+  }
+
+  variantSelector.onchange = function() {
+    setUrlQuery('variant', variantSelector.value);
+  };
 }

@@ -28,5 +28,6 @@ globals:
   orderPlatforms: true
   setTickLink: true
   loadPlatformsThenData: true
+  variant: true
 
 extends: eslint:recommended
