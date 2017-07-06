@@ -105,7 +105,6 @@ table.ui-datepicker-calendar td {
   display: inline-block !important;
 }
 
-// HIDES THE WINDOWS COLUMN IN THE NIGHTLY TABLE
-#nightly-table tr td:nth-child(3), #nightly-table th:nth-child(3) {
-  /*display: none;*/
+#ui-datepicker-div {
+  display: none;
 }
