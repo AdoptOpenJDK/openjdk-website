@@ -384,6 +384,7 @@ main {
 
 .info-page-container li {
   margin-top: 2rem;
+  line-height: 1.8rem;
 }
 
 pre {
@@ -409,6 +410,10 @@ code.hljs {
   background: inherit;
 }
 
+span.hljs-keyword, span.hljs-selector-tag, span.hljs-literal, span.hljs-doctag, span.hljs-title, span.hljs-section, span.hljs-type, span.hljs-name, span.hljs-strong {
+  font-weight: normal;
+}
+
 .callout {
   background-color: $translucent-blue;
   border-left: 0.5rem solid $mainblue;
@@ -416,9 +421,8 @@ code.hljs {
 }
 
 // SELECT ELEMENT - REMOVING DEFAULT STYLING
-select#variant-selector {
+select#variant-selector, select#platform-selector {
   // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
-  display: none;
   margin: auto;
   margin-top: 2rem;
   -webkit-appearance: none;
@@ -432,21 +436,26 @@ select#variant-selector {
   cursor: pointer;
 }
 
-select#variant-selector:hover {
+select#variant-selector {
+  // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
+  display: none;
+}
+
+select#variant-selector:hover, select#platform-selector:hover {
   background-color: #eaebec;
 }
 
-select#variant-selector:focus {
+select#variant-selector:focus, select#platform-selector:focus {
   outline:0;
 }
 
 
-select#variant-selector::-ms-expand {
+select#variant-selector::-ms-expand, select#platform-selector::-ms-expand {
     display: none;
 }
 
 @media screen and (min-width:0\0) {
-  select#variant-selector {
+  select#variant-selector, select#platform-selector {
     background:none\9;
     padding: 5px\9;
   }

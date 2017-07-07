@@ -1,90 +1,57 @@
-{{> header title='Installation | ' style1='<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/railscasts.min.css">' style2='<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>' }}
+{{> header title='Installation | ' style1='<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/obsidian.min.css">' style2='<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>' }}
 
 <main class="grey-bg">
 
-  <h1 class="margin-bottom large-title">Installation</h1>
+  <h1 class="large-title">Installation</h1>
 
-  <!--<h3>Jump to:</h3>
-  <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#linux-mac">Linux and macOS</a></h3>
-  <h3 class="zero-margin inline-block"><a class="grey-button no-underline" href="#windows">Windows</a></h3>-->
+  <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+  <div id="error-container"></div>
 
-  <div class="info-page-container">
-    <div class="margin-bottom">
-      <h2 id="linux-mac" class="bold">Linux, AIX and macOS installation</h2>
-      <ol>
-        <li>Download the latest <code>tar.gz</code> from the <a href="./releases.html">Latest build</a> page to a directory that will not move or be deleted.</li>
-        <li>
-          Using Terminal, navigate to the location of this <code>tar.gz</code>:
-          <pre><code>cd &lt;path/to/your/directory&gt;</code></pre>
-        </li>
-        <li>
-          Optional: use the <a href="#sha256">checksum instructions</a> below to ensure the authenticity of your binary.
-        </li>
-        <li>
-          Extract the <code>tar.gz</code>. You can use the following command:
-          <pre><code>tar -xf &lt;filename&gt;.tar.gz</code></pre>
-          Note: for <strong>AIX</strong>, use the following command:
-          <pre><code>gunzip -c &lt;filename&gt;.tar.gz | tar xf -</code></pre>
-        </li>
-        <li>
-          Add this version of Java to your PATH:
-          <pre><code>export PATH=$PWD/j2sdk-image/bin:$PATH</code></pre>
-        </li>
-        <li>
-          Check that Java has installed correctly:
-          <pre><code>java -version</code></pre>
-        </li>
-      </ol>
+  <div id="installation-container" class="info-page-container hide">
+    <div class="align-center">
+      <select id="variant-selector"></select>
+      <h2 class="inline-block">Platform: </h2><select id="platform-selector" style="margin-left:1rem;"></select>
     </div>
+    <div id="installation-template">
+      <script id="template" type="text/x-handlebars-template">
+        \{{#each htmlTemplate}}
+          <div id="installation-container-\{{thisPlatform}}" class="installation-single-platform hide">
+            <div class="margin-bottom">
+              <h2 class="bold"><var platform>\{{thisOfficialName}}</var> installation</h2>
+              <ol>
+                <li>
+                  Make sure you have downloaded the latest <a href="\{{thisBinaryLink}}"><var platform>\{{thisOfficialName}}</var> binary</a> to a directory that will not move or be deleted, and use Terminal/Command Prompt to <code>cd</code> into it.
+                </li>
+                <li>
+                  Optional: use the checksum instructions below to ensure the authenticity of your binary.
+                </li>
+                <li>
+                  Extract the <code><var extension>\{{thisBinaryExtension}}</var></code>. You can use the following command:
+                  <pre><code><var unzipCommand>\{{thisInstallCommand}}</var></code></pre>
+                </li>
+                <li>
+                  Add this version of Java to your PATH:
+                  <pre><code><var pathCommand>\{{thisPathCommand}}</var></code></pre>
+                </li>
+                <li>
+                  Check that Java has installed correctly:
+                  <pre><code>java -version</code></pre>
+                </li>
+              </ol>
+            </div>
 
-    <div class="margin-bottom">
-      <h2 id="windows" class="bold">Windows installation</h2>
-      <ol>
-        <li>Download the latest <code>.zip</code> from the <a href="./releases.html">Latest build</a> page to a directory that will not move or be deleted.</li>
-        <li>
-          Using the command prompt, navigate to the location of this <code>.zip</code>:
-          <pre><code>cd &lt;path\to\your\directory&gt;</code></pre>
-        </li>
-        <li>
-          Optional: use the <a href="#sha256">checksum instructions</a> below to ensure the authenticity of your binary.
-        </li>
-        <li>
-          Extract the <code>.zip</code>. You can use the following command:
-          <pre><code>unzip &lt;filename&gt;.zip</code></pre>
-        </li>
-        <li>
-          Add this version of Java to your PATH:
-          <pre><code>set PATH=%cd%\j2sdk-image\bin;%PATH%</code></pre>
-        </li>
-        <li>
-          Check that Java has installed correctly:
-          <pre><code>java -version</code></pre>
-        </li>
-      </ol>
+            <div>
+              <h2 class="bold">Checking the SHA-256 checksum</h2>
+              <p>Optionally, you can compare the SHA-256 checksum of your downloaded binary against the checksums that are provided for every release and nightly build.</p>
+              <p>Use this command to generate a SHA-256 checksum of your downloaded binary, then open the corresponding <a href="\{{thisChecksumLink}}">checksum file</a> and ensure that it contains the same number.</p>
+              <pre><code><var checksumCommand>\{{thisChecksumCommand}}</var></code></pre>
+            </div>
+          </div>
+        \{{/each}}
+      </script>
     </div>
-
-    <div>
-      <h2 id="sha256" class="bold">Checking the SHA-256 checksum</h2>
-      <p>Optionally, you can compare the SHA-256 checksum of your downloaded binary against the checksums that are provided for every release and nightly build.</p>
-      <p>Follow the instructions for your platform to generate a SHA-256 checksum of your downloaded binary, then open the corresponding <code>.txt</code> checksum file and ensure that it contains the same number.</p>
-      <ul>
-        <li>
-          <span>Linux: </span>
-          <pre><code>sha256sum path/to/file.tar.gz</code></pre>
-        </li>
-        <li>
-          <span>macOS & AIX: </span>
-          <pre><code>shasum -a 256 path/to/file.tar.gz</code></pre>
-        </li>
-        <li>
-          <span>Windows: </span>
-          <pre><code>certutil -hashfile path/to/file.zip SHA256</code></pre>
-        </li>
-      </ul>
-    </div>
-
   </div>
 
 </main>
 
-{{> footer script='<script>hljs.initHighlightingOnLoad();</script>'}}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>' script2='<script>onInstallationLoad();</script>' }}

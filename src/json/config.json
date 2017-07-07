@@ -15,6 +15,9 @@
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
       "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
       "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
     },
     {
@@ -24,6 +27,9 @@
       "binaryExtension": ".zip",
       "installerExtension": ".msi",
       "architecture": "64",
+      "installCommand": "unzip FILENAME",
+      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
+      "checksumCommand": "certutil -hashfile FILENAME SHA256",
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
     },
     {
@@ -33,6 +39,9 @@
       "binaryExtension": ".tar.gz",
       "installerExtension": ".dmg",
       "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "shasum -a 256 FILENAME",
       "osDetectionString": "Mac OS X OSX macOS Macintosh"
     },
     {
@@ -42,6 +51,9 @@
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
       "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
       "osDetectionString": "not-to-be-detected"
     },
     {
@@ -51,6 +63,9 @@
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
       "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
       "osDetectionString": "not-to-be-detected"
     },
     {
@@ -60,6 +75,9 @@
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
       "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
       "osDetectionString": "not-to-be-detected"
     },
     {
@@ -69,6 +87,9 @@
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
       "architecture": "32",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
       "osDetectionString": "not-to-be-detected"
     },
     {
@@ -78,6 +99,9 @@
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
       "architecture": "64",
+      "installCommand": "gunzip -c FILENAME | tar xf -",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "shasum -a 256 FILENAME",
       "osDetectionString": "not-to-be-detected"
     }
   ]

@@ -101,13 +101,13 @@ function buildLatestHTML(releasesJson) {
 
   setTickLink();
 
+  displayLatestPlatform();
+  window.onhashchange = displayLatestPlatform;
+
   loading.innerHTML = ''; // remove the loading dots
 
   const latestContainer = document.getElementById('latest-container');
   latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
-
-  displayLatestPlatform();
-  window.onhashchange = displayLatestPlatform;
 }
 
 /* eslint-disable no-unused-vars */
