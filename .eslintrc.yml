@@ -12,9 +12,6 @@ globals:
   detectOS: true
   loadJSON: true
   errorContainer: true
-  onIndexLoad: true
-  onNightlyLoad: true
-  onReleasesLoad: true
   getSearchableName: true
   getOfficialName: true
   getBinaryExt: true
@@ -29,5 +26,10 @@ globals:
   setTickLink: true
   loadPlatformsThenData: true
   variant: true
+  platformSelector: true
+  hljs: true
+  getInstallCommand: true
+  getChecksumCommand: true
+  getPathCommand: true
 
 extends: eslint:recommended

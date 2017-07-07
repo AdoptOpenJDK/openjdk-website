@@ -1,5 +1,6 @@
 var INSTALLDATA;
 
+/* eslint-disable no-unused-vars */
 function onInstallationLoad() {
   /* eslint-enable no-unused-vars */
 
