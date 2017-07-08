@@ -6,6 +6,10 @@ function onInstallationLoad() {
 
   INSTALLDATA = new Object();
   populateInstallation(); // populate the Latest page
+
+  $( document ).ready(function() {
+    hljs.initHighlightingOnLoad();
+  });
 }
 
 function populateInstallation() {
@@ -79,8 +83,6 @@ function buildInstallationHTML(releasesJson) {
 
   var template = Handlebars.compile(document.getElementById('template').innerHTML);
   document.getElementById('installation-template').innerHTML = template(INSTALLDATA);
-
-  hljs.initHighlightingOnLoad();
 
   setInstallationPlatformSelector(ASSETARRAY);
   window.onhashchange = displayInstallPlatform;
