@@ -388,6 +388,8 @@ main {
 }
 
 pre {
+  display: flex;
+  justify-content: space-between;
   background-color: $mainblue;
   border-radius: 0.2rem;
   box-sizing: border-box;
@@ -395,12 +397,12 @@ pre {
   font-family: Consolas, monospace;
   overflow: auto;
   padding: 0.6rem;
-  padding-left: 1rem;
+  padding-left: 0;
   white-space: pre-wrap;
+  line-height: 1rem;
 }
 
 code {
-  box-sizing: border-box;
   overflow: auto;
   white-space: pre;
 }
@@ -408,6 +410,24 @@ code {
 code.hljs {
   padding: 0;
   background: inherit;
+  display: inline;
+}
+
+.copy-code-button, code.hljs {
+  padding: 0.2rem 1rem;
+}
+
+.copy-code-button {
+  display: inline-flex;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+  border-radius: 0.2rem;
+  margin-left: 0.2rem;
+}
+
+.copy-code-button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 span.hljs-keyword, span.hljs-selector-tag, span.hljs-literal, span.hljs-doctag, span.hljs-title, span.hljs-section, span.hljs-type, span.hljs-name, span.hljs-strong {

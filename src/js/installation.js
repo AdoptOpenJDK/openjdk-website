@@ -61,7 +61,7 @@ function buildInstallationHTML(releasesJson) {
         ASSETOBJECT.thisBinaryFilename = (eachAsset.name);
         ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
         ASSETOBJECT.thisChecksumFilename = (eachAsset.name).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-        ASSETOBJECT.thisInstallCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
+        ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', releasesJson.name);
       }

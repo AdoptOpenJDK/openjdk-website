@@ -27,15 +27,15 @@
                 </li>
                 <li>
                   Extract the <code><var extension>\{{thisBinaryExtension}}</var></code>. You can use the following command:
-                  <pre><code><var unzipCommand>\{{thisInstallCommand}}</var></code></pre>
+                  <pre><code><var id="unzip-\{{thisPlatform}}" unzipCommand>\{{thisUnzipCommand}}</var></code><span onclick="copyClipboard('#unzip-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
                 </li>
                 <li>
                   Add this version of Java to your PATH:
-                  <pre><code><var pathCommand>\{{thisPathCommand}}</var></code></pre>
+                  <pre><code><var id="path-\{{thisPlatform}}" pathCommand>\{{thisPathCommand}}</var></code><span onclick="copyClipboard('#path-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
                 </li>
                 <li>
                   Check that Java has installed correctly:
-                  <pre><code>java -version</code></pre>
+                  <pre><code id="java-\{{thisPlatform}}">java -version</code><span onclick="copyClipboard('#java-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
                 </li>
               </ol>
             </div>
@@ -44,7 +44,7 @@
               <h2 class="bold">Checking the SHA-256 checksum</h2>
               <p>Optionally, you can compare the SHA-256 checksum of your downloaded binary against the checksums that are provided for every release and nightly build.</p>
               <p>Use this command to generate a SHA-256 checksum of your downloaded binary, then open the corresponding <a href="\{{thisChecksumLink}}">checksum file</a> and ensure that it contains the same number.</p>
-              <pre><code><var checksumCommand>\{{thisChecksumCommand}}</var></code></pre>
+              <pre><code><var id="checksum-\{{thisPlatform}}" checksumCommand>\{{thisChecksumCommand}}</var></code><span onclick="copyClipboard('#checksum-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
             </div>
           </div>
         \{{/each}}
@@ -54,4 +54,4 @@
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>' script2='<script>onInstallationLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>' script3='<script>onInstallationLoad();</script>' }}
