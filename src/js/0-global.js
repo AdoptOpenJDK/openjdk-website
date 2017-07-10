@@ -5,6 +5,7 @@ var lookup = {};
 var i = 0;
 var variant = getQueryByName('variant');
 var variantSelector = document.getElementById('variant-selector');
+var platformSelector = document.getElementById('platform-selector');
 
 function setLookup() {
   // FUNCTIONS FOR GETTING PLATFORM DATA
@@ -71,6 +72,21 @@ function getInstallerExt(searchableName) {
 // gets the LOGO WITH PATH when you pass in 'searchableName'
 function getLogo(searchableName) {
   return (logoPath + (lookup[searchableName].logo));
+}
+
+// gets the INSTALLATION COMMAND when you pass in 'searchableName'
+function getInstallCommand(searchableName) {
+  return (lookup[searchableName].installCommand);
+}
+
+// gets the CHECKSUM COMMAND when you pass in 'searchableName'
+function getChecksumCommand(searchableName) {
+  return (lookup[searchableName].checksumCommand);
+}
+
+// gets the PATH COMMAND when you pass in 'searchableName'
+function getPathCommand(searchableName) {
+  return (lookup[searchableName].pathCommand);
 }
 
 // set value for loading dots on every page
@@ -215,31 +231,42 @@ function persistUrlQuery() {
 }
 
 function setVariantSelector() {
-  if(variantSelector.options.length === 0) {
-    variants.forEach(function(eachVariant) {
+  if(variantSelector) {
+    if(variantSelector.options.length === 0) {
+      variants.forEach(function(eachVariant) {
+        var op = new Option();
+        op.value = eachVariant.searchableName;
+        op.text = eachVariant.officialName;
+        variantSelector.options.add(op);
+      });
+    }
+
+    if(!variant) {
+      variant = variants[0].searchableName;
+    }
+
+    variantSelector.value = variant;
+
+    if(variantSelector.value === '') {
       var op = new Option();
-      op.value = eachVariant.searchableName;
-      op.text = eachVariant.officialName;
+      op.value = 'unknown';
+      op.text = 'Select a variant';
       variantSelector.options.add(op);
-    });
+      variantSelector.value = 'unknown';
+      errorContainer.innerHTML = '<p>Error: no such variant. Please select a valid variant from the drop-down list.</p>';
+    }
+
+    variantSelector.onchange = function() {
+      setUrlQuery('variant', variantSelector.value);
+    };
   }
+}
 
-  if(!variant) {
-    variant = variants[0].searchableName;
-  }
-
-  variantSelector.value = variant;
-
-  if(variantSelector.value === '') {
-    var op = new Option();
-    op.value = 'unknown';
-    op.text = 'Select a variant';
-    variantSelector.options.add(op);
-    variantSelector.value = 'unknown';
-    errorContainer.innerHTML = '<p>Error: no such variant. Please select a valid variant from the drop-down list.</p>';
-  }
-
-  variantSelector.onchange = function() {
-    setUrlQuery('variant', variantSelector.value);
-  };
+function copyClipboard(element) {
+  var $temp = $('<input>');
+  $('body').append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand('copy');
+  $temp.remove();
+  alert('Copied to clipboard');
 }

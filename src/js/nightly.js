@@ -13,6 +13,7 @@ var datepicker = document.getElementById('datepicker');
 function onNightlyLoad() {
   /* eslint-enable no-unused-vars */
   NIGHTLYDATA = new Object();
+
   setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 
