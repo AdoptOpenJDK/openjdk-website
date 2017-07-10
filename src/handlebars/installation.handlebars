@@ -14,6 +14,7 @@
     </div>
     <div id="installation-template">
       <script id="template" type="text/x-handlebars-template">
+        <img src="./dist/assets/pixel.png" onload="highlightCode()" class="hide" width="0" height="0">
         \{{#each htmlTemplate}}
           <div id="installation-container-\{{thisPlatform}}" class="installation-single-platform hide">
             <div class="margin-bottom">
@@ -27,15 +28,15 @@
                 </li>
                 <li>
                   Extract the <code><var extension>\{{thisBinaryExtension}}</var></code>. You can use the following command:
-                  <pre><code><var id="unzip-\{{thisPlatform}}" unzipCommand>\{{thisUnzipCommand}}</var></code><span onclick="copyClipboard('#unzip-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+                  <pre><code class="highlighted"><var id="unzip-\{{thisPlatform}}" unzipCommand>\{{thisUnzipCommand}}</var></code><span onclick="copyClipboard('#unzip-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
                 </li>
                 <li>
                   Add this version of Java to your PATH:
-                  <pre><code><var id="path-\{{thisPlatform}}" pathCommand>\{{thisPathCommand}}</var></code><span onclick="copyClipboard('#path-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+                  <pre><code class="highlighted"><var id="path-\{{thisPlatform}}" pathCommand>\{{thisPathCommand}}</var></code><span onclick="copyClipboard('#path-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
                 </li>
                 <li>
                   Check that Java has installed correctly:
-                  <pre><code id="java-\{{thisPlatform}}">java -version</code><span onclick="copyClipboard('#java-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+                  <pre><code id="java-\{{thisPlatform}}" class="highlighted">java -version</code><span onclick="copyClipboard('#java-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
                 </li>
               </ol>
             </div>
@@ -44,7 +45,7 @@
               <h2 class="bold">Checking the SHA-256 checksum</h2>
               <p>Optionally, you can compare the SHA-256 checksum of your downloaded binary against the checksums that are provided for every release and nightly build.</p>
               <p>Use this command to generate a SHA-256 checksum of your downloaded binary, then open the corresponding <a href="\{{thisChecksumLink}}">checksum file</a> and ensure that it contains the same number.</p>
-              <pre><code><var id="checksum-\{{thisPlatform}}" checksumCommand>\{{thisChecksumCommand}}</var></code><span onclick="copyClipboard('#checksum-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+              <pre><code class="highlighted"><var id="checksum-\{{thisPlatform}}" checksumCommand>\{{thisChecksumCommand}}</var></code><span onclick="copyClipboard('#checksum-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
             </div>
           </div>
         \{{/each}}

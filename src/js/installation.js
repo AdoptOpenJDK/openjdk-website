@@ -6,10 +6,6 @@ function onInstallationLoad() {
 
   INSTALLDATA = new Object();
   populateInstallation(); // populate the Latest page
-
-  $( document ).ready(function() {
-    hljs.initHighlightingOnLoad();
-  });
 }
 
 function populateInstallation() {

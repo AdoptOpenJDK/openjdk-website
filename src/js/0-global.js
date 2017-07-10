@@ -270,3 +270,7 @@ function copyClipboard(element) {
   $temp.remove();
   alert('Copied to clipboard');
 }
+
+function highlightCode() {
+  hljs.initHighlightingOnLoad();
+}
