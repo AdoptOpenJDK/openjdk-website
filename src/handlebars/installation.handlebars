@@ -14,7 +14,6 @@
     </div>
     <div id="installation-template">
       <script id="template" type="text/x-handlebars-template">
-        <img src="./dist/assets/pixel.png" onload="highlightCode()" class="hide" width="0" height="0">
         \{{#each htmlTemplate}}
           <div id="installation-container-\{{thisPlatform}}" class="installation-single-platform hide">
             <div class="margin-bottom">
@@ -49,6 +48,7 @@
             </div>
           </div>
         \{{/each}}
+        <img src="./dist/assets/pixel.png" onload="highlightCode()" class="hide" width="0" height="0">
       </script>
     </div>
   </div>
