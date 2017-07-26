@@ -371,6 +371,17 @@ main {
   text-decoration: none;
 }
 
+.empty-download{
+  border-radius: 0.2rem;
+  font-size: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: rgba(61, 112, 178, 0.18);
+  padding: 0 1.5rem;
+  line-height: 2rem;
+  display: inline-block;
+}
 #search-error {
   text-align: center;
   margin-top: 2rem;

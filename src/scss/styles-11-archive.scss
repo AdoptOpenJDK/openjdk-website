@@ -26,11 +26,13 @@ $tableblue-even: #1F2F4E;
   font-size: 0.8rem;
 }
 
-.archive-container .grey-button {
-  font-size: inherit;
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
+.archive-container {
+  .grey-button, .blue-button  {
+    font-size: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+  }
 }
 
 .archive-container .download-td {
@@ -56,4 +58,10 @@ $tableblue-even: #1F2F4E;
   img {
     height: 1.2rem;
   }
+}
+
+.column-names span{
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: inline-block;
 }

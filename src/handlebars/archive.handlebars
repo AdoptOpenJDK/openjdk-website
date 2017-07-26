@@ -23,11 +23,9 @@
 
     <div id="archive-list" class="hide">
       <select id="variant-selector"></select>
-
       <div id="pagination-container"></div>
       <table class='archive-container'>
         <tbody id='archive-table-body'>
-
           <!-- BEGIN HANDLEBARS LIVE-RENDERED TEMPLATE -->
           <script id="template" type="text/x-handlebars-template">
             \{{#each htmlTemplate}}
@@ -39,16 +37,46 @@
                   </div>
                 </td>
                 <td>
+
                   <table class='archive-platforms'>
+                    <tr class='column-names'>
+                      <td>
+                      </td>
+                      \{{#if installersExist}}
+                      <td>
+                        <span>Installer</span>
+                      </td>
+                      \{{/if}}
+                      \{{#if binariesExist}}
+                      <td>
+                        <span>Binary</span>
+                      </td>
+                      \{{/if}}
+                    </tr>
+
                     \{{#each thisPlatformAssets}}
                       <tr class='platform-row \{{thisPlatform}}'>
                         <td>\{{thisOfficialName}}</td>
+                        \{{#if ../installersExist}}
+                        <td class='download-td'>
+                          \{{#if thisInstallerExists}}
+                          <a class='blue-button no-underline' href='\{{thisInstallerLink}}'><var binary-info>\{{thisInstallerExtension}} (\{{thisInstallerSize}} MB)</var>
+                            {{> jck-tick }}
+                          </a>
+                          \{{else}}
+                          <div class='empty-download'>&nbsp;</div>
+                          \{{/if}}
+                        </td>
+                        \{{/if}}
+
+                        \{{#if thisBinaryExists}}
                         <td class='download-td'>
                           <a class='grey-button no-underline' href='\{{thisBinaryLink}}'><var binary-info>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)</var>
                             {{> jck-tick }}
                           </a>
                         </td>
                         <td><a href='\{{thisChecksumLink}}' class='dark-link'>Checksum</a></td>
+                        \{{/if}}
                       </tr>
                     \{{/each}}
                   </table>
