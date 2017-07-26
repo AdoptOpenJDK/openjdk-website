@@ -70,11 +70,7 @@ function buildHomepageHTML(releasesJson) {
         var thisInstallerExtension = getInstallerExt(thisPlatform); // get the installer extension associated with this platform
         if(matchingFile == null){
           if(uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
-<<<<<<< HEAD
-            uppercaseOSname = OS.searchableName.toUpperCase();
-=======
             var uppercaseOSname = OS.searchableName.toUpperCase();
->>>>>>> Add Installer to Home Page
 
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
             if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
@@ -82,11 +78,7 @@ function buildHomepageHTML(releasesJson) {
             }
           }
           else if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
-<<<<<<< HEAD
-            uppercaseOSname = OS.searchableName.toUpperCase();
-=======
             var uppercaseOSname = OS.searchableName.toUpperCase();
->>>>>>> Add Installer to Home Page
 
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
             if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
