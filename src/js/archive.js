@@ -72,11 +72,24 @@ function buildArchiveHTML(releasesJson) {
       // firstly, check if the platform name is recognised...
       if(ASSETOBJECT.thisPlatform) {
 
+        // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
+        ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
+        if(uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
+          ASSETOBJECT.thisPlatformExists = true;
+          ASSETOBJECT.thisInstallerExists = true;
+          RELEASEOBJECT.installersExist = true;
+          ASSETOBJECT.thisInstallerLink = (eachAsset.browser_download_url);
+          ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
+        }
+
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
         ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform); // get the file extension associated with this platform
         if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
           // set values ready to be injected into the HTML
+          ASSETOBJECT.thisPlatformExists = true;
+          ASSETOBJECT.thisBinaryExists = true;
+          RELEASEOBJECT.binariesExist = true;
           ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
           ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
           ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
@@ -84,6 +97,9 @@ function buildArchiveHTML(releasesJson) {
           ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
           ASSETOBJECT.thisVerified = false;
 
+        }
+
+        if(ASSETOBJECT.thisPlatformExists === true){
           ASSETARRAY.push(ASSETOBJECT);
         }
       }
