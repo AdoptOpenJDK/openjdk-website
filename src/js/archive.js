@@ -16,9 +16,9 @@ function populateArchive() {
     // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
     // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
 
-    // var repoName = (variant + '-releases');
+    var repoName = (variant + '-releases');
 
-    loadJSON('openjdk8-releases', 'releases', function(response) {
+    loadJSON(repoName, 'releases', function(response) {
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
       }

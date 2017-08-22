@@ -41,6 +41,7 @@ function populateNightly() {
     var repoName = (variant + '-nightly');
 
     loadJSON(repoName, 'nightly', function(response) {
+
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
       }
