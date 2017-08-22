@@ -18,7 +18,7 @@ function populateArchive() {
 
     // var repoName = (variant + '-releases');
 
-    loadJSON('openjdk-releases', 'releases', function(response) {
+    loadJSON('openjdk8-releases', 'releases', function(response) {
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
       }
