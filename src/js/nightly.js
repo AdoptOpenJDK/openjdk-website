@@ -37,12 +37,10 @@ function setDatePicker() {
 function populateNightly() {
   loadPlatformsThenData(function() {
 
-    // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-nightly.
-    // This can only be done after the repository name is updated from 'openjdk-nightly' to 'openjdk8-nightly'.
 
-    // var repoName = (variant + '-nightly');
+    var repoName = (variant + '-nightly');
 
-    loadJSON('openjdk8-nightly', 'nightly', function(response) {
+    loadJSON(repoName, 'nightly', function(response) {
       function checkIfProduction(x) { // used by the array filter method below.
         return x.prerelease === false && x.assets[0];
       }
