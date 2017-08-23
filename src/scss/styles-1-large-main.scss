@@ -469,7 +469,7 @@ select#variant-selector, select#platform-selector {
 
 select#variant-selector {
   // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
-  display: none;
+  display: block;
 }
 
 select#variant-selector:hover, select#platform-selector:hover {
