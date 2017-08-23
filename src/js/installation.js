@@ -11,12 +11,9 @@ function onInstallationLoad() {
 function populateInstallation() {
   loadPlatformsThenData(function() {
 
-    // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
-    // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
+    var repoName = (variant + '-releases');
 
-    // var repoName = (variant + '-releases');
-
-    loadJSON('openjdk-releases', 'latest_release', function(response) {
+    loadJSON(repoName, 'latest_release', function(response) {
       var releasesJson = JSON.parse(response);
       if (typeof releasesJson !== 'undefined') { // if there are releases...
         buildInstallationHTML(releasesJson);
