@@ -22,9 +22,9 @@ function setDownloadSection() {
     // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
     // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
 
-    // var repoName = (variant + '-releases');
+    var repoName = (variant + '-releases');
 
-    loadJSON('openjdk-releases', 'latest_release', function(response) {
+    loadJSON(repoName, 'latest_release', function(response) {
       var releasesJson = JSON.parse(response);
 
       if (typeof releasesJson !== 'undefined') { // if there are releases...
@@ -70,7 +70,7 @@ function buildHomepageHTML(releasesJson) {
         var thisInstallerExtension = getInstallerExt(thisPlatform); // get the installer extension associated with this platform
         if(matchingFile == null){
           if(uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
-            var uppercaseOSname = OS.searchableName.toUpperCase();
+             uppercaseOSname = OS.searchableName.toUpperCase();
 
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
             if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
@@ -78,7 +78,7 @@ function buildHomepageHTML(releasesJson) {
             }
           }
           else if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
-            var uppercaseOSname = OS.searchableName.toUpperCase();
+             uppercaseOSname = OS.searchableName.toUpperCase();
 
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
             if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
