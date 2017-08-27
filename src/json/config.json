@@ -40,7 +40,7 @@
       "searchableName": "X64_MAC",
       "logo": "mac.png",
       "binaryExtension": ".tar.gz",
-      "installerExtension": ".dmg",
+      "installerExtension": ".app",
       "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
