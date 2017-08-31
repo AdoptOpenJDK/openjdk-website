@@ -14,8 +14,6 @@ function onLatestLoad() {
 function populateLatest() {
   loadPlatformsThenData(function() {
 
-    // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
-    // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
 
     var repoName = (variant + '-releases');
 
@@ -43,12 +41,13 @@ function buildLatestHTML(releasesJson) {
 
   // create an array of the details for each asset that is attached to a release
   var assetArray = [];
+
   releasesJson.assets.forEach(function(each) {
     assetArray.push(each);
   });
 
   var ASSETARRAY = [];
-
+  console.log(assetArray);
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
   assetArray.forEach(function(eachAsset) {
     var ASSETOBJECT = new Object();
@@ -58,7 +57,6 @@ function buildLatestHTML(releasesJson) {
 
     // check if the platform name is recognised...
     if(ASSETOBJECT.thisPlatform) {
-
       ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
@@ -66,22 +64,44 @@ function buildLatestHTML(releasesJson) {
 
       // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
       ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
+      ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
       if(uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
+        if(ASSETARRAY.length > 0){
+          ASSETARRAY.forEach(function(asset){
+            if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
+              ASSETARRAY.pop();
+            }
+          });
+        }
         ASSETOBJECT.thisPlatformExists = true;
         ASSETOBJECT.thisInstallerExists = true;
         ASSETOBJECT.thisInstallerLink = (eachAsset.browser_download_url);
         ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
+        ASSETOBJECT.thisBinaryExists = true;
+        ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
+        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+        ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
+      }
+      // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
+      if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
+        var installerExist = false;
+        if(ASSETARRAY.length > 0){
+          ASSETARRAY.forEach(function(asset){
+            if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
+              installerExist = true;
+            }
+          });
+        }
+        if(!installerExist){
+          ASSETOBJECT.thisPlatformExists = true;
+          ASSETOBJECT.thisBinaryExists = true;
+          ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
+          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+          ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+        }
       }
 
-      // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
-      ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
-      if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
-        ASSETOBJECT.thisPlatformExists = true;
-        ASSETOBJECT.thisBinaryExists = true;
-        ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
-        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-        ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-      }
+
 
       if(ASSETOBJECT.thisPlatformExists === true){
         ASSETARRAY.push(ASSETOBJECT);
@@ -92,8 +112,9 @@ function buildLatestHTML(releasesJson) {
 
   ASSETARRAY = orderPlatforms(ASSETARRAY);
 
+  console.log(ASSETARRAY);
   RELEASEDATA.htmlTemplate = ASSETARRAY;
-
+  console.log(RELEASEDATA);
   var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
   var templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
   document.getElementById('latest-selector').innerHTML = templateSelector(RELEASEDATA);

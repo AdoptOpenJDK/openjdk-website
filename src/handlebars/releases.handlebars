@@ -1,4 +1,4 @@
-{{> header title='Latest build | ' }}
+np{{> header title='Latest build | ' }}
 
 <main class="grey-bg">
 
@@ -60,6 +60,7 @@
                 <div class='content-section'>
 
                   \{{#if thisInstallerExists}}
+                   <div class="inline-block">
                     <div class='latest-block'>
                       <span>Installer</span>
                       <a href='\{{thisInstallerLink}}' class='latest-download-button a-button installer-dl'>
@@ -69,9 +70,11 @@
                         </div>
                       </a>
                     </div>
+                  </div>
                   \{{/if}}
 
                   \{{#if thisBinaryExists}}
+
                     \{{#if thisInstallerExists}}
                       <div class='inline-block binary-grey'>
                     \{{/if}}
