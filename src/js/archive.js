@@ -67,6 +67,7 @@ function buildArchiveHTML(releasesJson) {
       var ASSETOBJECT = new Object();
       var nameOfFile = (eachAsset.name);
       var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
+
       ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
       // firstly, check if the platform name is recognised...
@@ -74,29 +75,56 @@ function buildArchiveHTML(releasesJson) {
 
         // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
         ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
+
+        ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform); // get the file extension associated with this platform
+
         if(uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
+          if(ASSETARRAY.length > 0){
+            ASSETARRAY.forEach(function(asset){
+              if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
+                ASSETARRAY.pop();
+              }
+            });
+          }
           ASSETOBJECT.thisPlatformExists = true;
           ASSETOBJECT.thisInstallerExists = true;
           RELEASEOBJECT.installersExist = true;
           ASSETOBJECT.thisInstallerLink = (eachAsset.browser_download_url);
           ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
+          ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
+          ASSETOBJECT.thisBinaryExists = true;
+          RELEASEOBJECT.binariesExist = true;
+          ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
+          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+          ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
+          ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
+          ASSETOBJECT.thisVerified = false;
         }
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform); // get the file extension associated with this platform
-        if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
-          // set values ready to be injected into the HTML
-          ASSETOBJECT.thisPlatformExists = true;
-          ASSETOBJECT.thisBinaryExists = true;
-          RELEASEOBJECT.binariesExist = true;
-          ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-          ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
-          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-          ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-          ASSETOBJECT.thisVerified = false;
 
+        if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
+          var installerExist = false;
+          if(ASSETARRAY.length > 0){
+            ASSETARRAY.forEach(function(asset){
+              if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
+                installerExist = true;
+              }
+            });
+          }
+          if(!installerExist){
+            // set values ready to be injected into the HTML
+            ASSETOBJECT.thisPlatformExists = true;
+            ASSETOBJECT.thisBinaryExists = true;
+            RELEASEOBJECT.binariesExist = true;
+            ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
+            ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
+            ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+            ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+            ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
+            ASSETOBJECT.thisVerified = false;
+          }
         }
 
         if(ASSETOBJECT.thisPlatformExists === true){
@@ -110,7 +138,7 @@ function buildArchiveHTML(releasesJson) {
     RELEASEOBJECT.thisPlatformAssets = ASSETARRAY;
     RELEASEARRAY.push(RELEASEOBJECT);
   });
-
+  console.log(RELEASEARRAY);
   ARCHIVEDATA.htmlTemplate = RELEASEARRAY;
   var template = Handlebars.compile(document.getElementById('template').innerHTML);
   document.getElementById('archive-table-body').innerHTML = template(ARCHIVEDATA);
