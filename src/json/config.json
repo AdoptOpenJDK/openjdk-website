@@ -16,7 +16,7 @@
       "searchableName": "X64_LINUX",
       "logo": "linux.png",
       "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
+      "installerExtension": ".run",
       "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
