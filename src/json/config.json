@@ -3,13 +3,13 @@
   [
     {
       "searchableName": "openjdk8",
-      "officialName": "OpenJDK 8"
+      "officialName": "OpenJDK 8 with Hotspot"
     },{
       "searchableName": "openjdk9",
-      "officialName": "OpenJDK 9"
+      "officialName": "OpenJDK 9 with Hostpot"
     },{
       "searchableName": "openjdk9-openj9",
-      "officialName": "OpenJ9"
+      "officialName": "OpenJDK 9 with OpenJ9"
     }
   ],
   "platforms":
