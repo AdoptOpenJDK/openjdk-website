@@ -97,7 +97,7 @@ function buildNightlyHTML(releasesJson) {
           NIGHTLYOBJECT.thisReleaseDay = moment(publishedAt).format('D');
           NIGHTLYOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
           NIGHTLYOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
-          NIGHTLYOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/openjdk-nightly/releases/tag/' + eachRelease.name);
+          NIGHTLYOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + variant + '-nightly/releases/tag/' + eachRelease.name);
           NIGHTLYOBJECT.thisOfficialName = getOfficialName(NIGHTLYOBJECT.thisPlatform);
           NIGHTLYOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
           NIGHTLYOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
