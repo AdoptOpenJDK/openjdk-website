@@ -7,6 +7,9 @@
     },{
       "searchableName": "openjdk9",
       "officialName": "OpenJDK 9"
+    },{
+      "searchableName": "openjdk9-openj9",
+      "officialName": "OpenJ9"
     }
   ],
   "platforms":
