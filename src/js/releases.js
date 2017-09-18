@@ -14,7 +14,6 @@ function onLatestLoad() {
 function populateLatest() {
   loadPlatformsThenData(function() {
 
-
     var repoName = (variant + '-releases');
 
     loadJSON(repoName, 'latest_release', function(response) {
@@ -32,6 +31,14 @@ function populateLatest() {
 }
 
 function buildLatestHTML(releasesJson) {
+
+  // populate with description
+  var variantObject = getVariantObject(variant);
+  if(variantObject.descriptionLink){
+    document.getElementById('description_header').innerHTML = "What is " + variantObject.description + " ?";
+    document.getElementById('description_link').innerHTML = "Find out here";
+    document.getElementById('description_link').href = variantObject.descriptionLink;
+  }
   // populate the page with the release's information
   var publishedAt = (releasesJson.published_at);
   document.getElementById('latest-build-name').innerHTML = '<var release-name>' + releasesJson.name + '</var>';

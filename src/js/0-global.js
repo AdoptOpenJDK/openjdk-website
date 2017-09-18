@@ -40,6 +40,7 @@ function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
 }
 
+
 function getPlatformOrder(searchableName) {
   var index = platforms.findIndex(function(platform) {
     return platform.searchableName == searchableName;
@@ -237,6 +238,8 @@ function setVariantSelector() {
         var op = new Option();
         op.value = eachVariant.searchableName;
         op.text = eachVariant.officialName;
+        op.description = eachVariant.description;
+        op.descriptionLink = eachVariant.descriptionLink;
         variantSelector.options.add(op);
       });
     }
@@ -273,4 +276,14 @@ function copyClipboard(element) {
 
 function highlightCode() {
   hljs.initHighlightingOnLoad();
+}
+
+function getVariantObject(variant){
+  var variantObject = "";
+  variants.forEach(function(eachVariant) {
+    if(eachVariant.searchableName === variant){
+      variantObject = eachVariant;
+    }
+  });
+  return variantObject;
 }
