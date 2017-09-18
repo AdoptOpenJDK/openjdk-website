@@ -292,13 +292,3 @@ function copyClipboard(element) {
 function highlightCode() {
   hljs.initHighlightingOnLoad();
 }
-
-function getVariantObject(variant){
-  var variantObject = "";
-  variants.forEach(function(eachVariant) {
-    if(eachVariant.searchableName === variant){
-      variantObject = eachVariant;
-    }
-  });
-  return variantObject;
-}
