@@ -35,8 +35,8 @@ function buildLatestHTML(releasesJson) {
   // populate with description
   var variantObject = getVariantObject(variant);
   if(variantObject.descriptionLink){
-    document.getElementById('description_header').innerHTML = "What is " + variantObject.description + " ?";
-    document.getElementById('description_link').innerHTML = "Find out here";
+    document.getElementById('description_header').innerHTML = 'What is ' + variantObject.description + '?';
+    document.getElementById('description_link').innerHTML = 'Find out here';
     document.getElementById('description_link').href = variantObject.descriptionLink;
   }
   // populate the page with the release's information
@@ -54,7 +54,6 @@ function buildLatestHTML(releasesJson) {
   });
 
   var ASSETARRAY = [];
-  console.log(assetArray);
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
   assetArray.forEach(function(eachAsset) {
     var ASSETOBJECT = new Object();
@@ -119,9 +118,7 @@ function buildLatestHTML(releasesJson) {
 
   ASSETARRAY = orderPlatforms(ASSETARRAY);
 
-  console.log(ASSETARRAY);
   RELEASEDATA.htmlTemplate = ASSETARRAY;
-  console.log(RELEASEDATA);
   var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
   var templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
   document.getElementById('latest-selector').innerHTML = templateSelector(RELEASEDATA);

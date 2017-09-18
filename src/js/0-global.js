@@ -15,6 +15,16 @@ function setLookup() {
   }
 }
 
+function getVariantObject(variant) {
+  var variantObject = '';
+  variants.forEach(function(eachVariant) {
+    if(eachVariant.searchableName === variant){
+      variantObject = eachVariant;
+    }
+  });
+  return variantObject;
+}
+
 // gets the 'searchableName' when you pass in the full filename.
 // If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
 function getSearchableName(filename) {
@@ -276,14 +286,4 @@ function copyClipboard(element) {
 
 function highlightCode() {
   hljs.initHighlightingOnLoad();
-}
-
-function getVariantObject(variant){
-  var variantObject = "";
-  variants.forEach(function(eachVariant) {
-    if(eachVariant.searchableName === variant){
-      variantObject = eachVariant;
-    }
-  });
-  return variantObject;
 }
