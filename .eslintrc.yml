@@ -31,5 +31,6 @@ globals:
   getInstallCommand: true
   getChecksumCommand: true
   getPathCommand: true
+  getVariantObject: true
 
 extends: eslint:recommended

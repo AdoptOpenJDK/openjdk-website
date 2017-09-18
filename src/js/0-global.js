@@ -15,6 +15,16 @@ function setLookup() {
   }
 }
 
+function getVariantObject(variant) {
+  var variantObject = '';
+  variants.forEach(function(eachVariant) {
+    if(eachVariant.searchableName === variant){
+      variantObject = eachVariant;
+    }
+  });
+  return variantObject;
+}
+
 // gets the 'searchableName' when you pass in the full filename.
 // If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
 function getSearchableName(filename) {
@@ -39,6 +49,7 @@ var logoPath = './dist/assets/';
 function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
 }
+
 
 function getPlatformOrder(searchableName) {
   var index = platforms.findIndex(function(platform) {
@@ -237,6 +248,8 @@ function setVariantSelector() {
         var op = new Option();
         op.value = eachVariant.searchableName;
         op.text = eachVariant.officialName;
+        op.description = eachVariant.description;
+        op.descriptionLink = eachVariant.descriptionLink;
         variantSelector.options.add(op);
       });
     }
