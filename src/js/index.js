@@ -31,65 +31,24 @@ function onIndexLoad() {
   if(variant){
     dlContainer.style.display = 'inline';
   }
+  saveRecommenderState();
 
   recommender.addEventListener('click', function(e) {
     if (e.target.tagName === 'IMG'){
-      var userName = e.target.alt;
-
+      state = e.target.alt;
       resetRecommender();
-      switch(userName){
-        case 'user':
-          dlContainer.style.display = 'inline';
-          userDescription.innerHTML = 'I do not care about the Java Version, I just want to be able to run my applications.';
-          opacityEffectRecommender(userName);
-          showDlContainer();
-          break;
-
-        case 'developer':
-          dev_recommender.style.display = 'inline';
-          userDescription.innerHTML = '';
-          opacityEffectRecommender(userName);
-          break;
-
-        default:
-          dlContainer.style.display = 'inline';
-          userDescription.innerHTML = 'I know what I want , take me straight to the Archives.';
-          opacityEffectRecommender(userName);
-          hideDlContainer();
-      }
+      saveRecommenderState();
     }
   });
 
   dev_recommender.addEventListener('click',function(e){
     if(e.target.tagName === 'IMG'){
-      var developerName = e.target.alt;
+      state = e.target.alt;
 
-      sys_admin.style.opacity = 0.3;
-      vm_cloud.style.opacity = 0.3;
-      java_dev.style.opacity = 0.3;
-      openjdk_dev.style.opacity = 0.3;
-      app_writer.style.opacity = 0.3;
-
-      switch (developerName) {
-        case 'System admin':
-          sys_admin.style.opacity = 1;
-          break;
-        case 'VM on the Cloud':
-          vm_cloud.style.opacity = 1;
-          break;
-        case 'Java developer':
-          java_dev.style.opacity = 1;
-          break;
-        case 'OpenJDK developer':
-          openjdk_dev.style.opacity = 1;
-          break;
-        case 'Application Writer':
-          app_writer.style.opacity = 1;
-          break;
-        default:
-
-      }
+      resetDevRecommender();
+      saveRecommenderState();
       showDlContainer();
+
       dlContainer.style.display = 'inline';
     }
   });
@@ -206,7 +165,53 @@ function buildHomepageHTML(releasesJson) {
   }, 1000);
 }
 
+function saveRecommenderState(){
+  switch (state) {
+    case 'user':
+      dlContainer.style.display = 'inline';
+      userDescription.innerHTML = 'I do not care about the Java Version, I just want to be able to run my applications.';
+      opacityEffectRecommender(state);
+      showDlContainer();
+      break;
+
+    case 'developer':
+      dev_recommender.style.display = 'inline';
+      userDescription.innerHTML = '';
+      opacityEffectRecommender(state);
+      break;
+
+    case 'power user':
+        dlContainer.style.display = 'inline';
+        userDescription.innerHTML = 'I know what I want , take me straight to the Archives.';
+        opacityEffectRecommender(state);
+        hideDlContainer();
+      break;
+
+    case 'System admin':
+        resetDevRecommender();
+        sys_admin.style.opacity = 1;
+        break;
+    case 'VM on the Cloud':
+        resetDevRecommender();
+        vm_cloud.style.opacity = 1;
+        break;
+    case 'Java developer':
+        resetDevRecommender();
+        java_dev.style.opacity = 1;
+        break;
+    case 'OpenJDK developer':
+        resetDevRecommender();
+        openjdk_dev.style.opacity = 1;
+        break;
+    case 'Application Writer':
+        resetDevRecommender();
+        app_writer.style.opacity = 1;
+        break;
+    default:
+  }
+}
 function resetRecommender(){
+  dev_recommender.style.display = 'inline';
   dev_recommender.style.display = 'none';
   dlContainer.style.display = 'none';
   user.style.opacity = 1;
@@ -214,6 +219,16 @@ function resetRecommender(){
   powerUser.style.opacity = 1;
 }
 
+function resetDevRecommender(){
+  dev_recommender.style.display = 'inline';
+  userDescription.innerHTML = '';
+  opacityEffectRecommender('developer');
+  sys_admin.style.opacity = 0.3;
+  vm_cloud.style.opacity = 0.3;
+  java_dev.style.opacity = 0.3;
+  openjdk_dev.style.opacity = 0.3;
+  app_writer.style.opacity = 0.3;
+}
 function opacityEffectRecommender(selected){
   if(selected === 'user'){
     developer.style.opacity = 0.3;
@@ -235,7 +250,6 @@ function showDlContainer(){
 }
 
 function hideDlContainer(){
-  variantSelector.style.display = 'none';
   dlLatest.style.display = 'none';
   dlText.style.display = 'none';
   dlOther.style.display = 'none';
