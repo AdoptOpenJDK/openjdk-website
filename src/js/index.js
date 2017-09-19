@@ -26,7 +26,7 @@ const app_writer = document.getElementById('app-writer');
 
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
-function onNewIndexLoad() {
+function onIndexLoad() {
 
   if(variant){
     dlContainer.style.display = 'inline';
