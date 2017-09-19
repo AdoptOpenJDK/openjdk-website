@@ -7,9 +7,93 @@ const dlIcon = document.getElementById('dl-icon');
 const dlIcon2 = document.getElementById('dl-icon-2');
 const dlVersionText = document.getElementById('dl-version-text');
 
+const recommender = document.getElementById('recommender');
+
+const user = document.getElementById('user');
+const developer = document.getElementById('developer');
+const powerUser = document.getElementById('power-user');
+
+const dlContainer = document.getElementById('dl-container');
+const variantSelector = document.getElementById('variant-selector');
+const userDescription = document.getElementById('user-description');
+
+const dev_recommender = document.getElementById('dev-recommender');
+const system_admin = document.getElementById('sys-admin');
+const vm_cloud = document.getElementById('vm-cloud');
+const java_dev = document.getElementById('java-dev');
+const openjdk_dev = document.getElementById('openjdk-dev');
+const app_writer = document.getElementById('app-writer');
+
+var userBool = false;
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
-function onIndexLoad() {
+function onNewIndexLoad() {
+
+  if(variant){
+    dlContainer.style.display = "inline";
+  }
+  console.log(userBool);
+  recommender.addEventListener('click', function(e) {
+    if (e.target.tagName === 'IMG'){
+      var userName = e.target.alt;
+
+      resetRecommender();
+      switch(userName){
+        case 'user':
+          userBool = true;
+          console.log(userBool);
+          dlContainer.style.display = "inline";
+          userDescription.innerHTML = "I don't care about the Java Version, I just want to be able to run my applications.";
+          opacityEffectRecommender(userName);
+          showDlContainer();
+          break;
+
+        case 'developer':
+          dev_recommender.style.display = "inline";
+          userDescription.innerHTML = "";
+          opacityEffectRecommender(userName);
+          break;
+
+        default:
+          dlContainer.style.display = "inline";
+          userDescription.innerHTML = "I know what I want , take me straight to the Archives.";
+          opacityEffectRecommender(userName);
+          hideDlContainer();
+          dlArchive.style.display = block;
+      }
+    }
+  });
+
+  dev_recommender.addEventListener('click',function(e){
+    if(e.target.tagName === 'IMG'){
+      var developerName = e.target.alt;
+      console.log(developerName);
+      switch (developerName) {
+        case 'System admin':
+          vm_cloud.style.opacity = 0.3;
+          java_dev.style.opacity = 0.3;
+          openjdk_dev.style.opacity = 0.3;
+          app_writer.style.opacity = 0.3;
+          break;
+        case 'VM on the Cloud':
+
+          break;
+        case 'Java developer':
+
+          break;
+        case 'OPENJDK developer':
+
+          break;
+        case 'Application Writer':
+
+          break;
+        default:
+
+      }
+      showDlContainer();
+      dlContainer.style.display = "inline";
+    }
+  });
   setDownloadSection(); // on page load, populate the central download section.
 }
 /* eslint-enable no-unused-vars */
@@ -18,7 +102,6 @@ function onIndexLoad() {
 
 function setDownloadSection() {
   loadPlatformsThenData(function() {
-
 
     var repoName = (variant + '-releases');
 
@@ -122,4 +205,39 @@ function buildHomepageHTML(releasesJson) {
   setTimeout(function(){
     dlLatest.className = 'dl-button a-button animated pulse';
   }, 1000);
+}
+
+function resetRecommender(){
+  dev_recommender.style.display = "none";
+  dlContainer.style.display = "none";
+  user.style.opacity = 1;
+  developer.style.opacity = 1;
+  powerUser.style.opacity = 1;
+}
+
+function opacityEffectRecommender(selected){
+  if(selected === "user"){
+    developer.style.opacity = 0.3;
+    powerUser.style.opacity = 0.3;
+  }else if(selected === "developer"){
+    user.style.opacity = 0.3;
+    powerUser.style.opacity = 0.3;
+  }else{
+    user.style.opacity = 0.3;
+    developer.style.opacity = 0.3;
+  }
+}
+
+function showDlContainer(){
+  variantSelector.style.display = "block";
+  dlLatest.style.display = "inline-block";
+  dlText.style.display = "block";
+  dlOther.style.display = "block";
+}
+
+function hideDlContainer(){
+  variantSelector.style.display = "none";
+  dlLatest.style.display = "none";
+  dlText.style.display = "none";
+  dlOther.style.display = "none";
 }

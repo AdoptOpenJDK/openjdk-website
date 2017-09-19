@@ -7,8 +7,69 @@
     <a href="http://openjdk.java.net" target="_blank">OpenJDK</a>™. AdoptOpenJDK provides prebuilt OpenJDK binaries
     from a fully open source set of <a href="https://github.com/AdoptOpenJDK/openjdk-build" target="_blank">build scripts</a> and infrastructure.
   </p>
+  <h1> What kind of user are you?</h1>
+  <div class="recommender" id="recommender">
+    <ul>
+      <li id="user">
+        <figure>
+          <figcaption> User </figcaption>
+          <img src="dist/assets/user.png" alt="user"/>
+        </figure>
+      </li>
+      <li id="developer">
+        <figure>
+          <figcaption> Developer </figcaption>
+          <img src="dist/assets/developer.png" alt="developer"/>
+        </figure>
+      </li>
+      <li id="power-user">
+        <figure>
+          <figcaption> Power User </figcaption>
+          <img src="dist/assets/power_user.png" alt="power user"/>
+        </figure>
+      </li>
+    </ul>
+  </div>
 
-  <div class="dl-container">
+
+  <div class="recommender" id="dev-recommender">
+    <ul>
+      <li id="sys-admin">
+        <figure>
+          <figcaption> System Admin</figcaption>
+          <img src="dist/assets/sys_admin.png" alt="System admin"/>
+        </figure>
+      </li>
+      <li id="vm-cloud">
+        <figure>
+          <figcaption> VM on Cloud </figcaption>
+          <img src="dist/assets/cloud.png" alt="Vm on the Cloud"/>
+        </figure>
+      </li>
+      <li id="java-dev">
+        <figure>
+          <figcaption> Java Developer</figcaption>
+          <img src="dist/assets/java_developer.png" alt="Java developer"/>
+        </figure>
+      </li>
+      <li id="openjdk-dev">
+        <figure>
+          <figcaption> OpenJDK Developer</figcaption>
+          <img src="dist/assets/openjdk_developer.png" alt="OpenJDK developer"/>
+        </figure>
+      </li>
+      <li id="app-writer">
+        <figure>
+          <figcaption> Application Writer</figcaption>
+          <img src="dist/assets/application_writer.png" alt="Application Writer"/>
+        </figure>
+      </li>
+    </ul>
+  </div>
+
+  <span id="user-description"> </span>
+
+  <div class="dl-container" id="dl-container">
     <h2 id="dl-text" class="animated fadeIn">Downloads</h2>
 
     <div id="error-container"></div>
@@ -66,4 +127,4 @@
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>' script2='<script>onIndexLoad();</script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>' script2='<script>onNewIndexLoad();</script>' }}
