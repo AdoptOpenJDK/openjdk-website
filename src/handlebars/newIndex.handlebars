@@ -1,0 +1,130 @@
+{{> header title='' }}
+
+<main class="grey-bg home-main">
+  <h1>Prebuilt OpenJDK Binaries</h1>
+  <p class="intro">
+    Java™ is the world's leading programming language and platform. The code for Java is <a href="http://openjdk.java.net/legal/gplv2+ce.html" target="_blank">open source</a> and available at
+    <a href="http://openjdk.java.net" target="_blank">OpenJDK</a>™. AdoptOpenJDK provides prebuilt OpenJDK binaries
+    from a fully open source set of <a href="https://github.com/AdoptOpenJDK/openjdk-build" target="_blank">build scripts</a> and infrastructure.
+  </p>
+  <h1> What kind of user are you?</h1>
+  <div class="recommender" id="recommender">
+    <ul>
+      <li id="user">
+        <figure>
+          <figcaption> User </figcaption>
+          <img src="dist/assets/user.png" alt="user"/>
+        </figure>
+      </li>
+      <li id="developer">
+        <figure>
+          <figcaption> Developer </figcaption>
+          <img src="dist/assets/developer.png" alt="developer"/>
+        </figure>
+      </li>
+      <li id="power-user">
+        <figure>
+          <figcaption> Power User </figcaption>
+          <img src="dist/assets/power_user.png" alt="power user"/>
+        </figure>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="recommender" id="dev-recommender">
+    <ul>
+      <li id="sys-admin">
+        <figure>
+          <figcaption> System Admin</figcaption>
+          <img src="dist/assets/sys_admin.png" alt="System admin"/>
+        </figure>
+      </li>
+      <li id="vm-cloud">
+        <figure>
+          <figcaption> VM on Cloud </figcaption>
+          <img src="dist/assets/cloud.png" alt="Vm on the Cloud"/>
+        </figure>
+      </li>
+      <li id="java-dev">
+        <figure>
+          <figcaption> Java Developer</figcaption>
+          <img src="dist/assets/java_developer.png" alt="Java developer"/>
+        </figure>
+      </li>
+      <li id="openjdk-dev">
+        <figure>
+          <figcaption> OpenJDK Developer</figcaption>
+          <img src="dist/assets/openjdk_developer.png" alt="OpenJDK developer"/>
+        </figure>
+      </li>
+      <li id="app-writer">
+        <figure>
+          <figcaption> Application Writer</figcaption>
+          <img src="dist/assets/application_writer.png" alt="Application Writer"/>
+        </figure>
+      </li>
+    </ul>
+  </div>
+
+  <span id="user-description"> </span>
+
+  <div class="dl-container" id="dl-container">
+    <h2 id="dl-text" class="animated fadeIn">Downloads</h2>
+
+    <div id="error-container"></div>
+    <div id='loading'><img src='dist/assets/loading_dots.gif' height='40' width='40'></div>
+
+    <select id="variant-selector"></select>
+
+    <a href="./releases.html" class="dl-button a-button fadeIn invisible" id="dl-latest">
+      <div id="dl-version">
+        <i id="dl-icon" class="fa fa-download" aria-hidden="true"></i>
+        <span>Latest build</span>
+        <i id="dl-icon-2" class="fa fa-arrow-circle-o-right hide" aria-hidden="true"></i>
+      </div>
+      <div class="dl-description">
+        <var id="dl-version-text" class="small-dl-text" release-version></var>
+        <span id="jck-approved-tick" class='tick hide' data-tooltip="This build is JCK approved."><img src='./dist/assets/tick.png' alt="This build is JCK approved."></span>
+      </div>
+    </a>
+
+    <a href="./releases.html" class="dl-button dl-thin-button a-button fadeIn invisible" id="dl-other">
+      <div>
+        <span>Other platforms</span>
+        <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+      </div>
+    </a>
+
+    <a href="./archive.html" class="dl-button dl-thin-button a-button fadeIn invisible" id="dl-archive">
+      <div>
+        <span>Archive</span>
+        <i class="fa fa-archive" aria-hidden="true"></i>
+      </div>
+    </a>
+
+  </div>
+
+  <div style="margin-top: 3rem;">
+    <a href="./installation.html" class="no-underline home-links">
+      <h2 id="installation-link" class="inline-block zero-margin">Installation&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+    </a>
+    <a href="./getinvolved.html" id="dev-button" class="no-underline home-links">
+      <h2 class="inline-block zero-margin">Get involved&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+    </a>
+    <div id="minor-links" class="blue-link-section">
+      <a href="http://blog.adoptopenjdk.net/"><h3 class="inline-block zero-margin">Blog</h3></a>
+      <span> | </span>
+      <a href="./support.html"><h3 class="inline-block zero-margin">Support</h3></a>
+      <span> | </span>
+      <a href="./sponsors.html"><h3 class="inline-block zero-margin">Sponsors</h3></a>
+      <span> | </span>
+      <a href="./about.html"><h3 class="inline-block zero-margin">About</h3></a>
+      <span> | </span>
+      <a target="_blank" href="http://api.adoptopenjdk.net"><h3 class="inline-block zero-margin">API</h3></a>
+    </div>
+  </div>
+
+</main>
+
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>' script2='<script>onNewIndexLoad();</script>' }}
