@@ -64,42 +64,27 @@ function onIndexLoad() {
     if(e.target.tagName === 'IMG'){
       var developerName = e.target.alt;
 
-      sys_admin.style.opacity = 1;
-      vm_cloud.style.opacity = 1;
-      java_dev.style.opacity = 1;
-      openjdk_dev.style.opacity = 1;
-      app_writer.style.opacity = 1;
+      sys_admin.style.opacity = 0.3;
+      vm_cloud.style.opacity = 0.3;
+      java_dev.style.opacity = 0.3;
+      openjdk_dev.style.opacity = 0.3;
+      app_writer.style.opacity = 0.3;
 
       switch (developerName) {
         case 'System admin':
-          vm_cloud.style.opacity = 0.3;
-          java_dev.style.opacity = 0.3;
-          openjdk_dev.style.opacity = 0.3;
-          app_writer.style.opacity = 0.3;
+          sys_admin.style.opacity = 1;
           break;
         case 'VM on the Cloud':
-          sys_admin.style.opacity = 0.3;
-          java_dev.style.opacity = 0.3;
-          openjdk_dev.style.opacity = 0.3;
-          app_writer.style.opacity = 0.3;
+          vm_cloud.style.opacity = 1;
           break;
         case 'Java developer':
-          sys_admin.style.opacity = 0.3;
-          vm_cloud.style.opacity = 0.3;
-          openjdk_dev.style.opacity = 0.3;
-          app_writer.style.opacity = 0.3;
+          java_dev.style.opacity = 1;
           break;
         case 'OpenJDK developer':
-          sys_admin.style.opacity = 0.3;
-          vm_cloud.style.opacity = 0.3;
-          java_dev.style.opacity = 0.3;
-          app_writer.style.opacity = 0.3;
+          openjdk_dev.style.opacity = 1;
           break;
         case 'Application Writer':
-          sys_admin.style.opacity = 0.3;
-          vm_cloud.style.opacity = 0.3;
-          java_dev.style.opacity = 0.3;
-          openjdk_dev.style.opacity = 0.3;
+          app_writer.style.opacity = 1;
           break;
         default:
 
