@@ -18,21 +18,20 @@ const variantSelector = document.getElementById('variant-selector');
 const userDescription = document.getElementById('user-description');
 
 const dev_recommender = document.getElementById('dev-recommender');
-const system_admin = document.getElementById('sys-admin');
+const sys_admin = document.getElementById('sys-admin');
 const vm_cloud = document.getElementById('vm-cloud');
 const java_dev = document.getElementById('java-dev');
 const openjdk_dev = document.getElementById('openjdk-dev');
 const app_writer = document.getElementById('app-writer');
 
-var userBool = false;
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
 function onNewIndexLoad() {
 
   if(variant){
-    dlContainer.style.display = "inline";
+    dlContainer.style.display = 'inline';
   }
-  console.log(userBool);
+
   recommender.addEventListener('click', function(e) {
     if (e.target.tagName === 'IMG'){
       var userName = e.target.alt;
@@ -40,26 +39,23 @@ function onNewIndexLoad() {
       resetRecommender();
       switch(userName){
         case 'user':
-          userBool = true;
-          console.log(userBool);
-          dlContainer.style.display = "inline";
-          userDescription.innerHTML = "I don't care about the Java Version, I just want to be able to run my applications.";
+          dlContainer.style.display = 'inline';
+          userDescription.innerHTML = 'I do not care about the Java Version, I just want to be able to run my applications.';
           opacityEffectRecommender(userName);
           showDlContainer();
           break;
 
         case 'developer':
-          dev_recommender.style.display = "inline";
-          userDescription.innerHTML = "";
+          dev_recommender.style.display = 'inline';
+          userDescription.innerHTML = '';
           opacityEffectRecommender(userName);
           break;
 
         default:
-          dlContainer.style.display = "inline";
-          userDescription.innerHTML = "I know what I want , take me straight to the Archives.";
+          dlContainer.style.display = 'inline';
+          userDescription.innerHTML = 'I know what I want , take me straight to the Archives.';
           opacityEffectRecommender(userName);
           hideDlContainer();
-          dlArchive.style.display = block;
       }
     }
   });
@@ -67,7 +63,13 @@ function onNewIndexLoad() {
   dev_recommender.addEventListener('click',function(e){
     if(e.target.tagName === 'IMG'){
       var developerName = e.target.alt;
-      console.log(developerName);
+
+      sys_admin.style.opacity = 1;
+      vm_cloud.style.opacity = 1;
+      java_dev.style.opacity = 1;
+      openjdk_dev.style.opacity = 1;
+      app_writer.style.opacity = 1;
+
       switch (developerName) {
         case 'System admin':
           vm_cloud.style.opacity = 0.3;
@@ -76,22 +78,34 @@ function onNewIndexLoad() {
           app_writer.style.opacity = 0.3;
           break;
         case 'VM on the Cloud':
-
+          sys_admin.style.opacity = 0.3;
+          java_dev.style.opacity = 0.3;
+          openjdk_dev.style.opacity = 0.3;
+          app_writer.style.opacity = 0.3;
           break;
         case 'Java developer':
-
+          sys_admin.style.opacity = 0.3;
+          vm_cloud.style.opacity = 0.3;
+          openjdk_dev.style.opacity = 0.3;
+          app_writer.style.opacity = 0.3;
           break;
-        case 'OPENJDK developer':
-
+        case 'OpenJDK developer':
+          sys_admin.style.opacity = 0.3;
+          vm_cloud.style.opacity = 0.3;
+          java_dev.style.opacity = 0.3;
+          app_writer.style.opacity = 0.3;
           break;
         case 'Application Writer':
-
+          sys_admin.style.opacity = 0.3;
+          vm_cloud.style.opacity = 0.3;
+          java_dev.style.opacity = 0.3;
+          openjdk_dev.style.opacity = 0.3;
           break;
         default:
 
       }
       showDlContainer();
-      dlContainer.style.display = "inline";
+      dlContainer.style.display = 'inline';
     }
   });
   setDownloadSection(); // on page load, populate the central download section.
@@ -208,18 +222,18 @@ function buildHomepageHTML(releasesJson) {
 }
 
 function resetRecommender(){
-  dev_recommender.style.display = "none";
-  dlContainer.style.display = "none";
+  dev_recommender.style.display = 'none';
+  dlContainer.style.display = 'none';
   user.style.opacity = 1;
   developer.style.opacity = 1;
   powerUser.style.opacity = 1;
 }
 
 function opacityEffectRecommender(selected){
-  if(selected === "user"){
+  if(selected === 'user'){
     developer.style.opacity = 0.3;
     powerUser.style.opacity = 0.3;
-  }else if(selected === "developer"){
+  }else if(selected === 'developer'){
     user.style.opacity = 0.3;
     powerUser.style.opacity = 0.3;
   }else{
@@ -229,15 +243,15 @@ function opacityEffectRecommender(selected){
 }
 
 function showDlContainer(){
-  variantSelector.style.display = "block";
-  dlLatest.style.display = "inline-block";
-  dlText.style.display = "block";
-  dlOther.style.display = "block";
+  variantSelector.style.display = 'block';
+  dlLatest.style.display = 'inline-block';
+  dlText.style.display = 'block';
+  dlOther.style.display = 'block';
 }
 
 function hideDlContainer(){
-  variantSelector.style.display = "none";
-  dlLatest.style.display = "none";
-  dlText.style.display = "none";
-  dlOther.style.display = "none";
+  variantSelector.style.display = 'none';
+  dlLatest.style.display = 'none';
+  dlText.style.display = 'none';
+  dlOther.style.display = 'none';
 }

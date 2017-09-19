@@ -7,7 +7,6 @@ var variant = getQueryByName('variant');
 var variantSelector = document.getElementById('variant-selector');
 var platformSelector = document.getElementById('platform-selector');
 
-var userBool = false;
 
 function setLookup() {
   // FUNCTIONS FOR GETTING PLATFORM DATA
