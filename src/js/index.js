@@ -24,10 +24,11 @@ const java_dev = document.getElementById('java-dev');
 const openjdk_dev = document.getElementById('openjdk-dev');
 const app_writer = document.getElementById('app-writer');
 
-
+var state = null;
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
 function onIndexLoad() {
+
   state = window.localStorage.getItem('state');
 
   if(variant || (state && state != 'developer')){

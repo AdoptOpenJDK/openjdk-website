@@ -7,8 +7,6 @@ var variant = getQueryByName('variant');
 var variantSelector = document.getElementById('variant-selector');
 var platformSelector = document.getElementById('platform-selector');
 
-var state = getQueryByName('state');
-var tmp = '';
 
 function setLookup() {
   // FUNCTIONS FOR GETTING PLATFORM DATA
@@ -216,7 +214,7 @@ function setTickLink() {
 }
 
 function setUrlQuery(name, newValue) {
-  if(tmp.indexOf(name) >= 0) {
+  if(window.location.search.indexOf(name) >= 0) {
     var currentValue = getQueryByName(name);
     window.location.search = window.location.search.replace(currentValue, newValue);
   }
