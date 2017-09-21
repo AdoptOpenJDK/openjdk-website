@@ -9,6 +9,7 @@ var platformSelector = document.getElementById('platform-selector');
 
 var state = getQueryByName('state');
 var tmp = '';
+
 function setLookup() {
   // FUNCTIONS FOR GETTING PLATFORM DATA
   // allows us to use, for example, 'lookup["MAC"];'
@@ -217,15 +218,10 @@ function setTickLink() {
 function setUrlQuery(name, newValue) {
   if(tmp.indexOf(name) >= 0) {
     var currentValue = getQueryByName(name);
-    tmp = tmp.replace(currentValue, newValue);
+    window.location.search = window.location.search.replace(currentValue, newValue);
   }
   else {
-    if (tmp.length >= 1) {
-      tmp += ('&' + name + '=' + newValue);
-    }else{
-      tmp += (name + '=' + newValue);
-    }
-
+    window.location.search += (name + '=' + newValue);
   }
 }
 
@@ -283,8 +279,6 @@ function setVariantSelector() {
 
     variantSelector.onchange = function() {
       setUrlQuery('variant', variantSelector.value);
-      setUrlQuery('state',state);
-      window.location.search = tmp;
     };
   }
 }

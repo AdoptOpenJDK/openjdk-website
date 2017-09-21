@@ -24,11 +24,13 @@ const java_dev = document.getElementById('java-dev');
 const openjdk_dev = document.getElementById('openjdk-dev');
 const app_writer = document.getElementById('app-writer');
 
+
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
 function onIndexLoad() {
+  state = window.localStorage.getItem('state');
 
-  if(variant){
+  if(variant || (state && state != 'developer')){
     dlContainer.style.display = 'inline';
   }
   saveRecommenderState();
@@ -38,6 +40,8 @@ function onIndexLoad() {
       state = e.target.alt;
       resetRecommender();
       saveRecommenderState();
+      window.localStorage.setItem('state',state);
+
     }
   });
 
@@ -49,7 +53,10 @@ function onIndexLoad() {
       saveRecommenderState();
       showDlContainer();
 
+      window.localStorage.setItem('state',state);
       dlContainer.style.display = 'inline';
+
+
     }
   });
   setDownloadSection(); // on page load, populate the central download section.
@@ -163,6 +170,8 @@ function buildHomepageHTML(releasesJson) {
   setTimeout(function(){
     dlLatest.className = 'dl-button a-button animated pulse';
   }, 1000);
+
+
 }
 
 function saveRecommenderState(){
