@@ -183,7 +183,7 @@ gulp.task('robots', function () {
     .pipe(robots({
       useragent: '*',
       allow: ['/'],
-      disallow: ['/404.html', '/banner.html']
+      disallow: ['/404.html', '/banner.html', '/dist']
     }))
     .pipe(gulp.dest('./'));
 });
