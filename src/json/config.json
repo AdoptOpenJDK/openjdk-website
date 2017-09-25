@@ -6,7 +6,8 @@
       "officialName": "OpenJDK 8 with Hotspot"
     },{
       "searchableName": "openjdk9",
-      "officialName": "OpenJDK 9 with Hotspot"
+      "officialName": "OpenJDK 9 with Hotspot",
+      "default": true
     },{
       "searchableName": "openjdk9-openj9",
       "officialName": "OpenJDK 9 with Eclipse OpenJ9",
