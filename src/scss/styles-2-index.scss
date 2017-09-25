@@ -140,19 +140,39 @@ h2.transition-bright {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    text-align: center;
   }
   li{
-      display: inline;
+    display: inline;
   }
   li figure {
     display: inline-block;
   }
   li img {
-      padding: 1rem;
-      width:10rem; /* you can use % */
-      height: auto;
+    padding: 1rem;
+    width:10rem; /* you can use % */
+    height: auto;
+    transition: all 0.3s
   }
 
+  li figure img:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+  }
+
+  li figure span {
+    visibility: hidden;
+
+  }
+
+  li figure:hover span {
+    visibility: visible;
+
+  }
 }
 
 #dev-recommender{
@@ -162,4 +182,8 @@ h2.transition-bright {
     width:5rem;
     height: auto;
   }
+}
+
+.setOpacity{
+  opacity: 0.3;
 }

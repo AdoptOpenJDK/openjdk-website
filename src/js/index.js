@@ -28,7 +28,7 @@ var state = null;
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
 function onIndexLoad() {
-
+  localStorage.removeItem('state');
   state = window.localStorage.getItem('state');
 
   if(variant || (state && state != 'developer')){
@@ -178,45 +178,42 @@ function buildHomepageHTML(releasesJson) {
 function saveRecommenderState(){
   switch (state) {
     case 'user':
+      user.classList.remove('setOpacity');
       dlContainer.style.display = 'inline';
       userDescription.innerHTML = 'I do not care about the Java Version, I just want to be able to run my applications.';
-      opacityEffectRecommender(state);
       showDlContainer();
       break;
 
     case 'developer':
+      developer.classList.remove('setOpacity');
       dev_recommender.style.display = 'inline';
       userDescription.innerHTML = '';
-      opacityEffectRecommender(state);
       break;
 
     case 'power user':
-        dlContainer.style.display = 'inline';
-        userDescription.innerHTML = 'I know what I want , take me straight to the Archives.';
-        opacityEffectRecommender(state);
-        hideDlContainer();
+      powerUser.classList.remove('setOpacity');
+      dlContainer.style.display = 'inline';
+      userDescription.innerHTML = 'I know what I want , take me straight to the Archives.';
+      opacityEffectRecommender(state);
+      hideDlContainer();
       break;
 
     case 'System admin':
-        resetDevRecommender();
-        sys_admin.style.opacity = 1;
-        break;
+      resetDevRecommender();
+      sys_admin.classList.remove('setOpacity');
+      break;
     case 'VM on the Cloud':
-        resetDevRecommender();
-        vm_cloud.style.opacity = 1;
-        break;
+      resetDevRecommender();
+      vm_cloud.classList.remove('setOpacity');
+      break;
     case 'Java developer':
-        resetDevRecommender();
-        java_dev.style.opacity = 1;
-        break;
+      resetDevRecommender();
+      java_dev.classList.remove('setOpacity');
+      break;
     case 'OpenJDK developer':
-        resetDevRecommender();
-        openjdk_dev.style.opacity = 1;
-        break;
-    case 'Application Writer':
-        resetDevRecommender();
-        app_writer.style.opacity = 1;
-        break;
+      resetDevRecommender();
+      openjdk_dev.classList.remove('setOpacity');
+      break;
     default:
   }
 }
@@ -224,33 +221,21 @@ function resetRecommender(){
   dev_recommender.style.display = 'inline';
   dev_recommender.style.display = 'none';
   dlContainer.style.display = 'none';
-  user.style.opacity = 1;
-  developer.style.opacity = 1;
-  powerUser.style.opacity = 1;
+  user.classList.add('setOpacity');
+  developer.classList.add('setOpacity');
+  powerUser.classList.add('setOpacity');
 }
 
 function resetDevRecommender(){
   dev_recommender.style.display = 'inline';
   userDescription.innerHTML = '';
-  opacityEffectRecommender('developer');
-  sys_admin.style.opacity = 0.3;
-  vm_cloud.style.opacity = 0.3;
-  java_dev.style.opacity = 0.3;
-  openjdk_dev.style.opacity = 0.3;
-  app_writer.style.opacity = 0.3;
+  developer.classList.remove('setOpacity');
+  sys_admin.classList.add('setOpacity');
+  vm_cloud.classList.add('setOpacity');
+  java_dev.classList.add('setOpacity');
+  openjdk_dev.classList.add('setOpacity');
 }
-function opacityEffectRecommender(selected){
-  if(selected === 'user'){
-    developer.style.opacity = 0.3;
-    powerUser.style.opacity = 0.3;
-  }else if(selected === 'developer'){
-    user.style.opacity = 0.3;
-    powerUser.style.opacity = 0.3;
-  }else{
-    user.style.opacity = 0.3;
-    developer.style.opacity = 0.3;
-  }
-}
+
 
 function showDlContainer(){
   variantSelector.style.display = 'block';
