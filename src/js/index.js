@@ -3,6 +3,7 @@ const dlText = document.getElementById('dl-text');
 const dlLatest = document.getElementById('dl-latest');
 const dlArchive = document.getElementById('dl-archive');
 const dlOther = document.getElementById('dl-other');
+const dlApi = document.getElementById('dl-api');
 const dlIcon = document.getElementById('dl-icon');
 const dlIcon2 = document.getElementById('dl-icon-2');
 const dlVersionText = document.getElementById('dl-version-text');
@@ -14,7 +15,6 @@ const developer = document.getElementById('developer');
 const powerUser = document.getElementById('power-user');
 
 const dlContainer = document.getElementById('dl-container');
-const variantSelector = document.getElementById('variant-selector');
 const userDescription = document.getElementById('user-description');
 
 const dev_recommender = document.getElementById('dev-recommender');
@@ -22,20 +22,20 @@ const sys_admin = document.getElementById('sys-admin');
 const vm_cloud = document.getElementById('vm-cloud');
 const java_dev = document.getElementById('java-dev');
 const openjdk_dev = document.getElementById('openjdk-dev');
-const app_writer = document.getElementById('app-writer');
 
 var state = null;
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
 function onIndexLoad() {
-  localStorage.removeItem('state');
+  //localStorage.removeItem('state');
   state = window.localStorage.getItem('state');
 
   if(variant || (state && state != 'developer')){
     dlContainer.style.display = 'inline';
   }
+  resetRecommender();
   saveRecommenderState();
-
+  console.log(state);
   recommender.addEventListener('click', function(e) {
     if (e.target.tagName === 'IMG'){
       state = e.target.alt;
@@ -163,14 +163,17 @@ function buildHomepageHTML(releasesJson) {
   dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
   dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
 
+
   dlLatest.onclick = function() {
     document.getElementById('installation-link').className += ' animated pulse infinite transition-bright';
   };
 
-  // animate the main download button shortly after the initial animation has finished.
+// animate the main download button shortly after the initial animation has finished.
+
   setTimeout(function(){
     dlLatest.className = 'dl-button a-button animated pulse';
   }, 1000);
+
 
 
 }
@@ -178,24 +181,22 @@ function buildHomepageHTML(releasesJson) {
 function saveRecommenderState(){
   switch (state) {
     case 'user':
-      user.classList.remove('setOpacity');
-      dlContainer.style.display = 'inline';
       userDescription.innerHTML = 'I do not care about the Java Version, I just want to be able to run my applications.';
       showDlContainer();
+      user.classList.remove('setOpacity');
       break;
 
     case 'developer':
-      developer.classList.remove('setOpacity');
-      dev_recommender.style.display = 'inline';
       userDescription.innerHTML = '';
+      dev_recommender.classList.remove('hide');
+      developer.classList.remove('setOpacity');
       break;
 
     case 'power user':
-      powerUser.classList.remove('setOpacity');
       dlContainer.style.display = 'inline';
       userDescription.innerHTML = 'I know what I want , take me straight to the Archives.';
-      opacityEffectRecommender(state);
       hideDlContainer();
+      powerUser.classList.remove('setOpacity');
       break;
 
     case 'System admin':
@@ -219,33 +220,37 @@ function saveRecommenderState(){
 }
 function resetRecommender(){
   dev_recommender.style.display = 'inline';
-  dev_recommender.style.display = 'none';
-  dlContainer.style.display = 'none';
+  dev_recommender.classList.add('hide');
+  dlContainer.classList.add('hide');
   user.classList.add('setOpacity');
   developer.classList.add('setOpacity');
   powerUser.classList.add('setOpacity');
 }
 
 function resetDevRecommender(){
-  dev_recommender.style.display = 'inline';
   userDescription.innerHTML = '';
+  dev_recommender.classList.remove('hide');
   developer.classList.remove('setOpacity');
   sys_admin.classList.add('setOpacity');
   vm_cloud.classList.add('setOpacity');
   java_dev.classList.add('setOpacity');
   openjdk_dev.classList.add('setOpacity');
+  showDlContainer();
 }
 
 
 function showDlContainer(){
-  variantSelector.style.display = 'block';
-  dlLatest.style.display = 'inline-block';
-  dlText.style.display = 'block';
-  dlOther.style.display = 'block';
+  dlContainer.classList.remove('hide');
+  dlText.classList.remove('hide');
+  dlLatest.classList.remove('hide');
+  dlOther.classList.remove('hide');
+  dlApi.classList.add('hide');
 }
 
 function hideDlContainer(){
-  dlLatest.style.display = 'none';
-  dlText.style.display = 'none';
-  dlOther.style.display = 'none';
+  dlContainer.classList.remove('hide');
+  dlText.classList.add('hide');
+  dlLatest.classList.add('hide');
+  dlOther.classList.add('hide');
+  dlApi.classList.remove('hide');
 }

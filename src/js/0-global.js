@@ -253,7 +253,7 @@ function setVariantSelector() {
         op.descriptionLink = eachVariant.descriptionLink;
         variantSelector.options.add(op);
         if(!variant && eachVariant.default){
-          variantSelector.value = op.value;
+          variant = op.value;
         }
       });
     }
@@ -261,9 +261,8 @@ function setVariantSelector() {
     if(!variant) {
       variant = variants[0].searchableName;
     }
-    if(!variantSelector.value){
-      variantSelector.value = variant;
-    }
+
+    variantSelector.value = variant;
 
 
     if(variantSelector.value === '') {
