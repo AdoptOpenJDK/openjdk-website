@@ -24,37 +24,49 @@ const java_dev = document.getElementById('java-dev');
 const openjdk_dev = document.getElementById('openjdk-dev');
 
 var state = null;
+var variantSet = null;
+var scrollPosition = null;
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
 function onIndexLoad() {
   //localStorage.removeItem('state');
   state = window.localStorage.getItem('state');
-
+  variantSet = window.localStorage.getItem('variantSet');
+  scrollPosition = window.localStorage.getItem('scrollPosition');
+  console.log(window.localStorage);
+  if(scrollPosition){
+    document.getElementsByTagName('body')[0].scrollTop = scrollPosition;
+  }
   if(variant || (state && state != 'developer')){
     dlContainer.style.display = 'inline';
   }
   resetRecommender();
   saveRecommenderState();
-  console.log(state);
+
   recommender.addEventListener('click', function(e) {
     if (e.target.tagName === 'IMG'){
       state = e.target.alt;
+      scrollPosition = document.getElementsByTagName('body')[0].scrollTop;
       resetRecommender();
       saveRecommenderState();
       window.localStorage.setItem('state',state);
-
+      window.localStorage.setItem('scrollPosition',scrollPosition);
     }
   });
 
   dev_recommender.addEventListener('click',function(e){
     if(e.target.tagName === 'IMG'){
-      state = e.target.alt;
+      state = e.target.alt
+      variantSet = false;
+      scrollPosition = document.getElementsByTagName('body')[0].scrollTop;
 
       resetDevRecommender();
       saveRecommenderState();
       showDlContainer();
 
       window.localStorage.setItem('state',state);
+      window.localStorage.setItem('variantSet',variantSet);
+      window.localStorage.setItem('scrollPosition',scrollPosition);
       dlContainer.style.display = 'inline';
 
 
@@ -202,18 +214,35 @@ function saveRecommenderState(){
     case 'System admin':
       resetDevRecommender();
       sys_admin.classList.remove('setOpacity');
+      if(!variantSet){
+        setUrlQuery('variant', 'openjdk8');
+        window.localStorage.setItem('variantSet',false);
+      }
+
       break;
     case 'VM on the Cloud':
       resetDevRecommender();
       vm_cloud.classList.remove('setOpacity');
+      if(!variantSet){
+        setUrlQuery('variant', 'openjdk9');
+        window.localStorage.setItem('variantSet',false);
+      }
       break;
     case 'Java developer':
       resetDevRecommender();
       java_dev.classList.remove('setOpacity');
+      if(!variantSet){
+        setUrlQuery('variant', 'openjdk9');
+        window.localStorage.setItem('variantSet',false);
+      }
       break;
     case 'OpenJDK developer':
       resetDevRecommender();
       openjdk_dev.classList.remove('setOpacity');
+      if(!variantSet){
+        setUrlQuery('variant', 'openjdk9-openj9');
+        window.localStorage.setItem('variantSet',false);
+      }
       break;
     default:
   }

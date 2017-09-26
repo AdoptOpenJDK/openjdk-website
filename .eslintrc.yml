@@ -32,5 +32,6 @@ globals:
   getChecksumCommand: true
   getPathCommand: true
   getVariantObject: true
+  setUrlQuery: true
 
 extends: eslint:recommended
