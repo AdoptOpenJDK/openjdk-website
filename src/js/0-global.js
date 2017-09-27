@@ -261,10 +261,9 @@ function setVariantSelector() {
     if(!variant) {
       variant = variants[0].searchableName;
     }
-
+    
     variantSelector.value = variant;
-
-
+    
     if(variantSelector.value === '') {
       var op = new Option();
       op.value = 'unknown';
