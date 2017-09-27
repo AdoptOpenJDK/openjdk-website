@@ -33,13 +33,15 @@ function onIndexLoad() {
   state = window.localStorage.getItem('state');
   variantSet = window.localStorage.getItem('variantSet');
   scrollPosition = window.localStorage.getItem('scrollPosition');
-  console.log(window.localStorage);
+
   if(scrollPosition){
     document.getElementsByTagName('body')[0].scrollTop = scrollPosition;
   }
+
   if(variant || (state && state != 'developer')){
     dlContainer.style.display = 'inline';
   }
+
   resetRecommender();
   saveRecommenderState();
 
@@ -181,12 +183,11 @@ function buildHomepageHTML(releasesJson) {
   };
 
 // animate the main download button shortly after the initial animation has finished.
-
-  setTimeout(function(){
-    dlLatest.className = 'dl-button a-button animated pulse';
-  }, 1000);
-
-
+  if(state != 'power user'){
+    setTimeout(function(){
+      dlLatest.className = 'dl-button a-button animated pulse';
+    }, 1000);
+  }
 
 }
 
@@ -218,8 +219,8 @@ function saveRecommenderState(){
         setUrlQuery('variant', 'openjdk8');
         window.localStorage.setItem('variantSet',false);
       }
-
       break;
+
     case 'VM on the Cloud':
       resetDevRecommender();
       vm_cloud.classList.remove('setOpacity');
@@ -228,6 +229,7 @@ function saveRecommenderState(){
         window.localStorage.setItem('variantSet',false);
       }
       break;
+
     case 'Java developer':
       resetDevRecommender();
       java_dev.classList.remove('setOpacity');
@@ -236,6 +238,7 @@ function saveRecommenderState(){
         window.localStorage.setItem('variantSet',false);
       }
       break;
+
     case 'OpenJDK developer':
       resetDevRecommender();
       openjdk_dev.classList.remove('setOpacity');
