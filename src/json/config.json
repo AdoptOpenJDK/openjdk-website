@@ -18,6 +18,9 @@
       "officialName": "OpenJDK 9 with Eclipse OpenJ9",
       "description" : "Eclipse OpenJ9",
       "descriptionLink" : "http://www.eclipse.org/openj9"
+    },{
+      "searchableName": "openjdk10",
+      "officialName": "OpenJDK 10 with Hotspot"
     }
   ],
   "platforms":
