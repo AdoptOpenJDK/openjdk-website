@@ -21,6 +21,9 @@
     },{
       "searchableName": "openjdk10",
       "officialName": "OpenJDK 10 with Hotspot"
+    },{
+      "searchableName": "amber",
+      "officialName": "OpenJDK amber with Hotspot"
     }
   ],
   "platforms":
