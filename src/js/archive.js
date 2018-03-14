@@ -29,7 +29,13 @@ function populateArchive() {
 
       // if there are releases prior to the 'latest' one (i.e. archived releases)...
       if (typeof releasesJson[0] !== 'undefined') {
-        buildArchiveHTML(releasesJson);
+        loadJSON(repoName, 'jck', function(response_jck) {
+          var jckJSON = {}
+          if (response_jck !== null){
+            jckJSON = JSON.parse(response_jck)
+          }
+          buildArchiveHTML(releasesJson, jckJSON);
+        });
       } else { // if there are no releases (beyond the latest one)...
         // report an error, remove the loading dots
         loading.innerHTML = '';
@@ -40,7 +46,7 @@ function populateArchive() {
 
 }
 
-function buildArchiveHTML(releasesJson) {
+function buildArchiveHTML(releasesJson, jckJSON) {
   var RELEASEARRAY = [];
 
   // for each release...
@@ -98,7 +104,15 @@ function buildArchiveHTML(releasesJson) {
           ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
           ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
           ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-          ASSETOBJECT.thisVerified = false;
+          if (Object.keys(jckJSON).length == 0) {
+            ASSETOBJECT.thisVerified = false;
+          } else {
+            if (jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+              ASSETOBJECT.thisVerified = true;
+            } else {
+              ASSETOBJECT.thisVerified = false;
+            }
+          }
         }
 
         // secondly, check if the file has the expected file extension for that platform...
@@ -123,7 +137,15 @@ function buildArchiveHTML(releasesJson) {
             ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
             ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
             ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-            ASSETOBJECT.thisVerified = false;
+            if (Object.keys(jckJSON).length == 0) {
+              ASSETOBJECT.thisVerified = false;
+            } else {
+              if (jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+                ASSETOBJECT.thisVerified = true;
+              } else {
+                ASSETOBJECT.thisVerified = false;
+              }
+            }
           }
         }
 
