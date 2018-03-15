@@ -19,7 +19,13 @@ function populateLatest() {
     loadJSON(repoName, 'latest_release', function(response) {
       var releasesJson = JSON.parse(response);
       if (typeof releasesJson !== 'undefined') { // if there are releases...
-        buildLatestHTML(releasesJson);
+        loadJSON(repoName, 'jck', function(response_jck) {
+          var jckJSON = {}
+          if (response_jck !== null){
+            jckJSON = JSON.parse(response_jck)
+          }
+          buildLatestHTML(releasesJson, jckJSON);
+        });
       }
       else {
         // report an error
@@ -30,7 +36,7 @@ function populateLatest() {
   });
 }
 
-function buildLatestHTML(releasesJson) {
+function buildLatestHTML(releasesJson, jckJSON) {
 
   // populate with description
   var variantObject = getVariantObject(variant);
@@ -66,7 +72,15 @@ function buildLatestHTML(releasesJson) {
       ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisVerified = false;
+      if (Object.keys(jckJSON).length == 0) {
+        ASSETOBJECT.thisVerified = false;
+      } else {
+        if (jckJSON[releasesJson.name] && jckJSON[releasesJson.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+          ASSETOBJECT.thisVerified = true;
+        } else {
+          ASSETOBJECT.thisVerified = false;
+        }
+      }
 
       // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
       ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
