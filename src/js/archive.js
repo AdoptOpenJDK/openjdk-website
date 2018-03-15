@@ -107,7 +107,7 @@ function buildArchiveHTML(releasesJson, jckJSON) {
           if (Object.keys(jckJSON).length == 0) {
             ASSETOBJECT.thisVerified = false;
           } else {
-            if (jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+            if (jckJSON[eachRelease.name] && jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
               ASSETOBJECT.thisVerified = true;
             } else {
               ASSETOBJECT.thisVerified = false;
@@ -140,7 +140,7 @@ function buildArchiveHTML(releasesJson, jckJSON) {
             if (Object.keys(jckJSON).length == 0) {
               ASSETOBJECT.thisVerified = false;
             } else {
-              if (jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+              if (jckJSON[eachRelease.name] && jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
                 ASSETOBJECT.thisVerified = true;
               } else {
                 ASSETOBJECT.thisVerified = false;
