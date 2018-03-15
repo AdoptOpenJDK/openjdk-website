@@ -75,11 +75,7 @@ function buildLatestHTML(releasesJson, jckJSON) {
       if (Object.keys(jckJSON).length == 0) {
         ASSETOBJECT.thisVerified = false;
       } else {
-<<<<<<< HEAD
         if (jckJSON[releasesJson.name] && jckJSON[releasesJson.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
-=======
-        if (jckJSON[releasesJson.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
->>>>>>> add dynamic JCK status
           ASSETOBJECT.thisVerified = true;
         } else {
           ASSETOBJECT.thisVerified = false;
