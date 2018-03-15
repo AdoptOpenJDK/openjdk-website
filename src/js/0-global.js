@@ -145,7 +145,7 @@ function loadJSON(repo, filename, callback) {
     url = (filename);
   }
   var xobj = new XMLHttpRequest();
-  xobj.open('GET', url, true)
+  xobj.open('GET', url, true);
   xobj.onreadystatechange = function () {
     if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
       callback(xobj.responseText);
