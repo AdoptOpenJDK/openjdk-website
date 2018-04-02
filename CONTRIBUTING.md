@@ -33,7 +33,7 @@
 1. Build image from Docker file
 
 ``` bash
-docker build  -t adoptnode .
+docker build -t adoptnode .
 ```
 
 2. Start Docker container
