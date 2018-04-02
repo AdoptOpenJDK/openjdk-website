@@ -4,19 +4,22 @@
 
 1. Install the `gulp` CLI
 
-    ``` bash
+    ```
+    bash
     npm install --global gulp-cli
     ```
 
 2. Install the project devDependencies
 
-    ``` bash
+    ```
+    bash
     npm install
     ```
 
 3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
-    ``` bash
+    ```
+    bash
     npm start
     ```
 
@@ -32,7 +35,8 @@
 
 1. Build image from Docker file
 
-``` bash
+```
+bash
 docker build -t adoptnode .
 ```
 
@@ -41,20 +45,23 @@ docker build -t adoptnode .
 2.1. First time you will need to build container
 You can use full path
 
-``` bash
+```
+bash
 docker run -it -p 3001:3001 -p 3000:3000 -v <full path to the source>:/opt:rw --name containeradopt adoptnode
 ```
 
 or use this shortcut
 
 
-``` bash
+```
+bash
 docker run -it -p 3001:3001 -p 3000:3000 -v `pwd`:/opt:rw --name containeradopt adoptnode
 ```
 
 2.2. Once container is created, just keep using it
 
-``` bash
+```
+bash
 docker start containeradopt
 ```
 
@@ -66,27 +73,31 @@ Once you start container you need to do several steps
 
 3.1. Change user to nodeuser
 
-``` bash
+```
+bash
 su - nodeuser
 ```
 
 3.2. Move to /opt directory
 
-``` bash
+```
+bash
 cd /opt
 ```
 
 3.3. Install the project devDependencies (need to be done only once)
 
-    ``` bash
-    npm install
-    ```
+```
+bash
+npm install
+```
 
 3.4. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
-    ``` bash
-    npm start
-    ```
+```
+bash
+npm start
+```
 
     > **NOTE:** These build scripts enable you to view your changes locally. The build generates new files in two places: a new `/dist` directory (JS, CSS, images, etc), and `.html` files in the root directory. However, these files are ignored by .gitignore, and will not be included in commits.
 
@@ -100,7 +111,6 @@ cd /opt
 **IMPORTANT:** Node will run source code and all that is needed inside container. In order to see website and changes you are doing point browser to http://localhost:3000 and for UI http://localhost:3001
 
 Modify code in your preferd IDE outside docker, it will be picked up automaticly
-
 
 ---
 
