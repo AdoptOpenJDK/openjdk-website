@@ -153,7 +153,15 @@ function loadJSON(repo, filename, callback) {
       xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
       xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
         if (filename !== 'jck') {
-          document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+          console.log(xobj.status)
+          if (xobj.status == '404') {
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var variant = url.searchParams.get('variant');
+            document.getElementById('error-container').innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+          } else {
+            document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-' + repo + '/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+          }
           loading.innerHTML = '';
         } else {
           loading.innerHTML = '';
