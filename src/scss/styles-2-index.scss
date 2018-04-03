@@ -66,6 +66,7 @@ a.dl-button .dl-description {
   left: 50%;
   white-space: nowrap;
   transform: translate(-50%,-3.8rem);
+  height: 50%; /* div take 100% of a tag height and goes out of bound */
 }
 
 a.dl-button:hover {
