@@ -153,7 +153,6 @@ function loadJSON(repo, filename, callback) {
       xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
       xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
         if (filename !== 'jck') {
-          console.log(xobj.status)
           if (xobj.status == '404') {
             var url_string = window.location.href;
             var url = new URL(url_string);
