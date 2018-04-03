@@ -14,12 +14,7 @@ RUN apt-get install -y nodejs
 # do first step from Contribution
 RUN npm install --global gulp-cli
 
-# add nodeuser to be used during development
-RUN useradd nodeuser
-RUN cd /home && mkdir nodeuser &&\
-    chown -R nodeuser:nodeuser nodeuser;
-
-# expose ports which are using in this project
+# expose ports which are being used in this project
 EXPOSE 3001
 EXPOSE 3000
 

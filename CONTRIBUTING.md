@@ -36,7 +36,6 @@
 1. Build image from Docker file
 
 ```
-bash
 docker build -t adoptnode .
 ```
 
@@ -46,7 +45,6 @@ docker build -t adoptnode .
 You can use full path
 
 ```
-bash
 docker run -it -p 3001:3001 -p 3000:3000 -v <full path to the source>:/opt:rw --name containeradopt adoptnode
 ```
 
@@ -54,15 +52,13 @@ or use this shortcut
 
 
 ```
-bash
 docker run -it -p 3001:3001 -p 3000:3000 -v `pwd`:/opt:rw --name containeradopt adoptnode
 ```
 
 2.2. Once container is created, just keep using it
 
 ```
-bash
-docker start containeradopt
+docker start -i containeradopt
 ```
 
 In case something goes wrong, you can always recreate container.
@@ -71,31 +67,22 @@ In case something goes wrong, you can always recreate container.
 
 Once you start container you need to do several steps
 
-3.1. Change user to nodeuser
+
+3.1. Move to /opt directory
 
 ```
-bash
-su - nodeuser
-```
-
-3.2. Move to /opt directory
-
-```
-bash
 cd /opt
 ```
 
-3.3. Install the project devDependencies (need to be done only once)
+3.2. Install the project devDependencies (need to be done only once)
 
 ```
-bash
 npm install
 ```
 
-3.4. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
+3.3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
 ```
-bash
 npm start
 ```
 
