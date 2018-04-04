@@ -162,7 +162,7 @@ gulp.task('lint', function() {
 
 // sitemap task
 gulp.task('sitemap', function () {
-  gulp.src('./*.html', {
+  gulp.src(['./*.html', '!./banner.html'], {
       read: false
     })
     .pipe(sitemap({
