@@ -144,7 +144,8 @@ $tableblue-even: #1F2F4E;
 
 .tick img {
     height: 2.0rem !important;
-    padding-top: 10px;
+    vertical-align: middle;
+    padding: 5px;
 }
 
 .latest-block .tick {

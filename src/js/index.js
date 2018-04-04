@@ -26,7 +26,13 @@ function setDownloadSection() {
       var releasesJson = JSON.parse(response);
 
       if (typeof releasesJson !== 'undefined') { // if there are releases...
-        buildHomepageHTML(releasesJson);
+        loadJSON(repoName, 'jck', function(response_jck) {
+          var jckJSON = {}
+          if (response_jck !== null){
+            jckJSON = JSON.parse(response_jck)
+          }
+        buildHomepageHTML(releasesJson, jckJSON);
+        });
       }
       else {
         // report an error
@@ -38,7 +44,7 @@ function setDownloadSection() {
 
 }
 
-function buildHomepageHTML(releasesJson) {
+function buildHomepageHTML(releasesJson, jckJSON) {
   // set the download button's version number to the latest build
   dlVersionText.innerHTML = releasesJson.tag_name;
 
@@ -69,6 +75,12 @@ function buildHomepageHTML(releasesJson) {
         if(matchingFile == null){
           if(uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
              uppercaseOSname = OS.searchableName.toUpperCase();
+             if (Object.keys(jckJSON).length != 0) {
+               if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname) ) {
+                 document.getElementById('jck-approved-tick').classList.remove('hide');
+                 setTickLink();
+               }
+             }
 
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
             if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
@@ -77,7 +89,12 @@ function buildHomepageHTML(releasesJson) {
           }
           else if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
              uppercaseOSname = OS.searchableName.toUpperCase();
-
+             if (Object.keys(jckJSON).length != 0) {
+               if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname) ) {
+                 document.getElementById('jck-approved-tick').classList.remove('hide');
+                 setTickLink();
+               }
+             }
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
             if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
               matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
@@ -94,10 +111,7 @@ function buildHomepageHTML(releasesJson) {
     dlText.innerHTML = ('Download for <var platform-name>' + OS.officialName + '</var>'); // set the text to be OS-specific, using the full OS name.
     var thisBinarySize = Math.floor((matchingFile.size)/1024/1024);
     dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
-    if(matchingFile.jck === true) {
-      document.getElementById('jck-approved-tick').classList.remove('hide');
-      setTickLink();
-    }
+
   }
   // if there is NOT a matching binary for the user's OS...
   else {
