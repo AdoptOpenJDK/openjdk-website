@@ -243,10 +243,20 @@ function getQueryByName(name) {
 }
 
 function persistUrlQuery() {
+  var anchor='';
   var links = Array.apply(null, document.getElementsByTagName('a'));
   links.forEach(function(eachLink) {
-    if(eachLink.href.indexOf(window.location.hostname) >= 0) {
-      eachLink.href = (eachLink.href + window.location.search);
+    if(eachLink.href.indexOf('https://' + window.location.hostname) >= 0) {
+      if (eachLink.href.indexOf('#') > -1) {
+        anchor = '#' + eachLink.href.split('#').pop();
+        eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('#'));
+        if (eachLink.href.indexOf('?') > -1) {
+          eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('?'));
+        }
+        eachLink.href = (eachLink.href + window.location.search + anchor);
+      } else {
+        eachLink.href = (eachLink.href + window.location.search);
+      }
     }
   });
 }

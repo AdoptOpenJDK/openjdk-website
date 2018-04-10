@@ -451,6 +451,19 @@ span.hljs-keyword, span.hljs-selector-tag, span.hljs-literal, span.hljs-doctag, 
   padding: 0.5rem 1rem;
 }
 
+a.anchor {
+  visibility: hidden;
+  float:left;
+  padding: .2rem;
+}
+
+div.anchor {
+  position: relative;
+  left: -25px
+}
+
+
+
 // SELECT ELEMENT - REMOVING DEFAULT STYLING
 select#variant-selector, select#platform-selector {
   // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
