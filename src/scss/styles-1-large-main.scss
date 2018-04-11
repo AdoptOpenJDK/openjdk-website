@@ -305,7 +305,6 @@ nav {
   margin: 1rem auto;
 }
 
-
 // MAIN CSS
 
 html, body {
@@ -449,6 +448,17 @@ span.hljs-keyword, span.hljs-selector-tag, span.hljs-literal, span.hljs-doctag, 
   background-color: $translucent-blue;
   border-left: 0.5rem solid $mainblue;
   padding: 0.5rem 1rem;
+}
+
+a.anchor {
+  visibility: hidden;
+  float:left;
+  padding: .2rem;
+}
+
+div.anchor {
+  position: relative;
+  left: -25px
 }
 
 // SELECT ELEMENT - REMOVING DEFAULT STYLING

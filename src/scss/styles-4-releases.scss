@@ -142,6 +142,17 @@ $tableblue-even: #1F2F4E;
   color: rgba(255, 255, 255, .7);
 }
 
+.tick img {
+    height: 2.0rem !important;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.latest-block .tick {
+  float: right;
+  padding-left: 10px;
+}
+
 .latest-block a.a-button {
   min-width: 12rem;
   box-sizing: border-box;

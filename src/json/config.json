@@ -21,6 +21,14 @@
     },{
       "searchableName": "openjdk10",
       "officialName": "OpenJDK 10 with Hotspot"
+    },{
+      "searchableName": "openjdk10-openj9",
+      "officialName": "OpenJDK 10 with Eclipse OpenJ9",
+      "description" : "Eclipse OpenJ9",
+      "descriptionLink" : "http://www.eclipse.org/openj9"
+    },{
+      "searchableName": "amber",
+      "officialName": "OpenJDK amber with Hotspot"
     }
   ],
   "platforms":

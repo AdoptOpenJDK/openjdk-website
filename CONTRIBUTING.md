@@ -4,19 +4,22 @@
 
 1. Install the `gulp` CLI
 
-    ``` bash
+    ```
+    bash
     npm install --global gulp-cli
     ```
 
 2. Install the project devDependencies
 
-    ``` bash
+    ```
+    bash
     npm install
     ```
 
 3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
-    ``` bash
+    ```
+    bash
     npm start
     ```
 
@@ -27,6 +30,74 @@
     > **NOTE:** You cannot view the website locally by, for example, opening `index.html` in a browser. The files must be served on `localhost`, and BrowserSync should do this automatically for you on `npm start`.
 
     > **PRO TIP:** Look in the Terminal/Command window immediately after you run `npm start`. BrowserSync provides 'Local' and 'External' Access URLs to view your latest changes live. If you have a phone or tablet connected to the same WiFi network, you can use the mobile browser to access the 'External' URL and view your latest changes in real-time. This makes it very easy to test your changes on different devices during development.
+
+## Getting started by using Docker, so that you don't need to setup Node on your machine
+
+1. Build image from Docker file
+
+```
+docker build -t adoptnode .
+```
+
+2. Start Docker container
+
+2.1. First time you will need to build container
+You can use full path
+
+```
+docker run -it -p 3001:3001 -p 3000:3000 -v <full path to the source>:/opt:rw --name containeradopt adoptnode
+```
+
+or use this shortcut
+
+
+```
+docker run -it -p 3001:3001 -p 3000:3000 -v `pwd`:/opt:rw --name containeradopt adoptnode
+```
+
+2.2. Once container is created, just keep using it
+
+```
+docker start -i containeradopt
+```
+
+In case something goes wrong, you can always recreate container.
+
+3. Run commands in container
+
+Once you start container you need to do several steps
+
+
+3.1. Move to /opt directory
+
+```
+cd /opt
+```
+
+3.2. Install the project devDependencies (need to be done only once)
+
+```
+npm install
+```
+
+3.3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
+
+```
+npm start
+```
+
+    > **NOTE:** These build scripts enable you to view your changes locally. The build generates new files in two places: a new `/dist` directory (JS, CSS, images, etc), and `.html` files in the root directory. However, these files are ignored by .gitignore, and will not be included in commits.
+
+3.5. Make changes in the `/src` directory. Every time you save a file, the script instantly picks up any new changes and displays them in your BrowserSync-connected window.
+
+    > **NOTE:** You cannot view the website locally by, for example, opening `index.html` in a browser. The files must be served on `localhost`, and BrowserSync should do this automatically for you on `npm start`.
+
+    > **PRO TIP:** Look in the Terminal/Command window immediately after you run `npm start`. BrowserSync provides 'Local' and 'External' Access URLs to view your latest changes live. If you have a phone or tablet connected to the same WiFi network, you can use the mobile browser to access the 'External' URL and view your latest changes in real-time. This makes it very easy to test your changes on different devices during development.
+
+
+**IMPORTANT:** Node will run source code and all that is needed inside container. In order to see website and changes you are doing point browser to http://localhost:3000 and for UI http://localhost:3001
+
+Modify code in your preferd IDE outside docker, it will be picked up automaticly
 
 ---
 

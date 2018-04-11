@@ -141,11 +141,9 @@ function detectOS() {
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadJSON(repo, filename, callback) {
   var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
-
   if(repo === 'adoptopenjdk.net') {
     url = (filename);
   }
-
   var xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
   xobj.onreadystatechange = function () {
@@ -154,8 +152,20 @@ function loadJSON(repo, filename, callback) {
     } else if (
       xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
       xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
-      loading.innerHTML = '';
-      document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+        if (filename !== 'jck') {
+          if (xobj.status == '404') {
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var variant = url.searchParams.get('variant');
+            document.getElementById('error-container').innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+          } else {
+            document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-' + repo + '/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+          }
+          loading.innerHTML = '';
+        } else {
+          loading.innerHTML = '';
+          callback(null)
+        }
     }
   };
   xobj.send(null);
@@ -233,10 +243,24 @@ function getQueryByName(name) {
 }
 
 function persistUrlQuery() {
+  var anchor='';
   var links = Array.apply(null, document.getElementsByTagName('a'));
+  var link = window.location.hostname;
+  if (link != 'localhost') {
+    link = 'https://' + link;
+  }
   links.forEach(function(eachLink) {
-    if(eachLink.href.indexOf(window.location.hostname) >= 0) {
-      eachLink.href = (eachLink.href + window.location.search);
+    if(eachLink.href.indexOf(link) >= 0) {
+      if (eachLink.href.indexOf('#') > -1) {
+        anchor = '#' + eachLink.href.split('#').pop();
+        eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('#'));
+        if (eachLink.href.indexOf('?') > -1) {
+          eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('?'));
+        }
+        eachLink.href = (eachLink.href + window.location.search + anchor);
+      } else {
+        eachLink.href = (eachLink.href + window.location.search);
+      }
     }
   });
 }
@@ -260,9 +284,9 @@ function setVariantSelector() {
     if(!variant) {
       variant = variants[0].searchableName;
     }
-    
+
     variantSelector.value = variant;
-    
+
     if(variantSelector.value === '') {
       var op = new Option();
       op.value = 'unknown';
