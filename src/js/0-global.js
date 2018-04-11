@@ -245,8 +245,12 @@ function getQueryByName(name) {
 function persistUrlQuery() {
   var anchor='';
   var links = Array.apply(null, document.getElementsByTagName('a'));
+  var link = window.location.hostname;
+  if (link != 'localhost') {
+    link = 'https://' + link;
+  }
   links.forEach(function(eachLink) {
-    if(eachLink.href.indexOf('https://' + window.location.hostname) >= 0) {
+    if(eachLink.href.indexOf(link) >= 0) {
       if (eachLink.href.indexOf('#') > -1) {
         anchor = '#' + eachLink.href.split('#').pop();
         eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('#'));
