@@ -12,7 +12,6 @@
     },{
       "searchableName": "openjdk9",
       "officialName": "OpenJDK 9 with Hotspot",
-      "default": true
     },{
       "searchableName": "openjdk9-openj9",
       "officialName": "OpenJDK 9 with Eclipse OpenJ9",
@@ -21,6 +20,7 @@
     },{
       "searchableName": "openjdk10",
       "officialName": "OpenJDK 10 with Hotspot"
+      "default": true
     },{
       "searchableName": "openjdk10-openj9",
       "officialName": "OpenJDK 10 with Eclipse OpenJ9",
