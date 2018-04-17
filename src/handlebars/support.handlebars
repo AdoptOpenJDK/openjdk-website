@@ -6,22 +6,89 @@
   <h1 class="margin-bottom large-title">Support</h1>
 
   <div class="align-left support">
+    <div class="anchor" onmouseover="document.getElementById('anchor1').style.visibility='visible'" onmouseout="document.getElementById('anchor1').style.visibility='hidden'"><a href="#quality" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor1" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="quality">Quality</a></h2>
+    </div>
     <div class="margin-bottom">
-      <h2 class="bold">Quality</h2>
       <p>
-        The binaries that AdoptOpenJDK produces have passed the full OpenJDK test suite and other tests (donated by the community)
-        ensuring a good quality binary. But not all binaries have passed the full JCK/TCK compliance testing. Binaries that have
-        passed full JCK testing can be identified by the blue shield containing a check mark in their download button.
-        <span class='tick' data-tooltip="This build is JCK certified."><img src='./dist/assets/tick.png' alt="This build is JCK certified."></span>
+        AdoptOpenJDK builds and tests binaries for different source code streams based upon OpenJDK. Our binaries undergo extensive testing, and are made available with two distinct quality levels - release and nightly.
+        </br>
+        </br><strong>Releases</strong> have passed all the available OpenJDK test suites and our additional tests (donated by the community), ensuring the best quality binary available. Furthermore, releases that have passed the Java Compatibility Kit (JCK)
+        test suites are denoted by a blue shield containing a check mark in their download button.
+        <span class='tick tick-demo' data-tooltip="This build is JCK certified."><img src='./dist/assets/tick.png' alt="This build is JCK certified."></span> We recommend you choose these releases for running your applications.
+        </br>
+        </br><strong>Nightly</strong> builds have passed basic quality level testing. The nightlies may include functionality and implementations that are unstable, or have not had the benefit of long running tests. Use these nightlies if you wish to check
+        the very latest capabilities and fixes, and to see what is coming in the next release.
       </p>
     </div>
 
+    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#support" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support">Support</a></h2>
+    </div>
     <div class="margin-bottom">
-      <h2 class="bold">Community Support</h2>
       <p>
-        The OpenJDK community does not offer any commercial support for the binaries produced here, but some vendors may offer
-        commercial support for (some of) the binaries produced here. If you do have questions, comments, want to report a bug or
-        wish to contribute then choose from one of the options below (please post on the mailing list to get access to Slack):
+        We are prepared to stand behind our release quality binaries, so each build that is identified as a "Release" receives support via the AdoptOpenJDK community. Our support means that you can raise an issue to describe a bug you have found in the build,
+        and we will work with you and the appropriate development team to resolve it. Any fixes we identify will be delivered as part of the next AdoptOpenJDK release.
+      </p>
+    </div>
+
+    <div class="anchor" onmouseover="document.getElementById('anchor3').style.visibility='visible'" onmouseout="document.getElementById('anchor3').style.visibility='hidden'"><a href="#roadmap" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor3" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="roadmap">Roadmap</a></h2>
+    </div>
+    <div class="margin-bottom">
+      <p>
+        The frequency of AdoptOpenJDK releases is guided by the schedule of our dependencies. We produce builds based upon source code at OpenJDK, Eclipse OpenJ9, and SAP Machine.
+        </br>
+        </br>OpenJDK provides a new feature release every six months, and a maintenance/security update based upon each active release every three months. We will follow this schedule for publishing binary releases from AdoptOpenJDK to ensure you get the latest,
+        most secure builds.
+        </br>
+        </br>In addition, every three years one feature release will be designated as the Long Term Supported (LTS) release. We will support LTS releases for at least four years. This assurance will allow you to stay on a well-defined code stream, and give
+        you time to migrate to the next, new, stable, LTS release when it becomes available.
+        </br>
+        </br>Based upon this roadmap, and starting with Java 8:
+        <table>
+          <tr>
+            <th></th>
+            <th>First Availability</th>
+            <th>End of Support</th>
+          </tr>
+          <tr>
+            <td>Java 8 (LTS)</td>
+            <td>March 2014</td>
+            <td><strong>Sept 2022</strong> [Note 1]</td>
+          </tr>
+          <tr>
+            <td>Java 9</td>
+            <td>Sept 2017</td>
+            <td>March 2018</td>
+          </tr>
+          <tr>
+            <td>Java 10</td>
+            <td>March 2018</td>
+            <td>Sept 2018</td>
+          </tr>
+          <tr>
+            <td>Java 11 (LTS)</td>
+            <td><strong>Sept 2018</strong></td>
+            <td><strong>Sept 2022</strong></td>
+          </tr>
+        </table>
+        </br>Notes: </br>[1] Java 8 will be maintained until September 2022 to allow applications time to transition from Java 8 LTS to the new technology in Java 11 LTS onwards.
+      </p>
+    </div>
+
+    <div class="anchor" onmouseover="document.getElementById('anchor4').style.visibility='visible'" onmouseout="document.getElementById('anchor4').style.visibility='hidden'"><a href="#support-levels" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor4" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support-levels">Support Levels</a></h2>
+    </div>
+    <div class="margin-bottom">
+      <p>
+        As a community of open source developers, our commitment is to triage any issues raised and champion them in the appropriate source code project. Of course, if the problem arises from the way we build and test the code we can fix that directly -- but
+        other bugs will be fixed on a "best effort" basis by the correct source project community. If you are looking for higher levels of assurance you should contact commercial companies offering support on these binaries {links}.
+        </br></br>We welcome feedback on any aspect of the project.
       </p>
     </div>
 
