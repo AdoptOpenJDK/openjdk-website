@@ -23,20 +23,23 @@ function setDownloadSection() {
     var repoName = (variant + '-releases');
 
     loadJSON(repoName, 'latest_release', function(response) {
-      var releasesJson = JSON.parse(response);
-
-      if (typeof releasesJson !== 'undefined') { // if there are releases...
-        loadJSON(repoName, 'jck', function(response_jck) {
-          var jckJSON = {}
-          if (response_jck !== null){
-            jckJSON = JSON.parse(response_jck)
-          }
-        buildHomepageHTML(releasesJson, jckJSON);
-        });
-      }
-      else {
-        // report an error
-        errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+      if (response !== 'undefined') {
+        var releasesJson = JSON.parse(response);
+        if (typeof releasesJson !== 'undefined') { // if there are releases...
+          loadJSON(repoName, 'jck', function(response_jck) {
+            var jckJSON = {}
+            if (response_jck !== null) {
+              jckJSON = JSON.parse(response_jck)
+            }
+            buildHomepageHTML(releasesJson, jckJSON);
+          });
+        } else {
+          // report an error
+          errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+          loading.innerHTML = ''; // remove the loading dots
+        }
+      } else {
+        errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
         loading.innerHTML = ''; // remove the loading dots
       }
     });
@@ -45,12 +48,12 @@ function setDownloadSection() {
 }
 
 function buildHomepageHTML(releasesJson, jckJSON) {
-  // set the download button's version number to the latest build
+  // set the download button's version number to the latest release
   dlVersionText.innerHTML = releasesJson.tag_name;
 
   // create an array of the details for each binary that is attached to a release
   var assetArray = [];
-  // create a new array that contains each 'asset' (binary) from the latest build:
+  // create a new array that contains each 'asset' (binary) from the latest release:
   releasesJson.assets.forEach(function(each) {
     assetArray.push(each);
   });
@@ -59,44 +62,43 @@ function buildHomepageHTML(releasesJson, jckJSON) {
   var matchingFile = null;
 
   // if the OS has been detected...
-  if(OS) {
-    assetArray.forEach(function(eachAsset) {  // iterate through the assets attached to this release
+  if (OS) {
+    assetArray.forEach(function(eachAsset) { // iterate through the assets attached to this release
       var nameOfFile = eachAsset.name;
       var uppercaseFilename = nameOfFile.toUpperCase();
       var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. X64_MAC or X64_LINUX.
       var uppercaseOSname = null;
       // firstly, check if a valid searchableName has been returned (i.e. the platform is recognised)...
-      if(thisPlatform) {
+      if (thisPlatform) {
 
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
         var thisBinaryExtension = getBinaryExt(thisPlatform); // get the binary extension associated with this platform
         var thisInstallerExtension = getInstallerExt(thisPlatform); // get the installer extension associated with this platform
-        if(matchingFile == null){
-          if(uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
-             uppercaseOSname = OS.searchableName.toUpperCase();
-             if (Object.keys(jckJSON).length != 0) {
-               if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname) ) {
-                 document.getElementById('jck-approved-tick').classList.remove('hide');
-                 setTickLink();
-               }
-             }
+        if (matchingFile == null) {
+          if (uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
+            uppercaseOSname = OS.searchableName.toUpperCase();
+            if (Object.keys(jckJSON).length != 0) {
+              if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname)) {
+                document.getElementById('jck-approved-tick').classList.remove('hide');
+                setTickLink();
+              }
+            }
 
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-            if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
+            if (uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
               matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
             }
-          }
-          else if(uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
-             uppercaseOSname = OS.searchableName.toUpperCase();
-             if (Object.keys(jckJSON).length != 0) {
-               if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname) ) {
-                 document.getElementById('jck-approved-tick').classList.remove('hide');
-                 setTickLink();
-               }
-             }
+          } else if (uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
+            uppercaseOSname = OS.searchableName.toUpperCase();
+            if (Object.keys(jckJSON).length != 0) {
+              if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname)) {
+                document.getElementById('jck-approved-tick').classList.remove('hide');
+                setTickLink();
+              }
+            }
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-            if(uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
+            if (uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
               matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
             }
           }
@@ -106,10 +108,10 @@ function buildHomepageHTML(releasesJson, jckJSON) {
   }
 
   // if there IS a matching binary for the user's OS...
-  if(matchingFile) {
+  if (matchingFile) {
     dlLatest.href = matchingFile.browser_download_url; // set the main download button's link to be the binary's download url
     dlText.innerHTML = ('Download for <var platform-name>' + OS.officialName + '</var>'); // set the text to be OS-specific, using the full OS name.
-    var thisBinarySize = Math.floor((matchingFile.size)/1024/1024);
+    var thisBinarySize = Math.floor((matchingFile.size) / 1024 / 1024);
     dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
 
   }
@@ -119,21 +121,21 @@ function buildHomepageHTML(releasesJson, jckJSON) {
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
     dlText.innerHTML = ('Downloads'); // change the text to be generic: 'Downloads'.
-    dlLatest.href = './releases.html?variant=' + variant; // set the main download button's link to the latest builds page for all platforms.
+    dlLatest.href = './releases.html?variant=' + variant; // set the main download button's link to the latest releases page for all platforms.
   }
 
   // remove the loading dots, and make all buttons visible, with animated fade-in
   loading.classList.add('hide');
-  dlLatest.className = dlLatest.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
-  dlOther.className = dlOther.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
-  dlArchive.className = dlArchive.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated ' );
+  dlLatest.className = dlLatest.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated ');
+  dlOther.className = dlOther.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated ');
+  dlArchive.className = dlArchive.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated ');
 
   dlLatest.onclick = function() {
     document.getElementById('installation-link').className += ' animated pulse infinite transition-bright';
   };
 
   // animate the main download button shortly after the initial animation has finished.
-  setTimeout(function(){
+  setTimeout(function() {
     dlLatest.className = 'dl-button a-button animated pulse';
   }, 1000);
 }

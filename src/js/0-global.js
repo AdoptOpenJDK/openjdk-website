@@ -248,7 +248,7 @@ function persistUrlQuery() {
   var link = window.location.hostname;
   if (link != 'localhost') {
     link = 'https://' + link;
-  }
+  }n
   links.forEach(function(eachLink) {
     if(eachLink.href.indexOf(link) >= 0) {
       if (eachLink.href.indexOf('#') > -1) {
