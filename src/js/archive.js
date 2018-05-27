@@ -39,7 +39,7 @@ function populateArchive() {
       } else { // if there are no releases (beyond the latest one)...
         // report an error, remove the loading dots
         loading.innerHTML = '';
-        errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html\'>Latest build</a> page.</p>';
+        errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html\'>Latest release</a> page.</p>';
       }
     });
   });
