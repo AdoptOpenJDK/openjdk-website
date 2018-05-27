@@ -3,7 +3,8 @@
   [
     {
       "searchableName": "openjdk8",
-      "officialName": "OpenJDK 8 with Hotspot"
+      "officialName": "OpenJDK 8 with Hotspot",
+      "default": true
     },{
       "searchableName": "openjdk8-openj9",
       "officialName": "OpenJDK 8 with Eclipse OpenJ9",
@@ -11,8 +12,7 @@
       "descriptionLink" : "http://www.eclipse.org/openj9"
     },{
       "searchableName": "openjdk9",
-      "officialName": "OpenJDK 9 with Hotspot",
-      "default": true
+      "officialName": "OpenJDK 9 with Hotspot"
     },{
       "searchableName": "openjdk9-openj9",
       "officialName": "OpenJDK 9 with Eclipse OpenJ9",
