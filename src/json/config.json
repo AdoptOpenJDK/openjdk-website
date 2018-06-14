@@ -46,6 +46,30 @@
       "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
     },
     {
+      "officialName": "Linux x64 Large Heap",
+      "searchableName": "X64_LINUX_LH",
+      "logo": "linux.png",
+      "binaryExtension": ".tar.gz",
+      "installerExtension": ".run",
+      "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
+    },
+    {
+      "officialName": "Windows x32",
+      "searchableName": "X32_WIN",
+      "logo": "windows.png",
+      "binaryExtension": ".zip",
+      "installerExtension": ".exe",
+      "architecture": "32",
+      "installCommand": "unzip FILENAME",
+      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
+      "checksumCommand": "certutil -hashfile FILENAME SHA256",
+      "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
+    },
+    {
       "officialName": "Windows x64",
       "searchableName": "X64_WIN",
       "logo": "windows.png",
