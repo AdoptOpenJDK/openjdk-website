@@ -17,20 +17,25 @@ function populateLatest() {
     var repoName = (variant + '-releases');
 
     loadJSON(repoName, 'latest_release', function(response) {
-      var releasesJson = JSON.parse(response);
-      if (typeof releasesJson !== 'undefined') { // if there are releases...
-        loadJSON(repoName, 'jck', function(response_jck) {
-          var jckJSON = {}
-          if (response_jck !== null){
-            jckJSON = JSON.parse(response_jck)
-          }
-          buildLatestHTML(releasesJson, jckJSON);
-        });
-      }
-      else {
-        // report an error
-        errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+      if ( response === 'undefined' ) {
+        errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
         loading.innerHTML = ''; // remove the loading dots
+      } else {
+        var releasesJson = JSON.parse(response);
+        if (typeof releasesJson !== 'undefined') { // if there are releases...
+          loadJSON(repoName, 'jck', function(response_jck) {
+            var jckJSON = {}
+            if (response_jck !== null){
+              jckJSON = JSON.parse(response_jck)
+            }
+            buildLatestHTML(releasesJson, jckJSON);
+          });
+        }
+        else {
+          // report an error
+          errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+          loading.innerHTML = ''; // remove the loading dots
+        }
       }
     });
   });
