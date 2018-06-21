@@ -17,7 +17,7 @@ function populateLatest() {
     var repoName = (variant + '-releases');
 
     loadJSON(repoName, 'latest_release', function(response) {
-      if ( response == 'undefined' ) {
+      if ( response === 'undefined' ) {
         errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
         loading.innerHTML = ''; // remove the loading dots
       } else {
