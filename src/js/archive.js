@@ -10,6 +10,8 @@ function onArchiveLoad() {
 
 // ARCHIVE PAGE FUNCTIONS
 
+
+/* eslint-disable no-undef */
 function populateArchive() {
   loadPlatformsThenData(function() {
 
@@ -30,7 +32,7 @@ function populateArchive() {
       }
     };
 
-    loadAssetInfo(variant, "releases", "latest_release", handleResponse);
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
   });
 
 }

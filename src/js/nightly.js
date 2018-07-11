@@ -34,6 +34,7 @@ function setDatePicker() {
   datepicker.value = today;
 }
 
+/* eslint-disable no-undef */
 function populateNightly() {
   loadPlatformsThenData(function () {
 
@@ -64,10 +65,11 @@ function populateNightly() {
       return true;
     };
 
-    loadAssetInfo(variant, "nightly", "nightly", handleResponse);
+    loadAssetInfo(variant, 'nightly', 'nightly', handleResponse);
   });
 }
 
+/* eslint-disable no-undef */
 function getFiles(releasesJson, oldRepo) {
   var assets = [];
 
@@ -85,7 +87,7 @@ function getFiles(releasesJson, oldRepo) {
       var nameOfFile = (eachAsset.name);
       var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
       NIGHTLYOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
-      var isArchive = new RegExp("(.tar.gz|.zip)$").test(nameOfFile);
+      var isArchive = new RegExp('(.tar.gz|.zip)$').test(nameOfFile);
       var variantMatches = new RegExp(jvmVariant).test(eachAsset.name);
 
       var correctFile = oldRepo || variantMatches && isArchive;
@@ -117,7 +119,7 @@ function buildNightlyHTML(files, oldRepo) {
     var nameOfFile = (eachAsset.name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
     NIGHTLYOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
-    var type = nameOfFile.includes("-jre") ? "jre" : "jdk";
+    var type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
 
     // secondly, check if the file has the expected file extension for that platform...
     // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)

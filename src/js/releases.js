@@ -10,7 +10,7 @@ function onLatestLoad() {
 }
 
 // LATEST PAGE FUNCTIONS
-
+/* eslint-disable no-undef */
 function populateLatest() {
   loadPlatformsThenData(function() {
 
@@ -22,7 +22,7 @@ function populateLatest() {
           var assetArray = [];
 
           response.assets.forEach(function (each) {
-            if (oldRepo && jvmVariant === "hotspot" && each.browser_download_url.indexOf("openj9") === -1 ) {
+            if (oldRepo && jvmVariant === 'hotspot' && each.browser_download_url.indexOf('openj9') === -1 ) {
               assetArray.push(each);
             }
             else if (each.browser_download_url.indexOf(jvmVariant) > 0 || each.name.indexOf(jvmVariant) > 0) {
@@ -42,14 +42,14 @@ function populateLatest() {
       return false;
     };
 
-    loadAssetInfo(variant, "releases", "latest_release", handleResponse);
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
   });
 }
 
 function buildLatestHTML(releasesJson, assetArray, oldRepo) {
 
   // populate with description
-  var variantObject = getVariantObject(variant + "-" + jvmVariant);
+  var variantObject = getVariantObject(variant + '-' + jvmVariant);
   if(variantObject.descriptionLink){
     document.getElementById('description_header').innerHTML = 'What is ' + variantObject.description + '?';
     document.getElementById('description_link').innerHTML = 'Find out here';

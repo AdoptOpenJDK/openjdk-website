@@ -9,7 +9,7 @@ var variantSelector = document.getElementById('variant-selector');
 var platformSelector = document.getElementById('platform-selector');
 
 if(jvmVariant === undefined || jvmVariant === null) {
-  jvmVariant = "hotspot";
+  jvmVariant = 'hotspot';
 }
 
 function setLookup() {
@@ -144,7 +144,7 @@ function detectOS() {
 }
 
 function toJson(response) {
-  while (typeof response === "string") {
+  while (typeof response === 'string') {
     try {
       response = JSON.parse(response)
     } catch (e) {
@@ -165,13 +165,13 @@ function loadAssetInfo(variant, releaseType, filename, handleResponse) {
 
     response = toJson(response);
 
-    var validResponse = response !== null && typeof response === "object";
+    var validResponse = response !== null && typeof response === 'object';
 
     if (!validResponse || !handleResponse(response, false)) {
 
-      var jvmTypeUrl = jvmVariant === "hotspot" ? "" : jvmVariant + "-";
+      var jvmTypeUrl = jvmVariant === 'hotspot' ? '' : jvmVariant + '-';
 
-      loadJSON(variant + "-" + jvmTypeUrl + releaseType, filename, function (response) {
+      loadJSON(variant + '-' + jvmTypeUrl + releaseType, filename, function (response) {
         response = toJson(response);
         if(!handleResponse(response, true)) {
           var url_string = window.location.href;
@@ -257,7 +257,7 @@ function setTickLink() {
 
 function setUrlQuery() {
   var first=true;
-  var search="";
+  var search='';
 
   for(var i=0;i<arguments.length;i=i+2) {
     var name=arguments[i];
@@ -330,7 +330,7 @@ function setVariantSelector() {
       variant = variants[0].searchableName;
     }
 
-    variantSelector.value = variant + "-" + jvmVariant;
+    variantSelector.value = variant + '-' + jvmVariant;
 
     if(variantSelector.value === '') {
       var op = new Option();
