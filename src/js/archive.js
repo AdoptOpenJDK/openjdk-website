@@ -17,19 +17,19 @@ function populateArchive() {
 
     // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
     // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
-    var handleResponse = function(response, oldRepo) {
+    var handleResponse = function (response, oldRepo) {
       // if there are releases prior to the 'latest' one (i.e. archived releases)...
       if (response !== null) {
         buildArchiveHTML(response);
-      } else {
-        if(oldRepo) {
-          // if there are no releases (beyond the latest one)...
-          // report an error, remove the loading dots
-          loading.innerHTML = '';
-          errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html?variant=' + variant + '\'>Latest release</a> page.</p>';
-        }
-        return false
+        return true;
+      } else if (oldRepo) {
+        // if there are no releases (beyond the latest one)...
+        // report an error, remove the loading dots
+        loading.innerHTML = '';
+        errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html?variant=' + variant + '\'>Latest release</a> page.</p>';
+        return true;
       }
+      return false
     };
 
     loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);

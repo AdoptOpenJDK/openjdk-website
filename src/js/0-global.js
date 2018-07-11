@@ -255,6 +255,7 @@ function setTickLink() {
   }
 }
 
+// builds up a query, i.e "...nightly.html?variant=openjdk8&jvmVariant=hotspot"
 function setUrlQuery() {
   var first=true;
   var search='';
