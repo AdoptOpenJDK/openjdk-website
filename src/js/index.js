@@ -17,16 +17,16 @@ function onIndexLoad() {
 // INDEX PAGE FUNCTIONS
 
 function getRepoName(oldRepo) {
+  var jvmVariantTag = "";
 
-  jvmVariantTag;
-
-
-  if ( oldRepo) {
-    if(jvmVariantTag!==!"hotspot") {
-      
+  if (oldRepo) {
+    if (jvmVariant !== "hotspot") {
+      jvmVariantTag = "-" + jvmVariant;
     }
 
-    repoName = variant + "-releases";
+    return variant + jvmVariantTag + "-releases";
+  } else {
+    return variant + "-" + jvmVariant
   }
 }
 
@@ -38,9 +38,7 @@ function setDownloadSection() {
     var handleResponse = function (releasesJson, oldRepo) {
       if (releasesJson !== 'undefined') {
 
-        if ( oldRepo) {
-          repoName = variant + "-releases";
-        }
+        var repoName = getRepoName(oldRepo);
 
         if (typeof releasesJson !== 'undefined') { // if there are releases...
           loadJSON(repoName, 'jck', function(response_jck) {
@@ -142,7 +140,7 @@ function buildHomepageHTML(releasesJson, jckJSON) {
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
     dlText.innerHTML = ('Downloads'); // change the text to be generic: 'Downloads'.
-    dlLatest.href = './releases.html?variant=' + variant; // set the main download button's link to the latest releases page for all platforms.
+    dlLatest.href = './releases.html?' + formSearchArgs('variant',variant,'jvmVariant', jvmVariant); // set the main download button's link to the latest releases page for all platforms.
   }
 
   // remove the loading dots, and make all buttons visible, with animated fade-in
