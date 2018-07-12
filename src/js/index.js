@@ -51,8 +51,8 @@ function setDownloadSection() {
           return true;
         } else {
           // report an error
-            errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
-            loading.innerHTML = ''; // remove the loading dots
+          errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+          loading.innerHTML = ''; // remove the loading dots
         }
       } else {
         errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
@@ -63,6 +63,7 @@ function setDownloadSection() {
 
     loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
   });
+
 }
 
 function buildHomepageHTML(releasesJson, jckJSON) {
