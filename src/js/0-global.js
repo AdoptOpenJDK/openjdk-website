@@ -316,7 +316,6 @@ function persistUrlQuery() {
 }
 
 const versionMatcher=/(openjdk\d+|amber)-([a-zA-Z0-9]+)/;
-//const versionMatcher=/((openjdk|amber)\d*)-([a-zA-Z0-9]+)/;
 
 function setVariantSelector() {
   if(variantSelector) {
