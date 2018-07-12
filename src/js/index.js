@@ -16,15 +16,32 @@ function onIndexLoad() {
 
 // INDEX PAGE FUNCTIONS
 
+function getRepoName(oldRepo) {
+
+  jvmVariantTag;
+
+
+  if ( oldRepo) {
+    if(jvmVariantTag!==!"hotspot") {
+      
+    }
+
+    repoName = variant + "-releases";
+  }
+}
+
 function setDownloadSection() {
   loadPlatformsThenData(function() {
 
+    // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
+    // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
+    var handleResponse = function (releasesJson, oldRepo) {
+      if (releasesJson !== 'undefined') {
 
-    var repoName = (variant + '-releases');
+        if ( oldRepo) {
+          repoName = variant + "-releases";
+        }
 
-    loadJSON(repoName, 'latest_release', function(response) {
-      if (response !== 'undefined') {
-        var releasesJson = JSON.parse(response);
         if (typeof releasesJson !== 'undefined') { // if there are releases...
           loadJSON(repoName, 'jck', function(response_jck) {
             var jckJSON = {}
@@ -33,6 +50,7 @@ function setDownloadSection() {
             }
             buildHomepageHTML(releasesJson, jckJSON);
           });
+          return true;
         } else {
           // report an error
           errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
@@ -42,7 +60,10 @@ function setDownloadSection() {
         errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
         loading.innerHTML = ''; // remove the loading dots
       }
-    });
+      return false;
+    };
+
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
   });
 
 }
