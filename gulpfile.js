@@ -141,8 +141,8 @@ gulp.task('inject', function() {
 // images task
 gulp.task('images', function() {
   return gulp.src(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'])
-    //.pipe(imagemin())
-    //.on('error', gutil.log)
+    .pipe(imagemin())
+    .on('error', gutil.log)
     .pipe(gulp.dest('./dist/assets/'));
 });
 
