@@ -2,7 +2,7 @@
   "variants":
   [
     {
-      "searchableName": "openjdk8",
+      "searchableName": "openjdk8-hotspot",
       "officialName": "OpenJDK 8 with Hotspot",
       "default": true
     },{
@@ -11,7 +11,7 @@
       "description" : "Eclipse OpenJ9",
       "descriptionLink" : "http://www.eclipse.org/openj9"
     },{
-      "searchableName": "openjdk9",
+      "searchableName": "openjdk9-hotspot",
       "officialName": "OpenJDK 9 with Hotspot"
     },{
       "searchableName": "openjdk9-openj9",
@@ -19,7 +19,7 @@
       "description" : "Eclipse OpenJ9",
       "descriptionLink" : "http://www.eclipse.org/openj9"
     },{
-      "searchableName": "openjdk10",
+      "searchableName": "openjdk10-hotspot",
       "officialName": "OpenJDK 10 with Hotspot"
     },{
       "searchableName": "openjdk10-openj9",
@@ -44,6 +44,30 @@
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
+    },
+    {
+      "officialName": "Linux x64 Large Heap",
+      "searchableName": "X64_LINUXLH",
+      "logo": "linux.png",
+      "binaryExtension": ".tar.gz",
+      "installerExtension": ".run",
+      "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
+    },
+    {
+      "officialName": "Windows x32",
+      "searchableName": "X32_WIN",
+      "logo": "windows.png",
+      "binaryExtension": ".zip",
+      "installerExtension": ".exe",
+      "architecture": "32",
+      "installCommand": "unzip FILENAME",
+      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
+      "checksumCommand": "certutil -hashfile FILENAME SHA256",
+      "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
     },
     {
       "officialName": "Windows x64",

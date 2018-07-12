@@ -10,36 +10,46 @@ function onLatestLoad() {
 }
 
 // LATEST PAGE FUNCTIONS
-
+/* eslint-disable no-undef */
 function populateLatest() {
   loadPlatformsThenData(function() {
 
-    var repoName = (variant + '-releases');
+    var handleResponse = function(response, oldRepo) {
+      if ( response !== undefined && response !== null ) {
+        if (typeof response !== 'undefined') {
 
-    loadJSON(repoName, 'latest_release', function(response) {
-      var releasesJson = JSON.parse(response);
-      if (typeof releasesJson !== 'undefined') { // if there are releases...
-        loadJSON(repoName, 'jck', function(response_jck) {
-          var jckJSON = {}
-          if (response_jck !== null){
-            jckJSON = JSON.parse(response_jck)
+          // create an array of the details for each asset that is attached to a release
+          var assetArray = [];
+
+          response.assets.forEach(function (each) {
+            if (oldRepo && jvmVariant === 'hotspot' && each.browser_download_url.indexOf('openj9') === -1 ) {
+              assetArray.push(each);
+            }
+            else if (each.browser_download_url.indexOf(jvmVariant) > 0 || each.name.indexOf(jvmVariant) > 0) {
+              assetArray.push(each);
+            }
+          });
+
+          if (assetArray.length === 0) {
+            return false
           }
-          buildLatestHTML(releasesJson, jckJSON);
-        });
+
+          buildLatestHTML(response, assetArray, oldRepo);
+
+          return true;
+        }
       }
-      else {
-        // report an error
-        errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
-        loading.innerHTML = ''; // remove the loading dots
-      }
-    });
+      return false;
+    };
+
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
   });
 }
 
-function buildLatestHTML(releasesJson, jckJSON) {
+function buildLatestHTML(releasesJson, assetArray, oldRepo) {
 
   // populate with description
-  var variantObject = getVariantObject(variant);
+  var variantObject = getVariantObject(variant + '-' + jvmVariant);
   if(variantObject.descriptionLink){
     document.getElementById('description_header').innerHTML = 'What is ' + variantObject.description + '?';
     document.getElementById('description_link').innerHTML = 'Find out here';
@@ -52,12 +62,6 @@ function buildLatestHTML(releasesJson, jckJSON) {
   document.getElementById('latest-date').innerHTML = ('<var>' + moment(publishedAt).format('D') + '</var> ' + moment(publishedAt).format('MMMM') + ' <var>' + moment(publishedAt).format('YYYY') + '</var>');
   document.getElementById('latest-timestamp').innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
 
-  // create an array of the details for each asset that is attached to a release
-  var assetArray = [];
-
-  releasesJson.assets.forEach(function(each) {
-    assetArray.push(each);
-  });
 
   var ASSETARRAY = [];
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
@@ -72,15 +76,6 @@ function buildLatestHTML(releasesJson, jckJSON) {
       ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-      if (Object.keys(jckJSON).length == 0) {
-        ASSETOBJECT.thisVerified = false;
-      } else {
-        if (jckJSON[releasesJson.name] && jckJSON[releasesJson.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
-          ASSETOBJECT.thisVerified = true;
-        } else {
-          ASSETOBJECT.thisVerified = false;
-        }
-      }
 
       // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
       ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
@@ -117,7 +112,11 @@ function buildLatestHTML(releasesJson, jckJSON) {
           ASSETOBJECT.thisBinaryExists = true;
           ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
           ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+          if(oldRepo) {
+            ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+          } else {
+            ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
+          }
         }
       }
 
