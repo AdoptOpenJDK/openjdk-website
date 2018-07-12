@@ -4,13 +4,8 @@ var variants = [];
 var lookup = {};
 var i = 0;
 var variant = getQueryByName('variant');
-var jvmVariant = getQueryByName('jvmVariant');
 var variantSelector = document.getElementById('variant-selector');
 var platformSelector = document.getElementById('platform-selector');
-
-if(jvmVariant === undefined || jvmVariant === null) {
-  jvmVariant = 'hotspot';
-}
 
 function setLookup() {
   // FUNCTIONS FOR GETTING PLATFORM DATA
@@ -143,47 +138,6 @@ function detectOS() {
   if(matchedOS){ return matchedOS; } else { return null; }
 }
 
-function toJson(response) {
-  while (typeof response === 'string') {
-    try {
-      response = JSON.parse(response)
-    } catch (e) {
-      return null
-    }
-  }
-  return response
-}
-
-// load latest_nightly.json/nightly.json/releases.json/latest_release.json files
-// This will first try to load from openjdk<X>-binaries repos and if that fails
-// try openjdk<X>-release, i.e will try the following:
-
-// https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
-// https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
-function loadAssetInfo(variant, releaseType, filename, handleResponse) {
-  loadJSON(variant + '-binaries', filename, function (response) {
-
-    response = toJson(response);
-
-    var validResponse = response !== null && typeof response === 'object';
-
-    if (!validResponse || !handleResponse(response, false)) {
-
-      var jvmTypeUrl = jvmVariant === 'hotspot' ? '' : jvmVariant + '-';
-
-      loadJSON(variant + '-' + jvmTypeUrl + releaseType, filename, function (response) {
-        response = toJson(response);
-        if(!handleResponse(response, true)) {
-          var url_string = window.location.href;
-          var url = new URL(url_string);
-          var variant = url.searchParams.get('variant');
-          document.getElementById('error-container').innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
-        }
-      });
-    }
-  });
-}
-
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadJSON(repo, filename, callback) {
   var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
@@ -198,7 +152,20 @@ function loadJSON(repo, filename, callback) {
     } else if (
       xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
       xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
-        callback(null)
+        if (filename !== 'jck') {
+          if (xobj.status == '404') {
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var variant = url.searchParams.get('variant');
+            document.getElementById('error-container').innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+          } else {
+            document.getElementById('error-container').innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-' + repo + '/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+          }
+          loading.innerHTML = '';
+        } else {
+          loading.innerHTML = '';
+          callback(null)
+        }
     }
   };
   xobj.send(null);
@@ -255,22 +222,13 @@ function setTickLink() {
   }
 }
 
-// builds up a query, i.e "...nightly.html?variant=openjdk8&jvmVariant=hotspot"
-function setUrlQuery() {
-  var first=true;
-  var search='';
-
-  for(var i=0;i<arguments.length;i=i+2) {
-    var name=arguments[i];
-    var newValue=arguments[i+1];
-
-    if(!first) {
-      search += ('&' + name + '=' + newValue);
-    } else {
-      search += (name + '=' + newValue);
-      first = false;
-    }
-    window.location.search=search;
+function setUrlQuery(name, newValue) {
+  if(window.location.search.indexOf(name) >= 0) {
+    var currentValue = getQueryByName(name);
+    window.location.search = window.location.search.replace(currentValue, newValue);
+  }
+  else {
+    window.location.search += (name + '=' + newValue);
   }
 }
 
@@ -307,8 +265,6 @@ function persistUrlQuery() {
   });
 }
 
-const versionMatcher=/(openjdk\d+)-([a-zA-Z0-9]+)/;
-
 function setVariantSelector() {
   if(variantSelector) {
     if(variantSelector.options.length === 0) {
@@ -320,9 +276,7 @@ function setVariantSelector() {
         op.descriptionLink = eachVariant.descriptionLink;
         variantSelector.options.add(op);
         if(!variant && eachVariant.default){
-          const matches = variantSelector.value.match(versionMatcher);
-          variant = matches[1];
-          jvmVariant = matches[2];
+          variant = op.value;
         }
       });
     }
@@ -331,7 +285,7 @@ function setVariantSelector() {
       variant = variants[0].searchableName;
     }
 
-    variantSelector.value = variant + '-' + jvmVariant;
+    variantSelector.value = variant;
 
     if(variantSelector.value === '') {
       var op = new Option();
@@ -343,10 +297,7 @@ function setVariantSelector() {
     }
 
     variantSelector.onchange = function() {
-      const matches = variantSelector.value.match(versionMatcher);
-      const versionNumber = matches[1];
-      const jvmVariant = matches[2];
-      setUrlQuery('variant', versionNumber, 'jvmVariant', jvmVariant);
+      setUrlQuery('variant', variantSelector.value);
     };
   }
 }
