@@ -27,7 +27,7 @@
       "description" : "Eclipse OpenJ9",
       "descriptionLink" : "http://www.eclipse.org/openj9"
     },{
-      "searchableName": "amber",
+      "searchableName": "amber-hotspot",
       "officialName": "OpenJDK amber with Hotspot"
     }
   ],

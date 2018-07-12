@@ -36,7 +36,7 @@ function setDownloadSection() {
     // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
     // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
     var handleResponse = function (releasesJson, oldRepo) {
-      if (releasesJson !== 'undefined') {
+      if (releasesJson !== null && releasesJson !== 'undefined') {
 
         var repoName = getRepoName(oldRepo);
 
