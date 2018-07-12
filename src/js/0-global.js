@@ -274,6 +274,21 @@ function formUrlQueryArgs(args) {
   return search;
 }
 
+
+function getRepoName(oldRepo) {
+  var jvmVariantTag = "";
+
+  if (oldRepo) {
+    if (jvmVariant !== "hotspot") {
+      jvmVariantTag = "-" + jvmVariant;
+    }
+
+    return variant + jvmVariantTag + "-releases";
+  } else {
+    return variant + "-" + jvmVariant;
+  }
+}
+
 function formSearchArgs() {
   return formUrlQueryArgs(arguments);
 }

@@ -16,20 +16,6 @@ function onIndexLoad() {
 
 // INDEX PAGE FUNCTIONS
 
-function getRepoName(oldRepo) {
-  var jvmVariantTag = "";
-
-  if (oldRepo) {
-    if (jvmVariant !== "hotspot") {
-      jvmVariantTag = "-" + jvmVariant;
-    }
-
-    return variant + jvmVariantTag + "-releases";
-  } else {
-    return variant + "-" + jvmVariant
-  }
-}
-
 function setDownloadSection() {
   loadPlatformsThenData(function() {
 
