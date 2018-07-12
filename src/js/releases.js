@@ -15,45 +15,42 @@ function populateLatest() {
   loadPlatformsThenData(function () {
 
     var handleResponse = function (response, oldRepo) {
-      if (response !== undefined && response !== null) {
-        if (typeof response !== 'undefined') {
 
-          // create an array of the details for each asset that is attached to a release
-          var assetArray = [];
+      // create an array of the details for each asset that is attached to a release
+      var assetArray = [];
 
-          response.assets.forEach(function (each) {
-            if (oldRepo && jvmVariant === 'hotspot' && each.browser_download_url.indexOf('openj9') === -1) {
-              assetArray.push(each);
-            }
-            else if (each.browser_download_url.indexOf(jvmVariant) > 0 || each.name.indexOf(jvmVariant) > 0) {
-              assetArray.push(each);
-            }
-          });
-
-          if (assetArray.length === 0) {
-            return false
-          }
-
-          var repoName = getRepoName(oldRepo);
-
-          loadJSON(repoName, 'jck', function (response_jck) {
-
-            var jckJSON = {}
-            if (response_jck !== null){
-              jckJSON = JSON.parse(response_jck)
-            }
-
-            buildLatestHTML(response, jckJSON, assetArray, oldRepo);
-          });
-
-
-          return true;
+      response.assets.forEach(function (each) {
+        if (oldRepo && jvmVariant === 'hotspot' && each.browser_download_url.indexOf('openj9') === -1) {
+          assetArray.push(each);
         }
+        else if (each.browser_download_url.indexOf(jvmVariant) > 0 || each.name.indexOf(jvmVariant) > 0) {
+          assetArray.push(each);
+        }
+      });
+
+      if (assetArray.length === 0) {
+        return false
       }
-      return false;
+
+      var repoName = getRepoName(oldRepo);
+
+      loadJSON(repoName, 'jck', function (response_jck) {
+
+        var jckJSON = {}
+        if (response_jck !== null) {
+          jckJSON = JSON.parse(response_jck)
+        }
+
+        buildLatestHTML(response, jckJSON, assetArray, oldRepo);
+      });
+
+      return true;
     };
 
-    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+      errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+      loading.innerHTML = ''; // remove the loading dots
+    });
   });
 }
 

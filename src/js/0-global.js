@@ -160,7 +160,7 @@ function toJson(response) {
 
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
-function loadAssetInfo(variant, releaseType, filename, handleResponse) {
+function loadAssetInfo(variant, releaseType, filename, handleResponse, errorHandler) {
   loadJSON(variant + '-binaries', filename, function (response) {
 
     response = toJson(response);
@@ -173,11 +173,12 @@ function loadAssetInfo(variant, releaseType, filename, handleResponse) {
 
       loadJSON(variant + '-' + jvmTypeUrl + releaseType, filename, function (response) {
         response = toJson(response);
-        if(!handleResponse(response, true)) {
-          var url_string = window.location.href;
-          var url = new URL(url_string);
-          var variant = url.searchParams.get('variant');
-          document.getElementById('error-container').innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+
+        validResponse = response !== null && typeof response === 'object';
+        if (!validResponse || !handleResponse(response, true)) {
+          if (errorHandler) {
+            errorHandler();
+          }
         }
       });
     }
