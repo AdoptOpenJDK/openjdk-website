@@ -25,7 +25,7 @@ function setDownloadSection() {
     loadJSON(repoName, 'latest_release', function(response) {
       if (response !== 'undefined') {
         var releasesJson = JSON.parse(response);
-        if (typeof releasesJson !== 'undefined') { // if there are releases...
+        if (releasesJson !== null && typeof releasesJson !== 'undefined') { // if there are releases...
           loadJSON(repoName, 'jck', function(response_jck) {
             var jckJSON = {}
             if (response_jck !== null) {
