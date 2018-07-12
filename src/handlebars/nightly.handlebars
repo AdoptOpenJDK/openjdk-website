@@ -18,7 +18,7 @@
   </a>
 
   <div id="error-container"></div>
-
+  
   <select id="variant-selector"></select>
 
   <div style="margin-top: 1rem;">
@@ -50,9 +50,9 @@
         <script id="template" type="text/x-handlebars-template">
           \{{#each htmlTemplate}}
             <tr class='nightly-container'>
-              <td class='nightly-platform-block'><var platform-name>\{{thisOfficialName}}</var></td>
-              <td class='nightly-platform-type'><var platform-name>\{{thisType}}</var></td>
+              <td><div><strong><a href='\{{thisGitLink}}' class='dark-link' target='_blank'><var release-name>\{{thisReleaseName}}</var></a></strong></div></td>
               <td><div class='nightly-release-date'><var>\{{thisReleaseDay}}</var> \{{thisReleaseMonth}} <var>\{{thisReleaseYear}}</var></div></td>
+              <td class='nightly-platform-block'><var platform-name>\{{thisOfficialName}}</var></td>
               <td class='nightly-downloads-block'><div><a class='dark-link' href='\{{thisBinaryLink}}'><var binary-info>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)</var></a></div></td>
               <td><a href='\{{thisChecksumLink}}' class='dark-link'>Checksum</a></td>
             </tr>
