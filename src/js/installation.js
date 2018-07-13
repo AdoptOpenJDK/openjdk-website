@@ -17,6 +17,7 @@ function populateInstallation() {
       return true;
     };
 
+    /* eslint-disable no-undef */
     loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
       errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
       loading.innerHTML = ''; // remove the loading dots

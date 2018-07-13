@@ -22,6 +22,7 @@ function setDownloadSection() {
     var handleResponse = function (releasesJson, oldRepo) {
       if (releasesJson !== null && releasesJson !== 'undefined') {
 
+        /* eslint-disable no-undef */
         var repoName = getRepoName(oldRepo);
 
         if (typeof releasesJson !== 'undefined') { // if there are releases...
@@ -38,6 +39,7 @@ function setDownloadSection() {
       return false;
     };
 
+    /* eslint-disable no-undef */
     loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
       errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
       loading.innerHTML = ''; // remove the loading dots
@@ -121,6 +123,7 @@ function buildHomepageHTML(releasesJson, jckJSON) {
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
     dlText.innerHTML = ('Downloads'); // change the text to be generic: 'Downloads'.
+    /* eslint-disable no-undef */
     dlLatest.href = './releases.html?' + formSearchArgs('variant',variant,'jvmVariant', jvmVariant); // set the main download button's link to the latest releases page for all platforms.
   }
 

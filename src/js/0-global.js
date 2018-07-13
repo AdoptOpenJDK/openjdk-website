@@ -20,6 +20,7 @@ function setLookup() {
   }
 }
 
+
 function getVariantObject(variant) {
   var variantObject = '';
   variants.forEach(function(eachVariant) {
@@ -280,7 +281,7 @@ function formUrlQueryArgs(args) {
 
 /* eslint-disable no-unused-vars */
 function getRepoName(oldRepo) {
-  var jvmVariantTag = "";
+  var jvmVariantTag = '';
 
   if (oldRepo) {
     if (jvmVariant !== 'hotspot') {
