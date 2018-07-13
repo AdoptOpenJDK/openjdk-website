@@ -261,10 +261,10 @@ function setTickLink() {
 
 // builds up a query, i.e "...nightly.html?variant=openjdk8&jvmVariant=hotspot"
 function formUrlQueryArgs(args) {
-  var first=true;
-  var search='';
+  var first = true;
+  var search = '';
 
-  for(var i=0;i<args.length;i=i+2) {
+  for (var i = 0; i < args.length; i = i + 2) {
     var name = args[i];
     var newValue = args[i + 1];
 
