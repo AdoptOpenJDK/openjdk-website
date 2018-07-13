@@ -16,6 +16,7 @@ function onIndexLoad() {
 
 // INDEX PAGE FUNCTIONS
 
+/* eslint-disable no-unused-vars */
 function setDownloadSection() {
   loadPlatformsThenData(function() {
 
@@ -48,6 +49,7 @@ function setDownloadSection() {
 
 }
 
+/* eslint-disable no-unused-vars */
 function buildHomepageHTML(releasesJson, jckJSON) {
   // set the download button's version number to the latest release
   dlVersionText.innerHTML = releasesJson.tag_name;

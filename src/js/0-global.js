@@ -160,6 +160,7 @@ function toJson(response) {
 
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
+/* eslint-disable no-unused-vars */
 function loadAssetInfo(variant, releaseType, filename, handleResponse, errorHandler) {
   loadJSON(variant + '-binaries', filename, function (response) {
 
@@ -205,6 +206,7 @@ function loadJSON(repo, filename, callback) {
   xobj.send(null);
 }
 
+/* eslint-disable no-unused-vars */
 function loadPlatformsThenData(callback) {
   loadJSON('adoptopenjdk.net', './dist/json/config.json', function(response) {
     var configJson = JSON.parse(response);
@@ -241,6 +243,7 @@ for (i = 0; i < submenus.length; i++) {
   }
 }
 
+/* eslint-disable no-unused-vars */
 function setTickLink() {
   var ticks = document.getElementsByClassName('tick');
   for (i = 0; i < ticks.length; i++) {
@@ -275,21 +278,22 @@ function formUrlQueryArgs(args) {
   return search;
 }
 
-
+/* eslint-disable no-unused-vars */
 function getRepoName(oldRepo) {
   var jvmVariantTag = "";
 
   if (oldRepo) {
-    if (jvmVariant !== "hotspot") {
-      jvmVariantTag = "-" + jvmVariant;
+    if (jvmVariant !== 'hotspot') {
+      jvmVariantTag = '-' + jvmVariant;
     }
 
-    return variant + jvmVariantTag + "-releases";
+    return variant + jvmVariantTag + '-releases';
   } else {
-    return variant + "-" + jvmVariant;
+    return variant + '-' + jvmVariant;
   }
 }
 
+/* eslint-disable no-unused-vars */
 function formSearchArgs() {
   return formUrlQueryArgs(arguments);
 }
@@ -300,7 +304,7 @@ function setUrlQuery() {
 
 function getQueryByName(name) {
   var url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
+  name = name.replace(/[[]]/g, '\\$&');
   var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
   var results = regex.exec(url);
   if (!results) return null;
@@ -308,6 +312,7 @@ function getQueryByName(name) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+/* eslint-disable no-unused-vars */
 function persistUrlQuery() {
   var anchor='';
   var links = Array.apply(null, document.getElementsByTagName('a'));
@@ -375,6 +380,7 @@ function setVariantSelector() {
   }
 }
 
+/* eslint-disable no-unused-vars */
 function copyClipboard(element) {
   var $temp = $('<input>');
   $('body').append($temp);
@@ -384,6 +390,7 @@ function copyClipboard(element) {
   alert('Copied to clipboard');
 }
 
+/* eslint-disable no-unused-vars */
 function highlightCode() {
   hljs.initHighlightingOnLoad();
 }

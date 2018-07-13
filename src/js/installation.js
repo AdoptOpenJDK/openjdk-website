@@ -8,6 +8,7 @@ function onInstallationLoad() {
   populateInstallation(); // populate the Latest page
 }
 
+/* eslint-disable no-unused-vars */
 function populateInstallation() {
   loadPlatformsThenData(function () {
 
