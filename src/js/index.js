@@ -16,15 +16,15 @@ function onIndexLoad() {
 
 // INDEX PAGE FUNCTIONS
 
+/* eslint-disable no-unused-vars */
 function setDownloadSection() {
   loadPlatformsThenData(function() {
+    var handleResponse = function (releasesJson, oldRepo) {
+      if (releasesJson !== null && releasesJson !== 'undefined') {
 
+        /* eslint-disable no-undef */
+        var repoName = getRepoName(oldRepo);
 
-    var repoName = (variant + '-releases');
-
-    loadJSON(repoName, 'latest_release', function(response) {
-      if (response !== 'undefined') {
-        var releasesJson = JSON.parse(response);
         if (typeof releasesJson !== 'undefined') { // if there are releases...
           loadJSON(repoName, 'jck', function(response_jck) {
             var jckJSON = {}
@@ -33,20 +33,22 @@ function setDownloadSection() {
             }
             buildHomepageHTML(releasesJson, jckJSON);
           });
-        } else {
-          // report an error
-          errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
-          loading.innerHTML = ''; // remove the loading dots
+          return true;
         }
-      } else {
-        errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
-        loading.innerHTML = ''; // remove the loading dots
       }
+      return false;
+    };
+
+    /* eslint-disable no-undef */
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+      errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+      loading.innerHTML = ''; // remove the loading dots
     });
   });
 
 }
 
+/* eslint-disable no-unused-vars */
 function buildHomepageHTML(releasesJson, jckJSON) {
   // set the download button's version number to the latest release
   dlVersionText.innerHTML = releasesJson.tag_name;
@@ -121,7 +123,8 @@ function buildHomepageHTML(releasesJson, jckJSON) {
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
     dlText.innerHTML = ('Downloads'); // change the text to be generic: 'Downloads'.
-    dlLatest.href = './releases.html?variant=' + variant; // set the main download button's link to the latest releases page for all platforms.
+    /* eslint-disable no-undef */
+    dlLatest.href = './releases.html?' + formSearchArgs('variant',variant,'jvmVariant', jvmVariant); // set the main download button's link to the latest releases page for all platforms.
   }
 
   // remove the loading dots, and make all buttons visible, with animated fade-in

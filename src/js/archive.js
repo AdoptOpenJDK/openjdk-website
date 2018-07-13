@@ -10,47 +10,37 @@ function onArchiveLoad() {
 
 // ARCHIVE PAGE FUNCTIONS
 
+
+/* eslint-disable no-undef */
 function populateArchive() {
-  loadPlatformsThenData(function() {
+  loadPlatformsThenData(function () {
 
     // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
     // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
+    var handleResponse = function (response, oldRepo) {
+      loadJSON(getRepoName(oldRepo), 'jck', function (response_jck) {
+        var jckJSON = {}
+        if (response_jck !== null) {
+          jckJSON = JSON.parse(response_jck)
+        }
+        buildArchiveHTML(response, jckJSON, oldRepo);
+      });
+      return true;
+    };
 
-    var repoName = (variant + '-releases');
-
-    loadJSON(repoName, 'releases', function(response) {
-      function checkIfProduction(x) { // used by the array filter method below.
-        return x.prerelease === false && x.assets[0];
-      }
-
-      // Step 1: create a JSON from the XmlHttpRequest response
-      // Step 2: filter out all releases from this JSON that are marked as 'pre-release' in GitHub.
-      var releasesJson = JSON.parse(response).filter(checkIfProduction);
-
-      // if there are releases prior to the 'latest' one (i.e. archived releases)...
-      if (typeof releasesJson[0] !== 'undefined') {
-        loadJSON(repoName, 'jck', function(response_jck) {
-          var jckJSON = {}
-          if (response_jck !== null){
-            jckJSON = JSON.parse(response_jck)
-          }
-          buildArchiveHTML(releasesJson, jckJSON);
-        });
-      } else { // if there are no releases (beyond the latest one)...
-        // report an error, remove the loading dots
-        loading.innerHTML = '';
-        errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html?variant=' + variant + '\'>Latest release</a> page.</p>';
-      }
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+      // if there are no releases (beyond the latest one)...
+      // report an error, remove the loading dots
+      loading.innerHTML = '';
+      errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html?variant=' + variant + '\'>Latest release</a> page.</p>';
     });
   });
 
 }
 
-function buildArchiveHTML(releasesJson, jckJSON) {
+function buildArchiveHTML(eachRelease, jckJSON, oldRepo) {
   var RELEASEARRAY = [];
 
-  // for each release...
-  releasesJson.forEach(function(eachRelease) {
     var RELEASEOBJECT = new Object();
     var ASSETARRAY = [];
 
@@ -102,7 +92,11 @@ function buildArchiveHTML(releasesJson, jckJSON) {
           RELEASEOBJECT.binariesExist = true;
           ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
           ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
+          if(oldRepo) {
+            ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+          } else {
+            ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
+          }
           ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
           if (Object.keys(jckJSON).length == 0) {
             ASSETOBJECT.thisVerified = false;
@@ -112,6 +106,7 @@ function buildArchiveHTML(releasesJson, jckJSON) {
             } else {
               ASSETOBJECT.thisVerified = false;
             }
+            ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
           }
         }
 
@@ -135,7 +130,11 @@ function buildArchiveHTML(releasesJson, jckJSON) {
             ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
             ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
             ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-            ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+            if(oldRepo) {
+              ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+            } else {
+              ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
+            }
             ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
             if (Object.keys(jckJSON).length == 0) {
               ASSETOBJECT.thisVerified = false;
@@ -159,8 +158,7 @@ function buildArchiveHTML(releasesJson, jckJSON) {
 
     RELEASEOBJECT.thisPlatformAssets = ASSETARRAY;
     RELEASEARRAY.push(RELEASEOBJECT);
-  });
-  console.log(RELEASEARRAY);
+
   ARCHIVEDATA.htmlTemplate = RELEASEARRAY;
   var template = Handlebars.compile(document.getElementById('template').innerHTML);
   document.getElementById('archive-table-body').innerHTML = template(ARCHIVEDATA);

@@ -2,7 +2,7 @@
   "variants":
   [
     {
-      "searchableName": "openjdk8",
+      "searchableName": "openjdk8-hotspot",
       "officialName": "OpenJDK 8 with Hotspot",
       "default": true
     },{
@@ -11,7 +11,7 @@
       "description" : "Eclipse OpenJ9",
       "descriptionLink" : "http://www.eclipse.org/openj9"
     },{
-      "searchableName": "openjdk9",
+      "searchableName": "openjdk9-hotspot",
       "officialName": "OpenJDK 9 with Hotspot"
     },{
       "searchableName": "openjdk9-openj9",
@@ -19,7 +19,7 @@
       "description" : "Eclipse OpenJ9",
       "descriptionLink" : "http://www.eclipse.org/openj9"
     },{
-      "searchableName": "openjdk10",
+      "searchableName": "openjdk10-hotspot",
       "officialName": "OpenJDK 10 with Hotspot"
     },{
       "searchableName": "openjdk10-openj9",
@@ -27,7 +27,7 @@
       "description" : "Eclipse OpenJ9",
       "descriptionLink" : "http://www.eclipse.org/openj9"
     },{
-      "searchableName": "amber",
+      "searchableName": "amber-hotspot",
       "officialName": "OpenJDK amber with Hotspot"
     }
   ],

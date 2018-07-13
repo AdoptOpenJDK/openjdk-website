@@ -8,21 +8,19 @@ function onInstallationLoad() {
   populateInstallation(); // populate the Latest page
 }
 
+/* eslint-disable no-unused-vars */
 function populateInstallation() {
-  loadPlatformsThenData(function() {
+  loadPlatformsThenData(function () {
 
-    var repoName = (variant + '-releases');
+    var handleResponse = function (response, oldRepo) {
+      buildInstallationHTML(response);
+      return true;
+    };
 
-    loadJSON(repoName, 'latest_release', function(response) {
-      var releasesJson = JSON.parse(response);
-      if (typeof releasesJson !== 'undefined') { // if there are releases...
-        buildInstallationHTML(releasesJson);
-      }
-      else {
-        // report an error
-        errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
-        loading.innerHTML = ''; // remove the loading dots
-      }
+    /* eslint-disable no-undef */
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+      errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
+      loading.innerHTML = ''; // remove the loading dots
     });
   });
 }
@@ -31,28 +29,28 @@ function buildInstallationHTML(releasesJson) {
 
   // create an array of the details for each asset that is attached to a release
   var assetArray = [];
-  releasesJson.assets.forEach(function(each) {
+  releasesJson.assets.forEach(function (each) {
     assetArray.push(each);
   });
 
   var ASSETARRAY = [];
 
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
-  assetArray.forEach(function(eachAsset) {
+  assetArray.forEach(function (eachAsset) {
     var ASSETOBJECT = new Object();
     var nameOfFile = (eachAsset.name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
     ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
     // check if the platform name is recognised...
-    if(ASSETOBJECT.thisPlatform) {
+    if (ASSETOBJECT.thisPlatform) {
 
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
 
       // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
       ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
-      if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
+      if (uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
         ASSETOBJECT.thisPlatformExists = true;
         ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
         ASSETOBJECT.thisBinaryFilename = (eachAsset.name);
@@ -63,7 +61,7 @@ function buildInstallationHTML(releasesJson) {
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', releasesJson.name);
       }
 
-      if(ASSETOBJECT.thisPlatformExists === true){
+      if (ASSETOBJECT.thisPlatformExists === true) {
         ASSETARRAY.push(ASSETOBJECT);
       }
 
@@ -82,7 +80,7 @@ function buildInstallationHTML(releasesJson) {
 
   loading.innerHTML = ''; // remove the loading dots
   var installationContainer = document.getElementById('installation-container');
-  installationContainer.className = installationContainer.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
+  installationContainer.className = installationContainer.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated fadeIn ');
 }
 
 
@@ -91,7 +89,7 @@ function displayInstallPlatform() {
   var thisPlatformInstallation = document.getElementById('installation-container-' + platformHash);
   unselectInstallPlatform();
 
-  if(thisPlatformInstallation) {
+  if (thisPlatformInstallation) {
     platformSelector.value = platformHash;
     thisPlatformInstallation.classList.remove('hide');
   }
@@ -99,10 +97,10 @@ function displayInstallPlatform() {
   else {
     var currentValues = [];
     var platformSelectorOptions = Array.apply(null, platformSelector.options);
-    platformSelectorOptions.forEach(function(eachOption) {
+    platformSelectorOptions.forEach(function (eachOption) {
       currentValues.push(eachOption.value);
     });
-    if(currentValues.indexOf('unknown') === -1) {
+    if (currentValues.indexOf('unknown') === -1) {
       var op = new Option();
       op.value = 'unknown';
       op.text = 'Select a platform';
@@ -122,9 +120,9 @@ function unselectInstallPlatform() {
 
 function setInstallationPlatformSelector(thisReleasePlatforms) {
 
-  if(platformSelector) {
-    if(platformSelector.options.length === 0) {
-      thisReleasePlatforms.forEach(function(eachPlatform) {
+  if (platformSelector) {
+    if (platformSelector.options.length === 0) {
+      thisReleasePlatforms.forEach(function (eachPlatform) {
         var op = new Option();
         op.value = eachPlatform.thisPlatform;
         op.text = eachPlatform.thisOfficialName;
@@ -133,7 +131,7 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
     }
 
     var OS = detectOS();
-    if(OS && window.location.hash.length < 1) {
+    if (OS && window.location.hash.length < 1) {
       platformSelector.value = OS.searchableName;
       window.location.hash = platformSelector.value.toLowerCase();
       displayInstallPlatform();
@@ -142,7 +140,7 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
       displayInstallPlatform();
     }
 
-    platformSelector.onchange = function() {
+    platformSelector.onchange = function () {
       window.location.hash = platformSelector.value.toLowerCase();
       displayInstallPlatform();
     };
