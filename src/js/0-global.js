@@ -20,6 +20,7 @@ function setLookup() {
   }
 }
 
+
 function getVariantObject(variant) {
   var variantObject = '';
   variants.forEach(function(eachVariant) {
@@ -160,7 +161,8 @@ function toJson(response) {
 
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
-function loadAssetInfo(variant, releaseType, filename, handleResponse) {
+/* eslint-disable no-unused-vars */
+function loadAssetInfo(variant, releaseType, filename, handleResponse, errorHandler) {
   loadJSON(variant + '-binaries', filename, function (response) {
 
     response = toJson(response);
@@ -173,11 +175,12 @@ function loadAssetInfo(variant, releaseType, filename, handleResponse) {
 
       loadJSON(variant + '-' + jvmTypeUrl + releaseType, filename, function (response) {
         response = toJson(response);
-        if(!handleResponse(response, true)) {
-          var url_string = window.location.href;
-          var url = new URL(url_string);
-          var variant = url.searchParams.get('variant');
-          document.getElementById('error-container').innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+
+        validResponse = response !== null && typeof response === 'object';
+        if (!validResponse || !handleResponse(response, true)) {
+          if (errorHandler) {
+            errorHandler();
+          }
         }
       });
     }
@@ -204,6 +207,7 @@ function loadJSON(repo, filename, callback) {
   xobj.send(null);
 }
 
+/* eslint-disable no-unused-vars */
 function loadPlatformsThenData(callback) {
   loadJSON('adoptopenjdk.net', './dist/json/config.json', function(response) {
     var configJson = JSON.parse(response);
@@ -240,6 +244,7 @@ for (i = 0; i < submenus.length; i++) {
   }
 }
 
+/* eslint-disable no-unused-vars */
 function setTickLink() {
   var ticks = document.getElementsByClassName('tick');
   for (i = 0; i < ticks.length; i++) {
@@ -256,27 +261,51 @@ function setTickLink() {
 }
 
 // builds up a query, i.e "...nightly.html?variant=openjdk8&jvmVariant=hotspot"
-function setUrlQuery() {
-  var first=true;
-  var search='';
+function formUrlQueryArgs(args) {
+  var first = true;
+  var search = '';
 
-  for(var i=0;i<arguments.length;i=i+2) {
-    var name=arguments[i];
-    var newValue=arguments[i+1];
+  for (var i = 0; i < args.length; i = i + 2) {
+    var name = args[i];
+    var newValue = args[i + 1];
 
-    if(!first) {
+    if (!first) {
       search += ('&' + name + '=' + newValue);
     } else {
       search += (name + '=' + newValue);
       first = false;
     }
-    window.location.search=search;
   }
+  return search;
+}
+
+/* eslint-disable no-unused-vars */
+function getRepoName(oldRepo) {
+  var jvmVariantTag = '';
+
+  if (oldRepo) {
+    if (jvmVariant !== 'hotspot') {
+      jvmVariantTag = '-' + jvmVariant;
+    }
+
+    return variant + jvmVariantTag + '-releases';
+  } else {
+    return variant + '-' + jvmVariant;
+  }
+}
+
+/* eslint-disable no-unused-vars */
+function formSearchArgs() {
+  return formUrlQueryArgs(arguments);
+}
+
+function setUrlQuery() {
+    window.location.search=formUrlQueryArgs(arguments);
 }
 
 function getQueryByName(name) {
   var url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
+  name = name.replace(/[[]]/g, '\\$&');
   var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
   var results = regex.exec(url);
   if (!results) return null;
@@ -284,6 +313,7 @@ function getQueryByName(name) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+/* eslint-disable no-unused-vars */
 function persistUrlQuery() {
   var anchor='';
   var links = Array.apply(null, document.getElementsByTagName('a'));
@@ -307,7 +337,7 @@ function persistUrlQuery() {
   });
 }
 
-const versionMatcher=/(openjdk\d+)-([a-zA-Z0-9]+)/;
+const versionMatcher=/(openjdk\d+|amber)-([a-zA-Z0-9]+)/;
 
 function setVariantSelector() {
   if(variantSelector) {
@@ -351,6 +381,7 @@ function setVariantSelector() {
   }
 }
 
+/* eslint-disable no-unused-vars */
 function copyClipboard(element) {
   var $temp = $('<input>');
   $('body').append($temp);
@@ -360,6 +391,7 @@ function copyClipboard(element) {
   alert('Copied to clipboard');
 }
 
+/* eslint-disable no-unused-vars */
 function highlightCode() {
   hljs.initHighlightingOnLoad();
 }

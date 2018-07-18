@@ -13,31 +13,32 @@ function onArchiveLoad() {
 
 /* eslint-disable no-undef */
 function populateArchive() {
-  loadPlatformsThenData(function() {
+  loadPlatformsThenData(function () {
 
     // TODO - the commented-out repoName variable below should be passed into loadJSON below as the first argument, replacing openjdk-releases.
     // This can only be done after the repository name is updated from 'openjdk-releases' to 'openjdk8-releases'.
     var handleResponse = function (response, oldRepo) {
-      // if there are releases prior to the 'latest' one (i.e. archived releases)...
-      if (response !== null) {
-        buildArchiveHTML(response);
-        return true;
-      } else if (oldRepo) {
-        // if there are no releases (beyond the latest one)...
-        // report an error, remove the loading dots
-        loading.innerHTML = '';
-        errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html?variant=' + variant + '\'>Latest release</a> page.</p>';
-        return true;
-      }
-      return false
+      loadJSON(getRepoName(oldRepo), 'jck', function (response_jck) {
+        var jckJSON = {}
+        if (response_jck !== null) {
+          jckJSON = JSON.parse(response_jck)
+        }
+        buildArchiveHTML(response, jckJSON, oldRepo);
+      });
+      return true;
     };
 
-    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+      // if there are no releases (beyond the latest one)...
+      // report an error, remove the loading dots
+      loading.innerHTML = '';
+      errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html?variant=' + variant + '\'>Latest release</a> page.</p>';
+    });
   });
 
 }
 
-function buildArchiveHTML(eachRelease, oldRepo) {
+function buildArchiveHTML(eachRelease, jckJSON, oldRepo) {
   var RELEASEARRAY = [];
 
     var RELEASEOBJECT = new Object();
@@ -97,6 +98,16 @@ function buildArchiveHTML(eachRelease, oldRepo) {
             ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
           }
           ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
+          if (Object.keys(jckJSON).length == 0) {
+            ASSETOBJECT.thisVerified = false;
+          } else {
+            if (jckJSON[eachRelease.name] && jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+              ASSETOBJECT.thisVerified = true;
+            } else {
+              ASSETOBJECT.thisVerified = false;
+            }
+            ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
+          }
         }
 
         // secondly, check if the file has the expected file extension for that platform...
@@ -125,6 +136,15 @@ function buildArchiveHTML(eachRelease, oldRepo) {
               ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
             }
             ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
+            if (Object.keys(jckJSON).length == 0) {
+              ASSETOBJECT.thisVerified = false;
+            } else {
+              if (jckJSON[eachRelease.name] && jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+                ASSETOBJECT.thisVerified = true;
+              } else {
+                ASSETOBJECT.thisVerified = false;
+              }
+            }
           }
         }
 

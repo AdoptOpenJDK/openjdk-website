@@ -12,45 +12,53 @@ function onLatestLoad() {
 // LATEST PAGE FUNCTIONS
 /* eslint-disable no-undef */
 function populateLatest() {
-  loadPlatformsThenData(function() {
+  loadPlatformsThenData(function () {
 
-    var handleResponse = function(response, oldRepo) {
-      if ( response !== undefined && response !== null ) {
-        if (typeof response !== 'undefined') {
+    var handleResponse = function (response, oldRepo) {
 
-          // create an array of the details for each asset that is attached to a release
-          var assetArray = [];
+      // create an array of the details for each asset that is attached to a release
+      var assetArray = [];
 
-          response.assets.forEach(function (each) {
-            if (oldRepo && jvmVariant === 'hotspot' && each.browser_download_url.indexOf('openj9') === -1 ) {
-              assetArray.push(each);
-            }
-            else if (each.browser_download_url.indexOf(jvmVariant) > 0 || each.name.indexOf(jvmVariant) > 0) {
-              assetArray.push(each);
-            }
-          });
-
-          if (assetArray.length === 0) {
-            return false
-          }
-
-          buildLatestHTML(response, assetArray, oldRepo);
-
-          return true;
+      response.assets.forEach(function (each) {
+        if (oldRepo && jvmVariant === 'hotspot' && each.browser_download_url.indexOf('openj9') === -1) {
+          assetArray.push(each);
         }
+        else if (each.browser_download_url.indexOf(jvmVariant) > 0 || each.name.indexOf(jvmVariant) > 0) {
+          assetArray.push(each);
+        }
+      });
+
+      if (assetArray.length === 0) {
+        return false
       }
-      return false;
+
+      var repoName = getRepoName(oldRepo);
+
+      loadJSON(repoName, 'jck', function (response_jck) {
+
+        var jckJSON = {}
+        if (response_jck !== null) {
+          jckJSON = JSON.parse(response_jck)
+        }
+
+        buildLatestHTML(response, jckJSON, assetArray, oldRepo);
+      });
+
+      return true;
     };
 
-    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse);
+    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+      errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+      loading.innerHTML = ''; // remove the loading dots
+    });
   });
 }
 
-function buildLatestHTML(releasesJson, assetArray, oldRepo) {
+function buildLatestHTML(releasesJson, jckJSON, assetArray, oldRepo) {
 
   // populate with description
   var variantObject = getVariantObject(variant + '-' + jvmVariant);
-  if(variantObject.descriptionLink){
+  if (variantObject.descriptionLink) {
     document.getElementById('description_header').innerHTML = 'What is ' + variantObject.description + '?';
     document.getElementById('description_link').innerHTML = 'Find out here';
     document.getElementById('description_link').href = variantObject.descriptionLink;
@@ -58,32 +66,42 @@ function buildLatestHTML(releasesJson, assetArray, oldRepo) {
   // populate the page with the release's information
   var publishedAt = (releasesJson.published_at);
   document.getElementById('latest-build-name').innerHTML = '<var release-name>' + releasesJson.name + '</var>';
-  document.getElementById('latest-build-name').href = ('https://github.com/AdoptOpenJDK/' + variant +'-releases/releases/tag/' + releasesJson.name);
+  document.getElementById('latest-build-name').href = ('https://github.com/AdoptOpenJDK/' + variant + '-releases/releases/tag/' + releasesJson.name);
   document.getElementById('latest-date').innerHTML = ('<var>' + moment(publishedAt).format('D') + '</var> ' + moment(publishedAt).format('MMMM') + ' <var>' + moment(publishedAt).format('YYYY') + '</var>');
   document.getElementById('latest-timestamp').innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
 
 
   var ASSETARRAY = [];
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
-  assetArray.forEach(function(eachAsset) {
+  assetArray.forEach(function (eachAsset) {
     var ASSETOBJECT = new Object();
     var nameOfFile = (eachAsset.name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
     ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
     // check if the platform name is recognised...
-    if(ASSETOBJECT.thisPlatform) {
+    if (ASSETOBJECT.thisPlatform) {
       ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
 
+      if (jckJSON == null || Object.keys(jckJSON).length == 0) {
+        ASSETOBJECT.thisVerified = false;
+      } else {
+        if (jckJSON[releasesJson.name] && jckJSON[releasesJson.name].hasOwnProperty(ASSETOBJECT.thisPlatform)) {
+          ASSETOBJECT.thisVerified = true;
+        } else {
+          ASSETOBJECT.thisVerified = false;
+        }
+      }
+
       // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
       ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
-      if(uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
-        if(ASSETARRAY.length > 0){
-          ASSETARRAY.forEach(function(asset){
-            if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
+      if (uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
+        if (ASSETARRAY.length > 0) {
+          ASSETARRAY.forEach(function (asset) {
+            if (asset.thisPlatform === ASSETOBJECT.thisPlatform) {
               ASSETARRAY.pop();
             }
           });
@@ -91,28 +109,28 @@ function buildLatestHTML(releasesJson, assetArray, oldRepo) {
         ASSETOBJECT.thisPlatformExists = true;
         ASSETOBJECT.thisInstallerExists = true;
         ASSETOBJECT.thisInstallerLink = (eachAsset.browser_download_url);
-        ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
+        ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.size) / 1024 / 1024);
         ASSETOBJECT.thisBinaryExists = true;
         ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
-        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
+        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size) / 1024 / 1024);
         ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
       }
       // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
-      if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
+      if (uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
         var installerExist = false;
-        if(ASSETARRAY.length > 0){
-          ASSETARRAY.forEach(function(asset){
-            if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
+        if (ASSETARRAY.length > 0) {
+          ASSETARRAY.forEach(function (asset) {
+            if (asset.thisPlatform === ASSETOBJECT.thisPlatform) {
               installerExist = true;
             }
           });
         }
-        if(!installerExist){
+        if (!installerExist) {
           ASSETOBJECT.thisPlatformExists = true;
           ASSETOBJECT.thisBinaryExists = true;
           ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
-          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          if(oldRepo) {
+          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size) / 1024 / 1024);
+          if (oldRepo) {
             ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
           } else {
             ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
@@ -121,8 +139,7 @@ function buildLatestHTML(releasesJson, assetArray, oldRepo) {
       }
 
 
-
-      if(ASSETOBJECT.thisPlatformExists === true){
+      if (ASSETOBJECT.thisPlatformExists === true) {
         ASSETARRAY.push(ASSETOBJECT);
       }
 
@@ -145,19 +162,19 @@ function buildLatestHTML(releasesJson, assetArray, oldRepo) {
   loading.innerHTML = ''; // remove the loading dots
 
   const latestContainer = document.getElementById('latest-container');
-  latestContainer.className = latestContainer.className.replace( /(?:^|\s)invisible(?!\S)/g , ' animated fadeIn ' ); // make this section visible (invisible by default), with animated fade-in
+  latestContainer.className = latestContainer.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated fadeIn '); // make this section visible (invisible by default), with animated fade-in
 }
 
 /* eslint-disable no-unused-vars */
 function selectLatestPlatform(thisPlatform) {
-/* eslint-enable no-unused-vars */
+  /* eslint-enable no-unused-vars */
   window.location.hash = thisPlatform.toLowerCase();
 }
 
 function displayLatestPlatform() {
   var platformHash = window.location.hash.substr(1).toUpperCase();
   var thisPlatformInfo = document.getElementById('latest-info-' + platformHash);
-  if(thisPlatformInfo) {
+  if (thisPlatformInfo) {
     unselectLatestPlatform('keep the hash');
     document.getElementById('latest-selector').classList.add('hide');
     thisPlatformInfo.classList.remove('hide');
@@ -165,7 +182,7 @@ function displayLatestPlatform() {
 }
 
 function unselectLatestPlatform(keephash) {
-  if(!keephash){
+  if (!keephash) {
     history.pushState('', document.title, window.location.pathname + window.location.search);
   }
   var platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');

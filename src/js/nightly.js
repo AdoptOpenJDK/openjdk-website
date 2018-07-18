@@ -40,13 +40,8 @@ function populateNightly() {
 
     var handleResponse = function (response, oldRepo) {
 
-      if (response == null) {
-        return false;
-      }
-
       // Step 1: create a JSON from the XmlHttpRequest response
       var releasesJson = response;
-
 
       // if there are releases...
       if (typeof releasesJson[0] !== 'undefined') {
@@ -56,16 +51,15 @@ function populateNightly() {
           return false;
         }
         buildNightlyHTML(files, oldRepo);
-      } else { // if there are no releases...
-        // report an error
-        errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
-        loading.innerHTML = ''; // remove the loading dots
       }
 
       return true;
     };
 
-    loadAssetInfo(variant, 'nightly', 'nightly', handleResponse);
+    loadAssetInfo(variant, 'nightly', 'nightly', handleResponse, function () {
+      errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+      loading.innerHTML = ''; // remove the loading dots
+    });
   });
 }
 
