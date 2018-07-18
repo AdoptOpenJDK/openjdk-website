@@ -20,7 +20,6 @@ function setLookup() {
   }
 }
 
-
 function getVariantObject(variant) {
   var variantObject = '';
   variants.forEach(function(eachVariant) {
@@ -55,7 +54,6 @@ var logoPath = './dist/assets/';
 function getOfficialName(searchableName) {
   return (lookup[searchableName].officialName);
 }
-
 
 function getPlatformOrder(searchableName) {
   var index = platforms.findIndex(function(platform) {
@@ -280,7 +278,7 @@ function formUrlQueryArgs(args) {
 }
 
 /* eslint-disable no-unused-vars */
-function getRepoName(oldRepo) {
+function getRepoName(oldRepo, releaseType) {
   var jvmVariantTag = '';
 
   if (oldRepo) {
@@ -288,7 +286,7 @@ function getRepoName(oldRepo) {
       jvmVariantTag = '-' + jvmVariant;
     }
 
-    return variant + jvmVariantTag + '-releases';
+    return variant + jvmVariantTag + '-' + releaseType;
   } else {
     return variant + '-' + jvmVariant;
   }
