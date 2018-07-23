@@ -15,7 +15,7 @@ function populateArchive() {
   loadPlatformsThenData(function () {
 
     var handleResponse = function (response, oldRepo) {
-      loadJSON(getRepoName(oldRepo), 'jck', function (response_jck) {
+      loadJSON(getRepoName(oldRepo, 'releases'), 'jck', function (response_jck) {
         var jckJSON = {}
         if (response_jck !== null) {
           jckJSON = JSON.parse(response_jck)
