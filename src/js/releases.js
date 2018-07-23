@@ -32,7 +32,7 @@ function populateLatest() {
         return false
       }
 
-      var repoName = getRepoName(oldRepo);
+      var repoName = getRepoName(oldRepo, 'releases');
 
       loadJSON(repoName, 'jck', function (response_jck) {
 

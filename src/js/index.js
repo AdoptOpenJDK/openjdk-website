@@ -23,7 +23,7 @@ function setDownloadSection() {
       if (releasesJson !== null && releasesJson !== 'undefined') {
 
         /* eslint-disable no-undef */
-        var repoName = getRepoName(oldRepo);
+        var repoName = getRepoName(oldRepo, 'releases');
 
         if (typeof releasesJson !== 'undefined') { // if there are releases...
           loadJSON(repoName, 'jck', function(response_jck) {
