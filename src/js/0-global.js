@@ -160,27 +160,26 @@ function toJson(response) {
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
 /* eslint-disable no-unused-vars */
-function loadAssetInfo(variant, releaseType, filename, handleResponse, errorHandler) {
-  loadJSON(variant + '-binaries', filename, function (response) {
+function loadAssetInfo(variant, openjdkImp, releaseType, release, handleResponse, errorHandler) {
+  if(variant==="amber") {
+    variant="openjdk-amber"
+  }
 
-    response = toJson(response);
+  let url = 'https://api.adoptopenjdk.net/v2/info/' + releaseType + '/' + variant + '?';
 
-    var validResponse = response !== null && typeof response === 'object';
+  if (release !== undefined) {
+    url += "release=" + release + "&";
+  }
+  if (openjdkImp !== undefined) {
+    url += "openjdk_impl=" + openjdkImp + "&";
+  }
 
-    if (!validResponse || !handleResponse(response, false)) {
-
-      var jvmTypeUrl = jvmVariant === 'hotspot' ? '' : jvmVariant + '-';
-
-      loadJSON(variant + '-' + jvmTypeUrl + releaseType, filename, function (response) {
-        response = toJson(response);
-
-        validResponse = response !== null && typeof response === 'object';
-        if (!validResponse || !handleResponse(response, true)) {
-          if (errorHandler) {
-            errorHandler();
-          }
-        }
-      });
+  loadUrl(url, function (response) {
+    if (response === null) {
+      errorHandler();
+    } else {
+      response = toJson(response);
+      handleResponse(response, false)
     }
   });
 }
@@ -191,6 +190,10 @@ function loadJSON(repo, filename, callback) {
   if(repo === 'adoptopenjdk.net') {
     url = (filename);
   }
+  loadUrl(url, callback);
+}
+
+function loadUrl(url, callback) {
   var xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
   xobj.onreadystatechange = function () {

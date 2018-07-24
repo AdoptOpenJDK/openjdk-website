@@ -19,11 +19,11 @@ function onIndexLoad() {
 /* eslint-disable no-unused-vars */
 function setDownloadSection() {
   loadPlatformsThenData(function() {
-    var handleResponse = function (releasesJson, oldRepo) {
+    var handleResponse = function (releasesJson) {
       if (releasesJson !== null && releasesJson !== 'undefined') {
 
         /* eslint-disable no-undef */
-        var repoName = getRepoName(oldRepo, 'releases');
+        var repoName = getRepoName(true, 'releases');
 
         if (typeof releasesJson !== 'undefined') { // if there are releases...
           loadJSON(repoName, 'jck', function(response_jck) {
@@ -40,7 +40,7 @@ function setDownloadSection() {
     };
 
     /* eslint-disable no-undef */
-    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', handleResponse, function () {
       errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
@@ -51,14 +51,9 @@ function setDownloadSection() {
 /* eslint-disable no-unused-vars */
 function buildHomepageHTML(releasesJson, jckJSON) {
   // set the download button's version number to the latest release
-  dlVersionText.innerHTML = releasesJson.tag_name;
+  dlVersionText.innerHTML = releasesJson.release_name;
 
-  // create an array of the details for each binary that is attached to a release
-  var assetArray = [];
-  // create a new array that contains each 'asset' (binary) from the latest release:
-  releasesJson.assets.forEach(function(each) {
-    assetArray.push(each);
-  });
+  var assetArray = releasesJson.binaries;
 
   var OS = detectOS(); // set a variable as an object containing all information about the user's OS (from the global.js 'platforms' array)
   var matchingFile = null;
@@ -66,7 +61,7 @@ function buildHomepageHTML(releasesJson, jckJSON) {
   // if the OS has been detected...
   if (OS) {
     assetArray.forEach(function(eachAsset) { // iterate through the assets attached to this release
-      var nameOfFile = eachAsset.name;
+      var nameOfFile = eachAsset.binary_name;
       var uppercaseFilename = nameOfFile.toUpperCase();
       var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. X64_MAC or X64_LINUX.
       var uppercaseOSname = null;
@@ -113,7 +108,7 @@ function buildHomepageHTML(releasesJson, jckJSON) {
   if (matchingFile) {
     dlLatest.href = matchingFile.browser_download_url; // set the main download button's link to be the binary's download url
     dlText.innerHTML = ('Download for <var platform-name>' + OS.officialName + '</var>'); // set the text to be OS-specific, using the full OS name.
-    var thisBinarySize = Math.floor((matchingFile.size) / 1024 / 1024);
+    var thisBinarySize = Math.floor((matchingFile.binary_size) / 1024 / 1024);
     dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
 
   }

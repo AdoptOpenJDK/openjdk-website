@@ -12,13 +12,13 @@ function onInstallationLoad() {
 function populateInstallation() {
   loadPlatformsThenData(function () {
 
-    var handleResponse = function (response, oldRepo) {
+    var handleResponse = function (response) {
       buildInstallationHTML(response);
       return true;
     };
 
     /* eslint-disable no-undef */
-    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', handleResponse, function () {
       errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
@@ -28,17 +28,14 @@ function populateInstallation() {
 function buildInstallationHTML(releasesJson) {
 
   // create an array of the details for each asset that is attached to a release
-  var assetArray = [];
-  releasesJson.assets.forEach(function (each) {
-    assetArray.push(each);
-  });
+  var assetArray = releasesJson.binaries;
 
   var ASSETARRAY = [];
 
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
   assetArray.forEach(function (eachAsset) {
     var ASSETOBJECT = new Object();
-    var nameOfFile = (eachAsset.name);
+    var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
     ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
@@ -52,10 +49,10 @@ function buildInstallationHTML(releasesJson) {
       ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
       if (uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
         ASSETOBJECT.thisPlatformExists = true;
-        ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
-        ASSETOBJECT.thisBinaryFilename = (eachAsset.name);
-        ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-        ASSETOBJECT.thisChecksumFilename = (eachAsset.name).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+        ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link);
+        ASSETOBJECT.thisBinaryFilename = (eachAsset.binary_name);
+        ASSETOBJECT.thisChecksumLink = (eachAsset.checksum_link);
+        ASSETOBJECT.thisChecksumFilename = (eachAsset.binary_name).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
         ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', releasesJson.name);
@@ -64,6 +61,7 @@ function buildInstallationHTML(releasesJson) {
       if (ASSETOBJECT.thisPlatformExists === true) {
         ASSETARRAY.push(ASSETOBJECT);
       }
+
 
     }
   });
