@@ -106,7 +106,7 @@ function buildHomepageHTML(releasesJson, jckJSON) {
 
   // if there IS a matching binary for the user's OS...
   if (matchingFile) {
-    dlLatest.href = matchingFile.browser_download_url; // set the main download button's link to be the binary's download url
+    dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
     dlText.innerHTML = ('Download for <var platform-name>' + OS.officialName + '</var>'); // set the text to be OS-specific, using the full OS name.
     var thisBinarySize = Math.floor((matchingFile.binary_size) / 1024 / 1024);
     dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
