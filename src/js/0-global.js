@@ -161,17 +161,17 @@ function toJson(response) {
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
 /* eslint-disable no-unused-vars */
 function loadAssetInfo(variant, openjdkImp, releaseType, release, handleResponse, errorHandler) {
-  if(variant==="amber") {
-    variant="openjdk-amber"
+  if(variant==='amber') {
+    variant='openjdk-amber'
   }
 
   let url = 'https://api.adoptopenjdk.net/v2/info/' + releaseType + '/' + variant + '?';
 
   if (release !== undefined) {
-    url += "release=" + release + "&";
+    url += 'release=' + release + '&';
   }
   if (openjdkImp !== undefined) {
-    url += "openjdk_impl=" + openjdkImp + "&";
+    url += 'openjdk_impl=' + openjdkImp + '&';
   }
 
   loadUrl(url, function (response) {
