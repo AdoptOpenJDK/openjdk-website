@@ -38,25 +38,25 @@ function setDatePicker() {
 function populateNightly() {
   loadPlatformsThenData(function () {
 
-    var handleResponse = function (response, oldRepo) {
+    var handleResponse = function (response) {
 
       // Step 1: create a JSON from the XmlHttpRequest response
-      var releasesJson = response;
+      var releasesJson = response.reverse();
 
       // if there are releases...
       if (typeof releasesJson[0] !== 'undefined') {
-        var files = getFiles(releasesJson, oldRepo);
+        var files = getFiles(releasesJson);
 
         if (files.length === 0) {
           return false;
         }
-        buildNightlyHTML(files, oldRepo);
+        buildNightlyHTML(files);
       }
 
       return true;
     };
 
-    loadAssetInfo(variant, 'nightly', 'nightly', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'nightly', undefined, handleResponse, function () {
       errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
@@ -64,27 +64,23 @@ function populateNightly() {
 }
 
 /* eslint-disable no-undef */
-function getFiles(releasesJson, oldRepo) {
+function getFiles(releasesJson) {
   var assets = [];
 
   // for each release...
   releasesJson.forEach(function (eachRelease) {
 
     // create an array of the details for each binary that is attached to a release
-    var assetArray = [];
-    eachRelease.assets.forEach(function (each) {
-      assetArray.push(each);
-    });
+    var assetArray = eachRelease.binaries;
 
     assetArray.forEach(function (eachAsset) {
       var NIGHTLYOBJECT = new Object();
-      var nameOfFile = (eachAsset.name);
+      var nameOfFile = (eachAsset.binary_name);
       var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
       NIGHTLYOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
       var isArchive = new RegExp('(.tar.gz|.zip)$').test(nameOfFile);
-      var variantMatches = new RegExp(jvmVariant).test(eachAsset.name);
 
-      var correctFile = oldRepo || variantMatches && isArchive;
+      var correctFile = isArchive;
 
       // firstly, check if the platform name is recognised...
       if (correctFile && NIGHTLYOBJECT.thisPlatform) {
@@ -99,7 +95,7 @@ function getFiles(releasesJson, oldRepo) {
   return assets;
 }
 
-function buildNightlyHTML(files, oldRepo) {
+function buildNightlyHTML(files) {
   tableHead.innerHTML = ('<tr id=\'table-header\'><th>Platform</th><th>Type</th></th><th>Date</th><th>Binary</th><th>Checksum</th></tr>');
   var NIGHTLYARRAY = [];
 
@@ -110,7 +106,7 @@ function buildNightlyHTML(files, oldRepo) {
     var eachRelease = file.release;
 
     var NIGHTLYOBJECT = new Object();
-    var nameOfFile = (eachAsset.name);
+    var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
     NIGHTLYOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
     var type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
@@ -121,21 +117,17 @@ function buildNightlyHTML(files, oldRepo) {
     if (uppercaseFilename.indexOf(NIGHTLYOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
 
       // set values ready to be injected into the HTML
-      var publishedAt = eachRelease.published_at;
-      NIGHTLYOBJECT.thisReleaseName = eachRelease.name.slice(0, 12);
+      var publishedAt = eachRelease.timestamp;
+      NIGHTLYOBJECT.thisReleaseName = eachRelease.release_name.slice(0, 12);
       NIGHTLYOBJECT.thisType = type;
       NIGHTLYOBJECT.thisReleaseDay = moment(publishedAt).format('D');
       NIGHTLYOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
       NIGHTLYOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
-      NIGHTLYOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(oldRepo, 'nightly') + '/releases/tag/' + eachRelease.name);
+      NIGHTLYOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'nightly') + '/releases/tag/' + eachRelease.release_name);
       NIGHTLYOBJECT.thisOfficialName = getOfficialName(NIGHTLYOBJECT.thisPlatform);
-      NIGHTLYOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
-      NIGHTLYOBJECT.thisBinarySize = Math.floor((eachAsset.size) / 1024 / 1024);
-      if(oldRepo) {
-        NIGHTLYOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(NIGHTLYOBJECT.thisBinaryExtension, '.sha256.txt');
-      } else {
-        NIGHTLYOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
-      }
+      NIGHTLYOBJECT.thisBinaryLink = eachAsset.binary_link;
+      NIGHTLYOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
+      NIGHTLYOBJECT.thisChecksumLink = eachAsset.checksum_link;
 
       NIGHTLYARRAY.push(NIGHTLYOBJECT);
     }

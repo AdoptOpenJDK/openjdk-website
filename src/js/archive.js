@@ -14,18 +14,18 @@ function onArchiveLoad() {
 function populateArchive() {
   loadPlatformsThenData(function () {
 
-    var handleResponse = function (response, oldRepo) {
-      loadJSON(getRepoName(oldRepo, 'releases'), 'jck', function (response_jck) {
+    var handleResponse = function (response) {
+      loadJSON(getRepoName(true, 'releases'), 'jck', function (response_jck) {
         var jckJSON = {}
         if (response_jck !== null) {
           jckJSON = JSON.parse(response_jck)
         }
-        buildArchiveHTML(response, jckJSON, oldRepo);
+        buildArchiveHTML(response, jckJSON);
       });
       return true;
     };
 
-    loadAssetInfo(variant, 'releases', 'latest_release', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', handleResponse, function () {
       // if there are no releases (beyond the latest one)...
       // report an error, remove the loading dots
       loading.innerHTML = '';
@@ -35,30 +35,27 @@ function populateArchive() {
 
 }
 
-function buildArchiveHTML(eachRelease, jckJSON, oldRepo) {
+function buildArchiveHTML(eachRelease, jckJSON) {
   var RELEASEARRAY = [];
 
   var RELEASEOBJECT = new Object();
   var ASSETARRAY = [];
 
   // set values for this release, ready to inject into HTML
-  var publishedAt = eachRelease.published_at;
-  RELEASEOBJECT.thisReleaseName = eachRelease.name;
+  var publishedAt = eachRelease.timestamp;
+  RELEASEOBJECT.thisReleaseName = eachRelease.release_name;
   RELEASEOBJECT.thisReleaseDay = moment(publishedAt).format('D');
   RELEASEOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
   RELEASEOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
-  RELEASEOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(oldRepo, 'releases') + '/releases/tag/' + RELEASEOBJECT.thisReleaseName);
+  RELEASEOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'releases') + '/releases/tag/' + RELEASEOBJECT.thisReleaseName);
 
   // create an array of the details for each asset that is attached to this release
-  var assetArray = [];
-  eachRelease.assets.forEach(function(each) {
-    assetArray.push(each);
-  });
+  var assetArray = eachRelease.binaries;
 
   // populate 'platformTableRows' with one row per binary for this release...
   assetArray.forEach(function(eachAsset) {
     var ASSETOBJECT = new Object();
-    var nameOfFile = (eachAsset.name);
+    var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
 
     ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
@@ -82,23 +79,20 @@ function buildArchiveHTML(eachRelease, jckJSON, oldRepo) {
         ASSETOBJECT.thisPlatformExists = true;
         ASSETOBJECT.thisInstallerExists = true;
         RELEASEOBJECT.installersExist = true;
-        ASSETOBJECT.thisInstallerLink = (eachAsset.browser_download_url);
-        ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.size)/1024/1024);
+        ASSETOBJECT.thisInstallerLink = eachAsset.binary_link;
+        ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.binary_size)/1024/1024);
         ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
         ASSETOBJECT.thisBinaryExists = true;
         RELEASEOBJECT.binariesExist = true;
-        ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
-        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-        if(oldRepo) {
-          ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-        } else {
-          ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
-        }
+        ASSETOBJECT.thisBinaryLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
+        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size)/1024/1024);
+        ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
+
         ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
         if (Object.keys(jckJSON).length == 0) {
           ASSETOBJECT.thisVerified = false;
         } else {
-          if (jckJSON[eachRelease.name] && jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+          if (jckJSON[eachRelease.release_name] && jckJSON[eachRelease.release_name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
             ASSETOBJECT.thisVerified = true;
           } else {
             ASSETOBJECT.thisVerified = false;
@@ -125,18 +119,14 @@ function buildArchiveHTML(eachRelease, jckJSON, oldRepo) {
           ASSETOBJECT.thisBinaryExists = true;
           RELEASEOBJECT.binariesExist = true;
           ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-          ASSETOBJECT.thisBinaryLink = (eachAsset.browser_download_url);
-          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.size)/1024/1024);
-          if(oldRepo) {
-            ASSETOBJECT.thisChecksumLink = (eachAsset.browser_download_url).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-          } else {
-            ASSETOBJECT.thisChecksumLink = eachAsset.browser_download_url + '.sha256.txt';
-          }
+          ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link);
+          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size)/1024/1024);
+          ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
           ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
           if (Object.keys(jckJSON).length == 0) {
             ASSETOBJECT.thisVerified = false;
           } else {
-            if (jckJSON[eachRelease.name] && jckJSON[eachRelease.name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+            if (jckJSON[eachRelease.release_name] && jckJSON[eachRelease.release_name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
               ASSETOBJECT.thisVerified = true;
             } else {
               ASSETOBJECT.thisVerified = false;
