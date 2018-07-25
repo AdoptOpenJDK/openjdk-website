@@ -49,10 +49,10 @@ function buildInstallationHTML(releasesJson) {
       ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
       if (uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
         ASSETOBJECT.thisPlatformExists = true;
-        ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link);
-        ASSETOBJECT.thisBinaryFilename = (eachAsset.binary_name);
-        ASSETOBJECT.thisChecksumLink = (eachAsset.checksum_link);
-        ASSETOBJECT.thisChecksumFilename = (eachAsset.binary_name).replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+        ASSETOBJECT.thisBinaryLink = eachAsset.binary_link;
+        ASSETOBJECT.thisBinaryFilename = eachAsset.binary_name;
+        ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
+        ASSETOBJECT.thisChecksumFilename = eachAsset.binary_name.replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
         ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', releasesJson.name);

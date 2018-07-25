@@ -125,9 +125,9 @@ function buildNightlyHTML(files) {
       NIGHTLYOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
       NIGHTLYOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'nightly') + '/releases/tag/' + eachRelease.release_name);
       NIGHTLYOBJECT.thisOfficialName = getOfficialName(NIGHTLYOBJECT.thisPlatform);
-      NIGHTLYOBJECT.thisBinaryLink = (eachAsset.binary_link);
-      NIGHTLYOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size) / 1024 / 1024);
-      NIGHTLYOBJECT.thisChecksumLink = (eachAsset.checksum_link);
+      NIGHTLYOBJECT.thisBinaryLink = eachAsset.binary_link;
+      NIGHTLYOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
+      NIGHTLYOBJECT.thisChecksumLink = eachAsset.checksum_link;
 
       NIGHTLYARRAY.push(NIGHTLYOBJECT);
     }

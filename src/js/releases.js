@@ -99,12 +99,12 @@ function buildLatestHTML(releasesJson, jckJSON, assetArray) {
         }
         ASSETOBJECT.thisPlatformExists = true;
         ASSETOBJECT.thisInstallerExists = true;
-        ASSETOBJECT.thisInstallerLink = (eachAsset.binary_link);
-        ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.binary_size) / 1024 / 1024);
+        ASSETOBJECT.thisInstallerLink = eachAsset.binary_link;
+        ASSETOBJECT.thisInstallerSize = Math.floor(eachAsset.binary_size / 1024 / 1024);
         ASSETOBJECT.thisBinaryExists = true;
-        ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link).replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
-        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size) / 1024 / 1024);
-        ASSETOBJECT.thisChecksumLink = (eachAsset.binary_link).replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
+        ASSETOBJECT.thisBinaryLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
+        ASSETOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
+        ASSETOBJECT.thisChecksumLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
       }
       // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
       if (uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
@@ -119,9 +119,9 @@ function buildLatestHTML(releasesJson, jckJSON, assetArray) {
         if (!installerExist) {
           ASSETOBJECT.thisPlatformExists = true;
           ASSETOBJECT.thisBinaryExists = true;
-          ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link);
-          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size) / 1024 / 1024);
-          ASSETOBJECT.thisChecksumLink = (eachAsset.checksum_link)
+          ASSETOBJECT.thisBinaryLink = eachAsset.binary_link;
+          ASSETOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
+          ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link
         }
       }
 

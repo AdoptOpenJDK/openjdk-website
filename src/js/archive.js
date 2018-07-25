@@ -79,12 +79,12 @@ function buildArchiveHTML(eachRelease, jckJSON) {
         ASSETOBJECT.thisPlatformExists = true;
         ASSETOBJECT.thisInstallerExists = true;
         RELEASEOBJECT.installersExist = true;
-        ASSETOBJECT.thisInstallerLink = (eachAsset.binary_link);
+        ASSETOBJECT.thisInstallerLink = eachAsset.binary_link;
         ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.binary_size)/1024/1024);
         ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
         ASSETOBJECT.thisBinaryExists = true;
         RELEASEOBJECT.binariesExist = true;
-        ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link).replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
+        ASSETOBJECT.thisBinaryLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
         ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size)/1024/1024);
         ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
 
