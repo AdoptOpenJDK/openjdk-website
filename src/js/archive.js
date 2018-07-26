@@ -29,7 +29,7 @@ function populateArchive() {
       // if there are no releases (beyond the latest one)...
       // report an error, remove the loading dots
       loading.innerHTML = '';
-      errorContainer.innerHTML = '<p>There are no archived releases yet! See the <a href=\'./releases.html?variant=' + variant + '\'>Latest release</a> page.</p>';
+      errorContainer.innerHTML = '<p>There are no archived releases yet for ' + variant + ' on the ' + jvmVariant + ' jvm. See the <a href=\'./releases.html?variant=' + variant + '&jvmVariant=' + jvmVariant + '\'>Latest release</a> page.</p>';
     });
   });
 
