@@ -41,7 +41,7 @@ function setDownloadSection() {
 
     /* eslint-disable no-undef */
     loadAssetInfo(variant, jvmVariant, 'releases', 'latest', handleResponse, function () {
-      errorContainer.innerHTML = '<p>There are no releases available for ' + variant + '. Please check our <a href=nightly.html?variant=' + variant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+      errorContainer.innerHTML = '<p>There are no releases available for ' + variant + ' on the ' + jvmVariant + ' jvm. Please check our <a href=nightly.html?variant=' + variant + '&jvmVariant=' + jvmVariant + ' target=\'blank\'>Nightly Builds</a>.</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
   });
