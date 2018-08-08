@@ -49,7 +49,7 @@ gulp.task('watch', function() {
   gulp.watch('./src/scss/*.scss', function() {
     runSequence('styles','inject', browserSync.reload);
   });
-  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'], ['images']);
+  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], ['images']);
   gulp.watch('./src/assets/*.ico', ['icon']);
 });
 
@@ -140,7 +140,7 @@ gulp.task('inject', function() {
 
 // images task
 gulp.task('images', function() {
-  return gulp.src(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.gif'])
+  return gulp.src(['./src/assets/*.jp*', './src/assets/*.png',  './src/assets/*.svg', './src/assets/*.gif'])
     .pipe(imagemin())
     .on('error', gutil.log)
     .pipe(gulp.dest('./dist/assets/'));
