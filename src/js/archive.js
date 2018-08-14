@@ -25,7 +25,7 @@ function populateArchive() {
       return true;
     };
 
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', undefined, handleResponse, function () {
       // if there are no releases (beyond the latest one)...
       // report an error, remove the loading dots
       loading.innerHTML = '';
@@ -35,116 +35,120 @@ function populateArchive() {
 
 }
 
-function buildArchiveHTML(eachRelease, jckJSON) {
+function buildArchiveHTML(releases, jckJSON) {
   var RELEASEARRAY = [];
 
-  var RELEASEOBJECT = new Object();
   var ASSETARRAY = [];
 
-  // set values for this release, ready to inject into HTML
-  var publishedAt = eachRelease.timestamp;
-  RELEASEOBJECT.thisReleaseName = eachRelease.release_name;
-  RELEASEOBJECT.thisReleaseDay = moment(publishedAt).format('D');
-  RELEASEOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
-  RELEASEOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
-  RELEASEOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'releases') + '/releases/tag/' + RELEASEOBJECT.thisReleaseName);
+  for (i=0; i<releases.length; i++) {
+    var RELEASEOBJECT = new Object();
+    var eachRelease = releases[i];
 
-  // create an array of the details for each asset that is attached to this release
-  var assetArray = eachRelease.binaries;
+    // set values for this release, ready to inject into HTML
+    var publishedAt = eachRelease.timestamp;
+    RELEASEOBJECT.thisReleaseName = eachRelease.release_name;
+    RELEASEOBJECT.thisReleaseDay = moment(publishedAt).format('D');
+    RELEASEOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
+    RELEASEOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
+    RELEASEOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'releases') + '/releases/tag/' + RELEASEOBJECT.thisReleaseName);
 
-  // populate 'platformTableRows' with one row per binary for this release...
-  assetArray.forEach(function(eachAsset) {
-    var ASSETOBJECT = new Object();
-    var nameOfFile = (eachAsset.binary_name);
-    var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
+    // create an array of the details for each asset that is attached to this release
+    var assetArray = eachRelease.binaries;
 
-    ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+    // populate 'platformTableRows' with one row per binary for this release...
+    assetArray.forEach(function (eachAsset) {
+      var ASSETOBJECT = new Object();
+      var nameOfFile = (eachAsset.binary_name);
+      var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
 
-    // firstly, check if the platform name is recognised...
-    if(ASSETOBJECT.thisPlatform) {
+      ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
 
-      // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
-      ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
+      // firstly, check if the platform name is recognised...
+      if (ASSETOBJECT.thisPlatform) {
 
-      ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform); // get the file extension associated with this platform
+        // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
+        ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
 
-      if(uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
-        if(ASSETARRAY.length > 0){
-          ASSETARRAY.forEach(function(asset){
-            if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
-              ASSETARRAY.pop();
-            }
-          });
-        }
-        ASSETOBJECT.thisPlatformExists = true;
-        ASSETOBJECT.thisInstallerExists = true;
-        RELEASEOBJECT.installersExist = true;
-        ASSETOBJECT.thisInstallerLink = eachAsset.binary_link;
-        ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.binary_size)/1024/1024);
-        ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-        ASSETOBJECT.thisBinaryExists = true;
-        RELEASEOBJECT.binariesExist = true;
-        ASSETOBJECT.thisBinaryLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
-        ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size)/1024/1024);
-        ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
+        ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform); // get the file extension associated with this platform
 
-        ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-        if (Object.keys(jckJSON).length == 0) {
-          ASSETOBJECT.thisVerified = false;
-        } else {
-          if (jckJSON[eachRelease.release_name] && jckJSON[eachRelease.release_name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
-            ASSETOBJECT.thisVerified = true;
-          } else {
-            ASSETOBJECT.thisVerified = false;
+        if (uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
+          if (ASSETARRAY.length > 0) {
+            ASSETARRAY.forEach(function (asset) {
+              if (asset.thisPlatform === ASSETOBJECT.thisPlatform) {
+                ASSETARRAY.pop();
+              }
+            });
           }
-          ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-        }
-      }
-
-      // secondly, check if the file has the expected file extension for that platform...
-      // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-
-      if(uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
-        var installerExist = false;
-        if(ASSETARRAY.length > 0){
-          ASSETARRAY.forEach(function(asset){
-            if(asset.thisPlatform === ASSETOBJECT.thisPlatform){
-              installerExist = true;
-            }
-          });
-        }
-        if(!installerExist){
-          // set values ready to be injected into the HTML
           ASSETOBJECT.thisPlatformExists = true;
+          ASSETOBJECT.thisInstallerExists = true;
+          RELEASEOBJECT.installersExist = true;
+          ASSETOBJECT.thisInstallerLink = eachAsset.binary_link;
+          ASSETOBJECT.thisInstallerSize = Math.floor((eachAsset.binary_size) / 1024 / 1024);
+          ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
           ASSETOBJECT.thisBinaryExists = true;
           RELEASEOBJECT.binariesExist = true;
-          ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-          ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link);
-          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size)/1024/1024);
+          ASSETOBJECT.thisBinaryLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
+          ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size) / 1024 / 1024);
           ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
+
           ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
           if (Object.keys(jckJSON).length == 0) {
             ASSETOBJECT.thisVerified = false;
           } else {
-            if (jckJSON[eachRelease.release_name] && jckJSON[eachRelease.release_name].hasOwnProperty(ASSETOBJECT.thisPlatform) ) {
+            if (jckJSON[eachRelease.release_name] && jckJSON[eachRelease.release_name].hasOwnProperty(ASSETOBJECT.thisPlatform)) {
               ASSETOBJECT.thisVerified = true;
             } else {
               ASSETOBJECT.thisVerified = false;
             }
+            ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
           }
         }
+
+        // secondly, check if the file has the expected file extension for that platform...
+        // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
+
+        if (uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
+          var installerExist = false;
+          if (ASSETARRAY.length > 0) {
+            ASSETARRAY.forEach(function (asset) {
+              if (asset.thisPlatform === ASSETOBJECT.thisPlatform) {
+                installerExist = true;
+              }
+            });
+          }
+          if (!installerExist) {
+            // set values ready to be injected into the HTML
+            ASSETOBJECT.thisPlatformExists = true;
+            ASSETOBJECT.thisBinaryExists = true;
+            RELEASEOBJECT.binariesExist = true;
+            ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
+            ASSETOBJECT.thisBinaryLink = (eachAsset.binary_link);
+            ASSETOBJECT.thisBinarySize = Math.floor((eachAsset.binary_size) / 1024 / 1024);
+            ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
+            ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
+            if (Object.keys(jckJSON).length == 0) {
+              ASSETOBJECT.thisVerified = false;
+            } else {
+              if (jckJSON[eachRelease.release_name] && jckJSON[eachRelease.release_name].hasOwnProperty(ASSETOBJECT.thisPlatform)) {
+                ASSETOBJECT.thisVerified = true;
+              } else {
+                ASSETOBJECT.thisVerified = false;
+              }
+            }
+          }
+        }
+
+        if (ASSETOBJECT.thisPlatformExists === true) {
+          ASSETARRAY.push(ASSETOBJECT);
+        }
       }
+    });
 
-      if(ASSETOBJECT.thisPlatformExists === true){
-        ASSETARRAY.push(ASSETOBJECT);
-      }
-    }
-  });
+    ASSETARRAY = orderPlatforms(ASSETARRAY);
 
-  ASSETARRAY = orderPlatforms(ASSETARRAY);
-
-  RELEASEOBJECT.thisPlatformAssets = ASSETARRAY;
-  RELEASEARRAY.push(RELEASEOBJECT);
+    RELEASEOBJECT.thisPlatformAssets = ASSETARRAY;
+    RELEASEARRAY.push(RELEASEOBJECT);
+  }
 
   ARCHIVEDATA.htmlTemplate = RELEASEARRAY;
   var template = Handlebars.compile(document.getElementById('template').innerHTML);
