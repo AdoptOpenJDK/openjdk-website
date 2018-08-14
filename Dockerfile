@@ -11,6 +11,8 @@ RUN \
 RUN curl -sL https://deb.nodesource.com/setup_9.x |  bash -
 RUN apt-get install -y nodejs
 
+RUN useradd -ms /bin/bash ubuntu
+
 # do first step from Contribution
 RUN npm install --global gulp-cli
 
