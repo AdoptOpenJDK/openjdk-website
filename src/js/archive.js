@@ -40,7 +40,7 @@ function buildArchiveHTML(releases, jckJSON) {
 
   var ASSETARRAY = [];
 
-  for (i=0;i<releases.length;i++) {
+  for (i=0; i<releases.length; i++) {
     var RELEASEOBJECT = new Object();
     var eachRelease = releases[i];
 
