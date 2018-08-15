@@ -38,9 +38,8 @@ function populateArchive() {
 function buildArchiveHTML(releases, jckJSON) {
   var RELEASEARRAY = [];
 
-  var ASSETARRAY = [];
-
   for (i=0; i<releases.length; i++) {
+    var ASSETARRAY = [];
     var RELEASEOBJECT = new Object();
     var eachRelease = releases[i];
 
