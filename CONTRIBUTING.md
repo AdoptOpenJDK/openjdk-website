@@ -103,9 +103,9 @@ Modify code in your preferd IDE outside docker, it will be picked up automaticly
 
 ## Pull requests
 
-When pull requests are opened, contributors can use the [staging job on Jenkins](https://ci.adoptopenjdk.net/view/website/job/adoptopenjdk-website-staging/) to build the pull request and view it at [staging.adoptopenjdk.net](https://staging.adoptopenjdk.net).
+When pull requests are opened, contributors can use the [staging job on Jenkins](https://ci.adoptopenjdk.net/view/Website/job/adoptopenjdk-website-staging/) to build the pull request and view it at [staging.adoptopenjdk.net](https://staging.adoptopenjdk.net).
 
-When pull requests are merged, they are automatically [built by Jenkins](https://ci.adoptopenjdk.net/view/website/job/adoptopenjdk-website-production/) into the [`gh-pages` branch](https://github.com/AdoptOpenJDK/openjdk-website/tree/gh-pages) on the openjdk-website repository, then deployed to the live site (as part of the GitHub Pages mechanism).
+When pull requests are merged, they are automatically [built by Jenkins](https://ci.adoptopenjdk.net/view/Website/job/adoptopenjdk-website-production/) into the [`gh-pages` branch](https://github.com/AdoptOpenJDK/openjdk-website/tree/gh-pages) on the openjdk-website repository, then deployed to the live site (as part of the GitHub Pages mechanism).
 
 ---
 
