@@ -1,0 +1,40 @@
+.users-table {
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+}
+
+.users-table td {
+  padding: 2rem;
+  background-color: white;
+  line-height: 1.8rem;
+}
+
+.users-table td img {
+  width: 8rem;
+}
+
+.users img {
+  transition-duration: 0.2s;
+}
+
+.users img:hover {
+  opacity: 0.5;
+}
+
+.users a {
+  color: #152935 !important;
+  text-decoration: none !important;
+}
+
+@media all and (max-width: 800px) {
+
+  .users-table td {
+    padding: 1rem;
+    display: block;
+  }
+
+  .users {
+    text-align: center;
+  }
+
+}
