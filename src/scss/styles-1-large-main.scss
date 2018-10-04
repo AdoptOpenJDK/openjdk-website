@@ -469,7 +469,7 @@ select#variant-selector, select#platform-selector {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url(../assets/arrow-down.png) 90%/10% no-repeat white;
+  background: url(../assets/arrow-down.png) 90%/1rem no-repeat #fff;
   border: 1px solid $accentgrey;
   padding: 0.5rem 1.5rem;
   padding-right: 4rem;
