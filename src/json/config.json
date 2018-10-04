@@ -61,7 +61,7 @@
     },
     {
       "officialName": "Linux x64 Large Heap",
-      "searchableName": "X64_LINUXLH",
+      "searchableName": "LINUXXL",
       "logo": "linux.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": ".run",
