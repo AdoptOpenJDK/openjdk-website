@@ -69,7 +69,19 @@
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
-      "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen"
+      "osDetectionString": "not-to-be-detected"
+    },
+    {
+      "officialName": "Linux x64 Large Heap",
+      "searchableName": "X64_LINUXLH",
+      "logo": "linux.png",
+      "binaryExtension": ".tar.gz",
+      "installerExtension": ".run",
+      "architecture": "64",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "osDetectionString": "not-to-be-detected"
     },
     {
       "officialName": "Windows x32",
