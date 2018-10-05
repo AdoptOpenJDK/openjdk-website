@@ -115,7 +115,7 @@
       "installerExtension": ".dmg",
       "architecture": "64",
       "installCommand": "tar -xf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/Contens/Home/bin:$PATH",
+      "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
       "osDetectionString": "Mac OS X OSX macOS Macintosh"
     },
