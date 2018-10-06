@@ -133,7 +133,7 @@ $headersize: 1.4rem;
 }
 
 .social-icon {
-  margin: 0 0.5rem;
+  margin: 0 0.15rem;
 }
 
 .social-icon img {
@@ -144,6 +144,26 @@ $headersize: 1.4rem;
 }
 
 .social-icon img:hover {
+  opacity: 1;
+}
+
+.fa-social-icon {
+  color :#152935;
+}
+
+.fa-stack {
+  border-radius: 50px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition:.5s;
+  background:#ffffff;
+  opacity: .5;
+  
+}
+
+.fa-stack:hover {
+  background: #fff;
+  border-color: #000;
   opacity: 1;
 }
 
@@ -301,7 +321,6 @@ nav {
 
 #menu-social-bar {
   display: inline-block;
-  filter: brightness(0);
   margin: 1rem auto;
 }
 
