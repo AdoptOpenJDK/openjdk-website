@@ -59,7 +59,7 @@ function buildLatestHTML(releasesJson, jckJSON, assetArray) {
   document.getElementById('latest-build-name').innerHTML = '<var release-name>' + releasesJson.release_name + '</var>';
   document.getElementById('latest-build-name').href = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'releases') + '/releases/tag/' + releasesJson.release_name);
   document.getElementById('latest-date').innerHTML = ('<var>' + moment(publishedAt).format('D') + '</var> ' + moment(publishedAt).format('MMMM') + ' <var>' + moment(publishedAt).format('YYYY') + '</var>');
-  document.getElementById('latest-timestamp').innerHTML = (publishedAt.slice(0, 4) + publishedAt.slice(8, 10) + publishedAt.slice(5, 7) + publishedAt.slice(11, 13) + publishedAt.slice(14, 16));
+  document.getElementById('latest-timestamp').innerHTML = publishedAt;
 
 
   var ASSETARRAY = [];
