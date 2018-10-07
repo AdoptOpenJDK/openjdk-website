@@ -25,7 +25,7 @@ const babel = require('gulp-babel');
 
 // default task
 gulp.task('default', function() {
-  runSequence('clean',['handlebars','json','scripts','styles','images','icon'],'inject','watch','browser-sync');
+  runSequence('clean','json-validate',['handlebars','json','scripts','styles','images','icon'],'inject','watch','browser-sync');
 });
 
 // build task
@@ -171,7 +171,7 @@ gulp.task('json-validate', function () {
     .then(validate =>
       validate(configJson) ?
         gutil.log('config.json is valid!') :
-        assert.fail(validate.errors.map(err => `\n${ajv.errorsText([err])}. Actual: "${err.data}"`).join())
+        assert.fail(validate.errors.map(err => `\n${ajv.errorsText([err])}. Actual: "${err.data}"`).join().concat('\n'))
     )
     .catch(err => {
       throw new PluginError('json-validate', err, {showProperties: false});

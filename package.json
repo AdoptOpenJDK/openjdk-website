@@ -5,9 +5,10 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "gulp",
+    "json-validate": "gulp json-validate",
     "lint": "eslint **/*.js",
     "lint-fix": "npm run lint --- --fix",
-    "test": "npm run lint"
+    "test": "npm run lint && npm run json-validate"
   },
   "author": "Joe Brady",
   "devDependencies": {
