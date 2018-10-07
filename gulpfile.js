@@ -165,7 +165,7 @@ gulp.task('json-validate', function () {
   const configJsonSchema = objFromJson('./src/json/config.schema.json');
   const configJson = objFromJson('./src/json/config.json');
 
-  const ajv = new Ajv({loadSchema: loadSchemaFn, allErrors: true, extendRefs: 'fail'});
+  const ajv = new Ajv({loadSchema: loadSchemaFn, allErrors: true, extendRefs: 'fail', verbose: true});
 
   return ajv.compileAsync(configJsonSchema)
     .then(validate =>
