@@ -1,5 +1,9 @@
 const gulp = require('gulp');
 
+const fs = require('fs');
+const Ajv = require('ajv');
+const assert = require('assert');
+const PluginError = require('plugin-error');
 const runSequence = require('run-sequence');
 const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
@@ -150,6 +154,28 @@ gulp.task('images', function() {
 gulp.task('icon', function() {
   return gulp.src('./src/assets/*.ico')
     .pipe(gulp.dest('./dist/assets/'));
+});
+
+// json validation task
+gulp.task('json-validate', function () {
+  gutil.log('Validating config.json against config.schema.json');
+
+  const objFromJson = (uri) => JSON.parse(fs.readFileSync(uri, 'utf-8'));
+  const loadSchemaFn = (uri) => Promise.resolve(objFromJson(uri));
+  const configJsonSchema = objFromJson('./src/json/config.schema.json');
+  const configJson = objFromJson('./src/json/config.json');
+
+  const ajv = new Ajv({loadSchema: loadSchemaFn, allErrors: true, extendRefs: 'fail'});
+
+  return ajv.compileAsync(configJsonSchema)
+    .then(validate =>
+      validate(configJson) ?
+        gutil.log('config.json is valid!') :
+        assert.fail(validate.errors.map(err => `\n${ajv.errorsText([err])}. Actual: "${err.data}"`).join())
+    )
+    .catch(err => {
+      throw new PluginError('json-validate', err, {showProperties: false});
+    });
 });
 
 // lint task
