@@ -49,6 +49,7 @@
   "platforms": [
     {
       "officialName": "Linux x64",
+      "searchableName": "X64_LINUX",
       "logo": "linux.png",
       "attributes": {
         "heap_size": "normal",
@@ -64,6 +65,7 @@
     },
     {
       "officialName": "Linux x64 Large Heap",
+      "searchableName": "X64_LINUXLH",
       "attributes": {
         "heap_size": "large",
         "os": "linux",
@@ -79,6 +81,7 @@
     },
     {
       "officialName": "Windows x32",
+      "searchableName": "X32_WIN",
       "attributes": {
         "heap_size": "normal",
         "os": "windows",
@@ -94,6 +97,7 @@
     },
     {
       "officialName": "Windows x64",
+      "searchableName": "X64_WIN",
       "attributes": {
         "heap_size": "normal",
         "os": "windows",
@@ -109,6 +113,7 @@
     },
     {
       "officialName": "macOS x64",
+      "searchableName": "X64_MAC",
       "attributes": {
         "heap_size": "normal",
         "os": "mac",
@@ -124,6 +129,7 @@
     },
     {
       "officialName": "Linux s390x",
+      "searchableName": "S390X_LINUX",
       "attributes": {
         "heap_size": "normal",
         "os": "linux",
@@ -139,6 +145,7 @@
     },
     {
       "officialName": "Linux ppc64le",
+      "searchableName": "PPC64LE_LINUX",
       "attributes": {
         "heap_size": "normal",
         "os": "linux",
@@ -154,6 +161,7 @@
     },
     {
       "officialName": "Linux aarch64",
+      "searchableName": "AARCH64_LINUX",
       "attributes": {
         "heap_size": "normal",
         "os": "linux",
@@ -169,6 +177,7 @@
     },
     {
       "officialName": "Linux arm32",
+      "searchableName": "ARM32_LINUX",
       "attributes": {
         "heap_size": "normal",
         "os": "linux",
@@ -184,6 +193,7 @@
     },
     {
       "officialName": "AIX ppc64",
+      "searchableName": "PPC64_AIX",
       "attributes": {
         "heap_size": "normal",
         "os": "aix",

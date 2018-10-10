@@ -23,7 +23,7 @@ const robots = require('gulp-robots');
 const clean = require('gulp-clean');
 const babel = require('gulp-babel');
 
-const packageLibs= ['./node_modules/underscore/underscore.js'];
+const sourceFiles = ['./node_modules/underscore/underscore.js', './src/js/**/*.js'];
 
 // default task
 gulp.task('default', function() {
@@ -84,12 +84,12 @@ gulp.task('json', function() {
 
 // scripts task
 gulp.task('scripts', function() {
-  return gulp.src(['./node_modules/underscore/underscore.js', './src/js/**/*.js'])
+  return gulp.src(sourceFiles)
     .pipe(babel({presets: ['es2015']}))
     .pipe(concat('app.js'))
     .on('error', gutil.log)
     .pipe(gulp.dest('./dist/js/'))
-    //.pipe(uglify())
+    .pipe(uglify())
     .on('error', gutil.log)
     .pipe(rename({
       suffix: '.min'

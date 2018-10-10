@@ -108,7 +108,7 @@ function buildNightlyHTML(files) {
     var NIGHTLYOBJECT = new Object();
     var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
-    NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset);
+    NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset); // get the searchableName, e.g. MAC or X64_LINUX.
     var type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
 
     // secondly, check if the file has the expected file extension for that platform...

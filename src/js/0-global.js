@@ -45,40 +45,19 @@ function findPlatform(binaryData) {
           return memo && attributeMatches;
         }, true)
         .value()
-      console.log(platform)
-      console.log(binaryData)
-      console.log(matches)
       return matches
     })
     .first()
     .value();
-  console.log(matchedPlatform)
-  return matchedPlatform === undefined ? null : matchedPlatform;
-}
-
-// gets the 'searchableName' when you pass in the full filename.
-// If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
-function getSearchableName(filename) {
-  var platform = null;
-  platforms.forEach(function (eachPlatform) {
-    if (filename.indexOf(eachPlatform.searchableName) >= 0) {
-      platform = eachPlatform.searchableName;
-    }
-  });
-  if (platform) {
-    return platform;
-  }
-  else {
-    return null;
-  }
+  return matchedPlatform === undefined ? null : matchedPlatform.searchableName;
 }
 
 // set path to logos
 var logoPath = './dist/assets/';
 
 // gets the OFFICIAL NAME when you pass in 'searchableName'
-function getOfficialName(platform) {
-  return platform.officialName;
+function getOfficialName(searchableName) {
+  return (lookup[searchableName].officialName);
 }
 
 function getPlatformOrder(searchableName) {
@@ -102,13 +81,13 @@ function orderPlatforms(inputArray) {
 }
 
 // gets the BINARY EXTENSION when you pass in 'searchableName'
-function getBinaryExt(platform) {
-  return platform.binaryExtension;
+function getBinaryExt(searchableName) {
+  return (lookup[searchableName].binaryExtension);
 }
 
 // gets the INSTALLER EXTENSION when you pass in 'searchableName'
-function getInstallerExt(platform) {
-  return platform.installerExtension;
+function getInstallerExt(searchableName) {
+  return (lookup[searchableName].installerExtension);
 }
 
 // gets the LOGO WITH PATH when you pass in 'searchableName'
@@ -117,18 +96,18 @@ function getLogo(searchableName) {
 }
 
 // gets the INSTALLATION COMMAND when you pass in 'searchableName'
-function getInstallCommand(platform) {
-  return platform.installCommand;
+function getInstallCommand(searchableName) {
+  return (lookup[searchableName].installCommand);
 }
 
 // gets the CHECKSUM COMMAND when you pass in 'searchableName'
-function getChecksumCommand(platform) {
-  return platform.checksumCommand;
+function getChecksumCommand(searchableName) {
+  return (lookup[searchableName].checksumCommand);
 }
 
 // gets the PATH COMMAND when you pass in 'searchableName'
-function getPathCommand(platform) {
-  return platform.pathCommand;
+function getPathCommand(searchableName) {
+  return (lookup[searchableName].pathCommand);
 }
 
 // set value for loading dots on every page

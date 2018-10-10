@@ -127,7 +127,6 @@ function buildLatestHTML(releasesJson, jckJSON, assetArray) {
 
 
       if (ASSETOBJECT.thisPlatformExists === true) {
-        ASSETOBJECT.thisPlatform = ASSETOBJECT.thisPlatform.attributes.architecture + "_" + ASSETOBJECT.thisPlatform.attributes.os;
         ASSETARRAY.push(ASSETOBJECT);
       }
 
