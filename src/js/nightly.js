@@ -76,7 +76,6 @@ function getFiles(releasesJson) {
     assetArray.forEach(function (eachAsset) {
       var NIGHTLYOBJECT = new Object();
       var nameOfFile = (eachAsset.binary_name);
-      var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
       NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset);
       var isArchive = new RegExp('(.tar.gz|.zip)$').test(nameOfFile);
 

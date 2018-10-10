@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global _ */
 
 var platforms = [];
 var variants = [];
@@ -34,7 +35,7 @@ function getVariantObject(variant) {
 function findPlatform(binaryData) {
   var matchedPlatform = _.chain(platforms)
     .filter(function (platform) {
-      return platform.hasOwnProperty("attributes")
+      return platform.hasOwnProperty('attributes')
     })
     .filter(function (platform) {
       var matches = _.chain(platform.attributes)
