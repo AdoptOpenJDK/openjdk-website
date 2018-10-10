@@ -65,7 +65,7 @@
     },
     {
       "officialName": "Linux x64 Large Heap",
-      "searchableName": "X64_LINUXLH",
+      "searchableName": "LINUXXL",
       "attributes": {
         "heap_size": "large",
         "os": "linux",
