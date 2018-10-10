@@ -35,14 +35,8 @@
       "items": {
         "$id": "#/properties/variants/items",
         "type": "object",
-        "required": ["searchableName", "officialName"],
+        "required": ["officialName"],
         "properties": {
-          "searchableName": {
-            "$id": "#/properties/variants/items/properties/searchableName",
-            "type": "string",
-            "title": "Searchable Name (package manager-friendly)",
-            "examples": ["openjdk8-hotspot", "openjdk11-openj9"]
-          },
           "officialName": {
             "$id": "#/properties/variants/items/properties/officialName",
             "type": "string",
@@ -77,11 +71,9 @@
         "type": "object",
         "required": [
           "officialName",
-          "searchableName",
           "logo",
           "binaryExtension",
           "installerExtension",
-          "architecture",
           "installCommand",
           "pathCommand",
           "checksumCommand",

@@ -23,6 +23,8 @@ const robots = require('gulp-robots');
 const clean = require('gulp-clean');
 const babel = require('gulp-babel');
 
+const packageLibs= ['./node_modules/underscore/underscore.js'];
+
 // default task
 gulp.task('default', function() {
   runSequence('clean','json-validate',['handlebars','json','scripts','styles','images','icon'],'inject','watch','browser-sync');
@@ -82,12 +84,12 @@ gulp.task('json', function() {
 
 // scripts task
 gulp.task('scripts', function() {
-  return gulp.src('./src/js/**/*.js')
+  return gulp.src(['./node_modules/underscore/underscore.js', './src/js/**/*.js'])
     .pipe(babel({presets: ['es2015']}))
     .pipe(concat('app.js'))
     .on('error', gutil.log)
     .pipe(gulp.dest('./dist/js/'))
-    .pipe(uglify())
+    //.pipe(uglify())
     .on('error', gutil.log)
     .pipe(rename({
       suffix: '.min'

@@ -49,11 +49,14 @@
   "platforms": [
     {
       "officialName": "Linux x64",
-      "searchableName": "X64_LINUX",
       "logo": "linux.png",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "linux",
+        "architecture": "x64"
+      },
       "binaryExtension": ".tar.gz",
       "installerExtension": ".run",
-      "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -61,23 +64,14 @@
     },
     {
       "officialName": "Linux x64 Large Heap",
-      "searchableName": "LINUXXL",
+      "attributes": {
+        "heap_size": "large",
+        "os": "linux",
+        "architecture": "x64"
+      },
       "logo": "linux.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": ".run",
-      "architecture": "64",
-      "installCommand": "tar -xf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "osDetectionString": "not-to-be-detected"
-    },
-    {
-      "officialName": "Linux x64 Large Heap",
-      "searchableName": "X64_LINUXLH",
-      "logo": "linux.png",
-      "binaryExtension": ".tar.gz",
-      "installerExtension": ".run",
-      "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -85,11 +79,14 @@
     },
     {
       "officialName": "Windows x32",
-      "searchableName": "X32_WIN",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "windows",
+        "architecture": "x32"
+      },
       "logo": "windows.png",
       "binaryExtension": ".zip",
       "installerExtension": ".exe",
-      "architecture": "32",
       "installCommand": "unzip FILENAME",
       "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
       "checksumCommand": "certutil -hashfile FILENAME SHA256",
@@ -97,11 +94,14 @@
     },
     {
       "officialName": "Windows x64",
-      "searchableName": "X64_WIN",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "windows",
+        "architecture": "x64"
+      },
       "logo": "windows.png",
       "binaryExtension": ".zip",
       "installerExtension": ".exe",
-      "architecture": "64",
       "installCommand": "unzip FILENAME",
       "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
       "checksumCommand": "certutil -hashfile FILENAME SHA256",
@@ -109,11 +109,14 @@
     },
     {
       "officialName": "macOS x64",
-      "searchableName": "X64_MAC",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "mac",
+        "architecture": "x64"
+      },
       "logo": "mac.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": ".dmg",
-      "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
@@ -121,11 +124,14 @@
     },
     {
       "officialName": "Linux s390x",
-      "searchableName": "S390X_LINUX",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "linux",
+        "architecture": "s390x"
+      },
       "logo": "s390x.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -133,11 +139,14 @@
     },
     {
       "officialName": "Linux ppc64le",
-      "searchableName": "PPC64LE_LINUX",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "linux",
+        "architecture": "ppc64le"
+      },
       "logo": "ppc64le.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -145,11 +154,14 @@
     },
     {
       "officialName": "Linux aarch64",
-      "searchableName": "AARCH64_LINUX",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "linux",
+        "architecture": "aarch64"
+      },
       "logo": "arm.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "architecture": "64",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -157,11 +169,14 @@
     },
     {
       "officialName": "Linux arm32",
-      "searchableName": "ARM32_LINUX",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "linux",
+        "architecture": "arm32"
+      },
       "logo": "arm.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "architecture": "32",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -169,11 +184,14 @@
     },
     {
       "officialName": "AIX ppc64",
-      "searchableName": "PPC64_AIX",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "aix",
+        "architecture": "ppc64"
+      },
       "logo": "aix.png",
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "architecture": "64",
       "installCommand": "gunzip -c FILENAME | tar xf -",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",

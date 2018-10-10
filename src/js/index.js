@@ -63,7 +63,7 @@ function buildHomepageHTML(releasesJson, jckJSON) {
     assetArray.forEach(function(eachAsset) { // iterate through the assets attached to this release
       var nameOfFile = eachAsset.binary_name;
       var uppercaseFilename = nameOfFile.toUpperCase();
-      var thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. X64_MAC or X64_LINUX.
+      var thisPlatform = findPlatform(eachAsset);
       var uppercaseOSname = null;
       // firstly, check if a valid searchableName has been returned (i.e. the platform is recognised)...
       if (thisPlatform) {

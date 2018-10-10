@@ -37,7 +37,7 @@ function buildInstallationHTML(releasesJson) {
     var ASSETOBJECT = new Object();
     var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
-    ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+    ASSETOBJECT.thisPlatform = findPlatform(eachAsset);
 
     // check if the platform name is recognised...
     if (ASSETOBJECT.thisPlatform) {
@@ -59,6 +59,7 @@ function buildInstallationHTML(releasesJson) {
       }
 
       if (ASSETOBJECT.thisPlatformExists === true) {
+        ASSETOBJECT.thisPlatform = ASSETOBJECT.thisPlatform.attributes.architecture + "_" + ASSETOBJECT.thisPlatform.attributes.os;
         ASSETARRAY.push(ASSETOBJECT);
       }
 
@@ -83,7 +84,7 @@ function buildInstallationHTML(releasesJson) {
 
 
 function displayInstallPlatform() {
-  var platformHash = window.location.hash.substr(1).toUpperCase();
+  var platformHash = window.location.hash.substr(1);
   var thisPlatformInstallation = document.getElementById('installation-container-' + platformHash);
   unselectInstallPlatform();
 
@@ -130,7 +131,7 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
 
     var OS = detectOS();
     if (OS && window.location.hash.length < 1) {
-      platformSelector.value = OS.searchableName;
+      platformSelector.value = OS.attributes.architecture + "_" + OS.attributes.os;
       window.location.hash = platformSelector.value.toLowerCase();
       displayInstallPlatform();
     }
