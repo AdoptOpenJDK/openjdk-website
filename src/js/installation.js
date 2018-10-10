@@ -43,8 +43,8 @@ function buildInstallationHTML(releasesJson) {
     if (ASSETOBJECT.thisPlatform) {
 
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform) + " " + eachAsset.binary_type;
-      ASSETOBJECT.thisPlatformType = (ASSETOBJECT.thisPlatform + "-" + eachAsset.binary_type).toUpperCase();
+      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform) + ' ' + eachAsset.binary_type;
+      ASSETOBJECT.thisPlatformType = (ASSETOBJECT.thisPlatform + '-' + eachAsset.binary_type).toUpperCase();
 
       // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
       ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
