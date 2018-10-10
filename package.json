@@ -41,6 +41,7 @@
     "util": "^0.11.0"
   },
   "dependencies": {
-    "npm": "^6.4.1"
+    "npm": "^6.4.1",
+    "underscore": "^1.9.1"
   }
 }

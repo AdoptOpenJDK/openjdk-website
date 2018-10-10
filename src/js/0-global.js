@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+/* global _ */
+
 var platforms = [];
 var variants = [];
 var lookup = {};
@@ -8,7 +10,7 @@ var jvmVariant = getQueryByName('jvmVariant');
 var variantSelector = document.getElementById('variant-selector');
 var platformSelector = document.getElementById('platform-selector');
 
-if(jvmVariant === undefined || jvmVariant === null) {
+if (jvmVariant === undefined || jvmVariant === null) {
   jvmVariant = 'hotspot';
 }
 
@@ -22,29 +24,33 @@ function setLookup() {
 
 function getVariantObject(variant) {
   var variantObject = '';
-  variants.forEach(function(eachVariant) {
-    if(eachVariant.searchableName === variant){
+  variants.forEach(function (eachVariant) {
+    if (eachVariant.searchableName === variant) {
       variantObject = eachVariant;
     }
   });
   return variantObject;
 }
 
-// gets the 'searchableName' when you pass in the full filename.
-// If the filename does not match a known platform, returns false. (E.g. if a new or incorrect file appears in a repo)
-function getSearchableName(filename) {
-  var platform = null;
-  platforms.forEach(function(eachPlatform) {
-    if(filename.indexOf(eachPlatform.searchableName) >= 0) {
-      platform = eachPlatform.searchableName;
-    }
-  });
-  if(platform) {
-    return platform;
-  }
-  else {
-    return null;
-  }
+function findPlatform(binaryData) {
+  var matchedPlatform = _.chain(platforms)
+    .filter(function (platform) {
+      return platform.hasOwnProperty('attributes')
+    })
+    .filter(function (platform) {
+      var matches = _.chain(platform.attributes)
+        .mapObject(function (attributeValue, attributeKey) {
+          return binaryData[attributeKey] === attributeValue
+        })
+        .reduce(function (memo, attributeMatches) {
+          return memo && attributeMatches;
+        }, true)
+        .value()
+      return matches
+    })
+    .first()
+    .value();
+  return matchedPlatform === undefined ? null : matchedPlatform.searchableName;
 }
 
 // set path to logos
@@ -56,20 +62,21 @@ function getOfficialName(searchableName) {
 }
 
 function getPlatformOrder(searchableName) {
-  var index = platforms.findIndex(function(platform) {
+  var index = platforms.findIndex(function (platform) {
     return platform.searchableName == searchableName;
   });
   return index;
 }
 
 function orderPlatforms(inputArray) {
-  function compareOrder(thisAsset,nextAsset) {
+  function compareOrder(thisAsset, nextAsset) {
     if (thisAsset.thisPlatformOrder < nextAsset.thisPlatformOrder)
       return -1;
     if (thisAsset.thisPlatformOrder > nextAsset.thisPlatformOrder)
       return 1;
     return 0;
   }
+
   var orderedArray = inputArray.sort(compareOrder);
   return orderedArray;
 }
@@ -115,13 +122,13 @@ const menuOpen = document.getElementById('menu-button');
 const menuClose = document.getElementById('menu-close');
 const menu = document.getElementById('menu-container');
 
-menuOpen.onclick = function() {
-  menu.className = menu.className.replace( /(?:^|\s)slideOutLeft(?!\S)/g , ' slideInLeft' ); // slide in animation
-  menu.className = menu.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated' ); // removes initial hidden property, activates animations
+menuOpen.onclick = function () {
+  menu.className = menu.className.replace(/(?:^|\s)slideOutLeft(?!\S)/g, ' slideInLeft'); // slide in animation
+  menu.className = menu.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated'); // removes initial hidden property, activates animations
 }
 
-menuClose.onclick = function() {
-  menu.className = menu.className.replace( /(?:^|\s)slideInLeft(?!\S)/g , ' slideOutLeft' ); // slide out animation
+menuClose.onclick = function () {
+  menu.className = menu.className.replace(/(?:^|\s)slideInLeft(?!\S)/g, ' slideOutLeft'); // slide out animation
 }
 
 // this function returns an object containing all information about the user's OS (from the 'platforms' array)
@@ -129,17 +136,21 @@ function detectOS() {
   // if the platform detection library's output matches the 'osDetectionString' of any platform object in the 'platforms' array...
   // ...set the variable 'matchedOS' as the whole object. Else, 'matchedOS' will be null.
   var matchedOS = null;
-  platforms.forEach(function(eachPlatform) {
+  platforms.forEach(function (eachPlatform) {
     var thisPlatformMatchingString = eachPlatform.osDetectionString.toUpperCase();
     /* eslint-disable */
     var platformFamily = platform.os.family.toUpperCase(); // platform.os.family is dependent on 'platform.js', loaded by index.html (injected in index.handlebars)
     /* eslint-enable */
-    if(thisPlatformMatchingString.indexOf(platformFamily) >= 0) { // if the detected 'platform family' string appears in the osDetectionString value of a platform...
+    if (thisPlatformMatchingString.indexOf(platformFamily) >= 0) { // if the detected 'platform family' string appears in the osDetectionString value of a platform...
       matchedOS = eachPlatform;
     }
   });
 
-  if(matchedOS){ return matchedOS; } else { return null; }
+  if (matchedOS) {
+    return matchedOS;
+  } else {
+    return null;
+  }
 }
 
 function toJson(response) {
@@ -161,8 +172,8 @@ function toJson(response) {
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
 /* eslint-disable no-unused-vars */
 function loadAssetInfo(variant, openjdkImp, releaseType, release, handleResponse, errorHandler) {
-  if(variant==='amber') {
-    variant='openjdk-amber'
+  if (variant === 'amber') {
+    variant = 'openjdk-amber'
   }
 
   let url = 'https://api.adoptopenjdk.net/v2/info/' + releaseType + '/' + variant + '?';
@@ -187,7 +198,7 @@ function loadAssetInfo(variant, openjdkImp, releaseType, release, handleResponse
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadJSON(repo, filename, callback) {
   var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
-  if(repo === 'adoptopenjdk.net') {
+  if (repo === 'adoptopenjdk.net') {
     url = (filename);
   }
   loadUrl(url, callback);
@@ -202,7 +213,7 @@ function loadUrl(url, callback) {
     } else if (
       xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
       xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
-        callback(null)
+      callback(null)
     }
   };
   xobj.send(null);
@@ -210,7 +221,7 @@ function loadUrl(url, callback) {
 
 /* eslint-disable no-unused-vars */
 function loadPlatformsThenData(callback) {
-  loadJSON('adoptopenjdk.net', './dist/json/config.json', function(response) {
+  loadJSON('adoptopenjdk.net', './dist/json/config.json', function (response) {
     var configJson = JSON.parse(response);
 
     if (typeof configJson !== 'undefined') { // if there are releases...
@@ -240,7 +251,7 @@ for (i = 0; i < submenus.length; i++) {
   var thisLine = submenus[i].getElementsByTagName('a')[0];
   thisLine.appendChild(twisty);
 
-  thisLine.onclick = function(){
+  thisLine.onclick = function () {
     this.parentNode.classList.toggle('open');
   }
 }
@@ -249,12 +260,12 @@ for (i = 0; i < submenus.length; i++) {
 function setTickLink() {
   var ticks = document.getElementsByClassName('tick');
   for (i = 0; i < ticks.length; i++) {
-    ticks[i].addEventListener('click', function(event) {
+    ticks[i].addEventListener('click', function (event) {
       var win = window.open('https://en.wikipedia.org/wiki/Technology_Compatibility_Kit', '_blank');
       if (win) {
-          win.focus();
+        win.focus();
       } else {
-          alert('New tab blocked - please allow popups.');
+        alert('New tab blocked - please allow popups.');
       }
       event.preventDefault();
     });
@@ -301,7 +312,7 @@ function formSearchArgs() {
 }
 
 function setUrlQuery() {
-    window.location.search=formUrlQueryArgs(arguments);
+  window.location.search = formUrlQueryArgs(arguments);
 }
 
 function getQueryByName(name) {
@@ -316,14 +327,14 @@ function getQueryByName(name) {
 
 /* eslint-disable no-unused-vars */
 function persistUrlQuery() {
-  var anchor='';
+  var anchor = '';
   var links = Array.apply(null, document.getElementsByTagName('a'));
   var link = window.location.hostname;
   if (link != 'localhost') {
     link = 'https://' + link;
   }
-  links.forEach(function(eachLink) {
-    if(eachLink.href.indexOf(link) >= 0) {
+  links.forEach(function (eachLink) {
+    if (eachLink.href.indexOf(link) >= 0) {
       if (eachLink.href.indexOf('#') > -1) {
         anchor = '#' + eachLink.href.split('#').pop();
         eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('#'));
@@ -338,19 +349,19 @@ function persistUrlQuery() {
   });
 }
 
-const versionMatcher=/(openjdk\d+|amber)-([a-zA-Z0-9]+)/;
+const versionMatcher = /(openjdk\d+|amber)-([a-zA-Z0-9]+)/;
 
 function setVariantSelector() {
-  if(variantSelector) {
-    if(variantSelector.options.length === 0) {
-      variants.forEach(function(eachVariant) {
+  if (variantSelector) {
+    if (variantSelector.options.length === 0) {
+      variants.forEach(function (eachVariant) {
         var op = new Option();
         op.value = eachVariant.searchableName;
         op.text = eachVariant.officialName;
         op.description = eachVariant.description;
         op.descriptionLink = eachVariant.descriptionLink;
         variantSelector.options.add(op);
-        if(!variant && eachVariant.default){
+        if (!variant && eachVariant.default) {
           const matches = variantSelector.value.match(versionMatcher);
           variant = matches[1];
           jvmVariant = matches[2];
@@ -358,13 +369,13 @@ function setVariantSelector() {
       });
     }
 
-    if(!variant) {
+    if (!variant) {
       variant = variants[0].searchableName;
     }
 
     variantSelector.value = variant + '-' + jvmVariant;
 
-    if(variantSelector.value === '') {
+    if (variantSelector.value === '') {
       var op = new Option();
       op.value = 'unknown';
       op.text = 'Select a variant';
@@ -373,7 +384,7 @@ function setVariantSelector() {
       errorContainer.innerHTML = '<p>Error: no such variant. Please select a valid variant from the drop-down list.</p>';
     }
 
-    variantSelector.onchange = function() {
+    variantSelector.onchange = function () {
       const matches = variantSelector.value.match(versionMatcher);
       const versionNumber = matches[1];
       const jvmVariant = matches[2];

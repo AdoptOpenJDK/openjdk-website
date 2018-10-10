@@ -68,7 +68,7 @@ function buildLatestHTML(releasesJson, jckJSON, assetArray) {
     var ASSETOBJECT = new Object();
     var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
-    ASSETOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+    ASSETOBJECT.thisPlatform = findPlatform(eachAsset);
 
     // check if the platform name is recognised...
     if (ASSETOBJECT.thisPlatform) {

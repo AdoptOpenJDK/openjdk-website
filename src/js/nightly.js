@@ -76,8 +76,7 @@ function getFiles(releasesJson) {
     assetArray.forEach(function (eachAsset) {
       var NIGHTLYOBJECT = new Object();
       var nameOfFile = (eachAsset.binary_name);
-      var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
-      NIGHTLYOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+      NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset);
       var isArchive = new RegExp('(.tar.gz|.zip)$').test(nameOfFile);
 
       var correctFile = isArchive;
@@ -108,7 +107,7 @@ function buildNightlyHTML(files) {
     var NIGHTLYOBJECT = new Object();
     var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
-    NIGHTLYOBJECT.thisPlatform = getSearchableName(uppercaseFilename); // get the searchableName, e.g. MAC or X64_LINUX.
+    NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset); // get the searchableName, e.g. MAC or X64_LINUX.
     var type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
 
     // secondly, check if the file has the expected file extension for that platform...

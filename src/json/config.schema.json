@@ -81,7 +81,6 @@
           "logo",
           "binaryExtension",
           "installerExtension",
-          "architecture",
           "installCommand",
           "pathCommand",
           "checksumCommand",
@@ -124,13 +123,6 @@
             "title": "Installer extension",
             "description": "File extension of the installer executable or script",
             "examples": [".run"]
-          },
-          "architecture": {
-            "$id": "#/properties/platforms/items/properties/architecture",
-            "type": "string",
-            "title": "Architecture",
-            "description": "Platform architecture",
-            "enum": ["32", "64"]
           },
           "installCommand": {
             "$id": "#/properties/platforms/items/properties/installCommand",
