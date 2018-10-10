@@ -18,7 +18,7 @@ function populateInstallation() {
     };
 
     /* eslint-disable no-undef */
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', 'jdk', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {
       errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
@@ -43,7 +43,8 @@ function buildInstallationHTML(releasesJson) {
     if (ASSETOBJECT.thisPlatform) {
 
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
+      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform) + " " + eachAsset.binary_type;
+      ASSETOBJECT.thisPlatformType = (ASSETOBJECT.thisPlatform + "-" + eachAsset.binary_type).toUpperCase();
 
       // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
       ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
@@ -122,7 +123,7 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
     if (platformSelector.options.length === 0) {
       thisReleasePlatforms.forEach(function (eachPlatform) {
         var op = new Option();
-        op.value = eachPlatform.thisPlatform;
+        op.value = eachPlatform.thisPlatformType;
         op.text = eachPlatform.thisOfficialName;
         platformSelector.options.add(op);
       });
