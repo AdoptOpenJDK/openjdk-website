@@ -171,7 +171,7 @@ function toJson(response) {
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
 /* eslint-disable no-unused-vars */
-function loadAssetInfo(variant, openjdkImp, releaseType, release, handleResponse, errorHandler) {
+function loadAssetInfo(variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) {
   if (variant === 'amber') {
     variant = 'openjdk-amber'
   }
@@ -183,6 +183,9 @@ function loadAssetInfo(variant, openjdkImp, releaseType, release, handleResponse
   }
   if (openjdkImp !== undefined) {
     url += 'openjdk_impl=' + openjdkImp + '&';
+  }
+  if (type !== undefined) {
+    url += 'type=' + type + '&';
   }
 
   loadUrl(url, function (response) {

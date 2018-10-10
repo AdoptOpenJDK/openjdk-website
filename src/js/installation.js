@@ -18,7 +18,7 @@ function populateInstallation() {
     };
 
     /* eslint-disable no-undef */
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', 'jdk', handleResponse, function () {
       errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
       loading.innerHTML = ''; // remove the loading dots
     });

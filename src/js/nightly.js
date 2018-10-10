@@ -56,7 +56,7 @@ function populateNightly() {
       return true;
     };
 
-    loadAssetInfo(variant, jvmVariant, 'nightly', undefined, handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'nightly', undefined, undefined, handleResponse, function () {
       errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
