@@ -38,7 +38,7 @@ function populateLatest() {
       return true;
     };
 
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {
       errorContainer.innerHTML = '<p>There are no releases available for ' + variant + ' on the ' + jvmVariant + ' jvm. Please check our <a href=nightly.html?variant=' + variant + '&jvmVariant=' + jvmVariant + ' target=\'blank\'>Nightly Builds</a>.</p>';
       loading.innerHTML = ''; // remove the loading dots
     });

@@ -25,7 +25,7 @@ function populateArchive() {
       return true;
     };
 
-    loadAssetInfo(variant, jvmVariant, 'releases', undefined, handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'releases', undefined, undefined, handleResponse, function () {
       // if there are no releases (beyond the latest one)...
       // report an error, remove the loading dots
       loading.innerHTML = '';
