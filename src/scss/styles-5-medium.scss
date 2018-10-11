@@ -8,7 +8,16 @@
     top: initial;
     transform: initial;
   }
-
+  .btn-container {
+    margin-left: 10%;
+  }
+  .btn-form {
+    display: block;
+    width: 100%;
+  }
+  .btn-form:first-child {
+    margin-bottom: 3rem;
+  }
 }
 
 @media all and (max-width: 800px) {

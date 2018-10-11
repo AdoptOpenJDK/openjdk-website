@@ -7,11 +7,15 @@ var lookup = {};
 var i = 0;
 var variant = getQueryByName('variant');
 var jvmVariant = getQueryByName('jvmVariant');
-var variantSelector = document.getElementById('variant-selector');
+var jdkSelector = document.getElementById('jdk-selector');
+var jvmSelector = document.getElementById('jvm-selector');
 var platformSelector = document.getElementById('platform-selector');
 
 if (jvmVariant === undefined || jvmVariant === null) {
   jvmVariant = 'hotspot';
+}
+if (variant === undefined || variant === null) {
+  variant = 'openjdk8';
 }
 
 function setLookup() {
@@ -227,7 +231,7 @@ function loadPlatformsThenData(callback) {
     if (typeof configJson !== 'undefined') { // if there are releases...
       platforms = configJson.platforms;
       variants = configJson.variants;
-      setVariantSelector();
+      setRadioSelectors();
       setLookup();
       callback();
     }
@@ -349,48 +353,65 @@ function persistUrlQuery() {
   });
 }
 
-const versionMatcher = /(openjdk\d+|amber)-([a-zA-Z0-9]+)/;
-
-function setVariantSelector() {
-  if (variantSelector) {
-    if (variantSelector.options.length === 0) {
-      variants.forEach(function (eachVariant) {
-        var op = new Option();
-        op.value = eachVariant.searchableName;
-        op.text = eachVariant.officialName;
-        op.description = eachVariant.description;
-        op.descriptionLink = eachVariant.descriptionLink;
-        variantSelector.options.add(op);
-        if (!variant && eachVariant.default) {
-          const matches = variantSelector.value.match(versionMatcher);
-          variant = matches[1];
-          jvmVariant = matches[2];
-        }
-      });
+const jdkMatcher = /(openjdk\d+|amber)/;
+const jvmMatcher = /([a-zA-Z0-9]+)/;
+function setRadioSelectors() {
+  var listedVariants = [];
+  function createRadioButtons(name, group, label, element) {
+    if (!listedVariants.includes(name)) {
+      var btnLabel = document.createElement('label');
+      btnLabel.setAttribute('class', 'btn-label');
+      var input = document.createElement('input');
+      input.setAttribute('type', 'radio');
+      input.setAttribute('name', group);
+      input.setAttribute('value', name);
+      input.setAttribute('class', 'radio-button');
+      btnLabel.appendChild(input);
+      btnLabel.innerHTML += '<span>' + label + '</span>';
+      element.appendChild(btnLabel);
+      listedVariants.push(name);
     }
-
-    if (!variant) {
-      variant = variants[0].searchableName;
-    }
-
-    variantSelector.value = variant + '-' + jvmVariant;
-
-    if (variantSelector.value === '') {
-      var op = new Option();
-      op.value = 'unknown';
-      op.text = 'Select a variant';
-      variantSelector.options.add(op);
-      variantSelector.value = 'unknown';
-      errorContainer.innerHTML = '<p>Error: no such variant. Please select a valid variant from the drop-down list.</p>';
-    }
-
-    variantSelector.onchange = function () {
-      const matches = variantSelector.value.match(versionMatcher);
-      const versionNumber = matches[1];
-      const jvmVariant = matches[2];
-      setUrlQuery('variant', versionNumber, 'jvmVariant', jvmVariant);
-    };
   }
+  variants.forEach(function (eachVariant) {
+    var splitVariant = eachVariant.searchableName.split('-');
+    var jdkName = splitVariant[0];
+    var jvmName = splitVariant[1];
+    createRadioButtons(jdkName, 'jdk', eachVariant.label, jdkSelector);
+    createRadioButtons(jvmName, 'jvm', eachVariant.jvm, jvmSelector);
+  });
+
+  var jdkButtons = document.getElementsByName('jdk');
+  var jvmButtons = document.getElementsByName('jvm');
+
+  var versionNumber;
+  jdkSelector.onchange = function () {
+    for (var i = 0; i < jdkButtons.length; i++) {
+      if (jdkButtons[i].checked) {
+        const matches = jdkButtons[i].value.match(jdkMatcher);
+        versionNumber = matches[1];
+      }
+    }
+    setUrlQuery('variant', versionNumber, 'jvmVariant', jvmVariant);
+  };
+  jvmSelector.onchange = function () {
+    for (var i = 0; i < jvmButtons.length; i++) {
+      if (jvmButtons[i].checked) {
+        var matches = jvmButtons[i].value.match(jvmMatcher);
+        jvmVariant = matches[1];
+      }
+    }
+    setUrlQuery('variant', variant, 'jvmVariant', jvmVariant);
+  };
+  jdkButtons.forEach(function (button) {
+    if (button.value == (variant)) {
+      button.setAttribute('checked', 'checked');
+    }
+  });
+  jvmButtons.forEach(function (button) {
+    if (button.value == (jvmVariant)) {
+      button.setAttribute('checked', 'checked');
+    }
+  });
 }
 
 /* eslint-disable no-unused-vars */

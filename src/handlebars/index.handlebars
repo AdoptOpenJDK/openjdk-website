@@ -13,10 +13,17 @@
     <h2 id="dl-text" class="animated fadeIn">Downloads</h2>
 
     <div id="error-container"></div>
+
+    <div class="btn-container">
+      <form id="jdk-selector" class="btn-form">
+        <h3>1. Choose a Version</h3>
+      </form>
+      <form id="jvm-selector" class="btn-form">
+        <h3>2. Choose a JVM</h3>
+      </form>
+    </div>
+
     <div id='loading'><img src='dist/assets/loading_dots.gif' height='40' width='40'></div>
-
-    <select id="variant-selector"></select>
-
     <a href="./releases.html" class="dl-button a-button fadeIn invisible" id="dl-latest">
       <div id="dl-version">
         <i id="dl-icon" class="fa fa-download" aria-hidden="true"></i>

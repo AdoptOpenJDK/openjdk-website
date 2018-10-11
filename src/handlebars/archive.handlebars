@@ -22,7 +22,14 @@
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
 
     <div id="archive-list" class="hide">
-      <select id="variant-selector"></select>
+      <div class="btn-container">
+        <form id="jdk-selector" class="btn-form">
+          <h3>1. Choose a Version</h3>
+        </form>
+        <form id="jvm-selector" class="btn-form">
+          <h3>2. Choose a JVM</h3>
+        </form>
+      </div>
       <div id="pagination-container"></div>
       <table class='archive-container'>
         <tbody id='archive-table-body'>

@@ -15,6 +15,18 @@
   #footer-social-bar {
     display: block;
   }
+  .btn-container {
+    margin-left: 0;
+  }
+
+  .btn-form {
+    display: block;
+    width: 100%;
+  }
+
+  .btn-form:first-child {
+    margin-bottom: 3rem;
+  }
 
   a.dl-button {
     width: 100%;

@@ -481,7 +481,7 @@ div.anchor {
 }
 
 // SELECT ELEMENT - REMOVING DEFAULT STYLING
-select#variant-selector, select#platform-selector {
+select#platform-selector {
   // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
   margin: auto;
   margin-top: 2rem;
@@ -496,31 +496,51 @@ select#variant-selector, select#platform-selector {
   cursor: pointer;
 }
 
-select#variant-selector {
-  // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
-  display: block;
-}
-
-select#variant-selector:hover, select#platform-selector:hover {
+select#platform-selector:hover {
   background-color: #eaebec;
 }
 
-select#variant-selector:focus, select#platform-selector:focus {
+select#platform-selector:focus {
   outline:0;
 }
 
-
-select#variant-selector::-ms-expand, select#platform-selector::-ms-expand {
+select#platform-selector::-ms-expand {
     display: none;
 }
 
 @media screen and (min-width:0\0) {
-  select#variant-selector, select#platform-selector {
+    select#platform-selector {
     background:none\9;
     padding: 5px\9;
   }
 }
 // END SELECT ELEMENT
+
+// RADIO BUTTON STYLING
+.btn-container {
+  margin: 2rem auto;
+}
+.btn-form {
+  display: inline-block;
+  width: 25%;
+  margin: 0 auto;
+  vertical-align: top;
+}
+.btn-label, .btn-form > h3 {
+  display: block;
+  width: 30%;
+  text-align: left;
+  margin: 0.5rem auto;
+  white-space: nowrap;
+}
+.btn-label {
+  padding-left: 1.5rem;
+}
+.radio-button {
+  margin-right: 0.5rem;
+  min-width: 0.5rem;
+}
+// END OF RADIO BUTTON STYLING
 
 /* TOOLTIP STYLING */
 [data-tooltip] {
