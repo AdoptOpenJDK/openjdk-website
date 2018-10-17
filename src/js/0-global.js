@@ -358,7 +358,17 @@ const jvmMatcher = /([a-zA-Z0-9]+)/;
 function setRadioSelectors() {
   var listedVariants = [];
   function createRadioButtons(name, group, label, element) {
-    if (!listedVariants.includes(name)) {
+    var generateButtons = true;
+    if (listedVariants.length == 0) {
+      generateButtons = true;
+    } else {
+      for (var i = 0; i < listedVariants.length; i++) {
+        if (listedVariants[i] == name) {
+          generateButtons = false;
+        }
+      }
+    }
+    if (generateButtons == true) {
       var btnLabel = document.createElement('label');
       btnLabel.setAttribute('class', 'btn-label');
       var input = document.createElement('input');
@@ -372,13 +382,14 @@ function setRadioSelectors() {
       listedVariants.push(name);
     }
   }
-  variants.forEach(function (eachVariant) {
-    var splitVariant = eachVariant.searchableName.split('-');
+
+  for (var x = 0; x < variants.length; x++) {
+    var splitVariant = variants[x].searchableName.split('-');
     var jdkName = splitVariant[0];
     var jvmName = splitVariant[1];
-    createRadioButtons(jdkName, 'jdk', eachVariant.label, jdkSelector);
-    createRadioButtons(jvmName, 'jvm', eachVariant.jvm, jvmSelector);
-  });
+    createRadioButtons(jdkName, 'jdk', variants[x].label, jdkSelector);
+    createRadioButtons(jvmName, 'jvm', variants[x].jvm, jvmSelector);
+  }
 
   var jdkButtons = document.getElementsByName('jdk');
   var jvmButtons = document.getElementsByName('jvm');
@@ -402,16 +413,16 @@ function setRadioSelectors() {
     }
     setUrlQuery('variant', variant, 'jvmVariant', jvmVariant);
   };
-  jdkButtons.forEach(function (button) {
-    if (button.value == (variant)) {
-      button.setAttribute('checked', 'checked');
+  for (var i = 0; i < jdkButtons.length; i++) {
+    if (jdkButtons[i].value == (variant)) {
+      jdkButtons[i].setAttribute('checked', 'checked');
     }
-  });
-  jvmButtons.forEach(function (button) {
-    if (button.value == (jvmVariant)) {
-      button.setAttribute('checked', 'checked');
+  }
+  for (var j = 0; j < jvmButtons.length; j++) {
+    if (jvmButtons[j].value == (jvmVariant)) {
+      jvmButtons[j].setAttribute('checked', 'checked');
     }
-  });
+  }
 }
 
 /* eslint-disable no-unused-vars */
