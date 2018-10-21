@@ -150,7 +150,7 @@ function buildArchiveHTML(releases, jckJSON) {
     RELEASEARRAY.push(RELEASEOBJECT);
   }
 
-  // Sort releases by in descending order
+  // Sort releases by date/timestamp in descending order
   RELEASEARRAY.sort(function (a, b) {
     return b.thisReleaseDate - a.thisReleaseDate;
   });
