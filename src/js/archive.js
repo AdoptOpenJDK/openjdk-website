@@ -1,6 +1,6 @@
 var ARCHIVEDATA;
 
-// When releases page loads, run:
+// When archive page loads, run:
 /* eslint-disable no-unused-vars */
 function onArchiveLoad() {
   /* eslint-enable no-unused-vars */
@@ -44,11 +44,12 @@ function buildArchiveHTML(releases, jckJSON) {
     var eachRelease = releases[i];
 
     // set values for this release, ready to inject into HTML
-    var publishedAt = eachRelease.timestamp;
+    var publishedAt = moment(eachRelease.timestamp);
     RELEASEOBJECT.thisReleaseName = eachRelease.release_name;
-    RELEASEOBJECT.thisReleaseDay = moment(publishedAt).format('D');
-    RELEASEOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
-    RELEASEOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
+    RELEASEOBJECT.thisReleaseDate = publishedAt.toDate();
+    RELEASEOBJECT.thisReleaseDay = publishedAt.format('D');
+    RELEASEOBJECT.thisReleaseMonth = publishedAt.format('MMMM');
+    RELEASEOBJECT.thisReleaseYear = publishedAt.format('YYYY');
     RELEASEOBJECT.thisGitLink = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'releases') + '/releases/tag/' + RELEASEOBJECT.thisReleaseName);
 
     // create an array of the details for each asset that is attached to this release
@@ -148,6 +149,11 @@ function buildArchiveHTML(releases, jckJSON) {
     RELEASEOBJECT.thisPlatformAssets = ASSETARRAY;
     RELEASEARRAY.push(RELEASEOBJECT);
   }
+
+  // Sort releases by in descending order
+  RELEASEARRAY.sort(function (a, b) {
+    return b.thisReleaseDate - a.thisReleaseDate;
+  });
 
   ARCHIVEDATA.htmlTemplate = RELEASEARRAY;
   var template = Handlebars.compile(document.getElementById('template').innerHTML);
