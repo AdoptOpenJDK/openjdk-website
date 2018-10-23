@@ -18,8 +18,8 @@ function onIndexLoad() {
 function removeRadioButtons() {
   var buttons = document.getElementsByClassName('btn-label');
   for (var a = 0; a < buttons.length; a++) {
-    if (buttons[a].firstChild.value == "openjdk9" || buttons[a].firstChild.value == "openjdk10") {
-      buttons[a].style.display = "none";
+    if (buttons[a].firstChild.value == 'openjdk9' || buttons[a].firstChild.value == 'openjdk10') {
+      buttons[a].style.display = 'none';
     }
   }
 }

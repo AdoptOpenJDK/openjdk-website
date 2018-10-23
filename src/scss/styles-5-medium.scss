@@ -8,13 +8,19 @@
     top: initial;
     transform: initial;
   }
-  .btn-container {
-    margin-left: 10%;
+
+  .btn-container > form:first-child {
+    margin: 2rem auto;
   }
+  .btn-container > form:last-child {
+    padding-right: 0;
+  }
+
   .btn-form {
     display: block;
-    width: 100%;
+    margin: 0 auto;
   }
+
   .btn-form:first-child {
     margin-bottom: 3rem;
   }
