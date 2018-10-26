@@ -131,8 +131,9 @@ h2.transition-bright {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
   position: relative;
-  left: 13%;
+  left: 58%;
   margin-top: 1rem;
+  width: 10%;
 }
 .popup-heading {
   height: 2.5rem;
@@ -150,10 +151,11 @@ h2.transition-bright {
 .popup-content {
   display: none;
   font-size: 0.8rem;
-  width: 20%;
+  width: 25%;
   position: absolute;
-  left: 56%;
-  margin-top: -2%;
+  left: 69%;
+  top: 81%;
+  background: white;
 }
 
 .popup-text {
@@ -166,16 +168,13 @@ h2.transition-bright {
 
 .popup-text > p {
   line-height: 1rem;
-  margin-top: 0;
 }
 
 /* Popup arrow */
-.popup .popup-content::after {
+.popup-heading::after {
   content: "";
   position: absolute;
-  top: 0.7rem;
-  left: 0;
-  margin-left: -6%;
+  margin-left: -4.5%;
   border-width: 0.5rem;
   border-style: solid;
   border-color: transparent $brighterblue transparent transparent;
@@ -191,6 +190,16 @@ h2.transition-bright {
 
 .popup-text a:active {
   color: $brighterblue;
+}
+
+.openj9-text {
+  margin-top: 2rem;
+  margin-bottom: -0.2rem;
+}
+
+.hotspot-text {
+  margin-top: 0.3rem;
+  margin-bottom: -0.2rem;
 }
 
 .show {

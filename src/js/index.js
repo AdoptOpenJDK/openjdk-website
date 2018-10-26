@@ -14,11 +14,6 @@ function onIndexLoad() {
 }
 /* eslint-enable no-unused-vars */
 
-function togglePopup() {
-  var popup = document.getElementById("jvm-popup");
-  popup.classList.toggle("show");
-}
-
 // INDEX PAGE FUNCTIONS
 function removeRadioButtons() {
   var buttons = document.getElementsByClassName('btn-label');
