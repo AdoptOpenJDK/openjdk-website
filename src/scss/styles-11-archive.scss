@@ -8,6 +8,12 @@ $tableblue-even: #1F2F4E;
 
 // ARCHIVE CSS
 
+#archives-page .callout {
+  max-width: 50rem;
+  margin: auto auto 2em;
+  text-align: left;
+}
+
 #archive-list {
   overflow: auto;
 }
