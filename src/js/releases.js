@@ -57,7 +57,7 @@ function buildLatestHTML(releasesJson, jckJSON, assetArray) {
   // populate the page with the release's information
   var publishedAt = (releasesJson.timestamp);
   document.getElementById('latest-build-name').innerHTML = '<var release-name>' + releasesJson.release_name + '</var>';
-  document.getElementById('latest-build-name').href = ('https://github.com/AdoptOpenJDK/' + getRepoName(true, 'releases') + '/releases/tag/' + releasesJson.release_name);
+  document.getElementById('latest-build-name').href = releasesJson.release_link;
   document.getElementById('latest-date').innerHTML = ('<var>' + moment(publishedAt).format('D') + '</var> ' + moment(publishedAt).format('MMMM') + ' <var>' + moment(publishedAt).format('YYYY') + '</var>');
   document.getElementById('latest-timestamp').innerHTML = publishedAt;
 
