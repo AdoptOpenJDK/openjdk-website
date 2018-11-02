@@ -5,6 +5,7 @@
       "officialName": "OpenJDK 8 with Hotspot",
       "jvm": "Hotspot",
       "label": "OpenJDK 8",
+      "lts": true,
       "default": true
     },
     {
@@ -13,13 +14,15 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 8",
+      "lts": true,
       "descriptionLink": "https://www.eclipse.org/openj9"
     },
     {
       "searchableName": "openjdk9-hotspot",
       "officialName": "OpenJDK 9 with Hotspot",
       "jvm": "Hotspot",
-      "label": "OpenJDK 9"
+      "label": "OpenJDK 9",
+      "lts": false
     },
     {
       "searchableName": "openjdk9-openj9",
@@ -27,13 +30,15 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 9",
+      "lts": false,
       "descriptionLink": "https://www.eclipse.org/openj9"
     },
     {
       "searchableName": "openjdk10-hotspot",
       "officialName": "OpenJDK 10 with Hotspot",
       "jvm": "Hotspot",
-      "label": "OpenJDK 10"
+      "label": "OpenJDK 10",
+      "lts": false
     },
     {
       "searchableName": "openjdk10-openj9",
@@ -41,13 +46,15 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 10",
+      "lts": false,
       "descriptionLink": "https://www.eclipse.org/openj9"
     },
     {
       "searchableName": "openjdk11-hotspot",
       "officialName": "OpenJDK 11 with Hotspot",
       "jvm": "Hotspot",
-      "label": "OpenJDK 11"
+      "label": "OpenJDK 11",
+      "lts": true
     },
     {
       "searchableName": "openjdk11-openj9",
@@ -55,6 +62,7 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 11",
+      "lts": true,
       "descriptionLink": "https://www.eclipse.org/openj9"
     }
   ],

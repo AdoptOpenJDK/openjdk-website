@@ -357,7 +357,7 @@ const jdkMatcher = /(openjdk\d+|amber)/;
 const jvmMatcher = /([a-zA-Z0-9]+)/;
 function setRadioSelectors() {
   var listedVariants = [];
-  function createRadioButtons(name, group, label, element) {
+  function createRadioButtons(name, group, variant, element) {
     var generateButtons = true;
     if (listedVariants.length == 0) {
       generateButtons = true;
@@ -377,7 +377,15 @@ function setRadioSelectors() {
       input.setAttribute('value', name);
       input.setAttribute('class', 'radio-button');
       btnLabel.appendChild(input);
-      btnLabel.innerHTML += '<span>' + label + '</span>';
+      if (group === 'jdk') {
+        if (variant.lts) {
+          btnLabel.innerHTML += '<span>' + variant.label + ' (LTS)</span>';
+        } else {
+          btnLabel.innerHTML += '<span>' + variant.label + '</span>';
+        }
+      } else {
+        btnLabel.innerHTML += '<span>' + variant.jvm + '</span>';
+      }
       element.appendChild(btnLabel);
       listedVariants.push(name);
     }
@@ -387,8 +395,8 @@ function setRadioSelectors() {
     var splitVariant = variants[x].searchableName.split('-');
     var jdkName = splitVariant[0];
     var jvmName = splitVariant[1];
-    createRadioButtons(jdkName, 'jdk', variants[x].label, jdkSelector);
-    createRadioButtons(jvmName, 'jvm', variants[x].jvm, jvmSelector);
+    createRadioButtons(jdkName, 'jdk', variants[x], jdkSelector);
+    createRadioButtons(jvmName, 'jvm', variants[x], jvmSelector);
   }
 
   var jdkButtons = document.getElementsByName('jdk');
