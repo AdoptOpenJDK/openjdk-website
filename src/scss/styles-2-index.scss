@@ -193,7 +193,7 @@ h2.transition-bright {
   margin-top: 1rem;
 }
 
-.help-jvm:hover ~ .popup-content {
+.help-jvm:hover ~ .popup-content, .popup-content:hover {
     visibility: visible;
 }
 
