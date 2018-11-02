@@ -550,6 +550,7 @@ select#platform-selector::-ms-expand {
   width: 100%;
 }
 .radio-button {
+  min-width: 0;
   margin-right: 0.5rem;
 }
 // END OF RADIO BUTTON STYLING
