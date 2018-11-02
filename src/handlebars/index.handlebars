@@ -19,22 +19,21 @@
         <h3>1. Choose a Version</h3>
       </form>
       <form id="jvm-selector" class="btn-form">
-        <h3>2. Choose a JVM</h3>
+        <h3>2. Choose a JVM
+          <span class="help-jvm">Help Me Choose</span>
+          <div class="popup-content" id="jvm-popup">
+            <div class="popup-heading">
+              <h4>Choosing the right JVM</h4>
+            </div>
+            <div class="popup-text">
+              <p class="hotspot-text"><b>Hotspot</b> is the VM from the OpenJDK community. It is the most widely used VM today (e.g. It is used in Oracle's JDK) and is suitable for all workloads.</p>
+              <p>For more details see <a target="_blank" href="https://openjdk.java.net">OpenJDK</a>.</p>
+              <p class="openj9-text"><b>Eclipse OpenJ9</b> is the VM that was open sourced by IBM and is also suitable for running all workloads. This variant uses the same class libraries from OpenJDK, i.e. It is interchangeable from the Hotspot variant as far as Java programmers are concerned.</p>
+              <p>For more details see <a target="_blank" href="https://www.eclipse.org/openj9/">Eclipse OpenJ9</a>.</p>
+            </div>
+          </div>
+        </h3>
       </form>
-      <div class="popup" onclick="togglePopup()">
-        <span>Help Me Choose</span>
-      </div>
-      <div class="popup-content" id="jvm-popup">
-        <div class="popup-heading">
-          <h4>Choosing the right JVM</h4>
-        </div>
-        <div class="popup-text">
-          <p class="hotspot-text">Hotspot is the VM from the OpenJDK community. It is the most widely used VM today (e.g. It is used in Oracle's JDK) and is suitable for all workloads.</p>
-          <p>For more details see <a target="_blank" href="https://openjdk.java.net">OpenJDK</a>.</p>
-          <p class="openj9-text">Eclipse OpenJ9 is the VM that was open sourced by IBM and is also suitable for running all workloads. This variant uses the same class libraries from OpenJDK, i.e. It is interchangeable from the Hotspot variant as far as Java programmers are concerned.</p>
-          <p>For more details see <a target="_blank" href="https://www.eclipse.org/openj9/">Eclipse OpenJ9</a>.</p>
-        </div>
-      </div>
     </div>
 
     <div id='loading'><img src='dist/assets/loading_dots.gif' height='40' width='40'></div>
@@ -87,14 +86,6 @@
       <a target="_blank" href="https://calendar.adoptopenjdk.net"><h3 class="inline-block zero-margin">Meeting diary</h3></a>
     </div>
   </div>
-
-  <script type="text/javascript">
-  function togglePopup() {
-    var popup = document.getElementById('jvm-popup');
-    popup.classList.toggle('show');
-  }
-  </script>
-
 </main>
 
 {{> footer script='<script>onIndexLoad();</script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>'}}

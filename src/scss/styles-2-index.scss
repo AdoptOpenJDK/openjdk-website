@@ -125,85 +125,81 @@ h2.transition-bright {
   }
 }
 
-.popup {
-  cursor: pointer;
+.btn-form {
+  position: relative;
   -webkit-user-select: none; /* Chrome/Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
-  position: relative;
-  left: 58%;
-  margin-top: 1rem;
-  width: 10%;
-}
-.popup-heading {
-  height: 2.5rem;
-  background: $brighterblue;
-  color: white;
-  display: flex;
-  align-items: center;
 }
 
-.popup-heading > h4 {
-  font-size: 1rem;
+.help-jvm {
+  font-size: 0.9rem;
+  font-weight: 100;
   margin-left: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
 }
-
 .popup-content {
-  display: none;
-  font-size: 0.8rem;
-  width: 25%;
+  visibility: hidden;
   position: absolute;
-  left: 69%;
-  top: 81%;
+  width: 100%;
+  left: 21rem;
+  top: 0.4rem;
   background: white;
 }
 
+.popup-heading {
+  display: flex;
+  background: $brighterblue;
+  color: white;
+  height: 2.5rem;
+  align-items: center;
+  padding-left: 1rem;
+}
+.popup-heading > h4 {
+  font-weight: 400;
+}
 .popup-text {
-  border-left: 1px solid $accentgrey;
-  border-bottom: 1px solid $accentgrey;
-  border-right: 1px solid $accentgrey;
-  padding: 1rem;
+  border: 1px solid #dadada;
+  border-top: none;
+  font-size: 0.8rem;
+  padding: 0.5rem;
   text-align: left;
-}
-
-.popup-text > p {
-  line-height: 1rem;
-}
-
-/* Popup arrow */
-.popup-heading::after {
-  content: "";
-  position: absolute;
-  margin-left: -4.5%;
-  border-width: 0.5rem;
-  border-style: solid;
-  border-color: transparent $brighterblue transparent transparent;
-}
-
-.popup > span {
-  text-decoration: underline;
+  -webkit-user-select: text; /* Chrome/Safari */
+  -moz-user-select: text; /* Firefox */
+  -ms-user-select: text; /* IE10+ */
 }
 
 .popup-text a {
   color: $brighterblue;
 }
 
-.popup-text a:active {
-  color: $brighterblue;
-}
-
-.openj9-text {
-  margin-top: 2rem;
-  margin-bottom: -0.2rem;
+.hotspot-text, .openj9-text {
+  line-height: 1.2rem;
+  margin-bottom: -0.5rem;
+  white-space: normal;
 }
 
 .hotspot-text {
-  margin-top: 0.3rem;
-  margin-bottom: -0.2rem;
+  margin-top: 0;
 }
 
-.show {
-  display: block;
+.openj9-text {
+  margin-top: 1rem;
+}
+
+.help-jvm:hover ~ .popup-content {
+    visibility: visible;
+}
+
+/* Popup arrow */
+.popup-heading::after {
+  content: "";
+  position: absolute;
+  border-width: 0.5rem;
+  left: -1rem;
+  border-style: solid;
+  border-color: transparent $brighterblue transparent transparent;
 }
 
 @media all and (max-width: 300px) {
