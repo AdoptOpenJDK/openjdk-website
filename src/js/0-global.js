@@ -376,6 +376,7 @@ function setRadioSelectors() {
       input.setAttribute('name', group);
       input.setAttribute('value', name);
       input.setAttribute('class', 'radio-button');
+      input.setAttribute('lts', variant.lts)
       btnLabel.appendChild(input);
       if (group === 'jdk') {
         if (variant.lts) {
