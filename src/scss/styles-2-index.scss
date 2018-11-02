@@ -125,11 +125,16 @@ h2.transition-bright {
   }
 }
 
+.index-btn-container {
+  margin-left: 8rem;
+}
+
+.index-jvm-btn-form > .btn-label {
+  width: 30%;
+}
+
 .btn-form {
   position: relative;
-  -webkit-user-select: none; /* Chrome/Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+ */
 }
 
 .help-jvm {
@@ -142,9 +147,9 @@ h2.transition-bright {
 .popup-content {
   visibility: hidden;
   position: absolute;
-  width: 100%;
-  left: 21rem;
-  top: 0.4rem;
+  width: 20rem;
+  left: 18rem;
+  top: 1rem;
   background: white;
 }
 

@@ -518,37 +518,39 @@ select#platform-selector::-ms-expand {
 
 // RADIO BUTTON STYLING
 .btn-container {
-  margin: 2rem auto;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 }
+
 .btn-form {
-  display: inline-block;
-  width: 20%;
-  margin: 0 auto;
-  vertical-align: top;
-}
-.btn-label, .btn-form > h3 {
-  display: block;
-  width: 70%;
+  display: flex;
+  flex-direction: column;
   text-align: left;
-  margin: 0.5rem auto;
-  white-space: nowrap;
+  margin: 0 2rem;
 }
+
 .btn-form > h3 {
-  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
+
 .btn-label {
-  padding-left: 1.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+}
+
+.jvm-btn-form > .btn-label {
+  width: 60%;
+}
+
+.jdk-btn-form > .btn-label {
+  width: 70%;
 }
 .radio-button {
   margin-right: 0.5rem;
-  min-width: 0.5rem;
-}
-.btn-container > form:first-child {
-  margin-left: 10%;
-}
-.btn-container > form:last-child {
-  padding-right: 3%;
 }
 // END OF RADIO BUTTON STYLING
 
