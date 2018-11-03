@@ -1,3 +1,30 @@
+//Styling for iPad/Mobile devices
+@media only screen
+and (max-device-width : 1024px)  {
+  .help-jvm {
+    display: none;
+  }
+  .btn-container {
+    margin-left: 0;
+  }
+
+  .btn-label {
+    margin-left: 0.5rem;
+  }
+
+  .index-jvm-btn-form > .btn-label {
+    width: auto;
+  }
+
+  .btn-label {
+    white-space: nowrap;
+    font-size: 0.9rem;
+    display: flex;
+    margin-bottom: 0.6rem;
+    align-items: flex-end;
+  }
+}
+
 @media all and (max-width: 950px) {
 
   .vertically-center-parent {
@@ -9,20 +36,11 @@
     transform: initial;
   }
 
-  .btn-container > form:first-child {
-    margin: 2rem auto;
+  .btn-container {
+    margin-left: 0;
   }
-  .btn-container > form:last-child {
-    padding-right: 0;
-  }
-
-  .btn-form {
-    display: block;
-    margin: 0 auto;
-  }
-
-  .btn-form:first-child {
-    margin-bottom: 3rem;
+  .help-jvm {
+    display: none;
   }
 }
 
