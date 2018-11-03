@@ -125,6 +125,90 @@ h2.transition-bright {
   }
 }
 
+.index-btn-container {
+  margin-left: 8rem;
+}
+
+.index-jvm-btn-form > .btn-label {
+  width: 30%;
+}
+
+.btn-form {
+  position: relative;
+}
+
+.help-jvm {
+  font-size: 0.9rem;
+  font-weight: 100;
+  margin-left: 1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 1rem 1rem 1rem 0;
+}
+
+.popup-content {
+  visibility: hidden;
+  position: absolute;
+  width: 20rem;
+  left: 18rem;
+  top: 1rem;
+  background: white;
+}
+
+.popup-heading {
+  display: flex;
+  background: $brighterblue;
+  color: white;
+  height: 2.5rem;
+  align-items: center;
+  padding-left: 1rem;
+}
+.popup-heading > h4 {
+  font-weight: 400;
+}
+.popup-text {
+  border: 1px solid #dadada;
+  border-top: none;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  text-align: left;
+  -webkit-user-select: text; /* Chrome/Safari */
+  -moz-user-select: text; /* Firefox */
+  -ms-user-select: text; /* IE10+ */
+}
+
+.popup-text a {
+  color: $brighterblue;
+}
+
+.hotspot-text, .openj9-text {
+  line-height: 1.2rem;
+  margin-bottom: -0.5rem;
+  white-space: normal;
+}
+
+.hotspot-text {
+  margin-top: 0;
+}
+
+.openj9-text {
+  margin-top: 1rem;
+}
+
+.help-jvm:hover ~ .popup-content, .popup-content:hover {
+    visibility: visible;
+}
+
+/* Popup arrow */
+.popup-heading::after {
+  content: "";
+  position: absolute;
+  border-width: 0.5rem;
+  left: -1rem;
+  border-style: solid;
+  border-color: transparent $brighterblue transparent transparent;
+}
+
 @media all and (max-width: 300px) {
   #minor-links a {
     display: block;

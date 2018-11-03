@@ -13,10 +13,30 @@
     <h2 id="dl-text" class="animated fadeIn">Downloads</h2>
 
     <div id="error-container"></div>
+
+    <div class="btn-container index-btn-container">
+      <form id="jdk-selector" class="jdk-btn-form btn-form">
+        <h3>1. Choose a Version</h3>
+      </form>
+      <form id="jvm-selector" class="index-jvm-btn-form jvm-btn-form btn-form">
+        <h3>2. Choose a JVM
+          <span class="help-jvm">Help Me Choose</span>
+          <div class="popup-content" id="jvm-popup">
+            <div class="popup-heading">
+              <h4>Choosing the right JVM</h4>
+            </div>
+            <div class="popup-text">
+              <p class="hotspot-text"><b>Hotspot</b> is the VM from the OpenJDK community. It is the most widely used VM today and is used in Oracle’s JDK. It is suitable for all workloads.</p>
+              <p>For more details see <a target="_blank" href="https://openjdk.java.net/groups/hotspot/">OpenJDK Hotspot</a>.</p>
+              <p class="openj9-text"><b>OpenJ9</b> is the VM from the Eclipse community.  It is an enterprise-grade VM designed for low memory usage and fast start-up and is used in IBM’s JDK.  It is also suitable for running all workloads.</p>
+              <p>For more details see <a target="_blank" href="https://www.eclipse.org/openj9/">Eclipse OpenJ9</a>.</p>
+            </div>
+          </div>
+        </h3>
+      </form>
+    </div>
+
     <div id='loading'><img src='dist/assets/loading_dots.gif' height='40' width='40'></div>
-
-    <select id="variant-selector"></select>
-
     <a href="./releases.html" class="dl-button a-button fadeIn invisible" id="dl-latest">
       <div id="dl-version">
         <i id="dl-icon" class="fa fa-download" aria-hidden="true"></i>
@@ -66,7 +86,6 @@
       <a target="_blank" href="https://calendar.adoptopenjdk.net"><h3 class="inline-block zero-margin">Meeting diary</h3></a>
     </div>
   </div>
-
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>' script2='<script>onIndexLoad();</script>' }}
+{{> footer script='<script>onIndexLoad();</script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.4/platform.min.js"></script>'}}

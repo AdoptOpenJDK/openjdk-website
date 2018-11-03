@@ -15,10 +15,19 @@ function onIndexLoad() {
 /* eslint-enable no-unused-vars */
 
 // INDEX PAGE FUNCTIONS
-
+function removeRadioButtons() {
+  var buttons = document.getElementsByClassName('btn-label');
+  for (var a = 0; a < buttons.length; a++) {
+    console.log(buttons[a].firstChild.getAttribute('lts'));
+    if (buttons[a].firstChild.getAttribute('lts') == 'false') {
+      buttons[a].style.display = 'none';
+    }
+  }
+}
 /* eslint-disable no-unused-vars */
 function setDownloadSection() {
   loadPlatformsThenData(function() {
+    removeRadioButtons();
     var handleResponse = function (releasesJson) {
       if (releasesJson !== null && releasesJson !== 'undefined') {
 

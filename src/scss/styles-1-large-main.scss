@@ -481,7 +481,7 @@ div.anchor {
 }
 
 // SELECT ELEMENT - REMOVING DEFAULT STYLING
-select#variant-selector, select#platform-selector {
+select#platform-selector {
   // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
   margin: auto;
   margin-top: 2rem;
@@ -496,31 +496,64 @@ select#variant-selector, select#platform-selector {
   cursor: pointer;
 }
 
-select#variant-selector {
-  // CHANGE FROM DISPLAY NONE TO DISPLAY BLOCK TO ACTIVATE VARIANT SELECTOR
-  display: block;
-}
-
-select#variant-selector:hover, select#platform-selector:hover {
+select#platform-selector:hover {
   background-color: #eaebec;
 }
 
-select#variant-selector:focus, select#platform-selector:focus {
+select#platform-selector:focus {
   outline:0;
 }
 
-
-select#variant-selector::-ms-expand, select#platform-selector::-ms-expand {
+select#platform-selector::-ms-expand {
     display: none;
 }
 
 @media screen and (min-width:0\0) {
-  select#variant-selector, select#platform-selector {
+    select#platform-selector {
     background:none\9;
     padding: 5px\9;
   }
 }
 // END SELECT ELEMENT
+
+// RADIO BUTTON STYLING
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.btn-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 2rem;
+}
+
+.btn-form > h3 {
+  margin-bottom: 0.5rem;
+}
+
+.btn-label {
+  margin-left: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+}
+
+.jvm-btn-form > .btn-label {
+  width: 60%;
+}
+
+.jdk-btn-form > .btn-label {
+  width: 100%;
+}
+.radio-button {
+  min-width: 0;
+  margin-right: 0.5rem;
+}
+// END OF RADIO BUTTON STYLING
 
 /* TOOLTIP STYLING */
 [data-tooltip] {
