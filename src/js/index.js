@@ -42,14 +42,16 @@ function setDownloadSection() {
         return;
       }
 
+      // TODO: enable this request when 'jck.json' exists.  For now the 404 just slows things down.
       /* eslint-disable no-undef */
-      loadJSON(getRepoName(true, 'releases'), 'jck', function(response_jck) {
+      /*loadJSON(getRepoName(true, 'releases'), 'jck', function(response_jck) {
         var jckJSON = {}
         if (response_jck !== null) {
           jckJSON = JSON.parse(response_jck)
         }
         buildHomepageHTML(releasesJson, jckJSON, OS);
-      });
+      });*/
+      buildHomepageHTML(releasesJson, {}, OS);
     };
 
     /* eslint-disable no-undef */
