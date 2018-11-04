@@ -28,9 +28,17 @@ function removeRadioButtons() {
 function setDownloadSection() {
   loadPlatformsThenData(function() {
     removeRadioButtons();
+
+    // Try to match up the detected OS with a platform from 'config.json'
+    var OS = detectOS();
+
+    if (OS) {
+      dlText.innerHTML = 'Download for <var platform-name>' + OS.officialName + '</var>';
+    }
+    dlText.classList.remove('invisible');
+
     var handleResponse = function (releasesJson) {
       if (releasesJson !== null && releasesJson !== 'undefined') {
-
         /* eslint-disable no-undef */
         var repoName = getRepoName(true, 'releases');
 
@@ -40,7 +48,7 @@ function setDownloadSection() {
             if (response_jck !== null) {
               jckJSON = JSON.parse(response_jck)
             }
-            buildHomepageHTML(releasesJson, jckJSON);
+            buildHomepageHTML(releasesJson, jckJSON, OS);
           });
           return true;
         }
@@ -58,13 +66,11 @@ function setDownloadSection() {
 }
 
 /* eslint-disable no-unused-vars */
-function buildHomepageHTML(releasesJson, jckJSON) {
+function buildHomepageHTML(releasesJson, jckJSON, OS) {
   // set the download button's version number to the latest release
   dlVersionText.innerHTML = releasesJson.release_name;
 
   var assetArray = releasesJson.binaries;
-
-  var OS = detectOS(); // set a variable as an object containing all information about the user's OS (from the global.js 'platforms' array)
   var matchingFile = null;
 
   // if the OS has been detected...
@@ -116,17 +122,14 @@ function buildHomepageHTML(releasesJson, jckJSON) {
   // if there IS a matching binary for the user's OS...
   if (matchingFile) {
     dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
-    dlText.innerHTML = ('Download for <var platform-name>' + OS.officialName + '</var>'); // set the text to be OS-specific, using the full OS name.
     var thisBinarySize = Math.floor((matchingFile.binary_size) / 1024 / 1024);
     dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
-
   }
   // if there is NOT a matching binary for the user's OS...
   else {
     dlOther.classList.add('hide'); // hide the 'Other platforms' button
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
-    dlText.innerHTML = ('Downloads'); // change the text to be generic: 'Downloads'.
     /* eslint-disable no-undef */
     dlLatest.href = './releases.html?' + formSearchArgs('variant',variant,'jvmVariant', jvmVariant); // set the main download button's link to the latest releases page for all platforms.
   }
