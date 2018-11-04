@@ -38,22 +38,18 @@ function setDownloadSection() {
     dlText.classList.remove('invisible');
 
     var handleResponse = function (releasesJson) {
-      if (releasesJson !== null && releasesJson !== 'undefined') {
-        /* eslint-disable no-undef */
-        var repoName = getRepoName(true, 'releases');
-
-        if (typeof releasesJson !== 'undefined') { // if there are releases...
-          loadJSON(repoName, 'jck', function(response_jck) {
-            var jckJSON = {}
-            if (response_jck !== null) {
-              jckJSON = JSON.parse(response_jck)
-            }
-            buildHomepageHTML(releasesJson, jckJSON, OS);
-          });
-          return true;
-        }
+      if (!releasesJson || !releasesJson.release_name) {
+        return;
       }
-      return false;
+
+      /* eslint-disable no-undef */
+      loadJSON(getRepoName(true, 'releases'), 'jck', function(response_jck) {
+        var jckJSON = {}
+        if (response_jck !== null) {
+          jckJSON = JSON.parse(response_jck)
+        }
+        buildHomepageHTML(releasesJson, jckJSON, OS);
+      });
     };
 
     /* eslint-disable no-undef */
