@@ -51,6 +51,7 @@ function buildArchiveHTML(releases, jckJSON) {
     RELEASEOBJECT.thisReleaseMonth = publishedAt.format('MMMM');
     RELEASEOBJECT.thisReleaseYear = publishedAt.format('YYYY');
     RELEASEOBJECT.thisGitLink = eachRelease.release_link;
+    RELEASEOBJECT.thisDashLink = 'https://dash.adoptopenjdk.net/version.html?version=' + variant.replace('open','') + '&tag=' + encodeURIComponent(eachRelease.release_name);
 
     // create an array of the details for each asset that is attached to this release
     var assetArray = eachRelease.binaries;
