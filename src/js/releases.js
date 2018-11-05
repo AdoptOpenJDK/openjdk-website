@@ -15,17 +15,15 @@ function populateLatest() {
   loadPlatformsThenData(function () {
 
     var handleResponse = function (response) {
-
       // create an array of the details for each asset that is attached to a release
       var assetArray = response.binaries;
 
       if (assetArray.length === 0) {
-        return false
+        return;
       }
 
-      var repoName = getRepoName(true, 'releases');
-
-      loadJSON(repoName, 'jck', function (response_jck) {
+      // TODO: enable this request when 'jck.json' exists.  For now the 404 just slows things down.
+      /*loadJSON(getRepoName(true, 'releases'), 'jck', function (response_jck) {
 
         var jckJSON = {}
         if (response_jck !== null) {
@@ -33,9 +31,8 @@ function populateLatest() {
         }
 
         buildLatestHTML(response, jckJSON, assetArray);
-      });
-
-      return true;
+      });*/
+      buildLatestHTML(response, {}, assetArray);
     };
 
     loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {

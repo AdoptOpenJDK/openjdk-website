@@ -93,20 +93,13 @@ function displayInstallPlatform() {
   if (thisPlatformInstallation) {
     platformSelector.value = platformHash;
     thisPlatformInstallation.classList.remove('hide');
-  }
-
-  else {
+  } else {
     var currentValues = [];
     var platformSelectorOptions = Array.apply(null, platformSelector.options);
     platformSelectorOptions.forEach(function (eachOption) {
       currentValues.push(eachOption.value);
     });
-    if (currentValues.indexOf('unknown') === -1) {
-      var op = new Option();
-      op.value = 'unknown';
-      op.text = 'Select a platform';
-      platformSelector.options.add(op, 0);
-    }
+
     platformSelector.value = 'unknown';
   }
 }
@@ -122,7 +115,7 @@ function unselectInstallPlatform() {
 function setInstallationPlatformSelector(thisReleasePlatforms) {
 
   if (platformSelector) {
-    if (platformSelector.options.length === 0) {
+    if (platformSelector.options.length === 1) {
       thisReleasePlatforms.forEach(function (eachPlatform) {
         var op = new Option();
         op.value = eachPlatform.thisPlatformType;

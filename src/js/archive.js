@@ -15,14 +15,15 @@ function populateArchive() {
   loadPlatformsThenData(function () {
 
     var handleResponse = function (response) {
-      loadJSON(getRepoName(true, 'releases'), 'jck', function (response_jck) {
+      // TODO: enable this request when 'jck.json' exists.  For now the 404 just slows things down.
+      /*loadJSON(getRepoName(true, 'releases'), 'jck', function (response_jck) {
         var jckJSON = {}
         if (response_jck !== null) {
           jckJSON = JSON.parse(response_jck)
         }
         buildArchiveHTML(response, jckJSON);
-      });
-      return true;
+      });*/
+      buildArchiveHTML(response, {});
     };
 
     loadAssetInfo(variant, jvmVariant, 'releases', undefined, undefined, handleResponse, function () {
