@@ -35,14 +35,6 @@
     <div id="latest-container" class="invisible">
       <h3 id="description_header"></h3>
       <a id="description_link" href=""></a>
-      <h2 style="margin-bottom: 0.6rem;">Build <strong><a href="" id="latest-build-name" target="_blank"></a></strong></h2>
-
-      <table id="latest-metadata-table" cellspacing="0" cellpadding="0">
-        <tr>
-          <td><strong>Date: </strong><span id="latest-date"></span></td>
-          <td><strong>Timestamp: </strong><span id="latest-timestamp"></span></td>
-        </tr>
-      </table>
 
       <h2 id="latest-select-text" style="margin-bottom: 0.5rem;">Select a platform</h2>
       <br>
@@ -51,7 +43,9 @@
           <script id="template-selector" type="text/x-handlebars-template">
             \{{#each htmlTemplate}}
               <div class="latest-asset latest-grid-border" id='latest-selector-\{{thisPlatform}}' onclick='selectLatestPlatform("\{{thisPlatform}}")'>
-                <img alt='\{{thisOfficialName}} logo' src='\{{thisLogo}}'><var platform-name>\{{thisOfficialName}}</var>
+                <img alt='\{{thisOfficialName}} logo' src='\{{thisLogo}}' />
+                <h2 class="officialName"><var platform-name>\{{thisOfficialName}}</var></h2>
+                <p class="releaseName"><var release-name>\{{thisReleaseName}}</var></p>
               </div>
             \{{/each}}
           </script>
@@ -63,7 +57,8 @@
               <div id='latest-info-\{{thisPlatform}}' class='latest-info-container latest-grid-border hide'>
                 <div class='platform-section'>
                   <img alt='\{{thisOfficialName}} logo' src='\{{thisLogo}}'>
-                  <h2><var platform-name>\{{thisOfficialName}}</var></h2>
+                  <h2 class="officialName"><var platform-name>\{{thisOfficialName}}</var></h2>
+                  <p class="releaseName"><var release-name>\{{thisReleaseName}}</var></p>
                   <p onclick='unselectLatestPlatform();' class="latest-selector-back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to platforms</p>
                 </div>
                 <div class='content-section'>
@@ -73,7 +68,6 @@
                     <div class='latest-block'>
                       <span>Installer</span>
                       <a href='\{{thisInstallerLink}}' class='latest-download-button a-button installer-dl'>
-                        {{> jck-tick }}
                         <div class='large-dl-text'>Download
                           <div class='small-dl-text'><var installer-info>\{{thisInstallerExtension}} - \{{thisInstallerSize}} MB</var></div>
                         </div>
@@ -90,13 +84,13 @@
                       <div class='latest-block'>
                         <span>Binary</span>
                         <a href='\{{thisBinaryLink}}' class='latest-download-button a-button'>
-                          {{> jck-tick }}
                           <div class='large-dl-text'>Download
                             <div class='small-dl-text'><var binary-info>\{{thisBinaryExtension}} - \{{thisBinarySize}} MB</var></div>
                           </div>
                         </a>
                         <div class='latest-details'>
                           <p><a href='\{{thisChecksumLink}}' class='dark-link' target='_blank'>Checksum</a></p>
+                          <p>\{{thisReleaseDateTime}}</p>
                         </div>
                       </div>
                     \{{#if thisInstallerExists}}
