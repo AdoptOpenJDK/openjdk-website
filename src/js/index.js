@@ -125,7 +125,6 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
   }
   // if there is NOT a matching binary for the user's OS...
   else {
-    dlOther.classList.add('hide'); // hide the 'Other platforms' button
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
     /* eslint-disable no-undef */

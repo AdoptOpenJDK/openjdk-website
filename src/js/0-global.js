@@ -174,6 +174,27 @@ function toJson(response) {
 
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
+function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) {
+    if (release !== undefined) {
+        url += 'release=' + release + '&';
+    }
+    if (openjdkImp !== undefined) {
+        url += 'openjdk_impl=' + openjdkImp + '&';
+    }
+    if (type !== undefined) {
+        url += 'type=' + type + '&';
+    }
+
+    loadUrl(url, function (response) {
+        if (response === null) {
+            errorHandler();
+        } else {
+            response = toJson(response);
+            handleResponse(response, false)
+        }
+    });
+}
+
 /* eslint-disable no-unused-vars */
 function loadAssetInfo(variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) {
   if (variant === 'amber') {
@@ -181,25 +202,16 @@ function loadAssetInfo(variant, openjdkImp, releaseType, release, type, handleRe
   }
 
   let url = 'https://api.adoptopenjdk.net/v2/info/' + releaseType + '/' + variant + '?';
+  queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
+}
 
-  if (release !== undefined) {
-    url += 'release=' + release + '&';
-  }
-  if (openjdkImp !== undefined) {
-    url += 'openjdk_impl=' + openjdkImp + '&';
-  }
-  if (type !== undefined) {
-    url += 'type=' + type + '&';
+function loadLatestAssets(variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) {
+  if (variant === 'amber') {
+    variant = 'openjdk-amber'
   }
 
-  loadUrl(url, function (response) {
-    if (response === null) {
-      errorHandler();
-    } else {
-      response = toJson(response);
-      handleResponse(response, false)
-    }
-  });
+  let url = 'https://api.adoptopenjdk.net/v2/latestAssets/' + releaseType + '/' + variant + '?'
+  queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)

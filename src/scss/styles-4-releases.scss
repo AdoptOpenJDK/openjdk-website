@@ -161,6 +161,7 @@ $tableblue-even: #1F2F4E;
 .vertical-align{
   vertical-align: top;
 }
+
 .binary-grey .latest-block a.a-button {
   background-color: $accentgrey;
   &:hover {
@@ -186,4 +187,15 @@ $tableblue-even: #1F2F4E;
   img {
     height: 1.2rem;
   }
+}
+
+.releaseName {
+  font-size: 0.8rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.officialName {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }

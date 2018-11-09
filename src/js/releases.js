@@ -16,72 +16,47 @@ function populateLatest() {
 
     var handleResponse = function (response) {
       // create an array of the details for each asset that is attached to a release
-      var assetArray = response.binaries;
-
-      if (assetArray.length === 0) {
+      if (response.length === 0) {
         return;
       }
 
-      // TODO: enable this request when 'jck.json' exists.  For now the 404 just slows things down.
-      /*loadJSON(getRepoName(true, 'releases'), 'jck', function (response_jck) {
-
-        var jckJSON = {}
-        if (response_jck !== null) {
-          jckJSON = JSON.parse(response_jck)
-        }
-
-        buildLatestHTML(response, jckJSON, assetArray);
-      });*/
-      buildLatestHTML(response, {}, assetArray);
+      buildLatestHTML(response, {});
     };
 
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {
+    loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {
       errorContainer.innerHTML = '<p>There are no releases available for ' + variant + ' on the ' + jvmVariant + ' jvm. Please check our <a href=nightly.html?variant=' + variant + '&jvmVariant=' + jvmVariant + ' target=\'blank\'>Nightly Builds</a>.</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
   });
 }
 
-function buildLatestHTML(releasesJson, jckJSON, assetArray) {
+function buildLatestHTML(releasesJson) {
 
-  // populate with description
+  // Populate with description
   var variantObject = getVariantObject(variant + '-' + jvmVariant);
   if (variantObject.descriptionLink) {
     document.getElementById('description_header').innerHTML = 'What is ' + variantObject.description + '?';
     document.getElementById('description_link').innerHTML = 'Find out here';
     document.getElementById('description_link').href = variantObject.descriptionLink;
   }
+
   // populate the page with the release's information
-  var publishedAt = (releasesJson.timestamp);
-  document.getElementById('latest-build-name').innerHTML = '<var release-name>' + releasesJson.release_name + '</var>';
-  document.getElementById('latest-build-name').href = releasesJson.release_link;
-  document.getElementById('latest-date').innerHTML = ('<var>' + moment(publishedAt).format('D') + '</var> ' + moment(publishedAt).format('MMMM') + ' <var>' + moment(publishedAt).format('YYYY') + '</var>');
-  document.getElementById('latest-timestamp').innerHTML = publishedAt;
-
-
   var ASSETARRAY = [];
-  // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
-  assetArray.forEach(function (eachAsset) {
+  // For each asset attached to this release, check if it's a valid binary, then add a download block for it...
+  releasesJson.forEach(function (eachAsset) {
     var ASSETOBJECT = new Object();
     var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
     ASSETOBJECT.thisPlatform = findPlatform(eachAsset);
 
-    // check if the platform name is recognised...
+    // Check if the platform name is recognised...
     if (ASSETOBJECT.thisPlatform) {
       ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-
-      if (jckJSON == null || Object.keys(jckJSON).length == 0) {
-        ASSETOBJECT.thisVerified = false;
-      } else {
-        if (jckJSON[releasesJson.release_name] && jckJSON[releasesJson.release_name].hasOwnProperty(ASSETOBJECT.thisPlatform)) {
-          ASSETOBJECT.thisVerified = true;
-        } else {
-          ASSETOBJECT.thisVerified = false;
-        }
-      }
+      ASSETOBJECT.thisReleaseName = eachAsset.release_name;
+      ASSETOBJECT.thisReleaseLink = eachAsset.release_link;
+      ASSETOBJECT.thisReleaseDateTime = moment(eachAsset.timestamp).format('YYYY-MM-DD hh:mm:ss');
 
       // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
       ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
@@ -121,7 +96,6 @@ function buildLatestHTML(releasesJson, jckJSON, assetArray) {
           ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link
         }
       }
-
 
       if (ASSETOBJECT.thisPlatformExists === true) {
         ASSETARRAY.push(ASSETOBJECT);
