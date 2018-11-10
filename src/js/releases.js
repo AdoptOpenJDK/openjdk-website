@@ -1,11 +1,7 @@
-var RELEASEDATA;
-
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
 function onLatestLoad() {
   /* eslint-enable no-unused-vars */
-
-  RELEASEDATA = new Object();
   populateLatest(); // populate the Latest page
 }
 
@@ -31,7 +27,6 @@ function populateLatest() {
 }
 
 function buildLatestHTML(releasesJson) {
-
   // Populate with description
   var variantObject = getVariantObject(variant + '-' + jvmVariant);
   if (variantObject.descriptionLink) {
@@ -40,77 +35,62 @@ function buildLatestHTML(releasesJson) {
     document.getElementById('description_link').href = variantObject.descriptionLink;
   }
 
-  // populate the page with the release's information
-  var ASSETARRAY = [];
-  // For each asset attached to this release, check if it's a valid binary, then add a download block for it...
-  releasesJson.forEach(function (eachAsset) {
-    var ASSETOBJECT = new Object();
-    var nameOfFile = (eachAsset.binary_name);
-    var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the asset uppercase
-    ASSETOBJECT.thisPlatform = findPlatform(eachAsset);
+  // Array of releases that have binaries we want to display
+  var releases = [];
 
-    // Check if the platform name is recognised...
-    if (ASSETOBJECT.thisPlatform) {
-      ASSETOBJECT.thisLogo = getLogo(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisReleaseName = eachAsset.release_name;
-      ASSETOBJECT.thisReleaseLink = eachAsset.release_link;
-      ASSETOBJECT.thisReleaseDateTime = moment(eachAsset.timestamp).format('YYYY-MM-DD hh:mm:ss');
+  releasesJson.forEach((releaseAsset) => {
+    const platform = findPlatform(releaseAsset);
 
-      // if the filename contains both the platform name and the matching INSTALLER extension, add the relevant info to the asset object
-      ASSETOBJECT.thisInstallerExtension = getInstallerExt(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
-      if (uppercaseFilename.indexOf(ASSETOBJECT.thisInstallerExtension.toUpperCase()) >= 0) {
-        if (ASSETARRAY.length > 0) {
-          ASSETARRAY.forEach(function (asset) {
-            if (asset.thisPlatform === ASSETOBJECT.thisPlatform) {
-              ASSETARRAY.pop();
-            }
-          });
-        }
-        ASSETOBJECT.thisPlatformExists = true;
-        ASSETOBJECT.thisInstallerExists = true;
-        ASSETOBJECT.thisInstallerLink = eachAsset.binary_link;
-        ASSETOBJECT.thisInstallerSize = Math.floor(eachAsset.binary_size / 1024 / 1024);
-        ASSETOBJECT.thisBinaryExists = true;
-        ASSETOBJECT.thisBinaryLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, ASSETOBJECT.thisBinaryExtension);
-        ASSETOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
-        ASSETOBJECT.thisChecksumLink = eachAsset.binary_link.replace(ASSETOBJECT.thisInstallerExtension, '.sha256.txt');
-      }
-      // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
-      if (uppercaseFilename.indexOf(ASSETOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
-        var installerExist = false;
-        if (ASSETARRAY.length > 0) {
-          ASSETARRAY.forEach(function (asset) {
-            if (asset.thisPlatform === ASSETOBJECT.thisPlatform) {
-              installerExist = true;
-            }
-          });
-        }
-        if (!installerExist) {
-          ASSETOBJECT.thisPlatformExists = true;
-          ASSETOBJECT.thisBinaryExists = true;
-          ASSETOBJECT.thisBinaryLink = eachAsset.binary_link;
-          ASSETOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
-          ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link
-        }
-      }
+    // Skip this asset if its platform could not be matched (see the website's 'config.json')
+    if (!platform) {
+      return;
+    }
 
-      if (ASSETOBJECT.thisPlatformExists === true) {
-        ASSETARRAY.push(ASSETOBJECT);
-      }
+    // Skip this asset if it's not a binary type we're interested in displaying
+    const binary_type = releaseAsset.binary_type.toUpperCase();
+    if (['INSTALLER', 'JDK', 'JRE'].indexOf(binary_type) === -1) {
+      return;
+    }
 
+    // Get the existing release asset (passed to the template) or define a new one
+    var release = releases.find((p) => p.platform_name === platform);
+    if (!release) {
+      release = {
+        platform_name: platform,
+        platform_official_name: getOfficialName(platform),
+        platform_ordinal: getPlatformOrder(platform),
+        platform_logo: getLogo(platform),
+
+        release_name: releaseAsset.release_name,
+        release_link: releaseAsset.release_link,
+        release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
+
+        binaries: []
+      };
+    }
+
+    // Add the new binary to the release asset
+    release.binaries.push({
+      type: binary_type,
+      extension: 'INSTALLER' === binary_type ? getInstallerExt(platform) : getBinaryExt(platform),
+      link: releaseAsset.binary_link,
+      checksum_link: releaseAsset.checksum_link,
+      size: Math.floor(releaseAsset.binary_size / 1024 / 1024)
+    });
+
+    // We have the first binary, so add the release asset.
+    if (release.binaries.length === 1) {
+      releases.push(release);
     }
   });
 
-  ASSETARRAY = orderPlatforms(ASSETARRAY);
+  releases = orderPlatforms(releases, 'platform_ordinal');
+  releases.forEach((r) => { r.binaries.sort((a, b) => a.type > b.type ? 1 : a.type < b.type ? -1 : 0) });
 
-  RELEASEDATA.htmlTemplate = ASSETARRAY;
-  var templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
-  var templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
-  document.getElementById('latest-selector').innerHTML = templateSelector(RELEASEDATA);
-  document.getElementById('latest-info').innerHTML = templateInfo(RELEASEDATA);
+  const templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
+  const templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
+  document.getElementById('latest-selector').innerHTML = templateSelector({releases});
+  document.getElementById('latest-info').innerHTML = templateInfo({releases});
 
   setTickLink();
 
