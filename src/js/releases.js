@@ -53,7 +53,7 @@ function buildLatestHTML(releasesJson) {
     }
 
     // Get the existing release asset (passed to the template) or define a new one
-    var release = releases.find((p) => p.platform_name === platform);
+    var release = releases.find((release) => release.platform_name === platform);
     if (!release) {
       release = {
         platform_name: platform,
@@ -85,7 +85,9 @@ function buildLatestHTML(releasesJson) {
   });
 
   releases = orderPlatforms(releases, 'platform_ordinal');
-  releases.forEach((r) => { r.binaries.sort((a, b) => a.type > b.type ? 1 : a.type < b.type ? -1 : 0) });
+  releases.forEach((release) => {
+    release.binaries.sort((binaryA, binaryB) => binaryA.type > binaryB.type ? 1 : binaryA.type < binaryB.type ? -1 : 0);
+  });
 
   const templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
   const templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
