@@ -72,11 +72,11 @@ function getPlatformOrder(searchableName) {
   return index;
 }
 
-function orderPlatforms(inputArray) {
+function orderPlatforms(inputArray, attr = 'thisPlatformOrder') {
   function compareOrder(thisAsset, nextAsset) {
-    if (thisAsset.thisPlatformOrder < nextAsset.thisPlatformOrder)
+    if (thisAsset[attr] < nextAsset[attr])
       return -1;
-    if (thisAsset.thisPlatformOrder > nextAsset.thisPlatformOrder)
+    if (thisAsset[attr] > nextAsset[attr])
       return 1;
     return 0;
   }

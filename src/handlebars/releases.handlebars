@@ -41,11 +41,12 @@
 
         <div id="latest-selector">
           <script id="template-selector" type="text/x-handlebars-template">
-            \{{#each htmlTemplate}}
-              <div class="latest-asset latest-grid-border" id='latest-selector-\{{thisPlatform}}' onclick='selectLatestPlatform("\{{thisPlatform}}")'>
-                <img alt='\{{thisOfficialName}} logo' src='\{{thisLogo}}' />
-                <h2 class="officialName"><var platform-name>\{{thisOfficialName}}</var></h2>
-                <p class="releaseName"><var release-name>\{{thisReleaseName}}</var></p>
+            {{! Create each platform's selector tile }}
+            \{{#each releases}}
+              <div class="latest-asset latest-grid-border" id='latest-selector-\{{platform_name}}' onclick='selectLatestPlatform("\{{platform_name}}")'>
+                <img alt='\{{platform_official_name}} logo' src='\{{platform_logo}}' />
+                <h2 class="officialName"><var platform-name>\{{platform_official_name}}</var></h2>
+                <p class="releaseName"><var release-name>\{{release_name}}</var></p>
               </div>
             \{{/each}}
           </script>
@@ -53,50 +54,31 @@
 
         <div id="latest-info">
           <script id="template-info" type="text/x-handlebars-template">
-            \{{#each htmlTemplate}}
-              <div id='latest-info-\{{thisPlatform}}' class='latest-info-container latest-grid-border hide'>
+            {{! Create each platform's "latest release" info view }}
+            \{{#each releases}}
+              <div id='latest-info-\{{platform_name}}' class='latest-info-container latest-grid-border hide'>
                 <div class='platform-section'>
-                  <img alt='\{{thisOfficialName}} logo' src='\{{thisLogo}}'>
-                  <h2 class="officialName"><var platform-name>\{{thisOfficialName}}</var></h2>
-                  <p class="releaseName"><var release-name>\{{thisReleaseName}}</var></p>
+                  <img alt='\{{platform_official_name}} logo' src='\{{platform_logo}}'>
+                  <h2 class="officialName"><var platform-name>\{{platform_official_name}}</var></h2>
+                  <p class="releaseName"><a href='\{{release_link}}' class='dark-link' target='_blank'><var release-name>\{{release_name}}</var></a></p>
+                  <p class="releaseDateTime">\{{release_datetime}}</p>
                   <p onclick='unselectLatestPlatform();' class="latest-selector-back-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to platforms</p>
                 </div>
                 <div class='content-section'>
 
-                  \{{#if thisInstallerExists}}
-                   <div class="inline-block">
-                    <div class='latest-block'>
-                      <span>Installer</span>
-                      <a href='\{{thisInstallerLink}}' class='latest-download-button a-button installer-dl'>
-                        <div class='large-dl-text'>Download
-                          <div class='small-dl-text'><var installer-info>\{{thisInstallerExtension}} - \{{thisInstallerSize}} MB</var></div>
-                        </div>
-                      </a>
+                  {{! show the release's binaries }}
+                  \{{#each binaries}}
+                  <div class='latest-block'>
+                    <a href='\{{link}}' class='latest-download-button a-button'>
+                      <div class='large-dl-text'>Download \{{type}}
+                        <div class='small-dl-text'>\{{extension}} - \{{size}} MB</div>
+                      </div>
+                    </a>
+                    <div class='latest-details'>
+                      <p><a href='\{{checksum_link}}' class='dark-link' target='_blank'>Checksum</a></p>
                     </div>
                   </div>
-                  \{{/if}}
-
-                  \{{#if thisBinaryExists}}
-
-                    \{{#if thisInstallerExists}}
-                      <div class='inline-block binary-grey'>
-                    \{{/if}}
-                      <div class='latest-block'>
-                        <span>Binary</span>
-                        <a href='\{{thisBinaryLink}}' class='latest-download-button a-button'>
-                          <div class='large-dl-text'>Download
-                            <div class='small-dl-text'><var binary-info>\{{thisBinaryExtension}} - \{{thisBinarySize}} MB</var></div>
-                          </div>
-                        </a>
-                        <div class='latest-details'>
-                          <p><a href='\{{thisChecksumLink}}' class='dark-link' target='_blank'>Checksum</a></p>
-                          <p>\{{thisReleaseDateTime}}</p>
-                        </div>
-                      </div>
-                    \{{#if thisInstallerExists}}
-                      </div>
-                    \{{/if}}
-                  \{{/if}}
+                  \{{/each}}
 
                 </div>
               </div>
