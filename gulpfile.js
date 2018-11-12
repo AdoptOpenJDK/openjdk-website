@@ -88,7 +88,7 @@ gulp.task('scripts', function() {
     .pipe(babel({
       presets: [['@babel/env', {
         debug: true,
-        targets: 'defaults' // see https://browserl.ist/ and https://github.com/browserslist/browserslist
+        targets: 'defaults' // see https://babeljs.io/docs/en/babel-preset-env#targets
       }]]
     }))
     .pipe(concat('app.js'))
