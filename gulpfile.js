@@ -85,7 +85,12 @@ gulp.task('json', function() {
 // scripts task
 gulp.task('scripts', function() {
   return gulp.src(sourceFiles)
-    .pipe(babel({presets: ['es2015']}))
+    .pipe(babel({
+      presets: [['@babel/env', {
+        debug: true,
+        targets: 'defaults' // see https://babeljs.io/docs/en/babel-preset-env#targets
+      }]]
+    }))
     .pipe(concat('app.js'))
     .on('error', gutil.log)
     .pipe(gulp.dest('./dist/js/'))
