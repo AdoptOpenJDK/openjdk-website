@@ -1,4 +1,6 @@
+// Freely copied, see https://developer.mozilla.org/en-US/docs/MDN/About#Copyrights_and_licenses 
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
+// We have this due to IE not supporting Array.prototype.find correctly
 if (!Array.prototype.find) {
   Object.defineProperty(Array.prototype, 'find', {
     value: function(predicate) {
