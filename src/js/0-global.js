@@ -350,7 +350,7 @@ function getQueryByName(name) {
 }
 
 /* eslint-disable no-unused-vars */
-module.exports.persistUrlQuery = () => {
+global.persistUrlQuery = () => {
   var anchor = '';
   var links = Array.apply(null, document.getElementsByTagName('a'));
   var link = window.location.hostname;
