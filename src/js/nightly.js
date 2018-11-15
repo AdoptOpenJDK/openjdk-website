@@ -111,8 +111,7 @@ function buildNightlyHTML(files) {
     var nameOfFile = (eachAsset.binary_name);
     var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
     NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset); // get the searchableName, e.g. MAC or X64_LINUX.
-    // We don't use includes because IE doesn't support it well, hence we use indexOf instead
-    var type = nameOfFile.indexOf('-jre') !== -1 ? 'jre' : 'jdk';
+    var type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
 
     // secondly, check if the file has the expected file extension for that platform...
     // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
