@@ -86,7 +86,7 @@ gulp.task('json', function() {
 // scripts task
 gulp.task('scripts', function() {
   return browserify({
-      entries: './src/js/app.js',
+      entries: './src/js/entry.js',
     })
     .transform('babelify', {
       presets: [['@babel/env', {
