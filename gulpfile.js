@@ -26,8 +26,6 @@ const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 
-//const sourceFiles = ['./node_modules/underscore/underscore.js', './src/js/**/*.js'];
-
 // default task
 gulp.task('default', function() {
   runSequence('clean','json-validate',['handlebars','json','scripts','styles','images','icon'],'inject','watch','browser-sync');
@@ -94,13 +92,15 @@ gulp.task('scripts', function() {
     .transform('babelify', {
       presets: [['@babel/env', {
         debug: true,
-        targets: 'defaults' // see https://babeljs.io/docs/en/babel-preset-env#targets
+        targets: 'defaults', // see https://babeljs.io/docs/en/babel-preset-env#targets
+        useBuiltIns: 'usage',
       }]]
     })
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(gulp.dest('./dist/js/')) // .pipe(uglify())
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/js/'))
     .on('error', gutil.log)
     .pipe(rename({
       suffix: '.min'
