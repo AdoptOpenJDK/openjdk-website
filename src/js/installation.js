@@ -1,6 +1,6 @@
 const {detectOS, findPlatform, getBinaryExt, getChecksumCommand, getInstallCommand, getOfficialName,
-  getPathCommand, getPlatformOrder, orderPlatforms, loadAssetInfo, loadPlatformsThenData} = require('./0-global');
-const {jvmVariant, variant} = require('./0-global');
+  getPathCommand, getPlatformOrder, orderPlatforms, loadAssetInfo, loadPlatformsThenData} = require('./common');
+const {jvmVariant, variant} = require('./common');
 
 const platformSelector = document.getElementById('platform-selector');
 

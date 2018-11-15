@@ -1,6 +1,6 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getOfficialName, getPlatformOrder, orderPlatforms,
-  loadAssetInfo, loadPlatformsThenData, setTickLink} = require('./0-global');
-const {jvmVariant, variant} = require('./0-global');
+  loadAssetInfo, loadPlatformsThenData, setTickLink} = require('./common');
+const {jvmVariant, variant} = require('./common');
 
 var ARCHIVEDATA;
 

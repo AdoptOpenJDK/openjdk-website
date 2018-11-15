@@ -1,5 +1,5 @@
-const {findPlatform, getBinaryExt, getOfficialName, loadAssetInfo, loadPlatformsThenData} = require('./0-global');
-const {jvmVariant, variant} = require('./0-global');
+const {findPlatform, getBinaryExt, getOfficialName, loadAssetInfo, loadPlatformsThenData} = require('./common');
+const {jvmVariant, variant} = require('./common');
 
 // set variables for HTML elements
 var NIGHTLYDATA;

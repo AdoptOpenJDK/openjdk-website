@@ -1,5 +1,5 @@
-const {detectOS, findPlatform, formSearchArgs, getBinaryExt, getInstallerExt, loadAssetInfo, loadPlatformsThenData} = require('./0-global');
-const {jvmVariant, variant} = require('./0-global');
+const {detectOS, findPlatform, formSearchArgs, getBinaryExt, getInstallerExt, loadAssetInfo, loadPlatformsThenData} = require('./common');
+const {jvmVariant, variant} = require('./common');
 
 // set variables for all index page HTML elements that will be used by the JS
 const dlText = document.getElementById('dl-text');

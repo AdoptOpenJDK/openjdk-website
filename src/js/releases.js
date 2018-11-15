@@ -1,6 +1,6 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getLogo, getOfficialName, getPlatformOrder,
-    getVariantObject, loadLatestAssets, loadPlatformsThenData, orderPlatforms, setTickLink} = require('./0-global');
-const {jvmVariant, variant} = require('./0-global');
+    getVariantObject, loadLatestAssets, loadPlatformsThenData, orderPlatforms, setTickLink} = require('./common');
+const {jvmVariant, variant} = require('./common');
 
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
