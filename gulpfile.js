@@ -98,8 +98,8 @@ gulp.task('scripts', function() {
     .bundle()
     .pipe(source('app.js'))
     .pipe(buffer())
-    .pipe(uglify())
     .pipe(gulp.dest('./dist/js/'))
+    .pipe(uglify())
     .on('error', gutil.log)
     .pipe(rename({
       suffix: '.min'
