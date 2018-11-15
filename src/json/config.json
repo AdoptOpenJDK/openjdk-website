@@ -2,8 +2,8 @@
   "variants": [
     {
       "searchableName": "openjdk8-hotspot",
-      "officialName": "OpenJDK 8 with Hotspot",
-      "jvm": "Hotspot",
+      "officialName": "OpenJDK 8 with HotSpot",
+      "jvm": "HotSpot",
       "label": "OpenJDK 8",
       "lts": true,
       "default": true
@@ -19,8 +19,8 @@
     },
     {
       "searchableName": "openjdk9-hotspot",
-      "officialName": "OpenJDK 9 with Hotspot",
-      "jvm": "Hotspot",
+      "officialName": "OpenJDK 9 with HotSpot",
+      "jvm": "HotSpot",
       "label": "OpenJDK 9",
       "lts": false
     },
@@ -35,8 +35,8 @@
     },
     {
       "searchableName": "openjdk10-hotspot",
-      "officialName": "OpenJDK 10 with Hotspot",
-      "jvm": "Hotspot",
+      "officialName": "OpenJDK 10 with HotSpot",
+      "jvm": "HotSpot",
       "label": "OpenJDK 10",
       "lts": false
     },
@@ -51,8 +51,8 @@
     },
     {
       "searchableName": "openjdk11-hotspot",
-      "officialName": "OpenJDK 11 with Hotspot",
-      "jvm": "Hotspot",
+      "officialName": "OpenJDK 11 with HotSpot",
+      "jvm": "HotSpot",
       "label": "OpenJDK 11",
       "lts": true
     },

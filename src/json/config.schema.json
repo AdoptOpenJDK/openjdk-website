@@ -48,7 +48,7 @@
             "type": "string",
             "title": "Official name",
             "description": "Descriptive name that includes OpenJDK and JVM versions.",
-            "examples": ["OpenJDK 8 with Hotspot", "OpenJDK 11 with Eclipse OpenJ9"]
+            "examples": ["OpenJDK 8 with HotSpot", "OpenJDK 11 with Eclipse OpenJ9"]
           },
           "default": {
             "$id": "#/properties/variants/items/properties/default",
