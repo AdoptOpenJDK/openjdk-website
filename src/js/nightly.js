@@ -1,3 +1,6 @@
+const {findPlatform, getBinaryExt, getOfficialName, loadAssetInfo, loadPlatformsThenData} = require('./0-global');
+const {jvmVariant, variant} = require('./0-global');
+
 // set variables for HTML elements
 var NIGHTLYDATA;
 
@@ -10,7 +13,7 @@ var datepicker = document.getElementById('datepicker');
 
 // When nightly page loads, run:
 /* eslint-disable no-unused-vars */
-function onNightlyLoad() {
+module.exports.onNightlyLoad = () => {
   /* eslint-enable no-unused-vars */
   NIGHTLYDATA = new Object();
 
@@ -159,7 +162,7 @@ function setTableRange() {
   var selectedDate = moment(datepicker.value, 'MM-DD-YYYY').format();
   var visibleRows = 0;
 
-  for (i = 0; i < rows.length; i++) {
+  for (let i = 0; i < rows.length; i++) {
     var thisDate = rows[i].getElementsByClassName('nightly-release-date')[0].innerHTML;
     var thisDateMoment = moment(thisDate, 'D MMMM YYYY').format();
     var isAfter = moment(thisDateMoment).isAfter(selectedDate);

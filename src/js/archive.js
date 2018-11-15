@@ -1,8 +1,12 @@
+const {findPlatform, getBinaryExt, getInstallerExt, getOfficialName, getPlatformOrder, orderPlatforms,
+  loadAssetInfo, loadPlatformsThenData, setTickLink} = require('./0-global');
+const {jvmVariant, variant} = require('./0-global');
+
 var ARCHIVEDATA;
 
 // When archive page loads, run:
 /* eslint-disable no-unused-vars */
-function onArchiveLoad() {
+module.exports.onArchiveLoad = () => {
   /* eslint-enable no-unused-vars */
   ARCHIVEDATA = new Object();
   populateArchive(); // populate the Archive page
@@ -39,7 +43,7 @@ function populateArchive() {
 function buildArchiveHTML(releases, jckJSON) {
   var RELEASEARRAY = [];
 
-  for (i=0; i<releases.length; i++) {
+  for (let i=0; i<releases.length; i++) {
     var ASSETARRAY = [];
     var RELEASEOBJECT = new Object();
     var eachRelease = releases[i];
@@ -175,7 +179,7 @@ function setPagination() {
   var container = $('#pagination-container');
   var archiveRows = document.getElementById('archive-table-body').getElementsByClassName('release-row');
   var paginationArrayHTML = [];
-  for (i = 0; i < archiveRows.length; i++) {
+  for (let i = 0; i < archiveRows.length; i++) {
     paginationArrayHTML.push(archiveRows[i].outerHTML);
   }
 

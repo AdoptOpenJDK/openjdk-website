@@ -15,12 +15,13 @@
     "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5",
     "ajv": "^6.5.5",
+    "babelify": "^10.0.0",
     "browser-sync": "^2.26.3",
+    "browserify": "^16.2.3",
     "chai": "^4.2.0",
     "eslint": "^5.9.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
-    "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
     "gulp-compile-handlebars": "^0.6.1",
     "gulp-concat": "^2.6.1",
@@ -38,7 +39,9 @@
     "open": "^0.0.5",
     "plugin-error": "^1.0.1",
     "run-sequence": "^2.2.1",
-    "util": "^0.11.1"
+    "util": "^0.11.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
     "npm": "^6.4.1",

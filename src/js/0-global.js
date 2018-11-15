@@ -1,32 +1,37 @@
 /* eslint-disable no-unused-vars */
-/* global _ */
+const _ = require('underscore');
 
-var platforms = [];
-var variants = [];
-var lookup = {};
-var i = 0;
-var variant = getQueryByName('variant');
-var jvmVariant = getQueryByName('jvmVariant');
-var jdkSelector = document.getElementById('jdk-selector');
-var jvmSelector = document.getElementById('jvm-selector');
-var platformSelector = document.getElementById('platform-selector');
+const platforms = [];
+module.exports.platforms = platforms;
 
-if (jvmVariant === undefined || jvmVariant === null) {
-  jvmVariant = 'hotspot';
-}
-if (variant === undefined || variant === null) {
-  variant = 'openjdk8';
-}
+const variants = [];
+module.exports.platforms = platforms;
+
+const lookup = {};
+module.exports.lookup = lookup;
+
+let variant = getQueryByName('variant') ? getQueryByName('variant') : 'openjdk8';
+module.exports.variant = variant;
+
+let jvmVariant = getQueryByName('jvmVariant') ? getQueryByName('jvmVariant') : 'hotspot';
+module.exports.jvmVariant = jvmVariant;
+
+const jdkSelector = document.getElementById('jdk-selector');
+module.exports.jdkSelector = jdkSelector;
+
+const jvmSelector = document.getElementById('jvm-selector');
+module.exports.jvmSelector = jvmSelector;
+
 
 function setLookup() {
   // FUNCTIONS FOR GETTING PLATFORM DATA
   // allows us to use, for example, 'lookup["MAC"];'
-  for (i = 0; i < platforms.length; i++) {
+  for (let i = 0; i < platforms.length; i++) {
     lookup[platforms[i].searchableName] = platforms[i];
   }
 }
 
-function getVariantObject(variant) {
+module.exports.getVariantObject = (variant) => {
   var variantObject = '';
   variants.forEach(function (eachVariant) {
     if (eachVariant.searchableName === variant) {
@@ -36,7 +41,7 @@ function getVariantObject(variant) {
   return variantObject;
 }
 
-function findPlatform(binaryData) {
+module.exports.findPlatform = (binaryData) => {
   var matchedPlatform = _.chain(platforms)
     .filter(function (platform) {
       return platform.hasOwnProperty('attributes')
@@ -61,18 +66,18 @@ function findPlatform(binaryData) {
 var logoPath = './dist/assets/';
 
 // gets the OFFICIAL NAME when you pass in 'searchableName'
-function getOfficialName(searchableName) {
+module.exports.getOfficialName = (searchableName) => {
   return (lookup[searchableName].officialName);
 }
 
-function getPlatformOrder(searchableName) {
+module.exports.getPlatformOrder = (searchableName) => {
   var index = platforms.findIndex(function (platform) {
     return platform.searchableName == searchableName;
   });
   return index;
 }
 
-function orderPlatforms(inputArray, attr = 'thisPlatformOrder') {
+module.exports.orderPlatforms = (inputArray, attr = 'thisPlatformOrder') => {
   function compareOrder(thisAsset, nextAsset) {
     if (thisAsset[attr] < nextAsset[attr])
       return -1;
@@ -86,32 +91,32 @@ function orderPlatforms(inputArray, attr = 'thisPlatformOrder') {
 }
 
 // gets the BINARY EXTENSION when you pass in 'searchableName'
-function getBinaryExt(searchableName) {
+module.exports.getBinaryExt = (searchableName) => {
   return (lookup[searchableName].binaryExtension);
 }
 
 // gets the INSTALLER EXTENSION when you pass in 'searchableName'
-function getInstallerExt(searchableName) {
+module.exports.getInstallerExt = (searchableName) => {
   return (lookup[searchableName].installerExtension);
 }
 
 // gets the LOGO WITH PATH when you pass in 'searchableName'
-function getLogo(searchableName) {
+module.exports.getLogo = (searchableName) => {
   return (logoPath + (lookup[searchableName].logo));
 }
 
 // gets the INSTALLATION COMMAND when you pass in 'searchableName'
-function getInstallCommand(searchableName) {
+module.exports.getInstallCommand = (searchableName) => {
   return (lookup[searchableName].installCommand);
 }
 
 // gets the CHECKSUM COMMAND when you pass in 'searchableName'
-function getChecksumCommand(searchableName) {
+module.exports.getChecksumCommand = (searchableName) => {
   return (lookup[searchableName].checksumCommand);
 }
 
 // gets the PATH COMMAND when you pass in 'searchableName'
-function getPathCommand(searchableName) {
+module.exports.getPathCommand = (searchableName) => {
   return (lookup[searchableName].pathCommand);
 }
 
@@ -136,7 +141,7 @@ menuClose.onclick = function () {
 }
 
 // this function returns an object containing all information about the user's OS (from the 'platforms' array)
-function detectOS() {
+module.exports.detectOS = () => {
   // if the platform detection library's output matches the 'osDetectionString' of any platform object in the 'platforms' array...
   // ...set the variable 'matchedOS' as the whole object. Else, 'matchedOS' will be null.
   var matchedOS = null;
@@ -196,7 +201,7 @@ function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) 
 }
 
 /* eslint-disable no-unused-vars */
-function loadAssetInfo(variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) {
+module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber'
   }
@@ -205,7 +210,7 @@ function loadAssetInfo(variant, openjdkImp, releaseType, release, type, handleRe
   queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
 }
 
-function loadLatestAssets(variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) {
+module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber'
   }
@@ -239,13 +244,13 @@ function loadUrl(url, callback) {
 }
 
 /* eslint-disable no-unused-vars */
-function loadPlatformsThenData(callback) {
+module.exports.loadPlatformsThenData = (callback) => {
   loadJSON('adoptopenjdk.net', './dist/json/config.json', function (response) {
     var configJson = JSON.parse(response);
 
     if (typeof configJson !== 'undefined') { // if there are releases...
-      platforms = configJson.platforms;
-      variants = configJson.variants;
+      platforms.push(...configJson.platforms);
+      variants.push(...configJson.variants);
       setRadioSelectors();
       setLookup();
       callback();
@@ -261,7 +266,7 @@ function loadPlatformsThenData(callback) {
 // build the menu twisties
 var submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
 
-for (i = 0; i < submenus.length; i++) {
+for (let i = 0; i < submenus.length; i++) {
   var twisty = document.createElement('span');
   var twistyContent = document.createTextNode('>');
   twisty.appendChild(twistyContent);
@@ -276,9 +281,9 @@ for (i = 0; i < submenus.length; i++) {
 }
 
 /* eslint-disable no-unused-vars */
-function setTickLink() {
+module.exports.setTickLink = () => {
   var ticks = document.getElementsByClassName('tick');
-  for (i = 0; i < ticks.length; i++) {
+  for (let i = 0; i < ticks.length; i++) {
     ticks[i].addEventListener('click', function (event) {
       var win = window.open('https://en.wikipedia.org/wiki/Technology_Compatibility_Kit', '_blank');
       if (win) {
@@ -326,7 +331,7 @@ function getRepoName(oldRepo, releaseType) {
 }
 
 /* eslint-disable no-unused-vars */
-function formSearchArgs() {
+module.exports.formSearchArgs = () => {
   return formUrlQueryArgs(arguments);
 }
 
@@ -345,7 +350,7 @@ function getQueryByName(name) {
 }
 
 /* eslint-disable no-unused-vars */
-function persistUrlQuery() {
+module.exports.persistUrlQuery = () => {
   var anchor = '';
   var links = Array.apply(null, document.getElementsByTagName('a'));
   var link = window.location.hostname;
@@ -450,7 +455,7 @@ function setRadioSelectors() {
 }
 
 /* eslint-disable no-unused-vars */
-function copyClipboard(element) {
+global.copyClipboard = (element) => {
   var $temp = $('<input>');
   $('body').append($temp);
   $temp.val($(element).text()).select();
@@ -460,6 +465,6 @@ function copyClipboard(element) {
 }
 
 /* eslint-disable no-unused-vars */
-function highlightCode() {
+global.highlightCode = () => {
   hljs.initHighlightingOnLoad();
 }

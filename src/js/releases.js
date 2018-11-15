@@ -1,6 +1,10 @@
+const {findPlatform, getBinaryExt, getInstallerExt, getLogo, getOfficialName, getPlatformOrder,
+    getVariantObject, loadLatestAssets, loadPlatformsThenData, orderPlatforms, setTickLink} = require('./0-global');
+const {jvmVariant, variant} = require('./0-global');
+
 // When releases page loads, run:
 /* eslint-disable no-unused-vars */
-function onLatestLoad() {
+module.exports.onLatestLoad = () => {
   /* eslint-enable no-unused-vars */
   populateLatest(); // populate the Latest page
 }
@@ -105,12 +109,6 @@ function buildLatestHTML(releasesJson) {
   latestContainer.className = latestContainer.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated fadeIn '); // make this section visible (invisible by default), with animated fade-in
 }
 
-/* eslint-disable no-unused-vars */
-function selectLatestPlatform(thisPlatform) {
-  /* eslint-enable no-unused-vars */
-  window.location.hash = thisPlatform.toLowerCase();
-}
-
 function displayLatestPlatform() {
   var platformHash = window.location.hash.substr(1).toUpperCase();
   var thisPlatformInfo = document.getElementById('latest-info-' + platformHash);
@@ -121,14 +119,20 @@ function displayLatestPlatform() {
   }
 }
 
-function unselectLatestPlatform(keephash) {
+/* eslint-disable no-unused-vars */
+global.selectLatestPlatform = (thisPlatform) => {
+  /* eslint-enable no-unused-vars */
+  window.location.hash = thisPlatform.toLowerCase();
+}
+
+global.unselectLatestPlatform = (keephash) => {
   if (!keephash) {
     history.pushState('', document.title, window.location.pathname + window.location.search);
   }
   var platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
   var platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
 
-  for (i = 0; i < platformButtons.length; i++) {
+  for (let i = 0; i < platformButtons.length; i++) {
     platformInfoBoxes[i].classList.add('hide');
   }
 

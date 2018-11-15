@@ -1,7 +1,13 @@
+const {detectOS, findPlatform, getBinaryExt, getChecksumCommand, getInstallCommand, getOfficialName,
+  getPathCommand, getPlatformOrder, orderPlatforms, loadAssetInfo, loadPlatformsThenData} = require('./0-global');
+const {jvmVariant, variant} = require('./0-global');
+
+const platformSelector = document.getElementById('platform-selector');
+
 var INSTALLDATA;
 
 /* eslint-disable no-unused-vars */
-function onInstallationLoad() {
+module.exports.onInstallationLoad = () => {
   /* eslint-enable no-unused-vars */
 
   INSTALLDATA = new Object();
@@ -107,7 +113,7 @@ function displayInstallPlatform() {
 function unselectInstallPlatform() {
   var platformInstallationDivs = document.getElementById('installation-container').getElementsByClassName('installation-single-platform');
 
-  for (i = 0; i < platformInstallationDivs.length; i++) {
+  for (let i = 0; i < platformInstallationDivs.length; i++) {
     platformInstallationDivs[i].classList.add('hide');
   }
 }

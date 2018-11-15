@@ -1,3 +1,6 @@
+const {detectOS, findPlatform, formSearchArgs, getBinaryExt, getInstallerExt, loadAssetInfo, loadPlatformsThenData} = require('./0-global');
+const {jvmVariant, variant} = require('./0-global');
+
 // set variables for all index page HTML elements that will be used by the JS
 const dlText = document.getElementById('dl-text');
 const dlLatest = document.getElementById('dl-latest');
@@ -9,7 +12,7 @@ const dlVersionText = document.getElementById('dl-version-text');
 
 // When index page loads, run:
 /* eslint-disable no-unused-vars */
-function onIndexLoad() {
+module.exports.onIndexLoad = () => {
   setDownloadSection(); // on page load, populate the central download section.
 }
 /* eslint-enable no-unused-vars */
@@ -18,7 +21,6 @@ function onIndexLoad() {
 function removeRadioButtons() {
   var buttons = document.getElementsByClassName('btn-label');
   for (var a = 0; a < buttons.length; a++) {
-    console.log(buttons[a].firstChild.getAttribute('lts'));
     if (buttons[a].firstChild.getAttribute('lts') == 'false') {
       buttons[a].style.display = 'none';
     }
