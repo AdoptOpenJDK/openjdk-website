@@ -22,17 +22,18 @@ const inject = require('gulp-inject');
 const robots = require('gulp-robots');
 const clean = require('gulp-clean');
 const babel = require('gulp-babel');
+const base64img = require('base64-img');
 
 const sourceFiles = ['./node_modules/underscore/underscore.js', './src/js/**/*.js'];
 
 // default task
 gulp.task('default', function() {
-  runSequence('clean','json-validate',['handlebars','json','scripts','styles','images','icon'],'inject','watch','browser-sync');
+  runSequence('clean','json-validate',['json','scripts','styles','images','icon'],'handlebars','inject','watch','browser-sync');
 });
 
 // build task
 gulp.task('build', function() {
-  runSequence('clean',['handlebars','json','scripts','styles','images','icon'],'inject','sitemap','robots','lint');
+  runSequence('clean',['json','scripts','styles','images','icon'],'handlebars','inject','sitemap','robots','lint');
 });
 
 // clean task (deletes /dist dir)
@@ -61,11 +62,12 @@ gulp.task('watch', function() {
 
 // Handlebars HTML build task
 gulp.task('handlebars', function () {
-  var templateData = {
-  },
-  options = {
-    batch : ['./src/handlebars/partials']
-  }
+  const templateData = {};
+
+  const options = {
+    batch: ['./src/handlebars/partials'],
+    helpers: {base64img: base64img.base64Sync}
+  };
 
   return gulp.src('./src/handlebars/*.handlebars')
     .pipe(handlebars(templateData, options))
