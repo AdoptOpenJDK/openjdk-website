@@ -8,29 +8,6 @@ rules:
   no-inner-declarations: 0
   quotes: [2, single]
 globals:
-  moment: true
-  detectOS: true
-  loadJSON: true
-  errorContainer: true
-  getSearchableName: true
-  getOfficialName: true
-  getBinaryExt: true
-  getInstallerExt: true
-  getLogo: true
-  loading: true
-  platforms: true
-  i: true
   Handlebars: true
-  getPlatformOrder: true
-  orderPlatforms: true
-  setTickLink: true
-  loadPlatformsThenData: true
-  variant: true
-  platformSelector: true
-  hljs: true
-  getInstallCommand: true
-  getChecksumCommand: true
-  getPathCommand: true
-  getVariantObject: true
-
+  moment: true
 extends: eslint:recommended

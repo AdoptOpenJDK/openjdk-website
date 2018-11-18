@@ -2,20 +2,13 @@ const {findPlatform, getBinaryExt, getInstallerExt, getLogo, getOfficialName, ge
     getVariantObject, loadLatestAssets, loadPlatformsThenData, orderPlatforms, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
+const loading = document.getElementById('loading');
+const errorContainer = document.getElementById('error-container');
+
 // When releases page loads, run:
-/* eslint-disable no-unused-vars */
 module.exports.onLatestLoad = () => {
-  /* eslint-enable no-unused-vars */
-  populateLatest(); // populate the Latest page
-}
-
-// LATEST PAGE FUNCTIONS
-/* eslint-disable no-undef */
-function populateLatest() {
-  loadPlatformsThenData(function () {
-
-    var handleResponse = function (response) {
-      // create an array of the details for each asset that is attached to a release
+  loadPlatformsThenData(() => {
+    const handleResponse = (response) => {
       if (response.length === 0) {
         return;
       }
@@ -23,8 +16,9 @@ function populateLatest() {
       buildLatestHTML(response, {});
     };
 
-    loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {
-      errorContainer.innerHTML = '<p>There are no releases available for ' + variant + ' on the ' + jvmVariant + ' jvm. Please check our <a href=nightly.html?variant=' + variant + '&jvmVariant=' + jvmVariant + ' target=\'blank\'>Nightly Builds</a>.</p>';
+    loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, () => {
+      errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
+        Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
       loading.innerHTML = ''; // remove the loading dots
     });
   });
@@ -32,15 +26,15 @@ function populateLatest() {
 
 function buildLatestHTML(releasesJson) {
   // Populate with description
-  var variantObject = getVariantObject(variant + '-' + jvmVariant);
+  const variantObject = getVariantObject(variant + '-' + jvmVariant);
   if (variantObject.descriptionLink) {
-    document.getElementById('description_header').innerHTML = 'What is ' + variantObject.description + '?';
+    document.getElementById('description_header').innerHTML = `What is ${variantObject.description}?`;
     document.getElementById('description_link').innerHTML = 'Find out here';
     document.getElementById('description_link').href = variantObject.descriptionLink;
   }
 
   // Array of releases that have binaries we want to display
-  var releases = [];
+  let releases = [];
 
   releasesJson.forEach((releaseAsset) => {
     const platform = findPlatform(releaseAsset);
@@ -52,12 +46,12 @@ function buildLatestHTML(releasesJson) {
 
     // Skip this asset if it's not a binary type we're interested in displaying
     const binary_type = releaseAsset.binary_type.toUpperCase();
-    if (['INSTALLER', 'JDK', 'JRE'].indexOf(binary_type) === -1) {
+    if (!['INSTALLER', 'JDK', 'JRE'].includes(binary_type)) {
       return;
     }
 
     // Get the existing release asset (passed to the template) or define a new one
-    var release = releases.find((release) => release.platform_name === platform);
+    let release = releases.find((release) => release.platform_name === platform);
     if (!release) {
       release = {
         platform_name: platform,
@@ -110,8 +104,9 @@ function buildLatestHTML(releasesJson) {
 }
 
 function displayLatestPlatform() {
-  var platformHash = window.location.hash.substr(1).toUpperCase();
-  var thisPlatformInfo = document.getElementById('latest-info-' + platformHash);
+  const platformHash = window.location.hash.substr(1).toUpperCase();
+  const thisPlatformInfo = document.getElementById(`latest-info-${platformHash}`);
+
   if (thisPlatformInfo) {
     unselectLatestPlatform('keep the hash');
     document.getElementById('latest-selector').classList.add('hide');
@@ -119,18 +114,17 @@ function displayLatestPlatform() {
   }
 }
 
-/* eslint-disable no-unused-vars */
 global.selectLatestPlatform = (thisPlatform) => {
-  /* eslint-enable no-unused-vars */
   window.location.hash = thisPlatform.toLowerCase();
 }
 
-global.unselectLatestPlatform = (keephash) => {
+const unselectLatestPlatform = global.unselectLatestPlatform = (keephash) => {
   if (!keephash) {
     history.pushState('', document.title, window.location.pathname + window.location.search);
   }
-  var platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
-  var platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
+
+  const platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
+  const platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
 
   for (let i = 0; i < platformButtons.length; i++) {
     platformInfoBoxes[i].classList.add('hide');

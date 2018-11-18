@@ -1,26 +1,38 @@
-/* eslint-disable no-unused-vars */
 const _ = require('underscore');
 
-const platforms = [];
-module.exports.platforms = platforms;
+// prefix for assets (e.g. logo)
+const assetPath = './dist/assets/';
 
-const variants = [];
-module.exports.platforms = platforms;
+const platforms = module.exports.platforms = [];
+const variants = module.exports.platforms = [];
+const lookup = module.exports.lookup = {};
 
-const lookup = {};
-module.exports.lookup = lookup;
+let variant = module.exports.variant = getQueryByName('variant') || 'openjdk8';
+let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
 
-let variant = getQueryByName('variant') ? getQueryByName('variant') : 'openjdk8';
-module.exports.variant = variant;
+const jdkSelector = module.exports.jdkSelector = document.getElementById('jdk-selector');
+const jvmSelector = module.exports.jvmSelector = document.getElementById('jvm-selector');
 
-let jvmVariant = getQueryByName('jvmVariant') ? getQueryByName('jvmVariant') : 'hotspot';
-module.exports.jvmVariant = jvmVariant;
+// set value for loading dots
+const loading = document.getElementById('loading');
 
-const jdkSelector = document.getElementById('jdk-selector');
-module.exports.jdkSelector = jdkSelector;
+// set value for error container
+const errorContainer = document.getElementById('error-container');
 
-const jvmSelector = document.getElementById('jvm-selector');
-module.exports.jvmSelector = jvmSelector;
+// set variable names for menu elements
+const menuOpen = document.getElementById('menu-button');
+const menuClose = document.getElementById('menu-close');
+const menu = document.getElementById('menu-container');
+
+menuOpen.onclick = () => {
+  menu.className = menu.className.replace(/(?:^|\s)slideOutLeft(?!\S)/g, ' slideInLeft'); // slide in animation
+  menu.className = menu.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated'); // removes initial hidden property, activates animations
+}
+
+menuClose.onclick = () => {
+  menu.className = menu.className.replace(/(?:^|\s)slideInLeft(?!\S)/g, ' slideOutLeft'); // slide out animation
+}
+
 
 
 function setLookup() {
@@ -31,23 +43,15 @@ function setLookup() {
   }
 }
 
-module.exports.getVariantObject = (variant) => {
-  var variantObject = '';
-  variants.forEach(function (eachVariant) {
-    if (eachVariant.searchableName === variant) {
-      variantObject = eachVariant;
-    }
-  });
-  return variantObject;
-}
+module.exports.getVariantObject = (variantName) => variants.find((variant) => variant.searchableName === variantName);
 
 module.exports.findPlatform = (binaryData) => {
-  var matchedPlatform = _.chain(platforms)
+  const matchedPlatform = _.chain(platforms)
     .filter(function (platform) {
       return platform.hasOwnProperty('attributes')
     })
     .filter(function (platform) {
-      var matches = _.chain(platform.attributes)
+      const matches = _.chain(platform.attributes)
         .mapObject(function (attributeValue, attributeKey) {
           return binaryData[attributeKey] === attributeValue
         })
@@ -62,104 +66,45 @@ module.exports.findPlatform = (binaryData) => {
   return matchedPlatform === undefined ? null : matchedPlatform.searchableName;
 }
 
-// set path to logos
-var logoPath = './dist/assets/';
-
 // gets the OFFICIAL NAME when you pass in 'searchableName'
-module.exports.getOfficialName = (searchableName) => {
-  return (lookup[searchableName].officialName);
-}
+module.exports.getOfficialName = (searchableName) => lookup[searchableName].officialName;
 
 module.exports.getPlatformOrder = (searchableName) => {
-  var index = platforms.findIndex(function (platform) {
-    return platform.searchableName == searchableName;
-  });
-  return index;
+  return platforms.findIndex((platform) => platform.searchableName == searchableName);
 }
 
 module.exports.orderPlatforms = (inputArray, attr = 'thisPlatformOrder') => {
-  function compareOrder(thisAsset, nextAsset) {
-    if (thisAsset[attr] < nextAsset[attr])
-      return -1;
-    if (thisAsset[attr] > nextAsset[attr])
-      return 1;
-    return 0;
-  }
-
-  var orderedArray = inputArray.sort(compareOrder);
-  return orderedArray;
+  return inputArray.sort((assetA, assetB) => {
+    return assetA[attr] < assetB[attr] ? -1 : assetA[attr] > assetB[attr] ? 1 : 0;
+  });
 }
 
 // gets the BINARY EXTENSION when you pass in 'searchableName'
-module.exports.getBinaryExt = (searchableName) => {
-  return (lookup[searchableName].binaryExtension);
-}
+module.exports.getBinaryExt = (searchableName) => lookup[searchableName].binaryExtension;
 
 // gets the INSTALLER EXTENSION when you pass in 'searchableName'
-module.exports.getInstallerExt = (searchableName) => {
-  return (lookup[searchableName].installerExtension);
-}
+module.exports.getInstallerExt = (searchableName) => lookup[searchableName].installerExtension;
 
 // gets the LOGO WITH PATH when you pass in 'searchableName'
-module.exports.getLogo = (searchableName) => {
-  return (logoPath + (lookup[searchableName].logo));
-}
+module.exports.getLogo = (searchableName) => assetPath + lookup[searchableName].logo;
 
 // gets the INSTALLATION COMMAND when you pass in 'searchableName'
-module.exports.getInstallCommand = (searchableName) => {
-  return (lookup[searchableName].installCommand);
-}
+module.exports.getInstallCommand = (searchableName) => lookup[searchableName].installCommand;
 
 // gets the CHECKSUM COMMAND when you pass in 'searchableName'
-module.exports.getChecksumCommand = (searchableName) => {
-  return (lookup[searchableName].checksumCommand);
-}
+module.exports.getChecksumCommand = (searchableName) => lookup[searchableName].checksumCommand;
 
 // gets the PATH COMMAND when you pass in 'searchableName'
-module.exports.getPathCommand = (searchableName) => {
-  return (lookup[searchableName].pathCommand);
-}
+module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathCommand;
 
-// set value for loading dots on every page
-var loading = document.getElementById('loading');
-
-// set value for error container on every page
-var errorContainer = document.getElementById('error-container');
-
-// set variable names for menu elements
-const menuOpen = document.getElementById('menu-button');
-const menuClose = document.getElementById('menu-close');
-const menu = document.getElementById('menu-container');
-
-menuOpen.onclick = function () {
-  menu.className = menu.className.replace(/(?:^|\s)slideOutLeft(?!\S)/g, ' slideInLeft'); // slide in animation
-  menu.className = menu.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated'); // removes initial hidden property, activates animations
-}
-
-menuClose.onclick = function () {
-  menu.className = menu.className.replace(/(?:^|\s)slideInLeft(?!\S)/g, ' slideOutLeft'); // slide out animation
-}
-
-// this function returns an object containing all information about the user's OS (from the 'platforms' array)
+// This function returns an object containing all information about the user's OS.
+// The OS info comes from the 'platforms' array, which in turn comes from 'config.json'.
+// `platform` comes from `platform.js`, which should be included on the page where `detectOS` is used.
 module.exports.detectOS = () => {
-  // if the platform detection library's output matches the 'osDetectionString' of any platform object in the 'platforms' array...
-  // ...set the variable 'matchedOS' as the whole object. Else, 'matchedOS' will be null.
-  var matchedOS = null;
-  platforms.forEach(function (eachPlatform) {
-    var thisPlatformMatchingString = eachPlatform.osDetectionString.toUpperCase();
-    /* eslint-disable */
-    var platformFamily = platform.os.family.toUpperCase(); // platform.os.family is dependent on 'platform.js', loaded by index.html (injected in index.handlebars)
-    /* eslint-enable */
-    if (thisPlatformMatchingString.indexOf(platformFamily) >= 0) { // if the detected 'platform family' string appears in the osDetectionString value of a platform...
-      matchedOS = eachPlatform;
-    }
-  });
-
-  if (matchedOS) {
-    return matchedOS;
-  } else {
-    return null;
-  }
+  return platforms.find((aPlatform) => {
+    /*global platform*/
+    return aPlatform.osDetectionString.toUpperCase().includes(platform.os.family.toUpperCase());
+  }) || null;
 }
 
 function toJson(response) {
@@ -180,48 +125,50 @@ function toJson(response) {
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
 function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) {
-    if (release !== undefined) {
-        url += 'release=' + release + '&';
-    }
-    if (openjdkImp !== undefined) {
-        url += 'openjdk_impl=' + openjdkImp + '&';
-    }
-    if (type !== undefined) {
-        url += 'type=' + type + '&';
-    }
-
-    loadUrl(url, function (response) {
-        if (response === null) {
-            errorHandler();
-        } else {
-            response = toJson(response);
-            handleResponse(response, false)
-        }
-    });
-}
-
-/* eslint-disable no-unused-vars */
-module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
-  if (variant === 'amber') {
-    variant = 'openjdk-amber'
+  if (!url.endsWith('?')) {
+    url += '?';
+  }
+  if (release !== undefined) {
+    url += `release=${release}&`;
+  }
+  if (openjdkImp !== undefined) {
+    url += `openjdk_impl=${openjdkImp}&`;
+  }
+  if (type !== undefined) {
+    url += `type=${type}&`;
   }
 
-  let url = 'https://api.adoptopenjdk.net/v2/info/' + releaseType + '/' + variant + '?';
+  loadUrl(url, (response) => {
+    if (response === null) {
+      errorHandler();
+    } else {
+      handleResponse(toJson(response), false);
+    }
+  });
+}
+
+module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
+  if (variant === 'amber') {
+    variant = 'openjdk-amber';
+  }
+
+  const url = `https://api.adoptopenjdk.net/v2/info/${releaseType}/${variant}`;
   queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
 }
 
 module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
   if (variant === 'amber') {
-    variant = 'openjdk-amber'
+    variant = 'openjdk-amber';
   }
 
-  let url = 'https://api.adoptopenjdk.net/v2/latestAssets/' + releaseType + '/' + variant + '?'
+  const url = `https://api.adoptopenjdk.net/v2/latestAssets/${releaseType}/${variant}`;
   queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
 }
 
 // when using this function, pass in the name of the repo (options: releases, nightly)
 function loadJSON(repo, filename, callback) {
-  var url = ('https://raw.githubusercontent.com/AdoptOpenJDK/' + repo + '/master/' + filename + '.json'); // the URL of the JSON built in the website back-end
+  // the URL of the JSON built in the website back-end
+  let url = `https://raw.githubusercontent.com/AdoptOpenJDK/${repo}/master/${filename}.json`;
   if (repo === 'adoptopenjdk.net') {
     url = (filename);
   }
@@ -229,9 +176,9 @@ function loadJSON(repo, filename, callback) {
 }
 
 function loadUrl(url, callback) {
-  var xobj = new XMLHttpRequest();
+  const xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
-  xobj.onreadystatechange = function () {
+  xobj.onreadystatechange = () => {
     if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
       callback(xobj.responseText);
     } else if (
@@ -243,10 +190,9 @@ function loadUrl(url, callback) {
   xobj.send(null);
 }
 
-/* eslint-disable no-unused-vars */
 module.exports.loadPlatformsThenData = (callback) => {
-  loadJSON('adoptopenjdk.net', './dist/json/config.json', function (response) {
-    var configJson = JSON.parse(response);
+  loadJSON('adoptopenjdk.net', './dist/json/config.json', (response) => {
+    const configJson = JSON.parse(response);
 
     if (typeof configJson !== 'undefined') { // if there are releases...
       platforms.push(...configJson.platforms);
@@ -257,22 +203,23 @@ module.exports.loadPlatformsThenData = (callback) => {
     }
     else {
       // report an error
-      errorContainer.innerHTML = '<p>Error... there\'s a problem fetching the releases. Please see the <a href=\'https://github.com/AdoptOpenJDK/openjdk-releases/releases\' target=\'blank\'>releases list on GitHub</a>.</p>';
+      errorContainer.innerHTML = `<p>Error... there's a problem fetching the releases.
+        Please see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>`;
       loading.innerHTML = ''; // remove the loading dots
     }
   });
 }
 
 // build the menu twisties
-var submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
+const submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
 
 for (let i = 0; i < submenus.length; i++) {
-  var twisty = document.createElement('span');
-  var twistyContent = document.createTextNode('>');
+  const twisty = document.createElement('span');
+  const twistyContent = document.createTextNode('>');
   twisty.appendChild(twistyContent);
   twisty.className = 'twisty';
 
-  var thisLine = submenus[i].getElementsByTagName('a')[0];
+  const thisLine = submenus[i].getElementsByTagName('a')[0];
   thisLine.appendChild(twisty);
 
   thisLine.onclick = function () {
@@ -280,11 +227,10 @@ for (let i = 0; i < submenus.length; i++) {
   }
 }
 
-/* eslint-disable no-unused-vars */
 module.exports.setTickLink = () => {
-  var ticks = document.getElementsByClassName('tick');
+  const ticks = document.getElementsByClassName('tick');
   for (let i = 0; i < ticks.length; i++) {
-    ticks[i].addEventListener('click', function (event) {
+    ticks[i].addEventListener('click', (event) => {
       var win = window.open('https://en.wikipedia.org/wiki/Technology_Compatibility_Kit', '_blank');
       if (win) {
         win.focus();
@@ -296,175 +242,125 @@ module.exports.setTickLink = () => {
   }
 }
 
-// builds up a query, i.e "...nightly.html?variant=openjdk8&jvmVariant=hotspot"
-function formUrlQueryArgs(args) {
-  var first = true;
-  var search = '';
-
-  for (var i = 0; i < args.length; i = i + 2) {
-    var name = args[i];
-    var newValue = args[i + 1];
-
-    if (!first) {
-      search += ('&' + name + '=' + newValue);
-    } else {
-      search += (name + '=' + newValue);
-      first = false;
-    }
-  }
-  return search;
+// builds up a query string (e.g. "variant=openjdk8&jvmVariant=hotspot")
+function makeQueryString(params) {
+  return Object.keys(params).map((key) => key + '=' + params[key]).join('&');
 }
 
-/* eslint-disable no-unused-vars */
-function getRepoName(oldRepo, releaseType) {
-  var jvmVariantTag = '';
-
-  if (oldRepo) {
-    if (jvmVariant !== 'hotspot') {
-      jvmVariantTag = '-' + jvmVariant;
-    }
-
-    return variant + jvmVariantTag + '-' + releaseType;
-  } else {
-    return variant + '-' + jvmVariant;
-  }
-}
-
-/* eslint-disable no-unused-vars */
-module.exports.formSearchArgs = () => {
-  return formUrlQueryArgs(arguments);
-}
-
-function setUrlQuery() {
-  window.location.search = formUrlQueryArgs(arguments);
+function setUrlQuery(params) {
+  window.location.search = makeQueryString(params);
 }
 
 function getQueryByName(name) {
-  var url = window.location.href;
-  name = name.replace(/[[]]/g, '\\$&');
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-  var results = regex.exec(url);
+  const url = window.location.href;
+  const regex = new RegExp('[?&]' + name.replace(/[[]]/g, '\\$&') + '(=([^&#]*)|&|#|$)');
+  const results = regex.exec(url);
+
   if (!results) return null;
   if (!results[2]) return '';
+
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-/* eslint-disable no-unused-vars */
 global.persistUrlQuery = () => {
-  var anchor = '';
-  var links = Array.apply(null, document.getElementsByTagName('a'));
-  var link = window.location.hostname;
-  if (link != 'localhost') {
-    link = 'https://' + link;
-  }
-  links.forEach(function (eachLink) {
-    if (eachLink.href.indexOf(link) >= 0) {
-      if (eachLink.href.indexOf('#') > -1) {
-        anchor = '#' + eachLink.href.split('#').pop();
+  const links = Array.from(document.getElementsByTagName('a'));
+  const link = (window.location.hostname !== 'localhost' ? 'https://' : '') + window.location.hostname;
+
+  links.forEach((eachLink) => {
+    if (eachLink.href.includes(link)) {
+      if (eachLink.href.includes('#')) {
+        const anchor = '#' + eachLink.href.split('#').pop();
         eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('#'));
-        if (eachLink.href.indexOf('?') > -1) {
+        if (eachLink.href.includes('?')) {
           eachLink.href = eachLink.href.substr(0, eachLink.href.indexOf('?'));
         }
-        eachLink.href = (eachLink.href + window.location.search + anchor);
+        eachLink.href = eachLink.href + window.location.search + anchor;
       } else {
-        eachLink.href = (eachLink.href + window.location.search);
+        eachLink.href = eachLink.href + window.location.search;
       }
     }
   });
 }
 
-const jdkMatcher = /(openjdk\d+|amber)/;
-const jvmMatcher = /([a-zA-Z0-9]+)/;
 function setRadioSelectors() {
-  var listedVariants = [];
+  const listedVariants = [];
   function createRadioButtons(name, group, variant, element) {
-    var generateButtons = true;
-    if (listedVariants.length == 0) {
-      generateButtons = true;
-    } else {
-      for (var i = 0; i < listedVariants.length; i++) {
-        if (listedVariants[i] == name) {
-          generateButtons = false;
-        }
-      }
-    }
-    if (generateButtons == true) {
-      var btnLabel = document.createElement('label');
+    if (!listedVariants.length || !listedVariants.some((aVariant) => aVariant === name)) {
+      const btnLabel = document.createElement('label');
       btnLabel.setAttribute('class', 'btn-label');
-      var input = document.createElement('input');
+
+      const input = document.createElement('input');
       input.setAttribute('type', 'radio');
       input.setAttribute('name', group);
       input.setAttribute('value', name);
       input.setAttribute('class', 'radio-button');
       input.setAttribute('lts', variant.lts)
+
       btnLabel.appendChild(input);
+
       if (group === 'jdk') {
-        if (variant.lts) {
-          btnLabel.innerHTML += '<span>' + variant.label + ' (LTS)</span>';
-        } else {
-          btnLabel.innerHTML += '<span>' + variant.label + '</span>';
-        }
+        btnLabel.innerHTML += `<span>${variant.label}${variant.lts ? ' (LTS)' : ''}</span>`;
       } else {
-        btnLabel.innerHTML += '<span>' + variant.jvm + '</span>';
+        btnLabel.innerHTML += `<span>${variant.jvm}</span>`;
       }
+
       element.appendChild(btnLabel);
       listedVariants.push(name);
     }
   }
 
-  for (var x = 0; x < variants.length; x++) {
-    var splitVariant = variants[x].searchableName.split('-');
-    var jdkName = splitVariant[0];
-    var jvmName = splitVariant[1];
+  for (let x = 0; x < variants.length; x++) {
+    const splitVariant = variants[x].searchableName.split('-');
+    const jdkName = splitVariant[0];
+    const jvmName = splitVariant[1];
     createRadioButtons(jdkName, 'jdk', variants[x], jdkSelector);
     createRadioButtons(jvmName, 'jvm', variants[x], jvmSelector);
   }
 
-  var jdkButtons = document.getElementsByName('jdk');
-  var jvmButtons = document.getElementsByName('jvm');
+  const jdkButtons = document.getElementsByName('jdk');
+  const jvmButtons = document.getElementsByName('jvm');
 
-  var versionNumber;
-  jdkSelector.onchange = function () {
-    for (var i = 0; i < jdkButtons.length; i++) {
-      if (jdkButtons[i].checked) {
-        const matches = jdkButtons[i].value.match(jdkMatcher);
-        versionNumber = matches[1];
-      }
-    }
-    setUrlQuery('variant', versionNumber, 'jvmVariant', jvmVariant);
+  jdkSelector.onchange = () => {
+    const jdkButton = Array.from(jdkButtons).find((button) => button.checked);
+    setUrlQuery({
+      variant: jdkButton.value.match(/(openjdk\d+|amber)/)[1],
+      jvmVariant
+    });
   };
-  jvmSelector.onchange = function () {
-    for (var i = 0; i < jvmButtons.length; i++) {
-      if (jvmButtons[i].checked) {
-        var matches = jvmButtons[i].value.match(jvmMatcher);
-        jvmVariant = matches[1];
-      }
-    }
-    setUrlQuery('variant', variant, 'jvmVariant', jvmVariant);
+
+  jvmSelector.onchange = () => {
+    const jvmButton = Array.from(jvmButtons).find((button) => button.checked);
+    setUrlQuery({
+      variant,
+      jvmVariant: jvmButton.value.match(/([a-zA-Z0-9]+)/)[1]
+    });
   };
-  for (var i = 0; i < jdkButtons.length; i++) {
-    if (jdkButtons[i].value == (variant)) {
+
+
+  for (let i = 0; i < jdkButtons.length; i++) {
+    if (jdkButtons[i].value === variant) {
       jdkButtons[i].setAttribute('checked', 'checked');
+      break;
     }
   }
-  for (var j = 0; j < jvmButtons.length; j++) {
-    if (jvmButtons[j].value == (jvmVariant)) {
-      jvmButtons[j].setAttribute('checked', 'checked');
+
+  for (let i = 0; i < jvmButtons.length; i++) {
+    if (jvmButtons[i].value === jvmVariant) {
+      jvmButtons[i].setAttribute('checked', 'checked');
+      break;
     }
   }
 }
 
-/* eslint-disable no-unused-vars */
-global.copyClipboard = (element) => {
-  var $temp = $('<input>');
-  $('body').append($temp);
-  $temp.val($(element).text()).select();
+global.copyClipboard = (elementSelector) => {
+  const input = document.createElement('input');
+  input.value = document.querySelector(elementSelector).textContent;
+
+  document.body.appendChild(input);
+  input.select();
+
   document.execCommand('copy');
-  $temp.remove();
   alert('Copied to clipboard');
-}
 
-/* eslint-disable no-unused-vars */
-global.highlightCode = () => {
-  hljs.initHighlightingOnLoad();
+  document.body.removeChild(input);
 }
