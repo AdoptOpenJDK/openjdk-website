@@ -136,12 +136,12 @@ gulp.task('styles', () => {
 
 // inject task
 gulp.task('inject', () => {
-  var options = {
+  const options = {
     relative: true,
     addPrefix: '.'
   };
-  var sourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
-  var targetFiles = gulp.src('./*.html');
+  const sourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
+  const targetFiles = gulp.src('./*.html');
 
   return targetFiles.pipe(inject(sourceFiles, options)) // injects the latest minified JS and CSS into all HTML files
   .pipe(gulp.dest('./'));
