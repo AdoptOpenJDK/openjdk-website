@@ -56,7 +56,9 @@ gulp.task('watch', function() {
   gulp.watch('./src/scss/*.scss', function() {
     runSequence('styles','inject', browserSync.reload);
   });
-  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], ['images']);
+  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], () => {
+    runSequence('images','handlebars', browserSync.reload);
+  });
   gulp.watch('./src/assets/*.ico', ['icon']);
 });
 
