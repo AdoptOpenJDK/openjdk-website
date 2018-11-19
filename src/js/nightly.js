@@ -1,92 +1,60 @@
-// set variables for HTML elements
-var NIGHTLYDATA;
+const {findPlatform, getBinaryExt, getOfficialName, loadAssetInfo, loadPlatformsThenData} = require('./common');
+const {jvmVariant, variant} = require('./common');
 
-var tableHead = document.getElementById('table-head');
-var tableContainer = document.getElementById('nightly-list');
-var nightlyList = document.getElementById('nightly-table');
-var searchError = document.getElementById('search-error');
-var numberpicker = document.getElementById('numberpicker');
-var datepicker = document.getElementById('datepicker');
+const loading = document.getElementById('loading');
+const errorContainer = document.getElementById('error-container');
+const tableHead = document.getElementById('table-head');
+const tableContainer = document.getElementById('nightly-list');
+const nightlyList = document.getElementById('nightly-table');
+const searchError = document.getElementById('search-error');
+const numberpicker = document.getElementById('numberpicker');
+const datepicker = document.getElementById('datepicker');
 
 // When nightly page loads, run:
-/* eslint-disable no-unused-vars */
-function onNightlyLoad() {
-  /* eslint-enable no-unused-vars */
-  NIGHTLYDATA = new Object();
-
+module.exports.onNightlyLoad = () => {
   setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 
-  numberpicker.onchange = function () {
-    setTableRange();
-  };
-  datepicker.onchange = function () {
-    setTableRange();
-  };
+  numberpicker.onchange = datepicker.onchange = () => { setTableRange() };
 }
-
-
-// NIGHTLY PAGE FUNCTIONS
 
 function setDatePicker() {
   $(datepicker).datepicker();
-  var today = moment().format('MM/DD/YYYY');
-  datepicker.value = today;
+  datepicker.value = moment().format('MM/DD/YYYY');
 }
 
-/* eslint-disable no-undef */
 function populateNightly() {
-  loadPlatformsThenData(function () {
-
-    var handleResponse = function (response) {
-
+  loadPlatformsThenData(() => {
+    const handleResponse = (response) => {
       // Step 1: create a JSON from the XmlHttpRequest response
-      var releasesJson = response.reverse();
+      const releasesJson = response.reverse();
 
       // if there are releases...
       if (typeof releasesJson[0] !== 'undefined') {
-        var files = getFiles(releasesJson);
+        const files = getFiles(releasesJson);
 
         if (files.length === 0) {
-          return false;
+          return;
         }
+
         buildNightlyHTML(files);
       }
-
-      return true;
     };
 
-    loadAssetInfo(variant, jvmVariant, 'nightly', undefined, undefined, handleResponse, function () {
+    loadAssetInfo(variant, jvmVariant, 'nightly', undefined, undefined, handleResponse, () => {
       errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
       loading.innerHTML = ''; // remove the loading dots
     });
   });
 }
 
-/* eslint-disable no-undef */
 function getFiles(releasesJson) {
-  var assets = [];
+  const assets = [];
 
-  // for each release...
-  releasesJson.forEach(function (eachRelease) {
-
-    // create an array of the details for each binary that is attached to a release
-    var assetArray = eachRelease.binaries;
-
-    assetArray.forEach(function (eachAsset) {
-      var NIGHTLYOBJECT = new Object();
-      var nameOfFile = (eachAsset.binary_name);
-      NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset);
-      var isArchive = new RegExp('(.tar.gz|.zip)$').test(nameOfFile);
-
-      var correctFile = isArchive;
-
-      // firstly, check if the platform name is recognised...
-      if (correctFile && NIGHTLYOBJECT.thisPlatform) {
-        assets.push({
-          release: eachRelease,
-          asset: eachAsset
-        })
+  releasesJson.forEach((release) => {
+    release.binaries.forEach((asset) => {
+      if (/(?:\.tar\.gz|\.zip)$/.test(asset.binary_name) && findPlatform(asset)) {
+        assets.push({release, asset});
       }
     });
   });
@@ -95,29 +63,34 @@ function getFiles(releasesJson) {
 }
 
 function buildNightlyHTML(files) {
-  tableHead.innerHTML = ('<tr id=\'table-header\'><th>Platform</th><th>Type</th></th><th>Date</th><th>Binary</th><th>Checksum</th></tr>');
-  var NIGHTLYARRAY = [];
+  tableHead.innerHTML = `<tr id='table-header'>
+    <th>Platform</th>
+    <th>Type</th>
+    <th>Date</th>
+    <th>Binary</th>
+    <th>Checksum</th>
+    </tr>`;
+
+  const NIGHTLYARRAY = [];
 
   // for each release...
-  files.forEach(function (file) {  // for each file attached to this release...
+  files.forEach((file) => {  // for each file attached to this release...
+    const eachAsset = file.asset;
+    const eachRelease = file.release;
 
-    var eachAsset = file.asset;
-    var eachRelease = file.release;
+    const NIGHTLYOBJECT = {};
+    const nameOfFile = eachAsset.binary_name;
+    const type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
 
-    var NIGHTLYOBJECT = new Object();
-    var nameOfFile = (eachAsset.binary_name);
-    var uppercaseFilename = nameOfFile.toUpperCase(); // make the name of the file uppercase
     NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset); // get the searchableName, e.g. MAC or X64_LINUX.
-    // We don't use includes because IE doesn't support it well, hence we use indexOf instead
-    var type = nameOfFile.indexOf('-jre') !== -1 ? 'jre' : 'jdk';
 
     // secondly, check if the file has the expected file extension for that platform...
     // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
     NIGHTLYOBJECT.thisBinaryExtension = getBinaryExt(NIGHTLYOBJECT.thisPlatform); // get the file extension associated with this platform
-    if (uppercaseFilename.indexOf(NIGHTLYOBJECT.thisBinaryExtension.toUpperCase()) >= 0) {
 
+    if (nameOfFile.toUpperCase().includes(NIGHTLYOBJECT.thisBinaryExtension.toUpperCase())) {
       // set values ready to be injected into the HTML
-      var publishedAt = eachRelease.timestamp;
+      const publishedAt = eachRelease.timestamp;
       NIGHTLYOBJECT.thisReleaseName = eachRelease.release_name.slice(0, 12);
       NIGHTLYOBJECT.thisType = type;
       NIGHTLYOBJECT.thisReleaseDay = moment(publishedAt).format('D');
@@ -133,9 +106,8 @@ function buildNightlyHTML(files) {
     }
   });
 
-  NIGHTLYDATA.htmlTemplate = NIGHTLYARRAY;
-  var template = Handlebars.compile(document.getElementById('template').innerHTML);
-  nightlyList.innerHTML = template(NIGHTLYDATA);
+  const template = Handlebars.compile(document.getElementById('template').innerHTML);
+  nightlyList.innerHTML = template({htmlTemplate: NIGHTLYARRAY});
 
   setSearchLogic();
 
@@ -146,27 +118,27 @@ function buildNightlyHTML(files) {
   setTableRange();
 
   // if the table has a scroll bar, show text describing how to horizontally scroll
-  var scrollText = document.getElementById('scroll-text');
-  var tableDisplayWidth = document.getElementById('nightly-list').clientWidth;
-  var tableScrollWidth = document.getElementById('nightly-list').scrollWidth;
+  const scrollText = document.getElementById('scroll-text');
+  const tableDisplayWidth = document.getElementById('nightly-list').clientWidth;
+  const tableScrollWidth = document.getElementById('nightly-list').scrollWidth;
   if (tableDisplayWidth != tableScrollWidth) {
     scrollText.className = scrollText.className.replace(/(?:^|\s)hide(?!\S)/g, '');
   }
 }
 
 function setTableRange() {
-  var rows = $('#nightly-table tr');
-  var selectedDate = moment(datepicker.value, 'MM-DD-YYYY').format();
-  var visibleRows = 0;
+  const rows = $('#nightly-table tr');
+  const selectedDate = moment(datepicker.value, 'MM-DD-YYYY').format();
+  let visibleRows = 0;
 
-  for (i = 0; i < rows.length; i++) {
-    var thisDate = rows[i].getElementsByClassName('nightly-release-date')[0].innerHTML;
-    var thisDateMoment = moment(thisDate, 'D MMMM YYYY').format();
-    var isAfter = moment(thisDateMoment).isAfter(selectedDate);
-    if (isAfter === true || visibleRows >= numberpicker.value) {
+  for (let i = 0; i < rows.length; i++) {
+    const thisDate = rows[i].getElementsByClassName('nightly-release-date')[0].innerHTML;
+    const thisDateMoment = moment(thisDate, 'D MMMM YYYY').format();
+    const isAfter = moment(thisDateMoment).isAfter(selectedDate);
+
+    if (isAfter || visibleRows >= numberpicker.value) {
       rows[i].classList.add('hide');
-    }
-    else {
+    } else {
       rows[i].classList.remove('hide');
       visibleRows++;
     }
@@ -178,14 +150,11 @@ function setTableRange() {
 function setSearchLogic() {
   // logic for the realtime search box...
   var $rows = $('#nightly-table tr');
-  $('#search').keyup(function () {
-    var val = '^(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$',
-      reg = RegExp(val, 'i'),
-      text;
+  $('#search').keyup(function() {
+    const reg = RegExp('^(?=.*' + $.trim($(this).val()).split(/\s+/).join(')(?=.*') + ').*$', 'i');
 
-    $rows.show().filter(function () {
-      text = $(this).text().replace(/\s+/g, ' ');
-      return !reg.test(text);
+    $rows.show().filter(function() {
+      return !reg.test($(this).text().replace(/\s+/g, ' '));
     }).hide();
 
     checkSearchResultsExist();
@@ -193,12 +162,11 @@ function setSearchLogic() {
 }
 
 function checkSearchResultsExist() {
-  var numOfVisibleRows = $('#nightly-table').find('tr:visible').length;
-  if (numOfVisibleRows == 0) {
+  const numOfVisibleRows = $('#nightly-table').find('tr:visible').length;
+  if (numOfVisibleRows === 0) {
     tableContainer.style.visibility = 'hidden';
     searchError.className = '';
-  }
-  else {
+  } else {
     tableContainer.style.visibility = '';
     searchError.className = 'hide';
   }

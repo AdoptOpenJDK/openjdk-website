@@ -21,10 +21,10 @@ const hash = require('gulp-hash');
 const inject = require('gulp-inject');
 const robots = require('gulp-robots');
 const clean = require('gulp-clean');
-const babel = require('gulp-babel');
 const base64img = require('base64-img');
-
-const sourceFiles = ['./node_modules/underscore/underscore.js', './src/js/**/*.js'];
+const browserify = require('browserify');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
 
 // default task
 gulp.task('default', () => {
@@ -82,15 +82,19 @@ gulp.task('json', () => gulp.src('./src/json/*.json').pipe(gulp.dest('./dist/jso
 
 // scripts task
 gulp.task('scripts', () => {
-  return gulp.src(sourceFiles)
-    .pipe(babel({
+  return browserify({
+      entries: './src/js/entry.js',
+    })
+    .transform('babelify', {
       presets: [['@babel/env', {
         debug: true,
-        targets: 'defaults' // see https://babeljs.io/docs/en/babel-preset-env#targets
+        targets: 'defaults', // see https://babeljs.io/docs/en/babel-preset-env#targets
+        useBuiltIns: 'usage',
       }]]
-    }))
-    .pipe(concat('app.js'))
-    .on('error', gutil.log)
+    })
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
     .pipe(gulp.dest('./dist/js/'))
     .pipe(uglify())
     .on('error', gutil.log)
@@ -140,10 +144,10 @@ gulp.task('inject', () => {
     relative: true,
     addPrefix: '.'
   };
-  const sourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
+  const minSourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
   const targetFiles = gulp.src('./*.html');
 
-  return targetFiles.pipe(inject(sourceFiles, options)) // injects the latest minified JS and CSS into all HTML files
+  return targetFiles.pipe(inject(minSourceFiles, options)) // injects the latest minified JS and CSS into all HTML files
   .pipe(gulp.dest('./'));
 });
 

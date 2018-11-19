@@ -1,4 +1,10 @@
+const {detectOS, findPlatform, getBinaryExt, getInstallerExt, loadAssetInfo,
+  loadPlatformsThenData, makeQueryString, setTickLink} = require('./common');
+const {jvmVariant, variant} = require('./common');
+
 // set variables for all index page HTML elements that will be used by the JS
+const loading = document.getElementById('loading');
+const errorContainer = document.getElementById('error-container');
 const dlText = document.getElementById('dl-text');
 const dlLatest = document.getElementById('dl-latest');
 const dlArchive = document.getElementById('dl-archive');
@@ -8,76 +14,55 @@ const dlIcon2 = document.getElementById('dl-icon-2');
 const dlVersionText = document.getElementById('dl-version-text');
 
 // When index page loads, run:
-/* eslint-disable no-unused-vars */
-function onIndexLoad() {
-  setDownloadSection(); // on page load, populate the central download section.
-}
-/* eslint-enable no-unused-vars */
+module.exports.onIndexLoad = () => {
+  loadPlatformsThenData(() => {
+    removeRadioButtons();
 
-// INDEX PAGE FUNCTIONS
+    // Try to match up the detected OS with a platform from 'config.json'
+    const OS = detectOS();
+
+    if (OS) {
+      dlText.innerHTML = `Download for <var platform-name>${OS.officialName}</var>`;
+    }
+    dlText.classList.remove('invisible');
+
+    const handleResponse = (releasesJson) => {
+      if (!releasesJson || !releasesJson.release_name) {
+        return;
+      }
+      buildHomepageHTML(releasesJson, {}, OS);
+    };
+
+    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {
+      errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
+        Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
+      loading.innerHTML = ''; // remove the loading dots
+    });
+  });
+}
+
 function removeRadioButtons() {
-  var buttons = document.getElementsByClassName('btn-label');
+  const buttons = document.getElementsByClassName('btn-label');
   for (var a = 0; a < buttons.length; a++) {
-    console.log(buttons[a].firstChild.getAttribute('lts'));
-    if (buttons[a].firstChild.getAttribute('lts') == 'false') {
+    if (buttons[a].firstChild.getAttribute('lts') === 'false') {
       buttons[a].style.display = 'none';
     }
   }
 }
-/* eslint-disable no-unused-vars */
-function setDownloadSection() {
-  loadPlatformsThenData(function() {
-    removeRadioButtons();
 
-    // Try to match up the detected OS with a platform from 'config.json'
-    var OS = detectOS();
-
-    if (OS) {
-      dlText.innerHTML = 'Download for <var platform-name>' + OS.officialName + '</var>';
-    }
-    dlText.classList.remove('invisible');
-
-    var handleResponse = function (releasesJson) {
-      if (!releasesJson || !releasesJson.release_name) {
-        return;
-      }
-
-      // TODO: enable this request when 'jck.json' exists.  For now the 404 just slows things down.
-      /* eslint-disable no-undef */
-      /*loadJSON(getRepoName(true, 'releases'), 'jck', function(response_jck) {
-        var jckJSON = {}
-        if (response_jck !== null) {
-          jckJSON = JSON.parse(response_jck)
-        }
-        buildHomepageHTML(releasesJson, jckJSON, OS);
-      });*/
-      buildHomepageHTML(releasesJson, {}, OS);
-    };
-
-    /* eslint-disable no-undef */
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, function () {
-      errorContainer.innerHTML = '<p>There are no releases available for ' + variant + ' on the ' + jvmVariant + ' jvm. Please check our <a href=nightly.html?variant=' + variant + '&jvmVariant=' + jvmVariant + ' target=\'blank\'>Nightly Builds</a>.</p>';
-      loading.innerHTML = ''; // remove the loading dots
-    });
-  });
-
-}
-
-/* eslint-disable no-unused-vars */
 function buildHomepageHTML(releasesJson, jckJSON, OS) {
   // set the download button's version number to the latest release
   dlVersionText.innerHTML = releasesJson.release_name;
 
-  var assetArray = releasesJson.binaries;
-  var matchingFile = null;
+  const assetArray = releasesJson.binaries;
+  let matchingFile = null;
 
   // if the OS has been detected...
   if (OS) {
-    assetArray.forEach(function(eachAsset) { // iterate through the assets attached to this release
-      var nameOfFile = eachAsset.binary_name;
-      var uppercaseFilename = nameOfFile.toUpperCase();
-      var thisPlatform = findPlatform(eachAsset);
-      var uppercaseOSname = null;
+    assetArray.forEach((eachAsset) => { // iterate through the assets attached to this release
+      const uppercaseFilename = eachAsset.binary_name.toUpperCase();
+      const thisPlatform = findPlatform(eachAsset);
+
       // firstly, check if a valid searchableName has been returned (i.e. the platform is recognised)...
       if (thisPlatform) {
 
@@ -86,9 +71,10 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
         var thisBinaryExtension = getBinaryExt(thisPlatform); // get the binary extension associated with this platform
         var thisInstallerExtension = getInstallerExt(thisPlatform); // get the installer extension associated with this platform
         if (matchingFile == null) {
-          if (uppercaseFilename.indexOf(thisInstallerExtension.toUpperCase()) >= 0) {
-            uppercaseOSname = OS.searchableName.toUpperCase();
-            if (Object.keys(jckJSON).length != 0) {
+          if (uppercaseFilename.includes(thisInstallerExtension.toUpperCase())) {
+            const uppercaseOSname = OS.searchableName.toUpperCase();
+
+            if (Object.keys(jckJSON).length !== 0) {
               if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname)) {
                 document.getElementById('jck-approved-tick').classList.remove('hide');
                 setTickLink();
@@ -96,19 +82,19 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
             }
 
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-            if (uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
+            if (uppercaseFilename.includes(uppercaseOSname)) {
               matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
             }
-          } else if (uppercaseFilename.indexOf(thisBinaryExtension.toUpperCase()) >= 0) {
-            uppercaseOSname = OS.searchableName.toUpperCase();
-            if (Object.keys(jckJSON).length != 0) {
+          } else if (uppercaseFilename.includes(thisBinaryExtension.toUpperCase())) {
+            const uppercaseOSname = OS.searchableName.toUpperCase();
+            if (Object.keys(jckJSON).length !== 0) {
               if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname)) {
                 document.getElementById('jck-approved-tick').classList.remove('hide');
                 setTickLink();
               }
             }
             // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-            if (uppercaseFilename.indexOf(uppercaseOSname) >= 0) {
+            if (uppercaseFilename.includes(uppercaseOSname)) {
               matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
             }
           }
@@ -120,15 +106,11 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
   // if there IS a matching binary for the user's OS...
   if (matchingFile) {
     dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
-    var thisBinarySize = Math.floor((matchingFile.binary_size) / 1024 / 1024);
-    dlVersionText.innerHTML += (' - ' + thisBinarySize + ' MB');
-  }
-  // if there is NOT a matching binary for the user's OS...
-  else {
+    dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary_size / 1024 / 1024)} MB`;
+  } else {
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
-    /* eslint-disable no-undef */
-    dlLatest.href = './releases.html?' + formSearchArgs('variant',variant,'jvmVariant', jvmVariant); // set the main download button's link to the latest releases page for all platforms.
+    dlLatest.href = `./releases.html?${makeQueryString({variant, jvmVariant})}`; // set the main download button's link to the latest releases page for all platforms.
   }
 
   // remove the loading dots, and make all buttons visible, with animated fade-in
@@ -137,12 +119,12 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
   dlOther.className = dlOther.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated ');
   dlArchive.className = dlArchive.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated ');
 
-  dlLatest.onclick = function() {
+  dlLatest.onclick = () => {
     document.getElementById('installation-link').className += ' animated pulse infinite transition-bright';
   };
 
   // animate the main download button shortly after the initial animation has finished.
-  setTimeout(function() {
+  setTimeout(() => {
     dlLatest.className = 'dl-button a-button animated pulse';
   }, 1000);
 }
