@@ -193,7 +193,7 @@ gulp.task('lint', () => {
 
 // sitemap task
 gulp.task('sitemap', () => {
-  gulp.src(['./*.html', '!./banner.html'], {
+  gulp.src('./*.html', {
       read: false
     })
     .pipe(sitemap({
@@ -218,7 +218,7 @@ gulp.task('robots', () => {
     .pipe(robots({
       useragent: '*',
       allow: ['/'],
-      disallow: ['/404.html', '/banner.html', '/dist']
+      disallow: ['/404.html', '/dist']
     }))
     .pipe(gulp.dest('./'));
 });

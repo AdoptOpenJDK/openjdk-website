@@ -130,6 +130,9 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
 * When you insert the footer partial into a `.handlebars` file, you can pass in a variable for any page-specific JavaScript that you have written to be run 'on page load', e.g. `{{> footer script='<script>onIndexLoad();</script>' }}`. See the 'JS' section below for details on this system.
 * If you are unsure, it is best to begin by copying an existing `.handlebars` file, and deleting the content between the `<main>` tags.
 
+### Global banner
+* If you need to insert a banner/notification on all pages, edit the commented-out section at the end of `/src/handlebars/partials/header.handlebars`.
+
 ### Menu system
 * The menu contents can be changed in `/src/handlebars/partials/menu.handlebars`.
 
