@@ -82,17 +82,11 @@ gulp.task('handlebars', () => {
 gulp.task('json', () => gulp.src('./src/json/*.json').pipe(gulp.dest('./dist/json/')));
 
 // scripts task
-<<<<<<< HEAD
-gulp.task('scripts', function() {
+gulp.task('scripts', () => {
   return browserify({
       entries: './src/js/entry.js',
     })
     .transform('babelify', {
-=======
-gulp.task('scripts', () => {
-  return gulp.src(sourceFiles)
-    .pipe(babel({
->>>>>>> upstream/master
       presets: [['@babel/env', {
         debug: true,
         targets: 'defaults', // see https://babeljs.io/docs/en/babel-preset-env#targets
@@ -151,13 +145,8 @@ gulp.task('inject', () => {
     relative: true,
     addPrefix: '.'
   };
-<<<<<<< HEAD
-  var minSourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
-  var targetFiles = gulp.src('./*.html');
-=======
-  const sourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
+  const minSourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
   const targetFiles = gulp.src('./*.html');
->>>>>>> upstream/master
 
   return targetFiles.pipe(inject(minSourceFiles, options)) // injects the latest minified JS and CSS into all HTML files
   .pipe(gulp.dest('./'));
