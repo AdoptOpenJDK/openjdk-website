@@ -103,7 +103,8 @@ module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathC
 module.exports.detectOS = () => {
   return platforms.find((aPlatform) => {
     /*global platform*/
-    return aPlatform.osDetectionString.toUpperCase().includes(platform.os.family.toUpperCase());
+    return aPlatform.osDetectionString.toUpperCase().includes(platform.os.family.toUpperCase())
+      && aPlatform.attributes.architecture.endsWith(platform.os.architecture); // 32 or 64 int
   }) || null;
 }
 
