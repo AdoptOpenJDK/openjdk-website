@@ -21,7 +21,6 @@ const hash = require('gulp-hash');
 const inject = require('gulp-inject');
 const robots = require('gulp-robots');
 const clean = require('gulp-clean');
-const babel = require('gulp-babel');
 const base64img = require('base64-img');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
