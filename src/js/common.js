@@ -243,7 +243,7 @@ module.exports.setTickLink = () => {
 }
 
 // builds up a query string (e.g. "variant=openjdk8&jvmVariant=hotspot")
-function makeQueryString(params) {
+const makeQueryString = module.exports.makeQueryString = (params) => {
   return Object.keys(params).map((key) => key + '=' + params[key]).join('&');
 }
 
