@@ -22,50 +22,51 @@ const inject = require('gulp-inject');
 const robots = require('gulp-robots');
 const clean = require('gulp-clean');
 const babel = require('gulp-babel');
+const base64img = require('base64-img');
 
 const sourceFiles = ['./node_modules/underscore/underscore.js', './src/js/**/*.js'];
 
 // default task
-gulp.task('default', function() {
-  runSequence('clean','json-validate',['handlebars','json','scripts','styles','images','icon'],'inject','watch','browser-sync');
+gulp.task('default', () => {
+  runSequence('clean','json-validate',['json','scripts','styles','images','icon'],'handlebars','inject','watch','browser-sync');
 });
 
 // build task
-gulp.task('build', function() {
-  runSequence('clean',['handlebars','json','scripts','styles','images','icon'],'inject','sitemap','robots','lint');
+gulp.task('build', () => {
+  runSequence('clean',['json','scripts','styles','images','icon'],'handlebars','inject','sitemap','robots','lint');
 });
 
 // clean task (deletes /dist dir)
-gulp.task('clean', function () {
-  return gulp.src('dist', {read: false})
-    .pipe(clean());
-});
+gulp.task('clean', () => gulp.src('dist', {read: false}).pipe(clean()));
 
 // watch task
-gulp.task('watch', function() {
-  gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], function() {
+gulp.task('watch', () => {
+  gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], () => {
     runSequence('handlebars','inject', browserSync.reload);
   });
-  gulp.watch('./src/json/*.json', function() {
+  gulp.watch('./src/json/*.json', () => {
     runSequence('json', browserSync.reload);
   });
-  gulp.watch('./src/js/**/*.js', function() {
+  gulp.watch('./src/js/**/*.js', () => {
     runSequence('scripts','inject', browserSync.reload);
   });
-  gulp.watch('./src/scss/*.scss', function() {
+  gulp.watch('./src/scss/*.scss', () => {
     runSequence('styles','inject', browserSync.reload);
   });
-  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], ['images']);
+  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], () => {
+    runSequence('images','handlebars', browserSync.reload);
+  });
   gulp.watch('./src/assets/*.ico', ['icon']);
 });
 
 // Handlebars HTML build task
-gulp.task('handlebars', function () {
-  var templateData = {
-  },
-  options = {
-    batch : ['./src/handlebars/partials']
-  }
+gulp.task('handlebars', () => {
+  const templateData = {};
+
+  const options = {
+    batch: ['./src/handlebars/partials'],
+    helpers: {base64img: base64img.base64Sync}
+  };
 
   return gulp.src('./src/handlebars/*.handlebars')
     .pipe(handlebars(templateData, options))
@@ -77,13 +78,10 @@ gulp.task('handlebars', function () {
 });
 
 // json task
-gulp.task('json', function() {
-  return gulp.src('./src/json/*.json')
-    .pipe(gulp.dest('./dist/json/'));
-});
+gulp.task('json', () => gulp.src('./src/json/*.json').pipe(gulp.dest('./dist/json/')));
 
 // scripts task
-gulp.task('scripts', function() {
+gulp.task('scripts', () => {
   return gulp.src(sourceFiles)
     .pipe(babel({
       presets: [['@babel/env', {
@@ -111,7 +109,7 @@ gulp.task('scripts', function() {
 });
 
 // styles task
-gulp.task('styles', function() {
+gulp.task('styles', () => {
   return gulp.src('./src/scss/*.scss')
     .pipe(sass())
     .on('error', gutil.log)
@@ -137,20 +135,20 @@ gulp.task('styles', function() {
 });
 
 // inject task
-gulp.task('inject', function() {
-  var options = {
+gulp.task('inject', () => {
+  const options = {
     relative: true,
     addPrefix: '.'
   };
-  var sourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
-  var targetFiles = gulp.src('./*.html');
+  const sourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
+  const targetFiles = gulp.src('./*.html');
 
   return targetFiles.pipe(inject(sourceFiles, options)) // injects the latest minified JS and CSS into all HTML files
   .pipe(gulp.dest('./'));
 });
 
 // images task
-gulp.task('images', function() {
+gulp.task('images', () => {
   return gulp.src(['./src/assets/*.jp*', './src/assets/*.png',  './src/assets/*.svg', './src/assets/*.gif'])
     .pipe(imagemin())
     .on('error', gutil.log)
@@ -158,13 +156,13 @@ gulp.task('images', function() {
 });
 
 // icon task
-gulp.task('icon', function() {
+gulp.task('icon', () => {
   return gulp.src('./src/assets/*.ico')
     .pipe(gulp.dest('./dist/assets/'));
 });
 
 // json validation task
-gulp.task('json-validate', function () {
+gulp.task('json-validate', () => {
   gutil.log('Validating config.json against config.schema.json');
 
   const objFromJson = (uri) => JSON.parse(fs.readFileSync(uri, 'utf-8'));
@@ -186,7 +184,7 @@ gulp.task('json-validate', function () {
 });
 
 // lint task
-gulp.task('lint', function() {
+gulp.task('lint', () => {
   return gulp.src('./dist/js/app.js')
     .pipe(eslint())
     .pipe(eslint.format())
@@ -194,7 +192,7 @@ gulp.task('lint', function() {
 });
 
 // sitemap task
-gulp.task('sitemap', function () {
+gulp.task('sitemap', () => {
   gulp.src(['./*.html', '!./banner.html'], {
       read: false
     })
@@ -205,7 +203,7 @@ gulp.task('sitemap', function () {
 });
 
 // browser-sync task
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', () => {
     browserSync.init({
         server: {
             baseDir: './'
@@ -215,7 +213,7 @@ gulp.task('browser-sync', function() {
 });
 
 // robots task
-gulp.task('robots', function () {
+gulp.task('robots', () => {
   gulp.src('index.html')
     .pipe(robots({
       useragent: '*',
