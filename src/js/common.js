@@ -212,19 +212,21 @@ module.exports.loadPlatformsThenData = (callback) => {
 }
 
 // build the menu twisties
-const submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
+module.exports.buildMenuTwisties = () => {
+  const submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
 
-for (let i = 0; i < submenus.length; i++) {
-  const twisty = document.createElement('span');
-  const twistyContent = document.createTextNode('>');
-  twisty.appendChild(twistyContent);
-  twisty.className = 'twisty';
+  for (let i = 0; i < submenus.length; i++) {
+    const twisty = document.createElement('span');
+    const twistyContent = document.createTextNode('>');
+    twisty.appendChild(twistyContent);
+    twisty.className = 'twisty';
 
-  const thisLine = submenus[i].getElementsByTagName('a')[0];
-  thisLine.appendChild(twisty);
+    const thisLine = submenus[i].getElementsByTagName('a')[0];
+    thisLine.appendChild(twisty);
 
-  thisLine.onclick = function () {
-    this.parentNode.classList.toggle('open');
+    thisLine.onclick = function () {
+      this.parentNode.classList.toggle('open');
+    }
   }
 }
 
@@ -263,7 +265,7 @@ function getQueryByName(name) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-global.persistUrlQuery = () => {
+module.exports.persistUrlQuery = () => {
   const links = Array.from(document.getElementsByTagName('a'));
   const link = (window.location.hostname !== 'localhost' ? 'https://' : '') + window.location.hostname;
 
@@ -353,7 +355,7 @@ function setRadioSelectors() {
   }
 }
 
-global.copyClipboard = (elementSelector) => {
+module.exports.copyClipboard = (elementSelector) => {
   const input = document.createElement('input');
   input.value = document.querySelector(elementSelector).textContent;
 

@@ -114,11 +114,11 @@ function displayLatestPlatform() {
   }
 }
 
-global.selectLatestPlatform = (thisPlatform) => {
+module.exports.selectLatestPlatform = (thisPlatform) => {
   window.location.hash = thisPlatform.toLowerCase();
 }
 
-const unselectLatestPlatform = global.unselectLatestPlatform = (keephash) => {
+const unselectLatestPlatform = module.exports.unselectLatestPlatform = (keephash) => {
   if (!keephash) {
     history.pushState('', document.title, window.location.pathname + window.location.search);
   }
