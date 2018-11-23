@@ -159,7 +159,7 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
   5. Refer to the 'HTML (Handlebars)' section above for guidance on how to call this root function.
 
 ### Adding a new platform/arch/OS (or removing one)
-* `platforms.json` contains a `platforms` array.
+* `config.json` contains a `platforms` array.
 * This array dictates which platforms appear across the website and API. Changing this array will update the every page accordingly, for each specified platform that is available.
 * Each platform is contained within an object, and has a range of values/attributes.
 * To add a new platform, copy an existing object `{...}` and paste it into the array in the desired order (remembering to use commas `,` to separate each object).
