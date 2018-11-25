@@ -135,16 +135,6 @@ module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, ty
   queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
 }
 
-// when using this function, pass in the name of the repo (options: releases, nightly)
-function loadJSON(repo, filename, callback) {
-  // the URL of the JSON built in the website back-end
-  let url = `https://raw.githubusercontent.com/AdoptOpenJDK/${repo}/master/${filename}.json`;
-  if (repo === 'adoptopenjdk.net') {
-    url = (filename);
-  }
-  loadUrl(url, callback);
-}
-
 function loadUrl(url, callback) {
   const xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
