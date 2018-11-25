@@ -1,5 +1,5 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getOfficialName, getPlatformOrder,
-  loadAssetInfo, loadPlatformsThenData, orderPlatforms, setTickLink} = require('./common');
+  loadAssetInfo, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -7,22 +7,18 @@ const errorContainer = document.getElementById('error-container');
 
 // When archive page loads, run:
 module.exports.load = () => {
-  loadPlatformsThenData(() => {
-    const handleResponse = (response) => {
-      buildArchiveHTML(response, {});
-    };
+  setRadioSelectors();
 
-    loadAssetInfo(variant, jvmVariant, 'releases', undefined, undefined, handleResponse, () => {
-      // if there are no releases (beyond the latest one)...
-      // report an error, remove the loading dots
-      loading.innerHTML = '';
-      errorContainer.innerHTML = `<p>There are no archived releases yet for ${variant} on the ${jvmVariant} JVM.
-        See the <a href='./releases.html?variant=${variant}&jvmVariant=${jvmVariant}'>Latest release</a> page.</p>`;
-    });
+  loadAssetInfo(variant, jvmVariant, 'releases', undefined, undefined, buildArchiveHTML, () => {
+    // if there are no releases (beyond the latest one)...
+    // report an error, remove the loading dots
+    loading.innerHTML = '';
+    errorContainer.innerHTML = `<p>There are no archived releases yet for ${variant} on the ${jvmVariant} JVM.
+      See the <a href='./releases.html?variant=${variant}&jvmVariant=${jvmVariant}'>Latest release</a> page.</p>`;
   });
 }
 
-function buildArchiveHTML(releases, jckJSON) {
+function buildArchiveHTML(releases, jckJSON = {}) {
   const RELEASEARRAY = [];
 
   for (let i = 0; i<releases.length; i++) {

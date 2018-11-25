@@ -1,5 +1,5 @@
 const {detectOS, findPlatform, getBinaryExt, getChecksumCommand, getInstallCommand, getOfficialName,
-  getPathCommand, getPlatformOrder, loadAssetInfo, loadPlatformsThenData, orderPlatforms} = require('./common');
+  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -7,11 +7,11 @@ const errorContainer = document.getElementById('error-container');
 const platformSelector = document.getElementById('platform-selector');
 
 module.exports.load = () => {
-  loadPlatformsThenData(() => {
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, buildInstallationHTML, () => {
-      errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
-      loading.innerHTML = ''; // remove the loading dots
-    });
+  setRadioSelectors();
+
+  loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, buildInstallationHTML, () => {
+    errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
+    loading.innerHTML = ''; // remove the loading dots
   });
 }
 

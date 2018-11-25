@@ -1,21 +1,14 @@
 // prefix for assets (e.g. logo)
 const assetPath = './dist/assets/';
 
-const platforms = module.exports.platforms = [];
-const variants = module.exports.platforms = [];
-const lookup = module.exports.lookup = {};
+const {platforms, variants} = require('../json/config');
+
+// Enables things like 'lookup["X64_MAC"]'
+const lookup = {};
+platforms.forEach((platform) => lookup[platform.searchableName] = platform);
 
 let variant = module.exports.variant = getQueryByName('variant') || 'openjdk8';
 let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
-
-const jdkSelector = module.exports.jdkSelector = document.getElementById('jdk-selector');
-const jvmSelector = module.exports.jvmSelector = document.getElementById('jvm-selector');
-
-// set value for loading dots
-const loading = document.getElementById('loading');
-
-// set value for error container
-const errorContainer = document.getElementById('error-container');
 
 // set variable names for menu elements
 const menuOpen = document.getElementById('menu-button');
@@ -29,16 +22,6 @@ menuOpen.onclick = () => {
 
 menuClose.onclick = () => {
   menu.className = menu.className.replace(/(?:^|\s)slideInLeft(?!\S)/g, ' slideOutLeft'); // slide out animation
-}
-
-
-
-function setLookup() {
-  // FUNCTIONS FOR GETTING PLATFORM DATA
-  // allows us to use, for example, 'lookup["MAC"];'
-  for (let i = 0; i < platforms.length; i++) {
-    lookup[platforms[i].searchableName] = platforms[i];
-  }
 }
 
 module.exports.getVariantObject = (variantName) => variants.find((variant) => variant.searchableName === variantName);
@@ -177,26 +160,6 @@ function loadUrl(url, callback) {
   xobj.send(null);
 }
 
-module.exports.loadPlatformsThenData = (callback) => {
-  loadJSON('adoptopenjdk.net', './dist/json/config.json', (response) => {
-    const configJson = JSON.parse(response);
-
-    if (typeof configJson !== 'undefined') { // if there are releases...
-      platforms.push(...configJson.platforms);
-      variants.push(...configJson.variants);
-      setRadioSelectors();
-      setLookup();
-      callback();
-    }
-    else {
-      // report an error
-      errorContainer.innerHTML = `<p>Error... there's a problem fetching the releases.
-        Please see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>`;
-      loading.innerHTML = ''; // remove the loading dots
-    }
-  });
-}
-
 // build the menu twisties
 module.exports.buildMenuTwisties = () => {
   const submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
@@ -271,8 +234,11 @@ module.exports.persistUrlQuery = () => {
   });
 }
 
-function setRadioSelectors() {
+module.exports.setRadioSelectors = () => {
+  const jdkSelector = document.getElementById('jdk-selector');
+  const jvmSelector = document.getElementById('jvm-selector');
   const listedVariants = [];
+
   function createRadioButtons(name, group, variant, element) {
     if (!listedVariants.length || !listedVariants.some((aVariant) => aVariant === name)) {
       const btnLabel = document.createElement('label');

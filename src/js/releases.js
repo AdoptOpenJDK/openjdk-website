@@ -1,5 +1,5 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getLogo, getOfficialName, getPlatformOrder,
-    getVariantObject, loadLatestAssets, loadPlatformsThenData, orderPlatforms, setTickLink} = require('./common');
+    getVariantObject, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -7,20 +7,12 @@ const errorContainer = document.getElementById('error-container');
 
 // When releases page loads, run:
 module.exports.load = () => {
-  loadPlatformsThenData(() => {
-    const handleResponse = (response) => {
-      if (response.length === 0) {
-        return;
-      }
+  setRadioSelectors();
 
-      buildLatestHTML(response, {});
-    };
-
-    loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, () => {
-      errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
-        Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
-      loading.innerHTML = ''; // remove the loading dots
-    });
+  loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, buildLatestHTML, () => {
+    errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
+      Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
+    loading.innerHTML = ''; // remove the loading dots
   });
 }
 

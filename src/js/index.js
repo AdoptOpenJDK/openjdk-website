@@ -1,5 +1,5 @@
 const {detectOS, findPlatform, getBinaryExt, getInstallerExt, loadAssetInfo,
-  loadPlatformsThenData, makeQueryString, setTickLink} = require('./common');
+  makeQueryString, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 // set variables for all index page HTML elements that will be used by the JS
@@ -15,29 +15,28 @@ const dlVersionText = document.getElementById('dl-version-text');
 
 // When index page loads, run:
 module.exports.load = () => {
-  loadPlatformsThenData(() => {
-    removeRadioButtons();
+  setRadioSelectors();
+  removeRadioButtons();
 
-    // Try to match up the detected OS with a platform from 'config.json'
-    const OS = detectOS();
+  // Try to match up the detected OS with a platform from 'config.json'
+  const OS = detectOS();
 
-    if (OS) {
-      dlText.innerHTML = `Download for <var platform-name>${OS.officialName}</var>`;
+  if (OS) {
+    dlText.innerHTML = `Download for <var platform-name>${OS.officialName}</var>`;
+  }
+  dlText.classList.remove('invisible');
+
+  const handleResponse = (releasesJson) => {
+    if (!releasesJson || !releasesJson.release_name) {
+      return;
     }
-    dlText.classList.remove('invisible');
+    buildHomepageHTML(releasesJson, {}, OS);
+  };
 
-    const handleResponse = (releasesJson) => {
-      if (!releasesJson || !releasesJson.release_name) {
-        return;
-      }
-      buildHomepageHTML(releasesJson, {}, OS);
-    };
-
-    loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, () => {
-      errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
-        Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
-      loading.innerHTML = ''; // remove the loading dots
-    });
+  loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, () => {
+    errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
+      Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
+    loading.innerHTML = ''; // remove the loading dots
   });
 }
 
