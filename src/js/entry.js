@@ -6,6 +6,8 @@ Object.assign(global, {selectLatestPlatform, unselectLatestPlatform});
 
 document.addEventListener('DOMContentLoaded', () => {
   // '/index.html' --> 'index'
+  // NOTE: Browserify requires strings in `require()`, so this is intentionally more explicit than
+  // it normally would be.
   switch(window.location.pathname.substring(1).replace(/\.html$/i, '')) {
     case '':
     case 'index':
