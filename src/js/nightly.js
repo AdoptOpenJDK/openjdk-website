@@ -11,7 +11,7 @@ const numberpicker = document.getElementById('numberpicker');
 const datepicker = document.getElementById('datepicker');
 
 // When nightly page loads, run:
-module.exports.onNightlyLoad = () => {
+module.exports.load = () => {
   setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 

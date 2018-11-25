@@ -14,7 +14,7 @@ const dlIcon2 = document.getElementById('dl-icon-2');
 const dlVersionText = document.getElementById('dl-version-text');
 
 // When index page loads, run:
-module.exports.onIndexLoad = () => {
+module.exports.load = () => {
   loadPlatformsThenData(() => {
     removeRadioButtons();
 

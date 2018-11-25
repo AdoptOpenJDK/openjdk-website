@@ -6,7 +6,7 @@ const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 
 // When releases page loads, run:
-module.exports.onLatestLoad = () => {
+module.exports.load = () => {
   loadPlatformsThenData(() => {
     const handleResponse = (response) => {
       if (response.length === 0) {

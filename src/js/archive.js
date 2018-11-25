@@ -6,7 +6,7 @@ const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 
 // When archive page loads, run:
-module.exports.onArchiveLoad = () => {
+module.exports.load = () => {
   loadPlatformsThenData(() => {
     const handleResponse = (response) => {
       buildArchiveHTML(response, {});

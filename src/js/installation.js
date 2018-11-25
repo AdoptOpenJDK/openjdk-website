@@ -6,7 +6,7 @@ const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 const platformSelector = document.getElementById('platform-selector');
 
-module.exports.onInstallationLoad = () => {
+module.exports.load = () => {
   loadPlatformsThenData(() => {
     loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, buildInstallationHTML, () => {
       errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
