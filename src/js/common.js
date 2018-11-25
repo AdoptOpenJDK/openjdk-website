@@ -1,5 +1,3 @@
-const _ = require('underscore');
-
 // prefix for assets (e.g. logo)
 const assetPath = './dist/assets/';
 
@@ -46,23 +44,11 @@ function setLookup() {
 module.exports.getVariantObject = (variantName) => variants.find((variant) => variant.searchableName === variantName);
 
 module.exports.findPlatform = (binaryData) => {
-  const matchedPlatform = _.chain(platforms)
-    .filter(function (platform) {
+  const matchedPlatform = platforms.filter((platform) => {
       return platform.hasOwnProperty('attributes')
-    })
-    .filter(function (platform) {
-      const matches = _.chain(platform.attributes)
-        .mapObject(function (attributeValue, attributeKey) {
-          return binaryData[attributeKey] === attributeValue
-        })
-        .reduce(function (memo, attributeMatches) {
-          return memo && attributeMatches;
-        }, true)
-        .value()
-      return matches
-    })
-    .first()
-    .value();
+        && Object.keys(platform.attributes).every((attr) => platform.attributes[attr] === binaryData[attr])
+    })[0];
+
   return matchedPlatform === undefined ? null : matchedPlatform.searchableName;
 }
 

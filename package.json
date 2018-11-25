@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "npm": "^6.4.1",
-    "underscore": "^1.9.1"
+    "npm": "^6.4.1"
   }
 }
