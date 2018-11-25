@@ -1,8 +1,5 @@
 const {buildMenuTwisties, persistUrlQuery} = require('./common');
 
-const {selectLatestPlatform, unselectLatestPlatform} = require('./releases');
-Object.assign(global, {selectLatestPlatform, unselectLatestPlatform});
-
 document.addEventListener('DOMContentLoaded', () => {
   persistUrlQuery();
   buildMenuTwisties();

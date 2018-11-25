@@ -100,17 +100,17 @@ function displayLatestPlatform() {
   const thisPlatformInfo = document.getElementById(`latest-info-${platformHash}`);
 
   if (thisPlatformInfo) {
-    unselectLatestPlatform('keep the hash');
+    global.unselectLatestPlatform('keep the hash');
     document.getElementById('latest-selector').classList.add('hide');
     thisPlatformInfo.classList.remove('hide');
   }
 }
 
-module.exports.selectLatestPlatform = (thisPlatform) => {
+global.selectLatestPlatform = (thisPlatform) => {
   window.location.hash = thisPlatform.toLowerCase();
 }
 
-const unselectLatestPlatform = module.exports.unselectLatestPlatform = (keephash) => {
+global.unselectLatestPlatform = (keephash) => {
   if (!keephash) {
     history.pushState('', document.title, window.location.pathname + window.location.search);
   }
