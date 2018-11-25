@@ -1,23 +1,14 @@
-const _ = require('underscore');
-
 // prefix for assets (e.g. logo)
 const assetPath = './dist/assets/';
 
-const platforms = module.exports.platforms = [];
-const variants = module.exports.platforms = [];
-const lookup = module.exports.lookup = {};
+const {platforms, variants} = require('../json/config');
+
+// Enables things like 'lookup["X64_MAC"]'
+const lookup = {};
+platforms.forEach((platform) => lookup[platform.searchableName] = platform);
 
 let variant = module.exports.variant = getQueryByName('variant') || 'openjdk8';
 let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
-
-const jdkSelector = module.exports.jdkSelector = document.getElementById('jdk-selector');
-const jvmSelector = module.exports.jvmSelector = document.getElementById('jvm-selector');
-
-// set value for loading dots
-const loading = document.getElementById('loading');
-
-// set value for error container
-const errorContainer = document.getElementById('error-container');
 
 // set variable names for menu elements
 const menuOpen = document.getElementById('menu-button');
@@ -33,36 +24,14 @@ menuClose.onclick = () => {
   menu.className = menu.className.replace(/(?:^|\s)slideInLeft(?!\S)/g, ' slideOutLeft'); // slide out animation
 }
 
-
-
-function setLookup() {
-  // FUNCTIONS FOR GETTING PLATFORM DATA
-  // allows us to use, for example, 'lookup["MAC"];'
-  for (let i = 0; i < platforms.length; i++) {
-    lookup[platforms[i].searchableName] = platforms[i];
-  }
-}
-
 module.exports.getVariantObject = (variantName) => variants.find((variant) => variant.searchableName === variantName);
 
 module.exports.findPlatform = (binaryData) => {
-  const matchedPlatform = _.chain(platforms)
-    .filter(function (platform) {
+  const matchedPlatform = platforms.filter((platform) => {
       return platform.hasOwnProperty('attributes')
-    })
-    .filter(function (platform) {
-      const matches = _.chain(platform.attributes)
-        .mapObject(function (attributeValue, attributeKey) {
-          return binaryData[attributeKey] === attributeValue
-        })
-        .reduce(function (memo, attributeMatches) {
-          return memo && attributeMatches;
-        }, true)
-        .value()
-      return matches
-    })
-    .first()
-    .value();
+        && Object.keys(platform.attributes).every((attr) => platform.attributes[attr] === binaryData[attr])
+    })[0];
+
   return matchedPlatform === undefined ? null : matchedPlatform.searchableName;
 }
 
@@ -166,16 +135,6 @@ module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, ty
   queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
 }
 
-// when using this function, pass in the name of the repo (options: releases, nightly)
-function loadJSON(repo, filename, callback) {
-  // the URL of the JSON built in the website back-end
-  let url = `https://raw.githubusercontent.com/AdoptOpenJDK/${repo}/master/${filename}.json`;
-  if (repo === 'adoptopenjdk.net') {
-    url = (filename);
-  }
-  loadUrl(url, callback);
-}
-
 function loadUrl(url, callback) {
   const xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
@@ -189,26 +148,6 @@ function loadUrl(url, callback) {
     }
   };
   xobj.send(null);
-}
-
-module.exports.loadPlatformsThenData = (callback) => {
-  loadJSON('adoptopenjdk.net', './dist/json/config.json', (response) => {
-    const configJson = JSON.parse(response);
-
-    if (typeof configJson !== 'undefined') { // if there are releases...
-      platforms.push(...configJson.platforms);
-      variants.push(...configJson.variants);
-      setRadioSelectors();
-      setLookup();
-      callback();
-    }
-    else {
-      // report an error
-      errorContainer.innerHTML = `<p>Error... there's a problem fetching the releases.
-        Please see the <a href='https://github.com/AdoptOpenJDK/openjdk-releases/releases' target='blank'>releases list on GitHub</a>.</p>`;
-      loading.innerHTML = ''; // remove the loading dots
-    }
-  });
 }
 
 // build the menu twisties
@@ -285,8 +224,11 @@ module.exports.persistUrlQuery = () => {
   });
 }
 
-function setRadioSelectors() {
+module.exports.setRadioSelectors = () => {
+  const jdkSelector = document.getElementById('jdk-selector');
+  const jvmSelector = document.getElementById('jvm-selector');
   const listedVariants = [];
+
   function createRadioButtons(name, group, variant, element) {
     if (!listedVariants.length || !listedVariants.some((aVariant) => aVariant === name)) {
       const btnLabel = document.createElement('label');
@@ -353,17 +295,4 @@ function setRadioSelectors() {
       break;
     }
   }
-}
-
-module.exports.copyClipboard = (elementSelector) => {
-  const input = document.createElement('input');
-  input.value = document.querySelector(elementSelector).textContent;
-
-  document.body.appendChild(input);
-  input.select();
-
-  document.execCommand('copy');
-  alert('Copied to clipboard');
-
-  document.body.removeChild(input);
 }

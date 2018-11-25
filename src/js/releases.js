@@ -1,26 +1,18 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getLogo, getOfficialName, getPlatformOrder,
-    getVariantObject, loadLatestAssets, loadPlatformsThenData, orderPlatforms, setTickLink} = require('./common');
+    getVariantObject, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 
 // When releases page loads, run:
-module.exports.onLatestLoad = () => {
-  loadPlatformsThenData(() => {
-    const handleResponse = (response) => {
-      if (response.length === 0) {
-        return;
-      }
+module.exports.load = () => {
+  setRadioSelectors();
 
-      buildLatestHTML(response, {});
-    };
-
-    loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, () => {
-      errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
-        Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
-      loading.innerHTML = ''; // remove the loading dots
-    });
+  loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, buildLatestHTML, () => {
+    errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
+      Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
+    loading.innerHTML = ''; // remove the loading dots
   });
 }
 
@@ -108,17 +100,17 @@ function displayLatestPlatform() {
   const thisPlatformInfo = document.getElementById(`latest-info-${platformHash}`);
 
   if (thisPlatformInfo) {
-    unselectLatestPlatform('keep the hash');
+    global.unselectLatestPlatform('keep the hash');
     document.getElementById('latest-selector').classList.add('hide');
     thisPlatformInfo.classList.remove('hide');
   }
 }
 
-module.exports.selectLatestPlatform = (thisPlatform) => {
+global.selectLatestPlatform = (thisPlatform) => {
   window.location.hash = thisPlatform.toLowerCase();
 }
 
-const unselectLatestPlatform = module.exports.unselectLatestPlatform = (keephash) => {
+global.unselectLatestPlatform = (keephash) => {
   if (!keephash) {
     history.pushState('', document.title, window.location.pathname + window.location.search);
   }

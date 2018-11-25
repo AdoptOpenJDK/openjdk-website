@@ -1,4 +1,4 @@
-const {findPlatform, getBinaryExt, getOfficialName, loadAssetInfo, loadPlatformsThenData} = require('./common');
+const {findPlatform, getBinaryExt, getOfficialName, loadAssetInfo, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -11,7 +11,8 @@ const numberpicker = document.getElementById('numberpicker');
 const datepicker = document.getElementById('datepicker');
 
 // When nightly page loads, run:
-module.exports.onNightlyLoad = () => {
+module.exports.load = () => {
+  setRadioSelectors();
   setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 
@@ -24,27 +25,25 @@ function setDatePicker() {
 }
 
 function populateNightly() {
-  loadPlatformsThenData(() => {
-    const handleResponse = (response) => {
-      // Step 1: create a JSON from the XmlHttpRequest response
-      const releasesJson = response.reverse();
+  const handleResponse = (response) => {
+    // Step 1: create a JSON from the XmlHttpRequest response
+    const releasesJson = response.reverse();
 
-      // if there are releases...
-      if (typeof releasesJson[0] !== 'undefined') {
-        const files = getFiles(releasesJson);
+    // if there are releases...
+    if (typeof releasesJson[0] !== 'undefined') {
+      const files = getFiles(releasesJson);
 
-        if (files.length === 0) {
-          return;
-        }
-
-        buildNightlyHTML(files);
+      if (files.length === 0) {
+        return;
       }
-    };
 
-    loadAssetInfo(variant, jvmVariant, 'nightly', undefined, undefined, handleResponse, () => {
-      errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
-      loading.innerHTML = ''; // remove the loading dots
-    });
+      buildNightlyHTML(files);
+    }
+  };
+
+  loadAssetInfo(variant, jvmVariant, 'nightly', undefined, undefined, handleResponse, () => {
+    errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
+    loading.innerHTML = ''; // remove the loading dots
   });
 }
 
