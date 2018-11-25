@@ -296,16 +296,3 @@ module.exports.setRadioSelectors = () => {
     }
   }
 }
-
-module.exports.copyClipboard = (elementSelector) => {
-  const input = document.createElement('input');
-  input.value = document.querySelector(elementSelector).textContent;
-
-  document.body.appendChild(input);
-  input.select();
-
-  document.execCommand('copy');
-  alert('Copied to clipboard');
-
-  document.body.removeChild(input);
-}

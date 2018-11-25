@@ -6,6 +6,19 @@ const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 const platformSelector = document.getElementById('platform-selector');
 
+global.copyClipboard = (elementSelector) => {
+  const input = document.createElement('input');
+  input.value = document.querySelector(elementSelector).textContent;
+
+  document.body.appendChild(input);
+  input.select();
+
+  document.execCommand('copy');
+  alert('Copied to clipboard');
+
+  document.body.removeChild(input);
+}
+
 module.exports.load = () => {
   setRadioSelectors();
 
