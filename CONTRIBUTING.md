@@ -127,7 +127,7 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
 * This way, repeated content (e.g. header and footer) only has to be maintained in one place.
 * Any new pages should have the header and footer partials inserted above and below the `<main>` tags respectively.
 * When you insert the header partial into a `.handlebars` file, you should pass in a variable for the page title, e.g. `{{> header title='Releases - AdoptOpenJDK' }}`.
-* When you insert the footer partial into a `.handlebars` file, you can pass in a variable for any page-specific JavaScript that you have written to be run 'on page load', e.g. `{{> footer script='<script>onIndexLoad();</script>' }}`. See the 'JS' section below for details on this system.
+* When you insert the footer partial into a `.handlebars` file, you can pass in a variable for any page-specific JavaScript dependencies, e.g. `{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.js"></script>' }}`.
 * If you are unsure, it is best to begin by copying an existing `.handlebars` file, and deleting the content between the `<main>` tags.
 
 ### Global banner
@@ -149,28 +149,28 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
 
 ### JS
 * Always run `npm test` to run a linter on your JS before pushing any changes / raising a PR.
-* Use `global.js` for global JavaScript functions.
-* Use individual `.js` files for functions that are specific to a page, such as `nightly.js`. For any functions that should happen 'on page load', call them from within the root function for that page, e.g. `onNightlyLoad(){...}`.
+* Use `common.js` for global JavaScript functions, and import them into specific page JS (e.g. `const {globalFuncX} = require('./common');`) as required.
+* Use individual `.js` files for functions that are specific to a page, such as `nightly.js`.
 * If you create a new `.handlebars` file that requires new JavaScript functions:
-  1. Create a new `.js` file inside `/src/js` to match the page's name.
-  2. Re-run `npm start` to add this new file to the `/dist` directory.
-  3. Write a new root function in this file such as `function onNightlyLoad(){...}`.
-  4. Any functions that you want to run after the page has loaded should be called from here.
-  5. Refer to the 'HTML (Handlebars)' section above for guidance on how to call this root function.
+  1. Create a new `.js` file inside `/src/js` to match the page's name.  Ensure this script exports a `load` function (e.g. `module.exports.load = () => {}`).
+  2. Update `entry.js` to ensure your script's `load` function is called when your page loads.
 
 ### Adding a new platform/arch/OS (or removing one)
 * `config.json` contains a `platforms` array.
-* This array dictates which platforms appear across the website and API. Changing this array will update the every page accordingly, for each specified platform that is available.
+* This array dictates which platforms appear across the website. Changing this array will update the every page accordingly, for each specified platform that is available.
 * Each platform is contained within an object, and has a range of values/attributes.
 * To add a new platform, copy an existing object `{...}` and paste it into the array in the desired order (remembering to use commas `,` to separate each object).
 * Then, update the values as follows:
   - **officialName**: The 'legal name' or official name for the OS. This is displayed on most pages.
   - **searchableName**: a string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.
-  - **logo**: examplefilename.png. The path to the logo folder is set below (the 'logoPath' var).
-  - **binaryExtension**: should include the dot at the beginning of the extension, e.g .tar.gz or .zip
-  - **requirements**: currently just displayed on the 'latest release' page. Should be a short string identifying the most important min. requirement of a machine to run the latest release.
-  - **architecture**: 64 or 32. Not currently used. May be required for differentiation between future builds, primarily for displaying the architecture type.
-  - **osDetectionString**: this string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.
+  - **logo**: `examplefilename.png`. The path to the logo relative to `assetPath`.
+  - **attributes**: an object with properties `heap_size`, `os`, and `architecture`
+  - **binaryExtension**: should include the dot at the beginning of the extension, e.g `.tar.gz` or `.zip`
+  - **installerExtension**: same as `binaryExtension`, but for a potential installer
+  - **checksumCommand**: a command (with tokens for substitution) to generate a checksum of an artifact
+  - **installCommand**: a command (with tokens for substitution) to "install" an archive
+  - **pathCommand**: a command (with tokens for substitution) to add the JDK/JRE to the local PATH
+  - **osDetectionString**: this string is searched by the OS detection library `platform.js` to find a match. Include as many words as you like, separated by spaces.
 
 
 ### Images
