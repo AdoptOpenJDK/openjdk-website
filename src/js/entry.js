@@ -1,10 +1,13 @@
 const {buildMenuTwisties, copyClipboard, persistUrlQuery} = require('./common');
-Object.assign(global, {buildMenuTwisties, copyClipboard, persistUrlQuery});
+global.copyClipboard = copyClipboard;
 
 const {selectLatestPlatform, unselectLatestPlatform} = require('./releases');
 Object.assign(global, {selectLatestPlatform, unselectLatestPlatform});
 
 document.addEventListener('DOMContentLoaded', () => {
+  persistUrlQuery();
+  buildMenuTwisties();
+
   // '/index.html' --> 'index'
   // NOTE: Browserify requires strings in `require()`, so this is intentionally more explicit than
   // it normally would be.
