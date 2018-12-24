@@ -42,11 +42,25 @@ module.exports.getPlatformOrder = (searchableName) => {
   return platforms.findIndex((platform) => platform.searchableName == searchableName);
 }
 
-module.exports.orderPlatforms = (inputArray, attr = 'thisPlatformOrder') => {
-  return inputArray.sort((assetA, assetB) => {
-    return assetA[attr] < assetB[attr] ? -1 : assetA[attr] > assetB[attr] ? 1 : 0;
-  });
-}
+module.exports.orderPlatforms = (input, attr = 'thisPlatformOrder') => {
+  return sortByProperty(input, attr);
+};
+
+const sortByProperty = module.exports.sortByProperty = (input, property, descending) => {
+  const invert = descending ? -1 : 1;
+  const sorter = (a, b) => {
+    return invert * (a[property] > b[property] ? 1 : a[property] < b[property] ? -1 : 0);
+  };
+
+  if (Array.isArray(input)) {
+    return input.sort(sorter);
+  } else {
+    // Preserve the source object key as '_key'
+    return Object.keys(input)
+      .map(_key => Object.assign(input[_key], {_key}))
+      .sort(sorter);
+  }
+};
 
 // gets the BINARY EXTENSION when you pass in 'searchableName'
 module.exports.getBinaryExt = (searchableName) => lookup[searchableName].binaryExtension;
