@@ -38,67 +38,40 @@
       <div id="pagination-container"></div>
       <table class='archive-container'>
         <tbody id='archive-table-body'>
-          <!-- BEGIN HANDLEBARS LIVE-RENDERED TEMPLATE -->
           <script id="template" type="text/x-handlebars-template">
-            \{{#each htmlTemplate}}
+            {{! For each release... }}
+            \{{#each releases}}
               <tr class='release-row'>
-                <td class='blue-bg'>
+                <td class='blue-bg release-info'>
                   <div>
-                    <h2><a href='\{{thisGitLink}}' class='light-link' target='_blank'><var release-name>\{{thisReleaseName}}</var></a></h2>
-                    <h4><var>\{{thisReleaseDay}}</var> \{{thisReleaseMonth}} <var>\{{thisReleaseYear}}</var></h4>
-                    <h4><a href='\{{thisDashLink}}' class='light-link' target='_blank'>Download Stats</a></h4>
+                    <h2><a href='\{{release_link}}' class='light-link' target='_blank'><var release-name>\{{release_name}}</var></a></h2>
+                    <h4><var>\{{release_day}}</var> \{{release_month}} <var>\{{release_year}}</var></h4>
+                    <h4><a href='\{{dashboard_link}}' class='light-link' target='_blank'>Download Stats</a></h4>
                   </div>
                 </td>
                 <td>
-
                   <table class='archive-platforms'>
-                    <tr class='column-names'>
-                      <td>
-                      </td>
-                      \{{#if installersExist}}
-                      <td>
-                        <span>Installer</span>
-                      </td>
-                      \{{/if}}
-                      \{{#if binariesExist}}
-                      <td>
-                        <span>Binary</span>
-                      </td>
-                      \{{/if}}
-                    </tr>
-
-                    \{{#each thisPlatformAssets}}
-                      <tr class='platform-row \{{thisPlatform}}'>
-                        <td>\{{thisOfficialName}}</td>
-                        \{{#if ../installersExist}}
-                        <td class='download-td'>
-                          \{{#if thisInstallerExists}}
-                          <a class='blue-button no-underline' href='\{{thisInstallerLink}}'><var binary-info>\{{thisInstallerExtension}} (\{{thisInstallerSize}} MB)</var>
-                            {{> jck-tick }}
-                          </a>
+                    {{! For each of the release's platforms with assets to display... }}
+                    \{{#each platforms}}
+                      \{{#each assets}}
+                        <tr class='platform-row'>
+                          \{{#if @first}}
+                            <td>\{{../official_name}}</td>
                           \{{else}}
-                          <div class='empty-download'>&nbsp;</div>
+                            <td></td>
                           \{{/if}}
-                        </td>
-                        \{{/if}}
-
-                        \{{#if thisBinaryExists}}
-                        <td class='download-td'>
-                          <a class='grey-button no-underline' href='\{{thisBinaryLink}}'><var binary-info>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)</var>
-                            {{> jck-tick }}
-                          </a>
-                        </td>
-                        <td><a href='\{{thisChecksumLink}}' class='dark-link'>Checksum</a></td>
-                        \{{/if}}
-                      </tr>
+                          <td class='download-td'>
+                            <a class='blue-button no-underline' href='\{{link}}'><var binary-info>\{{type}} (\{{size}} MB)</var></a>
+                          </td>
+                          <td><a href='\{{checksum_link}}' class='dark-link'>Checksum</a></td>
+                        </tr>
+                      \{{/each}}
                     \{{/each}}
                   </table>
                 </td>
               </tr>
             \{{/each}}
           </script>
-          <!-- END HANDLEBARS LIVE-RENDERED TEMPLATE -->
-
         </tbody>
       </table>
     </div>
