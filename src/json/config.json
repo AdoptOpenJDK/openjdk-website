@@ -212,6 +212,22 @@
       "osDetectionString": "not-to-be-detected"
     },
     {
+      "officialName": "Solaris sparcv9",
+      "searchableName": "SPARCV9_SOLARIS",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "solaris",
+        "architecture": "sparcv9"
+      },
+      "logo": "sparc.jpg",
+      "binaryExtension": ".tar.gz",
+      "installerExtension": "no-installer-available",
+      "installCommand": "gunzip -c FILENAME | tar xf -",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "osDetectionString": "not-to-be-detected"
+    },
+    {
       "officialName": "AIX ppc64",
       "searchableName": "PPC64_AIX",
       "attributes": {
