@@ -39,9 +39,9 @@
       <h2 id="latest-select-text" style="margin-bottom: 0.5rem;">Select a platform</h2>
       <br>
 
-        <div id="latest-selector">
-          <script id="template-selector" type="text/x-handlebars-template">
-            {{! Create each platform's selector tile }}
+      <div id="latest-selector">
+        <script id="template-selector" type="text/x-handlebars-template">
+          {{! Create each platform's selector tile }}
             \{{#each releases}}
               <div class="latest-asset latest-grid-border" id='latest-selector-\{{platform_name}}' onclick='selectLatestPlatform("\{{platform_name}}")'>
                 <img alt='\{{platform_official_name}} logo' src='\{{platform_logo}}' />
@@ -49,12 +49,19 @@
                 <p class="releaseName"><var release-name>\{{release_name}}</var></p>
               </div>
             \{{/each}}
+            <a id="docker_link" href="" target="_blank">
+            <div class="latest-asset latest-grid-border" id='latest-selector-Docker'>
+              <img alt='Docker logo' src='./dist/assets/docker.png' />
+              <h2 class="officialName"><var platform-name>Docker</var></h2>
+              <p class="releaseName"><var release-name>Official Image</var></p>
+            </div>
+            </a>
           </script>
-        </div>
+      </div>
 
-        <div id="latest-info">
-          <script id="template-info" type="text/x-handlebars-template">
-            {{! Create each platform's "latest release" info view }}
+      <div id="latest-info">
+        <script id="template-info" type="text/x-handlebars-template">
+          {{! Create each platform's "latest release" info view }}
             \{{#each releases}}
               <div id='latest-info-\{{platform_name}}' class='latest-info-container latest-grid-border hide'>
                 <div class='platform-section'>
@@ -84,7 +91,7 @@
               </div>
             \{{/each}}
           </script>
-        </div>
+      </div>
 
     </div>
 

@@ -83,6 +83,11 @@ function buildLatestHTML(releasesJson) {
   const templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
   document.getElementById('latest-selector').innerHTML = templateSelector({releases});
   document.getElementById('latest-info').innerHTML = templateInfo({releases});
+  if (jvmVariant == 'hotspot') {
+    document.getElementById('docker_link').href = 'https://hub.docker.com/r/adoptopenjdk/' + variant;
+  } else {
+    document.getElementById('docker_link').href = 'https://hub.docker.com/r/adoptopenjdk/' + variant + '-' + jvmVariant;
+  }
 
   setTickLink();
 
