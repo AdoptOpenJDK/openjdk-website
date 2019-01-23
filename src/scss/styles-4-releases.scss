@@ -64,6 +64,19 @@ $tableblue-even: #1F2F4E;
   background-color: white;
 }
 
+#latest-selector div.docker-asset {
+  float: left;
+  cursor: pointer;
+  min-width: 9.8rem;
+  padding: 2rem 0;
+  background-color: rgba(#fff,.6);
+}
+
+#latest-selector div.docker-asset:hover {
+  color: $mainblue;
+  background-color: white;
+}
+
 #latest-selector img {
   height: 3.5rem;
 }
