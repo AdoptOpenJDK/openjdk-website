@@ -4,9 +4,7 @@ $brighterblue: #3D70B2;
 $accentgrey: #dadada;
 $palegrey: #e6e6e6;
 $tableblue-odd: #182336;
-$tableblue-even: #1F2F4E;
-
-// LATEST RELEASE CSS
+$tableblue-even: #1F2F4E; // LATEST RELEASE CSS
 
 #latest-intro {
   margin: 1rem 0;
@@ -29,7 +27,7 @@ $tableblue-even: #1F2F4E;
   background-color: rgba(21, 41, 53, 0.05);
   color: $mainblue;
   margin: 0.3rem 0;
-  border-bottom: .2rem solid rgba(21, 41, 53, 0.15);
+  border-bottom: 0.2rem solid rgba(21, 41, 53, 0.15);
   border-radius: 0.2rem;
 }
 
@@ -39,7 +37,7 @@ $tableblue-even: #1F2F4E;
 }
 
 .latest-grid-border {
-  border: .1rem solid $maingrey;
+  border: 0.1rem solid $maingrey;
 }
 
 #latest-selector {
@@ -108,6 +106,7 @@ $tableblue-even: #1F2F4E;
   padding: 1rem 2rem;
   border-right: 0.2rem solid rgba(21,41,53,.1);
   min-width: 10rem;
+
   h2 {
     margin-bottom: 0;
     white-space: nowrap;
@@ -149,7 +148,7 @@ $tableblue-even: #1F2F4E;
 }
 
 .latest-block .small-dl-text {
-  font-size: .7rem;
+  font-size: 0.7rem;
   line-height: 1.2rem;
   transform: translateY(-0.4rem);
 }
@@ -165,9 +164,9 @@ $tableblue-even: #1F2F4E;
 }
 
 .tick img {
-    height: 2.0rem !important;
-    vertical-align: middle;
-    padding: 5px;
+  height: 2.0rem !important;
+  vertical-align: middle;
+  padding: 5px;
 }
 
 .latest-block .tick {
@@ -180,25 +179,28 @@ $tableblue-even: #1F2F4E;
   box-sizing: border-box;
 }
 
-.vertical-align{
+.vertical-align {
   vertical-align: top;
 }
 
 .binary-grey .latest-block a.a-button {
   background-color: $accentgrey;
+
   &:hover {
     background-color: $palegrey;
   }
+
   div.large-dl-text {
     color: $mainblue;
   }
+
   div.small-dl-text {
     color: rgba(21, 41, 53, 0.7);
   }
 }
 
 .latest-block .latest-details p {
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.2rem;
 }
 
@@ -206,12 +208,14 @@ $tableblue-even: #1F2F4E;
   float: right;
   position: absolute;
   transform: translate(4rem, 0.85rem);
+
   img {
     height: 1.2rem;
   }
 }
 
-.releaseName, .releaseDateTime {
+.releaseDateTime,
+.releaseName {
   font-size: 0.8rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -220,4 +224,118 @@ $tableblue-even: #1F2F4E;
 .officialName {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+table#download-matrix {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.download-matrix th {
+  width: 33.3%;
+
+  a {
+    color: #F5F5F5;
+    font-weight: 400!important;
+  }
+}
+
+.download-matrix td.border {
+  border: 1px solid #ccc;
+  width: 33.3%;
+}
+
+.download-matrix td:hover {
+  background-color: #152935;
+
+  a {
+    color: #F5F5F5;
+  }
+}
+
+a,
+a:active,
+a:link {
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.download-hero ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  text-align: center;
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+a.latest-asset {
+  padding-left: 0.5rem;
+}
+
+a.latest-asset:hover {
+  color: #152935!important;
+  text-decoration: underline;
+}
+
+.download-hero {
+  margin-bottom: 1em;
+}
+
+.download-hero li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 200px;
+  flex-basis: 200px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.download-hero a {
+  display: block;
+  width: 100%;
+  padding-top: 1em;
+  color: #152935;
+  background: #dadada;
+}
+
+.download-hero a:hover {
+  background: #152935;
+  color: #fff;
+}
+
+.download-hero a:hover .download-logo {
+  fill: #fff;
+}
+
+.download-hero .download-logo {
+  display: block;
+  margin: 0 auto;
+  fill: #152935;
+}
+
+.download-hero p {
+  padding-bottom: 1em;
+  margin: 1em 0 0;
+}
+
+.small {
+  font-size: 10px;
+}
+
+h3 {
+  font-weight: 400;
 }

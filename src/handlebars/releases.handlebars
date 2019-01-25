@@ -36,28 +36,47 @@
       <h3 id="description_header"></h3>
       <a id="description_link" href=""></a>
 
-      <h2 id="latest-select-text" style="margin-bottom: 0.5rem;">Select a platform</h2>
-      <br>
-
-      <div id="latest-selector">
-        <script id="template-selector" type="text/x-handlebars-template">
-          {{! Docker }}
-          <a id="docker_link" href="" target="_blank">
-            <div class="docker-asset latest-grid-border" id='latest-selector-Docker'>
-              <img alt='Docker logo' src='./dist/assets/docker.png' />
-              <h2 class="officialName"><var platform-name>Docker</var></h2>
-              <p class="releaseName"><var release-name>Official Image</var></p>
-            </div>
-          </a>
-          {{! Create each platform's selector tile }}
-            \{{#each releases}}
-              <div class="latest-asset latest-grid-border" id='latest-selector-\{{platform_name}}' onclick='selectLatestPlatform("\{{platform_name}}")'>
-                <img alt='\{{platform_official_name}} logo' src='\{{platform_logo}}' />
-                <h2 class="officialName"><var platform-name>\{{platform_official_name}}</var></h2>
-                <p class="releaseName"><var release-name>\{{release_name}}</var></p>
-              </div>
+      <div class="container">
+        <div class="download-hero full-width">
+          <ul class="no-padding download-platform" id="download-platform">
+            <script id="template-top3" type="text/x-handlebars-template">
+            \{{#each top3Releases}}
+            <li>
+              <a href="\{{link}}" id="downloadbutton-\{{platform_name}}" data-version="v10.15.0">
+                <svg class="download-logo" width="50" height="50" viewBox="0 0 50 50">
+                  <path id="download-logo-\{{platform_name}}" d=""></path>
+                </svg>
+                <h3>\{{platform_official_name}}</h3>
+                <h4>\{{release_name}}</h4>
+                <p class="small color-lightgray">JDK (\{{extension}})</p>
+              </a>
+            </li>
             \{{/each}}
           </script>
+          </ul>
+        </div>
+        <table class="download-matrix full-width" id="download-matrix">
+          <tbody>
+            <script id="template-table" type="text/x-handlebars-template">
+              \{{#each releases}}
+          <tr>
+            <th>\{{platform_official_name}}</th>
+            {{! show the release's binaries }}
+
+            \{{#each binaries}}
+            <td colspan="\{{colspan}}" class="border"><a href='\{{link}}'>\{{type}} (\{{extension}})</a></td>
+            \{{/each}}
+            <td><a class="latest-asset" id='latest-selector-\{{platform_name}}' onclick='selectLatestPlatform("\{{platform_name}}")'>More Info</a></td>
+          </tr>
+          \{{/each}}
+          <tr>
+            <th>Docker Image</th>
+            {{! show the release's binaries }}
+            <td colspan="6" class="border"><a id="docker_link" href="" target="_blank">Official AdoptOpenJDK Docker Image</a></td>
+          </tr>
+          </script>
+          </tbody>
+        </table>
       </div>
 
       <div id="latest-info">
