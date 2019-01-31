@@ -148,6 +148,22 @@
       "osDetectionString": "Mac OS X OSX macOS Macintosh"
     },
     {
+      "officialName": "MacOS x64 Large Heap",
+      "searchableName": "MACOSXL",
+      "attributes": {
+        "heap_size": "large",
+        "os": "mac",
+        "architecture": "x64"
+      },
+      "logo": "mac.png",
+      "binaryExtension": ".tar.gz",
+      "installerExtension": ".dmg",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
+      "checksumCommand": "shasum -a 256 FILENAME",
+      "osDetectionString": "not-to-be-detected"
+    },
+    {
       "officialName": "Linux s390x",
       "searchableName": "S390X_LINUX",
       "attributes": {
