@@ -62,9 +62,11 @@ function buildLatestHTML(releasesJson) {
     // Add the new binary to the release asset
     release.binaries.push({
       type: binary_type,
-      extension: 'INSTALLER' === binary_type ? getInstallerExt(platform) : getBinaryExt(platform),
+      extension: getBinaryExt(platform),
       link: releaseAsset.binary_link,
       checksum_link: releaseAsset.checksum_link,
+      installer_link: releaseAsset.installer_link || undefined,
+      installer_extension: getInstallerExt(platform),
       size: Math.floor(releaseAsset.binary_size / 1024 / 1024)
     });
 

@@ -75,7 +75,14 @@
 
                   {{! show the release's binaries }}
                   \{{#each binaries}}
-                  <div class='latest-block'>
+                    <div class='latest-block'>
+                    \{{#if installer_link}}
+                        <a href='\{{installer_link}}' class='latest-download-button a-button'>
+                          <div class='large-dl-text'>Installer \{{type}}
+                            <div class='small-dl-text'>\{{installer_extension}}</div>
+                          </div>
+                        </a>
+                      \{{/if}}
                     <a href='\{{link}}' class='latest-download-button a-button'>
                       <div class='large-dl-text'>Download \{{type}}
                         <div class='small-dl-text'>\{{extension}} - \{{size}} MB</div>
