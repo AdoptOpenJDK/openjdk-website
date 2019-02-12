@@ -63,6 +63,13 @@
                           <td class='download-td'>
                             <a class='blue-button no-underline' href='\{{link}}'><var binary-info>\{{type}} (\{{size}} MB)</var></a>
                           </td>
+                          \{{#if installer_link}}
+                          <td class='download-td'>
+                            <a class='blue-button no-underline' href='\{{installer_link}}'><var binary-info>Installer \{{type}}</var></a>
+                          </td>
+                          \{{else}}
+                          <td></td>
+                          \{{/if}}
                           <td><a href='\{{checksum_link}}' class='dark-link'>Checksum</a></td>
                         </tr>
                       \{{/each}}
