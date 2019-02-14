@@ -6,8 +6,53 @@
   <h1 class="margin-bottom large-title">Support</h1>
 
   <div class="align-left support">
-    <div class="anchor" onmouseover="document.getElementById('anchor1').style.visibility='visible'" onmouseout="document.getElementById('anchor1').style.visibility='hidden'"><a href="#quality" class="anchor">
+
+    <div class="anchor" onmouseover="document.getElementById('anchor1').style.visibility='visible'" onmouseout="document.getElementById('anchor1').style.visibility='hidden'"><a href="#community-support" class="anchor">
       <img src="dist/assets/anchor.png" id="anchor1" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support-levels">Community Support</a></h2>
+    </div>
+    <div class="margin-bottom">
+      <p>
+        Read <a href="https://medium.com/@javachampions/java-is-still-free-c02aef8c9e04">Java Is Still Free</a>
+        for some background information. We are prepared to stand behind our release quality binaries, so each
+        build that is identified as a <strong>release</strong> receives support via the AdoptOpenJDK community. Our support means
+        that you can raise an issue to describe a bug you have found in the build,
+        and we will work with you and the appropriate development team to resolve it.
+        Any fixes we identify will be delivered as part of the next AdoptOpenJDK release.
+      </p>
+
+      <p>
+        As a community of open source developers, our commitment is to triage any issues
+        raised and champion them in the appropriate source code project.
+        Of course, if the problem arises from the way we build and test the code we can fix that directly.
+        For higher levels of assurance you should contact commercial companies offering support.
+      </p>
+    </div>
+
+    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#commercial-support" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support-levels">Commercial Support</a></h2>
+    </div>
+
+    <div class="margin-bottom">
+      <table class="commercial-table" notranslate>
+        <tr>
+          <td><a target="_blank" href="https://www.ibm.com"><img src="dist/assets/ibm.png" alt="IBM logo"></a></td>
+          <td><strong>OpenJ9 VM</strong> - IBM is a core contributor to Eclipse OpenJ9 and employs several
+            of the founders of AdoptOpenJDK and key engineers on the AdoptOpenJDK project.
+            See <a target="_blank" href="https://www.ibm.com/cloud/support-for-runtimes">Support For RunTimes</a> for more details.</td>
+        </tr>
+
+        <tr>
+          <td><a target="_blank" href="https://www.jclarity.com/"><img src="dist/assets/jclarity.png" alt="jClarity Logo"></a></td>
+          <td><strong>Hotspot VM</strong> - jClarity employs several of the founders of AdoptOpenJDK
+            and key engineers on the AdoptOpenJDK project.  Contact <a href="mailto:support@jclarity.com">support@jclarity.com</a> for more details.</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="anchor" onmouseover="document.getElementById('anchor3').style.visibility='visible'" onmouseout="document.getElementById('anchor3').style.visibility='hidden'"><a href="#quality" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor3" name="anchor" alt="anchor icon"></a>
       <h2 class="bold"><a id="quality">Quality</a></h2>
     </div>
     <div class="margin-bottom">
@@ -27,39 +72,12 @@
       </p>
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#jck" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
-      <h2 class="bold"><a id="jck">Java Compatibility Kit (JCK) / TCK Compliance</a></h2>
+    <div class="anchor" onmouseover="document.getElementById('anchor4').style.visibility='visible'" onmouseout="document.getElementById('anchor4').style.visibility='hidden'"><a href="#platform-support-matrix" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor4" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support">Platform Support Matrix</a></h2>
     </div>
     <div class="margin-bottom">
-      <p>
-        At this stage the London Jamocha Community (LJC) has not been able to reach an
-        agreement with Oracle to use the Java SE Technology Compatibility Kit (TCK)
-        under the terms of the OpenJDK Community TCK License Agreement (OCTLA).</br>
-        </br>
-        We will continue to work with Oracle on this matter.</br>
-        </br>
-        All AdoptOpenJDK binaries are tested with our suite of functional, integration,
-        and performance tests, including real workloads from popular libraries
-        frameworks, languages and applications. We remain confident in the quality
-        of our builds.
-      </p>
-    </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor3').style.visibility='visible'" onmouseout="document.getElementById('anchor3').style.visibility='hidden'"><a href="#support" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor3" name="anchor" alt="anchor icon"></a>
-      <h2 class="bold"><a id="support">Support</a></h2>
-    </div>
-    <div class="margin-bottom">
-      <p>
-        Read <a href="https://medium.com/@javachampions/java-is-still-free-c02aef8c9e04">Java Is Still Free</a>
-        for some background information. We are prepared to stand behind our release quality binaries, so each
-        build that is identified as a <strong>release</strong> receives support via the AdoptOpenJDK community. Our support means
-        that you can raise an issue to describe a bug you have found in the build,
-        and we will work with you and the appropriate development team to resolve it.
-        Any fixes we identify will be delivered as part of the next AdoptOpenJDK release.
-      </p>
-	  
         <h3 id="openjdk8_platforms">OpenJDK 8</h3>
         <p>Where available, OpenJDK 8 binaries are supported on the minimum operating system levels shown in the following tables:</p>
 
@@ -146,7 +164,6 @@
                 </tr>
             </tbody>
         </table>
-
 
         <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86 or version glibc version 2.17 on other architectures are expected to function without problems.</p>
 
@@ -235,7 +252,6 @@
             </tbody>
         </table>
 
-
         <h3 id="openjdk11_platforms">OpenJDK 11</h3>
 
         <p>Where available, OpenJDK 11 binaries are supported on the minimum operating system levels shown in the following tables:</p>
@@ -268,7 +284,7 @@
                     <th>x64</th>
                     <th>ppc64le</th>
                     <th>s390x</th>
-                    <th>aarch32</th>					
+                    <th>aarch32</th>
                     <th>aarch64</th>
                 </tr>
             </thead>
@@ -287,7 +303,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td></td>                    
-					<td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
                     <td>RHEL 6.9</td>
@@ -303,7 +319,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td></td>
-					<td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
                     <td>SLES 12</td>
@@ -319,7 +335,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td></td>                    
-					<td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
                     <td>Ubuntu 18.04</td>
@@ -327,7 +343,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td></td>                    
-					<td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
             </tbody>
         </table>
@@ -421,9 +437,9 @@
 
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor4').style.visibility='visible'" onmouseout="document.getElementById('anchor4').style.visibility='hidden'"><a href="#roadmap" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor4" name="anchor" alt="anchor icon"></a>
-      <h2 class="bold"><a id="roadmap">Roadmap</a></h2>
+    <div class="anchor" onmouseover="document.getElementById('anchor5').style.visibility='visible'" onmouseout="document.getElementById('anchor5').style.visibility='hidden'"><a href="#roadmap" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor5" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="roadmap">Release Roadmap</a></h2>
     </div>
     <div class="margin-bottom">
       <p>
@@ -476,27 +492,36 @@
       </p>
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor5').style.visibility='visible'" onmouseout="document.getElementById('anchor5').style.visibility='hidden'"><a href="#support-levels" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor5" name="anchor" alt="anchor icon"></a>
-      <h2 class="bold"><a id="support-levels">Support Levels</a></h2>
+    <div class="anchor" onmouseover="document.getElementById('anchor6').style.visibility='visible'" onmouseout="document.getElementById('anchor6').style.visibility='hidden'"><a href="#jck" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor6" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jck">Java Compatibility Kit (JCK) / TCK Compliance</a></h2>
     </div>
     <div class="margin-bottom">
       <p>
-        As a community of open source developers, our commitment is to triage any issues raised and champion them in the appropriate source code project. Of course, if the problem arises from the way we build and test the code we can fix that directly -- but
-        other bugs will be fixed on a "best effort" basis by the correct source project community. If you are looking for higher levels of assurance you should contact commercial companies offering support on these binaries.
-        </br></br>We welcome feedback on any aspect of the project.
+        At this stage the London Jamocha Community (LJC) has not been able to reach an
+        agreement with Oracle to use the Java SE Technology Compatibility Kit (TCK)
+        under the terms of the OpenJDK Community TCK License Agreement (OCTLA).</br>
+        </br>
+        We will continue to work with Oracle on this matter.</br>
+        </br>
+        All AdoptOpenJDK binaries are tested with our suite of functional, integration,
+        and performance tests, including real workloads from popular libraries
+        frameworks, languages and applications. We remain confident in the quality
+        of our builds.
       </p>
     </div>
 
     <div style="margin-top: 3rem;">
+      <!--
       <a href="https://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" id="dev-button" class="no-underline home-links">
         <h2 class="inline-block zero-margin">Mailing List&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
       </a>
+      -->
       <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" class="no-underline home-links">
         <h2 class="inline-block zero-margin">Submit an Issue&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
       </a>
-      <a href="https://adoptopenjdk.net/slack" class="no-underline home-links">
-        <h2 class="inline-block zero-margin">Ask on Slack&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      <a href="slack.html" class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Ask a question on Slack&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
       </a>
     </div>
   </div>
