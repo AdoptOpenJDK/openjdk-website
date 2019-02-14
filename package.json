@@ -12,15 +12,15 @@
   },
   "author": "Joe Brady",
   "devDependencies": {
-    "@babel/core": "^7.1.5",
-    "@babel/preset-env": "^7.1.5",
-    "ajv": "^6.7.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "ajv": "^6.9.1",
     "babelify": "^10.0.0",
     "base64-img": "^1.0.4",
     "browser-sync": "^2.26.3",
     "browserify": "^16.2.3",
     "chai": "^4.2.0",
-    "eslint": "^5.9.0",
+    "eslint": "^5.13.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-clean": "^0.4.0",
@@ -29,12 +29,12 @@
     "gulp-eslint": "^5.0.0",
     "gulp-hash": "^4.2.2",
     "gulp-imagemin": "^5.0.3",
-    "gulp-inject": "^4.3.2",
+    "gulp-inject": "^5.0.2",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.4.0",
     "gulp-robots": "^2.0.4",
     "gulp-sass": "^4.0.2",
-    "gulp-sitemap": "^6.1.0",
+    "gulp-sitemap": "^6.2.0",
     "gulp-uglify": "3.0.1",
     "mocha": "^5.2.0",
     "open": "^0.0.5",
@@ -45,6 +45,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0"
+    "@babel/polyfill": "^7.2.5"
   }
 }
