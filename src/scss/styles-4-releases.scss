@@ -152,7 +152,16 @@ $tableblue-even: #1F2F4E;
   font-size: .7rem;
   line-height: 1.2rem;
   transform: translateY(-0.4rem);
-  color: rgba(255, 255, 255, .7);
+}
+
+.latest-block a.latest-download-button-grey {
+  background-color: $accentgrey;
+  color: $mainblue;
+}
+
+.latest-block a.latest-download-button-grey:hover {
+  background-color: $palegrey;
+  color: $mainblue;
 }
 
 .tick img {

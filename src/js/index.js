@@ -1,6 +1,16 @@
-const {detectOS, findPlatform, getBinaryExt, getInstallerExt, loadAssetInfo,
-  makeQueryString, setRadioSelectors, setTickLink} = require('./common');
-const {jvmVariant, variant} = require('./common');
+const {
+  detectOS,
+  findPlatform,
+  getBinaryExt,
+  loadAssetInfo,
+  makeQueryString,
+  setRadioSelectors,
+  setTickLink
+} = require('./common');
+const {
+  jvmVariant,
+  variant
+} = require('./common');
 
 // set variables for all index page HTML elements that will be used by the JS
 const loading = document.getElementById('loading');
@@ -64,27 +74,11 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
 
       // firstly, check if a valid searchableName has been returned (i.e. the platform is recognised)...
       if (thisPlatform) {
-
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
         var thisBinaryExtension = getBinaryExt(thisPlatform); // get the binary extension associated with this platform
-        var thisInstallerExtension = getInstallerExt(thisPlatform); // get the installer extension associated with this platform
         if (matchingFile == null) {
-          if (uppercaseFilename.includes(thisInstallerExtension.toUpperCase())) {
-            const uppercaseOSname = OS.searchableName.toUpperCase();
-
-            if (Object.keys(jckJSON).length !== 0) {
-              if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname)) {
-                document.getElementById('jck-approved-tick').classList.remove('hide');
-                setTickLink();
-              }
-            }
-
-            // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-            if (uppercaseFilename.includes(uppercaseOSname)) {
-              matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
-            }
-          } else if (uppercaseFilename.includes(thisBinaryExtension.toUpperCase())) {
+          if (uppercaseFilename.includes(thisBinaryExtension.toUpperCase())) {
             const uppercaseOSname = OS.searchableName.toUpperCase();
             if (Object.keys(jckJSON).length !== 0) {
               if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname)) {
@@ -104,8 +98,12 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
 
   // if there IS a matching binary for the user's OS...
   if (matchingFile) {
-    dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
-    dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary_size / 1024 / 1024)} MB`;
+    if (matchingFile.installer_link) {
+      dlLatest.href = matchingFile.installer_link; // set the main download button's link to be the installer's download url
+    } else {
+      dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
+      dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary_size / 1024 / 1024)} MB`;
+    }
   } else {
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
