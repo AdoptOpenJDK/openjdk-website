@@ -86,6 +86,10 @@ module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathC
 module.exports.detectOS = () => {
   return platforms.find((aPlatform) => {
     /*global platform*/
+    // Workaround for Firefox on macOS which is 32 bit only
+    if (platform.os.family == 'OS X') {
+      platform.os.architecture = 64
+    }
     return aPlatform.osDetectionString.toUpperCase().includes(platform.os.family.toUpperCase())
       && aPlatform.attributes.architecture.endsWith(platform.os.architecture); // 32 or 64 int
   }) || null;
