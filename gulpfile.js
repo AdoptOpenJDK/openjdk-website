@@ -28,12 +28,12 @@ const buffer = require('vinyl-buffer');
 
 // default task
 gulp.task('default', () => {
-  runSequence('clean','json-validate',['json','scripts','styles','images','icon'],'handlebars','inject','watch','browser-sync');
+  runSequence('clean','json-validate',['json','scripts','styles','images','icon','docs'],'handlebars','inject','watch','browser-sync');
 });
 
 // build task
 gulp.task('build', () => {
-  runSequence('clean',['json','scripts','styles','images','icon'],'handlebars','inject','sitemap','robots','lint');
+  runSequence('clean',['json','scripts','styles','images','icon','docs'],'handlebars','inject','sitemap','robots','lint');
 });
 
 // clean task (deletes /dist dir)
@@ -55,6 +55,9 @@ gulp.task('watch', () => {
   });
   gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], () => {
     runSequence('images','handlebars', browserSync.reload);
+  });
+  gulp.watch(['./src/docs/*.html', './src/docs/*.pdf'], () => {
+    runSequence('docs', browserSync.reload);
   });
   gulp.watch('./src/assets/*.ico', ['icon']);
 });
@@ -163,6 +166,12 @@ gulp.task('images', () => {
 gulp.task('icon', () => {
   return gulp.src('./src/assets/*.ico')
     .pipe(gulp.dest('./dist/assets/'));
+});
+
+// docs task
+gulp.task('docs', () => {
+  return gulp.src('./src/docs/**/*')
+      .pipe(gulp.dest('./docs/'));
 });
 
 // json validation task

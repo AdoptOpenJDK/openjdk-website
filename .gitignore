@@ -7,3 +7,4 @@ dist
 sitemap.xml
 robots.txt
 .DS_Store*
+docs/
