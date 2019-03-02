@@ -3,6 +3,7 @@ npm-debug.log
 .idea
 dist
 *.html
+!src/docs/*
 sitemap.xml
 robots.txt
 .DS_Store*
