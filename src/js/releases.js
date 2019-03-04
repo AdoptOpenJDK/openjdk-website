@@ -120,8 +120,13 @@ function buildLatestHTML(releasesJson) {
 
   for (let variant of releases) {
     if (top3.includes(variant.platform_name)) {
-      variant.link = variant.binaries[0].link;
-      variant.extension = variant.binaries[0].extension;
+      if (variant.binaries[0].installer_link) {
+        variant.link = variant.binaries[0].installer_link;
+        variant.extension = variant.binaries[0].installer_extension;
+      } else {
+        variant.link = variant.binaries[0].link;
+        variant.extension = variant.binaries[0].extension;
+      }
       top3Releases.push(variant)
     }
   }
