@@ -7,6 +7,9 @@ const {platforms, variants} = require('../json/config');
 const lookup = {};
 platforms.forEach((platform) => lookup[platform.searchableName] = platform);
 
+// checksums cache
+const checksums = {};
+
 let variant = module.exports.variant = getQueryByName('variant') || 'openjdk8';
 let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
 
@@ -76,6 +79,12 @@ module.exports.getInstallCommand = (searchableName) => lookup[searchableName].in
 
 // gets the CHECKSUM COMMAND when you pass in 'searchableName'
 module.exports.getChecksumCommand = (searchableName) => lookup[searchableName].checksumCommand;
+
+// gets the CHECKSUM AUTO COMMAND when you pass in 'searchableName'
+module.exports.getChecksumAutoCommand = (searchableName) => lookup[searchableName].checksumAutoCommand;
+
+// gets the CHECKSUM AUTO COMMAND RESULT when you pass in 'searchableName'
+module.exports.getChecksumAutoResultCommand = (searchableName) => lookup[searchableName].checksumAutoResultCommand;
 
 // gets the PATH COMMAND when you pass in 'searchableName'
 module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathCommand;
@@ -153,12 +162,43 @@ module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, ty
   queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
 }
 
+module.exports.getChecksum = url => checksums[url]
+
+module.exports.loadChecksum = (url, message) => {
+  return new Promise((resolve, reject) => {
+    loadUrl(url, response => {
+      try {
+        const reader = new FileReader();
+        // This fires after the blob has been read/loaded.
+        reader.addEventListener('loadend', e => {
+          // todo@userquin: fix this -> https://developer.mozilla.org/en-US/docs/Web/API/Event/srcElement
+          console.info(e.srcElement);
+          console.info(e.target);
+          const text = e.srcElement.result;
+          const checksum = text.split(' ')[0].trim();
+          console.info(checksum);
+          checksums[url] = checksum;
+          resolve(message.replace('FILEHASH',checksum));
+        });
+        reader.readAsText(response.blob());
+      } catch (e) {
+        reject(e);
+      }
+    }, false);
+  });
+}
+
 function loadUrl(url, callback) {
+  const checksumRequest = url.endsWith('sha256.txt');
   const xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
   xobj.onreadystatechange = () => {
     if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
-      callback(xobj.responseText);
+      if (checksumRequest) {
+        callback(xobj);
+      } else {
+        callback(xobj.responseText);
+      }
     } else if (
       xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
       xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
