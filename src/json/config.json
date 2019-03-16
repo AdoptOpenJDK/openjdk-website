@@ -129,6 +129,8 @@
       "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
       "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
       "checksumCommand": "certutil -hashfile FILENAME SHA256",
+      "checksumAutoCommand": "certutil -hashfile FILENAME SHA256 2>&1 | find /I \"FILEHASH\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )",
+      "checksumAutoResultCommand": "\"FILENAME: The SHA-256 fingerprint matches\"",
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
     },
     {
@@ -145,6 +147,8 @@
       "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
       "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
       "checksumCommand": "certutil -hashfile FILENAME SHA256",
+      "checksumAutoCommand": "certutil -hashfile FILENAME SHA256 2>&1 | find /I \"FILEHASH\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )",
+      "checksumAutoResultCommand": "\"FILENAME: The SHA-256 fingerprint matches\"",
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
     },
     {
