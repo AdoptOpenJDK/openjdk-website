@@ -1,5 +1,6 @@
 const {detectOS, findPlatform, getBinaryExt, getChecksumCommand, getInstallCommand, getOfficialName,
-  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors} = require('./common');
+  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors, getChecksumAutoCommand,
+  getChecksumAutoResultCommand, getChecksum, loadChecksum } = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -56,6 +57,23 @@ function buildInstallationHTML(releasesJson) {
         ASSETOBJECT.thisChecksumFilename = eachAsset.binary_name.replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
         ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
+        const thisChecksumAutoCommand = getChecksumAutoCommand(ASSETOBJECT.thisPlatform);
+        const thisChecksumAutoCommandResult = getChecksumAutoResultCommand(ASSETOBJECT.thisPlatform);
+        if (thisChecksumAutoCommand && thisChecksumAutoCommandResult) {
+          const checksum = getChecksum(eachAsset.checksum_link);
+          if (checksum) {
+            ASSETOBJECT.thisChecksumAutoCommand = thisChecksumAutoCommand.replace(
+              /FILENAME/g,
+              ASSETOBJECT.thisBinaryFilename
+            ).replace('FILEHASH', checksum);
+          } else {
+            ASSETOBJECT.thisChecksumAutoCommand = thisChecksumAutoCommand.replace(
+              /FILENAME/g,
+              ASSETOBJECT.thisBinaryFilename
+            );
+          }
+          ASSETOBJECT.thisChecksumAutoResultCommand = thisChecksumAutoCommandResult.replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
+        }
 
         const dirName = releasesJson.release_name + (eachAsset.binary_type === 'jre' ? '-jre' : '');
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', dirName);
@@ -124,6 +142,30 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
       op.value = eachPlatform.thisPlatformType;
       op.text = eachPlatform.thisOfficialName;
       platformSelector.options.add(op);
+      if (eachPlatform.thisChecksumAutoCommand && eachPlatform.thisChecksumAutoCommand.indexOf('FILEHASH') > -1) {
+        const container = document.querySelector(`#checksum-auto-command-container-${eachPlatform.thisPlatform}`);
+        const variable = container.querySelector(`#checksum-auto-command-${eachPlatform.thisPlatform}`);
+        container.className = 'hide';
+        loadChecksum(eachPlatform.thisChecksumLink, eachPlatform.thisChecksumAutoCommand).then(message => {
+          variable.innerHTML = message;
+          container.className = container.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated fadeIn ');
+        }).catch(e => {
+          console.error('error while downloading sha256', e);
+          delete eachPlatform.thisChecksumAutoCommand;
+        });
+      }
+    });
+    platformSelector.addEventListener('onchange', () => {
+      const selectedIndex = platformSelector.selectedIndex;
+      const containers = document.querySelectorAll('[id=^checksum-auto-command-container-]:not(.hide)');
+      containers.forEach(c => (c.className = 'hide'));
+      if (selectedIndex > 0) {
+        const platform = thisReleasePlatforms[platformSelector.selectedIndex];
+        if (platform.thisChecksumAutoCommand && platform.thisChecksumAutoCommand.indexOf('FILEHASH') > -1) {
+          const container = document.querySelector(`#checksum-auto-command-container-${platform.thisPlatform}`);
+          container.className = container.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated fadeIn ');
+        }
+      }
     });
   }
 
