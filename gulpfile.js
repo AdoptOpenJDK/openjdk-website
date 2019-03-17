@@ -212,6 +212,7 @@ gulp.task('browser-sync', () => {
         server: {
             baseDir: './'
         },
+        cors: true,
         notify: false
     });
 });
