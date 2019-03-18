@@ -1,4 +1,4 @@
-const {findPlatform, getBinaryExt, getOfficialName, loadAssetInfo, setRadioSelectors} = require('./common');
+const {findPlatform, getBinaryExt, getOfficialName, getInstallerExt, loadAssetInfo, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -67,6 +67,7 @@ function buildNightlyHTML(files) {
     <th>Type</th>
     <th>Date</th>
     <th>Binary</th>
+    <th>Installer</th>
     <th>Checksum</th>
     </tr>`;
 
@@ -86,6 +87,7 @@ function buildNightlyHTML(files) {
     // secondly, check if the file has the expected file extension for that platform...
     // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
     NIGHTLYOBJECT.thisBinaryExtension = getBinaryExt(NIGHTLYOBJECT.thisPlatform); // get the file extension associated with this platform
+    NIGHTLYOBJECT.thisInstalleExtension = getInstallerExt(NIGHTLYOBJECT.thisPlatform);
 
     if (nameOfFile.toUpperCase().includes(NIGHTLYOBJECT.thisBinaryExtension.toUpperCase())) {
       // set values ready to be injected into the HTML
@@ -100,7 +102,7 @@ function buildNightlyHTML(files) {
       NIGHTLYOBJECT.thisBinaryLink = eachAsset.binary_link;
       NIGHTLYOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
       NIGHTLYOBJECT.thisChecksumLink = eachAsset.checksum_link;
-
+      NIGHTLYOBJECT.thisInstallerLink = eachAsset.installer_link || undefined;
       NIGHTLYARRAY.push(NIGHTLYOBJECT);
     }
   });
