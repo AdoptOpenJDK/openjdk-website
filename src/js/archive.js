@@ -27,7 +27,7 @@ function buildArchiveHTML(aReleases) {
     const release = {
       release_name: aRelease.release_name,
       release_link: aRelease.release_link,
-      dashboard_link: `https://dash.adoptopenjdk.net/version.html?version=${variant.replace('open','')}`
+      dashboard_link: `https://dash.adoptopenjdk.net/version.html?version=${variant}`
         + `&tag=${encodeURIComponent(aRelease.release_name)}`,
 
       release_day: publishedAt.format('D'),
