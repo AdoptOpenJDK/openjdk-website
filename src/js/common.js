@@ -314,3 +314,15 @@ module.exports.setRadioSelectors = () => {
     }
   }
 }
+
+global.renderChecksum = function(link) {
+  var settings = {
+    "url": `https://cors-anywhere.herokuapp.com/${link}`,
+    "method": "GET",
+  }
+  $.ajax(settings).done(function(response) {
+    var checksum = response.split(' ')[0];
+    var newWindow = window.open();
+    newWindow.document.write(checksum)
+  });
+}
