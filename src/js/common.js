@@ -262,7 +262,13 @@ module.exports.setRadioSelectors = () => {
       btnLabel.appendChild(input);
 
       if (group === 'jdk') {
-        btnLabel.innerHTML += `<span>${variant.label}${variant.lts ? ' (LTS)' : ''}</span>`;
+        if (variant.lts === true){
+          btnLabel.innerHTML += `<span>${variant.label} (LTS)</span>`;
+        } else if (variant.lts === 'latest') {
+          btnLabel.innerHTML += `<span>${variant.label} (Latest)</span>`;
+        } else {
+          btnLabel.innerHTML += `<span>${variant.label}</span>`;
+        }
       } else {
         btnLabel.innerHTML += `<span>${variant.jvm}</span>`;
       }
