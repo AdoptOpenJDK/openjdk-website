@@ -28,33 +28,35 @@ const buffer = require('vinyl-buffer');
 
 // default task
 gulp.task('default', () => {
-  runSequence('clean','json-validate',['json','scripts','styles','images','icon'],'handlebars','inject','watch','browser-sync');
+  runSequence('clean', 'json-validate', ['json', 'scripts', 'styles', 'images', 'icon'], 'handlebars', 'inject', 'watch', 'browser-sync');
 });
 
 // build task
 gulp.task('build', () => {
-  runSequence('clean',['json','scripts','styles','images','icon'],'handlebars','inject','sitemap','robots','lint');
+  runSequence('clean', ['json', 'scripts', 'styles', 'images', 'icon'], 'handlebars', 'inject', 'sitemap', 'robots', 'lint');
 });
 
 // clean task (deletes /dist dir)
-gulp.task('clean', () => gulp.src('dist', {read: false}).pipe(clean()));
+gulp.task('clean', () => gulp.src('dist', {
+  read: false
+}).pipe(clean()));
 
 // watch task
 gulp.task('watch', () => {
   gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], () => {
-    runSequence('handlebars','inject', browserSync.reload);
+    runSequence('handlebars', 'inject', browserSync.reload);
   });
   gulp.watch('./src/json/*.json', () => {
     runSequence('json', browserSync.reload);
   });
   gulp.watch('./src/js/**/*.js', () => {
-    runSequence('scripts','inject', browserSync.reload);
+    runSequence('scripts', 'inject', browserSync.reload);
   });
   gulp.watch('./src/scss/*.scss', () => {
-    runSequence('styles','inject', browserSync.reload);
+    runSequence('styles', 'inject', browserSync.reload);
   });
   gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], () => {
-    runSequence('images','handlebars', browserSync.reload);
+    runSequence('images', 'handlebars', browserSync.reload);
   });
   gulp.watch('./src/assets/*.ico', ['icon']);
 });
@@ -65,7 +67,9 @@ gulp.task('handlebars', () => {
 
   const options = {
     batch: ['./src/handlebars/partials'],
-    helpers: {base64img: base64img.base64Sync}
+    helpers: {
+      base64img: base64img.base64Sync
+    }
   };
 
   return gulp.src('./src/handlebars/*.handlebars')
@@ -86,11 +90,13 @@ gulp.task('scripts', () => {
       entries: './src/js/entry.js',
     })
     .transform('babelify', {
-      presets: [['@babel/env', {
-        debug: true,
-        targets: 'defaults', // see https://babeljs.io/docs/en/babel-preset-env#targets
-        useBuiltIns: 'usage',
-      }]]
+      presets: [
+        ['@babel/env', {
+          debug: true,
+          targets: 'defaults', // see https://babeljs.io/docs/en/babel-preset-env#targets
+          useBuiltIns: 'usage',
+        }]
+      ]
     })
     .bundle()
     .pipe(source('app.js'))
@@ -144,16 +150,18 @@ gulp.task('inject', () => {
     relative: true,
     addPrefix: '.'
   };
-  const minSourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {read: false});
+  const minSourceFiles = gulp.src(['./dist/js/app.min-*.js', './dist/css/styles.min-*.css'], {
+    read: false
+  });
   const targetFiles = gulp.src('./*.html');
 
   return targetFiles.pipe(inject(minSourceFiles, options)) // injects the latest minified JS and CSS into all HTML files
-  .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./'));
 });
 
 // images task
 gulp.task('images', () => {
-  return gulp.src(['./src/assets/*.jp*', './src/assets/*.png',  './src/assets/*.svg', './src/assets/*.gif'])
+  return gulp.src(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'])
     .pipe(imagemin())
     .on('error', gutil.log)
     .pipe(gulp.dest('./dist/assets/'));
@@ -174,16 +182,23 @@ gulp.task('json-validate', () => {
   const configJsonSchema = objFromJson('./src/json/config.schema.json');
   const configJson = objFromJson('./src/json/config.json');
 
-  const ajv = new Ajv({loadSchema: loadSchemaFn, allErrors: true, extendRefs: 'fail', verbose: true});
+  const ajv = new Ajv({
+    loadSchema: loadSchemaFn,
+    allErrors: true,
+    extendRefs: 'fail',
+    verbose: true
+  });
 
   return ajv.compileAsync(configJsonSchema)
     .then(validate =>
       validate(configJson) ?
-        gutil.log('config.json is valid!') :
-        assert.fail(validate.errors.map(err => `\n${ajv.errorsText([err])}. Actual: "${err.data}"`).join().concat('\n'))
+      gutil.log('config.json is valid!') :
+      assert.fail(validate.errors.map(err => `\n${ajv.errorsText([err])}. Actual: "${err.data}"`).join().concat('\n'))
     )
     .catch(err => {
-      throw new PluginError('json-validate', err, {showProperties: false});
+      throw new PluginError('json-validate', err, {
+        showProperties: false
+      });
     });
 });
 
@@ -208,12 +223,12 @@ gulp.task('sitemap', () => {
 
 // browser-sync task
 gulp.task('browser-sync', () => {
-    browserSync.init({
-        server: {
-            baseDir: './'
-        },
-        notify: false
-    });
+  browserSync.init({
+    server: {
+      baseDir: './'
+    },
+    notify: false
+  });
 });
 
 // robots task
@@ -221,8 +236,8 @@ gulp.task('robots', () => {
   gulp.src('index.html')
     .pipe(robots({
       useragent: '*',
-      allow: ['/'],
-      disallow: ['/404.html', '/dist']
+      allow: ['/', '/dist/assets/social-image.png'],
+      disallow: ['/404.html', '/dist'],
     }))
     .pipe(gulp.dest('./'));
 });
