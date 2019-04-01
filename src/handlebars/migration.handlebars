@@ -12,22 +12,22 @@
       <h2 class="bold"><a id="migration-overview">Migrating to AdoptOpenJDK</a></h2>
     </div>
     <div class="margin-bottom">
-      <p>If you are moving from Oracle JDK to OpenJDK from the AdoptOpenJDK project, you'll probably have a few key questions on your mind. Firstly,
+      <p>
+        If you are moving from Oracle JDK to OpenJDK from the AdoptOpenJDK project, you'll probably have a few key questions on your mind. Firstly,
         you'll want to know what the differences are between Oracle JDK and AdoptOpenJDK and whether there are any steps you need to take to migrate.
-        If you've looked at the home page, you'll also know that we provide OpenJDKs with a choice of Java Virtual Machine (JVM). So, you might also be wondering
-        what the difference is between the HotSpot JVM and Eclipse OpenJ9 JVM and whether your existing applications will run without any changes. The answers
-        to these questions are covered in the sections that follow.</p>
+        If you've looked at the home page, you'll also know that we provide AdoptOpenJDK binaries with a choice of Java Virtual Machine (JVM). So, you
+        might also be wondering what the difference is between the HotSpot JVM and Eclipse OpenJ9 JVM and whether your existing applications will run
+        without any changes. The answers to these questions are covered in the sections that follow.
+      </p>
       <p>To understand which platforms are supported, see the <a href="./supported_platforms.html">Platform Support Matrix</a>.</p>
-
     </div>
 
-
-    <div class="anchor" onmouseover="document.getElementById('anchor4').style.visibility='visible'" onmouseout="document.getElementById('anchor4').style.visibility='hidden'"><a href="#roadmap" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor4" name="anchor" alt="anchor icon"></a>
-      <h2 class="bold"><a id="migration-oracle">Migrating from an Oracle JDK</a></h2>
+    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#roadmap" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="migration-oracle">Migrating from Oracle JDK</a></h2>
     </div>
     <div class="margin-bottom">
-      <p>The following table illustrates the proprietary components that can be found in an Oracle JDK 8 and the alternative technologies that are either planned
+      <p>The following table illustrates the proprietary components that can be found in Oracle JDK 8 and the alternative technologies that are either planned
       or available to replace them. Click on the links to learn more about each component and any steps that might be necessary to adopt them.</p>
       <table>
         <thead>
@@ -101,14 +101,18 @@
           </tr>
         </tbody>
       </table>
-      <p><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Note:</span> JavaFX, JFR, and JMC were all contributed
-      by Oracle to the OpenJDK project for releases after Java 8.</p>
+      <p>
+        <i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Note:</span> JavaFX, JFR, and JMC were all contributed
+        by Oracle to the OpenJDK project for releases after Java 8.
+      </p>
 
-      <h3 id="icedtea-web">IcedTea-web</h3>
+      <h3 id="icedtea-web">IcedTea-Web</h3>
 
-      <p>AdoptOpenJDK are working on a project to provide IcedTea-web as an open source replacement for Webstart and Java plugin technology. This feature
-      will be available via an installer option in AdoptOpenJDK binaries. In the meantime, this <a href="https://youtu.be/wRRS0LejZuM">IcedTea-Web installation video</a>
-      provides information on how to install it independently.</p>
+      <p>
+        AdoptOpenJDK are working on a project to provide <a href="https://www.adoptopenjdk.net/adoptopenjdk/icedtea-web" target="_blank ">IcedTea-Web</a> as an open
+        source replacement for Webstart and Java plugin technology. This feature will be available via an installer option in AdoptOpenJDK binaries. In the meantime,
+        this <a href="https://youtu.be/wRRS0LejZuM">IcedTea-Web installation video</a> provides information on how to install it independently.
+      </p>
 
       <h3 id="openjfx">OpenJFX</h3>
 
@@ -167,15 +171,15 @@
 
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#commercial-support" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
+    <div class="anchor" onmouseover="document.getElementById('anchor4').style.visibility='visible'" onmouseout="document.getElementById('anchor4').style.visibility='hidden'"><a href="#commercial-support" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor4" name="anchor" alt="anchor icon"></a>
       <h2 class="bold"><a id="migration-resources">More resources</a></h2>
     </div>
 
     <div class="margin-bottom">
       <p>Here are a few of the resources available to help you with migrating to AdoptOpenJDK:
         <ul>
-          <li>Ask questions directly by joining the <a href="https://adoptopenjdk.net/slack.html">AdoptOpenJDK Community Slack</a> channel.</li>
+          <li>Ask questions directly by joining the <a href="https://adoptopenjdk.net/slack.html">AdoptOpenJDK Community Slack</a> group.</li>
           <li>Learn more about the AdoptOpenJDK project, including build and test infrastructure, by reading the <a href="https://github.com/AdoptOpenJDK/TSC">Technical Steering Committee</a> documentation.</li>
           <li>For HotSpot VM documentation, see the <a href="http://openjdk.java.net/groups/hotspot/docs/RuntimeOverview.html">HotSpot Runtime Overview</a>.</li>
           <li>For OpenJ9 VM documentation, see the <a href="https://www.eclipse.org/openj9/docs/">OpenJ9 user documentation</a>.</li>
