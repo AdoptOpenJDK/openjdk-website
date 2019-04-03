@@ -194,21 +194,8 @@ nav {
 
 #logo {
   margin: 2.15rem auto;
-  font-size: $headersize;
   display: table;
   cursor: pointer;
-  color: $maingrey;
-}
-
-#logo div {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-#logo img {
-  width: 2rem;
-  margin-right: 0.6rem;
-  transform: translateY(0.1rem);
 }
 
 #header-social-bar {
