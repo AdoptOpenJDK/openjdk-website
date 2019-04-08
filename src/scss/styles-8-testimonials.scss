@@ -9,7 +9,6 @@ main.testimonials ul {
   max-width: 40rem;
   margin: 1rem auto;
   width: 80%;
-  text-align: left;
   line-height: 1.8rem;
 }
 
@@ -32,4 +31,25 @@ main.testimonials ul {
   max-width: 12em;
   max-height: 7em;
   vertical-align: middle;
+}
+
+.testimonials {
+  text-align: center;
+}
+
+.testimonials img {
+  max-height: 4.5em;
+}
+
+.prev, .next {
+  cursor: pointer;
+  color: $mainblue;
+  transition: 0.6s ease;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
 }

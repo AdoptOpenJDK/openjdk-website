@@ -11,7 +11,8 @@ $headersize: 1.4rem;
 
 
 .blue-bg {
-  background-color: $mainblue !important;
+  // background-color: $mainblue !important;
+  background: url(/dist/assets/background.png);
   color: $maingrey !important;
 }
 
@@ -196,6 +197,10 @@ nav {
   margin: 2.15rem auto;
   display: table;
   cursor: pointer;
+}
+
+#logo  img{
+  height: 3em;
 }
 
 #header-social-bar {
