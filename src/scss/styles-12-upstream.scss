@@ -9,3 +9,15 @@ table {
   padding: 0.5em;
   margin: 1em;
 }
+
+table#release, table#ea {
+  margin-left: 0;
+  margin-right: 0;
+  font-size: small;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table#release td, table#ea td {
+  padding: 5px 0px 10px 2px;
+}
