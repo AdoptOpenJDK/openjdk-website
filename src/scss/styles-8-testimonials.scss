@@ -27,14 +27,15 @@ main.testimonials ul {
   margin: auto;
 }
 
-.customers img {
-  max-width: 12em;
+#customers img {
+  max-width: 8em;
   max-height: 7em;
   vertical-align: middle;
 }
 
 .testimonials {
   text-align: center;
+  padding-bottom: 2em;
 }
 
 .testimonials img {
@@ -48,8 +49,55 @@ main.testimonials ul {
   user-select: none;
 }
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+.fa.fa-angle-left {
+  margin-top: -2em;
+  margin-left: 1em;
+}
+
+.fa.fa-angle-right, {
+  margin-top: -2em;
+  margin-right: 1em;
+}
+
+.fa.fa-quote-left {
+  margin-left: 4em;
+  margin-top: 3em;
+}
+
+.fa.fa-quote-right {
+  margin-right: 4em;
+  margin-top: 5.5em;
+}
+
+.dot {
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+  margin: 0 0.2em;
+  background-color: $accentgrey;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
 }
