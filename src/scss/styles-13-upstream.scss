@@ -7,3 +7,7 @@ $accentgrey: #dadada;
 table#release td, table#ea td {
   padding: 0.5em;
 }
+
+table#release td.first_col, table#ea td.first_col {
+  width: 125px;
+}
