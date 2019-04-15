@@ -1,0 +1,9 @@
+$accentgrey: #dadada;
+
+table {
+  background-color: $accentgrey;
+}
+
+table#release td, table#ea td {
+  padding: 0.5em;
+}
