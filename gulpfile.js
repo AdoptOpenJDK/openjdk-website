@@ -19,7 +19,6 @@ const gutil = require('gulp-util');
 const sitemap = require('gulp-sitemap');
 const hash = require('gulp-hash');
 const inject = require('gulp-inject');
-const robots = require('gulp-robots');
 const clean = require('gulp-clean');
 const base64img = require('base64-img');
 const browserify = require('browserify');
@@ -33,7 +32,7 @@ gulp.task('default', () => {
 
 // build task
 gulp.task('build', () => {
-  runSequence('clean', ['json', 'scripts', 'styles', 'images', 'icon'], 'handlebars', 'inject', 'sitemap', 'robots', 'lint');
+  runSequence('clean', ['json', 'scripts', 'styles', 'images', 'icon'], 'handlebars', 'inject', 'sitemap', 'lint');
 });
 
 // clean task (deletes /dist dir)
@@ -229,15 +228,4 @@ gulp.task('browser-sync', () => {
     },
     notify: false
   });
-});
-
-// robots task
-gulp.task('robots', () => {
-  gulp.src('index.html')
-    .pipe(robots({
-      useragent: '*',
-      allow: ['/', '/dist/assets/social-image.png'],
-      disallow: ['/404.html', '/dist'],
-    }))
-    .pipe(gulp.dest('./'));
 });
