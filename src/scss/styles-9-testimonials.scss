@@ -101,3 +101,23 @@ main.testimonials ul {
   from {opacity: .4}
   to {opacity: 1}
 }
+
+.customers a.more-logos {
+  background-color: $brighterblue;
+  display: block;
+  color: $maingrey;
+  border-radius: 0.2rem;
+  line-height: 2.5rem;
+  cursor: pointer;
+  margin: 1rem 0;
+  padding: 0 2.5rem;
+}
+
+.customers a.more-logos:hover {
+  background-color: rgb(68, 124, 195);
+  color: $maingrey;
+}
+
+.customers p.full-width {
+  width: 100%;
+}
