@@ -33,39 +33,37 @@ main.testimonials ul {
   vertical-align: middle;
 }
 
-.testimonials {
-  text-align: center;
-  padding-bottom: 2em;
+.testimonial {
+  width: 100%;
 }
 
 .testimonials img {
   max-height: 4.5em;
+  margin: 0 auto;
 }
 
-.prev, .next {
-  cursor: pointer;
-  color: $mainblue;
-  transition: 0.6s ease;
-  user-select: none;
+.slick-dots {
+  margin: 0 auto;
+  position: static !important;
 }
 
-.fa.fa-angle-left {
-  margin-top: -2em;
-  margin-left: 1em;
+.slick-dots li button:before {
+  font-size: 1rem !important;
+  color: $mainblue !important;
 }
 
-.fa.fa-angle-right, {
-  margin-top: -2em;
-  margin-right: 1em;
+.slick-next:before, .slick-prev:before {
+  font-size: 2rem !important;
+  color: $mainblue !important;
 }
 
 .fa.fa-quote-left {
-  margin-left: 4em;
+  margin-left: 3em;
   margin-top: 3em;
 }
 
 .fa.fa-quote-right {
-  margin-right: 4em;
+  margin-right: 3em;
   margin-top: 5.5em;
 }
 
@@ -78,53 +76,20 @@ main.testimonials ul {
 
 // Phone width
 @media all and (max-width: 500px) {
-  .fa.fa-angle-left {
-    margin-left: 0;
-  }
-
-  .fa.fa-angle-right, {
-    margin-right: 0;
-  }
-
   #customers img {
     max-width: 6em;
   }
+
+  .slick-prev {
+    left: 0.2rem !important;
+  }
+
+  .slick-next {
+    right:  0.2rem !important;
+  }
 }
 
-.dot {
-  cursor: pointer;
-  height: 1em;
-  width: 1em;
-  margin: 0 0.2em;
-  background-color: $accentgrey;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-.more-users{
+.more-users {
   display: flex;
   align-items: center;
   justify-content: center;

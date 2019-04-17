@@ -1,19 +1,23 @@
 {{> header title='Testimonials | ' }}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha256-4hqlsNP9KM6+2eA8VUT0kk4RsMRTeS7QGHIM+MZ5sLY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha256-UK1EiopXIL+KVhfbFa8xrmAWPeBjMVdvYMYkTAEv/HI=" crossorigin="anonymous" />
+
 <main class="grey-bg testimonials">
 
   <h1 class="large-title">Testimonials</h1>
 
   <div class="info-page-container">
 
-    <div class="testimonials">
-      <i class="fa fa-quote-left fa-2x pull-left"></i>
-      <i class="fa fa-quote-right fa-2x pull-right"></i>
+    <i class="fa fa-quote-left fa-2x pull-left"></i>
+    <i class="fa fa-quote-right fa-2x pull-right"></i>
+
+    <div class="testimonials" id=testimonials>
 
       <div class="testimonial">
         <img src="dist/assets/GoDaddy.png" alt="GoDaddy logo" />
         <div class="quote">
-          <p>GoDaddy like many companies needed to react to the change in the Java JRE licensing agreement by Oracle in 2018. The vision, test coverage and the convenience factor for our teams made the transition from Oracle’s Java binaries to
+          <p class="align-center">GoDaddy like many companies needed to react to the change in the Java JRE licensing agreement by Oracle in 2018. The vision, test coverage and the convenience factor for our teams made the transition from Oracle’s Java binaries to
             AdoptOpenJDK built binaries easy and our effort completed without incident.</p>
         </div>
       </div>
@@ -21,19 +25,11 @@
       <div class="testimonial">
         <img src="https://static1.squarespace.com/static/5bd044bab9144922c00d916f/t/5bf2828288251b677d012680/1546957937267/?format=500w" alt="Ocado logo" />
         <div class="quote">
-          <p>Moving to the AdoptOpenJDK docker images was as easy as you'd expect, just a one-line change within our Dockerfile and everything worked first time. After months of production use, we've not noticed any differences between the AdoptOpenJDK
-             and Oracle binaries. Thank you Adopt for making the migration as simple as possible.</p>
+          <p class="align-center">Moving to the AdoptOpenJDK docker images was as easy as you'd expect, just a one-line change within our Dockerfile and everything worked first time. After months of production use, we've not noticed any differences between the
+            AdoptOpenJDK and Oracle binaries. Thank you AdoptOpenJDK for making the migration as simple as possible.</p>
         </div>
       </div>
 
-      <a class="prev" onclick="plusSlides(-1)"><i class="fa fa-angle-left fa-3x pull-left"></i></a>
-      <a class="next" onclick="plusSlides(1)"><i class="fa fa-angle-right fa-3x pull-right"></i></a>
-
-      <!-- The dots/circles -->
-      <div class="align-center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-      </div>
     </div>
 
     <h2 class="align-center">Companies that are already using AdoptOpenJDK binaries in production</h2>
@@ -112,4 +108,4 @@
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>'}}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>'}}
