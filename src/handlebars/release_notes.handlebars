@@ -1,0 +1,293 @@
+{{> header title='Support | ' }}
+
+<!-- TODO Style should match installation page, it doesn't quite... -->
+<main class="grey-bg">
+
+  <h1 class="margin-bottom large-title">Release Notes</h1>
+
+  <div class="align-left support">
+
+    <div class="anchor" onmouseover="document.getElementById('anchor1').style.visibility='visible'" onmouseout="document.getElementById('anchor1').style.visibility='hidden'"><a href="#introduction" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor1" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support-levels">Introduction</a></h2>
+    </div>
+    <div class="margin-bottom">
+      <p>
+        OpenJDK 8u212 and 11.0.3 were the first non-Oracle led OpenJDK releases.<br/>
+        For release notes prior to 8u212 and 11.0.3 please refer to the Oracle website.
+      </p>
+    </div>
+
+    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#jdk8u212" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support-levels">OpenJDK 8u212</a></h2>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://bugs.openjdk.java.net/browse/JDK-8221955?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%208u212%20ORDER%20BY%20created%20DESC" target="_blank">8u212</a> Fix Version filter in the JDK Bug System.
+
+      <h3>Security fixes</h3>
+      <ul>
+        <li>S8211936, CVE-2019-2602: Better String parsing</li>
+        <li>S8218453, CVE-2019-2684: More dynamic RMI interactions</li>
+        <li>S8219066, CVE-2019-2698: Fuzzing TrueType fonts: setCurrGlyphID()</li>
+      </ul>
+      <h3>Other changes</h3>
+      <ul>
+        <li>S7127191: SA JSDB does not display native symbols correctly for transported Linux cores</li>
+        <li>S8027434: "-XX:OnOutOfMemoryError" uses fork instead of vfork</li>
+        <li>S8028254: gc/arguments/TestMinInitialErgonomics.java failed with unexpected initial heap size</li>
+        <li>S8029661: Support TLS v1.2 algorithm in SunPKCS11 provider</li>
+        <li>S8042131: DateTimeFormatterBuilder Mapped-values do not work for JapaneseDate</li>
+        <li>S8043387: java/time/test/java/util/TestFormatter.java failed.</li>
+        <li>S8044047: Missing null pointer checks for streams</li>
+        <li>S8059038: Create new launcher for SA tools</li>
+        <li>S8065749: [TESTBUG]: gc/arguments/TestG1HeapRegionSize.java fails at nightly</li>
+        <li>S8068269: RTM tests that assert on non-zero lock statistics are too strict in RTMTotalCountIncrRate > 1 cases</li>
+        <li>S8076164: [JTextField] When input too long Thai character, cursor's behavior is odd</li>
+        <li>S8076274: [TESTBUG] Remove @ignore from runtime\NMT\JcmdDetailDiff.java</li>
+        <li>S8076458: java/util/stream/test/org/openjdk/tests/java/util/stream/FlatMapOpTest.java timeout</li>
+        <li>S8077608: [TESTBUG] Enable Hotspot jtreg tests to run in agentvm mode</li>
+        <li>S8080932: [TEST_BUG] Test java/awt/BasicStroke/DashStrokeTest.java fails with Bad script error due to improper @run notation</li>
+        <li>S8129822: Define "headful" jtreg keyword</li>
+        <li>S8132136: [PIT] RTL orientation in JEditorPane is broken</li>
+        <li>S8132985: Crash in freetypescaler.c due to double free</li>
+        <li>S8133108: [PIT] Container size is wrong in JEditorPane</li>
+        <li>S8133731: [TEST_BUG] Unmappable in ASCII character such as Thai should be escaped in the regtests targeted for a regular non-I18n runs</li>
+        <li>S8133802: replace some &lt;tt&gt; tags (obsolete in html5) in security-libs docs</li>
+        <li>S8133984: print_compressed_class_space() is only defined in 64-bit VM</li>
+        <li>S8139803: Fix for 8132985 breaks OpenJDK build on windows.</li>
+        <li>S8141491: Unaligned memory access in Bits.c</li>
+        <li>S8145096: Undefined behaviour in HotSpot</li>
+        <li>S8148928: java/util/stream/test/**/SequentialOpTest.java timed out intermittently</li>
+        <li>S8164656: krb5 does not retry if TCP connection timeouts</li>
+        <li>S8170681: Remove fontconfig header files from JDK source tree</li>
+        <li>S8175120: Remove old tests on kdc timeout policy</li>
+        <li>S8180469: Wrong short form text for supplemental Japanese era</li>
+        <li>S8180904: Hotspot tests running with -agentvm failing due to classpath</li>
+        <li>S8184309: Build warnings from GCC 7.1 on Fedora 26</li>
+        <li>S8185975: PPC64: Fix vsldoi interface according to the ISA</li>
+        <li>S8187364: Unable to enter zero width non-joiner (ZWNJ) symbol in Swing text component</li>
+        <li>S8189761: COMPANY_NAME, IMPLEMENTOR, BUNDLE_VENDOR, VENDOR, but no configure flag</li>
+        <li>S8193764: Cannot set COMPANY_NAME when configuring a build</li>
+        <li>S8195153: [test] runtime/6981737/Test6981737.java shouldn't check 'java.vendor' and 'java.vm.vendor' properties</li>
+        <li>S8197429: Increased stack guard causes segfaults on x86-32</li>
+        <li>S8200109: NMT: diff_malloc_site assert(early->flags() == current->flags(), "Must be the same memory type")</li>
+        <li>S8200115: System property java.vm.vendor value includes quotation marks</li>
+        <li>S8202088: Japanese new era implementation</li>
+        <li>S8204142: AWT hang occurs when sequenced events arrive out of sequence in multiple AppContexts</li>
+        <li>S8205432: Replace the placeholder Japanese era name</li>
+        <li>S8206075: On x86, assert on unbound assembler Labels used as branch targets</li>
+        <li>S8206120: Add test cases for lenient Japanese era parsing</li>
+        <li>S8207070: Webstart app popup on wrong screen in a one-screen setup changing to multi-monitor</li>
+        <li>S8207152: Placeholder for Japanese new era should be two characters</li>
+        <li>S8207258: Distrust TLS server certificates anchored by Symantec Root CAs</li>
+        <li>S8208480: Test failure: assert(is_bound() || is_unused()) after JDK-8206075 in C1</li>
+        <li>S8208656: Move java/util/Calendar/CalendarTestScripts tests into OpenJDK</li>
+        <li>S8210633: Cannot parse JapaneseDate string with DateTimeFormatterBuilder Mapped-values</li>
+        <li>S8210647: libsaproc is being compiled without optimization</li>
+        <li>S8211106: [windows] Update OS detection code to recognize Windows Server 2019</li>
+        <li>S8211231: BarrierSetC1::generate_referent_check() confuses register allocator</li>
+        <li>S8211382: ISO2022JP and GB18030 NIO converter issues</li>
+        <li>S8211398: Square character support for the Japanese new era</li>
+        <li>S8211435: Exception in thread "AWT-EventQueue-1" java.lang.IllegalArgumentException: null source</li>
+        <li>S8211926: Catastrophic size_t underflow in BitMap::*_large methods</li>
+        <li>S8212110: Build of saproc.dll broken on Windows 32 bit after JDK-8210647</li>
+        <li>S8212178: Soft reference reclamation race in com.sun.xml.internal.stream.util.ThreadLocalBufferAllocator</li>
+        <li>S8212914: Test javax/imageio/plugins/bmp/BMP8BPPLoadTest.java fails</li>
+        <li>S8212941: Support new Japanese era in java.time.chrono.JapaneseEra</li>
+        <li>S8213151: [AIX] Some class library files are missing the Classpath exception</li>
+        <li>S8213154: Update copyright headers of files in src tree that are missing Classpath exception</li>
+        <li>S8213419: C2 may hang in MulLNode::Ideal()/MulINode::Ideal() with gcc 8.2.1</li>
+        <li>S8213583: Error while opening the JFileChooser when desktop contains shortcuts pointing to deleted files.</li>
+        <li>S8213952: Relax DNSName restriction as per RFC 1123</li>
+        <li>S8213983: [macosx] Keyboard shortcut “cmd +`” stops working properly if popup window is displayed</li>
+        <li>S8213992: Rename and make DieOnSafepointTimeout the diagnostic option</li>
+        <li>S8214059: Undefined behaviour in ADLC</li>
+        <li>S8214061: Buffer written into itself</li>
+        <li>S8214189: test/hotspot/jtreg/compiler/intrinsics/mathexact/MulExactLConstantTest.java fails on Windows x64 when run with -XX:-TieredCompilation</li>
+        <li>S8214206: Fix for JDK-8213419 is broken on 32-bit</li>
+        <li>S8215364: JavaFX crashes on Ubuntu 18.04 with Wayland while using Swing-FX interop</li>
+        <li>S8215934: G1 Old Gen MemoryPool CollectionUsage.used values don't reflect mixed GC results</li>
+        <li>S8215976: Fix gmtime_r declaration conflicts in zip.cpp with linux header files</li>
+        <li>S8216037: Avoid calling vm_update with a NULL name</li>
+        <li>S8216058: [TESTBUG] tools/launcher/VersionCheck.java fails after JDK-8215992</li>
+        <li>S8216396: Support new Japanese era and new currency code points in java.lang.Character for Java SE 8</li>
+        <li>S8217305: Missing 0 in java.dll file version cause issues with patch management software</li>
+        <li>S8217432: MetaspaceGC::_capacity_until_GC exceeds MaxMetaspaceSize</li>
+        <li>S8217520: Remove vm.opt.MaxGCPauseMillis == "null" from TestOldGenCollectionUsage.java</li>
+        <li>S8217579: TLS_EMPTY_RENEGOTIATION_INFO_SCSV is disabled after 8211883</li>
+        <li>S8217609: New era placeholder not recognized by java.text.SimpleDateFormat</li>
+        <li>S8217710: Add 5 currency code points to Java SE 8uX</li>
+        <li>S8217753: Enable HotSpot builds on 5.x Linux kernels</li>
+        <li>S8218613: [TESTBUG] runtime/ErrorHandling tests are building incorrect testlibrary classes</li>
+        <li>S8218915: Change isJavaIdentifierStart and isJavaIdentifierPart to handle new code points</li>
+        <li>S8219636: Windows build failure after JDK-8207070 8u backport</li>
+        <li>S8219890: Calendar.getDisplayName() returns empty string for new Japanese Era on some locales</li>
+        <li>S8219961: [ppc64] Increase code size for interpreter generation.</li>
+        <li>S8220397: REGRESSION: JDK-8036003 backport regresses no_strip builds</li>
+        <li>S8220641: [TESTBUG] New test KdcPolicy.java introduced by JDK-8164656 needs same change as JDK-8190690</li>
+      </ul>
+
+    </div>
+
+    <div class="anchor" onmouseover="document.getElementById('anchor3').style.visibility='visible'" onmouseout="document.getElementById('anchor3').style.visibility='hidden'"><a href="#jdk11_0_3" class="anchor">
+      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
+      <h2 class="bold"><a id="support-levels">OpenJDK 11.0.3</a></h2>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://bugs.openjdk.java.net/browse/JDK-8222572?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%2011.0.3%20ORDER%20BY%20created%20DESC" target="_blank">11.0.3</a> Fix Version filter in the JDK Bug System.
+
+      <h3>Security fixes</h3>
+      <ul>
+        <li>S8211936, CVE-2019-2602: Better String parsing</li>
+        <li>S8218453, CVE-2019-2684: More dynamic RMI interactions</li>
+        <li>S8219066, CVE-2019-2698: Fuzzing TrueType fonts: setCurrGlyphID()</li>
+      </ul>
+
+      <h3>Other changes</h3>
+      <ul>
+        <li>S8034802: (zipfs) newFileSystem throws UOE when the zip file is located in a custom file system</li>
+        <li>S8165675: Trace event for thread park has incorrect unit for timeout</li>
+        <li>S8172695: (scanner) java/util/Scanner/ScanTest.java fails</li>
+        <li>S8187364: Unable to enter zero width non-joiner (ZWNJ) symbol in Swing text component</li>
+        <li>S8197398: (zipfs) Files.walkFileTree walk indefinitelly while processing JAR file with "/" as a directory inside.</li>
+        <li>S8200109: NMT: diff_malloc_site assert(early->flags() == current->flags(), "Must be the same memory type")</li>
+        <li>S8201818: [macosx] Printing attributes break page size set via "java.awt.print.Book" object</li>
+        <li>S8204142: AWT hang occurs when sequenced events arrive out of sequence in multiple AppContexts</li>
+        <li>S8205432: Replace the placeholder Japanese era name</li>
+        <li>S8206120: Add test cases for lenient Japanese era parsing</li>
+        <li>S8207070: Webstart app popup on wrong screen in a one-screen setup changing to multi-monitor</li>
+        <li>S8207258: Distrust TLS server certificates anchored by Symantec Root CAs</li>
+        <li>S8207760: SAXException: Invalid UTF-16 surrogate detected: d83c ?</li>
+        <li>S8207829: FlightRecorderMXBeanImpl is leaking the first classloader which calls it</li>
+        <li>S8207849: Allow the addition of more number to the Java version string</li>
+        <li>S8208275: C2 crash in Node::add_req(Node*)</li>
+        <li>S8208656: Move java/util/Calendar/CalendarTestScripts tests into OpenJDK</li>
+        <li>S8209615: ParseError in XMLEventReader on a valid input</li>
+        <li>S8209758: 2 classes with same name G1PrintCollectionSetClosure cause crash when logging is enabled</li>
+        <li>S8209960: -Xlog:jfr* doesn't work with the JFR</li>
+        <li>S8210192: Hsperf counter ParNew::CMS should be ParNew:CMS</li>
+        <li>S8210394: (zipfs) jdk/nio/zipfs/ZFSTests.java rootdir.zip: The process cannot access the file because it is being used by another process</li>
+        <li>S8210633: Cannot parse JapaneseDate string with DateTimeFormatterBuilder Mapped-values</li>
+        <li>S8210874: Test for JDK-8209615</li>
+        <li>S8210974: No extensions debug log for ClientHello</li>
+        <li>S8210989: RSASSA-PSS certificate cannot be selected for client auth on TLSv1.2</li>
+        <li>S8211049: Second parameter of "initialize" method is not used</li>
+        <li>S8211064: [AArch64] Interpreter and c1 don't correctly handle jboolean results in native calls</li>
+        <li>S8211100: hotspot C1 issue with comparing long numbers on x86 32-bit</li>
+        <li>S8211163: UNIX version of Java_java_io_Console_echo does not return a clean boolean</li>
+        <li>S8211267: StackOverflowError happened by TextField.setFont(...)</li>
+        <li>S8211295: DriverManager.getConnection fails when called from com.sun.rowset.JdbcRowSetImpl</li>
+        <li>S8211320: Aarch64: unsafe.compareAndSetByte() and unsafe.compareAndSetShort() c2 intrinsics broken with negative expected value</li>
+        <li>S8211382: ISO2022JP and GB18030 NIO converter issues</li>
+        <li>S8211398: Square character support for the Japanese new era</li>
+        <li>S8211698: Crash in C2 compiled code during execution of double array heavy processing code</li>
+        <li>S8211765: JarFile constructor throws undocumented exception</li>
+        <li>S8211787: javax/net/ssl/TLSCommon/TLSTest.java throws java.net.SocketTimeoutException: Read timed out</li>
+        <li>S8211821: PrintStringTableStatistics crashes JVM</li>
+        <li>S8212173: Thread._stack_base/_stack_size initialized too late for new threads</li>
+        <li>S8212232: Wrong metadata for the configuration of the cutoff for old object sample events</li>
+        <li>S8212233: javadoc fails on jdk12 with "The code being documented uses modules but the packages defined in $URL are in the unnamed module."</li>
+        <li>S8212885: TLS 1.3 resumed session does not retain peer certificate chain</li>
+        <li>S8212941: Support new Japanese era in java.time.chrono.JapaneseEra</li>
+        <li>S8213183: InputMethod cannot be used after its restarting</li>
+        <li>S8213202: Possible race condition in TLS 1.3 session resumption</li>
+        <li>S8213419: C2 may hang in MulLNode::Ideal()/MulINode::Ideal() with gcc 8.2.1</li>
+        <li>S8213421: Line number information for execution samples always 0</li>
+        <li>S8213583: Error while opening the JFileChooser when desktop contains shortcuts pointing to deleted files</li>
+        <li>S8213754: PPC64: Add Intrinsics for isDigit/isLowerCase/isUpperCase/isWhitespace</li>
+        <li>S8213782: NullPointerException in sun.security.ssl.OutputRecord.changeWriteCiphers</li>
+        <li>S8213829: Remove circular dependency between g1CollectedHeap and g1ConcurrentMark</li>
+        <li>S8213952: Relax DNSName restriction as per RFC 1123</li>
+        <li>S8213966: The ZGC JFR events should be marked as experimental</li>
+        <li>S8213983: [macosx] Keyboard shortcut ?cmd +`? stops working properly if popup window is displayed</li>
+        <li>S8214063: OpenJDK will not build on AIX while using the xlc 13.1 compiler</li>
+        <li>S8214100: use of keystore probing results in unnecessary exception thrown</li>
+        <li>S8214118: HeapRegions marked as archive even if CDS mapping fails</li>
+        <li>S8214122: JDWP is broken on 32 bit Windows: transport library missing onLoad entry</li>
+        <li>S8214129: SSL session resumption/SNI with TLS1.2 causes StackOverflowError</li>
+        <li>S8214189: test/hotspot/jtreg/compiler/intrinsics/mathexact/MulExactLConstantTest.java fails on Windows x64 when run with -XX:-TieredCompilation</li>
+        <li>S8214206: Fix for JDK-8213419 is broken on 32-bit</li>
+        <li>S8214339: SSLSocketImpl erroneously wraps SocketException</li>
+        <li>S8214352: C1: Unnecessary "compilation bailout: block join failed" with JVMTI</li>
+        <li>S8214451: PPC64/s390: Clean up unused CRC32 prototype and function</li>
+        <li>S8214513: A PKCS12 keystore from Java 8 using custom PBE parameters cannot be read in Java 11</li>
+        <li>S8214688: TLS 1.3 session resumption with hello retry request failed with "illegal_parameter"</li>
+        <li>S8214827: Incorrect call ClassLoaders.toFileURL("jrt:/java.compiler")</li>
+        <li>S8215100: AArch64: fix compareTo intrinsic with four-character Latin/Unicode</li>
+        <li>S8215175: Inconsistencies in JFR event metadata</li>
+        <li>S8215202: AArch64: jtreg test test/jdk/sun/nio/cs/FindEncoderBugs.java fails</li>
+        <li>S8215317: [GRAAL] unit test CheckGraalIntrinsics failed after 8213754</li>
+        <li>S8215330: javax.xml.catalog.CatalogResolverImpl: GroupEntry.matchURI fails to match</li>
+        <li>S8215362: JFR GTest JfrTestNetworkUtilization fails</li>
+        <li>S8215397: jsig.c missing classpath exception</li>
+        <li>S8215727: Restore JFR thread sampler loop to old / previous behavior</li>
+        <li>S8215947: JVM crash with -XX:+DumpSharedSpaces</li>
+        <li>S8215951: AArch64: jtreg test vmTestbase/nsk/jvmti/PopFrame/popframe005 segfaults</li>
+        <li>S8215962: Support ThreadPriorityPolicy mode 1 for non-root users on linux/bsd</li>
+        <li>S8216049: stringTable::intern creates redundant String when looking up existing one</li>
+        <li>S8216060: [PPC64] Vector CRC implementation should be used by interpreter and be faster for short arrays</li>
+        <li>S8216280: Allow later Symantec Policy distrust date for two Apple SubCAs</li>
+        <li>S8216302: StackTraceElement::fill_in can use cached Class.name</li>
+        <li>S8216308: StackTraceElement::fill_in can use injected Class source-file</li>
+        <li>S8216350: AArch64: monitor unlock fast path not called</li>
+        <li>S8216546: Support new Japanese era in java.lang.Character for Java SE 11</li>
+        <li>S8216578: Remove unused/obsolete method in JFR code</li>
+        <li>S8216965: crash in freetypeScaler.c CopyBW2Grey8</li>
+        <li>S8217014: Epsilon should not ignore Metadata GC causes</li>
+        <li>S8217315: Proper units should print more significant digits</li>
+        <li>S8217321: [TESTBUG] utilities/test_globalDefinitions.cpp should use _LP64, not LP64</li>
+        <li>S8217342: Build failed with excluding JFR</li>
+        <li>S8217378: UseCriticalCMSThreadPriority is broken</li>
+        <li>S8217427: (dc) nio/channels/DatagramChannel/UseDGWithIPv6.java fails without IPv6</li>
+        <li>S8217432: MetaspaceGC::_capacity_until_GC exceeds MaxMetaspaceSize</li>
+        <li>S8217459: [PPC64] Cleanup non-vector version of CRC32</li>
+        <li>S8217471: [TESTBUG] gc/epsilon/TestClasses.java fails on some platforms <li>OOME Metaspace</li>
+        <li>S8217520: Remove vm.opt.MaxGCPauseMillis == "null" from TestOldGenCollectionUsage.java</li>
+        <li>S8217579: TLS_EMPTY_RENEGOTIATION_INFO_SCSV is disabled after 8211883</li>
+        <li>S8217597: [TESTBUG] old version docker does not support --cpus</li>
+        <li>S8217609: New era placeholder not recognized by java.text.SimpleDateFormat</li>
+        <li>S8217628: Verbose ArrayIndexOutOfBoundsException message also in JNI calls.</li>
+        <li>S8217657: Move the test for default value of jdk.includeInExceptions into own test</li>
+        <li>S8217994: os::print_hex_dump should be more resilient against unreadable memory</li>
+        <li>S8218156: "jcmd VM.metaspace basic" misreports free chunk space</li>
+        <li>S8218192: Remove copy constructor for MemRegion</li>
+        <li>S8218915: Change isJavaIdentifierStart and isJavaIdentifierPart to handle new code points</li>
+        <li>S8219251: Langtools tests default memory size needs to be 768m</li>
+        <li>S8219260: Default number of test jobs needs to be consistently calculated</li>
+        <li>S8219461: Bump update version for OpenJDK jdk11.0.3</li>
+        <li>S8219650: [Testbug] Fix potential crashes in new test hotspot gtest "test_print_hex_dump"</li>
+        <li>S8219651: compiler/ciReplay/TestServerVM.java is failing on windows</li>
+        <li>S8219714: [testbug] com/sun/jdi/RedefineNestmateAttr/TestNestmateAttr.java must pass classpath to subprocess</li>
+        <li>S8219789: [TESTBUG] TestOptionsWithRanges.java produces. hs_err_pidXXXXX.log file for VMThreadStackSize=9007199254740991</li>
+        <li>S8219890: Calendar.getDisplayName() returns empty string for new Japanese Era on some locales</li>
+        <li>S8220283: ZGC fails to build on GCC 4.4.7: ATTRIBUTE_ALIGNED compatibility issue</li>
+        <li>S8220294: ZGC fails to build on GCC 4.4.7: Type parameter issue</li>
+        <li>S8221769: Revert JDK-8221767 mistakenly pushed to jdk11u 11.0.3</li>
+      </ul>
+
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <!--
+      <a href="https://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" id="dev-button" class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Mailing List&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+      -->
+      <a href="./quality.html" class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Quality&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+      <a href="./supported_platforms.html" class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Supported Platforms&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+      <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" class="no-underline home-links">
+        <h2 class="inline-block zero-margin">Submit an Issue&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+{{> footer }}
