@@ -4,5 +4,4 @@ npm-debug.log
 dist
 *.html
 sitemap.xml
-robots.txt
 .DS_Store*
