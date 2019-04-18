@@ -142,14 +142,14 @@
             "title": "Checksum command",
             "examples": ["sha256sum FILENAME"]
           },
-          "checksumActionCommand": {
-            "$id": "#/properties/platforms/items/properties/checksumActionCommand",
+          "checksumAutoCommand": {
+            "$id": "#/properties/platforms/items/properties/checksumAutoCommand",
             "$ref": "#/definitions/command",
             "title": "Checksum auto command",
             "examples": ["sha256sum FILENAME"]
           },
-          "checksumActionCommandResult": {
-            "$id": "#/properties/platforms/items/properties/checksumActionResultCommand",
+          "checksumAutoCommandResult": {
+            "$id": "#/properties/platforms/items/properties/checksumAutoCommandResult",
             "type": "string",
             "title": "Checksum auto result command",
             "examples": ["FILENAME: The SHA-256 fingerprint matches"]
