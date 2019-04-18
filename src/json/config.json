@@ -149,6 +149,8 @@
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
+      "checksumAutoCommand": "echo \"FILENAME  FILEHASH\" 2>&1 | shasum -a 256 -c",
+      "checksumAutoResultCommand": "\"FILENAME: OK\"",
       "osDetectionString": "Mac OS X OSX macOS Macintosh"
     },
     {
@@ -165,6 +167,8 @@
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
+      "checksumAutoCommand": "echo \"FILENAME  FILEHASH\" 2>&1 | shasum -a 256 -c",
+      "checksumAutoResultCommand": "\"FILENAME: OK\"",
       "osDetectionString": "not-to-be-detected"
     },
     {
