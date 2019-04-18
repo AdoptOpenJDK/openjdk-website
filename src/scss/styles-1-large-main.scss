@@ -11,7 +11,7 @@ $headersize: 1.4rem;
 
 
 .blue-bg {
-  background-color: $mainblue !important;
+  background: url(https://adoptopenjdk.net/dist/assets/background.png);
   color: $maingrey !important;
 }
 
@@ -193,22 +193,13 @@ nav {
 }
 
 #logo {
-  margin: 2.15rem auto;
-  font-size: $headersize;
+  margin: 1.5rem auto;
   display: table;
   cursor: pointer;
-  color: $maingrey;
 }
 
-#logo div {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-#logo img {
-  width: 2rem;
-  margin-right: 0.6rem;
-  transform: translateY(0.1rem);
+#logo  img{
+  height: 2.5em;
 }
 
 #header-social-bar {
