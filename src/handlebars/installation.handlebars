@@ -60,9 +60,9 @@
               <p>Use this command to generate a SHA-256 checksum of your downloaded binary, then open the corresponding <a href="\{{thisChecksumLink}}">checksum file</a> and ensure that it contains the same number.</p>
               <pre><code class="highlighted"><var id="checksum-\{{thisPlatform}}" checksumCommand>\{{thisChecksumCommand}}</var></code><span onclick="copyClipboard('#checksum-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
               \{{#if thisChecksumAutoCommand}}
-              <div id="checksum-auto-command-container-\{{thisPlatform}}" class="hide">
+              <div id="checksum-auto-command-container-\{{thisPlatformType}}" class="hide">
                 <p>If you don't want to compare visually the SHA-256 checksum, just use this command:</p>
-                <pre><code class="highlighted"><var id="checksum-auto-command-\{{thisPlatform}}" checksumAutoCommand>\{{thisChecksumAutoCommand}}</var></code><span onclick="copyClipboard('#checksum-auto-command-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+                <pre><code class="highlighted"><var id="checksum-auto-command-\{{thisPlatformType}}" checksumAutoCommand>\{{thisChecksumAutoCommand}}</var></code><span onclick="copyClipboard('#checksum-auto-command-\{{thisPlatformType}}')" class="copy-code-button">Copy</span></pre>
                 <p>and confirm the result is: <code><var checksumAutoResultCommand>\{{thisChecksumAutoResultCommand}}</var></code>.</p>
               </div>
               \{{/if}}
