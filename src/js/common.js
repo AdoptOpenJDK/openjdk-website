@@ -166,39 +166,24 @@ module.exports.getChecksum = url => checksums[url]
 
 module.exports.loadChecksum = (url, message) => {
   return new Promise((resolve, reject) => {
-    loadUrl(url, response => {
+    loadUrl(url, sha256Content => {
       try {
-        const reader = new FileReader();
-        // This fires after the blob has been read/loaded.
-        reader.addEventListener('loadend', e => {
-          // todo@userquin: fix this -> https://developer.mozilla.org/en-US/docs/Web/API/Event/srcElement
-          console.info(e.srcElement);
-          console.info(e.target);
-          const text = e.srcElement.result;
-          const checksum = text.split(' ')[0].trim();
-          console.info(checksum);
-          checksums[url] = checksum;
-          resolve(message.replace('FILEHASH',checksum));
-        });
-        reader.readAsText(response.blob());
+        const checksum = sha256Content.split(' ')[0].trim();
+        checksums[url] = checksum;
+        resolve(message.replace('FILEHASH', checksum));
       } catch (e) {
         reject(e);
       }
-    }, false);
+    });
   });
 }
 
 function loadUrl(url, callback) {
-  const checksumRequest = url.endsWith('sha256.txt');
   const xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
   xobj.onreadystatechange = () => {
     if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
-      if (checksumRequest) {
-        callback(xobj);
-      } else {
-        callback(xobj.responseText);
-      }
+      callback(xobj.responseText);
     } else if (
       xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
       xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
