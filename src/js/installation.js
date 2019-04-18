@@ -60,7 +60,7 @@ function buildInstallationHTML(releasesJson) {
         const thisChecksumAutoCommand = getChecksumAutoCommand(ASSETOBJECT.thisPlatform);
         const thisChecksumAutoCommandResult = getChecksumAutoResultCommand(ASSETOBJECT.thisPlatform);
         if (thisChecksumAutoCommand && thisChecksumAutoCommandResult) {
-          const checksum = getChecksum(eachAsset.checksum_link);
+          const checksum = getChecksum(ASSETOBJECT.thisChecksumLink);
           if (checksum) {
             ASSETOBJECT.thisChecksumAutoCommand = thisChecksumAutoCommand.replace(
               /FILENAME/g,
@@ -137,33 +137,45 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
   }
 
   if (platformSelector.options.length === 1) {
-    thisReleasePlatforms.forEach((eachPlatform) => {
+    thisReleasePlatforms.forEach((eachPlatform, index) => {
       const op = new Option();
       op.value = eachPlatform.thisPlatformType;
       op.text = eachPlatform.thisOfficialName;
       platformSelector.options.add(op);
-      if (eachPlatform.thisChecksumAutoCommand && eachPlatform.thisChecksumAutoCommand.indexOf('FILEHASH') > -1) {
-        const container = document.querySelector(`#checksum-auto-command-container-${eachPlatform.thisPlatform}`);
-        const variable = container.querySelector(`#checksum-auto-command-${eachPlatform.thisPlatform}`);
+      if (
+        index > 0 &&
+        eachPlatform.thisChecksumAutoCommand &&
+        eachPlatform.thisChecksumAutoCommand.indexOf('FILEHASH') > -1
+      ) {
+        const container = document.querySelector(`#checksum-auto-command-container-${eachPlatform.thisPlatformType}`);
+        const variable = container.querySelector(`#checksum-auto-command-${eachPlatform.thisPlatformType}`);
         container.className = 'hide';
-        loadChecksum(eachPlatform.thisChecksumLink, eachPlatform.thisChecksumAutoCommand).then(message => {
+        loadChecksum(
+          eachPlatform.thisChecksumLink,
+          eachPlatform.thisChecksumAutoCommand
+        ).then(message => {
+          eachPlatform.thisChecksumAutoCommand = message;
+          // noinspection JSValidateTypes
           variable.innerHTML = message;
-          container.className = container.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated fadeIn ');
+          // show only if selected
+          if (platformSelector.selectedIndex - 1 === index) {
+            container.className = 'animated fadeIn';
+          }
         }).catch(e => {
           console.error('error while downloading sha256', e);
           delete eachPlatform.thisChecksumAutoCommand;
         });
       }
     });
-    platformSelector.addEventListener('onchange', () => {
-      const selectedIndex = platformSelector.selectedIndex;
-      const containers = document.querySelectorAll('[id=^checksum-auto-command-container-]:not(.hide)');
+    platformSelector.addEventListener('change', e => {
+      const selectedIndex = e.target.selectedIndex;
+      const containers = document.querySelectorAll('[id^=checksum-auto-command-container-]:not(.hide)');
       containers.forEach(c => (c.className = 'hide'));
       if (selectedIndex > 0) {
-        const platform = thisReleasePlatforms[platformSelector.selectedIndex];
-        if (platform.thisChecksumAutoCommand && platform.thisChecksumAutoCommand.indexOf('FILEHASH') > -1) {
-          const container = document.querySelector(`#checksum-auto-command-container-${platform.thisPlatform}`);
-          container.className = container.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated fadeIn ');
+        const platform = thisReleasePlatforms[selectedIndex - 1];
+        if (platform.thisChecksumAutoCommand) {
+          const container = document.querySelector(`#checksum-auto-command-container-${platform.thisPlatformType}`);
+          container.className = 'animated fadeIn';
         }
       }
     });
