@@ -30,9 +30,7 @@ main.logos ul {
 }
 
 .logo-white {
-  background-image: linear-gradient(45deg, #152935 25%, transparent 25%), linear-gradient(-45deg, #152935 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #152935 75%), linear-gradient(-45deg, #3D70B2 75%, #152935 75%);
-  background-size: 1em 1em;
-  background-position: 0 0, 0 0.5em, 0.5em -0.5em, -0.5em 0;
+  background: #152935;
 }
 
 .banner {
