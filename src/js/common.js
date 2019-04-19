@@ -80,11 +80,11 @@ module.exports.getInstallCommand = (searchableName) => lookup[searchableName].in
 // gets the CHECKSUM COMMAND when you pass in 'searchableName'
 module.exports.getChecksumCommand = (searchableName) => lookup[searchableName].checksumCommand;
 
+// gets the CHECKSUM AUTO COMMAND HINT when you pass in 'searchableName'
+module.exports.getChecksumAutoCommandHint = (searchableName) => lookup[searchableName].checksumAutoCommandHint;
+
 // gets the CHECKSUM AUTO COMMAND when you pass in 'searchableName'
 module.exports.getChecksumAutoCommand = (searchableName) => lookup[searchableName].checksumAutoCommand;
-
-// gets the CHECKSUM AUTO COMMAND RESULT when you pass in 'searchableName'
-module.exports.getChecksumAutoResultCommand = (searchableName) => lookup[searchableName].checksumAutoResultCommand;
 
 // gets the PATH COMMAND when you pass in 'searchableName'
 module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathCommand;
@@ -160,22 +160,6 @@ module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, ty
 
   const url = `https://api.adoptopenjdk.net/v2/latestAssets/${releaseType}/${variant}`;
   queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
-}
-
-module.exports.getChecksum = url => checksums[url]
-
-module.exports.loadChecksum = (url, message) => {
-  return new Promise((resolve, reject) => {
-    loadUrl(url, sha256Content => {
-      try {
-        const checksum = sha256Content.split(' ')[0].trim();
-        checksums[url] = checksum;
-        resolve(message.replace('FILEHASH', checksum));
-      } catch (e) {
-        reject(e);
-      }
-    });
-  });
 }
 
 function loadUrl(url, callback) {
