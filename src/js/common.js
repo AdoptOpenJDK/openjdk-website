@@ -7,9 +7,6 @@ const {platforms, variants} = require('../json/config');
 const lookup = {};
 platforms.forEach((platform) => lookup[platform.searchableName] = platform);
 
-// checksums cache
-const checksums = {};
-
 let variant = module.exports.variant = getQueryByName('variant') || 'openjdk8';
 let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
 
