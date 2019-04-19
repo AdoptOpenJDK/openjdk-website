@@ -142,17 +142,17 @@
             "title": "Checksum command",
             "examples": ["sha256sum FILENAME"]
           },
+          "checksumAutoCommandHint": {
+            "$id": "#/properties/platforms/items/properties/checksumAutoCommandHint",
+            "$ref": "#/definitions/command",
+            "title": "Checksum auto command hint",
+            "examples": ["PowerShell 3.0+ required"]
+          },
           "checksumAutoCommand": {
             "$id": "#/properties/platforms/items/properties/checksumAutoCommand",
             "$ref": "#/definitions/command",
             "title": "Checksum auto command",
             "examples": ["sha256sum FILENAME"]
-          },
-          "checksumAutoCommandResult": {
-            "$id": "#/properties/platforms/items/properties/checksumAutoCommandResult",
-            "type": "string",
-            "title": "Checksum auto result command",
-            "examples": ["FILENAME: The SHA-256 fingerprint matches"]
           },
           "osDetectionString": {
             "$id": "#/properties/platforms/items/properties/osDetectionString",
