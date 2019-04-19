@@ -222,22 +222,10 @@ gulp.task('sitemap', () => {
 
 // browser-sync task
 gulp.task('browser-sync', () => {
-    browserSync.init({
-        server: {
-            baseDir: './'
-        },
-        // cors: true,
-        notify: false
-    });
-});
-
-// robots task
-gulp.task('robots', () => {
-  gulp.src('index.html')
-    .pipe(robots({
-      useragent: '*',
-      allow: ['/'],
-      disallow: ['/404.html', '/dist']
-    }))
-    .pipe(gulp.dest('./'));
+  browserSync.init({
+    server: {
+      baseDir: './'
+    },
+    notify: false
+  });
 });
