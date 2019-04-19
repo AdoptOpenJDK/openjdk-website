@@ -116,7 +116,7 @@
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
       "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommand": "wget -O - FILEHASHURL > /dev/null 2>&1 | sha256sum -c",
+      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected"
     },
     {
@@ -170,7 +170,7 @@
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "curl -O -L FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
+      "checksumAutoCommand": "curl -O -L -s FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
       "osDetectionString": "Mac OS X OSX macOS Macintosh"
     },
     {
@@ -188,7 +188,7 @@
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "curl -O -L FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
+      "checksumAutoCommand": "curl -O -L -s FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
       "osDetectionString": "not-to-be-detected"
     },
     {
