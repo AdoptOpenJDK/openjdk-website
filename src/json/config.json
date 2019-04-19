@@ -114,8 +114,8 @@
       "installerExtension": ".run",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
       "checksumCommand": "sha256sum FILENAME",
+      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
       "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected"
     },
