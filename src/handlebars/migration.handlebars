@@ -40,9 +40,9 @@
         </thead>
         <tbody>
           <tr>
-            <td>Webstart/browser plugin</td>
+            <td>Java Web Start/browser plugin</td>
             <td><a href="#icedtea-web">IcedTea-Web</a></td>
-            <td><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">no</span> (coming soon)</td>
+            <td><i class="fa fa-check" aria-hidden="true"></i><span class="sr-only">yes</span></td>
             <td><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">no</span> (coming soon)</td>
           </tr>
           <tr>
@@ -108,10 +108,19 @@
 
       <h3 id="icedtea-web">IcedTea-Web</h3>
 
-      <p>
-        AdoptOpenJDK are working on a project to provide <a href="https://www.github.com/adoptopenjdk/icedtea-web" target="_blank ">IcedTea-Web</a> as an open
-        source replacement for Webstart and Java plugin technology. This feature will be available via an installer option in AdoptOpenJDK binaries. In the meantime,
-        this <a href="https://youtu.be/wRRS0LejZuM">IcedTea-Web installation video</a> provides information on how to install it independently.
+      <p>IcedTea-Web is available as an optional component of the AdoptOpenJDK installer for Windows that you can select from the <strong>Custom Setup</strong> panel.
+      You can also choose to associate JNLP files so that when a user clicks on the JNLP file, it is automatically opened with IcedTea-Web.
+      </p>
+      <p>By default, IcedTea-Web is installed into the OpenJDK directory and has the same executable name (<tt>javaws.exe</tt>) as Java Web Start. To configure settings,
+      such as security or certificates, start the control panel by running <tt>itweb-settings.exe</tt>.
+      </p>
+      <p>Use IcedTea-Web in the same way as Java Web Start. For more information, see <a href="https://docs.oracle.com/javase/tutorial/deployment/webstart/developing.html" target="_blank">
+      Developing a Java Web Start application</a> and <a href="https://docs.oracle.com/javase/tutorial/deployment/webstart/deploying.html" target="_blank">Deploying a Java Web Start
+      application</a>. Whilst IcedTea-Web is written to operate in the same way as Java Web Start there are a few known differences, which are raised as issues in the
+      <a href="https://github.com/AdoptOpenJDK/icedtea-web" target="_blank">GitHub project</a>. Work is ongoing to minimize or eliminate these differences.
+      </p>
+      <p><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Note:</span> Currently, IcedTea-Web is bundled only with the Windows MSI installer for OpenJDK 8.
+      Further work is underway to provide IcedTea-Web as an optional component of AdoptOpenJDK installers for other versions and platforms.
       </p>
 
       <h3 id="openjfx">OpenJFX</h3>
