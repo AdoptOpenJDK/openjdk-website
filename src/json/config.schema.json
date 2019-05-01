@@ -84,6 +84,7 @@
           "installCommand",
           "pathCommand",
           "checksumCommand",
+          "checksumAutoCommand",
           "osDetectionString"
         ],
         "properties": {
