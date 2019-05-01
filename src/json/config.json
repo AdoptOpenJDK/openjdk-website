@@ -251,7 +251,7 @@
       "attributes": {
         "heap_size": "normal",
         "os": "linux",
-        "architecture": "arm32"
+        "architecture": "arm"
       },
       "logo": "arm.png",
       "binaryExtension": ".tar.gz",
