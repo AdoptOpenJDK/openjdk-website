@@ -77,6 +77,12 @@ module.exports.getInstallCommand = (searchableName) => lookup[searchableName].in
 // gets the CHECKSUM COMMAND when you pass in 'searchableName'
 module.exports.getChecksumCommand = (searchableName) => lookup[searchableName].checksumCommand;
 
+// gets the CHECKSUM AUTO COMMAND HINT when you pass in 'searchableName'
+module.exports.getChecksumAutoCommandHint = (searchableName) => lookup[searchableName].checksumAutoCommandHint;
+
+// gets the CHECKSUM AUTO COMMAND when you pass in 'searchableName'
+module.exports.getChecksumAutoCommand = (searchableName) => lookup[searchableName].checksumAutoCommand;
+
 // gets the PATH COMMAND when you pass in 'searchableName'
 module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathCommand;
 

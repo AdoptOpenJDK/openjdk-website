@@ -84,6 +84,7 @@
           "installCommand",
           "pathCommand",
           "checksumCommand",
+          "checksumAutoCommand",
           "osDetectionString"
         ],
         "properties": {
@@ -140,6 +141,18 @@
             "$id": "#/properties/platforms/items/properties/checksumCommand",
             "$ref": "#/definitions/command",
             "title": "Checksum command",
+            "examples": ["sha256sum FILENAME"]
+          },
+          "checksumAutoCommandHint": {
+            "$id": "#/properties/platforms/items/properties/checksumAutoCommandHint",
+            "$ref": "#/definitions/command",
+            "title": "Checksum auto command hint",
+            "examples": ["PowerShell 3.0+ required"]
+          },
+          "checksumAutoCommand": {
+            "$id": "#/properties/platforms/items/properties/checksumAutoCommand",
+            "$ref": "#/definitions/command",
+            "title": "Checksum auto command",
             "examples": ["sha256sum FILENAME"]
           },
           "osDetectionString": {

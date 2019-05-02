@@ -17,6 +17,7 @@
     "ajv": "^6.10.0",
     "babelify": "^10.0.0",
     "base64-img": "^1.0.4",
+    "browser-sync-client": "^2.26.4",
     "browser-sync": "^2.26.5",
     "browserify": "^16.2.3",
     "chai": "^4.2.0",
