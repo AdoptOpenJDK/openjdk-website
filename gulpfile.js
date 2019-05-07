@@ -26,7 +26,8 @@ const uglify = require('gulp-uglify');
 
 // clean task (deletes /dist dir)
 gulp.task('clean', () => gulp.src('dist', {
-  read: false
+  read: false,
+  allowEmpty: true
 }).pipe(clean()));
 
 // json validation task
@@ -198,14 +199,15 @@ gulp.task('watch', function() {
 });
 
 // sitemap task
-gulp.task('sitemap', () => {
-  gulp.src('./*.html', {
+gulp.task('sitemap', (done) => {
+    gulp.src('./*.html', {
       read: false
     })
     .pipe(sitemap({
       siteUrl: 'https://adoptopenjdk.net'
     }))
     .pipe(gulp.dest('./'));
+    done();
 });
 
 // lint task
