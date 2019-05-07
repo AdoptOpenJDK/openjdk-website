@@ -7,15 +7,15 @@ const browserify = require('browserify');
 const browserSync = require('browser-sync').create();
 const buffer = require('vinyl-buffer');
 const clean = require('gulp-clean');
+const cleanCss = require('gulp-clean-css');
 const concat = require('gulp-concat');
-const cssmin = require('gulp-minify-css');
 const eslint = require('gulp-eslint');
 const fs = require('fs');
-const gutil = require('gulp-util');
 const handlebars = require('gulp-compile-handlebars');
 const hash = require('gulp-hash');
 const imagemin = require('gulp-imagemin');
 const inject = require('gulp-inject');
+const log = require('fancy-log');
 const PluginError = require('plugin-error');
 const prefix = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
@@ -32,7 +32,7 @@ gulp.task('clean', () => gulp.src('dist', {
 
 // json validation task
 gulp.task('json-validate', () => {
-  gutil.log('Validating config.json against config.schema.json');
+  log('Validating config.json against config.schema.json');
 
   const objFromJson = (uri) => JSON.parse(fs.readFileSync(uri, 'utf-8'));
   const loadSchemaFn = (uri) => Promise.resolve(objFromJson(uri));
@@ -49,7 +49,7 @@ gulp.task('json-validate', () => {
   return ajv.compileAsync(configJsonSchema)
       .then(validate =>
           validate(configJson) ?
-              gutil.log('config.json is valid!') :
+              log('config.json is valid!') :
               assert.fail(validate.errors.map(err => `\n${ajv.errorsText([err])}. Actual: "${err.data}"`).join().concat('\n'))
       )
       .catch(err => {
@@ -81,18 +81,18 @@ gulp.task('scripts', () => {
     .pipe(buffer())
     .pipe(gulp.dest('./dist/js/'))
     .pipe(uglify())
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(rename({
       suffix: '.min'
     }))
     .pipe(hash()) // Add hashes to the files' names
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(gulp.dest('./dist/js/'))
     .pipe(hash.manifest('assetsJS.json', {
       deleteOld: true,
       sourceDir: __dirname + '/dist/js'
     })) // Switch to the manifest file
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(gulp.dest('./dist/')); // Write the manifest file
 });
 
@@ -100,25 +100,25 @@ gulp.task('scripts', () => {
 gulp.task('styles', () => {
   return gulp.src('./src/scss/*.scss')
     .pipe(sass())
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(prefix('last 2 versions'))
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(concat('styles.css'))
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(gulp.dest('./dist/css/'))
-    .pipe(cssmin())
-    .on('error', gutil.log)
+    .pipe(cleanCss())
+    .on('error', log)
     .pipe(rename({
       suffix: '.min'
     }))
     .pipe(hash()) // Add hashes to the files' names
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(gulp.dest('./dist/css/'))
     .pipe(hash.manifest('assetsCSS.json', {
       deleteOld: true,
       sourceDir: __dirname + '/dist/css'
     })) // Switch to the manifest file
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(gulp.dest('./dist/')); // Write the manifest file
 });
 
@@ -126,7 +126,7 @@ gulp.task('styles', () => {
 gulp.task('images', () => {
   return gulp.src(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'])
     .pipe(imagemin())
-    .on('error', gutil.log)
+    .on('error', log)
     .pipe(gulp.dest('./dist/assets/'));
 });
 
@@ -149,7 +149,7 @@ gulp.task('handlebars', () => {
 
   return gulp.src('./src/handlebars/*.handlebars')
       .pipe(handlebars(templateData, options))
-      .on('error', gutil.log)
+      .on('error', log)
       .pipe(rename({
         extname: '.html'
       }))
@@ -177,24 +177,19 @@ gulp.task('browser-sync', (done) => {
     server: {
       baseDir: './'
     },
-    notify: false
+    notify: false,
+    watch: true
   });
   done();
+
 });
 
-// BrowserSync Reload
-gulp.task('browser-sync-reload', (done) => {
-  browserSync.reload();
-  done();
-});
-
-// Watch files
-gulp.task('watch', function() {
-  gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], gulp.series('handlebars', 'inject', 'browser-sync-reload'));
-  gulp.watch('./src/json/*.json', gulp.series('json', 'browser-sync-reload'));
-  gulp.watch('./src/js/**/*.js', gulp.series('scripts', 'inject', 'browser-sync-reload'));
-  gulp.watch('./src/scss/*.scss', gulp.series('styles', 'inject', 'browser-sync-reload'));
-  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], gulp.series('images', 'handlebars', 'browser-sync-reload'));
+gulp.task('watch', () => {
+  gulp.watch(['./src/handlebars/partials/*.handlebars', './src/handlebars/*.handlebars'], gulp.series('handlebars', 'inject'));
+  gulp.watch('./src/json/*.json', gulp.series('json'));
+  gulp.watch('./src/js/**/*.js', gulp.series('scripts', 'inject'));
+  gulp.watch('./src/scss/*.scss', gulp.series('styles', 'inject'));
+  gulp.watch(['./src/assets/*.jp*', './src/assets/*.png', './src/assets/*.svg', './src/assets/*.gif'], gulp.series('images', 'handlebars'));
   gulp.watch('./src/assets/*.ico', gulp.series('icon'));
 });
 
