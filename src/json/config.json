@@ -156,7 +156,7 @@
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
     },
     {
-      "officialName": "macOS x64",
+      "officialName": "MacOS x64",
       "searchableName": "X64_MAC",
       "attributes": {
         "heap_size": "normal",
