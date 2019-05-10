@@ -174,7 +174,7 @@
       "osDetectionString": "Mac OS X OSX macOS Macintosh"
     },
     {
-      "officialName": "MacOS x64 Large Heap",
+      "officialName": "macOS x64 Large Heap",
       "searchableName": "MACOSXL",
       "attributes": {
         "heap_size": "large",
