@@ -156,7 +156,7 @@
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP"
     },
     {
-      "officialName": "MacOS x64",
+      "officialName": "macOS x64",
       "searchableName": "X64_MAC",
       "attributes": {
         "heap_size": "normal",
@@ -174,7 +174,7 @@
       "osDetectionString": "Mac OS X OSX macOS Macintosh"
     },
     {
-      "officialName": "MacOS x64 Large Heap",
+      "officialName": "macOS x64 Large Heap",
       "searchableName": "MACOSXL",
       "attributes": {
         "heap_size": "large",
