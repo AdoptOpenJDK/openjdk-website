@@ -1,5 +1,6 @@
 const {detectOS, findPlatform, getBinaryExt, getChecksumCommand, getInstallCommand, getOfficialName,
-  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors} = require('./common');
+  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors, getChecksumAutoCommandHint,
+  getChecksumAutoCommand } = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -56,6 +57,27 @@ function buildInstallationHTML(releasesJson) {
         ASSETOBJECT.thisChecksumFilename = eachAsset.binary_name.replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
         ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
+
+        // the check sum auto command hint is always printed,
+        // so we just configure with empty string if not present
+        ASSETOBJECT.thisChecksumAutoCommandHint = getChecksumAutoCommandHint(ASSETOBJECT.thisPlatform) || '';
+        // build download sha256 and verify auto command
+        const thisChecksumAutoCommand = getChecksumAutoCommand(ASSETOBJECT.thisPlatform);
+        let sha256FileName = ASSETOBJECT.thisChecksumLink;
+        const separator = sha256FileName.lastIndexOf('/');
+        if (separator > -1) {
+          sha256FileName = sha256FileName.substring(separator + 1);
+        }
+        ASSETOBJECT.thisChecksumAutoCommand = thisChecksumAutoCommand.replace(
+          /FILEHASHURL/g,
+          ASSETOBJECT.thisChecksumLink
+        ).replace(
+          /FILEHASHNAME/g,
+          sha256FileName
+        ).replace(
+          /FILENAME/g,
+          ASSETOBJECT.thisBinaryFilename
+        );
 
         const dirName = releasesJson.release_name + (eachAsset.binary_type === 'jre' ? '-jre' : '');
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', dirName);
