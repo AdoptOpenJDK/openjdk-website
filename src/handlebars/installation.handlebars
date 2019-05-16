@@ -2,57 +2,73 @@
 
 <main class="grey-bg">
 
-  <h1 class="large-title">Installation</h1>
+  <h1 class="margin-bottom large-title">Installation</h1>
 
-  <h2><a href="./migration.html" target="_blank">Migration Guide</a></h2>
+  <div class="align-left support">
+    <div class="margin-bottom">
+      <p>AdoptOpenJDK binaries are available for download in the following types of installation package:
+        <ul>
+          <li><a href="#archives">Archive files</a></li>
+          <li><a href="#installers">Installers</a></li>
+        </ul>
+      </p>
+      <p>The binaries are supported on the architectures and operating systems listed in <a href="./supported_platforms.html">Supported Platforms</a>. If you're migrating
+      to AdoptOpenJDK, you can learn about the differences between Oracle JDK and AdoptOpenJDK in our <a href="./migration.html" target="_blank">Migration Guide</a> and any
+      steps that you might need to take. For example, how to use IcedTea-Web as an alternative to Webstart.
+      </p>
 
-  <div class="align-center">
-    <div class="btn-container">
-      <form id="jdk-selector" class="btn-form">
-        <h3>1. Choose a Version</h3>
-      </form>
-      <form id="jvm-selector" class="btn-form">
-        <h3>2. Choose a JVM</h3>
-      </form>
+    <div class="margin-bottom">
+      <hr>
+    </div>
+    <h2 id="archives">Archive files</h2>
+    <div class="align-center">
+      <div class="btn-container">
+        <form id="jdk-selector" class="btn-form">
+          <h3>1. Choose a Version</h3>
+        </form>
+        <form id="jvm-selector" class="btn-form">
+          <h3>2. Choose a JVM</h3>
+        </form>
+      </div>
+
+      <h2 class="inline-block">Platform: </h2>
+      <select id="platform-selector" style="margin-left:1rem;">
+        <option value="unknown">Select a platform</option>
+      </select>
     </div>
 
-    <h2 class="inline-block">Platform: </h2>
-    <select id="platform-selector" style="margin-left:1rem;">
-      <option value="unknown">Select a platform</option>
-    </select>
-  </div>
+    <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+    <div id="error-container"></div>
 
-  <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
-  <div id="error-container"></div>
 
-  <div id="installation-container" class="info-page-container hide">
-    <div id="installation-template">
-      <script id="template" type="text/x-handlebars-template">
-        \{{#each htmlTemplate}}
-          <div id="installation-container-\{{thisPlatformType}}" class="installation-single-platform hide">
-            <div class="margin-bottom">
-              <h2 class="bold"><var platform>\{{thisOfficialName}}</var> installation</h2>
-              <ol>
-                <li>
-                  Make sure you have downloaded the latest <strong><a href="\{{thisBinaryLink}}"><var platform>\{{thisOfficialName}}</var> binary</a></strong> to a directory that will not move or be deleted, and use Terminal/Command Prompt to <code>cd</code> into it.
-                </li>
-                <li>
-                  Optional: use the checksum instructions below to ensure the authenticity of your binary.
-                </li>
-                <li>
-                  Extract the <code><var extension>\{{thisBinaryExtension}}</var></code>. You can use the following command:
-                  <pre><code class="highlighted"><var id="unzip-\{{thisPlatform}}" unzipCommand>\{{thisUnzipCommand}}</var></code><span onclick="copyClipboard('#unzip-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
-                </li>
-                <li>
-                  Add this version of Java to your PATH:
-                  <pre><code class="highlighted"><var id="path-\{{thisPlatform}}" pathCommand>\{{thisPathCommand}}</var></code><span onclick="copyClipboard('#path-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
-                </li>
-                <li>
-                  Check that Java has installed correctly:
-                  <pre><code id="java-\{{thisPlatform}}" class="highlighted">java -version</code><span onclick="copyClipboard('#java-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
-                </li>
-              </ol>
-            </div>
+    <div id="installation-container" class="info-page-container hide">
+      <div id="installation-template">
+        <script id="template" type="text/x-handlebars-template">
+          \{{#each htmlTemplate}}
+            <div id="installation-container-\{{thisPlatformType}}" class="installation-single-platform hide">
+              <div class="margin-bottom">
+                <h2 class="bold"><var platform>\{{thisOfficialName}}</var> installation</h2>
+                <ol>
+                  <li>
+                    Make sure you have downloaded the latest <strong><a href="\{{thisBinaryLink}}"><var platform>\{{thisOfficialName}}</var> binary</a></strong> to a directory that will not move or be deleted, and use Terminal/Command Prompt to <code>cd</code> into it.
+                  </li>
+                  <li>
+                    Optional: use the checksum instructions below to ensure the authenticity of your binary.
+                  </li>
+                  <li>
+                    Extract the <code><var extension>\{{thisBinaryExtension}}</var></code>. You can use the following command:
+                    <pre><code class="highlighted"><var id="unzip-\{{thisPlatform}}" unzipCommand>\{{thisUnzipCommand}}</var></code><span onclick="copyClipboard('#unzip-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+                  </li>
+                  <li>
+                    Add this version of Java to your PATH:
+                    <pre><code class="highlighted"><var id="path-\{{thisPlatform}}" pathCommand>\{{thisPathCommand}}</var></code><span onclick="copyClipboard('#path-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+                  </li>
+                  <li>
+                    Check that Java has installed correctly:
+                    <pre><code id="java-\{{thisPlatform}}" class="highlighted">java -version</code><span onclick="copyClipboard('#java-\{{thisPlatform}}')" class="copy-code-button">Copy</span></pre>
+                  </li>
+                </ol>
+              </div>
 
             <div>
               <h2 class="bold">Checking the SHA-256 checksum</h2>
@@ -64,21 +80,236 @@
               <p>and confirm the command output succeeds.</p>
             </div>
 
-            <div style="margin-top: 3.0em;">
-              <h2 class="bold">Migration Guide</h2>
-              <p>
-                If you're migrating to AdoptOpenJDK, you can learn about the differences between Oracle JDK and OpenJDK in our
-                <a href="./migration.html" target="_blank">Migration Guide</a> and any steps that you might need to take.
-                For example, how to use IcedTea-Web as an alternative to Webstart.
-              </p>
             </div>
+          \{{/each}}
+        </script>
+      </div>
+    </div>
+    <div class="margin-bottom">
+      <hr>
+    </div>
 
-          </div>
-        \{{/each}}
-      </script>
+    <h2 id="installers">Installers</h2>
+
+    <div class="margin-bottom">
+      <p>Installers are currently available for Windows&reg; and macOS&reg; JDK and JRE packages, which
+      can be obtained from the <a href="./index.html">Download page</a>. Installation steps are covered in the following sections:
+        <ul>
+          <li><a href="#windows-msi">Windows MSI installer packages</a></li>
+          <li><a href="#macos-pkg">macOS PKG installer packages</a></li>
+        </ul>
+      </p>
+
+    </div>
+
+    <div class="margin-bottom">
+
+      <h3 id="windows-msi">Windows MSI installer packages</h3>
+
+        <p>AdoptOpenJDK Windows installer packages are available as standard <tt>.msi</tt> files, which can be run with an interactive user interface or run silently
+        from the command line. The installer is designed for use on a per-machine basis, not per-user basis, so you can have only one installation of the MSI
+        on a machine for all users.</p>
+
+     <h4 id="windows-msi-gui">GUI installation</h4>
+
+        <p>Instructions for running an interactive installation using the Windows MSI installer.</p>
+
+        <p>1. Download the <tt>.msi</tt> file. Open it to launch the installation program.</p>
+        <p>2. Read and accept the license if you are happy with the terms.</p>
+        <p>3. On the <strong>Custom Setup</strong> screen you can choose the features that you want to install and optionally change the default installation
+          directory. By default, AdoptOpenJDK installs to <tt>c:\Program Files\AdoptOpenJDK\&lt;package&gt;</tt> with the following features, which you can deselect, if necessary:
+                <br>
+                <ul>
+                  <li>Add the installation to the <strong>PATH</strong> environment variable</li>
+                  <li>Associate <tt>.jar</tt> files with Java applications</li>
+                </ul>
+                Additional features can be selected by clicking on the directory tree where you see a check mark (x). These features include:
+                <br>
+                <ul>
+                  <li>Updating the <strong>JAVA_HOME</strong> environment variable</li>
+                  <li>Installing IcedTea-Web</li>
+                  <li>Associate <tt>.jnlp</tt> files with the IcedTea-Web application</li>
+                </ul>
+        <p>4. When you have chosen the features that you want to install, click <strong>Next</strong>.</p>
+        <p>5. Click <strong>Install</strong> to begin the installation.</p>
+        <p>6. When the installation is finished, click <strong>Finish</strong> to close the program.</p>
+
+
+     <h4 id="windows-msi-cmdline">Command-line installation</h4>
+
+        <p>A silent installation allows you to install the Windows package with pre-selected features without user interaction, which can be useful for widescale
+          deployment. Follow these steps:
+
+        <p>1. Download the <tt>.msi</tt> file.</p>
+        <p>2. Choose the features that you want to install, which are shown in the following table:
+            <br>
+              <table>
+
+                <tr>
+                  <th>Feature</th>
+                  <th>Description</th>
+                </tr>
+
+                <tr>
+                  <td><tt>FeatureMain</tt></td>
+                  <td>Core AdoptOpenJDK installation (DEFAULT)</td>
+                </tr>
+
+                <tr>
+                  <td><tt>FeatureEnvironment</tt></td>
+                  <td>Update the <strong>PATH</strong> environment variable (DEFAULT)</td>
+                </tr>
+
+                <tr>
+                  <td><tt>FeatureJarFileRunWith</tt></td>
+                  <td>Associate <tt>.jar</tt> files with Java applications (DEFAULT)</td>
+                </tr>
+
+                <tr>
+                  <td><tt>FeatureJavaHome</tt></td>
+                  <td>Update the <strong>JAVA_HOME</strong> environment variable</td>
+                </tr>
+
+                <tr>
+                  <td><tt>FeatureIcedTeaWeb</tt></td>
+                  <td>Install <a href="https://www.github.com/adoptopenjdk/icedtea-web" target="_blank">IcedTea-Web</a></td>
+                </tr>
+
+                <tr>
+                  <td><tt>FeatureJNLPFileRunWith</tt></td>
+                  <td>Associate <tt>.jnlp</tt> files with IcedTea-web</td>
+                </tr>
+
+                <tr>
+                  <td><tt>FeatureOracleJavaSoft</tt></td>
+                  <td>Updates registry keys HKLM\SOFTWARE\JavaSoft\</td>
+                </tr>
+
+              </table>
+        </p>
+
+        <p>Note: <tt>FeatureOracleJavaSoft</tt> can be used to prevent Oracle Java launching from PATH when AdoptOpenJDK is uninstalled. Reinstall Oracle Java if you need
+        to restore the Oracle registry keys.</p>
+
+        <p>Optional parameters can be used that group some of the features together:
+            <br>
+            <table>
+              <tr>
+                <th>Parameter</th>
+                <th>Features</th>
+              </tr>
+
+              <tr>
+                <td>INSTALLLEVEL=1</td>
+                <td>FeatureMain,FeatureEnvironment,FeatureJarFileRunWith</td>
+              </tr>
+
+              <tr>
+                <td>INSTALLLEVEL=2</td>
+                <td>FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome,FeatureIcedTeaWeb</td>
+              </tr>
+
+              <tr>
+                <td>INSTALLLEVEL=3</td>
+                <td>FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome,FeatureIcedTeaWeb,FeatureJNLPFileRunWith</td>
+              </tr>
+            </table>
+        </p>
+
+        <p>3. Run the command on the target workstation.</p>
+
+        <p>The following example silently installs AdoptOpenJDK, updates the PATH, associates <tt>.jar</tt> files with Java applications and defines JAVA_HOME:</p>
+        <p><tt>msiexec /i &lt;package&gt;.msi ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome INSTALLDIR=c:\Program Files\AdoptOpenJDK\ /quiet</tt></p>
+        <p>Note: You must use <tt>INSTALLDIR</tt> with <tt>FeatureMain</tt>.</p>
+
+        <p>The following example silently installs all the features for <tt>INSTALLLEVEL=1</tt>:</p>
+        <p><tt>msiexec /i &lt;package&gt;.msi INSTALLLEVEL=1 /quiet</tt></p>
+
+        <p>If you want to launch an interactive installation in another language you can use the Windows installer <tt>TRANSFORMS</tt> option to set
+        your language choice. For example, to set the UI language to German, use code <tt>1031</tt>, which must be preceded by a <tt>:</tt>.</p>
+        <p><tt>msiexec /i &lt;package&gt;.msi INSTALLLEVEL=1 TRANSFORMS=:1031</tt></p>
+        <p>For a list of supported codes, see the <a href="github.com/AdoptOpenJDK/openjdk-installer/blob/master/wix/Lang/LanguageList.config" target="_blank">Language list</a>.</p>
+
+        </select>
+
+     <h4 id="windows-msi-upgrade">Reinstalling or upgrading</h4>
+
+       <p>To reinstall AdoptOpenJDK in silent mode with default features, run the following command:</p>
+       <p><tt>msiexec /i &lt;package&gt;.msi REINSTALL=ALL /quiet</tt></p>
+
+       <p>If you want to upgrade AdoptOpenJDK in silent mode, run the following command:</p>
+       <p><tt>msiexec /i &lt;package&gt;.msi REINSTALL=ALL REINSTALLMODE=amus /quiet</tt></p>
+
+       <p><tt>REINSTALLMODE</tt> options: (from <a href="https://www.advancedinstaller.com/user-guide/control-events.html" target="_blank">Control Events</a>)
+         <ul>
+           <li><tt>a</tt>: Force all files to be installed regardless of checksum or version</li>
+           <li><tt>m</tt>: Rewrite all required registry entries from the Registry Table that go to the HKEY_LOCAL_MACHINE</li>
+           <li><tt>o</tt>: Reinstall if the file is missing or is an older version</li>
+           <li><tt>u</tt>: Rewrite all required registry entries from the Registry Table that go to the HKEY_CURRENT_USER or HKEY_USERS</li>
+           <li><tt>s</tt>: Reinstall all shortcuts and re-cache all icons overwriting any existing shortcuts or icons</li>
+        </ul>
+        Note: <tt>REINSTALL=ALL</tt> automatically sets <tt>REINSTALLMODE=omus</tt></p>
+      <p><strong>Upgrade limitation</strong>:</p>
+
+      <p>Upgrading <tt>.msi</tt> files works only for the first 3 digits of the build number due to an <a href="https://docs.microsoft.com/windows/desktop/Msi/productversion" target="_blank">MSI limitation</a>:
+        <ul>
+          <li>Upgrading 8.0.2.1 to 8.0.3.1 works.</li>
+          <li>Upgrading 8.0.2.1 to 8.0.2.2 does not work. Uninstall the previous <tt>.msi</tt> and install the new one.</li>
+          <li>Upgrading 8.0.2.1 to 8.1.2.1 works.</li>
+          <li>Upgrading 8.0.2.1 to 11.0.2.1 does not work. AdoptOpenJDK does not provide upgrades for major versions. Either keep both installations or uninstall the older one.</li>
+       </ul>
+
+      <h4>Reference reading</h4>
+       <ul>
+         <li><a href="https://www.advancedinstaller.com/user-guide/msiexec.html" target="_blank">Msiexec.exe Command Line</a></li>
+       </ul>
+
     </div>
   </div>
 
+  <div class="margin-bottom">
+
+    <h3 id="macos-pkg">macOS PKG installer packages</h3>
+
+      <p>AdoptOpenJDK macOS installer packages are available as standard <tt>.pkg</tt> files, which can be run with an interactive user interface or run silently
+        from the <strong>Terminal</strong> command line.</p>
+
+    <h4 id="macos-pkg-gui">GUI installation</h4>
+
+      <p>Instructions for running an interactive installation using the macOS PKG installer.</p>
+      <p>1. Download the <tt>.pkg</tt> file.</p>
+      <p>2. Navigate to the folder that contains the file and open it to launch the installation program or drag the icon to your Application folder.</p>
+      <p>3. The <strong>Introduction</strong> screen indicates the target location for the installation, which you can change later in the install process. Click <strong>Continue</strong>.</p>
+      <p>4. Read the license, click <strong>Continue</strong> and accept the license if you are happy with the terms.</p>
+      <p>5. Change the target location for the installation. Click <strong>Install</strong> to complete the installation.</p>
+
+
+    <h4 id="macos-pkg-cmdline">Command-line installation</h4>
+
+       <p>A silent installation allows you to install the macOS package without user interaction, which can be useful for widescale
+         deployment. You must have administrator privileges. Follow these steps:</p>
+
+       <p>1. Download the <tt>.pkg</tt> file.</p>
+       <p>2. Launch the Terminal app (<tt>terminal.app</tt>).
+       <p>3. Run the following command:</p>
+       <p><tt>installer -pkg &lt;path_to_pkg&gt;/&lt;pkg_name&gt;.pkg -target /</tt></p>
+       <p>4. Enter the Administrator password.</p>
+       <p>5. AdoptOpenJDK installs to <tt>/Library/Java/JavaVirtualMachine/AdoptOpenJDK-&lt;version&gt;.&lt;jdk|jre&gt;/</tt></p>
+  </div>
+
+  <div class="align-left support">
+    <div style="margin-top: 3rem;">
+      <a href="./migration.html" class="no-underline home-links">
+        <h2 id="migration-link" class="inline-block zero-margin">Migration&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+      <a href="./support.html" class="no-underline home-links">
+        <h2 id="support-link" class="inline-block zero-margin">Support&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+      <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues" class="no-underline home-links">
+        <h2 id="issues-link" class="inline-block zero-margin">Submit an issue&nbsp;<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h2>
+      </a>
+    </div>
+  </div>
 </main>
 
 {{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/platform/1.3.5/platform.min.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>' script3='<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>' }}
