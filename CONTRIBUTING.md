@@ -4,22 +4,19 @@
 
 1. Install the `gulp` CLI
 
-    ```
-    bash
+    ```bash
     npm install --global gulp-cli
     ```
 
 2. Install the project devDependencies
 
-    ```
-    bash
+    ```bash
     npm install
     ```
 
 3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
-    ```
-    bash
+    ```bash
     npm start
     ```
 
