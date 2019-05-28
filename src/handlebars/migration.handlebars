@@ -1,4 +1,4 @@
-{{> header title='migration | ' }}
+{{> header title='Migration Guide | ' }}
 
 <!-- TODO Style should match installation page, it doesn't quite... -->
 <main class="grey-bg">
@@ -7,8 +7,8 @@
 
   <div class="align-left support">
 
-    <div class="anchor" onmouseover="document.getElementById('anchor1').style.visibility='visible'" onmouseout="document.getElementById('anchor1').style.visibility='hidden'"><a href="#community-support" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor1" name="anchor" alt="anchor icon"></a>
+    <div class="anchor">
+      <a href="#migration-overview" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="migration-overview">Migrating to AdoptOpenJDK</a></h2>
     </div>
     <div class="margin-bottom">
@@ -22,8 +22,8 @@
       <p>To understand which platforms are supported, see the <a href="./supported_platforms.html">Platform Support Matrix</a>.</p>
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#roadmap" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
+    <div class="anchor">
+      <a href="#migration-oracle" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="migration-oracle">Migrating from Oracle JDK</a></h2>
     </div>
     <div class="margin-bottom">
@@ -108,7 +108,10 @@
 
       <h3 id="icedtea-web">IcedTea-Web</h3>
 
-      <p>IcedTea-Web is available as an optional component of the AdoptOpenJDK installer for Windows that you can select from the <strong>Custom Setup</strong> panel.
+      <p>IcedTea-Web is available to download from the <a href="./icedtea-web.html" target="_blank">Iced-Tea Web project page</a> in Linux, Windows,
+      and Portable package formats.</p>
+
+      <p>IcedTea-Web is also available as an optional component of the AdoptOpenJDK installer for Windows that you can select from the <strong>Custom Setup</strong> panel.
       You can also choose to associate JNLP files so that when a user clicks on the JNLP file, it is automatically opened with IcedTea-Web.
       </p>
       <p>By default, IcedTea-Web is installed into the OpenJDK directory and has the same executable name (<tt>javaws.exe</tt>) as Java Web Start. To configure settings,
@@ -120,7 +123,7 @@
       <a href="https://github.com/AdoptOpenJDK/icedtea-web" target="_blank">GitHub project</a>. Work is ongoing to minimize or eliminate these differences.
       </p>
       <p><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Note:</span> Currently, IcedTea-Web is bundled only with the Windows MSI installer for OpenJDK 8 and 11.
-      Further work is underway to provide IcedTea-Web as an optional component of AdoptOpenJDK installers for other platforms.
+      The installers are available only for x64 Windows systems. Further work is underway to provide IcedTea-Web as an optional component of AdoptOpenJDK installers for other platforms.
       </p>
 
       <h3 id="openjfx">OpenJFX</h3>
@@ -166,8 +169,8 @@
 
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor3').style.visibility='visible'" onmouseout="document.getElementById('anchor3').style.visibility='hidden'"><a href="#commercial-support" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor3" name="anchor" alt="anchor icon"></a>
+    <div class="anchor">
+      <a href="#migration-openj9" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="migration-openj9">Migrating to Eclipse OpenJ9</a></h2>
     </div>
 
@@ -180,8 +183,8 @@
 
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor4').style.visibility='visible'" onmouseout="document.getElementById('anchor4').style.visibility='hidden'"><a href="#commercial-support" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor4" name="anchor" alt="anchor icon"></a>
+    <div class="anchor">
+      <a href="#migration-resources" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="migration-resources">More resources</a></h2>
     </div>
 
