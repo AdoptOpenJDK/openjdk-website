@@ -469,7 +469,15 @@ a.anchor {
 
 div.anchor {
   position: relative;
-  left: -25px
+  left: -25px;
+
+  a.anchor {
+    visibility: hidden;
+  }
+
+  &:hover a.anchor {
+    visibility: visible;
+  }
 }
 
 // SELECT ELEMENT - REMOVING DEFAULT STYLING
