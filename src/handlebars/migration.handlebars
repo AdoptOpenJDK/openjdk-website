@@ -40,10 +40,10 @@
         </thead>
         <tbody>
           <tr>
-            <td>Java Web Start/browser plugin</td>
+            <td>Java Web Start</td>
             <td><a href="#icedtea-web">IcedTea-Web</a></td>
             <td><i class="fa fa-check" aria-hidden="true"></i><span class="sr-only">yes</span></td>
-            <td><i class="fa fa-check" aria-hidden="true"></i><span class="sr-only">yes</span></td>
+            <td><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">no</span></td>
           </tr>
           <tr>
             <td>JavaFX</td>
@@ -108,10 +108,13 @@
 
       <h3 id="icedtea-web">IcedTea-Web</h3>
 
+      <p>Java Web Start was deprecated by Oracle in Java SE 8 and removed in Java SE 9. IcedTea-Web can provide equivalent functionality
+        for AdoptOpenJDK 8 users.</p>
+
       <p>IcedTea-Web is available to download from the <a href="./icedtea-web.html" target="_blank">Iced-Tea Web project page</a> in Linux, Windows,
       and Portable package formats.</p>
 
-      <p>IcedTea-Web is also available as an optional component of the AdoptOpenJDK installer for Windows that you can select from the <strong>Custom Setup</strong> panel.
+      <p>IcedTea-Web is also available as an optional component of the AdoptOpenJDK installer for 64-bit Windows on OpenJDK 8 that you can select from the <strong>Custom Setup</strong> panel.
       You can also choose to associate JNLP files so that when a user clicks on the JNLP file, it is automatically opened with IcedTea-Web.
       </p>
       <p>By default, IcedTea-Web is installed into the OpenJDK directory and has the same executable name (<tt>javaws.exe</tt>) as Java Web Start. To configure settings,
@@ -122,8 +125,8 @@
       application</a>. Whilst IcedTea-Web is written to operate in the same way as Java Web Start there are a few known differences, which are raised as issues in the
       <a href="https://github.com/AdoptOpenJDK/icedtea-web" target="_blank">GitHub project</a>. Work is ongoing to minimize or eliminate these differences.
       </p>
-      <p><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Note:</span> Currently, IcedTea-Web is bundled only with the Windows MSI installer for OpenJDK 8 and 11.
-      The installers are available only for x64 Windows systems. Further work is underway to provide IcedTea-Web as an optional component of AdoptOpenJDK installers for other platforms.
+      <p><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Note:</span> Currently, IcedTea-Web is bundled only with the Windows MSI installer for AdoptOpenJDK 8.
+      The installers are available only for x64 Windows systems. Further work is underway to provide IcedTea-Web as an optional component of AdoptOpenJDK 8 installers for other platforms.
       </p>
 
       <h3 id="openjfx">OpenJFX</h3>
