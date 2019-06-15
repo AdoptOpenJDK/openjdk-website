@@ -35,7 +35,7 @@
     "gulp-inject": "^5.0.2",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-sitemap": "^7.1.0",
+    "gulp-sitemap": "^7.2.0",
     "gulp-uglify": "3.0.2",
     "mocha": "^6.1.4",
     "node-sass": "^4.12.0",
