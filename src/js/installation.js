@@ -7,19 +7,6 @@ const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 const platformSelector = document.getElementById('platform-selector');
 
-global.copyClipboard = (elementSelector) => {
-  const input = document.createElement('input');
-  input.value = document.querySelector(elementSelector).textContent;
-
-  document.body.appendChild(input);
-  input.select();
-
-  document.execCommand('copy');
-  alert('Copied to clipboard');
-
-  document.body.removeChild(input);
-}
-
 module.exports.load = () => {
   setRadioSelectors();
 
@@ -27,7 +14,7 @@ module.exports.load = () => {
     errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
     loading.innerHTML = ''; // remove the loading dots
   });
-}
+};
 
 function buildInstallationHTML(releasesJson) {
   // create an array of the details for each asset that is attached to a release
@@ -98,6 +85,7 @@ function buildInstallationHTML(releasesJson) {
   hljs.initHighlightingOnLoad();
 
   setInstallationPlatformSelector(ASSETARRAY);
+  attachCopyButtonListeners();
   window.onhashchange = displayInstallPlatform;
 
   loading.innerHTML = ''; // remove the loading dots
@@ -106,6 +94,13 @@ function buildInstallationHTML(releasesJson) {
   installationContainer.className = installationContainer.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated fadeIn ');
 }
 
+function attachCopyButtonListeners() {
+  document.querySelectorAll('.copy-code-block').forEach(codeBlock => {
+    const target = codeBlock.querySelector('code.cmd-block');
+    codeBlock.querySelector('.copy-code-button')
+      .addEventListener('click', () => copyElementTextContent(target));
+  });
+}
 
 function displayInstallPlatform() {
   const platformHash = window.location.hash.substr(1).toUpperCase();
@@ -162,4 +157,18 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
     window.location.hash = platformSelector.value.toLowerCase();
     displayInstallPlatform();
   };
+}
+
+function copyElementTextContent(target) {
+  const text = target.textContent;
+  const input = document.createElement('input');
+  input.value = text;
+
+  document.body.appendChild(input);
+  input.select();
+
+  document.execCommand('copy');
+  alert('Copied to clipboard');
+
+  document.body.removeChild(input);
 }
