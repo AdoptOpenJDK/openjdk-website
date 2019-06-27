@@ -39,7 +39,12 @@
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
     <div id="error-container"></div>
 
-
+    {{#*inline "cmdblock"}}
+      <pre class="copy-code-block">
+        <code class="highlighted cmd-block"><var>{{{command}}}</var></code>
+        <span class="copy-code-button">Copy</span>
+      </pre>
+    {{/inline}}
     <div id="installation-container" class="info-page-container hide">
       <div id="installation-template">
         <script id="template" type="text/x-handlebars-template">
@@ -56,15 +61,15 @@
                   </li>
                   <li>
                     Extract the <code><var extension>\{{thisBinaryExtension}}</var></code>. You can use the following command:
-                    <pre><code class="highlighted"><var id="unzip-\{{thisPlatform}}" unzipCommand>\{{thisUnzipCommand}}</var></code><span onclick="copyPreviousSibling(this);" class="copy-code-button">Copy</span></pre>
+                    {{>cmdblock command="{{this.thisUnzipCommand}}" }}
                   </li>
                   <li>
                     Add this version of Java to your PATH:
-                    <pre><code class="highlighted"><var id="path-\{{thisPlatform}}" pathCommand>\{{thisPathCommand}}</var></code><span onclick="copyPreviousSibling(this);" class="copy-code-button">Copy</span></pre>
+                    {{>cmdblock command="{{this.thisPathCommand}}" }}
                   </li>
                   <li>
                     Check that Java has installed correctly:
-                    <pre><code id="java-\{{thisPlatform}}" class="highlighted">java -version</code><span onclick="copyPreviousSibling(this);" class="copy-code-button">Copy</span></pre>
+                    {{>cmdblock command="java -version" }}
                   </li>
                 </ol>
               </div>
@@ -73,9 +78,9 @@
               <h2 class="bold">Checking the SHA-256 checksum</h2>
               <p>Optionally, you can compare the SHA-256 checksum of your downloaded binary against the checksums that are provided for every release and nightly build.</p>
               <p>Use this command to generate a SHA-256 checksum of your downloaded binary, then open the corresponding <a href="\{{thisChecksumLink}}">checksum file</a> and ensure that it contains the same number.</p>
-              <pre><code class="highlighted"><var id="checksum-\{{thisPlatform}}" checksumCommand>\{{thisChecksumCommand}}</var></code><span onclick="copyPreviousSibling(this);" class="copy-code-button">Copy</span></pre>
+              {{>cmdblock command="{{this.thisChecksumCommand}}" }}
               <p>Alternative, you can download SHA-256 checksum file and verify downloaded binary using this command\{{thisChecksumAutoCommandHint}}:</p>
-              <pre><code class="highlighted"><var id="checksum-auto-command-\{{thisPlatformType}}" checksumAutoCommand>\{{thisChecksumAutoCommand}}</var></code><span onclick="copyPreviousSibling(this);" class="copy-code-button">Copy</span></pre>
+              {{>cmdblock command="{{this.thisChecksumAutoCommand}}" }}
               <p>and confirm the command output succeeds.</p>
             </div>
 
