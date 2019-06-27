@@ -7,9 +7,10 @@ const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 const platformSelector = document.getElementById('platform-selector');
 
-global.copyClipboard = (elementSelector) => {
+global.copyPreviousSibling = (target) => {
+  const cmd = target.previousSibling.textContent;
   const input = document.createElement('input');
-  input.value = document.querySelector(elementSelector).textContent;
+  input.value = cmd;
 
   document.body.appendChild(input);
   input.select();
@@ -18,7 +19,7 @@ global.copyClipboard = (elementSelector) => {
   alert('Copied to clipboard');
 
   document.body.removeChild(input);
-}
+};
 
 module.exports.load = () => {
   setRadioSelectors();
