@@ -81,7 +81,7 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
           if (uppercaseFilename.includes(thisBinaryExtension.toUpperCase())) {
             const uppercaseOSname = OS.searchableName.toUpperCase();
             if (Object.keys(jckJSON).length !== 0) {
-              if (jckJSON[releasesJson.tag_name] && jckJSON[releasesJson.tag_name].hasOwnProperty(uppercaseOSname)) {
+              if (jckJSON[releasesJson.tag_name] && Object.prototype.hasOwnProperty.call(jckJSON[releasesJson.tag_name], uppercaseOSname)) {
                 document.getElementById('jck-approved-tick').classList.remove('hide');
                 setTickLink();
               }
