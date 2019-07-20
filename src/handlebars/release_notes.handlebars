@@ -25,6 +25,196 @@
     </div>
 
     <div class="anchor">
+      <a href="#jdk8u222" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jdk8u222">OpenJDK 8u222 (1.8.0_222-b10)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u222-b10/OpenJDK8U-sources_8u222b10.tar.gz">Upstream Source Tarball OpenJDK 8u222-b10</a>)</h3>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://bugs.openjdk.java.net/browse/JDK-8227806?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%20openjdk8u222%20ORDER%20BY%20created%20DESC" target="_blank">8u222</a> Fix Version filter in the JDK Bug System.
+
+      <h3>Security fixes</h3>
+      <ul>
+        <li>S8191073: JpegImageReader throws IndexOutOfBoundsException when trying to read image data from tables-only image</li>
+        <li>S8208698, CVE-2019-2745: Improved ECC Implementation</li>
+        <li>S8212328, CVE-2019-2762: Exceptional throw cases</li>
+        <li>S8213431, CVE-2019-2766: Improve file protocol handling</li>
+        <li>S8213432, CVE-2019-2769: Better copies of CopiesList</li>
+        <li>S8216381, CVE-2019-2786: More limited privilege usage</li>
+        <li>S8217563: Improve realm maintenance</li>
+        <li>S8218863: Better endpoint checks</li>
+        <li>S8218873: Improve JSSE endpoint checking</li>
+        <li>S8218876, CVE-2019-7317: Improve PNG support options</li>
+        <li>S8219018: Adjust positions of glyphs</li>
+        <li>S8219020: Table alternate substitutions</li>
+        <li>S8219775: Certificate validation improvements</li>
+        <li>S8220192: Better outlook for SecureRandom</li>
+        <li>S8220517: Enhanced GIF support</li>
+        <li>S8221518, CVE-2019-2816: Normalize normalization</li>
+        <li>S8223511, CVE-2019-2842: Extended AES support</li>
+      </ul>
+      <h3>Other changes</h3>
+      <ul>
+        <li>S7100957: SOCKS proxying does not work with IPv6 connections</li>
+        <li>S7102541: RFE: os::set_native_thread_name() cleanups</li>
+        <li>S8019816: [TEST_BUG][macosx] closed/java/awt/BasicStroke/DashZeroWidth.java not on EDT</li>
+        <li>S8022879: TEST_BUG: sun/nio/cs/MalformedSurrogates.java fails intermittently</li>
+        <li>S8025209: Intermittent test failure java/net/Socket/asyncClose/AsyncClose.java</li>
+        <li>S8030690: TEST_BUG java/nio/Buffer/Chars.java fails intermittently</li>
+        <li>S8031113: TEST_BUG: java/nio/channels/AsynchronousChannelGroup/Basic.java fails intermittently</li>
+        <li>S8031145: Re-examine closed i18n tests to see it they can be moved to the jdk repository.</li>
+        <li>S8031563: TEST_BUG: java/nio/channels/Selector/ChangingInterests.java failed once</li>
+        <li>S8031666: TEST_BUG: java/net/ipv6tests/UdpTest.java failed because of SocketTimeoutException</li>
+        <li>S8040211: Update LSR datafile for BCP 47</li>
+        <li>S8044289: In ImageIO.write() and ImageIO.read() null stream is not handled properly.</li>
+        <li>S8048782: OpenJDK: PiscesCache : xmax/ymax rounding up can cause RasterFormatException</li>
+        <li>S8055705: Rename UnixPrintServiceLookup and Win32PrintServiceLookup as a platform neutral class name</li>
+        <li>S8055814: [TESTBUG] runtime/NMT/NMTWithCDS.java fails with product builds due to missing UnlockDiagnosticVMOptions</li>
+        <li>S8059575: JEP-JDK-8043304: Test task: Tiered Compilation level transition tests</li>
+        <li>S8073078: java/nio/file/FileStore/Basic.java sensitive to NFS configuration</li>
+        <li>S8075939: Stream.flatMap() causes breaking of short-circuiting of terminal operations</li>
+        <li>S8129988: JSSE should create a single instance of the cacerts KeyStore</li>
+        <li>S8134030: test/serviceability/dcmd/gc/HeapDumpTest fails to verify the dump</li>
+        <li>S8135248: Add utility methods to check indexes and ranges</li>
+        <li>S8137231: sun/security/rsa/SpecTest.java timeout with Agent error: java.lang.Exception</li>
+        <li>S8142493: Utility methods to check indexes and ranges doesn't specify behavior when function produces null</li>
+        <li>S8143097: java/net/ipv6tests/UdpTest.java fails intermittently with "checkTime failed: got 1998 expected 4000"</li>
+        <li>S8144332: HSDB could not terminate when close button is pushed.</li>
+        <li>S8146458: Improve exception reporting for Objects.checkIndex/checkFromToIndex/checkFromIndexSize</li>
+        <li>S8150013: ParNew: Prune nmethods scavengable list.</li>
+        <li>S8151225: Mark SpecTest.java as intermittently failing</li>
+        <li>S8151226: Mark UdpTest.java as intermittently failing</li>
+        <li>S8151322: Implement os::set_native_thread_name() on Solaris</li>
+        <li>S8151539: Remove duplicate AlwaysTrueClosures</li>
+        <li>S8153732: Windows remote printer changes do not reflect in lookupPrintServices()</li>
+        <li>S8154156: PPC64: improve array copy stubs by using vector instructions</li>
+        <li>S8154387: Parallel unordered Stream.limit() tries to collect 128 elements even if limit is less</li>
+        <li>S8155794: Move Objects.checkIndex BiFunction accepting methods to an internal package</li>
+        <li>S8156035: Remove intermittent key from sun/security/rsa/SpecTest.java</li>
+        <li>S8157287: java/nio/file/FileStore/Basic.java failed with "java.nio.file.AccessDeniedException : /zones/zoneone/root "</li>
+        <li>S8157792: After Integrating tzdata2016d the test/sun/util/calendar/zi/TestZoneInfo310.java fails for "Asia/Oral" and "Asia/Qyzylorda" Timezones</li>
+        <li>S8158232: PPC64: improve byte, int and long array copy stubs by using VSX instructions</li>
+        <li>S8166684: PPC64: implement intrinsic code with vector instructions for Unsafe.copyMemory()</li>
+        <li>S8171000: Robot.createScreenCapture() crashes in wayland mode</li>
+        <li>S8173910: (fs) java/nio/file/FileSystem/Basic.java should conditionally check FileStores</li>
+        <li>S8176100: [REDO][REDO] G1 Needs pre barrier on dereference of weak JNI handles</li>
+        <li>S8176237: (fs) java/nio/file/FileStore/Basic.java should conditionally check FileStores</li>
+        <li>S8177472: Remove hard-coded IANA Subtag Registry map in LocaleEquivalentMap.java</li>
+        <li>S8179098: Crypto AES/ECB encryption/decryption performance regression (introduced in jdk9b73)</li>
+        <li>S8181594: Efficient and constant-time modular arithmetic</li>
+        <li>S8182999: SunEC throws ProviderException on invalid curves</li>
+        <li>S8185969: PPC64: Improve VSR support to use up to 64 registers</li>
+        <li>S8187946: Support ISO 4217 Amendments 163 and 164</li>
+        <li>S8189131: Open-source the Oracle JDK Root Certificates</li>
+        <li>S8189949: Remove Baltimore Cybertrust Code Signing CA</li>
+        <li>S8190974: Parallel stream execution within a custom ForkJoinPool should obey the parallelism</li>
+        <li>S8191031: Remove several Symantec Root CAs</li>
+        <li>S8191404: Upgrading JDK with latest available LSR data from IANA.</li>
+        <li>S8191844: Remove SECOM root (secomevrootca1)</li>
+        <li>S8192854: FONTCONFIG_CFLAGS missing from spec.gmk.in</li>
+        <li>S8193552: ISO 4217 amendment 165</li>
+        <li>S8193830: Xalan Update: Xalan Java 2.7.2</li>
+        <li>S8195478: sun/text/resources/LocaleDataTest.java fails with java.lang.Exception</li>
+        <li>S8195774: Add Entrust root certificates</li>
+        <li>S8195793: Remove GTE CyberTrust Global Root</li>
+        <li>S8196141: Add GoDaddy root certificates</li>
+        <li>S8196775: java/net/Socket/asyncClose/Race.java failed intermittently on Windows with ConnectException: Connection refused</li>
+        <li>S8197546: Fix for 8171000 breaks Solaris + Linux builds</li>
+        <li>S8199779: Add T-Systems, GlobalSign and Starfield services root certificates</li>
+        <li>S8201317: X25519/X448 code improvements</li>
+        <li>S8202026: ISO 4217 amendment 166</li>
+        <li>S8202414: Unsafe write after primitive array creation may result in array length change</li>
+        <li>S8202651: Test ComodoCA.java fails</li>
+        <li>S8202768: [macos] Appkit thread slows when any Window Manager active</li>
+        <li>S8202884: SA: Attach/detach might fail on Linux if debugee application create/destroy threads during attaching</li>
+        <li>S8203190: SessionId.hashCode generates too many collisions</li>
+        <li>S8203228: Branch-free output conversion for X25519 and X448</li>
+        <li>S8203627: Swing applications with JRadioButton and JCheckbox fail to render correctly when using GTK3 and the GTK L&amp;F</li>
+        <li>S8203872: Upgrading JDK with latest available LSR data from IANA.</li>
+        <li>S8204269: ISO 4217 amendment 167</li>
+        <li>S8204923: Restore Symantec root verisignclass2g2ca</li>
+        <li>S8204929: Fonts with embedded bitmaps are not always rotated</li>
+        <li>S8205916: [test] Fix jdk/tools/launcher/RunpathTest to handle both, RPATH and RUNPATH</li>
+        <li>S8206955: MethodHandleProxies.asInterfaceInstance does not support default methods</li>
+        <li>S8207760: SAXException: Invalid UTF-16 surrogate detected: d83c ?</li>
+        <li>S8208648: ECC Field Arithmetic Enhancements</li>
+        <li>S8208746: ISO 4217 Amendment #168 update</li>
+        <li>S8209506: Add Google Trust Services GlobalSign root certificates</li>
+        <li>S8209775: ISO 4217 Amendment #169 update</li>
+        <li>S8209951: Problematic sparc intrinsic: com.sun.crypto.provider.CipherBlockChaining</li>
+        <li>S8210153: localized currency symbol of VES</li>
+        <li>S8210416: [linux] Poor StrictMath performance due to non-optimized compilation</li>
+        <li>S8210425: [x86] sharedRuntimeTrig/sharedRuntimeTrans compiled without optimization</li>
+        <li>S8210432: Add additional TeliaSonera root certificate</li>
+        <li>S8210886: Remove references in xwindows.md to non-existent files.</li>
+        <li>S8210985: Update the default SSL session cache size to 20480</li>
+        <li>S8212202: [Windows] Exception if no printers are installed.</li>
+        <li>S8213183: InputMethod cannot be used after its restarting</li>
+        <li>S8213213: Remove src/java.desktop/unix/classes/sun/awt/X11/keysym2ucs.h</li>
+        <li>S8213294: Upgrade IANA LSR data</li>
+        <li>S8213825: assert(false) failed: Non-balanced monitor enter/exit! Likely JNI locking</li>
+        <li>S8214109: XToolkit is not correctly displayed color on 16-bit high color setting</li>
+        <li>S8214111: There is no icon in all JOptionPane target image</li>
+        <li>S8214112: The whole text in target JPasswordField image are not selected</li>
+        <li>S8214252: Expanded &amp; Collapsed nodes of a JTree look the same on GTK3</li>
+        <li>S8214253: Tooltip is transparent rather than having a black background</li>
+        <li>S8214765: All TrayIcon MessageType icons does not show up with gtk3 option set</li>
+        <li>S8214770: java/time/test/java/time/format/TestNonIsoFormatter.java failed in non-english locales.</li>
+        <li>S8214935: Upgrade IANA LSR data</li>
+        <li>S8215982: (tz) Upgrade time-zone data to tzdata2018i</li>
+        <li>S8216577: Add GlobalSign's R6 Root certificate</li>
+        <li>S8217263: Automate DashOffset test</li>
+        <li>S8217315: Proper units should print more significant digits</li>
+        <li>S8217597: [TESTBUG] old version docker does not support --cpus</li>
+        <li>S8218020: Back out accidental changes that belong elsewhere</li>
+        <li>S8218020: Fix version number in mesa.md 3rd party legal file</li>
+        <li>S8218152: [javac] fails and exits with no error if a bad annotation processor provided</li>
+        <li>S8218469: JSlider display issue with slider for GTKLookAndFeel</li>
+        <li>S8218470: JScrollBar display issue with GTKLookAndFeel</li>
+        <li>S8218472: JProgressBar display issue with GTKLookAndFeel</li>
+        <li>S8218473: JOptionPane display issue with GTKLookAndFeel</li>
+        <li>S8218479: JTextPane display issue with GTKLookAndFeel</li>
+        <li>S8218674: HTML Tooltip with "img=src" on component doesn't show</li>
+        <li>S8219781: Localized names for Japanese era Reiwa in COMPAT provider</li>
+        <li>S8220349: The fix done for JDK-8214253 have caused issues in JTree behaviour</li>
+        <li>S8220495: Update GIFlib library to the 5.1.8</li>
+        <li>S8220718: Missing ResourceMark in nmethod::metadata_do</li>
+        <li>S8221263: [TEST_BUG] RemotePrinterStatusRefresh test is hard to use</li>
+        <li>S8221412: lookupPrintServices() does not always update the list of Windows remote printers</li>
+        <li>S8221789: make reconfigure broken (jdk8u only)</li>
+        <li>S8222136: Remove two Comodo root CA certificates that are expiring</li>
+        <li>S8222137: Remove T-Systems root CA certificate</li>
+        <li>S8222670: pathological case of JIT recompilation and code cache bloat</li>
+        <li>S8222965: Backport of JDK-8129988 broke the build</li>
+        <li>S8222975: Fix 'release' file to reflect actual repo checkin used to compile JDK</li>
+        <li>S8223499: Remove two DocuSign root certificates that are expiring</li>
+        <li>S8223537: testlibrary_tests/ctw/ClassesListTest.java fails with Agent timeout frequently</li>
+        <li>S8223555: Cleanups in cacerts tests</li>
+        <li>S8223664: Add jtreg tests for 8223528, backport to jdk8u of 8176100</li>
+        <li>S8223883: Fix jni.cpp copyright date after 8223528</li>
+        <li>S8224560: (tz) Upgrade time-zone data to tzdata2019a</li>
+        <li>S8224727: Problem list test security/infra/java/security/cert/CertPathValidator/certification/ActalisCA.java</li>
+        <li>S8225065: Revert 8221166 (8u backport of 8048782)</li>
+        <li>S8225580: tzdata2018i integration causes test failures on jdk-13</li>
+        <li>S8225716: G1 GC: Undefined behaviour in G1BlockOffsetTablePart::block_at_or_preceding</li>
+      </ul>
+    </div>
+
+    <div class="anchor">
+      <a href="#jdk8u212-b04" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jdk8u212-b04">OpenJDK 8u212 (1.8.0_212-b04)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u212-b04/OpenJDK8U-sources_8u212b04.tar.gz">Upstream Source Tarball OpenJDK 8u212-b04</a>)</h3>
+    </div>
+    <div class="margin-bottom">
+
+      <h3>Other changes</h3>
+      <ul>
+        <li>S8221355: Performance regression after JDK-8155635 backport into 8u</li>
+        <li>Shifted Win32 jvm.dll from server to client</li>
+      </ul>
+    </div>
+
+    <div class="anchor">
       <a href="#jdk8u212" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="jdk8u212">OpenJDK 8u212 (1.8.0_212-b03)</a></h2>
       <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u212-b03/OpenJDK8U-sources_8u212b03.tar.gz">Upstream Source Tarball OpenJDK 8u212-b03</a>)</h3>
@@ -50,7 +240,7 @@
         <li>S8044047: Missing null pointer checks for streams</li>
         <li>S8059038: Create new launcher for SA tools</li>
         <li>S8065749: [TESTBUG]: gc/arguments/TestG1HeapRegionSize.java fails at nightly</li>
-        <li>S8068269: RTM tests that assert on non-zero lock statistics are too strict in RTMTotalCountIncrRate > 1 cases</li>
+        <li>S8068269: RTM tests that assert on non-zero lock statistics are too strict in RTMTotalCountIncrRate &gt; 1 cases</li>
         <li>S8076164: [JTextField] When input too long Thai character, cursor's behavior is odd</li>
         <li>S8076274: [TESTBUG] Remove @ignore from runtime\NMT\JcmdDetailDiff.java</li>
         <li>S8076458: java/util/stream/test/org/openjdk/tests/java/util/stream/FlatMapOpTest.java timeout</li>
@@ -79,7 +269,7 @@
         <li>S8193764: Cannot set COMPANY_NAME when configuring a build</li>
         <li>S8195153: [test] runtime/6981737/Test6981737.java shouldn't check 'java.vendor' and 'java.vm.vendor' properties</li>
         <li>S8197429: Increased stack guard causes segfaults on x86-32</li>
-        <li>S8200109: NMT: diff_malloc_site assert(early->flags() == current->flags(), "Must be the same memory type")</li>
+        <li>S8200109: NMT: diff_malloc_site assert(early-&gt;flags() == current-&gt;flags(), "Must be the same memory type")</li>
         <li>S8200115: System property java.vm.vendor value includes quotation marks</li>
         <li>S8202088: Japanese new era implementation</li>
         <li>S8204142: AWT hang occurs when sequenced events arrive out of sequence in multiple AppContexts</li>
@@ -139,6 +329,260 @@
     </div>
 
     <div class="anchor">
+      <a href="#jdk11_0_4" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jdk11_0_4">OpenJDK 11.0.4 (11.0.4+11)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.4%2B11/OpenJDK11U-sources_11.0.4_11.tar.gz">Upstream Source Tarball for OpenJDK 11.0.4+11</a>)</h3>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://bugs.openjdk.java.net/browse/JDK-8227015?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%2011.0.4%20ORDER%20BY%20created%20DESC" target="_blank">11.0.4</a> Fix Version filter in the JDK Bug System.
+
+      <h3>Security fixes</h3>
+      <ul>
+        <li>S8208698, CVE-2019-2745: Improved ECC Implementation</li>
+        <li>S8212328, CVE-2019-2762: Exceptional throw cases</li>
+        <li>S8213431, CVE-2019-2766: Improve file protocol handling</li>
+        <li>S8213432, CVE-2019-2769: Better copies of CopiesList</li>
+        <li>S8216381, CVE-2019-2786: More limited privilege usage</li>
+        <li>S8217563: Improve realm maintenance</li>
+        <li>S8218863: Better endpoint checks</li>
+        <li>S8218873: Improve JSSE endpoint checking</li>
+        <li>S8218876, CVE-2019-7317: Improve PNG support options</li>
+        <li>S8219775: Certificate validation improvements</li>
+        <li>S8220517: Enhanced GIF support</li>
+        <li>S8221345, CVE-2019-2818: Better Poly1305 support</li>
+        <li>S8221518, CVE-2019-2816: Normalize normalization</li>
+        <li>S8222678, CVE-2019-2821: Improve TLS negotiation</li>
+      </ul>
+      <h3>Other fixes</h3>
+      <ul>
+        <li>S6913047: Long term memory leak when using PKCS11 and JCE exceeds 32 bit process address space</li>
+        <li>S8139178: Wrong fontMetrics when printing in Landscape (OpenJDK)</li>
+        <li>S8163805: hotspot/test/serviceability/sa/sadebugd/SADebugDTest.java failed with timed out</li>
+        <li>S8170494: JNI exception pending in PlainDatagramSocketImpl.c</li>
+        <li>S8174691: [TESTBUG] A number of native hotspot unit tests fail when executed in stand-alone mode</li>
+        <li>S8179098: Crypto AES/ECB encryption/decryption performance regression (introduced in jdk9b73)</li>
+        <li>S8181143: Introduce diagnostic flag to abort VM on too long VM operations</li>
+        <li>S8188133: C2: Static field accesses in clinit can trigger deoptimizations</li>
+        <li>S8190361: Incorrect version info in jaccessinspector.exe and jaccesswalker.exe</li>
+        <li>S8195793: Remove GTE CyberTrust Global Root</li>
+        <li>S8200286: (testbug) MOptionTest test fails with java.lang.AssertionError: Classfiles too old!</li>
+        <li>S8200613: SA: jstack throws UnmappedAddressException with a CDS core file</li>
+        <li>S8201317: X25519/X448 code improvements</li>
+        <li>S8201633: Problems with AES-GCM native acceleration</li>
+        <li>S8202353: os::readdir should use readdir instead of readdir_r</li>
+        <li>S8202414: Unsafe write after primitive array creation may result in array length change</li>
+        <li>S8202651: Test ComodoCA.java fails</li>
+        <li>S8202794: Native Unix code should use readdir rather than readdir_r</li>
+        <li>S8202884: SA: Attach/detach might fail on Linux if debugee application create/destroy threads during attaching</li>
+        <li>S8203627: Swing applications with JRadioButton and JCheckbox fail to render correctly when using GTK3 and the GTK L&amp;F</li>
+        <li>S8204308: SA: serviceability/sa/TestInstanceKlassSize*.java fails when running in CDS mode</li>
+        <li>S8205574: Loop predication "assert(f &lt;= 1 &amp;&amp; f &gt;= 0) failed Incorrect frequency"</li>
+        <li>S8205611: Improve the wording of LinkageErrors to include module and class loader information</li>
+        <li>S8206955: MethodHandleProxies.asInterfaceInstance does not support default methods</li>
+        <li>S8207340: (fs) UnixNativeDispatcher close and readdir usages should be fixed</li>
+        <li>S8207748: Fix for 8202794 breaks tier1 builds</li>
+        <li>S8207760: SAXException: Invalid UTF-16 surrogate detected: d83c ?</li>
+        <li>S8208634: Add x-IBM-1129 charset</li>
+        <li>S8208648: ECC Field Arithmetic Enhancements</li>
+        <li>S8208702: javax/swing/reliability/HangDuringStaticInitialization.java may hang on macos</li>
+        <li>S8208996: X11 icon window color handing bug</li>
+        <li>S8209055: c.s.t.javac.code.DeferredCompletionFailureHandler seems to use WeakHashMap incorrectly</li>
+        <li>S8209414: AArch64: method handle invocation does not respect JVMTI interp_only mode</li>
+        <li>S8209415: Fix JVMTI test failure HS202</li>
+        <li>S8209573: [TESTBUG] gc/epsilon/TestMemoryMXBeans should retry on failure</li>
+        <li>S8209914: javadoc search sometimes generates bad URIs</li>
+        <li>S8209951: Problematic sparc intrinsic: com.sun.crypto.provider.CipherBlockChaining</li>
+        <li>S8210008: custom extension for make/SourceRevision.gmk</li>
+        <li>S8210197: javac can't tell during speculative attribution if a diamond expression is creating an anonymous inner class or not</li>
+        <li>S8210283: Support git as an SCM alternative in the build</li>
+        <li>S8210320: PPC64: Fix uninitialized variable in C1 LIR assembler code</li>
+        <li>S8210457: JVM crash in ResolvedMethodTable::add_method(Handle)</li>
+        <li>S8210483: AssertionError in DeferredAttr at setOverloadKind caused by JDK-8203679</li>
+        <li>S8210519: build/releaseFile/CheckSource.java failed additional sources found</li>
+        <li>S8210739: Calling JSpinner's setFont with null throws NullPointerException</li>
+        <li>S8210782: Upgrade HarfBuzz to the latest 2.3.1</li>
+        <li>S8210803: Compilation failure in codeBlob.cpp for Windows 32-bit</li>
+        <li>S8210837: Add libXrandr-devel to the Linux devkits</li>
+        <li>S8210863: Remove Xrandr include files from JDK sources</li>
+        <li>S8210880: Remove HPKeysym.h from JDK sources</li>
+        <li>S8210886: Remove references in xwindows.md to non-existent files.</li>
+        <li>S8210899: (zipfs) ZipFileSystem.EntryOutputStreamCRC32 mistakenly set the crc32 value into size field</li>
+        <li>S8211266: [TESTBUG] ZipFSTester.java failed intermittently in ZipFSTester.checkRead(): bound must be positive</li>
+        <li>S8211350: Remove jprt support</li>
+        <li>S8211393: Memory leak issue on awt_InputMethod.c</li>
+        <li>S8211435: Exception in thread "AWT-EventQueue-1" java.lang.IllegalArgumentException: null source</li>
+        <li>S8211698: Crash in C2 compiled code during execution of double array heavy processing code</li>
+        <li>S8211810: X11 Time stamp data should be unsigned</li>
+        <li>S8211826: StringIndexOutOfBoundsException happens via GetStringUTFRegion()</li>
+        <li>S8211841: [testbug] sun/nio/cs/OLD/TestIBMDB.java does not compile (aix)</li>
+        <li>S8211969: test/jdk/lib/security/CheckBlacklistedCerts.java searching for wrong paths</li>
+        <li>S8211971: Move security/cacerts/VerifyCACerts.java and security/CheckBlacklistedCerts.java</li>
+        <li>S8212202: [Windows] Exception if no printers are installed.</li>
+        <li>S8212205: VM asserts after CDS archive has been unmapped</li>
+        <li>S8212562: To remove lib/security from test/jdk/TEST.groups</li>
+        <li>S8212676: AWT SystemColor setting on CDE</li>
+        <li>S8212677: X11 default visual support for IM status window on VNC</li>
+        <li>S8212678: Windows IME related patch</li>
+        <li>S8212794: IBM-964 is required for AIX default charset</li>
+        <li>S8212828: (process) Provide a way for Runtime.exec to use posix_spawn on linux</li>
+        <li>S8213015: Inconsistent settings between JFR.configure and -XX:FlightRecorderOptions</li>
+        <li>S8213213: Remove src/java.desktop/unix/classes/sun/awt/X11/keysym2ucs.h</li>
+        <li>S8213232: Unix/X11 setCompositionEnableNative issue</li>
+        <li>S8213292: Input freezes after MacOS key-selector (press&amp;hold) usage on macOS Mojave</li>
+        <li>S8213294: Upgrade IANA LSR data</li>
+        <li>S8213515: Improve freetype detection on linux/ppc64/ppc64le/s390x</li>
+        <li>S8213614: DnD operation change feature does not work with 64bit big endian CPU</li>
+        <li>S8213617: JFR should record the PID of the recorded process</li>
+        <li>S8213618: IBM970 charset has missing entry and remove unexpected entries</li>
+        <li>S8213825: assert(false) failed: Non-balanced monitor enter/exit! Likely JNI locking</li>
+        <li>S8213944: Fix AIX build after the removal of Xrandr.h and add a configure check for it</li>
+        <li>S8214002: Cannot use italic font style if the font has embedded bitmap</li>
+        <li>S8214109: XToolkit is not correctly displayed color on 16-bit high color setting</li>
+        <li>S8214111: There is no icon in all JOptionPane target image</li>
+        <li>S8214112: The whole text in target JPasswordField image are not selected</li>
+        <li>S8214252: Expanded &amp; Collapsed nodes of a JTree look the same on GTK3</li>
+        <li>S8214253: Tooltip is transparent rather than having a black background</li>
+        <li>S8214468: jQuery UI upgrade from 1.11.4 to 1.12.1</li>
+        <li>S8214533: IBM-29626C is required for AIX default charset</li>
+        <li>S8214765: All TrayIcon MessageType icons does not show up with gtk3 option set</li>
+        <li>S8214935: Upgrade IANA LSR data</li>
+        <li>S8215026: Incorrect amount of memory unmapped with ImageFileReader::close()</li>
+        <li>S8215123: Crash in runtime image built with jlink --compress=2</li>
+        <li>S8215284: Reduce noise induced by periodic task getFileSize()</li>
+        <li>S8215296: do not disable c99 on Solaris</li>
+        <li>S8215342: [Zero] Build fails after JDK-8200613</li>
+        <li>S8215364: JavaFX crashes on Ubuntu 18.04 with Wayland while using Swing-FX interop</li>
+        <li>S8215374: 32-bit build failures after JDK-8181143 (Introduce diagnostic flag to abort VM on too long VM operations)</li>
+        <li>S8215398: -Xlog option usage =&gt; Invalid decorator '\temp\app_cds.log'.</li>
+        <li>S8215443: The use of TransportContext.fatal() leads to bad coding style</li>
+        <li>S8215472: (zipfs) Cleanups in implementation classes of jdk.zipfs and tests</li>
+        <li>S8215707: [macosx] fix pthread_getschedparam and pthread_setschedparam calls</li>
+        <li>S8215757: C2: PhaseIdealLoop::create_new_if_for_predicate() computes wrong IDOM</li>
+        <li>S8215790: Delegated task created by SSLEngine throws java.nio.BufferUnderflowException</li>
+        <li>S8216045: The size of key_exchange may be wrong on FFDHE</li>
+        <li>S8216355: missing NULL checks in libnet in interface iteration and potential resource leak in getMacAddress</li>
+        <li>S8216556: Unnecessary liveness computation with JVMTI</li>
+        <li>S8216577: Add GlobalSign's R6 Root certificate</li>
+        <li>S8216597: SIGBUS in Java_sun_security_pkcs11_wrapper_PKCS11_getNativeKeyInfo after JDK-6913047</li>
+        <li>S8216970: condy causes JVM crash</li>
+        <li>S8217088: Disable JDK-6913047 fix (SunPKCS11 memory leak) after JDK-8216597 (SIGBUS error in getNativeKeyInfo)</li>
+        <li>S8217094: HttpClient SSL race if a socket IOException is raised before ALPN is available</li>
+        <li>S8217263: Automate DashOffset test</li>
+        <li>S8217311: Improve Exception thrown when MulticastSocket.setInterface fails on AIX(Unix)</li>
+        <li>S8217564: idempotent protection missing in crc32c.h</li>
+        <li>S8217647: JFR: recordings on 32-bit systems unreadable</li>
+        <li>S8217690: Update public suffix version</li>
+        <li>S8217707: JNICALL declaration breaks Splash screen functions</li>
+        <li>S8217765: Internal Error (javaCalls.cpp:61) guarantee(thread-&gt;can_call_java()) failed</li>
+        <li>S8217786: Provide virtualization related info in the hs_error file on linux s390x</li>
+        <li>S8217878: ENVELOPING XML signature no longer works in JDK 11</li>
+        <li>S8217879: hs_err should print more instructions in hex dump</li>
+        <li>S8217880: AIX build issue after JDK-8214533</li>
+        <li>S8218020: Fix version number in mesa.md 3rd party legal file</li>
+        <li>S8218060: JDK-8217786 breaks build due to remaining unused function</li>
+        <li>S8218063: JDK-8218060 breaks build for S390</li>
+        <li>S8218152: [javac] fails and exits with no error if a bad annotation processor provided</li>
+        <li>S8218469: JSlider display issue with slider for GTKLookAndFeel</li>
+        <li>S8218470: JScrollBar display issue with GTKLookAndFeel</li>
+        <li>S8218472: JProgressBar display issue with GTKLookAndFeel</li>
+        <li>S8218473: JOptionPane display issue with GTKLookAndFeel</li>
+        <li>S8218479: JTextPane display issue with GTKLookAndFeel</li>
+        <li>S8218618: Program fails when using JDK addressed by UNC path and using Security Manager</li>
+        <li>S8218629: XML Digital Signature throws NAMESPACE_ERR exception on OpenJDK 11, works 8/9/10</li>
+        <li>S8218674: HTML Tooltip with "img=src" on component doesn't show</li>
+        <li>S8218733: SA: CollectedHeap provides broken implementation for used() and capacity()</li>
+        <li>S8218781: Localized names for Japanese era Reiwa in COMPAT provider</li>
+        <li>S8218811: replace open by os::open in hotspot coding</li>
+        <li>S8218854: FontMetrics.getMaxAdvance may be less than the maximum FontMetrics.charWidth</li>
+        <li>S8218960: CONFIG level logging statements printed in CLDRCalendarDataProviderImpl.java even when default log Level is INFO</li>
+        <li>S8218991: s390: Add intrinsic for GHASH algorithm</li>
+        <li>S8219006: AArch64: Register corruption in slow subtype check</li>
+        <li>S8219011: Implement MacroAssembler::warn method on AArch64</li>
+        <li>S8219112: name_and_sig_as_C_string usages in frame_s390 miss ResourceMark</li>
+        <li>S8219335: "failed: unexpected type" assert failure in ConnectionGraph::split_unique_types() with unsafe accesses</li>
+        <li>S8219389: Delegated task created by SSLEngine throws BufferUnderflowException</li>
+        <li>S8219414: SA: jhsdb jsnap throws UnmappedAddressException with core generated by gcore</li>
+        <li>S8219448: split-if update_uses accesses stale idom data</li>
+        <li>S8219460: ppc: adjust NativeGeneralJump::insert_unconditional to stack allocated MacroAssembler</li>
+        <li>S8219566: JFR did not collect call stacks when MaxJavaStackTraceDepth is set to zero</li>
+        <li>S8219574: Minimal VM build failure after JDK-8219414</li>
+        <li>S8219582: PPC: Crash after C1 checkcast patched and GC</li>
+        <li>S8219584: Try to dump error file by thread which causes safepoint timeout</li>
+        <li>S8219698: aarch64: SIGILL triggered when specifying unsupported hardware features</li>
+        <li>S8219710: Bump update version for OpenJDK: jdk11.0.4</li>
+        <li>S8219746: Provide virtualization related info in the hs_error file on linux ppc64 / ppc64le</li>
+        <li>S8219915: [TESTBUG] Fix test langtools/tools/javac/processing/model/completionfailure/SymbolsDontCumulate.java in Standalone mode</li>
+        <li>S8219918: ProblemList hotspot tests failing in SAP testing.</li>
+        <li>S8220165: Encryption using GCM results in RuntimeException- input length out of bound</li>
+        <li>S8220166: Performance regression in deserialization (4-6% in SPECjbb)</li>
+        <li>S8220198: Lots of com/sun/crypto/provider/Cipher tests fail on x86_32 due to missing SHA512 stubs</li>
+        <li>S8220281: IBM-858 alias name is missing on IBM00858 charset</li>
+        <li>S8220293: Deadlock in JFR string pool</li>
+        <li>S8220349: The fix done for JDK-8214253 have caused issues in JTree behaviour</li>
+        <li>S8220353: [TESTBUG] TestRegisterRestoring uses SafepointALot without UnlockDiagnosticVMOptions</li>
+        <li>S8220374: C2: LoopStripMining doesn't strip as expected</li>
+        <li>S8220441: [PPC64] Clobber memory effect missing for memory barriers in atomics</li>
+        <li>S8220495: Update GIFlib library to the 5.1.8</li>
+        <li>S8220513: Wrapper Key may get deleted when closing sessions in SunPKCS11 crypto provider</li>
+        <li>S8220625: tools/javac/classreader/8171132/BadConstantValue.java failed with "did not see expected error"</li>
+        <li>S8220707: [TESTBUG] serviceability/sa/TestHeapDumpForLargeArray.java fails with jtreg -vmoption:-Xmx &lt; 8g</li>
+        <li>S8220714: C2 Compilation failure when accessing off-heap memory using Unsafe</li>
+        <li>S8220718: Missing ResourceMark in nmethod::metadata_do</li>
+        <li>S8220781: linux-s390 : os::get_summary_cpu_info gives bad output</li>
+        <li>S8220794: PPC64: Fix signal handler for SIGSEGV on branch to illegal address</li>
+        <li>S8221083: [ppc64] Wrong oop compare in C1-generated code</li>
+        <li>S8221175: Fix bad function case for controlled JVM crash on PPC64 big-endian</li>
+        <li>S8221244: Unexpected behavior of PropertyDescription.getReadMethod for boolean properties</li>
+        <li>S8221263: [TEST_BUG] RemotePrinterStatusRefresh test is hard to use</li>
+        <li>S8221304: Problem list java/awt/FontMetrics/MaxAdvanceIsMax.java</li>
+        <li>S8221400: java/lang/String/StringRepeat.java test requests too much heap</li>
+        <li>S8221401: java/math/BigInteger/LargeValueExceptions.java test should be disabled on 32-bit platforms</li>
+        <li>S8221412: lookupPrintServices() does not always update the list of Windows remote printers</li>
+        <li>S8221437: assert(java_lang_invoke_ResolvedMethodName::vmtarget(resolved_method()) == m()) failed: Should not change after link resolution</li>
+        <li>S8221470: Print methods in exception messages in java-like Syntax.</li>
+        <li>S8221479: Fix JFR profiling on s390</li>
+        <li>S8221483: TestOopCmp.java fails due to "Multiple garbage collectors selected"</li>
+        <li>S8221535: add steal tick related information to hs_error file [linux]</li>
+        <li>S8221610: Resurrect (legacy) JRE bundle target</li>
+        <li>S8221639: [i386] expand_exec_shield_cs_limit workaround is undefined code after JDK-8199717</li>
+        <li>S8221833: Readability check in Symbol::is_valid not performed for some addresses</li>
+        <li>S8221870: use driver to run CtwRunner in applications/ctw tests</li>
+        <li>S8221880: Better customization for Windows RC properties FileDescription and ProductName</li>
+        <li>S8221915: cleanup ticks related coding in os_perf_aix.cpp [aix]</li>
+        <li>S8221917: serviceability/sa/TestPrintMdo.java fails on 32-bit platforms</li>
+        <li>S8221924: get(null) on single-entry unmodifiable Map returns null instead of throwing NPE</li>
+        <li>S8222027: java/util/logging/LogManager/TestLoggerNames.java generates intermittent ClassCastException</li>
+        <li>S8222032: x86_32 fails with "wrong size of mach node" on AVX-512 machine</li>
+        <li>S8222089: [TESTBUG] sun/security/lib/cacerts/VerifyCACerts.java fails due to cert within 90-day expiry window</li>
+        <li>S8222133: Add temporary exceptions for root certs that are due to expire soon</li>
+        <li>S8222136: Remove two Comodo root CA certificates that are expiring</li>
+        <li>S8222137: Remove T-Systems root CA certificate</li>
+        <li>S8222397: x86_32 tests with UseSHA1Intrinsics SEGV due to garbled registers</li>
+        <li>S8222410: java/nio/file/attribute/BasicFileAttributeView/UnixSocketFile hangs when "nc" does not accept "-U"</li>
+        <li>S8222522: Add configure options for Mac Bundle creation</li>
+        <li>S8222532: (zipfs) Performance regression when writing ZipFileSystem entries in parallel</li>
+        <li>S8222913: Add Jib support for VERSION_EXTRA*</li>
+        <li>S8222930: ConcurrentSkipListMap.clone() shares size variable between original and clone</li>
+        <li>S8223266: PPC64: Check for branch to illegal address before checking for mem serialization</li>
+        <li>S8223395: PPC64: Improve comments in the JVM signal handler to match ISA text</li>
+        <li>S8223499: Remove two DocuSign root certificates that are expiring</li>
+        <li>S8223555: Cleanups in cacerts tests</li>
+        <li>S8223597: jdk/nio/zipfs/ZipFSTester.java RuntimeException: CHECK_FAILED! (getAttribute.crc &lt;entries&gt; failed 6af4413c vs 0 ...)</li>
+        <li>S8223665: SA: debugd options should follow jhsdb style</li>
+        <li>S8224474: harfbuzz 2.3.1 code fails to compile with gcc 4.4.7</li>
+        <li>S8224671: AArch64: mauve System.arraycopy test failure</li>
+        <li>S8224727: Problem list test security/infra/java/security/cert/CertPathValidator/certification/ActalisCA.java</li>
+        <li>S8224828: aarch64: rflags is not correct after safepoint poll</li>
+        <li>S8224880: AArch64: java/javac error with AllocatePrefetchDistance</li>
+        <li>S8225402: events logging in deoptimization.cpp should go to deopt-log</li>
+        <li>S8225716: G1 GC: Undefined behaviour in G1BlockOffsetTablePart::block_at_or_preceding</li>
+        <li>S8226876: Assertion in sun/util/locale/provider/CalendarDataUtility on Windows after JDK-8218960</li>
+        <li>S8226880: Backport of JDK-8208698 (Improved ECC Implementation) should not bring parts of JDK-8205476 (KeyAgreement#generateSecret is not reset for ECDH based algorithm)</li>
+      </ul>
+    </div>
+
+    <div class="anchor">
       <a href="#jdk11_0_3" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="jdk11_0_3">OpenJDK 11.0.3 (11.0.3+7)</a></h2>
       <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.3%2B7/OpenJDK11U-sources_11.0.3_7.tar.gz">Upstream Source Tarball for OpenJDK 11.0.3+7</a>)</h3>
@@ -161,7 +605,7 @@
         <li>S8172695: (scanner) java/util/Scanner/ScanTest.java fails</li>
         <li>S8187364: Unable to enter zero width non-joiner (ZWNJ) symbol in Swing text component</li>
         <li>S8197398: (zipfs) Files.walkFileTree walk indefinitelly while processing JAR file with "/" as a directory inside.</li>
-        <li>S8200109: NMT: diff_malloc_site assert(early->flags() == current->flags(), "Must be the same memory type")</li>
+        <li>S8200109: NMT: diff_malloc_site assert(early-&gt;flags() == current-&gt;flags(), "Must be the same memory type")</li>
         <li>S8201818: [macosx] Printing attributes break page size set via "java.awt.print.Book" object</li>
         <li>S8204142: AWT hang occurs when sequenced events arrive out of sequence in multiple AppContexts</li>
         <li>S8205432: Replace the placeholder Japanese era name</li>
@@ -276,6 +720,22 @@
         <li>S8221769: Revert JDK-8221767 mistakenly pushed to jdk11u 11.0.3</li>
       </ul>
 
+    </div>
+
+    <div class="anchor">
+      <a href="#jdk12_0_2" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jdk12_0_2">OpenJDK 12.0.2 (12.0.2+10)</a></h2>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://www.oracle.com/technetwork/java/javase/12all-relnotes-5211423.html#R12_0_2" target="_blank">12.0.2</a> release notes at Oracle.
+
+      <h3>Other changes</h3>
+      <ul>
+        <li>JDK-8223499 - Removal of Two DocuSign Root CA Certificates</li>
+        <li>JDK-8222136 -Removal of Two Comodo Root CA Certificates</li>
+        <li>JDK-8222137 - Removal of T-Systems Deutsche Telekom Root CA 2 Certificate</li>
+      </ul>
     </div>
 
     <div style="margin-top: 3rem;">
