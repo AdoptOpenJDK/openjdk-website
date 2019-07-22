@@ -4,22 +4,19 @@
 
 1. Install the `gulp` CLI
 
-    ```
-    bash
+    ```bash
     npm install --global gulp-cli
     ```
 
 2. Install the project devDependencies
 
-    ```
-    bash
+    ```bash
     npm install
     ```
 
 3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
-    ```
-    bash
+    ```bash
     npm start
     ```
 
@@ -168,6 +165,8 @@ The website's JavaScript then uses a GET request to access these `.json` files, 
   - **binaryExtension**: should include the dot at the beginning of the extension, e.g `.tar.gz` or `.zip`
   - **installerExtension**: same as `binaryExtension`, but for a potential installer
   - **checksumCommand**: a command (with tokens for substitution) to generate a checksum of an artifact
+  - **checksumAutoCommandHint**: a hint to run the **checksumAutoCommand** (can be omitted)
+  - **checksumAutoCommand**: a command (with tokens for substitution) to download a checksum and verify against downloaded binary of an artifact
   - **installCommand**: a command (with tokens for substitution) to "install" an archive
   - **pathCommand**: a command (with tokens for substitution) to add the JDK/JRE to the local PATH
   - **osDetectionString**: this string is searched by the OS detection library `platform.js` to find a match. Include as many words as you like, separated by spaces.

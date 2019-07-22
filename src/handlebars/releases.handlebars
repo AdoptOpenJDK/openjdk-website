@@ -28,13 +28,14 @@
         </form>
       </div>
 
-      <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+      <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
       <div id="error-container"></div>
     </div>
 
     <div id="latest-container" class="invisible">
       <h3 id="description_header"></h3>
       <a id="description_link" href=""></a>
+      <h3><a href="./release_notes.html">All Release Notes</a></h3>
 
       <div class="container">
         <div class="download-hero full-width">
@@ -80,6 +81,7 @@
       </div>
 
       <div id="latest-info">
+
         <script id="template-info" type="text/x-handlebars-template">
           {{! Create each platform's "latest release" info view }}
             \{{#each releases}}

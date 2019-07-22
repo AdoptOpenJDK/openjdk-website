@@ -1,23 +1,11 @@
 const {detectOS, findPlatform, getBinaryExt, getChecksumCommand, getInstallCommand, getOfficialName,
-  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors} = require('./common');
+  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors, getChecksumAutoCommandHint,
+  getChecksumAutoCommand } = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 const platformSelector = document.getElementById('platform-selector');
-
-global.copyClipboard = (elementSelector) => {
-  const input = document.createElement('input');
-  input.value = document.querySelector(elementSelector).textContent;
-
-  document.body.appendChild(input);
-  input.select();
-
-  document.execCommand('copy');
-  alert('Copied to clipboard');
-
-  document.body.removeChild(input);
-}
 
 module.exports.load = () => {
   setRadioSelectors();
@@ -26,7 +14,7 @@ module.exports.load = () => {
     errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
     loading.innerHTML = ''; // remove the loading dots
   });
-}
+};
 
 function buildInstallationHTML(releasesJson) {
   // create an array of the details for each asset that is attached to a release
@@ -57,6 +45,27 @@ function buildInstallationHTML(releasesJson) {
         ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
 
+        // the check sum auto command hint is always printed,
+        // so we just configure with empty string if not present
+        ASSETOBJECT.thisChecksumAutoCommandHint = getChecksumAutoCommandHint(ASSETOBJECT.thisPlatform) || '';
+        // build download sha256 and verify auto command
+        const thisChecksumAutoCommand = getChecksumAutoCommand(ASSETOBJECT.thisPlatform);
+        let sha256FileName = ASSETOBJECT.thisChecksumLink;
+        const separator = sha256FileName.lastIndexOf('/');
+        if (separator > -1) {
+          sha256FileName = sha256FileName.substring(separator + 1);
+        }
+        ASSETOBJECT.thisChecksumAutoCommand = thisChecksumAutoCommand.replace(
+          /FILEHASHURL/g,
+          ASSETOBJECT.thisChecksumLink
+        ).replace(
+          /FILEHASHNAME/g,
+          sha256FileName
+        ).replace(
+          /FILENAME/g,
+          ASSETOBJECT.thisBinaryFilename
+        );
+
         const dirName = releasesJson.release_name + (eachAsset.binary_type === 'jre' ? '-jre' : '');
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', dirName);
       }
@@ -76,6 +85,7 @@ function buildInstallationHTML(releasesJson) {
   hljs.initHighlightingOnLoad();
 
   setInstallationPlatformSelector(ASSETARRAY);
+  attachCopyButtonListeners();
   window.onhashchange = displayInstallPlatform;
 
   loading.innerHTML = ''; // remove the loading dots
@@ -84,6 +94,13 @@ function buildInstallationHTML(releasesJson) {
   installationContainer.className = installationContainer.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated fadeIn ');
 }
 
+function attachCopyButtonListeners() {
+  document.querySelectorAll('.copy-code-block').forEach(codeBlock => {
+    const target = codeBlock.querySelector('code.cmd-block');
+    codeBlock.querySelector('.copy-code-button')
+      .addEventListener('click', () => copyElementTextContent(target));
+  });
+}
 
 function displayInstallPlatform() {
   const platformHash = window.location.hash.substr(1).toUpperCase();
@@ -140,4 +157,18 @@ function setInstallationPlatformSelector(thisReleasePlatforms) {
     window.location.hash = platformSelector.value.toLowerCase();
     displayInstallPlatform();
   };
+}
+
+function copyElementTextContent(target) {
+  const text = target.textContent;
+  const input = document.createElement('input');
+  input.value = text;
+
+  document.body.appendChild(input);
+  input.select();
+
+  document.execCommand('copy');
+  alert('Copied to clipboard');
+
+  document.body.removeChild(input);
 }

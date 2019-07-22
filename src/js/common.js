@@ -28,7 +28,7 @@ module.exports.getVariantObject = (variantName) => variants.find((variant) => va
 
 module.exports.findPlatform = (binaryData) => {
   const matchedPlatform = platforms.filter((platform) => {
-      return platform.hasOwnProperty('attributes')
+      return Object.prototype.hasOwnProperty.call(platform, 'attributes')
         && Object.keys(platform.attributes).every((attr) => platform.attributes[attr] === binaryData[attr])
     })[0];
 
@@ -76,6 +76,12 @@ module.exports.getInstallCommand = (searchableName) => lookup[searchableName].in
 
 // gets the CHECKSUM COMMAND when you pass in 'searchableName'
 module.exports.getChecksumCommand = (searchableName) => lookup[searchableName].checksumCommand;
+
+// gets the CHECKSUM AUTO COMMAND HINT when you pass in 'searchableName'
+module.exports.getChecksumAutoCommandHint = (searchableName) => lookup[searchableName].checksumAutoCommandHint;
+
+// gets the CHECKSUM AUTO COMMAND when you pass in 'searchableName'
+module.exports.getChecksumAutoCommand = (searchableName) => lookup[searchableName].checksumAutoCommand;
 
 // gets the PATH COMMAND when you pass in 'searchableName'
 module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathCommand;
@@ -262,7 +268,13 @@ module.exports.setRadioSelectors = () => {
       btnLabel.appendChild(input);
 
       if (group === 'jdk') {
-        btnLabel.innerHTML += `<span>${variant.label}${variant.lts ? ' (LTS)' : ''}</span>`;
+        if (variant.lts === true){
+          btnLabel.innerHTML += `<span>${variant.label} (LTS)</span>`;
+        } else if (variant.lts === 'latest') {
+          btnLabel.innerHTML += `<span>${variant.label} (Latest)</span>`;
+        } else {
+          btnLabel.innerHTML += `<span>${variant.label}</span>`;
+        }
       } else {
         btnLabel.innerHTML += `<span>${variant.jvm}</span>`;
       }

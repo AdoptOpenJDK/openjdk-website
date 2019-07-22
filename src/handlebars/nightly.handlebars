@@ -46,7 +46,7 @@
 
   <div id="search-error" class="hide">No search results</div>
 
-  <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40"></div>
+  <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
 
   <div id="nightly-list">
     <table id="table-parent">
@@ -61,6 +61,11 @@
               <td class='nightly-platform-type'><var platform-name>\{{thisType}}</var></td>
               <td><div class='nightly-release-date'><var>\{{thisReleaseDay}}</var> \{{thisReleaseMonth}} <var>\{{thisReleaseYear}}</var></div></td>
               <td class='nightly-downloads-block'><div><a class='dark-link' href='\{{thisBinaryLink}}'><var binary-info>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)</var></a></div></td>
+              \{{#if thisInstallerLink}}
+                <td class='nightly-downloads-block'><div><a class='dark-link' href='\{{thisInstallerLink}}'><var binary-info>\{{thisInstalleExtension}}</var></a></div></td>
+              \{{else}}
+                <td class='nightly-downloads-block'><div>Not available</div></td>
+              \{{/if}}
               <td><a href='\{{thisChecksumLink}}' class='dark-link'>Checksum</a></td>
             </tr>
           \{{/each}}

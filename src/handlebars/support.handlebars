@@ -7,13 +7,13 @@
 
   <div class="align-left support">
 
-    <div class="anchor" onmouseover="document.getElementById('anchor1').style.visibility='visible'" onmouseout="document.getElementById('anchor1').style.visibility='hidden'"><a href="#community-support" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor1" name="anchor" alt="anchor icon"></a>
-      <h2 class="bold"><a id="support-levels">Community Support</a></h2>
+    <div class="anchor">
+      <a href="#community-support" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="community-support">Community Support</a></h2>
     </div>
     <div class="margin-bottom">
       <p>
-        Read <a href="https://medium.com/@javachampions/java-is-still-free-c02aef8c9e04">Java Is Still Free</a>
+        Read <a href="https://medium.com/@javachampions/java-is-still-free-2-0-0-6b9aa8d6d244">Java Is Still Free (2.0.0)</a>
         for some background information about Java support options. We are prepared to stand behind our release quality binaries, so each
         build that is identified as a <strong>release</strong> receives support via the AdoptOpenJDK community. Our support means
         that you can raise an issue to describe a bug you have found in the build,
@@ -27,17 +27,18 @@
         Of course, if the problem arises from the way we build and test the code we can fix that directly.
         For higher levels of assurance you should contact commercial companies offering support.
       </p>
+
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor2').style.visibility='visible'" onmouseout="document.getElementById('anchor2').style.visibility='hidden'"><a href="#commercial-support" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor2" name="anchor" alt="anchor icon"></a>
-      <h2 class="bold"><a id="support-levels">Commercial Support</a></h2>
+    <div class="anchor">
+      <a href="#commercial-support" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="commercial-support">Commercial Support</a></h2>
     </div>
 
     <div class="margin-bottom">
       <table class="commercial-table" notranslate>
         <tr>
-          <td><a target="_blank" href="https://www.ibm.com"><img src="dist/assets/ibm.png" alt="IBM logo"></a></td>
+          <td><a target="_blank" href="https://www.ibm.com"><img src="dist/assets/ibm.svg" alt="IBM logo"></a></td>
           <td>IBM is a core contributor to OpenJDK and Eclipse OpenJ9 and employs several of
             the founders of AdoptOpenJDK and key engineers on the AdoptOpenJDK project.
             See <a target="_blank" href="https://www.ibm.com/cloud/support-for-runtimes">IBM Runtimes for Business</a> for more details.</td>
@@ -46,13 +47,13 @@
         <tr>
           <td><a target="_blank" href="https://www.jclarity.com/"><img src="dist/assets/jclarity.png" alt="jClarity Logo"></a></td>
           <td><strong>Hotspot VM</strong> - jClarity employs several of the founders of AdoptOpenJDK
-            and key engineers on the AdoptOpenJDK project.  Contact <a href="mailto:support@jclarity.com">support@jclarity.com</a> for more details.</td>
+            and key engineers on the AdoptOpenJDK project. See <a href="https://www.jclarity.com/adoptopenjdk-support/" target="_blank">jClarity's AdoptOpenJDK Support</a> for more details.</td>
         </tr>
       </table>
     </div>
 
-    <div class="anchor" onmouseover="document.getElementById('anchor3').style.visibility='visible'" onmouseout="document.getElementById('anchor3').style.visibility='hidden'"><a href="#roadmap" class="anchor">
-      <img src="dist/assets/anchor.png" id="anchor3" name="anchor" alt="anchor icon"></a>
+    <div class="anchor">
+      <a href="#roadmap" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="roadmap">Release Roadmap</a></h2>
     </div>
     <div class="margin-bottom">
@@ -61,49 +62,69 @@
         We produce builds based upon source code at <a href="https://openjdk.java.net" target="_blank">OpenJDK</a>,
         <a href="https://www.eclipse.org/openj9/" target="_blank">Eclipse OpenJ9</a>,
         and <a href="https://sap.github.io/SapMachine/" target="_blank">SAP Machine</a>.
-        </br>
-        </br>OpenJDK provides a new feature release every six months, and a maintenance/security update based upon each active release every three months. We will follow this schedule for publishing binary releases from AdoptOpenJDK to ensure you get the latest,
-        most secure builds.
-        </br>
-        </br>In addition, every three years one feature release will be designated as the Long Term Supported (LTS) release. We will produce LTS releases for at least four years. This assurance will allow you to stay on a well-defined code stream, and give
-        you time to migrate to the next, new, stable, LTS release when it becomes available.
-        </br>
-        </br>Based upon this roadmap, and starting with Java 8:
       </p>
+      <p>
+        OpenJDK provides a new feature release every six months, and a maintenance/security update based upon each active release every three months. We will follow this schedule for publishing binary releases from AdoptOpenJDK to ensure you
+        get the latest, most secure builds.
+      </p>
+      <p>In addition, every three years one feature release will be designated as the Long Term Supported (LTS) release. We will produce LTS releases for at least four years. This assurance will allow you to stay on a well-defined code stream,
+        and give you time to migrate to the next, new, stable, LTS release when it becomes available.
+      </p>
+      <p>Based upon this roadmap, and starting with Java 8:</p>
       <table>
         <tr>
           <th></th>
           <th>First Availability</th>
+          <th>Next Release</th>
           <th>End of Availability [1]</th>
         </tr>
         <tr>
-          <td>Java 8 (LTS)</td>
-          <td>March 2014</td>
+          <td><strong>Java 8 (LTS)</strong></td>
+          <td><strong>March 2014</strong></td>
+          <td>
+              <strong>1.8.0_222<br/>
+              16th July 2019</strong>
+          </td>
           <td><strong>At Least Sep 2023</strong></td>
         </tr>
         <tr>
           <td>Java 9</td>
           <td>Sept 2017</td>
+          <td>N/A</td>
           <td>March 2018</td>
         </tr>
         <tr>
           <td>Java 10</td>
           <td>March 2018</td>
+          <td>N/A</td>
           <td>Sept 2018</td>
         </tr>
         <tr>
-          <td>Java 11 (LTS)</td>
+          <td><strong>Java 11 (LTS)</strong></td>
           <td><strong>Sept 2018</strong></td>
+          <td>
+            <strong>11.0.4<br/>
+            16th July 2019</strong>
+          </td>
           <td><strong>At Least Sept 2022</strong></td>
         </tr>
+        <tr>
+          <td>Java 12</td>
+          <td>March 2019</td>
+          <td>
+              <strong>12.0.2<br/>
+              16th July 2019</strong>
+          </td>
+          <td>Sept 2019</td>
+        </tr>
       </table>
-      <p>
-        </br>Notes:
-        </br>[1] As a general philosophy, AdoptOpenJDK will continue to build binaries for LTS releases as long as the corresponding upstream source is actively maintained.
+      <p style="margin-top: 3rem" role="contentinfo">
+        Notes:
+        <br/>[1] As a general philosophy, AdoptOpenJDK will continue to build binaries for LTS releases as long as the corresponding upstream source is actively maintained.
         The <a href="https://www.eclipse.org/openj9/docs/openj9_support/">Eclipse OpenJ9 Support Document</a> covers extra support info for that VM.
       </p>
     </div>
-  
+
     <div style="margin-top: 3rem;">
       <!--
       <a href="https://mail.openjdk.java.net/mailman/listinfo/adoption-discuss" id="dev-button" class="no-underline home-links">
