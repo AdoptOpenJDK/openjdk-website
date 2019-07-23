@@ -12,6 +12,9 @@ div#latest-selector {
   width: 60%;
   margin: auto;
   overflow-x: scroll;
+  @media (max-width: 500px) {
+    width: 90%;
+  };
 }
 
 .main-download__variant__table {
