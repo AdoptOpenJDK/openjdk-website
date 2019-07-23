@@ -9,7 +9,12 @@ const errorContainer = document.getElementById('error-container');
 module.exports.load = () => {
 
   Handlebars.registerHelper('fetchOS', function(title) {
-    return title.split(' ')[0]
+    if (title.split(' ')[2]) {
+      // This is so that XL binaries have Large Heap in the name still
+      return title.replace(title.split(' ')[1], '');
+    } else {
+      return title.split(' ')[0];
+    }
   });
 
   Handlebars.registerHelper('fetchArch', function(title) {
