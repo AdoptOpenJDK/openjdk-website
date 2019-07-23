@@ -15,6 +15,9 @@ div#latest-selector {
   @media (max-width: 500px) {
     width: 90%;
   };
+  @media (min-width: 2100px) {
+    width: 40%;
+  };
 }
 
 .main-download__variant__table {
