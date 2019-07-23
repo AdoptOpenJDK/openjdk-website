@@ -1,5 +1,5 @@
-const {findPlatform, getBinaryExt, getInstallerExt, getLogo, getOfficialName, getPlatformOrder,
-    getVariantObject, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
+const {findPlatform, getBinaryExt, getInstallerExt, getSupportedVersion, getOfficialName, getPlatformOrder,
+    getVariantObject, detectLTS, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -7,6 +7,33 @@ const errorContainer = document.getElementById('error-container');
 
 // When releases page loads, run:
 module.exports.load = () => {
+
+  Handlebars.registerHelper('fetchOS', function(title) {
+    return title.split(' ')[0]
+  });
+
+  Handlebars.registerHelper('fetchArch', function(title) {
+    return title.split(' ')[1]
+  });
+
+  Handlebars.registerHelper('fetchInstallerExt', function(filename) {
+    return `.${filename.split('.').pop()}`;
+  });
+
+  const LTS = detectLTS(`${variant}-${jvmVariant}`);
+
+  const styles = `
+  .download-last-version:after {
+      content: "${LTS}";
+  }
+  `
+  if (LTS !== null) {
+    const styleSheet = document.createElement('style')
+    styleSheet.type = 'text/css'
+    styleSheet.innerText = styles
+    document.head.appendChild(styleSheet)
+  }
+
   setRadioSelectors();
 
   loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, buildLatestHTML, () => {
@@ -49,8 +76,7 @@ function buildLatestHTML(releasesJson) {
         platform_name: platform,
         platform_official_name: getOfficialName(platform),
         platform_ordinal: getPlatformOrder(platform),
-        platform_logo: getLogo(platform),
-
+        platform_supported_version: getSupportedVersion(platform),
         release_name: releaseAsset.release_name,
         release_link: releaseAsset.release_link,
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
@@ -82,14 +108,7 @@ function buildLatestHTML(releasesJson) {
   });
 
   const templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
-  const templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
   document.getElementById('latest-selector').innerHTML = templateSelector({releases});
-  document.getElementById('latest-info').innerHTML = templateInfo({releases});
-  if (jvmVariant == 'hotspot') {
-    document.getElementById('docker_link').href = 'https://hub.docker.com/r/adoptopenjdk/' + variant;
-  } else {
-    document.getElementById('docker_link').href = 'https://hub.docker.com/r/adoptopenjdk/' + variant + '-' + jvmVariant;
-  }
 
   setTickLink();
 

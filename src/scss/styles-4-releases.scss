@@ -8,216 +8,145 @@ $tableblue-even: #1F2F4E;
 
 // LATEST RELEASE CSS
 
-#latest-intro {
-  margin: 1rem 0;
-}
-
-#latest-build-name {
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-
-#latest-metadata-table {
-  color: $maingrey;
-  margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: 0.3rem;
-}
-
-#latest-metadata-table td {
-  padding: 0.5rem 1.5rem;
-  background-color: rgba(21, 41, 53, 0.05);
-  color: $mainblue;
-  margin: 0.3rem 0;
-  border-bottom: .2rem solid rgba(21, 41, 53, 0.15);
-  border-radius: 0.2rem;
-}
-
-#latest-metadata-table td {
-  display: inline-block;
-  width: 80%;
-}
-
-.latest-grid-border {
-  border: .1rem solid $maingrey;
-}
-
-#latest-selector {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+div#latest-selector {
+  width: 60%;
   margin: auto;
-  // SET THIS MAX WIDTH PROPERTY TO CHANGE THE MAX # OF PLATFORMS THAT CAN APPEAR ON EACH ROW
-  max-width: 42rem;
+  overflow-x: scroll;
 }
 
-#latest-selector div.latest-asset {
-  float: left;
-  cursor: pointer;
-  min-width: 9.8rem;
-  padding: 2rem 0;
-  background-color: rgba(#fff,.6);
+.main-download__variant__table {
+    width: 100%;
+    border-spacing: 0 10px !important;
+    border-collapse: inherit !important;
+    margin: 0 auto;
+    table-layout: fixed;
+    overflow-x:auto !important;
 }
 
-#latest-selector div.latest-asset:hover {
-  color: $mainblue;
-  background-color: white;
-}
-
-#latest-selector div.docker-asset {
-  float: left;
-  cursor: pointer;
-  min-width: 9.8rem;
-  padding: 2rem 0;
-  background-color: rgba(#fff,.6);
-}
-
-#latest-selector div.docker-asset:hover {
-  color: $mainblue;
-  background-color: white;
-}
-
-#latest-selector img {
-  height: 3.5rem;
-}
-
-#latest-selector var {
-  display: block;
-  margin-top: 0.5rem;
-}
-
-#latest-info {
-  display: inline-block;
-  max-width: 65rem;
-  margin: auto;
-}
-
-#latest-info .latest-info-container {
-  background-color: white;
-  padding: 3rem 2rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-#latest-info img {
-  height: 4.5rem;
-}
-
-#latest-info .platform-section {
-  display: inline-block;
-  padding: 1rem 2rem;
-  border-right: 0.2rem solid rgba(21,41,53,.1);
-  min-width: 10rem;
-  h2 {
-    margin-bottom: 0;
+.main-download__variant__table td {
+    background-color: #ffffff;
     white-space: nowrap;
-  }
 }
 
-#latest-info .platform-section .latest-selector-back-button {
-  cursor: pointer;
-  color: $brighterblue;
-  margin-bottom: 0;
+.main-download__variant__name {
+    background-color: #333333 !important;
+    border-right: 1px solid #f0f0f0;
+    width: 12em;
 }
 
-#latest-info .content-section {
-  display: inline-block;
-  margin: auto;
-  padding: 0 2rem;
+.main-download__variant__name span {
+    display: block;
+    text-align: center;
 }
 
-.latest-block {
-  display: inline-block;
-  vertical-align: top;
-  margin: 2rem 1rem 1rem;
+.main-download__variant__architecture span, .main-download__variant__java-package span, .main-download__variant__os span {
+    color: #777777;
+    display: block;
+    text-align: center;
+    font-weight: 400;
 }
 
-.latest-block a.latest-download-button {
-  background-color: $brighterblue;
-  display: block;
-  color: $maingrey;
-  border-radius: 0.2rem;
-  line-height: 2.5rem;
-  cursor: pointer;
-  margin: 1rem 0;
-  padding: 0 2.5rem;
+.main-download__variant__name span:nth-child(1) {
+    margin-top: 16px;
+    margin-bottom: 7px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.latest-block a.latest-download-button:hover {
-  background-color: rgb(68, 124, 195);
-  color: $maingrey;
+.main-download__variant__name span:nth-child(2) {
+    margin-bottom: 15px;
+    color: #cccccc;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-.latest-block .small-dl-text {
-  font-size: .7rem;
-  line-height: 1.2rem;
-  transform: translateY(-0.4rem);
+.main-download__variant__sub-table {
+    width: 100%;
+    border-spacing: 0 1px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.latest-block a.latest-download-button-grey {
-  background-color: $accentgrey;
-  color: $mainblue;
+.main-download__variant__sub-table__row {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #f0f0f0;
 }
 
-.latest-block a.latest-download-button-grey:hover {
-  background-color: $palegrey;
-  color: $mainblue;
+.main-download__variant__download__title {
+    color: #777777;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: 1px dotted #777777;
+    cursor: pointer;
 }
 
-.tick img {
-    height: 2.0rem !important;
-    vertical-align: middle;
-    padding: 5px;
+.main-download__variant__sub-table__copy-title {
+    position: relative;
+    cursor: pointer;
 }
 
-.latest-block .tick {
-  float: right;
-  padding-left: 10px;
+.main-download__variant__sub-table__download {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 75px;
+    height: 40px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: $brighterblue;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-.latest-block a.a-button {
-  min-width: 12rem;
-  box-sizing: border-box;
+.main-download__variant__architecture, .main-download__variant__java-package {
+    border-right: 1px solid #f0f0f0;
+    width: 8em;
 }
 
-.vertical-align{
-  vertical-align: top;
+.main-download__variant__os {
+    border-right: 1px solid #f0f0f0;
+    @media (max-width: 1200px) {
+      width: 12.5em !important;
+    };
 }
 
-.binary-grey .latest-block a.a-button {
-  background-color: $accentgrey;
-  &:hover {
-    background-color: $palegrey;
-  }
-  div.large-dl-text {
-    color: $mainblue;
-  }
-  div.small-dl-text {
-    color: rgba(21, 41, 53, 0.7);
-  }
+.main-download__variant__os span:nth-child(2) {
+    font-size: 14px;
 }
 
-.latest-block .latest-details p {
-  font-size: .8rem;
-  line-height: 1.2rem;
-}
-
-#latest-table span.tick {
-  float: right;
-  position: absolute;
-  transform: translate(4rem, 0.85rem);
-  img {
-    height: 1.2rem;
-  }
-}
-
-.releaseName, .releaseDateTime {
-  font-size: 0.8rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.officialName {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.download-last-version:after {
+    width: 42px;
+    line-height: 19px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: $brighterblue;
+    margin-left: 9px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
