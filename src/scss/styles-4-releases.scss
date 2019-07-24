@@ -9,15 +9,12 @@ $tableblue-even: #1F2F4E;
 // LATEST RELEASE CSS
 
 div#latest-selector {
-  width: 60%;
   margin: auto;
   overflow-x: scroll;
-  @media (max-width: 500px) {
+  width: 70%;
+  @media (max-width: 1150px) {
     width: 90%;
-  };
-  @media (min-width: 2100px) {
-    width: 40%;
-  };
+  }
 }
 
 .main-download__variant__table {
@@ -31,7 +28,7 @@ div#latest-selector {
 
 .main-download__variant__table td {
     background-color: #ffffff;
-    white-space: nowrap;
+    width: 10em;
 }
 
 .main-download__variant__name {
@@ -107,7 +104,7 @@ div#latest-selector {
     -ms-flex-pack: center;
     justify-content: center;
     text-decoration: none;
-    width: 75px;
+    width: 8em;
     height: 40px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
@@ -117,16 +114,17 @@ div#latest-selector {
     font-weight: 400;
 }
 
-.main-download__variant__architecture, .main-download__variant__java-package {
+.main-download__variant__architecture {
     border-right: 1px solid #f0f0f0;
-    width: 8em;
+    width: 6em !important;
 }
 
 .main-download__variant__os {
     border-right: 1px solid #f0f0f0;
-    @media (max-width: 1200px) {
-      width: 12.5em !important;
-    };
+}
+
+.main-download__variant__sub-table__row {
+  width: 8em;
 }
 
 .main-download__variant__os span:nth-child(2) {
@@ -155,4 +153,38 @@ div#latest-selector {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
+}
+
+.filter {
+  width: 8em;
+  height: 2em;
+  -webkit-appearance: button;
+  -webkit-border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-padding-end: 20px;
+  -webkit-padding-start: 2px;
+  -webkit-user-select: none;
+  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+  background-position: 97% center;
+  background-repeat: no-repeat;
+  border: 1px solid #AAA;
+  color: #555;
+  font-size: inherit;
+  margin: 20px;
+  overflow: hidden;
+  padding: 5px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.filter-divs {
+  width: 40em;
+  margin: auto;
+  @media (max-width: 600px) {
+    width: 50%;
+  }
+}
+
+.filter-os {
+  float: left;
 }

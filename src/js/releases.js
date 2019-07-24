@@ -141,6 +141,75 @@ global.selectLatestPlatform = (thisPlatform) => {
   window.location.hash = thisPlatform.toLowerCase();
 }
 
+global.filterOS = () => {
+  let os = document.getElementById('os-filter');
+  let arch = document.getElementById('arch-filter');
+  if (arch.options[arch.selectedIndex].value === 'Any') {
+    filterTable(os.options[os.selectedIndex].value, 'os')
+  } else if (os.options[os.selectedIndex].value == 'Any') {
+    global.filterArch()
+  } else {
+    filterTable(os.options[os.selectedIndex].value, 'multi', arch.options[arch.selectedIndex].value)
+  }
+}
+
+global.filterArch = () => {
+  let arch = document.getElementById('arch-filter');
+  let os = document.getElementById('os-filter');
+  if (os.options[os.selectedIndex].value === 'Any') {
+    filterTable(arch.options[arch.selectedIndex].value, 'arch')
+  } else if (arch.options[arch.selectedIndex].value == 'Any') {
+    global.filterOS()
+  } else {
+    filterTable(arch.options[arch.selectedIndex].value, 'multi', os.options[os.selectedIndex].value)
+  }
+}
+
+function filterTable(string, type, string1) {
+  let tables = document.getElementById('latest-selector').getElementsByClassName('releases-table');
+  for (let table of tables) {
+    if (type === 'multi') {
+      let os = table.querySelector('.os').innerHTML;
+      let arch = table.querySelector('.arch').innerHTML;
+      if (os.startsWith(string) || arch === string) {
+        if (os.startsWith(string1) || arch === string1) {
+          table.style.display = '';
+        } else {
+          table.style.display = 'none';
+        }
+      } else {
+        table.style.display = 'none';
+      }
+    }
+
+    if (type === 'os') {
+      if (string === 'Any') {
+        table.style.display = '';
+      } else {
+        let os = table.querySelector('.os').innerHTML;
+        if (os.startsWith(string)) {
+          table.style.display = '';
+        } else {
+          table.style.display = 'none';
+        }
+      }
+    }
+
+    if (type === 'arch') {
+      if (string == 'Any') {
+        table.style.display = '';
+      } else {
+        let arch = table.querySelector('.arch').innerHTML;
+        if (arch === string) {
+          table.style.display = '';
+        } else {
+          table.style.display = 'none';
+        }
+      }
+    }
+  }
+}
+
 global.unselectLatestPlatform = (keephash) => {
   if (!keephash) {
     history.pushState('', document.title, window.location.pathname + window.location.search);

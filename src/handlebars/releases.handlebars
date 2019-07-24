@@ -37,11 +37,36 @@
       <a id="description_link" href=""></a>
       <h3><a href="./release_notes.html">All Release Notes</a></h3>
 
+      <div class="filter-divs">
+        <div class="filter-os filter-div">
+          <span><strong>Operating System:</strong></span>
+          <select id="os-filter" class="filter" onchange="filterOS()">
+            <option value="Any">-Any-</option>
+            <option value="Linux">Linux</option>
+            <option value="macOS">macOS</option>
+            <option value="AIX">AIX</option>
+            <option value="Windows">Windows</option>
+            <option value="Solaris">Solaris</option>
+          </select>
+        </div>
+
+        <div class="filter-arch filter-div">
+          <span><strong>Architecture:</strong></span>
+          <select id="arch-filter" class="filter" onchange="filterArch()">
+            <option value="Any">-Any-</option>
+            <option value="x64">x64</option>
+            <option value="x32">x32</option>
+            <option value="s390x">s390x</option>
+          </select>
+        </div>
+      </div>
+
       <div id="latest-selector">
+
         <script id="template-selector" type="text/x-handlebars-template">
           {{! Create each platform's selector tile }}
           \{{#each releases}}
-              <table class="main-download__variant__table">
+              <table class="main-download__variant__table releases-table">
                  <tbody>
                     <tr>
                        <td class="main-download__variant__name">
@@ -49,11 +74,11 @@
                           <span class="download-last-version">AdoptOpenJDK</span>
                        </td>
                        <td class="main-download__variant__os">
-                          <span>\{{fetchOS platform_official_name}}</span>
+                          <span class="os">\{{fetchOS platform_official_name}}</span>
                           <span>\{{platform_supported_version}}</span>
                        </td>
                        <td class="main-download__variant__architecture">
-                          <span>\{{fetchArch platform_official_name}}</span>
+                          <span class="arch">\{{fetchArch platform_official_name}}</span>
                        </td>
                        <td class="main-download__variant__download">
                           <table class="main-download__variant__sub-table">
@@ -66,10 +91,7 @@
                                          <tbody>
                                             <tr>
                                                <td>
-                                                  <!-- <span class="main-download__variant__download__title overlay-clipboard-js" data-name="5fbf6921641711033be7725c584af97ba2a61d678598134b5179a65e1224af66">Checksum (SHA256)</span> -->
                                                   <span class="main-download__variant__download__title"><a href='\{{installer_link}}.sha256.txt' class='dark-link' target='_blank'>Checksum (SHA256)</a></span>
-                                                  <i class="fa fa-download" aria-hidden="true"></i>
-                                                  </span>
                                                </td>
                                             </tr>
                                             <tr>
@@ -91,8 +113,6 @@
                                          <tr>
                                             <td>
                                                <span class="main-download__variant__download__title"><a href='\{{checksum_link}}' class='dark-link' target='_blank'>Checksum (SHA256)</a></span>
-                                               <i class="fa fa-download" aria-hidden="true"></i>
-                                               </span>
                                             </td>
                                          </tr>
                                          <tr>
