@@ -117,8 +117,7 @@ function buildLatestHTML(releasesJson) {
 
   setTickLink();
 
-  displayLatestPlatform();
-  window.onhashchange = displayLatestPlatform;
+  global.populateFilters('all');
 
   loading.innerHTML = ''; // remove the loading dots
 
@@ -126,26 +125,12 @@ function buildLatestHTML(releasesJson) {
   latestContainer.className = latestContainer.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated fadeIn '); // make this section visible (invisible by default), with animated fade-in
 }
 
-function displayLatestPlatform() {
-  const platformHash = window.location.hash.substr(1).toUpperCase();
-  const thisPlatformInfo = document.getElementById(`latest-info-${platformHash}`);
-
-  if (thisPlatformInfo) {
-    global.unselectLatestPlatform('keep the hash');
-    document.getElementById('latest-selector').classList.add('hide');
-    thisPlatformInfo.classList.remove('hide');
-  }
-}
-
-global.selectLatestPlatform = (thisPlatform) => {
-  window.location.hash = thisPlatform.toLowerCase();
-}
-
 global.filterOS = () => {
   let os = document.getElementById('os-filter');
   let arch = document.getElementById('arch-filter');
   if (arch.options[arch.selectedIndex].value === 'Any') {
     filterTable(os.options[os.selectedIndex].value, 'os')
+    global.populateFilters('arch')
   } else if (os.options[os.selectedIndex].value == 'Any') {
     global.filterArch()
   } else {
@@ -158,6 +143,7 @@ global.filterArch = () => {
   let os = document.getElementById('os-filter');
   if (os.options[os.selectedIndex].value === 'Any') {
     filterTable(arch.options[arch.selectedIndex].value, 'arch')
+    global.populateFilters('os')
   } else if (arch.options[arch.selectedIndex].value == 'Any') {
     global.filterOS()
   } else {
@@ -165,8 +151,48 @@ global.filterArch = () => {
   }
 }
 
+global.populateFilters = (filter) => {
+  let releaseTable = document.getElementById('latest-selector').getElementsByClassName('releases-table');
+  let OSES = ['Any'];
+  let ARCHES = ['Any'];
+  for (let release of releaseTable) {
+    if (release.style.display !== 'none') {
+      OSES.push(release.querySelector('.os').innerHTML.split(' ')[0])
+      ARCHES.push(release.querySelector('.arch').innerHTML)
+    }
+  }
+
+  if (filter == 'all' || filter == 'os') {
+    let osFilter = document.getElementById('os-filter');
+    let selected = osFilter.options[osFilter.selectedIndex].value
+    osFilter.innerHTML = '';
+
+    for (let os of new Set(OSES)) {
+      let option = document.createElement('option');
+      option.text = os;
+      option.value = os;
+      osFilter.append(option);
+    }
+    osFilter.value=selected;
+  }
+
+  if (filter == 'all' || filter == 'arch') {
+    let archFilter = document.getElementById('arch-filter');
+    let selected = archFilter.options[archFilter.selectedIndex].value
+    archFilter.innerHTML = '';
+
+    for (let arch of new Set(ARCHES)) {
+      let option = document.createElement('option');
+      option.text = arch;
+      option.value = arch;
+      archFilter.append(option)
+    }
+    archFilter.value=selected;
+  }
+}
+
 function filterTable(string, type, string1) {
-  let tables = document.getElementById('latest-selector').getElementsByClassName('releases-table');
+  let tables = document.getElementById('latest-selector').getElementsByClassName('releases-table')
   for (let table of tables) {
     if (type === 'multi') {
       let os = table.querySelector('.os').innerHTML;
@@ -208,19 +234,4 @@ function filterTable(string, type, string1) {
       }
     }
   }
-}
-
-global.unselectLatestPlatform = (keephash) => {
-  if (!keephash) {
-    history.pushState('', document.title, window.location.pathname + window.location.search);
-  }
-
-  const platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
-  const platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
-
-  for (let i = 0; i < platformButtons.length; i++) {
-    platformInfoBoxes[i].classList.add('hide');
-  }
-
-  document.getElementById('latest-selector').classList.remove('hide');
 }
