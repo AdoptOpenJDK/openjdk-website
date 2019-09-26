@@ -39,7 +39,7 @@
         <p>
           <a href="https://community.oracle.com/community/java/jcp/adopt-openjdk">AdoptOpenJDK</a> is a
           community of Java User Group (JUG) members, Java developers and vendors (including Azul, Amazon, GoDaddy, IBM,
-          jClarity (now Microsoft), Microsoft, Pivotal and Red Hat) who are advocates of
+          jClarity (acquired by Microsoft), Microsoft, Pivotal and Red Hat) who are advocates of
           <a target="_blank" href="https://openjdk.java.net">OpenJDK</a>, the open source
           project which forms the basis of the Java programming language and
           platform. The group also has other activities which you can discover in
@@ -56,28 +56,30 @@
           <ul>
             <li>Build scripts and other code to produce the binaries, the website and other build infrastructure are licensed under
               <a target="_blank" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.</li>
-            <li>OpenJDK code itself is licensed under <a target="_blank" href="https://openjdk.java.net/legal/gplv2+ce.html">GPL v2 with Classpath Exception</a>.</li>
+            <li>OpenJDK code itself is licensed under <a target="_blank" href="https://openjdk.java.net/legal/gplv2+ce.html">GPL v2 with Classpath Exception</a> (GPLv2+CE).</li>
             <li>Eclipse OpenJ9 is licensed under <a target="_blank" href="https://github.com/eclipse/openj9/blob/master/LICENSE">Several licenses</a>.</li>
           </ul>
       </div>
 
       <div class="margin-bottom">
         <h2 class="bold">Usage FAQ</h2>
-        The following section should not be construed as formal legal advice.  For that, please seek out a qualified lawyer.
+        <p>The following section should not be construed as formal legal advice.  For that, please seek out a qualified lawyer.</p>
         <ol>
           <li>
-            Can I distribute AdoptOpenJDK binaries?<br/>
+            <strong>Can I distribute AdoptOpenJDK binaries?</strong><br/>
             Yes.
           </li>
           <li>
-            Can I bundle AdoptOpenJDK binaries in my application and distribute them?<br/>
-            For Hotspot based binaries, Yes. The GPL v2 with Classpath Exception allows you do this<br/>
-            For Eclipse OpenJ9 based binaries, Yes.  The licenses are in essence compatible with GPL v2 with Classpath Exception.
+            <strong>Can I bundle AdoptOpenJDK binaries in my application and distribute them?</strong><br/>
+
+              * Hotspot based binaries, Yes. The GPLv2+CE license allows you do this.<br/>
+              * Eclipse OpenJ9 based binaries, Yes. The licenses allow for this.
+
           </li>
           <li>
-            I heard some folks wondering if the lack of TCK/JCK putting AdoptOpenJDK under legal risk.<br/>
-            Does distributing the AdoptOpenJDK binary (whether part of my app or stand alone) expose me to legal risk?<br/>
-            No. AdoptOpenJDK has the same source code + one minor patches (under the same license) as OpenJDK
+            <strong>I heard some folks wondering if the lack of TCK/JCK putting AdoptOpenJDK under legal risk.
+              Does distributing the AdoptOpenJDK binary (whether part of my app or stand alone) expose me to legal risk?</strong><br/>
+            No. AdoptOpenJDK has the same source code + one minor patches (under the same license) as OpenJDK.
           </li>
         </ol>
       </div>
