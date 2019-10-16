@@ -28,7 +28,7 @@ module.exports.getVariantObject = (variantName) => variants.find((variant) => va
 
 module.exports.findPlatform = (binaryData) => {
   const matchedPlatform = platforms.filter((platform) => {
-      return platform.hasOwnProperty('attributes')
+      return Object.prototype.hasOwnProperty.call(platform, 'attributes')
         && Object.keys(platform.attributes).every((attr) => platform.attributes[attr] === binaryData[attr])
     })[0];
 
