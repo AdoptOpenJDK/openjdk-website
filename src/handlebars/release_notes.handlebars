@@ -78,7 +78,7 @@
         <li>S8141570: Fix Zero interpreter build for --disable-precompiled-headers</li>
         <li>S8147502: Digest is incorrectly truncated for ECDSA signatures when the bit length of n is less than the field size</li>
         <li>S8147611: G1 - Missing memory barrier in start_cset_region_for_worker</li>
-        <li>S8151066: assert(0 &lt;= i && i &lt; length()) failed: index out of bounds</li>
+        <li>S8151066: assert(0 &lt;= i &amp;&amp; i &lt; length()) failed: index out of bounds</li>
         <li>S8151486: Class.forName causes memory leak</li>
         <li>S8152856: Xcode 7.3 -Wshift-negative-value compile failure on Mac OS X</li>
         <li>S8153732: Windows remote printer changes do not reflect in lookupPrintServices()</li>
@@ -136,7 +136,7 @@
         <li>S8223227: Rename acquire_tag_map() to tag_map_acquire() in jvmtiEnvBase</li>
         <li>S8224560: (tz) Upgrade time-zone data to tzdata2019a</li>
         <li>S8224580: Matcher can cause oop field/array element to be reloaded</li>
-        <li>S8225423: GTK L&F: JSplitPane: There is no divider shown</li>
+        <li>S8225423: GTK L&amp;F: JSplitPane: There is no divider shown</li>
         <li>S8225425: java.lang.UnsatisfiedLinkError: net.dll: Can't find dependent libraries</li>
         <li>S8225580: tzdata2018i integration causes test failures on jdk-13</li>
         <li>S8225636: SA can't handle prelinked libraries</li>
@@ -146,7 +146,7 @@
         <li>S8226798: JVM crash in klassItable::initialize_itable_for_interface(int, InstanceKlass*, bool, Thread*)</li>
         <li>S8226870: OpenJDK 8u JRE contains clhsdb and hsdb launchers</li>
         <li>S8226928: [TESTBUG] test/java/net/NetworkInterface/IPv4Only.java fails intermittently on AIX</li>
-        <li>S8226964: [Yaru] GTK L&F: There is no difference between menu selected and de-selected</li>
+        <li>S8226964: [Yaru] GTK L&amp;F: There is no difference between menu selected and de-selected</li>
         <li>S8227018: CompletableFuture should not call Runtime.availableProcessors on fast path</li>
         <li>S8228405: Incorrect format strings in PhaseIdealLoop::rc_predicate</li>
         <li>S8228440: TestAESCiphers tests fail with "access denied" trying to access ArrayUtil</li>
@@ -545,7 +545,7 @@
          <li>S8210130: java/net/httpclient/UnknownBodyLengthTest.java failed</li>
          <li>S8210314: [aix] NMT does not show "Safepoint" memory type</li>
          <li>S8210389: C2: assert(n->outcnt() != 0 || C->top() == n || n->is_Proj()) failed: No dead instructions after post-alloc</li>
-         <li>S8210390: C2 still crashes with "assert(mode == ControlAroundStripMined && use == sfpt) failed: missed a node"</li>
+         <li>S8210390: C2 still crashes with "assert(mode == ControlAroundStripMined &amp;&amp; use == sfpt) failed: missed a node"</li>
          <li>S8210408: Refactor java.util.ResourceBundle:i18n shell tests to plain java tests</li>
          <li>S8210729: Clean up macosx static library handling</li>
          <li>S8210919: Remove statically linked libjli on Windows</li>
@@ -739,7 +739,7 @@
          <li>S8225386: test for JDK-8216261 fails in Windows</li>
          <li>S8225388: Running jcmd Compiler.CodeHeap_Analytics all 0 cause crash.</li>
          <li>S8225390: ProblemList sun/security/pkcs11/sslecc/ClientJSSEServerJSSE.java due to JDK-8161536</li>
-         <li>S8225423: GTK L&F: JSplitPane: There is no divider shown</li>
+         <li>S8225423: GTK L&amp;F: JSplitPane: There is no divider shown</li>
          <li>S8225425: java.lang.UnsatisfiedLinkError: net.dll: Can't find dependent libraries</li>
          <li>S8225543: Jcmd fails to attach to the Java process on Linux using the main class name if whitespace options were used to launch the process</li>
          <li>S8225580: tzdata2018i integration causes test failures on jdk-13</li>
@@ -753,7 +753,7 @@
          <li>S8226543: Reduce GC pressure during message digest calculations in password-based encryption</li>
          <li>S8226607: Inconsistent info between pcsclite.md and MUSCLE headers</li>
          <li>S8226798: JVM crash in klassItable::initialize_itable_for_interface(int, InstanceKlass*, bool, Thread*)</li>
-         <li>S8226964: [Yaru] GTK L&F: There is no difference between menu selected and de-selected</li>
+         <li>S8226964: [Yaru] GTK L&amp;F: There is no difference between menu selected and de-selected</li>
          <li>S8227011: Starting a JFR recording in response to JVMTI VMInit and / or Java agent premain corrupts memory</li>
          <li>S8227041: runtime/memory/RunUnitTestsConcurrently.java has a memory leak</li>
          <li>S8227117: normal interpreter table is not restored after single stepping with TLH</li>
