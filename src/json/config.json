@@ -70,7 +70,7 @@
       "officialName": "OpenJDK 12 with HotSpot",
       "jvm": "HotSpot",
       "label": "OpenJDK 12",
-      "lts": "latest"
+      "lts": false
     },
     {
       "searchableName": "openjdk12-openj9",
@@ -78,6 +78,22 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 12",
+      "lts": false,
+      "descriptionLink": "https://www.eclipse.org/openj9"
+    },
+    {
+      "searchableName": "openjdk13-hotspot",
+      "officialName": "OpenJDK 13 with HotSpot",
+      "jvm": "HotSpot",
+      "label": "OpenJDK 13",
+      "lts": "latest"
+    },
+    {
+      "searchableName": "openjdk13-openj9",
+      "officialName": "OpenJDK 13 with Eclipse OpenJ9",
+      "description": "Eclipse OpenJ9",
+      "jvm": "OpenJ9",
+      "label": "OpenJDK 13",
       "lts": "latest",
       "descriptionLink": "https://www.eclipse.org/openj9"
     }
@@ -122,7 +138,7 @@
       "supported_version": "glibc version 2.12 or higher"
     },
     {
-      "officialName": "Windows x32",
+      "officialName": "Windows x86",
       "searchableName": "X32_WIN",
       "attributes": {
         "heap_size": "normal",

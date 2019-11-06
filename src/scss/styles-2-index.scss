@@ -181,18 +181,8 @@ h2.transition-bright {
   color: $brighterblue;
 }
 
-.hotspot-text, .openj9-text {
+.hotspot-text, .openj9-text, .lts-text {
   line-height: 1.2rem;
-  margin-bottom: -0.5rem;
-  white-space: normal;
-}
-
-.hotspot-text {
-  margin-top: 0;
-}
-
-.openj9-text {
-  margin-top: 1rem;
 }
 
 .help-jvm:hover ~ .popup-content, .popup-content:hover {

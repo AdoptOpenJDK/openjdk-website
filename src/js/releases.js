@@ -98,7 +98,7 @@ function buildLatestHTML(releasesJson) {
       checksum_link: releaseAsset.checksum_link,
       installer_link: releaseAsset.installer_link || undefined,
       installer_extension: getInstallerExt(platform),
-      size: Math.floor(releaseAsset.binary_size / 1024 / 1024)
+      size: Math.floor(releaseAsset.binary_size / 1000 / 1000)
     });
 
     // We have the first binary, so add the release asset.
