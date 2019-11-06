@@ -98,7 +98,7 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
       dlLatest.href = matchingFile.installer_link; // set the main download button's link to be the installer's download url
     } else {
       dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
-      dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary_size / 1024 / 1024)} MB`;
+      dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary_size / 1000 / 1000)} MB`;
     }
     // set the download button's version number to the latest release
     dlVersionText.innerHTML = matchingFile.release_name;
