@@ -1,5 +1,4 @@
 // prefix for assets (e.g. logo)
-const assetPath = './dist/assets/';
 
 const {platforms, variants} = require('../json/config');
 
@@ -68,8 +67,8 @@ module.exports.getBinaryExt = (searchableName) => lookup[searchableName].binaryE
 // gets the INSTALLER EXTENSION when you pass in 'searchableName'
 module.exports.getInstallerExt = (searchableName) => lookup[searchableName].installerExtension;
 
-// gets the LOGO WITH PATH when you pass in 'searchableName'
-module.exports.getLogo = (searchableName) => assetPath + lookup[searchableName].logo;
+// gets the Supported Version WITH PATH when you pass in 'searchableName'
+module.exports.getSupportedVersion = (searchableName) => lookup[searchableName].supported_version;
 
 // gets the INSTALLATION COMMAND when you pass in 'searchableName'
 module.exports.getInstallCommand = (searchableName) => lookup[searchableName].installCommand;
@@ -99,6 +98,20 @@ module.exports.detectOS = () => {
     return aPlatform.osDetectionString.toUpperCase().includes(platform.os.family.toUpperCase())
       && aPlatform.attributes.architecture.endsWith(platform.os.architecture); // 32 or 64 int
   }) || null;
+}
+
+module.exports.detectLTS = (version) => {
+  for (let variant of variants) {
+    if (variant.searchableName == version) {
+      if (variant.lts == true) {
+        return 'LTS'
+      } else if (variant.lts == false ) {
+        return null
+      } else {
+        return variant.lts
+      }
+    }
+  }
 }
 
 function toJson(response) {
