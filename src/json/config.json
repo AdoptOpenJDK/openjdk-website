@@ -136,7 +136,7 @@
       "osDetectionString": "not-to-be-detected"
     },
     {
-      "officialName": "Windows x32",
+      "officialName": "Windows x86",
       "searchableName": "X32_WIN",
       "attributes": {
         "heap_size": "normal",
