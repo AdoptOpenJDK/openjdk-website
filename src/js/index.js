@@ -82,9 +82,12 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
                 setTickLink();
               }
             }
-            // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-            if (uppercaseFilename.includes(uppercaseOSname)) {
-              matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
+            // thirdly check if JDK or JRE (we want to serve JDK by default)
+            if (eachAsset.binary_type == 'jdk') {
+              // fourthly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
+              if (uppercaseFilename.includes(uppercaseOSname)) {
+                matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
+              }
             }
           }
         }
