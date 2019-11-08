@@ -100,7 +100,7 @@ function buildNightlyHTML(files) {
       NIGHTLYOBJECT.thisGitLink = eachRelease.release_link;
       NIGHTLYOBJECT.thisOfficialName = getOfficialName(NIGHTLYOBJECT.thisPlatform);
       NIGHTLYOBJECT.thisBinaryLink = eachAsset.binary_link;
-      NIGHTLYOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1024 / 1024);
+      NIGHTLYOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1000 / 1000);
       NIGHTLYOBJECT.thisChecksumLink = eachAsset.checksum_link;
       NIGHTLYOBJECT.thisInstallerLink = eachAsset.installer_link || undefined;
       NIGHTLYARRAY.push(NIGHTLYOBJECT);

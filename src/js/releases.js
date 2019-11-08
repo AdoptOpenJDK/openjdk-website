@@ -1,5 +1,5 @@
-const {findPlatform, getBinaryExt, getInstallerExt, getLogo, getOfficialName, getPlatformOrder,
-    getVariantObject, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
+const {findPlatform, getBinaryExt, getInstallerExt, getSupportedVersion, getOfficialName, getPlatformOrder,
+    getVariantObject, detectLTS, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -7,6 +7,38 @@ const errorContainer = document.getElementById('error-container');
 
 // When releases page loads, run:
 module.exports.load = () => {
+
+  Handlebars.registerHelper('fetchOS', function(title) {
+    if (title.split(' ')[2]) {
+      // This is so that XL binaries have Large Heap in the name still
+      return title.replace(title.split(' ')[1], '');
+    } else {
+      return title.split(' ')[0];
+    }
+  });
+
+  Handlebars.registerHelper('fetchArch', function(title) {
+    return title.split(' ')[1]
+  });
+
+  Handlebars.registerHelper('fetchInstallerExt', function(filename) {
+    return `.${filename.split('.').pop()}`;
+  });
+
+  const LTS = detectLTS(`${variant}-${jvmVariant}`);
+
+  const styles = `
+  .download-last-version:after {
+      content: "${LTS}";
+  }
+  `
+  if (LTS !== null) {
+    const styleSheet = document.createElement('style')
+    styleSheet.type = 'text/css'
+    styleSheet.innerText = styles
+    document.head.appendChild(styleSheet)
+  }
+
   setRadioSelectors();
 
   loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, buildLatestHTML, () => {
@@ -49,8 +81,7 @@ function buildLatestHTML(releasesJson) {
         platform_name: platform,
         platform_official_name: getOfficialName(platform),
         platform_ordinal: getPlatformOrder(platform),
-        platform_logo: getLogo(platform),
-
+        platform_supported_version: getSupportedVersion(platform),
         release_name: releaseAsset.release_name,
         release_link: releaseAsset.release_link,
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
@@ -67,7 +98,7 @@ function buildLatestHTML(releasesJson) {
       checksum_link: releaseAsset.checksum_link,
       installer_link: releaseAsset.installer_link || undefined,
       installer_extension: getInstallerExt(platform),
-      size: Math.floor(releaseAsset.binary_size / 1024 / 1024)
+      size: Math.floor(releaseAsset.binary_size / 1000 / 1000)
     });
 
     // We have the first binary, so add the release asset.
@@ -82,19 +113,11 @@ function buildLatestHTML(releasesJson) {
   });
 
   const templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
-  const templateInfo = Handlebars.compile(document.getElementById('template-info').innerHTML);
   document.getElementById('latest-selector').innerHTML = templateSelector({releases});
-  document.getElementById('latest-info').innerHTML = templateInfo({releases});
-  if (jvmVariant == 'hotspot') {
-    document.getElementById('docker_link').href = 'https://hub.docker.com/r/adoptopenjdk/' + variant;
-  } else {
-    document.getElementById('docker_link').href = 'https://hub.docker.com/r/adoptopenjdk/' + variant + '-' + jvmVariant;
-  }
 
   setTickLink();
 
-  displayLatestPlatform();
-  window.onhashchange = displayLatestPlatform;
+  global.populateFilters('all');
 
   loading.innerHTML = ''; // remove the loading dots
 
@@ -102,32 +125,113 @@ function buildLatestHTML(releasesJson) {
   latestContainer.className = latestContainer.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated fadeIn '); // make this section visible (invisible by default), with animated fade-in
 }
 
-function displayLatestPlatform() {
-  const platformHash = window.location.hash.substr(1).toUpperCase();
-  const thisPlatformInfo = document.getElementById(`latest-info-${platformHash}`);
-
-  if (thisPlatformInfo) {
-    global.unselectLatestPlatform('keep the hash');
-    document.getElementById('latest-selector').classList.add('hide');
-    thisPlatformInfo.classList.remove('hide');
+global.filterOS = () => {
+  let os = document.getElementById('os-filter');
+  let arch = document.getElementById('arch-filter');
+  if (arch.options[arch.selectedIndex].value === 'Any') {
+    filterTable(os.options[os.selectedIndex].value, 'os')
+    global.populateFilters('arch')
+  } else if (os.options[os.selectedIndex].value == 'Any') {
+    global.filterArch()
+  } else {
+    filterTable(os.options[os.selectedIndex].value, 'multi', arch.options[arch.selectedIndex].value)
   }
 }
 
-global.selectLatestPlatform = (thisPlatform) => {
-  window.location.hash = thisPlatform.toLowerCase();
+global.filterArch = () => {
+  let arch = document.getElementById('arch-filter');
+  let os = document.getElementById('os-filter');
+  if (os.options[os.selectedIndex].value === 'Any') {
+    filterTable(arch.options[arch.selectedIndex].value, 'arch')
+    global.populateFilters('all')
+  } else if (arch.options[arch.selectedIndex].value == 'Any') {
+    global.filterOS()
+  } else {
+    filterTable(arch.options[arch.selectedIndex].value, 'multi', os.options[os.selectedIndex].value)
+  }
 }
 
-global.unselectLatestPlatform = (keephash) => {
-  if (!keephash) {
-    history.pushState('', document.title, window.location.pathname + window.location.search);
+global.populateFilters = (filter) => {
+  let releaseTable = document.getElementById('latest-selector').getElementsByClassName('releases-table');
+  let OSES = ['Any'];
+  let ARCHES = ['Any'];
+  for (let release of releaseTable) {
+    if (release.style.display !== 'none') {
+      OSES.push(release.querySelector('.os').innerHTML.split(' ')[0])
+      ARCHES.push(release.querySelector('.arch').innerHTML)
+    }
   }
 
-  const platformButtons = document.getElementById('latest-selector').getElementsByClassName('latest-asset');
-  const platformInfoBoxes = document.getElementById('latest-info').getElementsByClassName('latest-info-container');
+  if (filter == 'all' || filter == 'os') {
+    let osFilter = document.getElementById('os-filter');
+    let selected = osFilter.options[osFilter.selectedIndex].value
+    osFilter.innerHTML = '';
 
-  for (let i = 0; i < platformButtons.length; i++) {
-    platformInfoBoxes[i].classList.add('hide');
+    for (let os of new Set(OSES)) {
+      let option = document.createElement('option');
+      option.text = os;
+      option.value = os;
+      osFilter.append(option);
+    }
+    osFilter.value=selected;
   }
 
-  document.getElementById('latest-selector').classList.remove('hide');
+  if (filter == 'all' || filter == 'arch') {
+    let archFilter = document.getElementById('arch-filter');
+    let selected = archFilter.options[archFilter.selectedIndex].value
+    archFilter.innerHTML = '';
+
+    for (let arch of new Set(ARCHES)) {
+      let option = document.createElement('option');
+      option.text = arch;
+      option.value = arch;
+      archFilter.append(option)
+    }
+    archFilter.value=selected;
+  }
+}
+
+function filterTable(string, type, string1) {
+  let tables = document.getElementById('latest-selector').getElementsByClassName('releases-table')
+  for (let table of tables) {
+    if (type === 'multi') {
+      let os = table.querySelector('.os').innerHTML;
+      let arch = table.querySelector('.arch').innerHTML;
+      if (os.startsWith(string) || arch === string) {
+        if (os.startsWith(string1) || arch === string1) {
+          table.style.display = '';
+        } else {
+          table.style.display = 'none';
+        }
+      } else {
+        table.style.display = 'none';
+      }
+    }
+
+    if (type === 'os') {
+      if (string === 'Any') {
+        table.style.display = '';
+      } else {
+        let os = table.querySelector('.os').innerHTML;
+        if (os.startsWith(string)) {
+          table.style.display = '';
+        } else {
+          table.style.display = 'none';
+        }
+      }
+    }
+
+    if (type === 'arch') {
+      if (string == 'Any') {
+        table.style.display = '';
+      } else {
+        let arch = table.querySelector('.arch').innerHTML;
+        if (arch === string) {
+          table.style.display = '';
+        } else {
+          table.style.display = 'none';
+        }
+      }
+    }
+  }
 }

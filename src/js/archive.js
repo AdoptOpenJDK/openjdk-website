@@ -63,7 +63,7 @@ function buildArchiveHTML(aReleases) {
       release.platforms[platform].assets.push({
         type: binary_type,
         extension: 'INSTALLER' === binary_type ? getInstallerExt(platform) : getBinaryExt(platform),
-        size: Math.floor(aReleaseAsset.binary_size / 1024 / 1024),
+        size: Math.floor(aReleaseAsset.binary_size / 1000 / 1000),
         installer_link: aReleaseAsset.installer_link || undefined,
         installer_extension: getInstallerExt(platform),
         link: aReleaseAsset.binary_link,
