@@ -43,7 +43,7 @@ module.exports.load = () => {
     buildHomepageHTML(releasesJson, {}, OS);
   };
 
-  loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, () => {
+  loadLatestAssets(variant, jvmVariant, 'latest', undefined, handleResponse, () => {
     errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
       Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
     loading.innerHTML = ''; // remove the loading dots
@@ -65,8 +65,8 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
   // if the OS has been detected...
   if (OS) {
     releasesJson.forEach((eachAsset) => { // iterate through the assets attached to this release
-      const uppercaseFilename = eachAsset.binary_name.toUpperCase();
-      const thisPlatform = findPlatform(eachAsset);
+      const uppercaseFilename = eachAsset.binary.package.name.toUpperCase();
+      const thisPlatform = findPlatform(eachAsset.binary);
 
       // firstly, check if a valid searchableName has been returned (i.e. the platform is recognised)...
       if (thisPlatform) {
@@ -83,7 +83,7 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
               }
             }
             // thirdly check if JDK or JRE (we want to serve JDK by default)
-            if (eachAsset.binary_type == 'jdk') {
+            if (eachAsset.binary.image_type == 'jdk') {
               // fourthly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
               if (uppercaseFilename.includes(uppercaseOSname)) {
                 matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
@@ -97,10 +97,10 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
 
   // if there IS a matching binary for the user's OS...
   if (matchingFile) {
-    if (matchingFile.installer_link) {
-      dlLatest.href = matchingFile.installer_link; // set the main download button's link to be the installer's download url
+    if (matchingFile.binary.installer.link) {
+      dlLatest.href = matchingFile.binary.installer.link; // set the main download button's link to be the installer's download url
     } else {
-      dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
+      dlLatest.href = matchingFile.binary.package.link; // set the main download button's link to be the binary's download url
       dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary_size / 1000 / 1000)} MB`;
     }
     // set the download button's version number to the latest release

@@ -131,7 +131,7 @@ function toJson(response) {
 
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
-function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) {
+function queryAPI(release, url, openjdkImp, type, vendor, errorHandler, handleResponse) {
   if (!url.endsWith('?')) {
     url += '?';
   }
@@ -139,10 +139,14 @@ function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) 
     url += `release=${release}&`;
   }
   if (openjdkImp !== undefined) {
-    url += `openjdk_impl=${openjdkImp}&`;
+    url += `jvm_impl=${openjdkImp}&`;
   }
   if (type !== undefined) {
     url += `type=${type}&`;
+  }
+
+  if (vendor !== undefined) {
+    url += `vendor=${vendor}`
   }
 
   loadUrl(url, (response) => {
@@ -158,18 +162,28 @@ module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, release, type,
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
+  
+  if (releaseType == 'releases') {
+    releaseType = 'ga'
+  } else if (releaseType == 'nightly') {
+    releaseType = 'ea'
+  }
 
-  const url = `https://api.adoptopenjdk.net/v2/info/${releaseType}/${variant}`;
-  queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
+  let url = `https://api.adoptopenjdk.net/v3/assets/feature_releases/${variant.replace(/\D/g,'')}/${releaseType}`
+
+  if (releaseType == 'ea') {
+    url += '?page_size=100&'
+  }
+
+  queryAPI(release, url, openjdkImp, type, 'adoptopenjdk', errorHandler, handleResponse);
 }
 
-module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
+module.exports.loadLatestAssets = (variant, openjdkImp, release, type, handleResponse, errorHandler) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
-
-  const url = `https://api.adoptopenjdk.net/v2/latestAssets/${releaseType}/${variant}`;
-  queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
+  const url = `https://api.adoptopenjdk.net/v3/assets/latest/${variant.replace(/\D/g,'')}/${openjdkImp}`;
+  queryAPI(release, url, openjdkImp, type, undefined, errorHandler, handleResponse);
 }
 
 function loadUrl(url, callback) {
@@ -338,4 +352,11 @@ module.exports.setRadioSelectors = () => {
       break;
     }
   }
+}
+
+global.renderChecksum = function(checksum) {
+  document.getElementById('modal-body').innerHTML = checksum
+  $( function() {
+    $('#myModal').modal('show');
+  } );
 }

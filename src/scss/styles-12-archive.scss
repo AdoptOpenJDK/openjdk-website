@@ -8,6 +8,15 @@ $tableblue-even: #1F2F4E;
 
 // ARCHIVE CSS
 
+div#archive-selector {
+  margin: auto;
+  overflow-x: scroll;
+  width: 70%;
+  @media (max-width: 1150px) {
+    width: 90%;
+  }
+}
+
 #archives-page .callout {
   max-width: 50rem;
   margin: auto auto 2rem;
@@ -61,4 +70,12 @@ $tableblue-even: #1F2F4E;
   font-weight: bold;
   margin-bottom: 0.5rem;
   display: inline-block;
+}
+
+.archive-downloads td {
+  width: 20em !important;
+}
+
+.main-download__variant__table td {
+  width: 14em !important;
 }

@@ -41,7 +41,7 @@ module.exports.load = () => {
 
   setRadioSelectors();
 
-  loadLatestAssets(variant, jvmVariant, 'releases', 'latest', undefined, buildLatestHTML, () => {
+  loadLatestAssets(variant, jvmVariant, 'latest', undefined, buildLatestHTML, () => {
     errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
       Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
     loading.innerHTML = ''; // remove the loading dots
@@ -61,7 +61,7 @@ function buildLatestHTML(releasesJson) {
   let releases = [];
 
   releasesJson.forEach((releaseAsset) => {
-    const platform = findPlatform(releaseAsset);
+    const platform = findPlatform(releaseAsset.binary);
 
     // Skip this asset if its platform could not be matched (see the website's 'config.json')
     if (!platform) {
@@ -69,7 +69,7 @@ function buildLatestHTML(releasesJson) {
     }
 
     // Skip this asset if it's not a binary type we're interested in displaying
-    const binary_type = releaseAsset.binary_type.toUpperCase();
+    const binary_type = releaseAsset.binary.image_type.toUpperCase();
     if (!['INSTALLER', 'JDK', 'JRE'].includes(binary_type)) {
       return;
     }
@@ -90,16 +90,24 @@ function buildLatestHTML(releasesJson) {
       };
     }
 
-    // Add the new binary to the release asset
-    release.binaries.push({
+    let binary_constructor = {
       type: binary_type,
       extension: getBinaryExt(platform),
-      link: releaseAsset.binary_link,
-      checksum_link: releaseAsset.checksum_link,
-      installer_link: releaseAsset.installer_link || undefined,
-      installer_extension: getInstallerExt(platform),
-      size: Math.floor(releaseAsset.binary_size / 1000 / 1000)
-    });
+      link: releaseAsset.binary.package.link,
+      checksum: releaseAsset.binary.package.checksum,
+      size: Math.floor(releaseAsset.binary.package.size / 1000 / 1000)
+    }
+
+    if (releaseAsset.binary.installer) {
+      binary_constructor.installer_link = releaseAsset.binary.installer.link
+      binary_constructor.installer_checksum = releaseAsset.binary.installer.checksum
+      binary_constructor.installer_extension = getInstallerExt(platform)
+      binary_constructor.installer_size =  Math.floor(releaseAsset.binary.installer.size / 1000 / 1000)
+    }
+
+    // Add the new binary to the release asset
+    release.binaries.push(binary_constructor);
+
 
     // We have the first binary, so add the release asset.
     if (release.binaries.length === 1) {
