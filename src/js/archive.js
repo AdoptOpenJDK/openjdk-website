@@ -7,11 +7,6 @@ const errorContainer = document.getElementById('error-container');
 
 // When archive page loads, run:
 module.exports.load = () => {
-
-  Handlebars.registerHelper('fetchInstallerExt', function(filename) {
-    return `.${filename.split('.').pop()}`;
-  });
-
   setRadioSelectors();
 
   loadAssetInfo(variant, jvmVariant, 'releases', undefined, undefined, buildArchiveHTML, () => {
@@ -59,7 +54,7 @@ function buildArchiveHTML(aReleases) {
 
       if (!release.platforms[platform]) {
         release.platforms[platform] = {
-          platform_official_name: getOfficialName(platform),
+          official_name: getOfficialName(platform),
           ordinal: getPlatformOrder(platform),
           assets: [],
         }
@@ -69,17 +64,17 @@ function buildArchiveHTML(aReleases) {
         type: binary_type,
         extension: 'INSTALLER' === binary_type ? getInstallerExt(platform) : getBinaryExt(platform),
         link: aReleaseAsset.package.link,
-        checksum: aReleaseAsset.package.checksum,
+        checksum_link: aReleaseAsset.package.checksum_link,
         size: Math.floor(aReleaseAsset.package.size / 1000 / 1000),
       }
-  
+
       if (aReleaseAsset.installer) {
         binary_constructor.installer_link = aReleaseAsset.installer.link
         binary_constructor.installer_checksum = aReleaseAsset.installer.checksum
         binary_constructor.installer_extension = getInstallerExt(platform)
         binary_constructor.installer_size =  Math.floor(aReleaseAsset.installer.size / 1000 / 1000)
       }
-  
+
       // Add the new binary to the release asset
       release.platforms[platform].assets.push(binary_constructor);
     });
@@ -98,26 +93,26 @@ function buildArchiveHTML(aReleases) {
   // Example: 'jdk8u191-b12' was released after 'jdk8u192-b12'
   sortByProperty(releases, 'release_name', true);
 
-  const templateSelector = Handlebars.compile(document.getElementById('template-selector').innerHTML);
-  document.getElementById('archive-selector').innerHTML = templateSelector({releases});
+  const template = Handlebars.compile(document.getElementById('template').innerHTML);
+  document.getElementById('archive-table-body').innerHTML = template({releases});
 
   setPagination();
 
   loading.innerHTML = ''; // remove the loading dots
 
   // show the archive list and filter box, with fade-in animation
-  const archiveContainer = document.getElementById('archive-container');
-  archiveContainer.className = archiveContainer.className.replace(/(?:^|\s)invisible(?!\S)/g, ' animated fadeIn '); // make this section visible (invisible by default), with animated fade-in
+  const archiveList = document.getElementById('archive-list');
+  archiveList.className = archiveList.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
 }
 
 function setPagination() {
   const container = document.getElementById('pagination-container');
-  const archiveSelector = document.getElementById('archive-selector');
+  const archiveTableBody = document.getElementById('archive-table-body');
 
   $(container).pagination({
-    dataSource: Array.from(archiveSelector.getElementsByClassName('main-download__variant__table')).map((row) => row.outerHTML),
-    pageSize: 3,
-    callback: (rows) => { archiveSelector.innerHTML = rows.join('') }
+    dataSource: Array.from(archiveTableBody.getElementsByClassName('release-row')).map((row) => row.outerHTML),
+    pageSize: 5,
+    callback: (rows) => { archiveTableBody.innerHTML = rows.join('') }
   });
 
   if (container.getElementsByTagName('li').length <= 3) {

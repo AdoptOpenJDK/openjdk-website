@@ -1,7 +1,5 @@
 {{> header title='Archive | ' style1='<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.css">' }}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <main class="grey-bg">
 
   <div id="archives-page">
@@ -36,97 +34,67 @@
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
     <div id="error-container"></div>
 
-    <div id="archive-container" class="invisible"></div>
-
-    {{> modal }}
+    <div id="archive-list" class="hide">
       <div id="pagination-container"></div>
-
-      <div id="archive-selector">
-        <script id="template-selector" type="text/x-handlebars-template">
-          {{! Create each platform's selector tile }}
-          \{{#each releases}}
-              <table class="main-download__variant__table releases-table">
-                  <tbody>
-                    <tr>
-                        <td class="main-download__variant__name">
-                          <span>\{{release_name}}</span>
-                          <span class="download-last-version">AdoptOpenJDK</span>
-                        </td>
-
-                        <td class="main-download__os__name">
-                        \{{#each platforms}}     
-                        <table class="main-download__os__sub-table">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <span class="os">\{{ platform_official_name}}</span>
-                              </td>
-                              <td class="archive-downloads">
-                              <table class="main-download__variant__sub-table">
-                                <tbody>
-                                  <tr>
-                              \{{#each assets}}
-                                 <td class="main-download__variant__sub-table__row">
-                                    <table>
-                                      <tbody>
-                                          <tr>
-                                            <td>
-                                                <span class="main-download__variant__download__title"><a href='javascript:renderChecksum("\{{checksum}}");' class='dark-link'>Checksum (SHA256)</a></span>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td>
-                                                <span>\{{type}} - \{{size}} MB</span>
-                                            </td>
-                                          </tr>
-                                      </tbody>
-                                    </table>
-                                </td>
-                                <td class="main-download__variant__sub-table__row">
-                                    <a class="main-download__variant__sub-table__download" href="\{{link}}"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;\{{extension}}</a>
-                                </td>
-                                \{{#if installer_link}}
-                                   <td class="main-download__variant__sub-table__row">
-                                    <table>
-                                      <tbody>
-                                          <tr>
-                                            <td>
-                                                <span class="main-download__variant__download__title"><a href='javascript:renderChecksum("\{{installer_checksum}}");' class='dark-link'>Checksum (SHA256)</a></span>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td>
-                                                <span>\{{type}} - \{{size}} MB</span>
-                                            </td>
-                                          </tr>
-                                      </tbody>
-                                    </table>
-                                  </td>
-                                  <td class="main-download__variant__sub-table__row">
-                                      <a class="main-download__variant__sub-table__download" href="\{{installer_link}}"><i class="fa fa-download" aria-hidden="true"></i>&nbsp;\{{fetchInstallerExt installer_link}}</a>
-                                  </td>
-
-                                   </tr>
-                                  \{{/if}}
-                                \{{/each}}
-                                </tr>
-                                </tbody>
-                                </table>
-                              </tr>
-                          </tbody>
-                        </table>
-                        \{{/each}}
+      <table class='archive-container'>
+        <tbody id='archive-table-body'>
+          <script id="template" type="text/x-handlebars-template">
+            {{! For each release... }}
+            \{{#each releases}}
+              <tr class='release-row'>
+                <td class='blue-bg release-info'>
+                  <div>
+                    <h2><a href='\{{release_link}}' class='light-link' target='_blank'><var release-name>\{{release_name}}</var></a></h2>
+                    <h4><var>\{{release_day}}</var> \{{release_month}} <var>\{{release_year}}</var></h4>
+                    <h4><a href='\{{dashboard_link}}' class='light-link' target='_blank'>Download Stats</a></h4>
+                  </div>
+                </td>
+                <td>
+                  <table class='archive-platforms'>
+                    <tr class='column-names'>
+                      <td>
+                      </td>
+                      <td>
+                        <span>Installer</span>
+                      </td>
+                      <td>
+                        <span>Binary</span>
                       </td>
                     </tr>
-                  </tbody>
-              </table>
+                    {{! For each of the release's platforms with assets to display... }}
+                    \{{#each platforms}}
+                      \{{#each assets}}
+                        <tr class='platform-row'>
+                          \{{#if @first}}
+                            <td>\{{../official_name}}</td>
+                          \{{else}}
+                            <td></td>
+                          \{{/if}}
+                          \{{#if installer_link}}
+                          <td class='download-td'>
+                            <a class='blue-button no-underline' href='\{{installer_link}}'><var binary-info>\{{type}}</var></a>
+                          </td>
+                          \{{else}}
+                          <td><div class='empty-download'>&nbsp;Not available</div></td>
+                          \{{/if}}
+                          <td class='download-td'>
+                            <a class='grey-button no-underline' href='\{{link}}'><var binary-info>\{{type}} (\{{size}} MB)</var></a>
+                          </td>
+                          <td><a href='\{{checksum_link}}' class='dark-link'>Checksum</a></td>
+                        </tr>
+                      \{{/each}}
+                    \{{/each}}
+                  </table>
+                </td>
+              </tr>
             \{{/each}}
           </script>
-          </div>
-      </div>
+        </tbody>
+      </table>
     </div>
+
   </div>
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"</script></script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>' script2='<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>' }}
