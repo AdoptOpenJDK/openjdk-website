@@ -66,7 +66,7 @@
               \{{else}}
                 <td class='nightly-downloads-block'><div>Not available</div></td>
               \{{/if}}
-              <td><a href='\{{thisChecksumLink}}' class='dark-link'>Checksum</a></td>
+              <td><a href='javascript:renderChecksumPlain("\{{thisChecksum}}");' class='dark-link'>Checksum</a></td>
             </tr>
           \{{/each}}
         </script>

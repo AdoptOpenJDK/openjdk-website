@@ -360,3 +360,8 @@ global.renderChecksum = function(checksum) {
     $('#myModal').modal('show');
   } );
 }
+
+global.renderChecksumPlain = function(checksum) {
+  var newWindow = window.open();
+    newWindow.document.write(checksum)
+}

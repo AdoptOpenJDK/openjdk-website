@@ -64,7 +64,7 @@ function buildArchiveHTML(aReleases) {
         type: binary_type,
         extension: 'INSTALLER' === binary_type ? getInstallerExt(platform) : getBinaryExt(platform),
         link: aReleaseAsset.package.link,
-        checksum_link: aReleaseAsset.package.checksum_link,
+        checksum: aReleaseAsset.package.checksum,
         size: Math.floor(aReleaseAsset.package.size / 1000 / 1000),
       }
 
