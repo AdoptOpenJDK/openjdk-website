@@ -1,5 +1,5 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getOfficialName, getPlatformOrder,
-  loadAssetInfo, setRadioSelectors, sortByProperty} = require('./common');
+  loadAssetInfo, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -78,20 +78,8 @@ function buildArchiveHTML(aReleases) {
       // Add the new binary to the release asset
       release.platforms[platform].assets.push(binary_constructor);
     });
-
-    Object.values(release.platforms).forEach(aPlatform => {
-      sortByProperty(aPlatform.assets, 'type');
-    });
-
-    // Converts the `platforms` object to a sorted array
-    release.platforms = sortByProperty(release.platforms, 'ordinal');
     releases.push(release);
   });
-
-  // Sort releases by name in descending order.
-  // The release timestamp can't be relied upon due to out-of-order releases.
-  // Example: 'jdk8u191-b12' was released after 'jdk8u192-b12'
-  sortByProperty(releases, 'release_name', true);
 
   const template = Handlebars.compile(document.getElementById('template').innerHTML);
   document.getElementById('archive-table-body').innerHTML = template({releases});
