@@ -38,7 +38,7 @@ function populateNightly() {
     }
   };
 
-  loadAssetInfo(variant, jvmVariant, 'nightly', undefined, undefined, handleResponse, () => {
+  loadAssetInfo(variant, jvmVariant, 'nightly', undefined, 'adoptopenjdk', handleResponse, () => {
     errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
     loading.innerHTML = ''; // remove the loading dots
   });

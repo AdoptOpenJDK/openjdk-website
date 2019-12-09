@@ -43,7 +43,7 @@ module.exports.load = () => {
     buildHomepageHTML(releasesJson, {}, OS);
   };
 
-  loadLatestAssets(variant, jvmVariant, 'latest', undefined, handleResponse, () => {
+  loadLatestAssets(variant, jvmVariant, 'latest', handleResponse, undefined, () => {
     errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
       Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
     loading.innerHTML = ''; // remove the loading dots
