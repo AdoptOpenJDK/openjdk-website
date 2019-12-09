@@ -258,6 +258,10 @@ nav {
   color: $brighterblue;
 }
 
+#menu-checkbox:not(:checked) + * {
+  display: none;
+}
+
 #menu-content {
   overflow: auto;
   height: 80%;

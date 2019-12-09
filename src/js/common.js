@@ -9,20 +9,6 @@ platforms.forEach((platform) => lookup[platform.searchableName] = platform);
 let variant = module.exports.variant = getQueryByName('variant') || 'openjdk8';
 let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
 
-// set variable names for menu elements
-const menuOpen = document.getElementById('menu-button');
-const menuClose = document.getElementById('menu-close');
-const menu = document.getElementById('menu-container');
-
-menuOpen.onclick = () => {
-  menu.className = menu.className.replace(/(?:^|\s)slideOutLeft(?!\S)/g, ' slideInLeft'); // slide in animation
-  menu.className = menu.className.replace(/(?:^|\s)hide(?!\S)/g, ' animated'); // removes initial hidden property, activates animations
-}
-
-menuClose.onclick = () => {
-  menu.className = menu.className.replace(/(?:^|\s)slideInLeft(?!\S)/g, ' slideOutLeft'); // slide out animation
-}
-
 module.exports.getVariantObject = (variantName) => variants.find((variant) => variant.searchableName === variantName);
 
 module.exports.findPlatform = (binaryData) => {
