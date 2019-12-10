@@ -109,7 +109,7 @@ function buildUpstreamHTML(releasesJson) {
         release_name: releasesJson[0].version_data.openjdk_version,
         release_link: releaseAsset.release_link,
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
-
+        source: releasesJson[0].source.link,
         binaries: []
       };
     }
@@ -118,7 +118,7 @@ function buildUpstreamHTML(releasesJson) {
       type: binary_type,
       extension: getBinaryExt(platform),
       link: releaseAsset.package.link,
-      checksum: releaseAsset.package.checksum,
+      signature_link: releaseAsset.package.signature_link,
       size: Math.floor(releaseAsset.package.size / 1000 / 1000)
     }
 

@@ -21,7 +21,7 @@ provided, please report any bugs you may find to <a href="https://bugs.java.com/
         </form>
         <form id="ga-selector" class="btn-form">
           <h3>2. Choose a release type</h3>
-        <label class="btn-label"><input type="radio" name="ga" value="ga" class="radio-button" lts="true" checked="checked"><span>General-Availability Release</span></label>
+        <label class="btn-label"><input type="radio" name="ga" value="ga" class="radio-button" lts="true" checked="checked"><span>General Availability (GA)</span></label>
         <label class="btn-label"><input type="radio" name="ga" value="ea" class="radio-button" lts="true"><span>Early Access (EA)</span></label>
         </form>
       </div>
@@ -62,6 +62,7 @@ provided, please report any bugs you may find to <a href="https://bugs.java.com/
                        <td class="main-download__variant__name blue-bg">
                           <span>\{{release_name}}</span>
                           <span class="download-last-version">OpenJDK</span>
+                          <span><a href=\{{source}}>Source</a></span>
                        </td>
                        <td class="main-download__variant__os">
                           <span class="os">\{{fetchOS platform_official_name}}</span>
@@ -80,7 +81,7 @@ provided, please report any bugs you may find to <a href="https://bugs.java.com/
                                       <tbody>
                                          <tr>
                                             <td>
-                                               <span class="main-download__variant__download__title"><a href="\{{link}}.sign" class='dark-link'>Signature</a></span>
+                                               <span class="main-download__variant__download__title"><a href="\{{signature_link}}" class='dark-link'>Signature</a></span>
                                             </td>
                                          </tr>
                                          <tr>
