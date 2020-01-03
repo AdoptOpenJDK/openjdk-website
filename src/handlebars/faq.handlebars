@@ -19,19 +19,15 @@
         platforms. In addition to that various third-party package managers have support for installing
         AdoptOpenJDK packages:
 
-        <DL> 
-        <DT> <strong><a href="https://formulae.brew.sh/cask/adoptopenjdk">macOS brew</a></strong>
-        <DD> Available and maintained by the AdoptOpenJDK community at the
+        <UL> 
+        <LI> <strong><a href="https://formulae.brew.sh/cask/adoptopenjdk">macOS brew</a></strong>
+             - Use <tt>brew cask install adoptopenjdk</tt> - maintained by the AdoptOpenJDK community at the
              <a href="https://github.com/AdoptOpenJDK/homebrew-openjdk">openjdk-homebrew</a> repository.
-             Use <tt>brew cask install adoptopenjdk</tt>
-        <DT> <strong><a href="https://sdkman.io/jdks">sdkman</a></strong>
-        <DD> <tt>sdk install java x.y.z-adpt</tt>
-        <DT> <strong><a href="https://blog.io7m.com/2018/11/18/choosing-coffee.xhtml">coffeepick</a> (via iojm)</strong>
-        <DT> <strong><a href="https://ortussolutions.atlassian.net/browse/COMMANDBOX-911">commandBox</a></strong>
-        <DD> <tt>install java:openjdk8</tt>
-        <DT> <strong><a href="https://chocolatey.org/packages/adoptopenjdk/">chocolatey</a></strong
-        <DD> <tt>choco install adoptopenjdk</tt>
-        </DL>
+        <LI> <strong><a href="https://sdkman.io/jdks">sdkman</a></strong> - <tt>sdk install java x.y.z-adpt</tt>
+        <LI> <strong><a href="https://blog.io7m.com/2018/11/18/choosing-coffee.xhtml">coffeepick</a></strong> (via iojm)</strong>
+        <LI> <strong><a href="https://ortussolutions.atlassian.net/browse/COMMANDBOX-911">commandBox</a></strong> - <tt>install java:openjdk8</tt>
+        <LI> <strong><a href="https://chocolatey.org/packages/adoptopenjdk/">chocolatey</a></strong> - <tt>choco install adoptopenjdk</tt>
+        </UL>
       </p>
     </div>
 
@@ -41,12 +37,12 @@
     </div>
 
     <div class="margin-bottom">
-    We often get asked questions about java-related technologies that are not necessarily part of the base
+    <p>We often get asked questions about java-related technologies that are not necessarily part of the base
     openjdk codebase. As a rule we build what is in the upstream openjdk source and nothing more as part of
     our deliverables (with the exception of IcedTea-WEB which is included in our macOS and Windows installers
     - although not the tar/zip downloads). Some more information on these componenst are included in the
     <a href="https://adoptopenjdk.net/migration.html">AdoptOpenJDK migration guide</a> but here are some
-    common questions about the third party components:
+    common questions about the third party components:</p>
 
     <DL>
     <DT> <strong>IcedTea-WEB (WebStart support)</strong>
@@ -76,6 +72,29 @@
       <h2 class="bold"><a id="licensing">Licensing and redistribution</a></h2>
     </div>
 
+    <div class="anchor">
+      <a href="#projects" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="projects">Something does work with your builds - help!</a></h2>
+    </div>
+
+    <div class="margin-bottom">
+    
+    <p>If you are an end-user of our builds, we would first recommend trying it
+    with the latest version of the release (i.e. the latest JDK8, JDK11 etc.)
+    as bugs are frequently fixed in the updates. If the problem still occurs
+    with the latest one, check to see if it works with another providers'
+    builds (Such as Oracle's if you can) or the
+    <a href="https://adoptopenjdk.net/upstream.html">upstream OpenJDK builds</a>
+    available via our web site.</p>
+
+    <p>Once you've done that, feel free to raise an issue in the
+    <a href="https://github.com/AdoptOpenJDK/openjdk-support">openjdk-support</a>
+    repository to bring it to our attention and we will attempt to look into
+    it if possible and determine the cause. Bear in mind that the
+    AdoptOpenJDK team do not provide commercial support for our builds,
+    although <a href="https://adoptopenjdk.net/support.html">other providers do</a>.
+    </p>
+ 
     <div class="margin-bottom">
     The AdoptOpenJDK binaries are supplied with no restrictions on what you can do with them. We fully
     support the notion that
@@ -140,9 +159,10 @@
          fixes in the PSU updates will not cause any problems.
     <DT> <strong>How can I get commercial support for AdoptOpenJDK binaries</strong>
     <DD> The AdoptOpenJDK project does not itself provide commercial support for the binaries we produce,
-         however if you find and issue please raise it in the openjdk-support respository. If you need a stronger
-         level of formal support, check out <a href="https://adoptopenjdk.net/support.html">the support pages</a> for the current list
-         of commercial support providers for the AdoptOpenJDK binaries
+         however if you find and issue please raise it in the
+         <a href="https://github.com/AdoptOpenJDK/openjdk-support">openjdk-support</a> respository. If you need
+         a stronger level of formal support, check out <a href="https://adoptopenjdk.net/support.html">the support
+         pages</a> for the current list of commercial support providers for the AdoptOpenJDK binaries
     <DT> <strong>Do you provide 32-bit builds?</strong>
     <DD> Most of our builds are 64-bit only. The exceptions are arm32 so you can run our builds on your raspberry
          pi and other such devices, and HotSpot windows builds are aos available in 32-bit versions. A Windows
