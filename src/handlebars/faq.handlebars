@@ -44,6 +44,53 @@
     <a href="https://adoptopenjdk.net/migration.html">AdoptOpenJDK migration guide</a> but here are some
     common questions about the third party components:</p>
 
+    <div class="anchor">
+      <a href="#projects" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="projects">How do I get the source code for a release?</a></h2>
+    </div>
+
+    The answer to this depends on which version you are interested in.
+    First, identify the major java release which will be the first number after
+    <code>jdk</code> in the release name. For example for
+    <code>jdk8u232-b09</code> the release is <code>8</code> or for
+    <code>jdk-11.0.5+10</code> it is <code>11</code>
+
+    <DL> 
+    <DT> HotSpot
+    <DD> Checkout the HotSpot codebase for the version
+         e.g. https://github.com/adoptopenjdk/openjdk-jdk8u (replace 8 with
+         11 or whatever mmajor release you are interested in). Once you've done
+         that. change into the directory and checkout the release name with
+         an <code>_adopt</code> suffix
+         e.g. <code>git checkout jdk8u232-b09_adopt</code>. See
+         <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues/1107#issuecomment-509272743">
+         this issue for an explanation as to where that tag comes from.
+    <DT> OpenJ9
+    <DD> Checkout the OpenJ9 "extensions" repository for the release you are
+         interested in e.g. https://github.com/ibmruntimes/openj9-openjdk-jdk8u
+         (Replace <code>8</code> with the major java version you are
+         interested in. Now, identify the openj9 branch you are interested
+         in. For example, for either <code>jdk8u222-b10_openj9-0.15.1</code> or
+         <code>jdk-11.0.4+11_openj9-0.15.1</code> it would be
+         <code>openj9-0.15.1</code>. Then you can checkout that branch of
+         the extensions repository e.g. <code>git checkout openj9-0.15.1</code>
+         Note that the checkout does NOT contain the underlying java version
+         in the OpenJ9 case. Once you've done this, change into the
+         directory and run <code>./get_source.sh</code> which pulls in the
+         correct dependencies for that release from the
+         <a href="https://github.com/eclipse/openj9">OpenJ9</a> and
+         <a href="https://github.com/eclipse/openj9-omr">OMR</a>
+         repositories
+    </DL>
+
+<div class="margin-bottom">
+    <p>We often get asked questions about java-related technologies that are not necessarily part of the base
+    openjdk codebase. As a rule we build what is in the upstream openjdk source and nothing more as part of
+    our deliverables (with the exception of IcedTea-WEB which is included in our macOS and Windows installers
+    - although not the tar/zip downloads). Some more information on these componenst are included in the
+    <a href="https://adoptopenjdk.net/migration.html">AdoptOpenJDK migration guide</a> but here are some
+    common questions about the third party components:</p>
+
     <DL>
     <DT> <strong>IcedTea-WEB (WebStart support)</strong>
     <DD> IcedTea-WEB is the open implementation of the java web start component that was included in the
@@ -66,10 +113,6 @@
          <a href="https://ci.adoptopenjdk.net/search/?q=jdk8-with-graal_build_x86-64_windows">Windows</a>
          although they are not currently being actively maintained
     </DL>    
-    </div>
-    <div class="anchor">
-      <a href="#licensing" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
-      <h2 class="bold"><a id="licensing">Licensing and redistribution</a></h2>
     </div>
 
     <div class="anchor">
@@ -95,6 +138,11 @@
     although <a href="https://adoptopenjdk.net/support.html">other providers do</a>.
     </p>
  
+    <div class="anchor">
+      <a href="#licensing" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="licensing">Licensing and redistribution</a></h2>
+    </div>
+
     <div class="margin-bottom">
     The AdoptOpenJDK binaries are supplied with no restrictions on what you can do with them. We fully
     support the notion that
