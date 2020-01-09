@@ -37,40 +37,48 @@
     </div>
 
     <p>The answer to this depends on which version you are interested in.
-    First, identify the major java release which will be the first number after
+    First, identify the major Java release which will be the first number after
     <code>jdk</code> in the release name. For example for
-    <code>jdk8u232-b09</code> the release is <code>8</code> or for
+    <code>jdk8u232-b09</code> the release is <code>8</code> for
     <code>jdk-11.0.5+10</code> it is <code>11</code></p>
 
     <dl> 
     <dt> <strong>HotSpot</strong>
-    <dd> <p>Start by cloning the HotSpot codebase for the version
-         e.g. <a href="https://github.com/adoptopenjdk/openjdk-jdk8u">
-                       https://github.com/adoptopenjdk/openjdk-jdk8u</a> (replace 8 with
-         11 or whatever major release you are interested in). Once you've done
-         that. Next, change into the directory and checkout the release name with
-         an <code>_adopt</code> suffix
+    <dd> <ol>
+         <li><p>Start by cloning the HotSpot codebase for the version you want.
+         For example, replace the version number <code>8</code> with teh one
+         you want in the following repository:
+         <a href="https://github.com/adoptopenjdk/openjdk-jdk8u">
+                  https://github.com/adoptopenjdk/openjdk-jdk8u</a> </p>
+         <li><p>When you've done that, change into the directory and checkout
+         the release name with an <code>_adopt</code> suffix
          e.g. <code>git checkout jdk8u232-b09_adopt</code>. See
          <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues/1107#issuecomment-509272743">
          this issue</a> for an explanation as to where that tag comes from.</p>
+         </ol>
     <dt> <strong>OpenJ9</strong>
-    <dd> <p>Checkout the OpenJ9 "extensions" repository for the release you are
+    <dd> <ol>
+         <li><p>Checkout the OpenJ9 "extensions" repository for the release you are
          interested in e.g.
          <a href="https://github.com/ibmruntimes/openj9-openjdk-jdk8">
                   https://github.com/ibmruntimes/openj9-openjdk-jdk8</a>
-         (Replace <code>8</code> with the major java version you are
-         interested in. Next, identify the openj9 branch you are interested
+         (Replace <code>8</code> with the major Java version you are
+         interested in).</p>
+         <li><p>Next, identify the openj9 branch you are interested
          in. For example, for either <code>jdk8u222-b10_openj9-0.15.1</code> or
          <code>jdk-11.0.4+11_openj9-0.15.1</code> it would be
-         <code>openj9-0.15.1</code>. Then you can checkout that branch of
+         <code>openj9-0.15.1</code>.</p>
+         <li><p>Then you can checkout that branch of
          the extensions repository e.g. <code>git checkout openj9-0.15.1</code>
-         Note that the checkout does NOT contain the underlying java version
-         in the OpenJ9 case. Once you've done this, change into the
+         Note that the checkout does NOT contain the underlying Java version
+         in the OpenJ9 case.</p>
+         <li><p>Once you've done this, change into the
          directory and run <code>./get_source.sh</code> which pulls in the
          correct dependencies for that release from the
          <a href="https://github.com/eclipse/openj9">OpenJ9</a> and
          <a href="https://github.com/eclipse/openj9-omr">OMR</a>
          repositories</p>
+         </ol>
     </dl>
 
     <div class="anchor">
@@ -88,11 +96,11 @@
 
     <dl>
     <dt> <strong>IcedTea-WEB (WebStart support)</strong>
-    <dd> <p>IcedTea-WEB is the open implementation of the java web start component that was included in the
+    <dd> <p>IcedTea-WEB is the open implementation of the Java web start component that was included in the
          Oracle JDK but is not part of the openjdk codebase. The IcedTea-WEB project is now hosted under
          the AdoptOpenJDK project in the <a href="https://github.com/adoptopenjdk/IcedTea-WEB">IcedTea-WEB
          repository</a> and we build and ship as a standalone download that can be used with our
-         other OpenJDK downloads. We do not include support for java applets as they are generally
+         other OpenJDK downloads. We do not include support for Java applets as they are generally
          considered insecure and most modern browsers do not allow for such plugins to be installed any
          more.</p>
     <dt> <strong>JavaFX</strong>
@@ -166,7 +174,7 @@
 
     <dl>
     <dt> <strong>Why do my fonts look weird?</strong>
-    <dd> <p>Some commercial implementations of java use
+    <dd> <p>Some commercial implementations of Java use
          <a href="https://adoptopenjdk.net/migration.html#relicensed-lucida-fonts">relicensed Lucinda fonts</a>
          but AdoptOpenJDK as a fully open implementation does not. For this reason, you may find some visible
          font differences between AdoptOpenJDK and other providers.</p>
@@ -187,7 +195,7 @@
          </p>
     <dt> <strong> What are the OpenJ9 "Large Heap" variants?</strong>
     <dd> <p>The Large Heap variants of the OpenJ9 builds (also known as the "non-compressed references builds) allow
-         for java heap sizes greater than 57Gb. If you need heap sizes that large, then pick the large heap versions
+         for Java heap sizes greater than 57Gb. If you need heap sizes that large, then pick the large heap versions
          (they have XL in the download filenames). The large heap versions are not on all platforms but the number
          has increased over time.</p>
     <dt> <strong>I'm worried about security vulnerabilities in your project compared to other OpenJDK implementations</strong>
