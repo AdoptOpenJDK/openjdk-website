@@ -46,7 +46,7 @@
     <dt> <strong>HotSpot</strong>
     <dd> <ol>
          <li><p>Start by cloning the HotSpot codebase for the version you want.
-         For example, replace the version number <code>8</code> with teh one
+         For example, replace the version number <code>8</code> with the one
          you want in the following repository:
          <a href="https://github.com/adoptopenjdk/openjdk-jdk8u">
                   https://github.com/adoptopenjdk/openjdk-jdk8u</a> </p>
@@ -88,9 +88,9 @@
 
     <div class="margin-bottom">
     <p>We often get asked questions about Java-related technologies that are not necessarily part of the base
-    OpenJDK codebase. As a rule we build what is in the upstream openjdk source and nothing more as part of
+    OpenJDK codebase. As a rule we build what is in the upstream OpenKJDK source and nothing more as part of
     our deliverables (with the exception of IcedTea-WEB which is included in our macOS and Windows installers
-    - although not the tar and zip downloads). Some more information on these components areincluded in the
+    - although not the tar and zip downloads). Some more information on these components are included in the
     <a href="https://adoptopenjdk.net/migration.html">AdoptOpenJDK migration guide</a> but here are some
     common questions about the third-party components:</p>
 
@@ -105,7 +105,7 @@
          more.</p>
     <dt> <strong>JavaFX</strong>
     <dd> <p>Like IcedTea-WEB JavaFX was included in the Oracle JDK but is not part of the OpenJDK codebase.
-         The open-source project page is at <a href="https://openjfx.io/"> and binaries can be obtained from
+         The open-source project page is at <a href="https://openjfx.io/">openjfx.io</a> and binaries can be obtained from
          <a href="https://gluonhq.com/products/javafx/">Gluon</a>. We do not currently ship any JavaFX
          support via AdoptOpenJDK. If you want to build it yourself, check out the instructions from the
          <a href="https://wiki.openjdk.java.net/display/OpenJFX/Building+OpenJFX">OpenJFX
@@ -116,7 +116,7 @@
          <a href="https://ci.adoptopenjdk.net/search/?q=jdk8-with-graal_build_x86-64_linux">Linux/x64</a>,
          <a href="https://ci.adoptopenjdk.net/search/?q=jdk8-with-graal_build_x86-64_macos">macOS</a> and
          <a href="https://ci.adoptopenjdk.net/search/?q=jdk8-with-graal_build_x86-64_windows">Windows</a>
-         although they are not currently being actively maintained</p>
+         though they are not currently being actively maintained</p>
     </dl>    
     </div>
 
@@ -149,19 +149,17 @@
     </div>
 
     <div class="margin-bottom">
-    <p>The AdoptOpenJDK binaries are supplied with no restrictions on what you can do with them. We fully
-    support the notion that
-    <a href="https://docs.google.com/document/d/1nFGazvrCvHMZJgFstlbzoHjpAVwv5DEdnaBr_5pKuHo/edit#heading=h.p3qt2oh5eczi">Java Is Still Free</a>
-    (<a href="https://medium.com/@javachampions/java-is-still-free-c02aef8c9e04">medium link</a>)
-    However bear in mind that the binaries (i.e. the combined works) are published under the GPLv2 with
-    Classpath exception (often referred to as GPL2+CE) and you don’t have any obligations imposed by
-    this project beyond the terms of that license, so we have no additional requirement to reference /
-    credit the OpenJDK or AdoptOpenJDK projects if you do not wish to do so (although it would be
-    appreciated!) It's also worth mentioning the assembly exceptions, where parts of the program are
-    licensed under different terms (such as ALv2) where there is a need to distribute notices. This
-    message, however, does not contain professional legal advice and if you have any concerns you should
-    consult your legal team before proceeding.</p>
-    </div>
+
+    <p>We fully support the notion that
+    <a href="https://medium.com/@javachampions/java-is-still-free-c02aef8c9e04">
+    Java Is Still Free</a>.  The JDK and JRE binaries we produce are
+    published under the GPLv2 with Classpath Exception and OpenJDK Assembly
+    Exception (often referred to as GPL2+CE), and you don’t have any
+    additional obligations imposed by the AdoptOpenJDK project beyond the
+    terms of that license.  For example, we have no additional requirement
+    for you to reference or credit the AdoptOpenJDK project.  We cannot
+    provide legal advice, and if you have any questions about the license or
+    exceptions you should consult your own legal counsel.</p>
 
     <div class="anchor">
       <a href="#quickfaq" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
@@ -199,7 +197,7 @@
          (they have XL in the download filenames). The large heap versions are not on all platforms but the number
          has increased over time.</p>
     <dt> <strong>I'm worried about security vulnerabilities in your project compared to other OpenJDK implementations</strong>
-    <dd> <p>the AdoptOpenJDK project does not work on security vulnerability updates independently of the community
+    <dd> <p>The AdoptOpenJDK project does not work on security vulnerability updates independently of the community
          code base held at OpenJDK. For bugs including security issues, we work with the OpenJDK project to fix
          bugs there, and then build, test and distribute the code here. The OpenJDK LTS updates projects are
          working on vulnerabilities that are discussed amongst members of the OpenJDK Vulnerability Group.
@@ -233,9 +231,10 @@
     <dd> <p>They are our overlords :-) Seriously, the TSC (Technical Steering Committee) is a group of people who
          run the AdoptOpenJDK project. Despite the name, most technical decisions are taken outside the TSC and
          only escalated to the TSC if issues arise. You will find that they are frequently the people responding
-         to issues in GitHUb and also in slack. Business decisions, the scope of the project, and management of
+         to issues in GitHub and also in slack. Business decisions, the scope of the project, and management of
          finances is all done by the TSC. If you want something discussed by the TSC or need a decision from them
-         please raise an issue in the <a href="https://github.com/AdoptOpenJDK/TSC</a>GitHub TSC</a>repository (or
+         please raise an issue in the <a href="https://github.com/AdoptOpenJDK/TSC">GitHub
+         TSC repository</a> (or
          add the <tt>TSC-agenda</tt> label elsewhere) as that will generally flag it for inclusion in a future
          TSC meeting. The current TSC members with their affiliation are listed
          <a href="https://github.com/AdoptOpenJDK/TSC/#tsc-members">here</a>. The TSC members also approve all
