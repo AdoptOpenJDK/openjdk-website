@@ -1,7 +1,5 @@
 {{> header title='Upstream | ' }}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <main class="grey-bg">
 
   <div id="upstream-page">
@@ -50,8 +48,6 @@ provided, please report any bugs you may find to <a href="https://bugs.java.com/
         </div>
       </div>
 
-      {{> modal }}
-
       <div id="latest-selector">
         <script id="template-selector" type="text/x-handlebars-template">
           {{! Create each platform's selector tile }}
@@ -62,7 +58,7 @@ provided, please report any bugs you may find to <a href="https://bugs.java.com/
                        <td class="main-download__variant__name blue-bg">
                           <span>\{{release_name}}</span>
                           <span class="download-last-version">OpenJDK</span>
-                          <span><a href=\{{source}}>Source</a></span>
+                          <span><a class="source" href=\{{source}}>Source</a></span>
                        </td>
                        <td class="main-download__variant__os">
                           <span class="os">\{{fetchOS platform_official_name}}</span>
@@ -112,4 +108,4 @@ provided, please report any bugs you may find to <a href="https://bugs.java.com/
 
 </main>
 
-{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"</script></script>' }}
+{{> footer script='<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>' }}

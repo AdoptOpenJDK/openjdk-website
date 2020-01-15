@@ -345,13 +345,12 @@ module.exports.setRadioSelectors = () => {
 }
 
 global.renderChecksum = function(checksum) {
+  var modal = document.getElementById('myModal')
   document.getElementById('modal-body').innerHTML = checksum
-  $( function() {
-    $('#myModal').modal('show');
-  } );
+  modal.style.display = 'inline'
 }
 
-global.renderChecksumPlain = function(checksum) {
-  var newWindow = window.open();
-    newWindow.document.write(checksum)
+global.hideChecksum = function() {
+  var modal = document.getElementById('myModal')
+  modal.style.display = 'none'
 }

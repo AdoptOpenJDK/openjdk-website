@@ -199,20 +199,24 @@ div#latest-selector {
 }
 
 .modal {
-    text-align: center;
+    display: none;
+    z-index: 1;
+	position: fixed;
+	top:50%;
+	bottom: 0;
+	left: 0;
+    right: 0;
+    margin: auto;
 }
-  
-@media screen and (min-width: 768px) { 
-    .modal:before {
-        display: inline-block;
-        vertical-align: middle;
-        content: " ";
-        height: 100%;
-    }
+
+.modal-content {
+    background-color: white;
+    padding: 2em;
+    border-style: solid;
+    border-width: medium;
 }
 
 .modal-dialog {
     display: inline-block;
     text-align: left;
-    vertical-align: middle;
 }
