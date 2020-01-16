@@ -168,7 +168,6 @@ global.filterArch = () => {
   let os = document.getElementById('os-filter');
   if (os.options[os.selectedIndex].value === 'Any') {
     filterTable(arch.options[arch.selectedIndex].value, 'arch')
-    global.populateFilters('all')
   } else if (arch.options[arch.selectedIndex].value == 'Any') {
     global.filterOS()
   } else {
