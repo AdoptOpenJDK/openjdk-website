@@ -26,12 +26,9 @@ function setDatePicker() {
 
 function populateNightly() {
   const handleResponse = (response) => {
-    // Step 1: create a JSON from the XmlHttpRequest response
-    const releasesJson = response.reverse();
-
     // if there are releases...
-    if (typeof releasesJson[0] !== 'undefined') {
-      const files = getFiles(releasesJson);
+    if (typeof response[0] !== 'undefined') {
+      const files = getFiles(response);
 
       if (files.length === 0) {
         return;
@@ -41,7 +38,7 @@ function populateNightly() {
     }
   };
 
-  loadAssetInfo(variant, jvmVariant, 'nightly', undefined, undefined, handleResponse, () => {
+  loadAssetInfo(variant, jvmVariant, 'nightly', undefined, 'adoptopenjdk', handleResponse, () => {
     errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
     loading.innerHTML = ''; // remove the loading dots
   });
@@ -52,7 +49,7 @@ function getFiles(releasesJson) {
 
   releasesJson.forEach((release) => {
     release.binaries.forEach((asset) => {
-      if (/(?:\.tar\.gz|\.zip)$/.test(asset.binary_name) && findPlatform(asset)) {
+      if (/(?:\.tar\.gz|\.zip)$/.test(asset.package.name) && findPlatform(asset)) {
         assets.push({release, asset});
       }
     });
@@ -79,7 +76,7 @@ function buildNightlyHTML(files) {
     const eachRelease = file.release;
 
     const NIGHTLYOBJECT = {};
-    const nameOfFile = eachAsset.binary_name;
+    const nameOfFile = eachAsset.package.name;
     const type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
 
     NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset); // get the searchableName, e.g. MAC or X64_LINUX.
@@ -99,10 +96,12 @@ function buildNightlyHTML(files) {
       NIGHTLYOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
       NIGHTLYOBJECT.thisGitLink = eachRelease.release_link;
       NIGHTLYOBJECT.thisOfficialName = getOfficialName(NIGHTLYOBJECT.thisPlatform);
-      NIGHTLYOBJECT.thisBinaryLink = eachAsset.binary_link;
-      NIGHTLYOBJECT.thisBinarySize = Math.floor(eachAsset.binary_size / 1000 / 1000);
-      NIGHTLYOBJECT.thisChecksumLink = eachAsset.checksum_link;
-      NIGHTLYOBJECT.thisInstallerLink = eachAsset.installer_link || undefined;
+      NIGHTLYOBJECT.thisBinaryLink = eachAsset.package.link;
+      NIGHTLYOBJECT.thisBinarySize = Math.floor(eachAsset.package.size / 1000 / 1000);
+      NIGHTLYOBJECT.thisChecksum = eachAsset.package.checksum;
+      if (eachAsset.installer) {
+        NIGHTLYOBJECT.thisInstallerLink = eachAsset.installer.link;
+      }
       NIGHTLYARRAY.push(NIGHTLYOBJECT);
     }
   });

@@ -34,6 +34,8 @@
     <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
     <div id="error-container"></div>
 
+    {{> modal }}
+
     <div id="archive-list" class="hide">
       <div id="pagination-container"></div>
       <table class='archive-container'>
@@ -80,7 +82,7 @@
                           <td class='download-td'>
                             <a class='grey-button no-underline' href='\{{link}}'><var binary-info>\{{type}} (\{{size}} MB)</var></a>
                           </td>
-                          <td><a href='\{{checksum_link}}' class='dark-link'>Checksum</a></td>
+                          <td><a href='javascript:renderChecksum("\{{checksum}}");' class='dark-link'>Checksum</a></td>
                         </tr>
                       \{{/each}}
                     \{{/each}}

@@ -1,9 +1,33 @@
-const {findPlatform, getBinaryExt, getInstallerExt, getSupportedVersion, getOfficialName, getPlatformOrder,
-    getVariantObject, detectLTS, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
-const {jvmVariant, variant} = require('./common');
+const {findPlatform, getBinaryExt, getSupportedVersion, getOfficialName, getPlatformOrder,
+    detectLTS, setUrlQuery, loadAssetInfo, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
+const {variant} = require('./common');
+
+// Hard coded as Red Hat only ship hotspot
+const jvmVariant = 'hotspot'
 
 const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
+
+const gaSelector = document.getElementById('ga-selector');
+const gaButtons = document.getElementsByName('ga');
+
+const urlParams = new URLSearchParams(window.location.search);
+const ga = urlParams.get('ga') || 'ga';
+
+gaSelector.onchange = () => {
+    const gaButton = Array.from(gaButtons).find((button) => button.checked);
+    setUrlQuery({
+      variant,
+      ga: gaButton.value
+    });
+};
+
+for (let button of gaButtons) {
+    if (button.value === ga) {
+        button.setAttribute('checked', 'checked');
+        break;
+    }
+  }
 
 // When releases page loads, run:
 module.exports.load = () => {
@@ -19,10 +43,6 @@ module.exports.load = () => {
 
   Handlebars.registerHelper('fetchArch', function(title) {
     return title.split(' ')[1]
-  });
-
-  Handlebars.registerHelper('fetchInstallerExt', function(filename) {
-    return `.${filename.split('.').pop()}`;
   });
 
   const LTS = detectLTS(`${variant}-${jvmVariant}`);
@@ -41,27 +61,30 @@ module.exports.load = () => {
 
   setRadioSelectors();
 
-  loadLatestAssets(variant, jvmVariant, 'latest', buildLatestHTML, undefined, () => {
-    errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
-      Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
-    loading.innerHTML = ''; // remove the loading dots
+  loadAssetInfo(variant, jvmVariant, ga, undefined, 'openjdk', buildUpstreamHTML, () => {
+    // if there are no releases (beyond the latest one)...
+    // report an error, remove the loading dots
+    loading.innerHTML = '';
+    errorContainer.innerHTML = `<p>There are no archived releases yet for ${variant} on the ${jvmVariant} JVM.
+      See the <a href='./releases.html?variant=${variant}&jvmVariant=${jvmVariant}'>Latest release</a> page.</p>`;
   });
+
+    const buttons = document.getElementsByClassName('btn-label');
+    for (var a = 0; a < buttons.length; a++) {
+      if (buttons[a].firstChild.getAttribute('lts') !== 'true') {
+        buttons[a].style.display = 'none';
+      }
+    }
 }
 
-function buildLatestHTML(releasesJson) {
-  // Populate with description
-  const variantObject = getVariantObject(variant + '-' + jvmVariant);
-  if (variantObject.descriptionLink) {
-    document.getElementById('description_header').innerHTML = `What is ${variantObject.description}?`;
-    document.getElementById('description_link').innerHTML = 'Find out here';
-    document.getElementById('description_link').href = variantObject.descriptionLink;
-  }
+function buildUpstreamHTML(releasesJson) {
 
   // Array of releases that have binaries we want to display
   let releases = [];
 
-  releasesJson.forEach((releaseAsset) => {
-    const platform = findPlatform(releaseAsset.binary);
+  releasesJson[0].binaries.forEach((releaseAsset) => {
+
+    const platform = findPlatform(releaseAsset);
 
     // Skip this asset if its platform could not be matched (see the website's 'config.json')
     if (!platform) {
@@ -69,23 +92,24 @@ function buildLatestHTML(releasesJson) {
     }
 
     // Skip this asset if it's not a binary type we're interested in displaying
-    const binary_type = releaseAsset.binary.image_type.toUpperCase();
+    const binary_type = releaseAsset.image_type.toUpperCase();
     if (!['INSTALLER', 'JDK', 'JRE'].includes(binary_type)) {
       return;
     }
 
     // Get the existing release asset (passed to the template) or define a new one
     let release = releases.find((release) => release.platform_name === platform);
+
     if (!release) {
       release = {
         platform_name: platform,
         platform_official_name: getOfficialName(platform),
         platform_ordinal: getPlatformOrder(platform),
         platform_supported_version: getSupportedVersion(platform),
-        release_name: releaseAsset.release_name,
+        release_name: releasesJson[0].version_data.openjdk_version,
         release_link: releaseAsset.release_link,
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
-
+        source: releasesJson[0].source.link,
         binaries: []
       };
     }
@@ -93,16 +117,9 @@ function buildLatestHTML(releasesJson) {
     let binary_constructor = {
       type: binary_type,
       extension: getBinaryExt(platform),
-      link: releaseAsset.binary.package.link,
-      checksum: releaseAsset.binary.package.checksum,
-      size: Math.floor(releaseAsset.binary.package.size / 1000 / 1000)
-    }
-
-    if (releaseAsset.binary.installer) {
-      binary_constructor.installer_link = releaseAsset.binary.installer.link
-      binary_constructor.installer_checksum = releaseAsset.binary.installer.checksum
-      binary_constructor.installer_extension = getInstallerExt(platform)
-      binary_constructor.installer_size =  Math.floor(releaseAsset.binary.installer.size / 1000 / 1000)
+      link: releaseAsset.package.link,
+      signature_link: releaseAsset.package.signature_link,
+      size: Math.floor(releaseAsset.package.size / 1000 / 1000)
     }
 
     // Add the new binary to the release asset
