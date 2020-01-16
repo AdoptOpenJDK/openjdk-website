@@ -35,7 +35,7 @@
     <div id="latest-container" class="invisible">
       <h3 id="description_header"></h3>
       <a id="description_link" href=""></a>
-      <h3><a href="./release_notes.html">All Release Notes</a></h3>
+      <h3><a href="./release_notes.html" class="release_notes">All Release Notes</a></h3>
 
       <div class="filter-divs">
         <div class="filter-os filter-div">
@@ -53,8 +53,9 @@
         </div>
       </div>
 
-      <div id="latest-selector">
+      {{> modal }}
 
+      <div id="latest-selector">
         <script id="template-selector" type="text/x-handlebars-template">
           {{! Create each platform's selector tile }}
           \{{#each releases}}
@@ -83,12 +84,12 @@
                                          <tbody>
                                             <tr>
                                                <td>
-                                                  <span class="main-download__variant__download__title"><a href='\{{installer_link}}.sha256.txt' class='dark-link' target='_blank'>Checksum (SHA256)</a></span>
+                                                  <span class="main-download__variant__download__title"><a href='javascript:renderChecksum("\{{installer_checksum}}");' class='dark-link'>Checksum (SHA256)</a></span>
                                                </td>
                                             </tr>
                                             <tr>
                                                <td>
-                                                  <span>\{{type}} - \{{size}} MB</span>
+                                                  <span>\{{type}} - \{{installer_size}} MB</span>
                                                </td>
                                             </tr>
                                          </tbody>
@@ -104,7 +105,7 @@
                                       <tbody>
                                          <tr>
                                             <td>
-                                               <span class="main-download__variant__download__title"><a href='\{{checksum_link}}' class='dark-link' target='_blank'>Checksum (SHA256)</a></span>
+                                               <span class="main-download__variant__download__title"><a href='javascript:renderChecksum("\{{checksum}}");' class='dark-link'>Checksum (SHA256)</a></span>
                                             </td>
                                          </tr>
                                          <tr>
@@ -128,9 +129,10 @@
               </table>
             \{{/each}}
           </script>
+         </div>
       </div>
     </div>
-  </div>
+</div>
 
 </main>
 

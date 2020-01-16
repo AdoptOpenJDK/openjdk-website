@@ -188,3 +188,35 @@ div#latest-selector {
 .filter-os {
   float: left;
 }
+
+.release_notes {
+    color: #152935 !important;
+    text-decoration: underline !important;
+}
+
+.modal-backdrop {
+    position: relative !important;
+}
+
+.modal {
+    display: none;
+    z-index: 1;
+	position: fixed;
+	top:50%;
+	bottom: 0;
+	left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2em;
+    border-style: solid;
+    border-width: medium;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+}

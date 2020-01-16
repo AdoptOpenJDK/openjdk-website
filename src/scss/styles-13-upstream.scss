@@ -32,7 +32,7 @@ table#release td.no_right, table#ea td.no_right {
   border-right: none;
 }
 
-td.midl, {
+td.midl {
   text-align: center;
 }
 
@@ -49,4 +49,18 @@ table#ea tr.sep td, table#release tr.sep td {
   height: 2px;
   background-color: #152935;
   padding: 0;
+}
+
+.upstream-callout {
+  width: 60%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.source {
+  color: white;
+}
+
+.source a:visited {
+  color: white;
 }

@@ -117,7 +117,7 @@ function toJson(response) {
 
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
-function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) {
+function queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse) {
   if (!url.endsWith('?')) {
     url += '?';
   }
@@ -125,10 +125,15 @@ function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) 
     url += `release=${release}&`;
   }
   if (openjdkImp !== undefined) {
-    url += `openjdk_impl=${openjdkImp}&`;
+    url += `jvm_impl=${openjdkImp}&`;
   }
-  if (type !== undefined) {
-    url += `type=${type}&`;
+
+  if (vendor !== undefined) {
+    url += `vendor=${vendor}&`
+  }
+
+  if (vendor === 'openjdk') {
+    url += 'page_size=1'
   }
 
   loadUrl(url, (response) => {
@@ -140,22 +145,32 @@ function queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse) 
   });
 }
 
-module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
+module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, release, vendor, handleResponse, errorHandler) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
+  
+  if (releaseType == 'releases') {
+    releaseType = 'ga'
+  } else if (releaseType == 'nightly') {
+    releaseType = 'ea'
+  }
 
-  const url = `https://api.adoptopenjdk.net/v2/info/${releaseType}/${variant}`;
-  queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
+  let url = `https://api.adoptopenjdk.net/v3/assets/feature_releases/${variant.replace(/\D/g,'')}/${releaseType}`
+
+  if (releaseType == 'ea') {
+    url += '?page_size=100&'
+  }
+
+  queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse);
 }
 
-module.exports.loadLatestAssets = (variant, openjdkImp, releaseType, release, type, handleResponse, errorHandler) => {
+module.exports.loadLatestAssets = (variant, openjdkImp, release, handleResponse, errorHandler) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
-
-  const url = `https://api.adoptopenjdk.net/v2/latestAssets/${releaseType}/${variant}`;
-  queryAPI(release, url, openjdkImp, type, errorHandler, handleResponse);
+  const url = `https://api.adoptopenjdk.net/v3/assets/latest/${variant.replace(/\D/g,'')}/${openjdkImp}`;
+  queryAPI(release, url, openjdkImp, 'adoptopenjdk', errorHandler, handleResponse);
 }
 
 function loadUrl(url, callback) {
@@ -212,7 +227,7 @@ const makeQueryString = module.exports.makeQueryString = (params) => {
   return Object.keys(params).map((key) => key + '=' + params[key]).join('&');
 }
 
-function setUrlQuery(params) {
+ module.exports.setUrlQuery = (params) => {
   window.location.search = makeQueryString(params);
 }
 
@@ -288,7 +303,9 @@ module.exports.setRadioSelectors = () => {
     const jdkName = splitVariant[0];
     const jvmName = splitVariant[1];
     createRadioButtons(jdkName, 'jdk', variants[x], jdkSelector);
-    createRadioButtons(jvmName, 'jvm', variants[x], jvmSelector);
+    if (jvmSelector) {
+      createRadioButtons(jvmName, 'jvm', variants[x], jvmSelector);
+    }
   }
 
   const jdkButtons = document.getElementsByName('jdk');
@@ -296,20 +313,21 @@ module.exports.setRadioSelectors = () => {
 
   jdkSelector.onchange = () => {
     const jdkButton = Array.from(jdkButtons).find((button) => button.checked);
-    setUrlQuery({
+    module.exports.setUrlQuery({
       variant: jdkButton.value.match(/(openjdk\d+|amber)/)[1],
       jvmVariant
     });
   };
 
-  jvmSelector.onchange = () => {
-    const jvmButton = Array.from(jvmButtons).find((button) => button.checked);
-    setUrlQuery({
-      variant,
-      jvmVariant: jvmButton.value.match(/([a-zA-Z0-9]+)/)[1]
-    });
-  };
-
+  if (jvmSelector) {
+    jvmSelector.onchange = () => {
+      const jvmButton = Array.from(jvmButtons).find((button) => button.checked);
+      module.exports.setUrlQuery({
+        variant,
+        jvmVariant: jvmButton.value.match(/([a-zA-Z0-9]+)/)[1]
+      });
+    };
+  }
 
   for (let i = 0; i < jdkButtons.length; i++) {
     if (jdkButtons[i].value === variant) {
@@ -324,4 +342,15 @@ module.exports.setRadioSelectors = () => {
       break;
     }
   }
+}
+
+global.renderChecksum = function(checksum) {
+  var modal = document.getElementById('myModal')
+  document.getElementById('modal-body').innerHTML = checksum
+  modal.style.display = 'inline'
+}
+
+global.hideChecksum = function() {
+  var modal = document.getElementById('myModal')
+  modal.style.display = 'none'
 }
