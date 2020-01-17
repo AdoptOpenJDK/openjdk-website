@@ -10,7 +10,7 @@ const platformSelector = document.getElementById('platform-selector');
 module.exports.load = () => {
   setRadioSelectors();
 
-  loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, buildInstallationHTML, () => {
+  loadAssetInfo(variant, jvmVariant, 'releases', 'latest', 'adoptopenjdk', buildInstallationHTML, () => {
     errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
     loading.innerHTML = ''; // remove the loading dots
   });
@@ -18,30 +18,31 @@ module.exports.load = () => {
 
 function buildInstallationHTML(releasesJson) {
   // create an array of the details for each asset that is attached to a release
-  const assetArray = releasesJson.binaries;
+  const assetArray = releasesJson[0].binaries;
 
   const ASSETARRAY = [];
 
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
   assetArray.forEach((eachAsset) => {
     const ASSETOBJECT = {};
-    const uppercaseFilename = eachAsset.binary_name.toUpperCase();
+    const uppercaseFilename = eachAsset.package.name.toUpperCase();
     ASSETOBJECT.thisPlatform = findPlatform(eachAsset);
 
     // check if the platform name is recognised...
     if (ASSETOBJECT.thisPlatform) {
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
-      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform) + ' ' + eachAsset.binary_type;
-      ASSETOBJECT.thisPlatformType = (ASSETOBJECT.thisPlatform + '-' + eachAsset.binary_type).toUpperCase();
+      ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform) + ' ' + eachAsset.image_type;
+      ASSETOBJECT.thisPlatformType = (ASSETOBJECT.thisPlatform + '-' + eachAsset.image_type).toUpperCase();
 
       // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
       ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
       if (uppercaseFilename.includes(ASSETOBJECT.thisBinaryExtension.toUpperCase())) {
         ASSETOBJECT.thisPlatformExists = true;
-        ASSETOBJECT.thisBinaryLink = eachAsset.binary_link;
-        ASSETOBJECT.thisBinaryFilename = eachAsset.binary_name;
-        ASSETOBJECT.thisChecksumLink = eachAsset.checksum_link;
-        ASSETOBJECT.thisChecksumFilename = eachAsset.binary_name.replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
+        ASSETOBJECT.thisBinaryLink = eachAsset.package.link;
+        ASSETOBJECT.thisBinaryFilename = eachAsset.package.name;
+        ASSETOBJECT.thisChecksum = eachAsset.package.checksum;
+        ASSETOBJECT.thisChecksumLink = eachAsset.package.checksum_link;
+        ASSETOBJECT.thisChecksumFilename = eachAsset.package.name.replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
         ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
         ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
 
@@ -66,7 +67,7 @@ function buildInstallationHTML(releasesJson) {
           ASSETOBJECT.thisBinaryFilename
         );
 
-        const dirName = releasesJson.release_name + (eachAsset.binary_type === 'jre' ? '-jre' : '');
+        const dirName = releasesJson[0].release_name + (eachAsset.image_type === 'jre' ? '-jre' : '');
         ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', dirName);
       }
 
