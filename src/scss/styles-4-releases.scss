@@ -209,14 +209,20 @@ div#latest-selector {
     margin: auto;
 }
 
-.modal-content {
-    background-color: white;
-    padding: 2em;
-    border-style: solid;
-    border-width: medium;
+.modal-body {
+    padding-bottom: 1em;
+    resize: none;
 }
 
 .modal-dialog {
     display: inline-block;
     text-align: left;
+    padding: 2em;
+    background-color: white;
+    border-style: solid;
+    border-width: medium;
+}
+
+.modal-button {
+    float: right;
 }

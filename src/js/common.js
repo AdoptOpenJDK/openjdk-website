@@ -354,3 +354,8 @@ global.hideChecksum = function() {
   var modal = document.getElementById('myModal')
   modal.style.display = 'none'
 }
+
+global.copyStringToClipboard = function() {
+  document.getElementById('modal-body').select()
+  document.execCommand('copy');
+}
