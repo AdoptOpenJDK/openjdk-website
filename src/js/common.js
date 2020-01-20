@@ -118,7 +118,7 @@ function toJson(response) {
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
 function queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse) {
-  if (!url.endsWith('?')) {
+  if ((!url.endsWith('?')) && (!url.endsWith('&'))) {
     url += '?';
   }
   if (release !== undefined) {
