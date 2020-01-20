@@ -210,8 +210,9 @@ div#latest-selector {
 }
 
 .modal-body {
-    padding-bottom: 1em;
     resize: none;
+    border-style: none;
+    border-color: Transparent;
 }
 
 .modal-dialog {
