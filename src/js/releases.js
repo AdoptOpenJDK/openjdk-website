@@ -9,12 +9,7 @@ const errorContainer = document.getElementById('error-container');
 module.exports.load = () => {
 
   Handlebars.registerHelper('fetchOS', function(title) {
-    if (title.split(' ')[2]) {
-      // This is so that XL binaries have Large Heap in the name still
-      return title.replace(title.split(' ')[1], '');
-    } else {
-      return title.split(' ')[0];
-    }
+    return title.split(' ')[0];
   });
 
   Handlebars.registerHelper('fetchArch', function(title) {
@@ -68,6 +63,13 @@ function buildLatestHTML(releasesJson) {
       return;
     }
 
+    let heap_size;
+    if (releaseAsset.binary.heap_size == 'large') {
+      heap_size = 'Large Heap';
+    } else if (releaseAsset.binary.heap_size == 'normal') {
+      heap_size = 'Normal';
+    }
+
     // Skip this asset if it's not a binary type we're interested in displaying
     const binary_type = releaseAsset.binary.image_type.toUpperCase();
     if (!['INSTALLER', 'JDK', 'JRE'].includes(binary_type)) {
@@ -83,6 +85,7 @@ function buildLatestHTML(releasesJson) {
         platform_ordinal: getPlatformOrder(platform),
         platform_supported_version: getSupportedVersion(platform),
         release_name: releaseAsset.release_name,
+        heap_size: heap_size,
         release_link: releaseAsset.release_link,
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
 
