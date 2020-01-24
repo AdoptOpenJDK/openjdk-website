@@ -78,7 +78,6 @@
         "required": [
           "officialName",
           "searchableName",
-          "logo",
           "binaryExtension",
           "installerExtension",
           "installCommand",
@@ -103,14 +102,6 @@
             "description": "A string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.",
             "examples": ["X64_LINUX"],
             "pattern": "^(.*)$"
-          },
-          "logo": {
-            "$id": "#/properties/platforms/items/properties/logo",
-            "type": "string",
-            "title": "Logo image",
-            "description": "The path to the logo image in the assets directory. As a general rule, use .png images, especially for logos and icons.",
-            "examples": ["arm.png", "linux.png"],
-            "pattern": "^(.*\\.(png|jpg|jpeg))$"
           },
           "binaryExtension": {
             "$id": "#/properties/platforms/items/properties/binaryExtension",
