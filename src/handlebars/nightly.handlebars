@@ -48,6 +48,8 @@
 
   <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
 
+  {{> modal }}
+
   <div id="nightly-list">
     <table id="table-parent">
       <thead id="table-head">
@@ -66,7 +68,7 @@
               \{{else}}
                 <td class='nightly-downloads-block'><div>Not available</div></td>
               \{{/if}}
-              <td><a href='\{{thisChecksumLink}}' class='dark-link'>Checksum</a></td>
+              <td><a href='javascript:renderChecksum("\{{thisChecksum}}");' class='dark-link'>Checksum</a></td>
             </tr>
           \{{/each}}
         </script>

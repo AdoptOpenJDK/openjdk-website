@@ -2,7 +2,7 @@ const {
   detectOS,
   findPlatform,
   getBinaryExt,
-  loadAssetInfo,
+  loadLatestAssets,
   makeQueryString,
   setRadioSelectors,
   setTickLink
@@ -37,13 +37,13 @@ module.exports.load = () => {
   dlText.classList.remove('invisible');
 
   const handleResponse = (releasesJson) => {
-    if (!releasesJson || !releasesJson.release_name) {
+    if (!releasesJson) {
       return;
     }
     buildHomepageHTML(releasesJson, {}, OS);
   };
 
-  loadAssetInfo(variant, jvmVariant, 'releases', 'latest', undefined, handleResponse, () => {
+  loadLatestAssets(variant, jvmVariant, 'latest', handleResponse, undefined, () => {
     errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
       Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
     loading.innerHTML = ''; // remove the loading dots
@@ -60,17 +60,13 @@ function removeRadioButtons() {
 }
 
 function buildHomepageHTML(releasesJson, jckJSON, OS) {
-  // set the download button's version number to the latest release
-  dlVersionText.innerHTML = releasesJson.release_name;
-
-  const assetArray = releasesJson.binaries;
   let matchingFile = null;
 
   // if the OS has been detected...
   if (OS) {
-    assetArray.forEach((eachAsset) => { // iterate through the assets attached to this release
-      const uppercaseFilename = eachAsset.binary_name.toUpperCase();
-      const thisPlatform = findPlatform(eachAsset);
+    releasesJson.forEach((eachAsset) => { // iterate through the assets attached to this release
+      const uppercaseFilename = eachAsset.binary.package.name.toUpperCase();
+      const thisPlatform = findPlatform(eachAsset.binary);
 
       // firstly, check if a valid searchableName has been returned (i.e. the platform is recognised)...
       if (thisPlatform) {
@@ -86,9 +82,12 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
                 setTickLink();
               }
             }
-            // thirdly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-            if (uppercaseFilename.includes(uppercaseOSname)) {
-              matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
+            // thirdly check if JDK or JRE (we want to serve JDK by default)
+            if (eachAsset.binary.image_type == 'jdk') {
+              // fourthly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
+              if (uppercaseFilename.includes(uppercaseOSname)) {
+                matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
+              }
             }
           }
         }
@@ -98,12 +97,14 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
 
   // if there IS a matching binary for the user's OS...
   if (matchingFile) {
-    if (matchingFile.installer_link) {
-      dlLatest.href = matchingFile.installer_link; // set the main download button's link to be the installer's download url
+    if (matchingFile.binary.installer) {
+      dlLatest.href = matchingFile.binary.installer.link; // set the main download button's link to be the installer's download url
     } else {
-      dlLatest.href = matchingFile.binary_link; // set the main download button's link to be the binary's download url
-      dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary_size / 1024 / 1024)} MB`;
+      dlLatest.href = matchingFile.binary.package.link; // set the main download button's link to be the binary's download url
+      dlVersionText.innerHTML += ` - ${Math.floor(matchingFile.binary.package.size / 1000 / 1000)} MB`;
     }
+    // set the download button's version number to the latest release
+    dlVersionText.innerHTML = matchingFile.release_name;
   } else {
     dlIcon.classList.add('hide'); // hide the download icon on the main button, to make it look less like you're going to get a download immediately
     dlIcon2.classList.remove('hide'); // un-hide an arrow-right icon to show instead
