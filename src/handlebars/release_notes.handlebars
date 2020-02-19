@@ -25,6 +25,135 @@
     </div>
 
     <div class="anchor">
+      <a href="#jdk8u242" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jdk8u242">OpenJDK 8u242 (1.8.0_242-b08)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u242-b08/OpenJDK8U-sources_8u242b08.tar.gz">Upstream Source Tarball OpenJDK 8u242-b08</a>)</h3>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://bugs.openjdk.java.net/browse/JDK-8227806?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%20openjdk8u242%20ORDER%20BY%20created%20DESC" target="_blank">8u242</a> Fix Version filter in the JDK Bug System.
+
+      <h3>Security fixes</h3>
+      <ul>
+        <li>S8225261: Better method resolutions</li>
+        <li>S8224909, CVE-2020-2583: Unlink Set of LinkedHashSets</li>
+        <li>S8225279: Better XRender interpolation</li>
+        <li>S8226352, CVE-2020-2590: Improve Kerberos interop capabilities</li>
+        <li>S8227758: More valid PKIX processing</li>
+        <li>S8227816: More Colorful ICC profiles</li>
+        <li>S8228548, CVE-2020-2593: Normalize normalization for all</li>
+        <li>S8229951, CVE-2020-2601: Better Ticket Granting Services</li>
+        <li>S8230279: Improve Pack200 file reading</li>
+        <li>S8230318: Better trust store usage</li>
+        <li>S8230967: Improve Registry support of clients</li>
+        <li>S8231129: More glyph images</li>
+        <li>S8231139: Improved keystore support</li>
+        <li>S8231422, CVE-2020-2604: Better serial filter handling</li>
+        <li>S8231795, CVE-2020-2659: Enhance datagram socket support</li>
+        <li>S8232419: Improve Registry registration</li>
+        <li>S8234037, CVE-2020-2654: Improve Object Identifier Processing</li>
+      </ul>
+
+      <h3>Other changes</h3>
+      <ul>
+        <li>S8010500: [parfait] Possible null pointer dereference at hotspot/src/share/vm/opto/loopnode.hpp</li>
+        <li>S8029629: java/lang/ProcessBuilder/Basic.java fails intermittently</li>
+        <li>S8031111: fix krb5 caddr</li>
+        <li>S8037550: Update RFC references in javadoc to RFC 5280</li>
+        <li>S8039438: Some tests depend on internal API sun.misc.IOUtils</li>
+        <li>S8044500: Add kinit options and krb5.conf flags that allow users to obtain renewable tickets and specify ticket lifetimes</li>
+        <li>S8048556: Unnecessary GCLocker-initiated young GCs</li>
+        <li>S8055351: sun/security/provider/DSA/TestAlgParameterGenerator.java failed with interrupted! (timed out?)</li>
+        <li>S8057986: freetype code to get glyph outline does not handle initial control point properly</li>
+        <li>S8058290: JAAS Krb5LoginModule has suspect ticket-renewal logic, relies on clockskew grace</li>
+        <li>S8067429: java.lang.VerifyError: Inconsistent stackmap frames at branch target</li>
+        <li>S8068736: Avoid synchronization on Executable/Field.declaredAnnotations</li>
+        <li>S8073108: Use x86 and SPARC CPU instructions for GHASH acceleration</li>
+        <li>S8073154: NULL-pointer dereferencing in LIR_OpProfileType::print_instr</li>
+        <li>S8073347: javadoc of Formattable messed up by JDK-8019857</li>
+        <li>S8077707: jdk9 b58 cannot run any graphical application on Win 8 with JAWS running</li>
+        <li>S8080835: Add blocking bulk read to sun.misc.IOUtils</li>
+        <li>S8130341: GHASH 32bit intrinsics has AEADBadTagException</li>
+        <li>S8131778: java disables UseAES flag when using VIS=2 on sparc</li>
+        <li>S8132111: Do not request for addresses for forwarded TGT</li>
+        <li>S8132249: Clean up JAB debugging code</li>
+        <li>S8133489: Better messaging for PKIX path validation matching</li>
+        <li>S8133951: Zero interpreter asserts in stubRoutines.cpp</li>
+        <li>S8134424: BlockDataInputStream.readUTFBody: size local StringBuffer with the given length</li>
+        <li>S8134739: compiler/loopopts/superword/TestVectorizationWithInvariant crashes in loop opts</li>
+        <li>S8138978: Examine usages of sun.misc.IOUtils</li>
+        <li>S8139178: Wrong fontMetrics when printing in Landscape (OpenJDK)</li>
+        <li>S8139206: Add InputStream readNBytes(int len)</li>
+        <li>S8146238: [macosx] Java2D Queue Flusher crash on OSX after switching between user accounts</li>
+        <li>S8156028: G1YoungGenSizer _adaptive_size not correct when setting NewSize and MaxNewSize to the same value</li>
+        <li>S8170641: sun/net/www/protocol/https/HttpsURLConnection/PostThruProxy.sh fails with timeout</li>
+        <li>S8173956: KeyStore regression due to default keystore being changed to PKCS12</li>
+        <li>S8183591: Incorrect behavior when reading DER value with Integer.MAX_VALUE length</li>
+        <li>S8185898: setRequestProperty(key, null) results in HTTP header without colon in request</li>
+        <li>S8186576: KerberosTicket does not properly handle renewable tickets at the end of their lifetime</li>
+        <li>S8186831: Kerberos ignores PA-DATA with a non-null s2kparams</li>
+        <li>S8186884: Test native KDC, Java krb5 lib, and native krb5 lib in one test</li>
+        <li>S8189762: [TESTBUG] Create tests for JDK-8146115 container awareness and resource configuration</li>
+        <li>S8193832: Performance of InputStream.readAllBytes() could be improved</li>
+        <li>S8194653: Deadlock involving FileSystems.getDefault and System.loadLibrary call</li>
+        <li>S8195088: [TEST_BUG] StartManagementAgent got unexpected exception</li>
+        <li>S8195667: ProblemList PKCS11 tests Secmod/AddTrustedCert.java and tls/TestKeyMaterial.java due to JDK-8180837</li>
+        <li>S8196681: Java Access Bridge logging and debug flags dynamically controlled</li>
+        <li>S8196956: (ch) More channels cleanup</li>
+        <li>S8198649: Switch AWT/Swing's default GTK version to 3</li>
+        <li>S8201627: Kerberos sequence number issues</li>
+        <li>S8204288: Matching the end of a string followed by an empty greedy regex and a word boundary fails</li>
+        <li>S8204290: Add check to limit number of capture groups</li>
+        <li>S8206173: MallocSiteTable::initialize() doesn't take function descriptors into account</li>
+        <li>S8208715: Conversion of milliseconds to nanoseconds in UNIXProcess contains bug</li>
+        <li>S8212071: Need to set the FreeType LCD Filter to reduce fringing.</li>
+        <li>S8213119: [macos] java/awt/GraphicsDevice/CheckDisplayModes.java fails</li>
+        <li>S8213568: Typo in java/awt/GraphicsEnvironment/LoadLock/GE_init5.java</li>
+        <li>S8215032: Support Kerberos cross-realm referrals (RFC 6806)</li>
+        <li>S8215210: [macos] Hangul text does not shape to the precomposed form on JDK8u</li>
+        <li>S8216401: Allow "file:" URLs in Class-Path of local JARs</li>
+        <li>S8218558: NMT stack traces in output should show mt component for virtual memory allocations</li>
+        <li>S8219914: Change the environment variable for Java Access Bridge logging to have a directory.</li>
+        <li>S8221172: SunEC specific test is not limited to SunEC</li>
+        <li>S8221246: NullPointerException within Win32ShellFolder2</li>
+        <li>S8222496: [8u] Switch on GTK3 as a default GTK L&F in client-libs</li>
+        <li>S8223490: Optimize search algorithm for determining default time zone</li>
+        <li>S8225101: Crash at sun.awt.X11.XlibWrapper.XkbGetUpdatedMap when change keybord map</li>
+        <li>S8225141: Better handling of classes in error state in fast class initialization checks</li>
+        <li>S8225505: ctrl-F1 does not show the tooltip of a menu item (JMenuItems)</li>
+        <li>S8226719: Kerberos login to Windows 2000 failed with "Inappropriate type of checksum in message"</li>
+        <li>S8227061: KDC.java test behaves incorrectly when AS-REQ contains a PAData not PA-ENC-TS-ENC</li>
+        <li>S8227381: GSS login fails with PREAUTH_FAILED</li>
+        <li>S8227437: S4U2proxy cannot continue because server's TGT cannot be found</li>
+        <li>S8227715: GPLv2 files missing Classpath Exception</li>
+        <li>S8228888: C2 compilation fails with assert "m has strange control"</li>
+        <li>S8229020: Failure on CPUs allowing loads reordering: assert(_tasks[t] == 1) failed: What else?</li>
+        <li>S8229169: False failure of GenericTaskQueue::pop_local on architectures with weak memory model</li>
+        <li>S8229420: [Redo] jstat reports incorrect values for OU for CMS GC</li>
+        <li>S8230238: Add another regression test for JDK-8134739</li>
+        <li>S8230363: C2: Let ConnectionGraph::not_global_escape(Node* n) return false if n is not in the CG</li>
+        <li>S8230813: Add JDK-8010500 to compiler/loopopts/superword/TestFuzzPreLoop.java bug list</li>
+        <li>S8231124: Missing closedir call with JDK-8223490</li>
+        <li>S8231398: Add time tracing for gc log rotation at safepoint cleanup</li>
+        <li>S8231584: Deadlock with ClassLoader.findLibrary and System.loadLibrary call</li>
+        <li>S8231887: ComodoCA.java fails because certificate was revoked</li>
+        <li>S8231988: Unexpected test result caused by C2 IdealLoopTree::do_remove_empty_loop</li>
+        <li>S8232019: Add LuxTrust certificate updates to the existing root program</li>
+        <li>S8232381: add result NULL-checking to freetypeScaler.c</li>
+        <li>S8232984: Upgrading Joni License version to 2.1.16</li>
+        <li>S8233223: Add Amazon Root CA certificates</li>
+        <li>S8233886: TEST_BUG jdk/java/net/CookieHandler/B6791927.java hit hardcoded expiration date</li>
+        <li>S8233944: Make KerberosPrincipal.KRB_NT_ENTERPRISE field package private</li>
+        <li>S8234591: [11u] Build with old C compiler broken by 8223490</li>
+        <li>S8235850: [TESTBUG] Remove test/runtime/RedefineTests/test8178870.sh</li>
+        <li>S8235909: File.exists throws AccessControlException for invalid paths when a SecurityManager is installed</li>
+        <li>S8236178: Debug build failed after 8236058</li>
+        <li>S8236983: [TESTBUG] Remove pointless catch block in test/jdk/sun/security/util/DerValue/BadValue.java</li>
+        <li>S8236984: Add compatibility wrapper for IOUtils.readFully</li>
+      </ul>
+    </div>
+
+    <div class="anchor">
       <a href="#jdk8u232" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="jdk8u232">OpenJDK 8u232 (1.8.0_232-b09)</a></h2>
       <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u232-b09/OpenJDK8U-sources_8u232b09.tar.gz">Upstream Source Tarball OpenJDK 8u232-b09</a>)</h3>
@@ -78,7 +207,7 @@
         <li>S8141570: Fix Zero interpreter build for --disable-precompiled-headers</li>
         <li>S8147502: Digest is incorrectly truncated for ECDSA signatures when the bit length of n is less than the field size</li>
         <li>S8147611: G1 - Missing memory barrier in start_cset_region_for_worker</li>
-        <li>S8151066: assert(0 &lt;= i &amp;&amp; i &lt; length()) failed: index out of bounds</li>
+        <li>S8151066: assert(0 &lt;= i &amp;amp;&amp;amp; i &lt; length()) failed: index out of bounds</li>
         <li>S8151486: Class.forName causes memory leak</li>
         <li>S8152856: Xcode 7.3 -Wshift-negative-value compile failure on Mac OS X</li>
         <li>S8153732: Windows remote printer changes do not reflect in lookupPrintServices()</li>
@@ -94,7 +223,7 @@
         <li>S8197930: JNI exception pending in initializeEncoding of jni_util.c</li>
         <li>S8202252: (aio) Closed AsynchronousSocketChannel keeps completion handler alive</li>
         <li>S8202353: os::readdir should use readdir instead of readdir_r</li>
-        <li>S8202948: C2: assert(init_offset >= 0) failed: positive offset from object start</li>
+        <li>S8202948: C2: assert(init_offset &gt;= 0) failed: positive offset from object start</li>
         <li>S8203324: Use out of scope in getMacOSXLocale of java_props_macosx.c:120</li>
         <li>S8205587: Implicit function declaration in jni_util.c</li>
         <li>S8206879: Currency decimal marker incorrect for Peru</li>
@@ -146,7 +275,7 @@
         <li>S8226798: JVM crash in klassItable::initialize_itable_for_interface(int, InstanceKlass*, bool, Thread*)</li>
         <li>S8226870: OpenJDK 8u JRE contains clhsdb and hsdb launchers</li>
         <li>S8226928: [TESTBUG] test/java/net/NetworkInterface/IPv4Only.java fails intermittently on AIX</li>
-        <li>S8226964: [Yaru] GTK L&amp;F: There is no difference between menu selected and de-selected</li>
+        <li>S8226964: [Yaru] GTK L&amp;amp;F: There is no difference between menu selected and de-selected</li>
         <li>S8227018: CompletableFuture should not call Runtime.availableProcessors on fast path</li>
         <li>S8228405: Incorrect format strings in PhaseIdealLoop::rc_predicate</li>
         <li>S8228440: TestAESCiphers tests fail with "access denied" trying to access ArrayUtil</li>
@@ -459,6 +588,330 @@
         <li>S8220641: [TESTBUG] New test KdcPolicy.java introduced by JDK-8164656 needs same change as JDK-8190690</li>
       </ul>
 
+    </div>
+
+    <div class="anchor">
+      <a href="#jdk11_0_6" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jdk11_0_6">OpenJDK 11.0.6 (11.0.6+10)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.6%2B10/OpenJDK11U-sources_11.0.6_10.tar.gz">Upstream Source Tarball for OpenJDK 11.0.6+10</a>)</h3>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://bugs.openjdk.java.net/browse/JDK-8227015?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%2011.0.6%20ORDER%20BY%20created%20DESC" target="_blank">11.0.6</a> Fix Version filter in the JDK Bug System.
+
+      <h3>Security fixes</h3>
+      <ul>
+        <li>S8224909, CVE-2020-2583: Unlink Set of LinkedHashSets</li>
+        <li>S8225261: Better method resolutions</li>
+        <li>S8225279: Better XRender interpolation</li>
+        <li>S8226352, CVE-2020-2590: Improve Kerberos interop capabilities</li>
+        <li>S8227758: More valid PKIX processing</li>
+        <li>S8227816: More Colorful ICC profiles</li>
+        <li>S8228548, CVE-2020-2593: Normalize normalization for all</li>
+        <li>S8229728: Implement negotiation parameters</li>
+        <li>S8229951, CVE-2020-2601: Better Ticket Granting Services</li>
+        <li>S8230279: Improve Pack200 file reading</li>
+        <li>S8230318: Better trust store usage</li>
+        <li>S8230967: Improve Registry support of clients</li>
+        <li>S8231139: Improved keystore support</li>
+        <li>S8231422, CVE-2020-2604: Better serial filter handling</li>
+        <li>S8231780, CVE-2020-2655: Better TLS messaging support</li>
+        <li>S8231790: Provide better FileSystemProviders</li>
+        <li>S8232419: Improve Registry registration</li>
+        <li>S8234037, CVE-2020-2654: Improve Object Identifier Processing</li>
+      </ul>
+      <h3>Other changes</h3>
+      <ul>
+        <li>S8016914: CoreDocumentImpl.setXmlVersion NPE</li>
+        <li>S8048556: Unnecessary GCLocker-initiated young GCs</li>
+        <li>S8080462: Update SunPKCS11 provider with PKCS11 v2.40 support</li>
+        <li>S8134672: [TEST_BUG] Some tests should check isDisplayChangeSupported</li>
+        <li>S8144125: [macOS] java/awt/event/ComponentEvent/MovedResizedTwiceTest/MovedResizedTwiceTest.java failed automatically</li>
+        <li>S8146238: [macosx] Java2D Queue Flusher crash on OSX after switching between user accounts</li>
+        <li>S8176837: SunPKCS11 provider needs to check more details on PKCS11 Mechanism</li>
+        <li>S8185898: setRequestProperty(key, null) results in HTTP header without colon in request</li>
+        <li>S8190737: use unicode version of the canonicalize() function to handle long path on windows</li>
+        <li>S8191521: handle long relative path specified in -Xbootclasspath/a on windows</li>
+        <li>S8193255: Root Certificates should be stored in text format and assembled at build time</li>
+        <li>S8193325: StackFrameInfo::getByteCodeIndex returns wrong value if bci &gt; 32767</li>
+        <li>S8198882: Add 10 JNDI tests to com/sun/jndi/dns/AttributeTests/</li>
+        <li>S8200381: Typos in javadoc - missing verb "be" and alike</li>
+        <li>S8202359: [GRAAL] compiler/uncommontrap/TestDeoptOOM.java failed with OutOfMemoryError</li>
+        <li>S8205516: JFR tool</li>
+        <li>S8206115: Use shared macros for JavaClasses::compute_offsets and MetaspaceShared::serialize_well_known_classes</li>
+        <li>S8207263: Store the Configuration for system modules into CDS archive.</li>
+        <li>S8207922: ctw of jdk.security.auth failed with "Unexpected zero exit codebefore finishing all compilations"</li>
+        <li>S8208179: Devanagari not shown with logical fonts on Windows after removal of Lucida Sans from JDK</li>
+        <li>S8208236: [TESTBUG] vmTestbase/nsk/stress/stack tests fail by timeout</li>
+        <li>S8208364: java/lang/reflect/callerCache/ReflectionCallerCacheTest.java missing module dependencies declaration</li>
+        <li>S8208582: Introduce native oop barriers in C1 for OopHandle</li>
+        <li>S8208601: Introduce native oop barriers in C2 for OopHandle</li>
+        <li>S8209003: Consolidate use of empty collections in java.lang.module</li>
+        <li>S8209120: Archive the Integer.IntegerCache</li>
+        <li>S8209178: Proxied HttpsURLConnection doesn't send BODY when retrying POST request</li>
+        <li>S8209545: Simplify HeapShared::archive_module_graph_objects</li>
+        <li>S8209647: constantPoolHandle::constantPoolHandle(ConstantPool*) when precompiled header is disabled</li>
+        <li>S8209691: Allow MemBar on single memory slice</li>
+        <li>S8209771: jdk.test.lib.Utils::runAndCheckException error</li>
+        <li>S8209790: SA tools not providing option to connect to debug server</li>
+        <li>S8209833: C2 compilation fails with "assert(ex_map-&gt;jvms()-&gt;same_calls_as(_exceptions-&gt;jvms())) failed: all collected exceptions must come from the same place"</li>
+        <li>S8209835: Aarch64: elide barriers on all volatile operations</li>
+        <li>S8209972: [GRAAL] Don't run RTM tests with Graal</li>
+        <li>S8210158: Accessorize JFR getEventWriter() intrinsics</li>
+        <li>S8210384: SunLayoutEngine.isAAT() font is expensive on MacOS</li>
+        <li>S8210387: C2 compilation fails with "assert(node->_last_del == _last) failed: must have deleted the edge just produced"</li>
+        <li>S8210403: Refactor java.util.Locale:i18n shell tests to plain java tests</li>
+        <li>S8210559: ClassLoaderData Symbols can leak</li>
+        <li>S8210776: Upgrade X Window System 6.8.2 to the latest XWD 1.0.7</li>
+        <li>S8210789: langtools/tools/javac/T8152616.java missing @modules</li>
+        <li>S8211037: Load jib jars dynamically from JibArtifactManager</li>
+        <li>S8211147: Incorrect comparator com.sun.beans.introspect.MethodInfo.MethodOrder</li>
+        <li>S8211385: (zipfs) ZipDirectoryStream yields a stream of absolute paths when directory is relative</li>
+        <li>S8211740: [AOT] -XX:AOTLibrary doesn't accept windows path</li>
+        <li>S8211866: TLS 1.3 CertificateRequest message sometimes offers disallowed signature algorithms</li>
+        <li>S8211919: ZipDirectoryStream should provide a stream of paths that are relative to the directory</li>
+        <li>S8211992: GraphicsConfiguration.getDevice().getDisplayMode() causes JVM crash on Mac</li>
+        <li>S8212028: Use run-test makefile framework for testing in Oracle's Mach5</li>
+        <li>S8212071: Need to set the FreeType LCD Filter to reduce fringing.</li>
+        <li>S8212627: [TESTBUG] runtime/CreateMirror/ArraysNewInstanceBug.java timed out</li>
+        <li>S8212673: jtreg/applications/runthese/RunThese30M.java fails in C2 with "assert(!had_error) failed: bad dominance"</li>
+        <li>S8212738: Incorrectly named signature scheme ecdsa_secp512r1_sha512</li>
+        <li>S8212752: Typo in SSL log message related to inactive/disabled signature scheme</li>
+        <li>S8213005: Missing symbols in hs_err files on Windows after JDK-8212028</li>
+        <li>S8213008: Cipher with UNWRAP_MODE should support the generation of an AES key type</li>
+        <li>S8213014: Crash in CompileBroker::make_thread due to OOM</li>
+        <li>S8213119: [macos] java/awt/GraphicsDevice/CheckDisplayModes.java fails</li>
+        <li>S8213381: Hook to allow GC to inject Node::Ideal() calls</li>
+        <li>S8213448: [TESTBUG] enhance jfr/jvm/TestDumpOnCrash</li>
+        <li>S8213568: Typo in java/awt/GraphicsEnvironment/LoadLock/GE_init5.java</li>
+        <li>S8213604: Fix missing includes after JDK-8212673</li>
+        <li>S8214046: [macosx] Undecorated Frame does not Iconify when set to</li>
+        <li>S8214052: [testbug] vmTestbase/vm/compiler/CodeCacheInfoOnCompilation - wrong shell used</li>
+        <li>S8214098: sun.security.ssl.HandshakeHash.T12HandshakeHash constructor check backwards.</li>
+        <li>S8214311: dtrace gensrc has missing dependencies</li>
+        <li>S8214315: G1: fatal error: acquiring lock SATB_Q_FL_lock/1 out of order with lock tty_lock/0</li>
+        <li>S8214321: Misleading code in SSLCipher</li>
+        <li>S8214542: JFR: Old Object Sample event slow on a deep heap in debug builds</li>
+        <li>S8214750: Unnecessary &lt;p&gt; tags in jfr classes</li>
+        <li>S8214773: Replace use of thread unsafe strtok</li>
+        <li>S8214896: JFR Tool left files behind</li>
+        <li>S8214925: JFR tool fails to execute</li>
+        <li>S8214975: No hs-err file if fatal error is raised during dynamic initialization</li>
+        <li>S8215032: Support Kerberos cross-realm referrals (RFC 6806)</li>
+        <li>S8215105: java/awt/Robot/HiDPIScreenCapture/ScreenCaptureTest.java: Wrong Pixel Color</li>
+        <li>S8215200: IllegalArgumentException in sun.lwawt.macosx.CPlatformWindow</li>
+        <li>S8215411: some GetByteArrayElements calls miss corresponding Release</li>
+        <li>S8215449: Several tests failing when jtreg run with -vmoption:--illegal-access=deny</li>
+        <li>S8215524: Finished message validation failure should be decrypt_error alert</li>
+        <li>S8215699: -Xlog::file cannot be used with named pipe</li>
+        <li>S8215708: ZGC: Add missing LoadBarrierNode::size_of()</li>
+        <li>S8215755: ZGC: split_barrier_thru_phi: check number of inputs of phi</li>
+        <li>S8215771: The jfr tool should pretty print reference chains</li>
+        <li>S8215913: [Test_bug]java/util/Locale/LocaleProvidersRun.java failed on de_DE and ja_JP locale.</li>
+        <li>S8216064: -XX:StartFlightRecording:settings= doesn't work properly</li>
+        <li>S8216135: C2 assert(!had_error) failed: bad dominance</li>
+        <li>S8216283: Allow shorter method sampling interval than 10 ms</li>
+        <li>S8216363: NullPointerException in java.util.logging.Handler#isLoggable</li>
+        <li>S8216426: Usage of array placement new may lead to memory corruption</li>
+        <li>S8216561: HttpClient: The logic of retry on connect exception is inverted</li>
+        <li>S8216977: ShowHiddenFrames use in java_lang_StackTraceElement::fill_in appears broken</li>
+        <li>S8217362: Emergency dump does not work when disk=false is set</li>
+        <li>S8217610: TLSv1.3 fail with ClassException when EC keys are stored in PKCS11</li>
+        <li>S8217731: Font rendering and glyph spacing changed from jdk-8 to jdk-11</li>
+        <li>S8218468: Load barrier slow path node should be MachTypeNode</li>
+        <li>S8218580: endpoint identification algorithm should be case-insensitive</li>
+        <li>S8218935: Make jfr strncpy uses GCC 8.x friendly</li>
+        <li>S8219504: Test for JDK-8211435 can be run on all platforms</li>
+        <li>S8219914: Change the environment variable for Java Access Bridge logging to have a directory.</li>
+        <li>S8220175: serviceability/dcmd/framework/VMVersionTest.java fails with a timeout</li>
+        <li>S8220231: Cache HarfBuzz face object for same font's text layout calls</li>
+        <li>S8220352: Crash with assert(external_guard || result != __null) failed: Invalid JNI handle</li>
+        <li>S8220394: bufferedStream does not honor size limit</li>
+        <li>S8220474: Incorrect GPL header in src/java.instrument/share/classes/java/lang/instrument/package-info.java</li>
+        <li>S8220476: Incorrect GPL header in src/jdk.internal.jvmstat/share/classes/sun/jvmstat/perfdata/monitor/protocol/local/PerfDataFile.java</li>
+        <li>S8220528: [AIX] Fix basic Xinerama and Xrender functionality</li>
+        <li>S8220555: JFR tool shows potentially misleading message when it cannot access a file</li>
+        <li>S8220598: Malformed copyright year range in a few files in java.base</li>
+        <li>S8221092: UseAVX=3 has performance degredation on Skylake (X7) processors</li>
+        <li>S8221172: SunEC specific test is not limited to SunEC</li>
+        <li>S8221246: NullPointerException within Win32ShellFolder2</li>
+        <li>S8221395: HttpClient leaving connections in CLOSE_WAIT state until Java process ends</li>
+        <li>S8221406: Windows 32bit build error in NetworkInterface_winXP.c</li>
+        <li>S8221456: nmethod::make_unloaded() clears _method member too early</li>
+        <li>S8221532: Incorrect copyright header in FileSystemSupport_md.c</li>
+        <li>S8221539: [metaspace] Improve MetaspaceObj::is_metaspace_obj() and friends</li>
+        <li>S8221569: JFR tool produces incorrect output when both --categories and --events are specified</li>
+        <li>S8221711: [TESTBUG] create more tests for JFR in container environment</li>
+        <li>S8221913: Add GC.selected() jtreg-ext function</li>
+        <li>S8222015: Small VM.metaspace improvements</li>
+        <li>S8222440: (zipfs) JarFileSystem does not correctly handle versioned entries if no root entry is present</li>
+        <li>S8222529: sun.jdwp.listenerAddress agent property uses wrong encoding</li>
+        <li>S8222807: Address iteration with invalid ZIP header entries</li>
+        <li>S8222888: [TESTBUG] docker/TestJFREvents.java fails due to "RuntimeException: JAVA_MAIN_CLASS_ is not defined"</li>
+        <li>S8223438: add VirtualizationInformation JFR event</li>
+        <li>S8223490: Optimize search algorithm for determining default time zone</li>
+        <li>S8223697: jfr tool can't format duration values greater than 1 minute</li>
+        <li>S8223869: Problem list java/awt/FontMetrics/MaxAdvanceIsMax.java on more platforms</li>
+        <li>S8224152: [macOS] ProblemList tests that leave rubbish on the screen</li>
+        <li>S8224157: BCEL: update to version 6.3.1</li>
+        <li>S8224172: assert(jfr_is_event_enabled(id)) failed: invariant</li>
+        <li>S8224193: stringStream should not use Resouce Area</li>
+        <li>S8224217: RecordingInfo should use textual representation of path</li>
+        <li>S8224502: [TESTBUG] JDK docker test TestSystemMetrics.java fails with access issues and OOM</li>
+        <li>S8224505: TestQuotedLogOutput failure after ProcessBuilder changes</li>
+        <li>S8224538: LoadBarrierNode::common_barrier must check address</li>
+        <li>S8224958: add os::dll_load calls to event log</li>
+        <li>S8225101: Crash at sun.awt.X11.XlibWrapper.XkbGetUpdatedMap when change keybord map</li>
+        <li>S8225225: stringStream internal buffer should always be zero terminated</li>
+        <li>S8225392: Comparison builds are failing due to cacerts file</li>
+        <li>S8225505: ctrl-F1 does not show the tooltip of a menu item (JMenuItems)</li>
+        <li>S8225694: Destination option missing in FlightRecorderMXBeanImpl</li>
+        <li>S8225695: 32-bit build failures after JDK-8080462 (Update SunPKCS11 provider with PKCS11 v2.40 support)</li>
+        <li>S8225745: NoSuchAlgorithmException exception for SHA256withECDSA with RSASSA-PSS support</li>
+        <li>S8226513: JEditorPane is shown with incorrect size</li>
+        <li>S8226651: Setting the mgfHash in CK_RSA_PKCS_PSS_PARAMS has no effect</li>
+        <li>S8226719: Kerberos login to Windows 2000 failed with "Inappropriate type of checksum in message"</li>
+        <li>S8226779: [TESTBUG] Test JFR API from Java agent</li>
+        <li>S8226869: Test java/util/Locale/LocaleProvidersRun.java should enable assertions</li>
+        <li>S8226899: Problemlist compiler/rtm tests</li>
+        <li>S8227031: Print NMT statistics on fatal errors</li>
+        <li>S8227032: MetaspaceUtils::print_report crashes when called before initialization</li>
+        <li>S8227035: JVM::printFlags fails in native OOM situations</li>
+        <li>S8227061: KDC.java test behaves incorrectly when AS-REQ contains a PAData not PA-ENC-TS-ENC</li>
+        <li>S8227086: Use AS_NO_KEEPALIVE loads in HeapDumper</li>
+        <li>S8227127: Era designator not displayed correctly using the COMPAT provider</li>
+        <li>S8227338: templateInterpreter.cpp: copy_table() needs to be safer</li>
+        <li>S8227368: EnumSet.class serialization broken in JDK 9+</li>
+        <li>S8227381: GSS login fails with PREAUTH_FAILED</li>
+        <li>S8227391: Update double-conversion to version 3.1.5</li>
+        <li>S8227397: Add --with-extra-asflags configure option</li>
+        <li>S8227411: TestTimeMultiple.java failed "assert(!lease()) failed: invariant"</li>
+        <li>S8227435: Perf::attach() should not throw a java.lang.Exception</li>
+        <li>S8227437: S4U2proxy cannot continue because server's TGT cannot be found</li>
+        <li>S8227439: Turn off AOT by default</li>
+        <li>S8227605: Kitchensink fails "assert((((klass)->trace_id() & (JfrTraceIdEpoch::leakp_in_use_this_epoch_bit())) != 0)) failed: invariant"</li>
+        <li>S8227642: [TESTBUG] Make docker tests podman compatible</li>
+        <li>S8228368: avoid incompatible pointer to integer conversion initializing gint in gtk2_interface</li>
+        <li>S8228434: jdk/net/Sockets/Test.java fails after JDK-8227642</li>
+        <li>S8228465: HOST locale provider holds wrong era name for GregorianCalendar in US locale</li>
+        <li>S8228625: [TESTBUG] sun/tools/jhsdb/JShellHeapDumpTest.java fails with RuntimeException 'JShellToolProvider' missing from stdout/stderr</li>
+        <li>S8228645: Don't run sun/security/pkcs11/Cipher/TestKATForGCM.java on buggy NSS solaris versions</li>
+        <li>S8228687: [TESTBUG] exclude Container tests from hotspot_misc group</li>
+        <li>S8228772: C2 compilation fails due to unschedulable graph if DominatorSearchLimit is reached</li>
+        <li>S8228834: Regression caused by JDK-8214542 not installing complete checkpoint data to candidates</li>
+        <li>S8228835: Memory leak in PKCS11 provider when using AES GCM</li>
+        <li>S8228888: C2 compilation fails with assert "m has strange control"</li>
+        <li>S8228902: add os::dll_load to the unified logging os category</li>
+        <li>S8229016: C2 scalarization crashes with assert(node->Opcode() == Op_CastP2X) failed: ConvP2XNode required</li>
+        <li>S8229020: Failure on CPUs allowing loads reordering: assert(_tasks[t] == 1) failed: What else?</li>
+        <li>S8229022: BufferedReader performance can be improved by using StringBuilder</li>
+        <li>S8229156: ProblemList gc/stress/gclocker/TestExcessGCLockerCollections.java</li>
+        <li>S8229169: False failure of GenericTaskQueue::pop_local on architectures with weak memory model</li>
+        <li>S8229182: runtime/containers/docker/TestMemoryAwareness.java test fails on SLES12</li>
+        <li>S8229243: SunPKCS11-Solaris provider tests failing on Solaris 11.4</li>
+        <li>S8229284: jdk/internal/platform/cgroup/TestCgroupMetrics.java fails for - memory:getMemoryUsage</li>
+        <li>S8229408: Bump update version for OpenJDK: jdk-11.0.6</li>
+        <li>S8229420: [Redo] jstat reports incorrect values for OU for CMS GC</li>
+        <li>S8229437: assert(is_aligned(ref, HeapWordSize)) failed: invariant</li>
+        <li>S8229450: C2 compilation fails with assert(found_sfpt) failed</li>
+        <li>S8229483: Sinking load out of loop may trigger: assert(found_sfpt) failed: no node in loop that's not input to safepoint</li>
+        <li>S8229496: SIGFPE (division by zero) in C2 OSR compiled method</li>
+        <li>S8229515: [macos] access to window property of NSView on wrong thread</li>
+        <li>S8229701: aarch64: C2 OSR compilation fails with "shouldn't process one node several times" in final graph reshaping</li>
+        <li>S8229800: WindowsServerCore 1809 does not provide d2d1.dll library required by awt.dll</li>
+        <li>S8229810: [macos] NullPointerException getting bounds of GraphicsConfiguration</li>
+        <li>S8229872: (fs) Increase buffer size used with getmntent</li>
+        <li>S8229899: Make java.io.File.isInvalid() less racy</li>
+        <li>S8230061: # assert(mode == ControlAroundStripMined && use == sfpt) failed: missed a node</li>
+        <li>S8230062: assert(i == p->size()-1) failed: must be last element of the pack</li>
+        <li>S8230110: TestLinkageErrorInGenerateOopMap times out</li>
+        <li>S8230115: Problemlist JFR TestNetworkUtilization test</li>
+        <li>S8230238: Add another regression test for JDK-8134739</li>
+        <li>S8230303: JDB hangs when running monitor command</li>
+        <li>S8230363: C2: Let ConnectionGraph::not_global_escape(Node* n) return false if n is not in the CG</li>
+        <li>S8230376: [TESTBUG] runtime/StackTrace/HiddenFrameTest.java fails with release VM</li>
+        <li>S8230388: Problemlist additional compiler/rtm tests</li>
+        <li>S8230466: check malloc/calloc results in jdk.hotspot.agent</li>
+        <li>S8230646: Epsilon does not extend TLABs to max size</li>
+        <li>S8230669: [s390] C1: assert(is_bound() || is_unused()) failed: Label was never bound to a location, but it was used as a jmp target</li>
+        <li>S8230671: x86_32 build failures after JDK-8229496</li>
+        <li>S8230711: ConnectionGraph::unique_java_object(Node* N) return NULL if n is not in the CG</li>
+        <li>S8230728: Thin stroked shapes are not rendered if affine transform has flip bit</li>
+        <li>S8230769: BufImg_SetupICM add ReleasePrimitiveArrayCritical call in early return</li>
+        <li>S8230782: Robot.createScreenCapture() fails if “awt.robot.gtk” is set to false</li>
+        <li>S8230813: Add JDK-8010500 to compiler/loopopts/superword/TestFuzzPreLoop.java bug list</li>
+        <li>S8230856: Java_java_net_NetworkInterface_getByName0 on unix misses ReleaseStringUTFChars in early return</li>
+        <li>S8230861: missing ReleaseStringUTFChars in Java_sun_security_pkcs11_wrapper_PKCS11_connect</li>
+        <li>S8230873: [AIX] GUI app does not work with UTF-8 locale on minimum software requirements</li>
+        <li>S8230881: serviceability/sa/TestJmapCore tests fail with java.lang.RuntimeException: Could not find dump file</li>
+        <li>S8230900: missing ReleaseStringUTFChars in java.desktop native code</li>
+        <li>S8230901: missing ReleaseStringUTFChars in serviceability native code</li>
+        <li>S8230923: SunJSSE is not properly initialized in FIPS mode from a configuration file</li>
+        <li>S8230943: False deadlock detection with -XX:+CIPrintCompileQueue after JDK-8163511</li>
+        <li>S8231055: C2: arraycopy with same non escaping src and dest but different positions causes wrong execution</li>
+        <li>S8231084: Large performance regression in SwingMark TextArea in 14-b13</li>
+        <li>S8231085: C2/GC: Better GC-interface for expanding clone</li>
+        <li>S8231098: (tz) Upgrade time-zone data to tzdata2019c</li>
+        <li>S8231124: Missing closedir call with JDK-8223490</li>
+        <li>S8231201: hs_err should print coalesced safepoint operations in Events section</li>
+        <li>S8231222: fix pkcs11 P11_DEBUG guarded native traces</li>
+        <li>S8231223: C2's conditional move optimization fails with assert(bol->Opcode() == Op_Bool) failed</li>
+        <li>S8231247: (zipfs) Test failure in jdk/nio/zipfs/InvalidZipHeaderTests.java after backport of JDK-8222807</li>
+        <li>S8231254: (fs) Add test for macOS Catalina changes to protect system software</li>
+        <li>S8231294: ZGC: vmTestbase/nsk/jvmti/ResourceExhausted/resexhausted002 fails</li>
+        <li>S8231296: ZGC: vmTestbase/nsk/jvmti/Allocate/alloc001/ fails</li>
+        <li>S8231318: Several compiler/aot tests fail for JDK11 on Windows when only MSVC 2017 is installed</li>
+        <li>S8231336: Corrupted option dialog in JTHarness with JDK14b13</li>
+        <li>S8231403: [ppc]: Align ReservedCodeCacheSize default value with other platforms</li>
+        <li>S8231457: Asserts on AIX because os::elapsed_counter() is not monotonic</li>
+        <li>S8231503: [TESTBUG] compiler/{jvmci,aot} tests should not run with GCs that do not support JVMCI/AOT</li>
+        <li>S8231620: assert(bol->is_Bool()) crash during split if due to FastLockNode</li>
+        <li>S8231665: 8231055 broke escapeAnalysis/TestSelfArrayCopy.java</li>
+        <li>S8231693: Backout "8230728: Thin stroked shapes are not rendered if affine transform has flip bit" from jdk11u</li>
+        <li>S8231751: on aix handle Power 9 in os::get_summary_cpu_info</li>
+        <li>S8231770: Test java/util/zip/FlaterTest.java fails with -Xcheck:jni</li>
+        <li>S8231885: Fix/remove malformed assert in os_windows.cpp</li>
+        <li>S8231887: ComodoCA.java fails because certificate was revoked</li>
+        <li>S8231930: Windows build fails after JDK-8191521</li>
+        <li>S8231949: [PPC64, s390]: Make async profiling more reliable</li>
+        <li>S8231988: Unexpected test result caused by C2 IdealLoopTree::do_remove_empty_loop</li>
+        <li>S8231991: Mouse wheel change focus on awt/swing windows</li>
+        <li>S8232005: [s390, PPC64] More exception checks missing in interpreter</li>
+        <li>S8232019: Add LuxTrust certificate updates to the existing root program</li>
+        <li>S8232051: Epsilon should warn about Xms/Xmx/AlwaysPreTouch configuration</li>
+        <li>S8232052: use string literal for format string when handling PauseAtStartupFile</li>
+        <li>S8232178: MacVolumesTest failed after upgrade to MacOS Catalina</li>
+        <li>S8232381: add result NULL-checking to freetypeScaler.c</li>
+        <li>S8232539: SIGSEGV in C2 Node::unique_ctrl_out</li>
+        <li>S8232592: &lt;Unknown compiled code&gt; is shown in jstack mixed mode</li>
+        <li>S8232874: Add missing test for 8230062</li>
+        <li>S8232879: Writing out data with the Zip File System leads to a CRC failure</li>
+        <li>S8232984: Upgrading Joni License version to 2.1.16</li>
+        <li>S8233075: JFR - nmetods - misspelled in several places</li>
+        <li>S8233081: C1: PatchingStub for field access copies too much</li>
+        <li>S8233097: Fontmetrics for large Fonts has zero width</li>
+        <li>S8233202: exclude javax/swing/plaf/basic/BasicGraphicsUtils/8132119/bug8132119.java</li>
+        <li>S8233203: fix non-product build on AIX when compiling with xlc16/legacy-xlc</li>
+        <li>S8233223: Add Amazon Root CA certificates</li>
+        <li>S8233404: System property to set the number of PBE iterations in JCEKS keystores</li>
+        <li>S8233820: Test crashed with assert(phi-&gt;operand_count() != 1 || phi-&gt;subst() != phi) failed: missed trivial simplification</li>
+        <li>S8233839: aarch64: missing memory barrier in NewObjectArrayStub and NewTypeArrayStub</li>
+        <li>S8233886: TEST_BUG jdk/java/net/CookieHandler/B6791927.java hit hardcoded expiration date</li>
+        <li>S8233944: Make KerberosPrincipal.KRB_NT_ENTERPRISE field package private</li>
+        <li>S8233954: UnsatisfiedLinkError or NoSuchAlgorithmException after removing sunec.dll</li>
+        <li>S8234080: jdk/nio/zipfs/CRCWriteTest.java fails</li>
+        <li>S8234107: Several AWT modal dialog tests failing on Linux after JDK-8231991</li>
+        <li>S8234245: sun/security/lib/cacerts/VerifyCACerts.java fails due to wrong checksum</li>
+        <li>S8234321: Call cache flush after generating trampoline.</li>
+        <li>S8234591: [11u] Build with old C compiler broken by 8223490</li>
+        <li>S8234625: hs test serviceability/sa/ClhsdbCDSCore.java fails on macOS 10.15</li>
+        <li>S8234645: ARM32: C1: PatchingStub for field access: not enough bytes</li>
+        <li>S8234906: [TESTBUG] TestDivZeroCheckControl fails for client VMs due to Unrecognized VM option LoopUnrollLimit</li>
+        <li>S8235142: JDK-8193255 backport broke bootstrap with JDK 10</li>
+        <li>S8235403: Further cleanup to test serviceability/sa/ClhsdbCDSCore.java</li>
+        <li>S8235585: Enable macOS codesigning for all libraries and executables</li>
+        <li>S8235687: Contents/MacOS/libjli.dylib cannot be a symlink</li>
+      </ul>
     </div>
 
     <div class="anchor">
@@ -791,8 +1244,6 @@
          <li>S8230099: Prepare for backport of JDK-8217368</li>
       </ul>
     </div>
-
-
 
     <div class="anchor">
       <a href="#jdk11_0_4" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
@@ -1199,11 +1650,21 @@
       <h3>Other changes</h3>
       <ul>
         <li>JDK-8223499 - Removal of Two DocuSign Root CA Certificates</li>
-        <li>JDK-8222136 -Removal of Two Comodo Root CA Certificates</li>
+        <li>JDK-8222136 - Removal of Two Comodo Root CA Certificates</li>
         <li>JDK-8222137 - Removal of T-Systems Deutsche Telekom Root CA 2 Certificate</li>
       </ul>
     </div>
 
+    <div class="anchor">
+      <a href="#jdk13_0_2" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="jdk13_0_2">OpenJDK 13.0.2 (13.0.2+8)</a></h2>
+    </div>
+    <div class="margin-bottom">
+
+      You can check the details of these bugs using the <a href="https://www.oracle.com/technetwork/java/javase/2col/13-0-2-bugfixes-5812303.html" target="_blank">13.0.2</a> release notes at Oracle.
+
+    </div>
+    
     <div class="anchor">
       <a href="#jdk13" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><a id="jdk13">OpenJDK 13 (13+33)</a></h2>
@@ -1214,11 +1675,11 @@
 
       <h3>New features</h3>
       <ul>
-        <li>350: 	Dynamic CDS Archives</li>
-        <li>351: 	ZGC: Uncommit Unused Memory</li>
-        <li>353: 	Reimplement the Legacy Socket API</li>
-        <li>354: 	Switch Expressions (Preview)</li>
-        <li>355: 	Text Blocks (Preview)</li>
+        <li>350: Dynamic CDS Archives</li>
+        <li>351: ZGC: Uncommit Unused Memory</li>
+        <li>353: Reimplement the Legacy Socket API</li>
+        <li>354: Switch Expressions (Preview)</li>
+        <li>355: Text Blocks (Preview)</li>
       </ul>
     </div>
 
