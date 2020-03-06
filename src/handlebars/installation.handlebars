@@ -345,15 +345,14 @@
        </p>
 
        <p><strong>RPM installation on Centos, RHEL, or Fedora</strong></p>
-       <p>The following steps describe how to install an RPM package for Centos 7. To install an RPM for RHEL or Fedora, or
-         to install a different version of Centos, switch the <tt>baseurl</tt> value.
+       <p>The following steps describe how to install an RPM package for Centos. To install an RPM for RHEL or Fedora update the <tt>baseurl</tt> value accordingly.
        </p>
        <p>1. Add the appropriate RPM repository to your <tt>/etc/yum.repos.d/adoptopenjdk.repo</tt> file, by running the following command:</p>
        <pre><code class="highlighted">
 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/adoptopenjdk.repo
 [AdoptOpenJDK]
 name=AdoptOpenJDK
-baseurl=http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/7/$(uname -m)
+baseurl=http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/$releasever/$basearch
 enabled=1
 gpgcheck=1
 gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
