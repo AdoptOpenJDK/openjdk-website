@@ -96,6 +96,22 @@
       "label": "OpenJDK 13",
       "lts": "latest",
       "descriptionLink": "https://www.eclipse.org/openj9"
+    },
+    {
+      "searchableName": "openjdk14-hotspot",
+      "officialName": "OpenJDK 14 with HotSpot",
+      "jvm": "HotSpot",
+      "label": "OpenJDK 14",
+      "lts": false
+    },
+    {
+      "searchableName": "openjdk14-openj9",
+      "officialName": "OpenJDK 14 with Eclipse OpenJ9",
+      "description": "Eclipse OpenJ9",
+      "jvm": "OpenJ9",
+      "label": "OpenJDK 14",
+      "lts": false,
+      "descriptionLink": "https://www.eclipse.org/openj9"
     }
   ],
   "platforms": [
