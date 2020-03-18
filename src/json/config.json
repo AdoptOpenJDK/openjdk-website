@@ -86,7 +86,7 @@
       "officialName": "OpenJDK 13 with HotSpot",
       "jvm": "HotSpot",
       "label": "OpenJDK 13",
-      "lts": "latest"
+      "lts": false
     },
     {
       "searchableName": "openjdk13-openj9",
@@ -94,7 +94,7 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 13",
-      "lts": "latest",
+      "lts": false,
       "descriptionLink": "https://www.eclipse.org/openj9"
     },
     {
@@ -102,7 +102,7 @@
       "officialName": "OpenJDK 14 with HotSpot",
       "jvm": "HotSpot",
       "label": "OpenJDK 14",
-      "lts": false
+      "lts": "latest"
     },
     {
       "searchableName": "openjdk14-openj9",
@@ -110,7 +110,7 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 14",
-      "lts": false,
+      "lts": "latest",
       "descriptionLink": "https://www.eclipse.org/openj9"
     }
   ],
