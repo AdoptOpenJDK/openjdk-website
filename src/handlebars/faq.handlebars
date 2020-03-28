@@ -103,13 +103,13 @@
          other OpenJDK downloads. We do not include support for Java applets as they are generally
          considered insecure and most modern browsers do not allow for such plugins to be installed any
          more.</p>
-    <dt> <strong>JavaFX</strong>
-    <dd> <p>Like IcedTea-WEB JavaFX was included in the Oracle JDK but is not part of the OpenJDK codebase.
-         The open-source project page is at <a href="https://openjfx.io/">openjfx.io</a> and binaries can be obtained from
-         <a href="https://gluonhq.com/products/javafx/">Gluon</a>. We do not currently ship any JavaFX
-         support via AdoptOpenJDK. If you want to build it yourself, check out the instructions from the
-         <a href="https://wiki.openjdk.java.net/display/OpenJFX/Building+OpenJFX">OpenJFX
-         project</a></p>
+    <dt> <strong>JavaFX (OpenJFX)</strong>
+    <dd> <p>Up until JDK 10, JavaFX was a part of the JDK. In 2018,
+         <a href="https://blogs.oracle.com/java-platform-group/the-future-of-javafx-and-other-java-client-roadmap-updates">Oracle
+         decided to decouple JavaFX from the JDK</a>. JavaFX lives on as
+         <a href="https://wiki.openjdk.java.net/display/OpenJFX/Main">OpenJFX</a>, an OpenJDK subproject. As JavaFX is
+         no longer part of OpenJDK, AdoptOpenJDK does not bundle it with its binaries. For further information,
+         see our detailed <a href="#openjfxfaq">OpenJFX FAQ</a>.</p>
     <dt> <strong>GraalVM</strong>
     <dd> <p>While the community edition of Graal is available for all to build, we do not currently have an
          offering for this. Some experimental builds have been done by the team on
@@ -209,7 +209,7 @@
          contains additional fixes from the CPU (Critical Patch Update) and due to the very high levels of testing
          which the AdoptOpenJDK project runs on our release builds we are confident enough that the additional
          fixes in the PSU updates will not cause any problems.</p>
-    <dt> <strong>How can I get commercial support for AdoptOpenJDK binaries</strong>
+    <dt> <strong>How can I get commercial support for AdoptOpenJDK binaries?</strong>
     <dd> <p>The AdoptOpenJDK project does not itself provide commercial support for the binaries we produce,
          however, if you find and issue please raise it in the
          <a href="https://github.com/AdoptOpenJDK/openjdk-support">openjdk-support</a> repository. If you need
@@ -241,6 +241,65 @@
          releases.</p>
     </dl>
     </div>
+
+    <div class="anchor">
+      <a href="#openjfxfaq" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><a id="openjfxfaq">OpenJFX FAQ</a></h2>
+    </div>
+
+    <div class="margin-bottom">
+    <p>Support for JavaFX/OpenJFX is a hot topic, and we receive many questions about it. This section tries to
+         answer the most important ones from the perspective of AdoptOpenJDK.</p>
+
+    <dl>
+    <dt> <strong>Does AdoptOpenJDK offer OpenJDK binaries with JavaFX support?</strong>
+    <dd> <p>No.</p>
+    <dt> <strong>Are there any plans to bundle OpenJFX with AdoptOpenJDK's binaries?</strong>
+    <dd> <p>No.</p>
+    <dt> <strong>Are there any plans to build standalone binaries of OpenJFX at AdoptOpenJDK?</strong>
+    <dd> <p>No.</p>
+    <dt> <strong>Why does AdoptOpenJDK not include OpenJFX?</strong>
+    <dd> <p><a href="https://blogs.oracle.com/java-platform-group/the-future-of-javafx-and-other-java-client-roadmap-updates">JavaFX
+         has been unbundled from OpenJDK</a> and now exists as a separate project called
+         <a href="https://wiki.openjdk.java.net/display/OpenJFX/Main">OpenJFX</a> with a different release schedule and
+         support policy. Contrary to OpenJDK, there is no open-source long term support for any OpenJFX version. While
+         <a href="https://wiki.openjdk.java.net/display/jdk8u">OpenJDK 8 receives updates for the years to
+         come</a>, OpenJFX 8 is unmaintained and contains known security issues. OpenJFX 11 and newer only get patches
+         for 6 months after their initial release. This situation makes it impossible for AdoptOpenJDK to provide
+         high-quality, up-to-date binaries of OpenJDK LTS releases (8 and 11 at the time of writing) with a bundled
+         OpenJFX.</p>
+
+         <p>As a result, we could only provide OpenJFX binaries for the most recent OpenJDK version. But because the
+         <a href="https://openjfx.io">OpenJFX project</a> already does that itself, we want to focus our resources on
+         OpenJDK.</p>
+    <dt> <strong>What are my options if I need to run a program that uses JavaFX?</strong>
+    <dd> <p>The <a href="https://openjfx.io/">OpenJFX project</a> provides binaries of OpenJFX that work
+         great together with AdoptOpenJDK. See the <a href="https://openjfx.io/openjfx-docs/#install-java">OpenJFX
+         documentation for instructions on how to get started</a>.</p>
+    <dt> <strong>What are my options if I need patches or support for JavaFX 8?</strong>
+    <dd> <p>Buy a license for Oracle JDK 8.
+         <a href="https://www.oracle.com/java/technologies/java-se-support-roadmap.html">Oracle provides support for
+         JavaFX 8 until March 2022</a>.</p>
+
+         <p>There are versions of <a href="https://www.azul.com/downloads/zulu-community/">Azul Zulu</a> and
+         <a href="https://bell-sw.com/java8">BellSoft Liberica</a> that include JavaFX and are available free of
+         charge. We cannot vouch for their quality. Reports by our community indicate that their offerings vary and
+         might not include all patches.</p>
+    <dt> <strong>What are my options if I need patches or support for OpenJFX 11 or later?</strong>
+    <dd> <p><a href="https://gluonhq.com/services/javafx-support/">Gluon</a>, the main contributor to OpenJFX,
+         provides LTS support for OpenJFX 11.</p>
+
+         <p>There are versions of <a href="https://www.azul.com/downloads/zulu-community/">Azul Zulu</a> and
+         <a href="https://bell-sw.com/java8">BellSoft Liberica</a> that include JavaFX and are available free of
+         charge. We cannot vouch for their quality. Reports by our community indicate that their offerings vary and
+         might not include all patches.</p>
+    <dt> <strong>What would be required to get AdoptOpenJDK to include OpenJFX?</strong>
+    <dd> <p>If a credible interest group stepped up to provide long term support for OpenJFX that follows the
+         release schedule of OpenJDK, we would consider bundling OpenJFX. If you want to support or sponsor such
+         an effort, we are happy to talk: Join <a href="slack.html">the #openjfx channel on the AdoptOpenJDK Slack
+         workspace</a>.</p>
+     </dl>
+     </div>
 
     <div style="margin-top: 3rem;">
       <!--
