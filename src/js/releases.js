@@ -1,5 +1,5 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getSupportedVersion, getOfficialName, getPlatformOrder,
-    getVariantObject, detectLTS, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
+    getVariantObject, detectLTS, detectEA, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -88,7 +88,7 @@ function buildLatestHTML(releasesJson) {
         heap_size: heap_size,
         release_link: releaseAsset.release_link,
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
-
+        early_access: detectEA(releaseAsset.release_name),
         binaries: []
       };
     }
