@@ -101,7 +101,7 @@ module.exports.detectLTS = (version) => {
 }
 
 module.exports.detectEA = (version) => {
-  if (version.includes('-ea')) {
+  if ((version.pre) && (version.pre == 'ea')) {
     return true
   } else { 
     return false
