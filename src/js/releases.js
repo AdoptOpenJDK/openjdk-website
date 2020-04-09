@@ -1,5 +1,5 @@
 const {findPlatform, getBinaryExt, getInstallerExt, getSupportedVersion, getOfficialName, getPlatformOrder,
-    getVariantObject, detectLTS, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
+    getVariantObject, detectLTS, detectEA, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -75,7 +75,6 @@ function buildLatestHTML(releasesJson) {
     if (!['INSTALLER', 'JDK', 'JRE'].includes(binary_type)) {
       return;
     }
-
     // Get the existing release asset (passed to the template) or define a new one
     let release = releases.find((release) => release.platform_name === platform);
     if (!release) {
@@ -88,7 +87,7 @@ function buildLatestHTML(releasesJson) {
         heap_size: heap_size,
         release_link: releaseAsset.release_link,
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
-
+        early_access: detectEA(releaseAsset.version),
         binaries: []
       };
     }

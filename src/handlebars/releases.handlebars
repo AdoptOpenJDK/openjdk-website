@@ -64,7 +64,11 @@
                     <tr>
                        <td class="main-download__variant__name blue-bg">
                           <span>\{{release_name}}</span>
+                          \{{#if early_access}}
+                          <span class="early-access">AdoptOpenJDK</span>
+                          \{{else}}
                           <span class="download-last-version">AdoptOpenJDK</span>
+                          \{{/if}}
                        </td>
                        <td class="main-download__variant__os">
                           <span class="os">\{{fetchOS platform_official_name}}</span>

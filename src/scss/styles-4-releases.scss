@@ -136,6 +136,31 @@ div#latest-selector {
     font-size: 14px;
 }
 
+.early-access:after {
+    width: 75px;
+    line-height: 19px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: red;
+    margin-left: 9px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    content: "early access" !important;
+}
+
 .download-last-version:after {
     width: 42px;
     line-height: 19px;
