@@ -77,7 +77,7 @@ function buildNightlyHTML(files) {
 
     const NIGHTLYOBJECT = {};
     const nameOfFile = eachAsset.package.name;
-    const type = nameOfFile.includes('-jre') ? 'jre' : 'jdk';
+    const type = eachAsset.image_type
 
     NIGHTLYOBJECT.thisPlatform = findPlatform(eachAsset); // get the searchableName, e.g. MAC or X64_LINUX.
 
