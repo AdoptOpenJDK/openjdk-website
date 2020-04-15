@@ -331,12 +331,12 @@
       <pre><code class="highlighted">sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/</code></pre>
 
       <p>If you get a <q>command not found</q> error, try running:</p>
-      <pre><code class="highlighted">apt-get install -y software-properties-common</code></pre>
+      <pre><code class="highlighted">sudo apt-get install -y software-properties-common</code></pre>
 
       <p>Then repeat the first command.</p>
-      <p>3. Refresh your package list with <tt>apt-get update</tt> and then install your chosen AdoptOpenJDK package. For example, to
+      <p>3. Refresh your package list with <tt>sudo apt-get update</tt> and then install your chosen AdoptOpenJDK package. For example, to
         install OpenJDK 8 with the HotSpot VM, run:</p>
-      <pre><code class="highlighted">apt-get install &lt;adoptopenjdk-8-hotspot&gt;</code></pre>
+      <pre><code class="highlighted">sudo apt-get install &lt;adoptopenjdk-8-hotspot&gt;</code></pre>
 
     <h4 id="linux-pkg-rpm">RPM installation</h4>
 

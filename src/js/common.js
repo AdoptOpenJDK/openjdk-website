@@ -100,6 +100,14 @@ module.exports.detectLTS = (version) => {
   }
 }
 
+module.exports.detectEA = (version) => {
+  if ((version.pre) && (version.pre == 'ea')) {
+    return true
+  } else { 
+    return false
+  }
+}
+
 function toJson(response) {
   while (typeof response === 'string') {
     try {
