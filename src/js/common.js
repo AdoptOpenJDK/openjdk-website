@@ -153,21 +153,19 @@ function queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse
   });
 }
 
-module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, release, vendor, handleResponse, errorHandler) => {
+module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, pageSize, datePicker, release, vendor, handleResponse, errorHandler) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber';
-  }
-  
-  if (releaseType == 'releases') {
-    releaseType = 'ga'
-  } else if (releaseType == 'nightly') {
-    releaseType = 'ea'
   }
 
   let url = `https://api.adoptopenjdk.net/v3/assets/feature_releases/${variant.replace(/\D/g,'')}/${releaseType}`
 
-  if (releaseType == 'ea') {
-    url += '?page_size=100&'
+  if (pageSize) {
+    url += `?page_size=${pageSize}&`
+  }
+
+  if (datePicker) {
+    url += `before=${datePicker}&`
   }
 
   queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse);
