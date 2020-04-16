@@ -144,8 +144,6 @@ function setTableRange() {
       rows[i].classList.remove('hide');
     }
   }
-
-  checkSearchResultsExist();
 }
 
 function setSearchLogic() {
@@ -158,17 +156,5 @@ function setSearchLogic() {
       return !reg.test($(this).text().replace(/\s+/g, ' '));
     }).hide();
 
-    // checkSearchResultsExist();
   });
-}
-
-function checkSearchResultsExist() {
-  const numOfVisibleRows = $('#nightly-table').find('tr:visible').length;
-  if (numOfVisibleRows === 0) {
-    tableContainer.style.visibility = 'hidden';
-    searchError.className = '';
-  } else {
-    tableContainer.style.visibility = '';
-    searchError.className = 'hide';
-  }
 }
