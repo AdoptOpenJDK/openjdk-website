@@ -9,7 +9,7 @@ const errorContainer = document.getElementById('error-container');
 module.exports.load = () => {
   setRadioSelectors();
 
-  loadAssetInfo(variant, jvmVariant, 'releases', undefined, 'adoptopenjdk', buildArchiveHTML, () => {
+  loadAssetInfo(variant, jvmVariant, 'ga', undefined, undefined, undefined, 'adoptopenjdk', buildArchiveHTML, () => {
     // if there are no releases (beyond the latest one)...
     // report an error, remove the loading dots
     loading.innerHTML = '';

@@ -4,24 +4,24 @@ const {jvmVariant, variant} = require('./common');
 const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 const tableHead = document.getElementById('table-head');
-const tableContainer = document.getElementById('nightly-list');
 const nightlyList = document.getElementById('nightly-table');
-const searchError = document.getElementById('search-error');
 const numberpicker = document.getElementById('numberpicker');
 const datepicker = document.getElementById('datepicker');
+const templateString = $('#template').html();
 
 // When nightly page loads, run:
 module.exports.load = () => {
+
   setRadioSelectors();
   setDatePicker();
   populateNightly(); // run the function to populate the table on the Nightly page.
 
-  numberpicker.onchange = datepicker.onchange = () => { setTableRange() };
+  numberpicker.onchange = datepicker.onchange = () => { populateNightly() };
 }
 
 function setDatePicker() {
   $(datepicker).datepicker();
-  datepicker.value = moment().format('MM/DD/YYYY');
+  datepicker.value = moment().format('YYYY-MM-DD');
 }
 
 function populateNightly() {
@@ -38,23 +38,22 @@ function populateNightly() {
     }
   };
 
-  loadAssetInfo(variant, jvmVariant, 'nightly', undefined, 'adoptopenjdk', handleResponse, () => {
+  loadAssetInfo(variant, jvmVariant, 'ea', numberpicker.value, moment(datepicker.value).format('YYYY-MM-DD'), undefined, 'adoptopenjdk', handleResponse, () => {
     errorContainer.innerHTML = '<p>Error... no releases have been found!</p>';
     loading.innerHTML = ''; // remove the loading dots
   });
 }
 
-function getFiles(releasesJson) {
+function getFiles(nightlyJson) {
   const assets = [];
 
-  releasesJson.forEach((release) => {
+  nightlyJson.forEach((release) => {
     release.binaries.forEach((asset) => {
       if (/(?:\.tar\.gz|\.zip)$/.test(asset.package.name) && findPlatform(asset)) {
         assets.push({release, asset});
       }
     });
   });
-
   return assets;
 }
 
@@ -62,6 +61,7 @@ function buildNightlyHTML(files) {
   tableHead.innerHTML = `<tr id='table-header'>
     <th>Platform</th>
     <th>Type</th>
+    <th>Heap Size</th>
     <th>Date</th>
     <th>Binary</th>
     <th>Installer</th>
@@ -91,6 +91,7 @@ function buildNightlyHTML(files) {
       const publishedAt = eachRelease.timestamp;
       NIGHTLYOBJECT.thisReleaseName = eachRelease.release_name.slice(0, 12);
       NIGHTLYOBJECT.thisType = type;
+      NIGHTLYOBJECT.thisHeapSize = eachAsset.heap_size;
       NIGHTLYOBJECT.thisReleaseDay = moment(publishedAt).format('D');
       NIGHTLYOBJECT.thisReleaseMonth = moment(publishedAt).format('MMMM');
       NIGHTLYOBJECT.thisReleaseYear = moment(publishedAt).format('YYYY');
@@ -106,7 +107,7 @@ function buildNightlyHTML(files) {
     }
   });
 
-  const template = Handlebars.compile(document.getElementById('template').innerHTML);
+  const template = Handlebars.compile(templateString);
   nightlyList.innerHTML = template({htmlTemplate: NIGHTLYARRAY});
 
   setSearchLogic();
@@ -129,22 +130,18 @@ function buildNightlyHTML(files) {
 function setTableRange() {
   const rows = $('#nightly-table tr');
   const selectedDate = moment(datepicker.value, 'MM-DD-YYYY').format();
-  let visibleRows = 0;
 
   for (let i = 0; i < rows.length; i++) {
     const thisDate = rows[i].getElementsByClassName('nightly-release-date')[0].innerHTML;
     const thisDateMoment = moment(thisDate, 'D MMMM YYYY').format();
     const isAfter = moment(thisDateMoment).isAfter(selectedDate);
 
-    if (isAfter || visibleRows >= numberpicker.value) {
+    if (isAfter) {
       rows[i].classList.add('hide');
     } else {
       rows[i].classList.remove('hide');
-      visibleRows++;
     }
   }
-
-  checkSearchResultsExist();
 }
 
 function setSearchLogic() {
@@ -157,17 +154,5 @@ function setSearchLogic() {
       return !reg.test($(this).text().replace(/\s+/g, ' '));
     }).hide();
 
-    checkSearchResultsExist();
   });
-}
-
-function checkSearchResultsExist() {
-  const numOfVisibleRows = $('#nightly-table').find('tr:visible').length;
-  if (numOfVisibleRows === 0) {
-    tableContainer.style.visibility = 'hidden';
-    searchError.className = '';
-  } else {
-    tableContainer.style.visibility = '';
-    searchError.className = 'hide';
-  }
 }
