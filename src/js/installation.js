@@ -10,7 +10,7 @@ const platformSelector = document.getElementById('platform-selector');
 module.exports.load = () => {
   setRadioSelectors();
 
-  loadAssetInfo(variant, jvmVariant, 'releases', 'latest', 'adoptopenjdk', buildInstallationHTML, () => {
+  loadAssetInfo(variant, jvmVariant, 'ga', undefined, undefined, 'latest', 'adoptopenjdk', buildInstallationHTML, () => {
     errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
     loading.innerHTML = ''; // remove the loading dots
   });

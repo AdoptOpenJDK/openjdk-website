@@ -47,6 +47,9 @@
                 <td class='blue-bg release-info'>
                   <div>
                     <h2><a href='\{{release_link}}' class='light-link' target='_blank'><var release-name>\{{release_name}}</var></a></h2>
+                    \{{#if early_access}}
+                      <span class="early-access"></span>
+                    \{{/if}}
                     <h4><var>\{{release_day}}</var> \{{release_month}} <var>\{{release_year}}</var></h4>
                     <h4><a href='\{{dashboard_link}}' class='light-link' target='_blank'>Download Stats</a></h4>
                   </div>

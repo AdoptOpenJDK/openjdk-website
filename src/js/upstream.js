@@ -61,7 +61,7 @@ module.exports.load = () => {
 
   setRadioSelectors();
 
-  loadAssetInfo(variant, jvmVariant, ga, undefined, 'openjdk', buildUpstreamHTML, () => {
+  loadAssetInfo(variant, jvmVariant, ga, undefined, undefined, undefined, 'openjdk', buildUpstreamHTML, () => {
     // if there are no releases (beyond the latest one)...
     // report an error, remove the loading dots
     loading.innerHTML = '';

@@ -1,4 +1,4 @@
-const {findPlatform, getBinaryExt, getInstallerExt, getOfficialName, getPlatformOrder,
+const {findPlatform, detectEA, getBinaryExt, getInstallerExt, getOfficialName, getPlatformOrder,
   loadAssetInfo, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
@@ -9,7 +9,7 @@ const errorContainer = document.getElementById('error-container');
 module.exports.load = () => {
   setRadioSelectors();
 
-  loadAssetInfo(variant, jvmVariant, 'releases', undefined, 'adoptopenjdk', buildArchiveHTML, () => {
+  loadAssetInfo(variant, jvmVariant, 'ga', undefined, undefined, undefined, 'adoptopenjdk', buildArchiveHTML, () => {
     // if there are no releases (beyond the latest one)...
     // report an error, remove the loading dots
     loading.innerHTML = '';
@@ -29,11 +29,10 @@ function buildArchiveHTML(aReleases) {
       release_link: aRelease.release_link,
       dashboard_link: `https://dash.adoptopenjdk.net/version.html?version=${variant}`
         + `&tag=${encodeURIComponent(aRelease.release_name)}`,
-
       release_day: publishedAt.format('D'),
       release_month: publishedAt.format('MMMM'),
       release_year: publishedAt.format('YYYY'),
-
+      early_access: detectEA(aRelease.version_data),
       platforms: {},
     };
 
