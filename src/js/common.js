@@ -361,6 +361,15 @@ global.hideChecksum = function() {
   modal.style.display = 'none'
 }
 
+global.showHideReleaseNotes = function(notes_id) {
+  var notes_div = document.getElementById(notes_id)
+  if (notes_div.style.display === 'none') {
+    notes_div.style.display = 'inline';
+  } else {
+    notes_div.style.display = 'none';
+  }
+}
+
 global.copyStringToClipboard = function() {
   document.getElementById('modal-body').select()
   document.execCommand('copy');
