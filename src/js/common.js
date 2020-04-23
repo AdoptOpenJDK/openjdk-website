@@ -363,10 +363,10 @@ global.hideChecksum = function() {
 
 global.showHideReleaseNotes = function(notes_id) {
   var notes_div = document.getElementById(notes_id)
-  if (notes_div.style.display === 'none') {
-    notes_div.style.display = 'inline';
+  if (notes_div.classList.contains('softHide')) {
+    notes_div.classList.remove('softHide');
   } else {
-    notes_div.style.display = 'none';
+    notes_div.classList.add('softHide');
   }
 }
 
