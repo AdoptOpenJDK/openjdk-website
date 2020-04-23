@@ -361,6 +361,15 @@ global.hideChecksum = function() {
   modal.style.display = 'none'
 }
 
+global.showHideReleaseNotes = function(notes_id) {
+  var notes_div = document.getElementById(notes_id)
+  if (notes_div.classList.contains('softHide')) {
+    notes_div.classList.remove('softHide');
+  } else {
+    notes_div.classList.add('softHide');
+  }
+}
+
 global.copyStringToClipboard = function() {
   document.getElementById('modal-body').select()
   document.execCommand('copy');
