@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://adoptopenjdk.net/dist/json/config.schema.json",
+  "title": "AdoptOpenJDK Release Definitions",
+  "description": "Configuration for product listings on adoptopenjdk.net",
+  "type": "object",
+  "required": ["variants", "platforms"],
+  "definitions": {
+    "fileExt": {
+      "type": "string",
+      "description": "A file extension beginning with a period.",
+      "examples": [".exe", ".tar.gz", ".run", ".sh"],
+      "oneOf": [
+        { "pattern": "^(\\.[a-z0-9]+)+$" },
+        { "enum": [ "no-installer-available" ] }
+      ]
+    },
+    "command": {
+      "type": "string",
+      "description": "A command that can be executed on a respective platform.",
+      "$comment": "Update 'pattern' to enforce styles or add restricted patterns to the 'not anyOf' array.",
+      "pattern": "^(.*)$",
+      "not": {
+        "anyOf": [
+          { "pattern": "(rm \\-\\w*[rRfdviI]+\\w* /\\s*)$" }
+        ]
+      }
+    }
+  },
+  "properties": {
+    "variants": {
+      "$id": "#/properties/variants",
+      "type": "array",
+      "title": "JDK Versions and Variants",
+      "items": {
+        "$id": "#/properties/variants/items",
+        "type": "object",
+        "required": ["searchableName", "officialName"],
+        "properties": {
+          "searchableName": {
+            "$id": "#/properties/variants/items/properties/searchableName",
+            "type": "string",
+            "title": "Searchable Name (package manager-friendly)",
+            "examples": ["openjdk8-hotspot", "openjdk11-openj9"]
+          },
+          "officialName": {
+            "$id": "#/properties/variants/items/properties/officialName",
+            "type": "string",
+            "title": "Official name",
+            "description": "Descriptive name that includes OpenJDK and JVM versions.",
+            "examples": ["OpenJDK 8 with HotSpot", "OpenJDK 11 with Eclipse OpenJ9"]
+          },
+          "default": {
+            "$id": "#/properties/variants/items/properties/default",
+            "type": "boolean",
+            "title": "Default variant",
+            "description": "True for a variant that should be selected by default.",
+            "default": false
+          },
+          "descriptionLink": {
+            "$id": "#/properties/variants/items/properties/descriptionLink",
+            "type": "string",
+            "format": "uri",
+            "title": "Description link",
+            "examples": ["https://www.eclipse.org/openj9"]
+          }
+        }
+      }
+    },
+    "platforms": {
+      "$id": "#/properties/platforms",
+      "type": "array",
+      "title": "Platform definitions",
+      "description": "",
+      "items": {
+        "$id": "#/properties/platforms/items",
+        "type": "object",
+        "required": [
+          "officialName",
+          "searchableName",
+          "binaryExtension",
+          "installerExtension",
+          "installCommand",
+          "pathCommand",
+          "checksumCommand",
+          "checksumAutoCommand",
+          "osDetectionString"
+        ],
+        "properties": {
+          "officialName": {
+            "$id": "#/properties/platforms/items/properties/officialName",
+            "type": "string",
+            "title": "Official platform name",
+            "description": "The 'legal name' or official name for the OS. This is displayed on most pages.",
+            "examples": ["Linux x64"],
+            "pattern": "^(.*)$"
+          },
+          "searchableName": {
+            "$id": "#/properties/platforms/items/properties/searchableName",
+            "type": "string",
+            "title": "Searchable name",
+            "description": "A string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.",
+            "examples": ["X64_LINUX"],
+            "pattern": "^(.*)$"
+          },
+          "binaryExtension": {
+            "$id": "#/properties/platforms/items/properties/binaryExtension",
+            "$ref": "#/definitions/fileExt",
+            "title": "Binary extension",
+            "examples": [".tar.gz"]
+          },
+          "installerExtension": {
+            "$id": "#/properties/platforms/items/properties/installerExtension",
+            "$ref": "#/definitions/fileExt",
+            "title": "Installer extension",
+            "description": "File extension of the installer executable or script",
+            "examples": [".run"]
+          },
+          "installCommand": {
+            "$id": "#/properties/platforms/items/properties/installCommand",
+            "$ref": "#/definitions/command",
+            "title": "Installation command",
+            "examples": ["tar -xf FILENAME"]
+          },
+          "pathCommand": {
+            "$id": "#/properties/platforms/items/properties/pathCommand",
+            "$ref": "#/definitions/command",
+            "title": "Path command",
+            "examples": ["export PATH=$PWD/DIRNAME/bin:$PATH"]
+          },
+          "checksumCommand": {
+            "$id": "#/properties/platforms/items/properties/checksumCommand",
+            "$ref": "#/definitions/command",
+            "title": "Checksum command",
+            "examples": ["sha256sum FILENAME"]
+          },
+          "checksumAutoCommandHint": {
+            "$id": "#/properties/platforms/items/properties/checksumAutoCommandHint",
+            "$ref": "#/definitions/command",
+            "title": "Checksum auto command hint",
+            "examples": ["PowerShell 3.0+ required"]
+          },
+          "checksumAutoCommand": {
+            "$id": "#/properties/platforms/items/properties/checksumAutoCommand",
+            "$ref": "#/definitions/command",
+            "title": "Checksum auto command",
+            "examples": ["sha256sum FILENAME"]
+          },
+          "osDetectionString": {
+            "$id": "#/properties/platforms/items/properties/osDetectionString",
+            "type": "string",
+            "title": "OS detection string",
+            "description": "This string is searched by the OS detection library platform.js to find a match. Include as many words as you like, separated by spaces.",
+            "examples": [
+              "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen",
+              "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP",
+              "Mac OS X OSX macOS Macintosh",
+              "not-to-be-detected"
+            ],
+            "$comment": "The current regex pattern will also match 'not-to-be-detected' so 'anyOf' must be used. A more constrained pattern would allow 'oneOf' to enforce the 'not-to-be-detected' default value.",
+            "anyOf": [
+              { "pattern": "^([^\\s]+\\s?)+$" },
+              { "const": "not-to-be-detected" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

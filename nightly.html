@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@adoptopenjdk" />
+    <meta name="twitter:title" content="Nightly builds | AdoptOpenJDK">
+    <meta name="twitter:description" content="AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure. Supported platforms include Linux, macOS, Windows, ARM, Solaris, and AIX.
+">
+    <meta name="twitter:image" content="https://adoptopenjdk.net/dist/assets/social-image.png">
+    <meta property="og:image" content="https://adoptopenjdk.net/dist/assets/social-image.png"/>
+    <meta property="og:title" content="Nightly builds | AdoptOpenJDK"/>
+    <meta property="og:description" content="AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure. Supported platforms include Linux, macOS, Windows, ARM, Solaris, and AIX.
+"/>
+    <meta name="description" content="AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure. Supported platforms include Linux, macOS, Windows, ARM, Solaris, and AIX.
+"/>
+    <title>Nightly builds | AdoptOpenJDK - Open source, prebuilt OpenJDK binaries</title>
+    <link rel="shortcut icon" href="dist/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="dist/assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="./dist/css/styles.min-41ee5c85.css">
+    <!-- endinject -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
+    
+</head>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "AdoptOpenJDK",
+  "url": "https://adoptopenjdk.net",
+  "logo": "https://adoptopenjdk.net/dist/assets/social-logo.png",
+  "sameAs": [
+    "https://github.com/AdoptOpenJDK",
+    "https://twitter.com/adoptopenjdk",
+    "https://www.facebook.com/AdoptOpenJDK",
+    "https://www.youtube.com/c/AdoptOpenJDK"
+  ]
+}
+</script>
+
+<script src="https://global.localizecdn.com/localize.js"></script>
+
+<script>!function(a){if(!a.Localize){a.Localize={};for(var e=["translate","untranslate","phrase","initialize","translatePage","setLanguage","getLanguage","detectLanguage","getAvailableLanguages","untranslatePage","bootstrap","prefetch","on","off"],t=0;t<e.length;t++)a.Localize[e[t]]=function(){}}}(window);</script>
+
+<script>
+ Localize.initialize({
+  key: 'vWKzIgeZa4D3c',
+  rememberLanguage: true,
+  saveNewPhrasesFromSource: true
+ });
+</script>
+
+<!-- Hotjar Tracking Code for https://adoptopenjdk.net -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:908427,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+<body class="blue-bg">
+  <input type="checkbox" id="menu-checkbox" class="hide" />
+  <div id="menu-container" class="grey-bg slideInLeft">
+    <div id="menu-header">
+      <label for="menu-checkbox">
+        <i id="menu-close" class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+      </label>
+    </div>
+    <div id="menu-content">
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./releases.html">Latest release</a></li>
+        <li><a href="./archive.html">Build archive</a></li>
+        <li><a href="./nightly.html">Nightly builds</a></li>
+        <li><a href="./installation.html">Installation</a></li>
+        <li class="submenu"><a>Projects</a>
+          <ul>
+            <li><a href="./icedtea-web.html">IcedTea-Web</a></li>
+            <li><a href="./jmc.html">JDK Mission Control</a></li>
+          </ul>
+        </li>
+        <li><a href="./migration.html">Migration Guide</a></li>
+        <li><a href="./support.html">Support</a></li>
+        <li><a href="./getinvolved.html">Get involved!</a></li>
+        <li class="submenu"><a>Further information</a>
+          <ul>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./sponsors.html">Sponsors</a></li>
+            <li><a href="./testimonials.html">Testimonials</a></li>
+            <li><a target="_blank" href="https://api.adoptopenjdk.net">API</a></li>
+            <li><a target="_blank" href="https://blog.adoptopenjdk.net/">Blog</a></li>
+            <li><a target="_blank" href="https://calendar.adoptopenjdk.net/">Meeting diary</a></li>
+            <li><a target="_blank" href="https://status.adoptopenjdk.net/">Status</a></li>
+            <li><a href="./quality.html">Quality</a></li>
+            <li><a href="./supported_platforms.html">Supported Platforms</a></li>
+            <li><a href="./logos.html">Brand Resources</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="align-center"><div id="menu-social-bar"><div class="social-icon align-center inline-block">
+    <a href="https://twitter.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+        <span class="fa-stack fa-lg" style="font-size:1.10em;">
+          <i class="fa fa-twitter fa-stack-1x fa-social-icon"></i>
+        </span>
+    </a>
+  </div>
+  <div class="social-icon align-center inline-block">
+    <a href="https://www.facebook.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+      <span class="fa-stack fa-lg" style="font-size:1.10em;">
+          <i class="fa fa-facebook fa-stack-1x fa-social-icon"></i>
+      </span>
+    </a>
+  </div>
+  <div class="social-icon align-center inline-block">
+    <a href="https://www.youtube.com/c/AdoptOpenJDK" target="_blank" class="light-link no-underline">
+      <span class="fa-stack fa-lg" style="font-size:1.10em;">
+          <i class="fa fa-youtube-play fa-stack-1x fa-social-icon"></i>
+      </span>
+    </a>
+  </div>
+  <div class="social-icon align-center inline-block">
+    <a href="https://www.twitch.tv/adoptopenjdk" target="_blank" class="light-link no-underline">
+      <span class="fa-stack fa-lg" style="font-size:1.10em;">
+          <i class="fa fa-twitch fa-stack-lg fa-social-icon"></i>
+      </span>
+    </a>
+  </div></div></div>
+    </div>
+  </div>
+  <nav>
+      <label id="menu-button" for="menu-checkbox">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </label>
+      <a id="logo" href="./index.html" class="a-button">
+          <img src='dist/assets/adopt_logo_white.svg' alt="AdoptOpenJDK">
+      </a>
+
+      <div id="header-social-bar"><div class="social-icon align-center inline-block">
+  <a href="https://twitter.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+      <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-twitter fa-stack-1x fa-social-icon"></i>
+      </span>
+  </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.facebook.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+    <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-facebook fa-stack-1x fa-social-icon"></i>
+    </span>
+  </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.youtube.com/c/AdoptOpenJDK" target="_blank" class="light-link no-underline">
+    <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-youtube-play fa-stack-1x fa-social-icon"></i>
+    </span>
+  </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.twitch.tv/adoptopenjdk" target="_blank" class="light-link no-underline">
+    <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-twitch fa-stack-lg fa-social-icon"></i>
+    </span>
+  </a>
+</div></div>
+  </nav>
+
+<!-- This is where you can add banners to the website -->
+
+
+<main class="grey-bg">
+  <h1 class="large-title">Nightly builds</h1>
+
+  <a href="./releases.html" id="latest-button" class="blue-button a-button">
+    <div>
+      <span>Latest release</span>
+      <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+    </div>
+  </a>
+
+  <a href="./archive.html" id="archive-button" class="grey-button a-button">
+    <div>
+      <span>Release archive</span>
+      <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+    </div>
+  </a>
+
+  <div id="error-container"></div>
+
+  <div class="btn-container">
+    <form id="jdk-selector" class="btn-form">
+      <h3>1. Choose a Version</h3>
+    </form>
+      <form id="jvm-selector" class="index-jvm-btn-form jvm-btn-form btn-form">
+        <h3>2. Choose a JVM
+          <span class="help-jvm">Help Me Choose</span>
+          <div class="popup-content" id="jvm-popup">
+            <div class="popup-heading">
+              <h4>Choosing the right JVM</h4>
+            </div>
+            <div class="popup-text">
+              <p class="hotspot-text"><b>HotSpot</b> is the VM from the OpenJDK community. It is the most widely used VM today and is used in Oracle’s JDK. It is suitable for all workloads.</p>
+              <p>For more details see <a target="_blank" href="https://openjdk.java.net/groups/hotspot/">OpenJDK HotSpot</a>.</p>
+              <p class="openj9-text"><b>Eclipse OpenJ9</b> is the VM from the Eclipse community.  It is an enterprise-grade VM designed for low memory footprint and fast start-up and is used in IBM’s JDK.  It is suitable for running all workloads.</p>
+              <p>For more details see <a target="_blank" href="https://www.eclipse.org/openj9/">Eclipse OpenJ9</a>.</p>
+              <p class="lts-text"><b>LTS</b> (Long Term Support). These versions have a longer support timeframe. Suitable for enterprise customers. See <a href="./support.html">Support</a> for more information.</p>
+            </div>
+          </div>
+        </h3>
+      </form>
+  </div>
+
+  <div style="margin-top: 1rem;">
+    <span>View</span>
+    <select id="numberpicker">
+      <option value="1">1</option>
+      <option value="5" selected="selected">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+    <span>nightly builds prior to: </span>
+    <input type="text" id="datepicker" style="margin-top: 0.5rem;">
+  </div>
+
+  <input type="text" style="margin-top: 1.5rem;" class="block margin-auto" id="search" placeholder="Search these builds">
+
+  <h3 id="scroll-text" class="hide" style="margin: 2rem 0 0 0;">Scroll horizontally <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></h3>
+
+  <div id="search-error" class="hide">No search results</div>
+
+  <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+  
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                  <h4 class="modal-title">Checksum</h4>
+                  </div>
+  
+                  <!-- Modal body -->
+                  <textarea readonly cols="70" class="modal-body" id="modal-body"></textarea>
+  
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                  <button type="button" class="blue-button modal-button" onclick="hideChecksum()">Close</button>
+                  <button type="button" class="blue-button modal-button" onclick="copyStringToClipboard()"><i class="fa fa-clipboard " ></i> Copy</button>
+                  </div>
+  
+              </div>
+          </div>
+        </div>
+  <div id="nightly-list">
+    <table id="table-parent">
+      <thead id="table-head">
+
+      </thead>
+      <tbody id="nightly-table" class="hide">
+        <script id="template" type="text/x-handlebars-template">
+          {{#each htmlTemplate}}
+            <tr class='nightly-container'>
+              <td class='nightly-platform-block'><var platform-name>{{thisOfficialName}}</var></td>
+              <td class='nightly-platform-type'><var platform-name>{{thisType}}</var></td>
+              <td class='nightly-platform-heap'><var> {{thisHeapSize}}</var></td>
+              <td><div class='nightly-release-date'><var>{{thisReleaseDay}}</var> {{thisReleaseMonth}} <var>{{thisReleaseYear}}</var></div></td>
+              <td class='nightly-downloads-block'><div><a class='dark-link' href='{{thisBinaryLink}}'><var binary-info>{{thisBinaryExtension}} ({{thisBinarySize}} MB)</var></a></div></td>
+              {{#if thisInstallerLink}}
+                <td class='nightly-downloads-block'><div><a class='dark-link' href='{{thisInstallerLink}}'><var binary-info>{{thisInstalleExtension}}</var></a></div></td>
+              {{else}}
+                <td class='nightly-downloads-block'><div>Not available</div></td>
+              {{/if}}
+              <td><a href='javascript:renderChecksum("{{thisChecksum}}");' class='dark-link'>Checksum</a></td>
+            </tr>
+          {{/each}}
+        </script>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  <div class="margin-auto">
+    <div class="footer-icon align-center inline-block">
+      <a href="./slack.html" target="_blank" class="light-link no-underline">
+        <img src="dist/assets/slack.svg" alt="Slack logo" class="footer-logo">
+        <p class="margin-auto">Slack</p>
+      </a>
+    </div>
+
+    <div class="footer-icon align-center inline-block">
+      <a href="https://github.com/AdoptOpenJDK" target="_blank" class="light-link no-underline">
+        <img src="dist/assets/GitHub.png" alt="GitHub logo" class="footer-logo">
+        <p class="margin-auto">GitHub repos</p>
+      </a>
+    </div>
+
+    <div class="footer-icon align-center inline-block">
+      <a href="https://ci.adoptopenjdk.net" target="_blank" class="light-link no-underline">
+        <img src="dist/assets/jenkins_headshot.png" alt="Jenkins logo" class="footer-logo">
+        <p class="margin-auto">Jenkins CI</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="margin-auto" id="footer-social-bar"><div class="social-icon align-center inline-block">
+  <a href="https://twitter.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+      <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-twitter fa-stack-1x fa-social-icon"></i>
+      </span>
+  </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.facebook.com/adoptopenjdk" target="_blank" class="light-link no-underline">
+    <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-facebook fa-stack-1x fa-social-icon"></i>
+    </span>
+  </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.youtube.com/c/AdoptOpenJDK" target="_blank" class="light-link no-underline">
+    <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-youtube-play fa-stack-1x fa-social-icon"></i>
+    </span>
+  </a>
+</div>
+<div class="social-icon align-center inline-block">
+  <a href="https://www.twitch.tv/adoptopenjdk" target="_blank" class="light-link no-underline">
+    <span class="fa-stack fa-lg" style="font-size:1.10em;">
+        <i class="fa fa-twitch fa-stack-lg fa-social-icon"></i>
+    </span>
+  </a>
+</div></div>
+
+  <p style="line-height: 1rem;">Java and OpenJDK are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.</p>
+  <br>
+  <p style="line-height: 1rem;"><strong>Spotted an issue with the website?</strong><br><a target="_blank" class="light-link" href="https://github.com/AdoptOpenJDK/openjdk-website/issues">Raise a GitHub issue</a> or <a target="_blank" class="light-link" href="https://github.com/AdoptOpenJDK/openjdk-website/blob/master/CONTRIBUTING.md">contribute a change!</a></p>
+
+</footer>
+
+<!-- inject:js -->
+<script src="./dist/js/app.min-7fb72718.js"></script>
+<!-- endinject -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99905649-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
