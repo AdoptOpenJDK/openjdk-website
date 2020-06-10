@@ -153,7 +153,7 @@
     },
     {
       "officialName": "Windows x86",
-      "searchableName": "X32_WIN",
+      "searchableName": "X86-32_WIN",
       "attributes": {
         "heap_size": "normal",
         "os": "windows",
