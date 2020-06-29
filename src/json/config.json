@@ -5,8 +5,7 @@
       "officialName": "OpenJDK 8 with HotSpot",
       "jvm": "HotSpot",
       "label": "OpenJDK 8",
-      "lts": true,
-      "default": true
+      "lts": true
     },
     {
       "searchableName": "openjdk8-openj9",
@@ -54,7 +53,8 @@
       "officialName": "OpenJDK 11 with HotSpot",
       "jvm": "HotSpot",
       "label": "OpenJDK 11",
-      "lts": true
+      "lts": true,
+      "default": true
     },
     {
       "searchableName": "openjdk11-openj9",
@@ -153,7 +153,7 @@
     },
     {
       "officialName": "Windows x86",
-      "searchableName": "X32_WIN",
+      "searchableName": "X86-32_WIN",
       "attributes": {
         "heap_size": "normal",
         "os": "windows",

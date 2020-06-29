@@ -6,7 +6,16 @@ const {platforms, variants} = require('../json/config');
 const lookup = {};
 platforms.forEach((platform) => lookup[platform.searchableName] = platform);
 
-let variant = module.exports.variant = getQueryByName('variant') || 'openjdk8';
+let defaultVariant;
+
+// Set the default JDK based on config.json
+for (let variant of variants) {
+  if (variant.default) {
+    defaultVariant = variant.searchableName.split('-')[0]
+  }
+}
+
+let variant = module.exports.variant = getQueryByName('variant') || defaultVariant;
 let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
 
 module.exports.getVariantObject = (variantName) => variants.find((variant) => variant.searchableName === variantName);
@@ -283,7 +292,7 @@ module.exports.setRadioSelectors = () => {
       input.setAttribute('name', group);
       input.setAttribute('value', name);
       input.setAttribute('class', 'radio-button');
-      input.setAttribute('lts', variant.lts)
+      input.setAttribute('lts', variant.lts);
 
       btnLabel.appendChild(input);
 
@@ -304,13 +313,13 @@ module.exports.setRadioSelectors = () => {
     }
   }
 
-  for (let x = 0; x < variants.length; x++) {
-    const splitVariant = variants[x].searchableName.split('-');
+  for (let variant of variants) {
+    const splitVariant = variant.searchableName.split('-');
     const jdkName = splitVariant[0];
     const jvmName = splitVariant[1];
-    createRadioButtons(jdkName, 'jdk', variants[x], jdkSelector);
+    createRadioButtons(jdkName, 'jdk', variant, jdkSelector);
     if (jvmSelector) {
-      createRadioButtons(jvmName, 'jvm', variants[x], jvmSelector);
+      createRadioButtons(jvmName, 'jvm', variant, jvmSelector);
     }
   }
 
@@ -335,9 +344,9 @@ module.exports.setRadioSelectors = () => {
     };
   }
 
-  for (let i = 0; i < jdkButtons.length; i++) {
-    if (jdkButtons[i].value === variant) {
-      jdkButtons[i].setAttribute('checked', 'checked');
+  for (let jdkButton of jdkButtons) {
+    if (jdkButton.value === variant) {
+      jdkButton.setAttribute('checked', 'checked');
       break;
     }
   }

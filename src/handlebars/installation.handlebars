@@ -224,7 +224,7 @@
         <p>3. Run the command on the target workstation.</p>
 
         <p>The following example silently installs AdoptOpenJDK, updates the PATH, associates <tt>.jar</tt> files with Java applications and defines JAVA_HOME:</p>
-        <pre><code class="highlighted">msiexec /i &lt;package&gt;.msi ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome INSTALLDIR=c:\Program Files\AdoptOpenJDK\ /quiet</code></pre>
+        <pre><code class="highlighted">msiexec /i &lt;package&gt;.msi ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome INSTALLDIR="c:\Program Files\AdoptOpenJDK\" /quiet</code></pre>
         <p>Note: You must use <tt>INSTALLDIR</tt> with <tt>FeatureMain</tt>.
         </p>
 
