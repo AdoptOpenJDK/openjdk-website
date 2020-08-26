@@ -19,7 +19,7 @@
     "base64-img": "^1.0.4",
     "browser-sync": "^2.26.12",
     "browser-sync-client": "^2.26.6",
-    "browserify": "^16.5.1",
+    "browserify": "^16.5.2",
     "chai": "^4.2.0",
     "eslint": "^7.4.0",
     "fancy-log": "^1.3.3",
