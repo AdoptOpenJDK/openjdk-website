@@ -45,6 +45,7 @@
                     <th>x64</th>
                     <th>ppc64le</th>
                     <th>s390x</th>
+                    <th>aarch32</th>
                     <th>aarch64</th>
                 </tr>
             </thead>
@@ -55,12 +56,14 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Centos 7.4</td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
+                    <td></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
@@ -76,12 +79,14 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>RHEL 7.4</td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
+                    <td></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
@@ -97,12 +102,14 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Ubuntu 16.04</td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
@@ -111,6 +118,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
                   <td>Ubuntu 20.04</td>
@@ -118,11 +126,12 @@
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
+                  <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86 or version glibc version 2.17 on other architectures are expected to function without problems.</p>
+        <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86, 2.23 on aarch32 and 2.17 on other architectures are expected to function without problems.</p>
 
         <table>
             <thead>
@@ -336,7 +345,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-                    <td></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
@@ -344,7 +353,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-                    <td></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
@@ -352,13 +361,13 @@
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-                  <td></td>
+                  <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86 or version glibc version 2.17 on other architectures are expected to function without problems.</p>
+        <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86, 2.23 on aarch32 and 2.17 on other architectures are expected to function without problems.</p>
 
         <table>
             <thead>
@@ -536,7 +545,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-                    <td></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
@@ -544,7 +553,7 @@
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-                    <td></td>
+                    <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                     <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
                 <tr>
@@ -552,13 +561,13 @@
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-                  <td></td>
+                  <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                   <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86 or version glibc version 2.17 on other architectures are expected to function without problems.</p>
+        <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86, 2.23 on aarch32 and 2.17 on other architectures are expected to function without problems.</p>
 
         <table>
             <thead>
@@ -748,7 +757,7 @@
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-          <td></td>
+          <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
         </tr>
         <tr>
@@ -756,7 +765,7 @@
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-          <td></td>
+          <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
         </tr>
         <tr>
@@ -764,13 +773,13 @@
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span> <i class="fa fa-star-o openj9" aria-hidden="true"></i><span class="sr-only">OpenJ9 VM</span></td>
-          <td></td>
+          <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
           <td><i class="fa fa-star-o hotspot" aria-hidden="true"></i><span class="sr-only">Hotspot VM</span></td>
         </tr>
         </tbody>
       </table>
 
-      <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86 or version glibc version 2.17 on other architectures are expected to function without problems.</p>
+        <p><strong>Note:</strong> Any other Linux distributions that have a minimum glibc version 2.12 on x86, 2.23 on aarch32 and 2.17 on other architectures are expected to function without problems.</p>
 
       <table>
         <thead>
