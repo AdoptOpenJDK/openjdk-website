@@ -334,9 +334,12 @@
       <pre><code class="highlighted">sudo apt-get install -y software-properties-common</code></pre>
 
       <p>Then repeat the first command.</p>
-      <p>3. Refresh your package list with <tt>sudo apt-get update</tt> and then install your chosen AdoptOpenJDK package. For example, to
+      <p>3. Refresh your package list with and then install your chosen AdoptOpenJDK package. For example, to
         install OpenJDK 8 with the HotSpot VM, run:</p>
-      <pre><code class="highlighted">sudo apt-get install &lt;adoptopenjdk-8-hotspot&gt;</code></pre>
+      <pre><code class="highlighted">
+        sudo apt-get update
+        sudo apt-get install adoptopenjdk-8-hotspot;
+      </code></pre>
 
     <h4 id="linux-pkg-rpm">RPM installation</h4>
 
