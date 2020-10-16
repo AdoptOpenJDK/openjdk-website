@@ -47,6 +47,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.11.5"
+    "@babel/polyfill": "^7.12.1"
   }
 }
