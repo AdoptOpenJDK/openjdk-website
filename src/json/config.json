@@ -102,7 +102,7 @@
       "officialName": "OpenJDK 14 with HotSpot",
       "jvm": "HotSpot",
       "label": "OpenJDK 14",
-      "lts": "latest"
+      "lts": false
     },
     {
       "searchableName": "openjdk14-openj9",
@@ -110,6 +110,22 @@
       "description": "Eclipse OpenJ9",
       "jvm": "OpenJ9",
       "label": "OpenJDK 14",
+      "lts": false,
+      "descriptionLink": "https://www.eclipse.org/openj9"
+    },
+    {
+      "searchableName": "openjdk15-hotspot",
+      "officialName": "OpenJDK 15 with HotSpot",
+      "jvm": "HotSpot",
+      "label": "OpenJDK 15",
+      "lts": "latest"
+    },
+    {
+      "searchableName": "openjdk15-openj9",
+      "officialName": "OpenJDK 15 with Eclipse OpenJ9",
+      "description": "Eclipse OpenJ9",
+      "jvm": "OpenJ9",
+      "label": "OpenJDK 15",
       "lts": "latest",
       "descriptionLink": "https://www.eclipse.org/openj9"
     }
@@ -125,7 +141,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": ".run",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -143,7 +159,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": ".run",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -233,7 +249,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": ".pkg",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -251,7 +267,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -269,7 +285,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": ".run",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -287,7 +303,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -305,7 +321,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": ".run",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -323,7 +339,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -341,7 +357,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -359,7 +375,7 @@
       },
       "binaryExtension": ".tar.gz",
       "installerExtension": "no-installer-available",
-      "installCommand": "tar -xf FILENAME",
+      "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
       "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
@@ -420,6 +436,24 @@
       "checksumAutoCommand": "curl -O -L FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "7.1 TL4 or later"
+    },
+    {
+      "officialName": "Linux riscv64",
+      "searchableName": "RISCV64",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "linux",
+        "architecture": "riscv64"
+      },
+      "binaryExtension": ".tar.gz",
+      "installerExtension": "no-installer-available",
+      "installCommand": "tar -xf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
+      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
+      "osDetectionString": "not-to-be-detected",
+      "supported_version": "glibc version 2.27 or higher"
     }
   ]
 }
