@@ -148,7 +148,7 @@
       "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen",
       "supported_version": {
-        "_comment_": "You can specify both jvm or version number here. Version numbers use >= logic",
+        "_comment_": "Version numbers use >= logic and need to be specified in ascending order",
         "hotspot": "glibc version 2.12 or higher",
         "openj9": {
           "8": "glibc version 2.12 or higher",
@@ -173,7 +173,7 @@
       "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": {
-        "_comment_": "You can specify both jvm or version number here. Version numbers use >= logic",
+        "_comment_": "Version numbers use >= logic and need to be specified in ascending order",
         "openj9": {
           "8": "glibc version 2.12 or higher",
           "15": "glibc version 2.17 or higher"
