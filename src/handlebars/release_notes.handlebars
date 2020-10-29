@@ -14,8 +14,13 @@
     <div class="margin-bottom">
       <h3>OpenJDK Release Notes</h3>
       <p>
-        OpenJDK 8u212-b03 and 11.0.3+7 were the first non-Oracle led OpenJDK releases, their release notes are listed below.
-        For release notes prior to 8u212-b03 and 11.0.3+7 please refer to the Oracle website.
+        OpenJDK 8u212-b03 and 11.0.3+7 were the first non-Oracle led OpenJDK releases,
+        their release notes are listed below. For release notes prior to 8u212-b03 and
+        11.0.3+7 please refer to the Oracle website.
+
+        More recently we've been swapping to showing the release notes hosted by
+        <a href="https://foojay.io" target="_blank">foojay.io</a>, an open source
+        community around OpenJDK topics that is from one of our sponsors, Azul Systems.
       </p>
 
       <h3>Eclipse OpenJ9 Release Notes</h3>
@@ -26,12 +31,22 @@
     </div>
 
     <div class="anchor">
+      <a href="#jdk8u272" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk8u272_notes');">-/+</button> <a id="jdk8u272">OpenJDK 8u272 (1.8.0_272-b10)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u272-b10/OpenJDK8U-sources_8u272b10.tar.gz">Upstream Source Tarball OpenJDK 8u272-b10</a>)</h3>
+    </div>
+    <div class="margin-bottom softHide" id="jdk8u265_notes">
+      For 8u272 fixes see <a href="https://foojay.io/java-8/?quarter=102020&tab=allissues" target="_blank">Combined CVE and JDK bug view</a> at foojay.io.
+      Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.
+    </div>
+
+    <div class="anchor">
       <a href="#jdk8u265" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
       <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk8u265_notes');">-/+</button> <a id="jdk8u265">OpenJDK 8u265 (1.8.0_265-b01)</a></h2>
       <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u265-b01/OpenJDK8U-sources_8u265b01.tar.gz">Upstream Source Tarball OpenJDK 8u265-b01</a>)</h3>
     </div>
     <div class="margin-bottom softHide" id="jdk8u265_notes">
-      For combined 8u262 and 8u265 security fixes see the <a href="https://foojay.io/java-8/?quarter=072020&tab=cve target="_blank">Combined CVE and JDK bug view</a> at foojay.io. Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.<br/>
+      For combined 8u262 and 8u265 security fixes see the <a href="https://foojay.io/java-8/?quarter=072020&tab=cve" target="_blank">Combined CVE and JDK bug view</a> at foojay.io. Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.<br/>
       See the <a href="https://bugs.openjdk.java.net/browse/JDK-8250575?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%20openjdk8u265%20ORDER%20BY%20created%20DESC" target="_blank">openjdk8u265</a> Fix Version filter in the JDK Bug System.
     </div>
 
@@ -41,7 +56,7 @@
       <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u252-b09/OpenJDK8U-sources_8u262b10.tar.gz">Upstream Source Tarball OpenJDK 8u262-b10</a>)</h3>
     </div>
     <div class="margin-bottom softHide" id="jdk8u262_notes">
-      For combined 8u262 and 8u265 security fixes see the <a href="https://foojay.io/java-8/?quarter=072020&tab=cve target="_blank">Combined CVE and JDK bug view</a> at foojay.io. Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.<br/>
+      For combined 8u262 and 8u265 security fixes see the <a href="https://foojay.io/java-8/?quarter=072020&tab=cve" target="_blank">Combined CVE and JDK bug view</a> at foojay.io. Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.<br/>
       See the <a href="https://bugs.openjdk.java.net/browse/JDK-8248715?jql=project%20%3D%20JDK%20AND%20fixVersion%20%3D%20openjdk8u262%20ORDER%20BY%20created%20DESC" target="_blank">openjdk8u262</a> Fix Version filter in the JDK Bug System.
     </div>
 
@@ -582,9 +597,9 @@
 
       <h3>Security fixes</h3>
       <ul>
-        <li>S8211936, CVE-2019-2602: Better String parsing</li>
-        <li>S8218453, CVE-2019-2684: More dynamic RMI interactions</li>
-        <li>S8219066, CVE-2019-2698: Fuzzing TrueType fonts: setCurrGlyphID()</li>
+        <li>S8211936, CVE-2019-2602: Better String parsing</li>
+        <li>S8218453, CVE-2019-2684: More dynamic RMI interactions</li>
+        <li>S8219066, CVE-2019-2698: Fuzzing TrueType fonts: setCurrGlyphID()</li>
       </ul>
       <h3>Other changes</h3>
       <ul>
@@ -683,6 +698,26 @@
         <li>S8220641: [TESTBUG] New test KdcPolicy.java introduced by JDK-8164656 needs same change as JDK-8190690</li>
       </ul>
 
+    </div>
+
+    <div class="anchor">
+      <a href="#jdk11_0_9" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk11_0_9_notes');">-/+</button> <a id="jdk11_0_9">OpenJDK 11.0.9 (11.0.8+11)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11_0_9%2B11/OpenJDK11U-sources_11.0.9_11.tar.gz">Upstream Source Tarball OpenJDK 11.0.9+11</a>)</h3>
+    </div>
+    <div class="margin-bottom softHide" id="jdk11_0_9_notes">
+      For jdk11_0_9+11 fixes see <a href="https://foojay.io/java-11/?quarter=102020&tab=allissues&version=11.0.9" target="_blank">Combined CVE and JDK bug view</a> at foojay.io.
+      Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.
+    </div>
+
+    <div class="anchor">
+      <a href="#jdk11_0_8" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk11_0_8_notes');">-/+</button> <a id="jdk11_0_8">OpenJDK 11.0.8 (11.0.8+10)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11_0_8%2B10/OpenJDK11U-sources_11.0.8_10.tar.gz">Upstream Source Tarball OpenJDK 11.0.8+10</a>)</h3>
+    </div>
+    <div class="margin-bottom softHide" id="jdk11_0_8_notes">
+      For jdk11_0_8+10 fixes see <a href="https://foojay.io/java-11/?quarter=072020&tab=allissues&version=11.0.8" target="_blank">Combined CVE and JDK bug view</a> at foojay.io.
+      Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.
     </div>
 
     <div class="anchor">
@@ -1960,36 +1995,36 @@
 
       <h3>Security fixes</h3>
       <ul>
-        <li>S8211936, CVE-2019-2602: Better String parsing</li>
-        <li>S8218453, CVE-2019-2684: More dynamic RMI interactions</li>
-        <li>S8219066, CVE-2019-2698: Fuzzing TrueType fonts: setCurrGlyphID()</li>
+        <li>S8211936, CVE-2019-2602: Better String parsing</li>
+        <li>S8218453, CVE-2019-2684: More dynamic RMI interactions</li>
+        <li>S8219066, CVE-2019-2698: Fuzzing TrueType fonts: setCurrGlyphID()</li>
       </ul>
 
       <h3>Other changes</h3>
       <ul>
-        <li>S8034802: (zipfs) newFileSystem throws UOE when the zip file is located in a custom file system</li>
-        <li>S8165675: Trace event for thread park has incorrect unit for timeout</li>
-        <li>S8172695: (scanner) java/util/Scanner/ScanTest.java fails</li>
-        <li>S8187364: Unable to enter zero width non-joiner (ZWNJ) symbol in Swing text component</li>
-        <li>S8197398: (zipfs) Files.walkFileTree walk indefinitelly while processing JAR file with "/" as a directory inside.</li>
-        <li>S8200109: NMT: diff_malloc_site assert(early-&gt;flags() == current-&gt;flags(), "Must be the same memory type")</li>
-        <li>S8201818: [macosx] Printing attributes break page size set via "java.awt.print.Book" object</li>
-        <li>S8204142: AWT hang occurs when sequenced events arrive out of sequence in multiple AppContexts</li>
-        <li>S8205432: Replace the placeholder Japanese era name</li>
-        <li>S8206120: Add test cases for lenient Japanese era parsing</li>
-        <li>S8207070: Webstart app popup on wrong screen in a one-screen setup changing to multi-monitor</li>
-        <li>S8207258: Distrust TLS server certificates anchored by Symantec Root CAs</li>
-        <li>S8207760: SAXException: Invalid UTF-16 surrogate detected: d83c ?</li>
-        <li>S8207829: FlightRecorderMXBeanImpl is leaking the first classloader which calls it</li>
-        <li>S8207849: Allow the addition of more number to the Java version string</li>
-        <li>S8208275: C2 crash in Node::add_req(Node*)</li>
-        <li>S8208656: Move java/util/Calendar/CalendarTestScripts tests into OpenJDK</li>
-        <li>S8209615: ParseError in XMLEventReader on a valid input</li>
-        <li>S8209758: 2 classes with same name G1PrintCollectionSetClosure cause crash when logging is enabled</li>
-        <li>S8209960: -Xlog:jfr* doesn't work with the JFR</li>
-        <li>S8210192: Hsperf counter ParNew::CMS should be ParNew:CMS</li>
-        <li>S8210394: (zipfs) jdk/nio/zipfs/ZFSTests.java rootdir.zip: The process cannot access the file because it is being used by another process</li>
-        <li>S8210633: Cannot parse JapaneseDate string with DateTimeFormatterBuilder Mapped-values</li>
+        <li>S8034802: (zipfs) newFileSystem throws UOE when the zip file is located in a custom file system</li>
+        <li>S8165675: Trace event for thread park has incorrect unit for timeout</li>
+        <li>S8172695: (scanner) java/util/Scanner/ScanTest.java fails</li>
+        <li>S8187364: Unable to enter zero width non-joiner (ZWNJ) symbol in Swing text component</li>
+        <li>S8197398: (zipfs) Files.walkFileTree walk indefinitelly while processing JAR file with "/" as a directory inside.</li>
+        <li>S8200109: NMT: diff_malloc_site assert(early-&gt;flags() == current-&gt;flags(), "Must be the same memory type")</li>
+        <li>S8201818: [macosx] Printing attributes break page size set via "java.awt.print.Book" object</li>
+        <li>S8204142: AWT hang occurs when sequenced events arrive out of sequence in multiple AppContexts</li>
+        <li>S8205432: Replace the placeholder Japanese era name</li>
+        <li>S8206120: Add test cases for lenient Japanese era parsing</li>
+        <li>S8207070: Webstart app popup on wrong screen in a one-screen setup changing to multi-monitor</li>
+        <li>S8207258: Distrust TLS server certificates anchored by Symantec Root CAs</li>
+        <li>S8207760: SAXException: Invalid UTF-16 surrogate detected: d83c ?</li>
+        <li>S8207829: FlightRecorderMXBeanImpl is leaking the first classloader which calls it</li>
+        <li>S8207849: Allow the addition of more number to the Java version string</li>
+        <li>S8208275: C2 crash in Node::add_req(Node*)</li>
+        <li>S8208656: Move java/util/Calendar/CalendarTestScripts tests into OpenJDK</li>
+        <li>S8209615: ParseError in XMLEventReader on a valid input</li>
+        <li>S8209758: 2 classes with same name G1PrintCollectionSetClosure cause crash when logging is enabled</li>
+        <li>S8209960: -Xlog:jfr* doesn't work with the JFR</li>
+        <li>S8210192: Hsperf counter ParNew::CMS should be ParNew:CMS</li>
+        <li>S8210394: (zipfs) jdk/nio/zipfs/ZFSTests.java rootdir.zip: The process cannot access the file because it is being used by another process</li>
+        <li>S8210633: Cannot parse JapaneseDate string with DateTimeFormatterBuilder Mapped-values</li>
         <li>S8210874: Test for JDK-8209615</li>
         <li>S8210974: No extensions debug log for ClientHello</li>
         <li>S8210989: RSASSA-PSS certificate cannot be selected for client auth on TLSv1.2</li>
@@ -2099,20 +2134,32 @@
 
       <h3>Other changes</h3>
       <ul>
-        <li>JDK-8223499 - Removal of Two DocuSign Root CA Certificates</li>
-        <li>JDK-8222136 - Removal of Two Comodo Root CA Certificates</li>
-        <li>JDK-8222137 - Removal of T-Systems Deutsche Telekom Root CA 2 Certificate</li>
+        <li>JDK-8223499 - Removal of Two DocuSign Root CA Certificates</li>
+        <li>JDK-8222136 - Removal of Two Comodo Root CA Certificates</li>
+        <li>JDK-8222137 - Removal of T-Systems Deutsche Telekom Root CA 2 Certificate</li>
       </ul>
     </div>
 
+    <!-- TODO Foojay.io doesn't supply 12.0.1 or 12 release notes - fill these in laster for historical purposes -->
+
+    <!-- TODO There are newer releases of OpenJDK 13 that Adopt hasn't produced. -->
+
     <div class="anchor">
       <a href="#jdk13_0_2" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
-      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk13_0_2_notes');">-/+</button> <a id="jdk13_0_2">OpenJDK 13.0.2 (12.0.2+8)</a></h2>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk13_0_2_notes');">-/+</button> <a id="jdk13_0_2">OpenJDK 13.0.2 (13.0.2+8)</a></h2>
     </div>
     <div class="margin-bottom softHide" id="jdk13_0_2_notes">
-
       You can check the details of these bugs using the <a href="https://www.oracle.com/technetwork/java/javase/2col/13-0-2-bugfixes-5812303.html" target="_blank">13.0.2</a> release notes at Oracle.
+    </div>
 
+    <div class="anchor">
+      <a href="#jdk13_0_1" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk13_0_1_notes');">-/+</button> <a id="jdk13_0_1">OpenJDK 13.0.1 (13.0.1+9)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk13-upstream-binaries/releases/download/jdk-13_0_1%2B9/OpenJDK13U-sources_13.0.1_9.tar.gz">Upstream Source Tarball OpenJDK 13.0.1+9</a>)</h3>
+    </div>
+    <div class="margin-bottom softHide" id="jdk13_0_1_notes">
+      For jdk13_0_1+9 fixes see <a href="https://foojay.io/java-13/?quarter=012020&tab=allissues&version=13.0.1" target="_blank">Combined CVE and JDK bug view</a> at foojay.io.
+      Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.
     </div>
 
     <div class="anchor">
@@ -2134,8 +2181,18 @@
     </div>
 
     <div class="anchor">
+      <a href="#jdk14_0_2" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk14_0_2_notes');">-/+</button> <a id="jdk14_0_2">OpenJDK 14.0.2 (14.0.2+12)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk14-upstream-binaries/releases/download/jdk-14_0_2%2B12/OpenJDK14U-sources_14.0.2_12.tar.gz">Upstream Source Tarball OpenJDK 14.0.2+12</a>)</h3>
+    </div>
+    <div class="margin-bottom softHide" id="jdk14_0_2_notes">
+      For jdk14_0_2+12 fixes see <a href="https://foojay.io/java-14/?quarter=102020&tab=allissues" target="_blank">Combined CVE and JDK bug view</a> at foojay.io.
+      Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.
+    </div>
+
+    <div class="anchor">
       <a href="#jdk14_0_1" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
-      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk14_0_1_notes');">-/+</button> <a id="jdk14_0_1">OpenJDK 14 (14.0.1+7)</a></h2>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk14_0_1_notes');">-/+</button> <a id="jdk14_0_1">OpenJDK 14.0.1 (14.0.1+7)</a></h2>
     </div>
 
     <div class="margin-bottom softHide" id="jdk14_0_1_notes">
@@ -2169,6 +2226,26 @@
         <li>368: Text Blocks (Second Preview)</li>
         <li>370: Foreign-Memory Access API (Incubator)</li>
       </ul>
+    </div>
+
+    <div class="anchor">
+      <a href="#jdk15_0_1" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk15_0_1_notes');">-/+</button> <a id="jdk15_0_1">OpenJDK 15.0.1 (15.0.1+9)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk15-upstream-binaries/releases/download/jdk-15_0_1%2B9/OpenJDK15U-sources_15.0.1_9.tar.gz">Upstream Source Tarball OpenJDK 15.0.1+12</a>)</h3>
+    </div>
+    <div class="margin-bottom softHide" id="jdk15_0_1_notes">
+      For jdk15_0_1+9 fixes see <a href="https://foojay.io/java-15/?quarter=012020&tab=allissues" target="_blank">Combined CVE and JDK bug view</a> at foojay.io.
+      Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.
+    </div>
+
+    <div class="anchor">
+      <a href="#jdk15" class="anchor"><img src="dist/assets/anchor.png" alt="anchor icon"></a>
+      <h2 class="bold"><button type="button" onclick="showHideReleaseNotes('jdk15_notes');">-/+</button> <a id="jdk15">OpenJDK 15 (15+36)</a></h2>
+      <h3 style="text-align: center;">(<a href="https://github.com/AdoptOpenJDK/openjdk15-upstream-binaries/releases/download/jdk-15%2B36/OpenJDK15U-sources_15_36.tar.gz">Upstream Source Tarball OpenJDK 15+36</a>)</h3>
+    </div>
+    <div class="margin-bottom softHide" id="jdk15_notes">
+      For jdk15+36 fixes see <a href="https://foojay.io/java-15/?quarter=092020&tab=allissues&version=15" target="_blank">Combined CVE and JDK bug view</a> at foojay.io.
+      Please note you may not have permission to click through to the JBS bug itself, in which case you'll need to read the CVE directly.
     </div>
 
     <div style="margin-top: 3rem;">
