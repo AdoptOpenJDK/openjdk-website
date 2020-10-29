@@ -63,6 +63,7 @@ module.exports.getBinaryExt = (searchableName) => lookup[searchableName].binaryE
 module.exports.getInstallerExt = (searchableName) => lookup[searchableName].installerExtension;
 
 // gets the Supported Version WITH PATH when you pass in 'searchableName'
+// Version numbers use >= logic and need to be specified in ascending order
 module.exports.getSupportedVersion = (searchableName) => {
   let supported_version = lookup[searchableName].supported_version;
   if (typeof supported_version === 'object') {
