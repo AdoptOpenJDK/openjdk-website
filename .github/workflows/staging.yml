@@ -2,6 +2,7 @@ name: Staging
 
 on:
   pull_request_target:
+    types: [opened, synchronize, edited, reopened]
     branches: [ master ]
 
 jobs:
@@ -11,9 +12,6 @@ jobs:
 
     steps:
 
-    - run: echo ::set-env name=PR_NUMBER::$(echo "$GITHUB_REF" | awk -F / '{print $3}')
-      shell: bash
-
     - uses: actions/checkout@v2
       with:
         path: gh-actions
@@ -21,9 +19,12 @@ jobs:
 
     - name: Setup branch
       run: |
+        GIT_REMOTE_REF=refs/pull/$PR_NUMBER/head
         cd gh-actions
         git fetch origin $GITHUB_REF:testBranch
         git checkout testBranch
+      env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
         
     - name: Add Banner
       run: |
@@ -34,6 +35,8 @@ jobs:
         This is a staging server, currently hosting <a class="light-link" href="https://github.com/AdoptOpenJDK/openjdk-website/pull/$PR_NUMBER"><var>PR $PR_NUMBER</var></a>
         </div>
         EOF
+      env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
 
     - uses: actions/setup-node@v1
       with:
@@ -99,18 +102,24 @@ jobs:
         repository: AdoptOpenJDK/openjdk-website-staging
         path: openjdk-website-staging
         token: ${{ secrets.ACCESS_TOKEN }}
+        ssh-key: ${{ secrets.ADOPT_BOT_SSH_PRIVATE }}
 
     - run: |
+        mkdir openjdk-website-staging/$PR_NUMBER
         cp -R gh-actions/* openjdk-website-staging/$PR_NUMBER
         cd openjdk-website-staging
         git add .
         git commit -m "Remove development files"
         git push origin gh-pages
+      env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
 
     - uses: mshick/add-pr-comment@v1
       with:
         message: |
             Now on staging server [here](https://staging.adoptopenjdk.net/$PR_NUMBER)."
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
-            repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+            repo-token: ${{ secrets.ACCESS_TOKEN }}
+            repo-token-user-login: 'adoptopenjdk-github-bot'
             allow-repeats: true
+      env:
+        PR_NUMBER: ${{ github.event.pull_request.number }}
