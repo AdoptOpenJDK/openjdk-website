@@ -21,7 +21,7 @@ jobs:
       run: |
         GIT_REMOTE_REF=refs/pull/$PR_NUMBER/head
         cd gh-actions
-        git fetch origin $GITHUB_REF:testBranch
+        git fetch origin $GIT_REMOTE_REF:testBranch
         git checkout testBranch
       env:
         PR_NUMBER: ${{ github.event.pull_request.number }}
