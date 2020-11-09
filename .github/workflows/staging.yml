@@ -98,7 +98,7 @@ jobs:
       with:
         repository: AdoptOpenJDK/openjdk-website-staging
         path: openjdk-website-staging
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        token: ${{ secrets.ACCESS_TOKEN }}
 
     - run: |
         cp -R gh-actions/* openjdk-website-staging/$PR_NUMBER
