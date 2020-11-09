@@ -34,4 +34,3 @@ jobs:
         git push origin gh-pages
       env:
         PR_NUMBER: ${{ github.event.pull_request.number }}
-
