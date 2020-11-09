@@ -116,10 +116,9 @@ jobs:
 
     - uses: mshick/add-pr-comment@v1
       with:
-        message: |
-            Now on staging server [here](https://staging.adoptopenjdk.net/$PR_NUMBER)."
-            repo-token: ${{ secrets.ACCESS_TOKEN }}
-            repo-token-user-login: 'adoptopenjdk-github-bot'
-            allow-repeats: true
+        message: "Now on staging server [here](https://staging.adoptopenjdk.net/$PR_NUMBER)."
+        repo-token: ${{ secrets.ACCESS_TOKEN }}
+        repo-token-user-login: 'adoptopenjdk-github-bot'
+        allow-repeats: true
       env:
         PR_NUMBER: ${{ github.event.pull_request.number }}
