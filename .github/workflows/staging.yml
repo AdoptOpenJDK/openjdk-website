@@ -105,7 +105,9 @@ jobs:
         ssh-key: ${{ secrets.ADOPT_BOT_SSH_PRIVATE }}
 
     - run: |
-        mkdir openjdk-website-staging/$PR_NUMBER
+        if [[ ! -d "openjdk-website-staging/$PR_NUMBER" ]]; then
+          mkdir openjdk-website-staging/$PR_NUMBER
+        fi
         cp -R gh-actions/* openjdk-website-staging/$PR_NUMBER
         cd openjdk-website-staging
         git add .
