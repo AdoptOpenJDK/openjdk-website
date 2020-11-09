@@ -63,7 +63,24 @@ module.exports.getBinaryExt = (searchableName) => lookup[searchableName].binaryE
 module.exports.getInstallerExt = (searchableName) => lookup[searchableName].installerExtension;
 
 // gets the Supported Version WITH PATH when you pass in 'searchableName'
-module.exports.getSupportedVersion = (searchableName) => lookup[searchableName].supported_version;
+// Version numbers use >= logic and need to be specified in ascending order
+module.exports.getSupportedVersion = (searchableName) => {
+  let supported_version = lookup[searchableName].supported_version;
+  if (typeof supported_version === 'object') {
+    supported_version = supported_version[jvmVariant]
+    if (typeof supported_version === 'object') {
+      let major_version = parseInt(variant.replace(/\D/g,''))
+      let supported_version_string
+      for (let version in supported_version) {
+        if (major_version >= parseInt(version)) {
+          supported_version_string = supported_version[version]
+        }
+      }
+      supported_version = supported_version_string
+    }
+  }
+  return supported_version
+}
 
 // gets the INSTALLATION COMMAND when you pass in 'searchableName'
 module.exports.getInstallCommand = (searchableName) => lookup[searchableName].installCommand;
