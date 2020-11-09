@@ -28,8 +28,7 @@ jobs:
     - run: |
         echo "removing $number"
         cd openjdk-website-staging
-        rm -rf "$PR_NUMBER"
-        git add .
+        git rm -rf "$PR_NUMBER"
         git commit -m "Remove $PR_NUMBER from staging"
         git push origin gh-pages
       env:
