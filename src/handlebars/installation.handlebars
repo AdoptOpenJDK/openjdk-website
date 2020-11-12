@@ -322,21 +322,118 @@
       <p>AdoptOpenJDK RPM and DEB packages are available for installing on your favourite Linux distribution.
       </p>
 
-    <h4 id="linux-pkg-deb">DEB installation on Debian or Ubuntu</h4>
+    <h4 id="linux-pkg-deb">Deb installation on Debian or Ubuntu</h4>
 
-      <p>1. Import the official AdoptOpenJDK GPG key by running the following command:</p>
-      <pre><code class="highlighted">wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -</code></pre>
+      <p>
+        You need the codename of your Debian or Ubuntu version. It is usually recorded in
+        <code>/etc/os-release</code> and can be extracted on Debian by running  
+        <code>cat /etc/os-release | grep VERSION_CODENAME | cut -d = -f 2</code>
+        and on Ubuntu by running
+        <code>cat /etc/os-release | grep UBUNTU_CODENAME | cut -d = -f 2</code>.
+      </p>
 
-      <p>2. Import the AdoptOpenJDK DEB repository by running the following command:</p>
-      <pre><code class="highlighted">sudo add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/</code></pre>
+      <ol>
+        <li>Ensure the necessary packages are present:
+          <pre>
+            <code class="highlighted">
+              sudo apt-get install wget apt-transport-https gnupg
+            </code>
+          </pre>
+        </li>
+        <li>Import the AdoptOpenJDK GPG key:
+          <pre>
+            <code class="highlighted">
+              wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+            </code>
+          </pre>
+        </li>
+        <li>Configure AdoptOpenJDK's apt repository by replacing the values in angle brackets:
+          <pre>
+            <code class="highlighted">
+              echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb &lt;codename&gt; main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.list
+            </code>
+          </pre>
+        </li>
+        <li>Refresh the package indexes:
+          <pre>
+            <code class="highlighted">
+              sudo apt-get update
+            </code>
+          </pre>
+        </li>
+        <li>To see which variants of AdoptOpenJDK are available, run
+          <pre>
+            <code class="highlighted">
+              sudo apt-cache search adoptopenjdk
+            </code>
+          </pre>
+        </li>
+        <li>To install a variant of AdoptOpenJDK, run <code>apt-get install &lt;packagename&gt;</code>, for example:
+          <pre>
+            <code class="highlighted">
+              sudo apt-get install adoptopenjdk-11-hotspot
+            </code>
+          </pre>
+        </li>
+      </ol>
 
-      <p>If you get a <q>command not found</q> error, try running:</p>
-      <pre><code class="highlighted">sudo apt-get install -y software-properties-common</code></pre>
+    <h4 id="linux-pkg-deb-derivates">Deb installation on Raspberry Pi OS, Linux Mint and other Debian-based distributions</h4>
 
-      <p>Then repeat the first command.</p>
-      <p>3. Refresh your package list with <tt>sudo apt-get update</tt> and then install your chosen AdoptOpenJDK package. For example, to
-        install OpenJDK 8 with the HotSpot VM, run:</p>
-      <pre><code class="highlighted">sudo apt-get install &lt;adoptopenjdk-8-hotspot&gt;</code></pre>
+      <p>
+        Raspberry Pi OS (formerly known as Raspbian), Linux Mint and other Debian- and Ubuntu-based distributions are usually based
+        on a specific Debian or Ubuntu release. For example, Linux Mint 20.04 (Ulyanna) is based on Ubuntu 20.04 (Focal Fossa),
+        Raspberry Pi OS 10 is based on Debian GNU/Linux 10 (Buster). Because AdoptOpenJDK only offers repositories for Debian and
+        Ubuntu, you need to find out which Debian or Ubuntu version your distribution is based on. This is usually recorded in
+        <code>/etc/os-release</code> and can usually be extracted on Debian-based distributions by running  
+        <code>cat /etc/os-release | grep VERSION_CODENAME | cut -d = -f 2</code>
+        and on Ubuntu-based distributions by running
+        <code>cat /etc/os-release | grep UBUNTU_CODENAME | cut -d = -f 2</code>.
+      </p>
+
+      <ol>
+        <li>Ensure the necessary packages are present:
+          <pre>
+            <code class="highlighted">
+              sudo apt-get install wget apt-transport-https gnupg
+            </code>
+          </pre>
+        </li>
+        <li>Import the AdoptOpenJDK GPG key:
+          <pre>
+            <code class="highlighted">
+              wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+            </code>
+          </pre>
+        </li>
+        <li>Configure AdoptOpenJDK's apt repository by replacing the values in angle brackets:
+          <pre>
+            <code class="highlighted">
+              echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb &lt;codename&gt; main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.list
+            </code>
+          </pre>
+        </li>
+        <li>Refresh the package indexes:
+          <pre>
+            <code class="highlighted">
+              sudo apt-get update
+            </code>
+          </pre>
+        </li>
+        <li>To see which variants of AdoptOpenJDK are available, run
+          <pre>
+            <code class="highlighted">
+              sudo apt-cache search adoptopenjdk
+            </code>
+          </pre>
+        </li>
+        <li>To install a variant of AdoptOpenJDK, run <code>apt-get install &lt;packagename&gt;</code>, for example:
+          <pre>
+            <code class="highlighted">
+              sudo apt-get install adoptopenjdk-11-hotspot
+            </code>
+          </pre>
+        </li>
+      </ol>
 
     <h4 id="linux-pkg-rpm">RPM installation</h4>
 
