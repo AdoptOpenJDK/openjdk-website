@@ -6,3 +6,4 @@ dist
 sitemap.xml
 .DS_Store*
 .java-version
+.vscode/
