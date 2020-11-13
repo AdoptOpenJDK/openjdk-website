@@ -56,10 +56,14 @@
         We produce builds based upon source code at <a href="https://openjdk.java.net" target="_blank">OpenJDK</a>,
         <a href="https://www.eclipse.org/openj9/" target="_blank">Eclipse OpenJ9</a>,
         <a href="https://aws.amazon.com/corretto/" target="_blank">Amazon Corretto</a>,
-        and <a href="https://sap.github.io/SapMachine/" target="_blank">SAP Machine</a>.
+        <a href="https://sap.github.io/SapMachine/" target="_blank">SAP Machine</a>
+        and <a href="https://github.com/alibaba/dragonwell11" target="_blank">Alibaba Dragonwell</a>.
       </p>
       <p>
-        OpenJDK and Eclipse OpenJ9 provide a new feature release every six months, and a maintenance/security update based upon each active release every three months.
+        OpenJDK and Eclipse OpenJ9 provide a new feature release every six months, and a maintenance/security update based upon each
+        active release every three months. The release dates for those from the OpenJDK project are the
+        <a href="https://www.oracle.com/security-alerts/">Tuesdays closest to the
+        17th</a> of January, April, July and October.
         We will follow this schedule for publishing binary releases from AdoptOpenJDK to ensure you get the latest, most secure builds.
       </p>
       <p>
@@ -67,104 +71,119 @@
         We will produce LTS releases for at least four years. This assurance will allow you to stay on a well-defined code stream,
         and give you time to migrate to the next, new, stable, LTS release when it becomes available.
       </p>
-      <p>Based upon this roadmap, and starting with Java 8:</p>
+      <p>Based upon this roadmap, and starting with Java 8 (currently supported releases in bold)
+      here is the timetable for the various releases:</p>
       <table>
         <tr>
-          <th></th>
-          <th>First Availability</th>
+          <th colspan=2>First Availability</th>
           <th>Latest Release</th>
           <th>Next Release</th>
           <th>End of Availability <sup>[1]</sup></th>
         </tr>
         <tr>
           <td><strong>Java 8 (LTS)</strong></td>
-          <td><strong>March 2014</strong></td>
+          <td><strong>Mar 2014</strong></td>
           <td>
               <strong>jdk8u272-b10<br/>
-              20th October 2020</strong>
+              20th Oct 2020</strong>
           </td>
           <td>
               <strong>jdk8u282<br/>
-              19th January 2021</strong>
+              19th Jan 2021</strong>
           </td>
           <td><strong>At Least May 2026 <sup>[1]</sup></strong></td>
         </tr>
         <tr>
           <td>Java 9</td>
-          <td>Sept 2017</td>
+          <td>September 2017</td>
+          <td>jdk-9.0.4+11<br/>
+             16th January 2018</td>
           <td>N/A</td>
-          <td>N/A</td>
-          <td>March 2018</td>
+          <td>Mar 2018</td>
         </tr>
         <tr>
           <td>Java 10</td>
-          <td>March 2018</td>
+          <td>Mar 2018</td>
+          <td>jdk-10.0.2+13<br/>
+              17th Jul 2018</td>
           <td>N/A</td>
-          <td>N/A</td>
-          <td>Sept 2018</td>
+          <td>September 2018</td>
         </tr>
         <tr>
           <td><strong>Java 11 (LTS)</strong></td>
-          <td><strong>Sept 2018</strong></td>
+          <td><strong>September 2018</strong></td>
           <td>
             <strong>jdk-11.0.9+11<br/>
-              20th October 2021</strong>
+              20th Oct 2021</strong>
           </td>
           <td>
             <strong>jdk-11.0.10<br/>
-            19th January 2021</strong>
+            19th Jan 2021</strong>
           </td>
           <td><strong>At Least Oct 2024 <sup>[1]</sup></strong></td>
         </tr>
         <tr>
           <td>Java 12</td>
-          <td>March 2019</td>
+          <td>Mar 2019</td>
+          <td>jdk-12.0.2+10<br/>
+              16th Jul 2019</td>
           <td>N/A</td>
-          <td>N/A</td>
-          <td>Sept 2019</td>
+          <td>September 2019</td>
         </tr>
         <tr>
           <td>Java 13</td>
-          <td>Sept 2019</td>
+          <td>September 2019</td>
           <td>
-            <strong>jdk-13.0.2+8<br/>
-              14th January 2020</strong>
+            jdk-13.0.2+8<br/>
+              14th Jan 2020
           </td>
           <td>N/A</td>
-          <td>March 2020</td>
+          <td>Mar 2020</td>
         </tr>
         <tr>
           <td>Java 14</td>
-          <td>March 2020</td>
+          <td>Mar 2020</td>
           <td>
-            <strong>jdk-14.0.2+12<br/>
-              14th July 2020</strong>
+            jdk-14.0.2+12<br/>
+              14th Jul 2020
           </td>
           <td>N/A</td>
-          <td>September 2020</td>
+          <td>Sep 2020</td>
         </tr>
         <tr>
-          <td>Java 15</td>
-          <td><strong>September 2020</strong></td>
+          <td><strong>Java 15</strong></td>
+          <td><strong>Sep 2020</strong></td>
           <td>
             <strong>jdk-15.0.1+9<br/>
-                20th October 2020</strong>
+                20th Oct 2020</strong>
           </td>
           <td>
             <strong>jdk-15.0.2<br/>
-              19th January 2021</strong></td>
-          <td>March 2021</td>
+              19th Jan 2021</strong></td>
+          <td>Mar 2021</td>
         </tr>
         <tr>
           <td>Java 16</td>
-          <td>March 2021</td>
+          <td>Mar 2021</td>
           <td>
             N/A<br/>
           </td>
           <td>
             jdk-16<br/>
-              16th March 2021</strong></td>
-          <td>September 2021</td>
+              16th Mar 2021</strong></td>
+          <td>Sep 2021</td>
+        </tr>
+        <tr>
+          <td>Java 17 (LTS)</td>
+          <td>Sep 2021</td>
+          <td>
+            N/A<br/>
+          </td>
+          <td>
+            jdk-17<br/>
+            19th Sep 2021
+          </td>
+          <td>TBC<sup>[1]</sup></td>
         </tr>
 
       </table>
