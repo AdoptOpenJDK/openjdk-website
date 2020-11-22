@@ -84,7 +84,8 @@
           "pathCommand",
           "checksumCommand",
           "checksumAutoCommand",
-          "osDetectionString"
+          "osDetectionString",
+          "attributes"
         ],
         "properties": {
           "officialName": {
@@ -162,6 +163,48 @@
               { "pattern": "^([^\\s]+\\s?)+$" },
               { "const": "not-to-be-detected" }
             ]
+          },
+          "attributes": {
+            "$id": "#/properties/platforms/items/properties/attributes",
+            "type": "object",
+            "required": [
+              "heap_size",
+              "os",
+              "architecture"
+            ],
+            "properties": {
+              "heap_size": {
+                "type": "string",
+                "enum": [
+                  "normal",
+                  "large"
+                ]
+              },
+              "os": {
+                "type": "string",
+                "enum": [
+                  "aix",
+                  "linux",
+                  "mac",
+                  "solaris",
+                  "windows"
+                ]
+              },
+              "architecture": {
+                "type": "string",
+                "enum": [
+                  "aarch64",
+                  "arm",
+                  "ppc64",
+                  "ppc64le",
+                  "riscv64",
+                  "s390x",
+                  "sparcv9",
+                  "x32",
+                  "x64"
+                ]
+              }
+            }
           }
         }
       }
