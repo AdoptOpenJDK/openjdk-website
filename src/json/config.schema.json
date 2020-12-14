@@ -184,6 +184,7 @@
                 "type": "string",
                 "enum": [
                   "aix",
+                  "alpine-linux",
                   "linux",
                   "mac",
                   "solaris",
