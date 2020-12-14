@@ -157,6 +157,24 @@
       }
     },
     {
+      "officialName": "Linux x64 (Alpine)",
+      "searchableName": "LINUXALPINE",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "alpine-linux",
+        "architecture": "x64"
+      },
+      "binaryExtension": ".tar.gz",
+      "installerExtension": "no-installer-available",
+      "installCommand": "tar xzf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
+      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
+      "osDetectionString": "not-to-be-detected",
+      "supported_version": "Alpine Linux 3.5 or later"
+    },
+    {
       "officialName": "Linux x64 Large Heap",
       "searchableName": "LINUXXL",
       "attributes": {
