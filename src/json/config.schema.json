@@ -22,7 +22,7 @@
       "pattern": "^(.*)$",
       "not": {
         "anyOf": [
-          { "pattern": "(rm \\-\\w*[rRfdviI]+\\w* /\\s*)$" }
+          { "pattern": "(rm -\\w*[rRfdviI]+\\w* /\\s*)$" }
         ]
       }
     }
