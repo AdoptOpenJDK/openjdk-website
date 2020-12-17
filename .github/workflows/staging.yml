@@ -63,6 +63,7 @@ jobs:
         git add -f *.html
         git add -f sitemap.xml
         git add -f robots.txt
+        git add -f package-lock.json
         # Commit these files to Master, then retrieve the entire repo
         # (including build output) in the gh-pages branch:
         git commit -m "Add built files"
