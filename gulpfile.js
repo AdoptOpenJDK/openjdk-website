@@ -1,6 +1,7 @@
 const gulp = require('gulp');
-
-const Ajv = require('ajv');
+// We'd normally use ES7 style imports but for consistency we'll use require
+const Ajv = require('ajv').default;
+const addFormats = require('ajv-formats').default;
 const assert = require('assert');
 const base64img = require('base64-img');
 const browserify = require('browserify');
@@ -42,9 +43,9 @@ gulp.task('json-validate', () => {
   const ajv = new Ajv({
     loadSchema: loadSchemaFn,
     allErrors: true,
-    extendRefs: 'fail',
-    verbose: true
-  });
+    verbose: true});
+
+  addFormats(ajv);
 
   return ajv.compileAsync(configJsonSchema)
       .then(validate =>
