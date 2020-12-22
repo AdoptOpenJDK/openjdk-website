@@ -139,8 +139,6 @@
         "os": "linux",
         "architecture": "x64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": ".run",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -164,8 +162,6 @@
         "os": "alpine-linux",
         "architecture": "x64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -182,8 +178,6 @@
         "os": "linux",
         "architecture": "x64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": ".run",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -206,8 +200,6 @@
         "os": "windows",
         "architecture": "x32"
       },
-      "binaryExtension": ".zip",
-      "installerExtension": ".msi",
       "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
       "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
       "checksumCommand": "certutil -hashfile FILENAME SHA256",
@@ -224,8 +216,6 @@
         "os": "windows",
         "architecture": "x64"
       },
-      "binaryExtension": ".zip",
-      "installerExtension": ".msi",
       "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
       "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
       "checksumCommand": "certutil -hashfile FILENAME SHA256",
@@ -235,6 +225,22 @@
       "supported_version": "2012r2 or later"
     },
     {
+      "officialName": "Windows aarch64",
+      "searchableName": "AARCH64_WIN",
+      "attributes": {
+        "heap_size": "normal",
+        "os": "windows",
+        "architecture": "aarch64"
+      },
+      "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
+      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
+      "checksumCommand": "certutil -hashfile FILENAME SHA256",
+      "checksumAutoCommandHint": " (the command must be run using Command Prompt in the same directory you download the binary file and requires PowerShell 3.0+)",
+      "checksumAutoCommand": "powershell -command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;  iwr -outf FILEHASHNAME FILEHASHURL\" && powershell \"$CHECKSUMVAR=($(Get-FileHash -Algorithm SHA256 -LiteralPath FILENAME | Format-List -Property Hash | Out-String) -replace \\\"Hash : \\\", \\\"\\\" -replace \\\"`r`n\\\", \\\"\\\"); Select-String -LiteralPath FILEHASHNAME -Pattern $CHECKSUMVAR | Format-List -Property FileName | Out-String\" | find /i \"FILEHASHNAME\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )",
+      "osDetectionString": "not-to-be-detected",
+      "supported_version": "2016 or later"
+    },
+    {
       "officialName": "Windows x64 Large Heap",
       "searchableName": "X64_WINXL",
       "attributes": {
@@ -242,8 +248,6 @@
         "os": "windows",
         "architecture": "x64"
       },
-      "binaryExtension": ".zip",
-      "installerExtension": ".msi",
       "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
       "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
       "checksumCommand": "certutil -hashfile FILENAME SHA256",
@@ -260,8 +264,6 @@
         "os": "mac",
         "architecture": "x64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": ".pkg",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
@@ -278,8 +280,6 @@
         "os": "mac",
         "architecture": "x64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": ".pkg",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
@@ -296,8 +296,6 @@
         "os": "linux",
         "architecture": "s390x"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -314,8 +312,6 @@
         "os": "linux",
         "architecture": "s390x"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": ".run",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -332,8 +328,6 @@
         "os": "linux",
         "architecture": "ppc64le"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -350,8 +344,6 @@
         "os": "linux",
         "architecture": "ppc64le"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": ".run",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -368,8 +360,6 @@
         "os": "linux",
         "architecture": "aarch64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -386,8 +376,6 @@
         "os": "linux",
         "architecture": "aarch64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -404,8 +392,6 @@
         "os": "linux",
         "architecture": "arm"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "tar xzf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -422,8 +408,6 @@
         "os": "solaris",
         "architecture": "sparcv9"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "gunzip -c FILENAME | tar xf -",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -440,8 +424,6 @@
         "os": "solaris",
         "architecture": "x64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "gunzip -c FILENAME | tar xf -",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",
@@ -458,8 +440,6 @@
         "os": "aix",
         "architecture": "ppc64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "gunzip -c FILENAME | tar xf -",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "shasum -a 256 FILENAME",
@@ -476,8 +456,6 @@
         "os": "linux",
         "architecture": "riscv64"
       },
-      "binaryExtension": ".tar.gz",
-      "installerExtension": "no-installer-available",
       "installCommand": "tar -xf FILENAME",
       "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
       "checksumCommand": "sha256sum FILENAME",

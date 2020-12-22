@@ -1,4 +1,4 @@
-const {findPlatform, getBinaryExt, getInstallerExt, getSupportedVersion, getOfficialName, getPlatformOrder,
+const {findPlatform, getSupportedVersion, getOfficialName, getPlatformOrder,
     getVariantObject, detectLTS, detectEA, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
@@ -16,8 +16,13 @@ module.exports.load = () => {
     return title.split(' ')[1]
   });
 
-  Handlebars.registerHelper('fetchInstallerExt', function(filename) {
-    return `.${filename.split('.').pop()}`;
+  Handlebars.registerHelper('fetchExtension', function(filename) {
+    let extension = `.${filename.split('.').pop()}`
+    // Workaround to prevent extension returning as .gz
+    if (extension == '.gz') {
+      extension = '.tar.gz'
+    }
+    return extension
   });
 
   const LTS = detectLTS(`${variant}-${jvmVariant}`);
@@ -94,7 +99,6 @@ function buildLatestHTML(releasesJson) {
 
     let binary_constructor = {
       type: binary_type,
-      extension: getBinaryExt(platform),
       link: releaseAsset.binary.package.link,
       checksum: releaseAsset.binary.package.checksum,
       size: Math.floor(releaseAsset.binary.package.size / 1000 / 1000)
@@ -103,7 +107,6 @@ function buildLatestHTML(releasesJson) {
     if (releaseAsset.binary.installer) {
       binary_constructor.installer_link = releaseAsset.binary.installer.link
       binary_constructor.installer_checksum = releaseAsset.binary.installer.checksum
-      binary_constructor.installer_extension = getInstallerExt(platform)
       binary_constructor.installer_size =  Math.floor(releaseAsset.binary.installer.size / 1000 / 1000)
     }
 

@@ -56,12 +56,6 @@ const sortByProperty = module.exports.sortByProperty = (input, property, descend
   }
 };
 
-// gets the BINARY EXTENSION when you pass in 'searchableName'
-module.exports.getBinaryExt = (searchableName) => lookup[searchableName].binaryExtension;
-
-// gets the INSTALLER EXTENSION when you pass in 'searchableName'
-module.exports.getInstallerExt = (searchableName) => lookup[searchableName].installerExtension;
-
 // gets the Supported Version WITH PATH when you pass in 'searchableName'
 // Version numbers use >= logic and need to be specified in ascending order
 module.exports.getSupportedVersion = (searchableName) => {
