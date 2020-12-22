@@ -78,8 +78,6 @@
         "required": [
           "officialName",
           "searchableName",
-          "binaryExtension",
-          "installerExtension",
           "installCommand",
           "pathCommand",
           "checksumCommand",
@@ -103,19 +101,6 @@
             "description": "A string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.",
             "examples": ["X64_LINUX"],
             "pattern": "^(.*)$"
-          },
-          "binaryExtension": {
-            "$id": "#/properties/platforms/items/properties/binaryExtension",
-            "$ref": "#/definitions/fileExt",
-            "title": "Binary extension",
-            "examples": [".tar.gz"]
-          },
-          "installerExtension": {
-            "$id": "#/properties/platforms/items/properties/installerExtension",
-            "$ref": "#/definitions/fileExt",
-            "title": "Installer extension",
-            "description": "File extension of the installer executable or script",
-            "examples": [".run"]
           },
           "installCommand": {
             "$id": "#/properties/platforms/items/properties/installCommand",
