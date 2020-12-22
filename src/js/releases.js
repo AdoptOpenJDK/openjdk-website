@@ -1,4 +1,4 @@
-const {findPlatform, getBinaryExt, getInstallerExt, getSupportedVersion, getOfficialName, getPlatformOrder,
+const {findPlatform, getSupportedVersion, getOfficialName, getPlatformOrder,
     getVariantObject, detectLTS, detectEA, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 

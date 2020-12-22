@@ -1,4 +1,4 @@
-const {findPlatform, getBinaryExt, getOfficialName, getInstallerExt, loadAssetInfo, setRadioSelectors} = require('./common');
+const {findPlatform, getOfficialName, loadAssetInfo, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');

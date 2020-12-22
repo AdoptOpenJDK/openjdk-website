@@ -1,7 +1,6 @@
 const {
   detectOS,
   findPlatform,
-  getBinaryExt,
   loadLatestAssets,
   makeQueryString,
   setRadioSelectors,
