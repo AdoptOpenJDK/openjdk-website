@@ -4,7 +4,7 @@
   "title": "AdoptOpenJDK Release Definitions",
   "description": "Configuration for product listings on adoptopenjdk.net",
   "type": "object",
-  "required": ["variants", "platforms"],
+  "required": ["variants", "installCommands", "platforms"],
   "definitions": {
     "fileExt": {
       "type": "string",
@@ -67,6 +67,55 @@
         }
       }
     },
+    "installCommands": {
+      "$id": "#/properties/installCommands",
+      "type": "array",
+      "title": "Install Commands",
+      "description": "",
+      "items": {
+        "$id": "#/properties/installCommands/items",
+        "type": "object",
+        "required": [
+          "name",
+          "installCommand",
+          "pathCommand",
+          "checksumCommand",
+          "checksumAutoCommand"
+        ],
+        "properties": {
+          "installCommand": {
+            "$id": "#/properties/installCommands/items/properties/installCommand",
+            "$ref": "#/definitions/command",
+            "title": "Installation command",
+            "examples": ["tar -xf FILENAME"]
+          },
+          "pathCommand": {
+            "$id": "#/properties/installCommands/items/properties/pathCommand",
+            "$ref": "#/definitions/command",
+            "title": "Path command",
+            "examples": ["export PATH=$PWD/DIRNAME/bin:$PATH"]
+          },
+          "checksumCommand": {
+            "$id": "#/properties/installCommands/items/properties/checksumCommand",
+            "$ref": "#/definitions/command",
+            "title": "Checksum command",
+            "examples": ["sha256sum FILENAME"]
+          },
+          "checksumAutoCommandHint": {
+            "$id": "#/properties/installCommands/items/properties/checksumAutoCommandHint",
+            "$ref": "#/definitions/command",
+            "title": "Checksum auto command hint",
+            "examples": ["PowerShell 3.0+ required"]
+          },
+          "checksumAutoCommand": {
+            "$id": "#/properties/installCommands/items/properties/checksumAutoCommand",
+            "$ref": "#/definitions/command",
+            "title": "Checksum auto command",
+            "examples": ["sha256sum FILENAME"]
+          }
+        }
+      }
+    },
     "platforms": {
       "$id": "#/properties/platforms",
       "type": "array",
@@ -78,10 +127,6 @@
         "required": [
           "officialName",
           "searchableName",
-          "installCommand",
-          "pathCommand",
-          "checksumCommand",
-          "checksumAutoCommand",
           "osDetectionString",
           "attributes"
         ],
@@ -101,36 +146,6 @@
             "description": "A string that appears in the FILE NAME of binaries, installers, and checksums, that can be used to identify the platform.",
             "examples": ["X64_LINUX"],
             "pattern": "^(.*)$"
-          },
-          "installCommand": {
-            "$id": "#/properties/platforms/items/properties/installCommand",
-            "$ref": "#/definitions/command",
-            "title": "Installation command",
-            "examples": ["tar -xf FILENAME"]
-          },
-          "pathCommand": {
-            "$id": "#/properties/platforms/items/properties/pathCommand",
-            "$ref": "#/definitions/command",
-            "title": "Path command",
-            "examples": ["export PATH=$PWD/DIRNAME/bin:$PATH"]
-          },
-          "checksumCommand": {
-            "$id": "#/properties/platforms/items/properties/checksumCommand",
-            "$ref": "#/definitions/command",
-            "title": "Checksum command",
-            "examples": ["sha256sum FILENAME"]
-          },
-          "checksumAutoCommandHint": {
-            "$id": "#/properties/platforms/items/properties/checksumAutoCommandHint",
-            "$ref": "#/definitions/command",
-            "title": "Checksum auto command hint",
-            "examples": ["PowerShell 3.0+ required"]
-          },
-          "checksumAutoCommand": {
-            "$id": "#/properties/platforms/items/properties/checksumAutoCommand",
-            "$ref": "#/definitions/command",
-            "title": "Checksum auto command",
-            "examples": ["sha256sum FILENAME"]
           },
           "osDetectionString": {
             "$id": "#/properties/platforms/items/properties/osDetectionString",

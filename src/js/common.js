@@ -1,6 +1,6 @@
 // prefix for assets (e.g. logo)
 
-const {platforms, variants} = require('../json/config');
+const {platforms, installCommands, variants} = require('../json/config');
 
 // Enables things like 'lookup["X64_MAC"]'
 const lookup = {};
@@ -76,20 +76,33 @@ module.exports.getSupportedVersion = (searchableName) => {
   return supported_version
 }
 
-// gets the INSTALLATION COMMAND when you pass in 'searchableName'
-module.exports.getInstallCommand = (searchableName) => lookup[searchableName].installCommand;
+// gets the INSTALLATION COMMANDS when you pass in 'os'
+module.exports.getInstallCommands = (os) => {
+  let installObject
+  switch(os) {
+    case 'windows':
+      installObject = fetchInstallObject('powershell')
+      break;
+    case 'aix':
+      installObject = fetchInstallObject('gunzip')
+      break;
+    case 'solaris':
+      installObject = fetchInstallObject('gunzip')
+      break;
+    default:
+      // defaults to tar installation
+      installObject = fetchInstallObject('tar')
+  }
+  return installObject
+}
 
-// gets the CHECKSUM COMMAND when you pass in 'searchableName'
-module.exports.getChecksumCommand = (searchableName) => lookup[searchableName].checksumCommand;
-
-// gets the CHECKSUM AUTO COMMAND HINT when you pass in 'searchableName'
-module.exports.getChecksumAutoCommandHint = (searchableName) => lookup[searchableName].checksumAutoCommandHint;
-
-// gets the CHECKSUM AUTO COMMAND when you pass in 'searchableName'
-module.exports.getChecksumAutoCommand = (searchableName) => lookup[searchableName].checksumAutoCommand;
-
-// gets the PATH COMMAND when you pass in 'searchableName'
-module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathCommand;
+function fetchInstallObject(command) {
+  for (let installCommand of installCommands){
+    if (command == installCommand.name) {
+      return installCommand
+    }
+  }
+}
 
 // This function returns an object containing all information about the user's OS.
 // The OS info comes from the 'platforms' array, which in turn comes from 'config.json'.

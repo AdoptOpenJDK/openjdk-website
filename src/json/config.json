@@ -130,6 +130,32 @@
       "descriptionLink": "https://www.eclipse.org/openj9"
     }
   ],
+  "installCommands": [
+    {
+      "name": "tar",
+      "installCommand": "tar xzf FILENAME",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
+      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c"
+    },
+    {
+      "name": "gunzip",
+      "installCommand": "gunzip -c FILENAME | tar xf -",
+      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
+      "checksumCommand": "sha256sum FILENAME",
+      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
+      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c"
+    },
+    {
+        "name": "powershell",
+        "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
+        "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
+        "checksumCommand": "certutil -hashfile FILENAME SHA256",
+        "checksumAutoCommandHint": " (the command must be run using Command Prompt in the same directory you download the binary file and requires PowerShell 3.0+)",
+        "checksumAutoCommand": "powershell -command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;  iwr -outf FILEHASHNAME FILEHASHURL\" && powershell \"$CHECKSUMVAR=($(Get-FileHash -Algorithm SHA256 -LiteralPath FILENAME | Format-List -Property Hash | Out-String) -replace \\\"Hash : \\\", \\\"\\\" -replace \\\"`r`n\\\", \\\"\\\"); Select-String -LiteralPath FILEHASHNAME -Pattern $CHECKSUMVAR | Format-List -Property FileName | Out-String\" | find /i \"FILEHASHNAME\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )"
+    }
+  ],
   "platforms": [
     {
       "officialName": "Linux x64",
@@ -139,11 +165,6 @@
         "os": "linux",
         "architecture": "x64"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "Linux Mint Debian Fedora FreeBSD Gentoo Haiku Kubuntu OpenBSD Red Hat RHEL SuSE Ubuntu Xubuntu hpwOS webOS Tizen",
       "supported_version": {
         "_comment_": "Version numbers use >= logic and need to be specified in ascending order",
@@ -162,11 +183,6 @@
         "os": "alpine-linux",
         "architecture": "x64"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "Alpine Linux 3.5 or later"
     },
@@ -178,11 +194,6 @@
         "os": "linux",
         "architecture": "x64"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": {
         "_comment_": "Version numbers use >= logic and need to be specified in ascending order",
@@ -200,11 +211,6 @@
         "os": "windows",
         "architecture": "x32"
       },
-      "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
-      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
-      "checksumCommand": "certutil -hashfile FILENAME SHA256",
-      "checksumAutoCommandHint": " (the command must be run using Command Prompt in the same directory you download the binary file and requires PowerShell 3.0+)",
-      "checksumAutoCommand": "powershell -command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;  iwr -outf FILEHASHNAME FILEHASHURL\" && powershell \"$CHECKSUMVAR=($(Get-FileHash -Algorithm SHA256 -LiteralPath FILENAME | Format-List -Property Hash | Out-String) -replace \\\"Hash : \\\", \\\"\\\" -replace \\\"`r`n\\\", \\\"\\\"); Select-String -LiteralPath FILEHASHNAME -Pattern $CHECKSUMVAR | Format-List -Property FileName | Out-String\" | find /i \"FILEHASHNAME\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )",
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP",
       "supported_version": "2012r2 or later"
     },
@@ -216,11 +222,6 @@
         "os": "windows",
         "architecture": "x64"
       },
-      "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
-      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
-      "checksumCommand": "certutil -hashfile FILENAME SHA256",
-      "checksumAutoCommandHint": " (the command must be run using Command Prompt in the same directory you download the binary file and requires PowerShell 3.0+)",
-      "checksumAutoCommand": "powershell -command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;  iwr -outf FILEHASHNAME FILEHASHURL\" && powershell \"$CHECKSUMVAR=($(Get-FileHash -Algorithm SHA256 -LiteralPath FILENAME | Format-List -Property Hash | Out-String) -replace \\\"Hash : \\\", \\\"\\\" -replace \\\"`r`n\\\", \\\"\\\"); Select-String -LiteralPath FILEHASHNAME -Pattern $CHECKSUMVAR | Format-List -Property FileName | Out-String\" | find /i \"FILEHASHNAME\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )",
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP",
       "supported_version": "2012r2 or later"
     },
@@ -232,11 +233,6 @@
         "os": "windows",
         "architecture": "aarch64"
       },
-      "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
-      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
-      "checksumCommand": "certutil -hashfile FILENAME SHA256",
-      "checksumAutoCommandHint": " (the command must be run using Command Prompt in the same directory you download the binary file and requires PowerShell 3.0+)",
-      "checksumAutoCommand": "powershell -command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;  iwr -outf FILEHASHNAME FILEHASHURL\" && powershell \"$CHECKSUMVAR=($(Get-FileHash -Algorithm SHA256 -LiteralPath FILENAME | Format-List -Property Hash | Out-String) -replace \\\"Hash : \\\", \\\"\\\" -replace \\\"`r`n\\\", \\\"\\\"); Select-String -LiteralPath FILEHASHNAME -Pattern $CHECKSUMVAR | Format-List -Property FileName | Out-String\" | find /i \"FILEHASHNAME\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "2016 or later"
     },
@@ -248,11 +244,6 @@
         "os": "windows",
         "architecture": "x64"
       },
-      "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
-      "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
-      "checksumCommand": "certutil -hashfile FILENAME SHA256",
-      "checksumAutoCommandHint": " (the command must be run using Command Prompt in the same directory you download the binary file and requires PowerShell 3.0+)",
-      "checksumAutoCommand": "powershell -command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;  iwr -outf FILEHASHNAME FILEHASHURL\" && powershell \"$CHECKSUMVAR=($(Get-FileHash -Algorithm SHA256 -LiteralPath FILENAME | Format-List -Property Hash | Out-String) -replace \\\"Hash : \\\", \\\"\\\" -replace \\\"`r`n\\\", \\\"\\\"); Select-String -LiteralPath FILEHASHNAME -Pattern $CHECKSUMVAR | Format-List -Property FileName | Out-String\" | find /i \"FILEHASHNAME\">Nul && ( echo \"FILENAME: The SHA-256 fingerprint matches\" ) || ( echo \"FILENAME: The SHA-256 fingerprint does NOT match\" )",
       "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP",
       "supported_version": "2012r2 or later"
     },
@@ -264,11 +255,6 @@
         "os": "mac",
         "architecture": "x64"
       },
-      "installCommand": "tar -xf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
-      "checksumCommand": "shasum -a 256 FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "curl -O -L -s FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
       "osDetectionString": "Mac OS X OSX macOS Macintosh",
       "supported_version": "10.10 or later"
     },
@@ -280,11 +266,6 @@
         "os": "mac",
         "architecture": "x64"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/Contents/Home/bin:$PATH",
-      "checksumCommand": "shasum -a 256 FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "curl -O -L -s FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "10.10 or later"
     },
@@ -296,11 +277,6 @@
         "os": "linux",
         "architecture": "s390x"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.17 or higher"
     },
@@ -312,11 +288,6 @@
         "os": "linux",
         "architecture": "s390x"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.17 or higher"
     },
@@ -328,11 +299,6 @@
         "os": "linux",
         "architecture": "ppc64le"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.17 or higher"
     },
@@ -344,11 +310,6 @@
         "os": "linux",
         "architecture": "ppc64le"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.17 or higher"
     },
@@ -360,11 +321,6 @@
         "os": "linux",
         "architecture": "aarch64"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.17 or higher"
     },
@@ -376,11 +332,6 @@
         "os": "linux",
         "architecture": "aarch64"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.17 or higher"
     },
@@ -392,11 +343,6 @@
         "os": "linux",
         "architecture": "arm"
       },
-      "installCommand": "tar xzf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.17 or higher"
     },
@@ -408,11 +354,6 @@
         "os": "solaris",
         "architecture": "sparcv9"
       },
-      "installCommand": "gunzip -c FILENAME | tar xf -",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "solaris 10,11"
     },
@@ -424,11 +365,6 @@
         "os": "solaris",
         "architecture": "x64"
       },
-      "installCommand": "gunzip -c FILENAME | tar xf -",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "solaris 10,11"
     },
@@ -440,11 +376,6 @@
         "os": "aix",
         "architecture": "ppc64"
       },
-      "installCommand": "gunzip -c FILENAME | tar xf -",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "shasum -a 256 FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "curl -O -L FILEHASHURL && shasum -a 256 -c FILEHASHNAME",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "7.1 TL4 or later"
     },
@@ -456,11 +387,6 @@
         "os": "linux",
         "architecture": "riscv64"
       },
-      "installCommand": "tar -xf FILENAME",
-      "pathCommand": "export PATH=$PWD/DIRNAME/bin:$PATH",
-      "checksumCommand": "sha256sum FILENAME",
-      "checksumAutoCommandHint": " (the command must be run on a terminal in the same directory you download the binary file)",
-      "checksumAutoCommand": "wget -O- -q -T 1 -t 1 FILEHASHURL | sha256sum -c",
       "osDetectionString": "not-to-be-detected",
       "supported_version": "glibc version 2.27 or higher"
     }
