@@ -1,133 +1,53 @@
 {
   "variants": [
     {
-      "searchableName": "openjdk8-hotspot",
-      "officialName": "OpenJDK 8 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk8",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 8",
       "lts": true
     },
     {
-      "searchableName": "openjdk8-openj9",
-      "officialName": "OpenJDK 8 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 8",
-      "lts": true,
-      "descriptionLink": "https://www.eclipse.org/openj9"
-    },
-    {
-      "searchableName": "openjdk9-hotspot",
-      "officialName": "OpenJDK 9 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk9",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 9",
       "lts": false
     },
     {
-      "searchableName": "openjdk9-openj9",
-      "officialName": "OpenJDK 9 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 9",
-      "lts": false,
-      "descriptionLink": "https://www.eclipse.org/openj9"
-    },
-    {
-      "searchableName": "openjdk10-hotspot",
-      "officialName": "OpenJDK 10 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk10",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 10",
       "lts": false
     },
     {
-      "searchableName": "openjdk10-openj9",
-      "officialName": "OpenJDK 10 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 10",
-      "lts": false,
-      "descriptionLink": "https://www.eclipse.org/openj9"
-    },
-    {
-      "searchableName": "openjdk11-hotspot",
-      "officialName": "OpenJDK 11 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk11",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 11",
-      "lts": true,
-      "default": true
+      "default": true,
+      "lts": true
     },
     {
-      "searchableName": "openjdk11-openj9",
-      "officialName": "OpenJDK 11 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 11",
-      "lts": true,
-      "descriptionLink": "https://www.eclipse.org/openj9"
-    },
-    {
-      "searchableName": "openjdk12-hotspot",
-      "officialName": "OpenJDK 12 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk12",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 12",
       "lts": false
     },
     {
-      "searchableName": "openjdk12-openj9",
-      "officialName": "OpenJDK 12 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 12",
-      "lts": false,
-      "descriptionLink": "https://www.eclipse.org/openj9"
-    },
-    {
-      "searchableName": "openjdk13-hotspot",
-      "officialName": "OpenJDK 13 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk13",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 13",
       "lts": false
     },
     {
-      "searchableName": "openjdk13-openj9",
-      "officialName": "OpenJDK 13 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 13",
-      "lts": false,
-      "descriptionLink": "https://www.eclipse.org/openj9"
-    },
-    {
-      "searchableName": "openjdk14-hotspot",
-      "officialName": "OpenJDK 14 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk14",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 14",
       "lts": false
     },
     {
-      "searchableName": "openjdk14-openj9",
-      "officialName": "OpenJDK 14 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 14",
-      "lts": false,
-      "descriptionLink": "https://www.eclipse.org/openj9"
-    },
-    {
-      "searchableName": "openjdk15-hotspot",
-      "officialName": "OpenJDK 15 with HotSpot",
-      "jvm": "HotSpot",
+      "searchableName": "openjdk15",
+      "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 15",
       "lts": "latest"
-    },
-    {
-      "searchableName": "openjdk15-openj9",
-      "officialName": "OpenJDK 15 with Eclipse OpenJ9",
-      "description": "Eclipse OpenJ9",
-      "jvm": "OpenJ9",
-      "label": "OpenJDK 15",
-      "lts": "latest",
-      "descriptionLink": "https://www.eclipse.org/openj9"
     }
   ],
   "installCommands": [

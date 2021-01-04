@@ -35,20 +35,19 @@
       "items": {
         "$id": "#/properties/variants/items",
         "type": "object",
-        "required": ["searchableName", "officialName"],
+        "required": ["searchableName"],
         "properties": {
           "searchableName": {
             "$id": "#/properties/variants/items/properties/searchableName",
             "type": "string",
             "title": "Searchable Name (package manager-friendly)",
-            "examples": ["openjdk8-hotspot", "openjdk11-openj9"]
+            "examples": ["openjdk8", "openjdk11"]
           },
-          "officialName": {
-            "$id": "#/properties/variants/items/properties/officialName",
-            "type": "string",
-            "title": "Official name",
-            "description": "Descriptive name that includes OpenJDK and JVM versions.",
-            "examples": ["OpenJDK 8 with HotSpot", "OpenJDK 11 with Eclipse OpenJ9"]
+          "jvm": {
+            "$id": "#/properties/variants/items/properties/jvm",
+            "type": "array",
+            "title": "JVM",
+            "description": "Object containing all supported JVM's for a specific version."
           },
           "default": {
             "$id": "#/properties/variants/items/properties/default",
@@ -56,13 +55,6 @@
             "title": "Default variant",
             "description": "True for a variant that should be selected by default.",
             "default": false
-          },
-          "descriptionLink": {
-            "$id": "#/properties/variants/items/properties/descriptionLink",
-            "type": "string",
-            "format": "uri",
-            "title": "Description link",
-            "examples": ["https://www.eclipse.org/openj9"]
           }
         }
       }

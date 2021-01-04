@@ -54,7 +54,7 @@ module.exports.load = () => {
     return extension
   });
 
-  const LTS = detectLTS(`${variant}-${jvmVariant}`);
+  const LTS = detectLTS(variant);
 
   const styles = `
   .download-last-version:after {

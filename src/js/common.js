@@ -11,7 +11,7 @@ let defaultVariant;
 // Set the default JDK based on config.json
 for (let variant of variants) {
   if (variant.default) {
-    defaultVariant = variant.searchableName.split('-')[0]
+    defaultVariant = variant.searchableName;
   }
 }
 
@@ -329,7 +329,7 @@ module.exports.setRadioSelectors = () => {
           btnLabel.innerHTML += `<span>${variant.label}</span>`;
         }
       } else {
-        btnLabel.innerHTML += `<span>${variant.jvm}</span>`;
+        btnLabel.innerHTML += `<span>${variant}</span>`;
       }
 
       element.appendChild(btnLabel);
@@ -338,12 +338,13 @@ module.exports.setRadioSelectors = () => {
   }
 
   for (let variant of variants) {
-    const splitVariant = variant.searchableName.split('-');
-    const jdkName = splitVariant[0];
-    const jvmName = splitVariant[1];
-    createRadioButtons(jdkName, 'jdk', variant, jdkSelector);
-    if (jvmSelector) {
-      createRadioButtons(jvmName, 'jvm', variant, jvmSelector);
+    for (let jvmVariantOption of variant.jvm) {
+      const jdkName =  variant.searchableName;
+      const jvmName = jvmVariantOption.toLowerCase();
+      createRadioButtons(jdkName, 'jdk', variant, jdkSelector);
+      if (jvmSelector) {
+        createRadioButtons(jvmName, 'jvm', jvmVariantOption, jvmSelector);
+      }
     }
   }
 
