@@ -1,5 +1,5 @@
 const {findPlatform, getSupportedVersion, getOfficialName, getPlatformOrder,
-    getVariantObject, detectLTS, detectEA, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
+  detectLTS, detectEA, loadLatestAssets, orderPlatforms, setRadioSelectors, setTickLink} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -25,7 +25,7 @@ module.exports.load = () => {
     return extension
   });
 
-  const LTS = detectLTS(`${variant}-${jvmVariant}`);
+  const LTS = detectLTS(variant);
 
   const styles = `
   .download-last-version:after {
@@ -49,13 +49,6 @@ module.exports.load = () => {
 }
 
 function buildLatestHTML(releasesJson) {
-  // Populate with description
-  const variantObject = getVariantObject(variant + '-' + jvmVariant);
-  if (variantObject.descriptionLink) {
-    document.getElementById('description_header').innerHTML = `What is ${variantObject.description}?`;
-    document.getElementById('description_link').innerHTML = 'Find out here';
-    document.getElementById('description_link').href = variantObject.descriptionLink;
-  }
 
   // Array of releases that have binaries we want to display
   let releases = [];
