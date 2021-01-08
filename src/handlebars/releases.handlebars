@@ -12,35 +12,8 @@
           <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
         </div>
       </a>
-      <a href="./nightly.html" id="nightly-button" class="grey-button a-button">
-        <div>
-          <span>Nightly builds</span>
-          <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
-        </div>
-      </a>
 
-      <div class="btn-container">
-        <form id="jdk-selector" class="btn-form">
-          <h3>1. Choose a Version</h3>
-        </form>
-      <form id="jvm-selector" class="index-jvm-btn-form jvm-btn-form btn-form">
-        <h3>2. Choose a JVM
-          <span class="help-jvm">Help Me Choose</span>
-          <div class="popup-content" id="jvm-popup">
-            <div class="popup-heading">
-              <h4>Choosing the right JVM</h4>
-            </div>
-            <div class="popup-text">
-              <p class="hotspot-text"><b>HotSpot</b> is the VM from the OpenJDK community. It is the most widely used VM today and is used in Oracle’s JDK. It is suitable for all workloads.</p>
-              <p>For more details see <a target="_blank" href="https://openjdk.java.net/groups/hotspot/">OpenJDK HotSpot</a>.</p>
-              <p class="openj9-text"><b>Eclipse OpenJ9</b> is the VM from the Eclipse community.  It is an enterprise-grade VM designed for low memory footprint and fast start-up and is used in IBM’s JDK.  It is suitable for running all workloads.</p>
-              <p>For more details see <a target="_blank" href="https://www.eclipse.org/openj9/">Eclipse OpenJ9</a>.</p>
-              <p class="lts-text"><b>LTS</b> (Long Term Support). These versions have a longer support timeframe. Suitable for enterprise customers. See <a href="./support.html">Support</a> for more information.</p>
-            </div>
-          </div>
-        </h3>
-      </form>
-      </div>
+    {{> jdk-selector }}
 
       <div id="loading"><img src="dist/assets/loading_dots.gif" width="40" height="40" alt="Content is loading."></div>
       <div id="error-container"></div>
@@ -79,9 +52,9 @@
                        <td class="main-download__variant__name blue-bg">
                           <span>\{{release_name}}</span>
                           \{{#if early_access}}
-                          <span class="early-access">AdoptOpenJDK</span>
+                          <span class="early-access">Temurin</span>
                           \{{else}}
-                          <span class="download-last-version">AdoptOpenJDK</span>
+                          <span class="download-last-version">Temurin</span>
                           \{{/if}}
                        </td>
                        <td class="main-download__variant__os">

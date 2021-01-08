@@ -57,29 +57,6 @@
           See <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues/1107#issuecomment-509272743">
          this issue</a> for an explanation as to where that tag comes from.</p>
          </ol>
-    <dt> <strong>OpenJ9</strong>
-    <dd> <ol>
-         <li><p>Checkout the OpenJ9 "extensions" repository for the release you are
-         interested in e.g.
-         <a href="https://github.com/ibmruntimes/openj9-openjdk-jdk8">
-                  https://github.com/ibmruntimes/openj9-openjdk-jdk8</a>
-         (Replace <code>8</code> with the major Java version you are
-         interested in).</p>
-         <li><p>Next, identify the openj9 branch you are interested
-         in. For example, for either <code>jdk8u222-b10_openj9-0.15.1</code> or
-         <code>jdk-11.0.4+11_openj9-0.15.1</code> it would be
-         <code>openj9-0.15.1</code>.</p>
-         <li><p>Then you can checkout that branch of
-         the extensions repository e.g. <code>git checkout openj9-0.15.1</code>
-         Note that the checkout does NOT contain the underlying Java version
-         in the OpenJ9 case.</p>
-         <li><p>Once you've done this, change into the
-         directory and run <code>./get_source.sh</code> which pulls in the
-         correct dependencies for that release from the
-         <a href="https://github.com/eclipse/openj9">OpenJ9</a> and
-         <a href="https://github.com/eclipse/openj9-omr">OMR</a>
-         repositories</p>
-         </ol>
     </dl>
 
     <div class="anchor">
@@ -185,18 +162,6 @@
     <dt> <strong>Can I get JDK Mission Control (JMC) for AdoptOpenJDK?</strong>
     <dd> <p>Yes! We provide downloads of <a href="https://adoptopenjdk.net/jmc.html">JMC</a> which are built through
          <a href="https://ci.adoptopenjdk.net/view/JMC/job/jmc-build/">our CI</a></p>
-    <dt> <strong>What is the difference between HotSpot and OpenJ9 downloads?</strong>
-    <dd> <p>HotSpot is the default Java Virtual Machine that is included in the OpenJDK codebase. OpenJ9 is an
-         alternative Java Virtual Machine developed by IBM for its own proprietory JVM and was open-sourced in
-         2017. You may find that OpenJ9 uses less memory than the HotSpot variants. Have a look at the
-         <a href="https://www.eclipse.org/openj9/performance/">OpenJ9 Performance Overview</a> or the
-         <a href="https://www.eclipse.org/openj9/docs/cmdline_migration/">transition document</a> for more information
-         </p>
-    <dt> <strong> What are the OpenJ9 "Large Heap" variants?</strong>
-    <dd> <p>The Large Heap variants of the OpenJ9 builds (also known as the "non-compressed references builds) allow
-         for Java heap sizes greater than 57Gb. If you need heap sizes that large, then pick the large heap versions
-         (they have XL in the download filenames). The large heap versions are not on all platforms but the number
-         has increased over time.</p>
     <dt> <strong>I'm worried about security vulnerabilities in your project compared to other OpenJDK implementations</strong>
     <dd> <p>The AdoptOpenJDK project does not work on security vulnerability updates independently of the community
          code base held at OpenJDK. For bugs including security issues, we work with the OpenJDK project to fix
@@ -218,8 +183,7 @@
          pages</a> for the current list of commercial support providers for the AdoptOpenJDK binaries</p>
     <dt> <strong>Do you provide 32-bit builds?</strong>
     <dd> <p>Most of our builds are 64-bit only. The exceptions are arm32 so you can run our builds on your raspberry
-         pi and other such devices, and HotSpot windows builds are also available in 32-bit versions. A Windows
-         32-bit version is also available for OpenJ9 but only for JDK8. We have had requests for
+         pi and other such devices, and HotSpot windows builds are also available in 32-bit versions. We have had requests for
          <a href="https://github.com/AdoptOpenJDK/openjdk-build/issues/986">32-bit Linux/x86</a> but they are not
          available in our build farm at the moment.</p>
     <dt> <strong>I want to contribute to the project but I'm lost - where do I start?</strong>

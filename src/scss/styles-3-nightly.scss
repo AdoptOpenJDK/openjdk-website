@@ -13,39 +13,8 @@ $tableblue-even: #1F2F4E;
   margin: 0 auto;
 }
 
-#nightly-list {
-  width: 90%;
-  overflow: auto;
-  max-width: 80rem;
-  margin: auto;
-  margin-top: 2rem;
-  text-align: left;
-}
-
-.nightly-container {
-  white-space: nowrap;
-  color: $mainblue;
-  border: 0.1rem solid $maingrey;
-}
-
 th {
   white-space: nowrap;
-}
-
-.nightly-container div {
-  display: inline-block;
-}
-
-.nightly-container > td {
-  padding: 0.5rem 1rem;
-}
-
-.nightly-container > td:nth-child(odd) {
-  background-color: #d0d0d0;
-}
-
-.nightly-container > td:nth-child(even) {
-  background-color: #e2e2e2;
 }
 
 th {

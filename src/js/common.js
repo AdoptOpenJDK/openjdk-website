@@ -152,7 +152,6 @@ function toJson(response) {
   return response
 }
 
-// load latest_nightly.json/nightly.json/releases.json/latest_release.json files
 // This will first try to load from openjdk<X>-binaries repos and if that fails
 // try openjdk<X>-release, i.e will try the following:
 
@@ -341,6 +340,9 @@ module.exports.setRadioSelectors = () => {
     for (let jvmVariantOption of variant.jvm) {
       const jdkName =  variant.searchableName;
       const jvmName = jvmVariantOption.toLowerCase();
+      if (jvmVariantOption == 'HotSpot') {
+        jvmVariantOption = 'Temurin'
+      }
       createRadioButtons(jdkName, 'jdk', variant, jdkSelector);
       if (jvmSelector) {
         createRadioButtons(jvmName, 'jvm', jvmVariantOption, jvmSelector);

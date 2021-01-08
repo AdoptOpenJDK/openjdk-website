@@ -2,50 +2,50 @@
   "variants": [
     {
       "searchableName": "openjdk8",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 8",
       "lts": true
     },
     {
       "searchableName": "openjdk9",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 9",
       "lts": false
     },
     {
       "searchableName": "openjdk10",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 10",
       "lts": false
     },
     {
       "searchableName": "openjdk11",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 11",
       "default": true,
       "lts": true
     },
     {
       "searchableName": "openjdk12",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 12",
       "lts": false
     },
     {
       "searchableName": "openjdk13",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 13",
       "lts": false
     },
     {
       "searchableName": "openjdk14",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 14",
       "lts": false
     },
     {
       "searchableName": "openjdk15",
-      "jvm": ["HotSpot", "OpenJ9"],
+      "jvm": ["HotSpot"],
       "label": "OpenJDK 15",
       "lts": "latest"
     }
@@ -107,23 +107,6 @@
       "supported_version": "Alpine Linux 3.5 or later"
     },
     {
-      "officialName": "Linux x64 Large Heap",
-      "searchableName": "LINUXXL",
-      "attributes": {
-        "heap_size": "large",
-        "os": "linux",
-        "architecture": "x64"
-      },
-      "osDetectionString": "not-to-be-detected",
-      "supported_version": {
-        "_comment_": "Version numbers use >= logic and need to be specified in ascending order",
-        "openj9": {
-          "8": "glibc version 2.12 or higher",
-          "15": "glibc version 2.17 or higher"
-        }
-      }
-    },
-    {
       "officialName": "Windows x86",
       "searchableName": "X86-32_WIN",
       "attributes": {
@@ -157,17 +140,6 @@
       "supported_version": "2016 or later"
     },
     {
-      "officialName": "Windows x64 Large Heap",
-      "searchableName": "X64_WINXL",
-      "attributes": {
-        "heap_size": "large",
-        "os": "windows",
-        "architecture": "x64"
-      },
-      "osDetectionString": "Windows Win Cygwin Windows Server 2008 R2 / 7 Windows Server 2008 / Vista Windows XP",
-      "supported_version": "2012r2 or later"
-    },
-    {
       "officialName": "macOS x64",
       "searchableName": "X64_MAC",
       "attributes": {
@@ -179,32 +151,10 @@
       "supported_version": "10.10 or later"
     },
     {
-      "officialName": "macOS x64 Large Heap",
-      "searchableName": "MACOSXL",
-      "attributes": {
-        "heap_size": "large",
-        "os": "mac",
-        "architecture": "x64"
-      },
-      "osDetectionString": "not-to-be-detected",
-      "supported_version": "10.10 or later"
-    },
-    {
       "officialName": "Linux s390x",
       "searchableName": "S390X_LINUX",
       "attributes": {
         "heap_size": "normal",
-        "os": "linux",
-        "architecture": "s390x"
-      },
-      "osDetectionString": "not-to-be-detected",
-      "supported_version": "glibc version 2.17 or higher"
-    },
-    {
-      "officialName": "Linux s390x Large Heap",
-      "searchableName": "LINUXS390XXL",
-      "attributes": {
-        "heap_size": "large",
         "os": "linux",
         "architecture": "s390x"
       },
@@ -223,32 +173,10 @@
       "supported_version": "glibc version 2.17 or higher"
     },
     {
-      "officialName": "Linux ppc64le Large Heap",
-      "searchableName": "LINUXPPC64LEXL",
-      "attributes": {
-        "heap_size": "large",
-        "os": "linux",
-        "architecture": "ppc64le"
-      },
-      "osDetectionString": "not-to-be-detected",
-      "supported_version": "glibc version 2.17 or higher"
-    },
-    {
       "officialName": "Linux aarch64",
       "searchableName": "AARCH64_LINUX",
       "attributes": {
         "heap_size": "normal",
-        "os": "linux",
-        "architecture": "aarch64"
-      },
-      "osDetectionString": "not-to-be-detected",
-      "supported_version": "glibc version 2.17 or higher"
-    },
-    {
-      "officialName": "Linux aarch64 Large Heap",
-      "searchableName": "AARCH64_LINUXXL",
-      "attributes": {
-        "heap_size": "large",
         "os": "linux",
         "architecture": "aarch64"
       },

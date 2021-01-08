@@ -21,14 +21,7 @@
     </div>
     <h2 id="archives">Archive files</h2>
     <div class="align-center">
-      <div class="btn-container">
-        <form id="jdk-selector" class="btn-form">
-          <h3>1. Choose a Version</h3>
-        </form>
-        <form id="jvm-selector" class="btn-form">
-          <h3>2. Choose a JVM</h3>
-        </form>
-      </div>
+      {{> jdk-selector }}
 
       <h2 class="inline-block"><label for="platform-selector">Platform:</label></h2>
       <select id="platform-selector" style="margin-left:1rem;">
@@ -456,7 +449,7 @@ gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
 EOF
        </code></pre>
 
-      <p>2. Install your choice of OpenJDK. For example, to install AdoptOpenJDK version 8 with OpenJ9, run:</p>
+      <p>2. Install your choice of OpenJDK. For example, to install AdoptOpenJDK version 8 with HosSpot, run:</p>
       <pre><code class="highlighted">yum install adoptopenjdk-8-openj9</code></pre>
 
       <p><strong>RPM installation on openSUSE or SLES</strong></p>
@@ -467,8 +460,8 @@ EOF
       <p>1. Add the appropriate RPM repository to your <tt>/etc/yum.repos.d/adoptopenjdk.repo</tt> file, by running the following command:</p>
       <pre><code class="highlighted">zypper ar -f http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/opensuse/15.0/$(uname -m) adoptopenjdk</code></pre>
 
-      <p>2. Install your choice of OpenJDK. For example, to install AdoptOpenJDK version 8 with OpenJ9, run:</p>
-      <pre><code class="highlighted">zypper install adoptopenjdk-8-openj9</code></pre>
+      <p>2. Install your choice of OpenJDK. For example, to install AdoptOpenJDK version 8 with HotSpot, run:</p>
+      <pre><code class="highlighted">zypper install adoptopenjdk-8-hotspot</code></pre>
 
   </div>
   </div>
