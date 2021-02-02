@@ -617,10 +617,10 @@ select#platform-selector::-ms-expand {
 }
 
 footer#solstice-footer {
-  background: #fff;
+  background: #152935;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   padding-top: 60px;
-  color: #3d70b2;
+  color: white;
   padding-bottom: 26px;
   font-size: 14px;
   border-top: none;
@@ -641,6 +641,7 @@ footer#solstice-footer p {
 
 footer#solstice-footer a {
   text-decoration: none;
+  color: white;
 }
 
 .nav>li, .nav>li>a {

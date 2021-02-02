@@ -200,7 +200,7 @@ gulp.task('sitemap', (done) => {
       read: false
     })
     .pipe(sitemap({
-      siteUrl: 'https://adoptopenjdk.net'
+      siteUrl: 'https://adoptium.net'
     }))
     .pipe(gulp.dest('./'));
     done();
