@@ -12,7 +12,7 @@
   },
   "author": "Joe Brady",
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "ajv": "^7.0.4",
     "ajv-formats": "^1.5.1",
