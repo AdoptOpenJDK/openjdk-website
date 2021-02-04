@@ -611,9 +611,14 @@ select#platform-selector::-ms-expand {
 // FOOTER CSS
 
 .footer-container {
-  padding-left: 15em;
   margin-right: auto;
   margin-left: auto;
+}
+
+@media (min-width: 992px) {
+  .footer-container {
+      width: 970px;
+  }
 }
 
 footer#solstice-footer {
@@ -624,6 +629,12 @@ footer#solstice-footer {
   padding-bottom: 26px;
   font-size: 14px;
   border-top: none;
+}
+
+@media (max-width: 767px) {
+  footer#solstice-footer {
+      text-align: center;
+  }
 }
 
 footer#solstice-footer li {
