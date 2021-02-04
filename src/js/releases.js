@@ -176,7 +176,7 @@ global.populateFilters = (filter) => {
       let option = document.createElement('option');
       option.text = os;
       option.value = os;
-      osFilter.append(option);
+      osFilter.appendChild(option);
     }
     osFilter.value=selected;
   }
@@ -190,7 +190,7 @@ global.populateFilters = (filter) => {
       let option = document.createElement('option');
       option.text = arch;
       option.value = arch;
-      archFilter.append(option)
+      archFilter.appendChild(option)
     }
     archFilter.value=selected;
   }
