@@ -1,8 +1,8 @@
 // GLOBAL CSS
-$mainblue: #152935;
+$mainblue: #14003C;
 $maingrey: #F5F5F5;
 $palegrey: #e6e6e6;
-$brighterblue: #3D70B2;
+$brighterblue: #2d1067;
 $accentgrey: #dadada;
 $tableblue-odd: #182336;
 $tableblue-even: #1F2F4E;
@@ -11,7 +11,7 @@ $headersize: 1.4rem;
 
 
 .blue-bg {
-  background: url(https://adoptopenjdk.net/dist/assets/background.png);
+  background-color: $mainblue;
   color: $maingrey !important;
 }
 
@@ -22,6 +22,10 @@ $headersize: 1.4rem;
 .grey-bg {
   background-color: $maingrey;
   color: $mainblue;
+}
+
+.cc-color-override-1434350510.cc-window {
+  background-color: $brighterblue !important
 }
 
 .dark-link, .dark-link:visited, a, a:visited {
@@ -622,7 +626,7 @@ select#platform-selector::-ms-expand {
 }
 
 footer#solstice-footer {
-  background: #152935;
+  background: $mainblue;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   padding-top: 60px;
   color: white;
