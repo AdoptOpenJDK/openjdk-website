@@ -1,6 +1,6 @@
 // prefix for assets (e.g. logo)
 
-const {platforms, variants} = require('../json/config');
+const {platforms, installCommands, variants} = require('../json/config');
 
 // Enables things like 'lookup["X64_MAC"]'
 const lookup = {};
@@ -11,7 +11,7 @@ let defaultVariant;
 // Set the default JDK based on config.json
 for (let variant of variants) {
   if (variant.default) {
-    defaultVariant = variant.searchableName.split('-')[0]
+    defaultVariant = variant.searchableName;
   }
 }
 
@@ -56,12 +56,6 @@ const sortByProperty = module.exports.sortByProperty = (input, property, descend
   }
 };
 
-// gets the BINARY EXTENSION when you pass in 'searchableName'
-module.exports.getBinaryExt = (searchableName) => lookup[searchableName].binaryExtension;
-
-// gets the INSTALLER EXTENSION when you pass in 'searchableName'
-module.exports.getInstallerExt = (searchableName) => lookup[searchableName].installerExtension;
-
 // gets the Supported Version WITH PATH when you pass in 'searchableName'
 // Version numbers use >= logic and need to be specified in ascending order
 module.exports.getSupportedVersion = (searchableName) => {
@@ -82,20 +76,33 @@ module.exports.getSupportedVersion = (searchableName) => {
   return supported_version
 }
 
-// gets the INSTALLATION COMMAND when you pass in 'searchableName'
-module.exports.getInstallCommand = (searchableName) => lookup[searchableName].installCommand;
+// gets the INSTALLATION COMMANDS when you pass in 'os'
+module.exports.getInstallCommands = (os) => {
+  let installObject
+  switch(os) {
+    case 'windows':
+      installObject = fetchInstallObject('powershell')
+      break;
+    case 'aix':
+      installObject = fetchInstallObject('gunzip')
+      break;
+    case 'solaris':
+      installObject = fetchInstallObject('gunzip')
+      break;
+    default:
+      // defaults to tar installation
+      installObject = fetchInstallObject('tar')
+  }
+  return installObject
+}
 
-// gets the CHECKSUM COMMAND when you pass in 'searchableName'
-module.exports.getChecksumCommand = (searchableName) => lookup[searchableName].checksumCommand;
-
-// gets the CHECKSUM AUTO COMMAND HINT when you pass in 'searchableName'
-module.exports.getChecksumAutoCommandHint = (searchableName) => lookup[searchableName].checksumAutoCommandHint;
-
-// gets the CHECKSUM AUTO COMMAND when you pass in 'searchableName'
-module.exports.getChecksumAutoCommand = (searchableName) => lookup[searchableName].checksumAutoCommand;
-
-// gets the PATH COMMAND when you pass in 'searchableName'
-module.exports.getPathCommand = (searchableName) => lookup[searchableName].pathCommand;
+function fetchInstallObject(command) {
+  for (let installCommand of installCommands){
+    if (command == installCommand.name) {
+      return installCommand
+    }
+  }
+}
 
 // This function returns an object containing all information about the user's OS.
 // The OS info comes from the 'platforms' array, which in turn comes from 'config.json'.
@@ -322,7 +329,7 @@ module.exports.setRadioSelectors = () => {
           btnLabel.innerHTML += `<span>${variant.label}</span>`;
         }
       } else {
-        btnLabel.innerHTML += `<span>${variant.jvm}</span>`;
+        btnLabel.innerHTML += `<span>${variant}</span>`;
       }
 
       element.appendChild(btnLabel);
@@ -331,12 +338,13 @@ module.exports.setRadioSelectors = () => {
   }
 
   for (let variant of variants) {
-    const splitVariant = variant.searchableName.split('-');
-    const jdkName = splitVariant[0];
-    const jvmName = splitVariant[1];
-    createRadioButtons(jdkName, 'jdk', variant, jdkSelector);
-    if (jvmSelector) {
-      createRadioButtons(jvmName, 'jvm', variant, jvmSelector);
+    for (let jvmVariantOption of variant.jvm) {
+      const jdkName =  variant.searchableName;
+      const jvmName = jvmVariantOption.toLowerCase();
+      createRadioButtons(jdkName, 'jdk', variant, jdkSelector);
+      if (jvmSelector) {
+        createRadioButtons(jvmName, 'jvm', jvmVariantOption, jvmSelector);
+      }
     }
   }
 

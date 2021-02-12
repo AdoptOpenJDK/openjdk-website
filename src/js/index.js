@@ -1,7 +1,6 @@
 const {
   detectOS,
   findPlatform,
-  getBinaryExt,
   loadLatestAssets,
   makeQueryString,
   setRadioSelectors,
@@ -72,22 +71,19 @@ function buildHomepageHTML(releasesJson, jckJSON, OS) {
       if (thisPlatform) {
         // secondly, check if the file has the expected file extension for that platform...
         // (this filters out all non-binary attachments, e.g. SHA checksums - these contain the platform name, but are not binaries)
-        var thisBinaryExtension = getBinaryExt(thisPlatform); // get the binary extension associated with this platform
         if (matchingFile == null) {
-          if (uppercaseFilename.includes(thisBinaryExtension.toUpperCase())) {
-            const uppercaseOSname = OS.searchableName.toUpperCase();
-            if (Object.keys(jckJSON).length !== 0) {
-              if (jckJSON[releasesJson.tag_name] && Object.prototype.hasOwnProperty.call(jckJSON[releasesJson.tag_name], uppercaseOSname)) {
-                document.getElementById('jck-approved-tick').classList.remove('hide');
-                setTickLink();
-              }
+          const uppercaseOSname = OS.searchableName.toUpperCase();
+          if (Object.keys(jckJSON).length !== 0) {
+            if (jckJSON[releasesJson.tag_name] && Object.prototype.hasOwnProperty.call(jckJSON[releasesJson.tag_name], uppercaseOSname)) {
+              document.getElementById('jck-approved-tick').classList.remove('hide');
+              setTickLink();
             }
-            // thirdly check if JDK or JRE (we want to serve JDK by default)
-            if (eachAsset.binary.image_type == 'jdk') {
-              // fourthly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
-              if (uppercaseFilename.includes(uppercaseOSname)) {
-                matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
-              }
+          }
+          // thirdly check if JDK or JRE (we want to serve JDK by default)
+          if (eachAsset.binary.image_type == 'jdk') {
+            // fourthly, check if the user's OS searchableName string matches part of this binary's name (e.g. ...X64_LINUX...)
+            if (uppercaseFilename.includes(uppercaseOSname)) {
+              matchingFile = eachAsset; // set the matchingFile variable to the object containing this binary
             }
           }
         }

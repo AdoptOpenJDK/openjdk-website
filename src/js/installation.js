@@ -1,6 +1,4 @@
-const {detectOS, findPlatform, getBinaryExt, getChecksumCommand, getInstallCommand, getOfficialName,
-  getPathCommand, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors, getChecksumAutoCommandHint,
-  getChecksumAutoCommand } = require('./common');
+const {detectOS, findPlatform, getInstallCommands, getOfficialName, getPlatformOrder, loadAssetInfo, orderPlatforms, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
 const loading = document.getElementById('loading');
@@ -9,6 +7,15 @@ const platformSelector = document.getElementById('platform-selector');
 
 module.exports.load = () => {
   setRadioSelectors();
+
+  Handlebars.registerHelper('fetchExtension', function(filename) {
+    let extension = `.${filename.split('.').pop()}`
+    // Workaround to prevent extension returning as .gz
+    if (extension == '.gz') {
+      extension = '.tar.gz'
+    }
+    return extension
+  });
 
   loadAssetInfo(variant, jvmVariant, 'ga', undefined, undefined, 'latest', 'adoptopenjdk', buildInstallationHTML, () => {
     errorContainer.innerHTML = '<p>Error... no installation information has been found!</p>';
@@ -25,7 +32,6 @@ function buildInstallationHTML(releasesJson) {
   // for each asset attached to this release, check if it's a valid binary, then add a download block for it...
   assetArray.forEach((eachAsset) => {
     const ASSETOBJECT = {};
-    const uppercaseFilename = eachAsset.package.name.toUpperCase();
     ASSETOBJECT.thisPlatform = findPlatform(eachAsset);
 
     // check if the platform name is recognised...
@@ -33,43 +39,39 @@ function buildInstallationHTML(releasesJson) {
       ASSETOBJECT.thisPlatformOrder = getPlatformOrder(ASSETOBJECT.thisPlatform);
       ASSETOBJECT.thisOfficialName = getOfficialName(ASSETOBJECT.thisPlatform) + ' ' + eachAsset.image_type;
       ASSETOBJECT.thisPlatformType = (ASSETOBJECT.thisPlatform + '-' + eachAsset.image_type).toUpperCase();
+      ASSETOBJECT.thisPlatformExists = true;
+      ASSETOBJECT.thisBinaryLink = eachAsset.package.link;
+      ASSETOBJECT.thisBinaryFilename = eachAsset.package.name;
+      ASSETOBJECT.thisChecksum = eachAsset.package.checksum;
+      ASSETOBJECT.thisChecksumLink = eachAsset.package.checksum_link;
+      ASSETOBJECT.os = eachAsset.os;
+      ASSETOBJECT.thisInstallCommands = getInstallCommands(ASSETOBJECT.os)
+      ASSETOBJECT.thisUnzipCommand = ASSETOBJECT.thisInstallCommands.installCommand.replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
+      ASSETOBJECT.thisChecksumCommand = ASSETOBJECT.thisInstallCommands.checksumCommand.replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
 
-      // if the filename contains both the platform name and the matching BINARY extension, add the relevant info to the asset object
-      ASSETOBJECT.thisBinaryExtension = getBinaryExt(ASSETOBJECT.thisPlatform);
-      if (uppercaseFilename.includes(ASSETOBJECT.thisBinaryExtension.toUpperCase())) {
-        ASSETOBJECT.thisPlatformExists = true;
-        ASSETOBJECT.thisBinaryLink = eachAsset.package.link;
-        ASSETOBJECT.thisBinaryFilename = eachAsset.package.name;
-        ASSETOBJECT.thisChecksum = eachAsset.package.checksum;
-        ASSETOBJECT.thisChecksumLink = eachAsset.package.checksum_link;
-        ASSETOBJECT.thisChecksumFilename = eachAsset.package.name.replace(ASSETOBJECT.thisBinaryExtension, '.sha256.txt');
-        ASSETOBJECT.thisUnzipCommand = getInstallCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
-        ASSETOBJECT.thisChecksumCommand = getChecksumCommand(ASSETOBJECT.thisPlatform).replace('FILENAME', ASSETOBJECT.thisBinaryFilename);
-
-        // the check sum auto command hint is always printed,
-        // so we just configure with empty string if not present
-        ASSETOBJECT.thisChecksumAutoCommandHint = getChecksumAutoCommandHint(ASSETOBJECT.thisPlatform) || '';
-        // build download sha256 and verify auto command
-        const thisChecksumAutoCommand = getChecksumAutoCommand(ASSETOBJECT.thisPlatform);
-        let sha256FileName = ASSETOBJECT.thisChecksumLink;
-        const separator = sha256FileName.lastIndexOf('/');
-        if (separator > -1) {
-          sha256FileName = sha256FileName.substring(separator + 1);
-        }
-        ASSETOBJECT.thisChecksumAutoCommand = thisChecksumAutoCommand.replace(
-          /FILEHASHURL/g,
-          ASSETOBJECT.thisChecksumLink
-        ).replace(
-          /FILEHASHNAME/g,
-          sha256FileName
-        ).replace(
-          /FILENAME/g,
-          ASSETOBJECT.thisBinaryFilename
-        );
-
-        const dirName = releasesJson[0].release_name + (eachAsset.image_type === 'jre' ? '-jre' : '');
-        ASSETOBJECT.thisPathCommand = getPathCommand(ASSETOBJECT.thisPlatform).replace('DIRNAME', dirName);
+      // the check sum auto command hint is always printed,
+      // so we just configure with empty string if not present
+      ASSETOBJECT.thisChecksumAutoCommandHint = ASSETOBJECT.thisInstallCommands.checksumAutoCommandHint || '';
+      // build download sha256 and verify auto command
+      const thisChecksumAutoCommand = ASSETOBJECT.thisInstallCommands.checksumAutoCommand;
+      let sha256FileName = ASSETOBJECT.thisChecksumLink;
+      const separator = sha256FileName.lastIndexOf('/');
+      if (separator > -1) {
+        sha256FileName = sha256FileName.substring(separator + 1);
       }
+      ASSETOBJECT.thisChecksumAutoCommand = thisChecksumAutoCommand.replace(
+        /FILEHASHURL/g,
+        ASSETOBJECT.thisChecksumLink
+      ).replace(
+        /FILEHASHNAME/g,
+        sha256FileName
+      ).replace(
+        /FILENAME/g,
+        ASSETOBJECT.thisBinaryFilename
+      );
+
+      const dirName = releasesJson[0].release_name + (eachAsset.image_type === 'jre' ? '-jre' : '');
+      ASSETOBJECT.thisPathCommand = ASSETOBJECT.thisInstallCommands.pathCommand.replace('DIRNAME', dirName);
 
       if (ASSETOBJECT.thisPlatformExists) {
         ASSETARRAY.push(ASSETOBJECT);

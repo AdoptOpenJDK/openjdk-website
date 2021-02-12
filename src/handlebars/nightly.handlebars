@@ -79,9 +79,9 @@
               <td class='nightly-platform-type'><var platform-name>\{{thisType}}</var></td>
               <td class='nightly-platform-heap'><var> \{{thisHeapSize}}</var></td>
               <td><div class='nightly-release-date'><var>\{{thisReleaseDay}}</var> \{{thisReleaseMonth}} <var>\{{thisReleaseYear}}</var></div></td>
-              <td class='nightly-downloads-block'><div><a class='dark-link' href='\{{thisBinaryLink}}'><var binary-info>\{{thisBinaryExtension}} (\{{thisBinarySize}} MB)</var></a></div></td>
+              <td class='nightly-downloads-block'><div><a class='dark-link' href='\{{thisBinaryLink}}'><var binary-info>\{{fetchExtension thisBinaryLink}} (\{{thisBinarySize}} MB)</var></a></div></td>
               \{{#if thisInstallerLink}}
-                <td class='nightly-downloads-block'><div><a class='dark-link' href='\{{thisInstallerLink}}'><var binary-info>\{{thisInstalleExtension}}</var></a></div></td>
+                <td class='nightly-downloads-block'><div><a class='dark-link' href='\{{thisInstallerLink}}'><var binary-info>\{{fetchExtension thisInstallerLink}}</var></a></div></td>
               \{{else}}
                 <td class='nightly-downloads-block'><div>Not available</div></td>
               \{{/if}}

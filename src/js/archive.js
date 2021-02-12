@@ -1,4 +1,4 @@
-const {findPlatform, detectEA, getBinaryExt, getInstallerExt, getOfficialName, getPlatformOrder,
+const {findPlatform, detectEA, getOfficialName, getPlatformOrder,
   loadAssetInfo, setRadioSelectors} = require('./common');
 const {jvmVariant, variant} = require('./common');
 
@@ -61,7 +61,6 @@ function buildArchiveHTML(aReleases) {
 
       let binary_constructor = {
         type: binary_type,
-        extension: 'INSTALLER' === binary_type ? getInstallerExt(platform) : getBinaryExt(platform),
         link: aReleaseAsset.package.link,
         checksum: aReleaseAsset.package.checksum,
         size: Math.floor(aReleaseAsset.package.size / 1000 / 1000),
@@ -70,7 +69,6 @@ function buildArchiveHTML(aReleases) {
       if (aReleaseAsset.installer) {
         binary_constructor.installer_link = aReleaseAsset.installer.link
         binary_constructor.installer_checksum = aReleaseAsset.installer.checksum
-        binary_constructor.installer_extension = getInstallerExt(platform)
         binary_constructor.installer_size =  Math.floor(aReleaseAsset.installer.size / 1000 / 1000)
       }
 
