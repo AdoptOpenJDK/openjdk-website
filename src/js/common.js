@@ -176,6 +176,9 @@ function queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse
     url += 'page_size=1'
   }
 
+  // This a temp fix to not show binaries at Adoptium (none exist)
+  errorHandler();
+
   loadUrl(url, (response) => {
     if (response === null) {
       errorHandler();
@@ -190,7 +193,7 @@ module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, pageSize, date
     variant = 'openjdk-amber';
   }
 
-  let url = `https://api.adoptopenjdk.net/v3/assets/feature_releases/${variant.replace(/\D/g,'')}/${releaseType}`
+  let url = `https://api.adoptium.net/v3/assets/feature_releases/${variant.replace(/\D/g,'')}/${releaseType}`
 
   if (pageSize) {
     url += `?page_size=${pageSize}&`
@@ -207,7 +210,7 @@ module.exports.loadLatestAssets = (variant, openjdkImp, release, handleResponse,
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
-  const url = `https://api.adoptopenjdk.net/v3/assets/latest/${variant.replace(/\D/g,'')}/${openjdkImp}`;
+  const url = `https://api.adoptium.net/v3/assets/latest/${variant.replace(/\D/g,'')}/${openjdkImp}`;
   queryAPI(release, url, openjdkImp, 'adoptopenjdk', errorHandler, handleResponse);
 }
 

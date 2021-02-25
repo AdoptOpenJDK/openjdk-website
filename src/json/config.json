@@ -7,41 +7,11 @@
       "lts": true
     },
     {
-      "searchableName": "openjdk9",
-      "jvm": ["HotSpot"],
-      "label": "OpenJDK 9",
-      "lts": false
-    },
-    {
-      "searchableName": "openjdk10",
-      "jvm": ["HotSpot"],
-      "label": "OpenJDK 10",
-      "lts": false
-    },
-    {
       "searchableName": "openjdk11",
       "jvm": ["HotSpot"],
       "label": "OpenJDK 11",
       "default": true,
       "lts": true
-    },
-    {
-      "searchableName": "openjdk12",
-      "jvm": ["HotSpot"],
-      "label": "OpenJDK 12",
-      "lts": false
-    },
-    {
-      "searchableName": "openjdk13",
-      "jvm": ["HotSpot"],
-      "label": "OpenJDK 13",
-      "lts": false
-    },
-    {
-      "searchableName": "openjdk14",
-      "jvm": ["HotSpot"],
-      "label": "OpenJDK 14",
-      "lts": false
     },
     {
       "searchableName": "openjdk15",

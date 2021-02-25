@@ -41,7 +41,12 @@ module.exports.load = () => {
 
   setRadioSelectors();
 
-  loadLatestAssets(variant, jvmVariant, 'latest', buildLatestHTML, undefined, () => {
+  const throwError = () => {
+    errorContainer.innerHTML = `<p>There are no releases available for ${variant} from Temurin yet.`;
+    loading.innerHTML = ''; // remove the loading dots
+  }
+
+  loadLatestAssets(variant, jvmVariant, 'latest', buildLatestHTML, throwError, () => {
     errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
       Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
     loading.innerHTML = ''; // remove the loading dots

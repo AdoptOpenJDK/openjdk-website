@@ -42,9 +42,13 @@ module.exports.load = () => {
     buildHomepageHTML(releasesJson, {}, OS);
   };
 
-  loadLatestAssets(variant, jvmVariant, 'latest', handleResponse, undefined, () => {
-    errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
-      Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
+  const throwError = () => {
+    errorContainer.innerHTML = `<p>There are no releases available for ${variant} from Temurin yet.`;
+    loading.innerHTML = ''; // remove the loading dots
+  }
+
+  loadLatestAssets(variant, jvmVariant, 'latest', handleResponse, throwError, () => {
+    errorContainer.innerHTML = `<p>There are no releases available for ${variant} from Temurin yet.`;
     loading.innerHTML = ''; // remove the loading dots
   });
 }
