@@ -47,6 +47,12 @@
       "searchableName": "openjdk15",
       "jvm": ["HotSpot", "OpenJ9"],
       "label": "OpenJDK 15",
+      "lts": "false"
+    },
+    {
+      "searchableName": "openjdk16",
+      "jvm": ["HotSpot", "OpenJ9"],
+      "label": "OpenJDK 16",
       "lts": "latest"
     }
   ],
@@ -96,7 +102,7 @@
       }
     },
     {
-      "officialName": "Linux x64 (Alpine)",
+      "officialName": "Alpine x64",
       "searchableName": "LINUXALPINE",
       "attributes": {
         "heap_size": "normal",
