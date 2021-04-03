@@ -30,6 +30,8 @@
 
 ## Getting started by using Docker, so that you don't need to setup Node on your machine
 
+   onyia ukamaka chinoyelum
+
 1. Build image from Docker file
 
 ```
@@ -234,3 +236,4 @@ In this project, Gulp can be run in two different ways:
     ```
 - `gulp.task('watch'...` - This task runs continuously. It watches for changes to files in the `src` directory, and re-runs the relevant task(s) whenever a change is detected. For instance, when a `.js` file is changed, the `scripts` and `inject` tasks are re-run, followed by a special browser reload function that keeps your browser window up-to-date with the changes you are making.
 - `gulp.task('browser-sync'...` - This task also runs continuously. It initially serves `index.html` on `localhost:3000` to emulate the website running on a server, then allows for instant reloads when the `watch` task detects and rebuilds changes. BrowserSync also logs an 'External Access URL' to the Terminal/command window that you can use to instantly test your changes to the website on WiFi-connected devices, such as mobiles and tablets.
+
