@@ -75,7 +75,7 @@
     },
     {
         "name": "powershell",
-        "installCommand": "Expand-Archive -Path .\\FILENAME -DestinationPath .",
+        "installCommand": "powershell -Command Expand-Archive -Path .\\FILENAME -DestinationPath .",
         "pathCommand": "set PATH=%cd%\\DIRNAME\\bin;%PATH%",
         "checksumCommand": "certutil -hashfile FILENAME SHA256",
         "checksumAutoCommandHint": " (the command must be run using Command Prompt in the same directory you download the binary file and requires PowerShell 3.0+)",
