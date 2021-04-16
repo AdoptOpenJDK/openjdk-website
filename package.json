@@ -14,7 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
-    "ajv": "^8.0.5",
+    "ajv": "^8.1.0",
     "ajv-formats": "^2.0.2",
     "babelify": "^10.0.0",
     "base64-img": "^1.0.4",
