@@ -457,76 +457,76 @@ sudo apt-get install adoptopenjdk-11-hotspot
         and on Ubuntu-based distributions by running
         <code>cat /etc/os-release | grep UBUNTU_CODENAME | cut -d = -f 2</code>.
       </p>
-
-      <li>Ensure the necessary packages are present:
-        <pre>
+      <ol>
+        <li>Ensure the necessary packages are present:
+          <pre>
             <code class="highlighted">
 sudo apt-get install -y wget apt-transport-https gnupg
             </code>
           </pre>
-      </li>
-      <li>Download the AdoptOpenJDK GPG key:
-        <pre>
+        </li>
+        <li>Download the AdoptOpenJDK GPG key:
+          <pre>
             <code class="highlighted">
 wget https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
             </code>
           </pre>
-      </li>
-      <li> Make key accessible by apt (replace angle bracket and the values in it. Example --import public)
-        <pre>
+        </li>
+        <li> Make key accessible by apt (replace angle bracket and the values in it. Example --import public)
+          <pre>
             <code class="highlighted"> 
 gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --import &lt;dowloaded-keyfile-name&gt;&lt;.ext&gt;
             </code>
           </pre>
-      </li>
-      <pre>
+        </li>
+        <pre>
             <code class="highlighted">
 gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --export --output adoptopenjdk-archive-keyring.gpg 
             </code>
           </pre>
-      <li>Clean Up
-        <pre>
+        <li>Clean Up
+          <pre>
             <code class="highlighted">
 rm adoptopenjdk-keyring.gpg
             </code>
           </pre>
-      </li>
-      <li> Save keyring in root directory (Create the keyrings directory)
-        <pre>
+        </li>
+        <li> Save keyring in root directory (Create the keyrings directory)
+          <pre>
             <code class="highlighted">
 sudo mv adoptopenjdk-archive-keyring.gpg /usr/share/keyrings 
             </code>
           </pre>
-      </li>
-      </li>
-      <li>Configure AdoptOpenJDK's apt repository by replacing the angle bracket and values in it.
-        <pre>
+        </li>
+        </li>
+        <li>Configure AdoptOpenJDK's apt repository by replacing the angle bracket and values in it.
+          <pre>
             <code class="highlighted">
 echo "deb [signed-by=/usr/share/keyrings/adoptopenjdk-archive-keyring.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb &lt;codename&gt; main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.list
             </code>
           </pre>
-      </li>
-      <li>Refresh the package indexes:
-        <pre>
+        </li>
+        <li>Refresh the package indexes:
+          <pre>
             <code class="highlighted">
 sudo apt-get update
             </code>
           </pre>
-      </li>
-      <li>To see which variants of AdoptOpenJDK are available, run
-        <pre>
+        </li>
+        <li>To see which variants of AdoptOpenJDK are available, run
+          <pre>
             <code class="highlighted">
 sudo apt-cache search adoptopenjdk
             </code>
           </pre>
-      </li>
-      <li>To install a variant of AdoptOpenJDK, run <code>apt-get install &lt;packagename&gt;</code>, for example:
-        <pre>
+        </li>
+        <li>To install a variant of AdoptOpenJDK, run <code>apt-get install &lt;packagename&gt;</code>, for example:
+          <pre>
             <code class="highlighted">
 sudo apt-get install adoptopenjdk-11-hotspot
             </code>
           </pre>
-      </li>
+        </li>
       </ol>
 
       <h4 id="linux-pkg-rpm">RPM installation</h4>
