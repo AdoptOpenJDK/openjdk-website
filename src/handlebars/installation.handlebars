@@ -1,5 +1,4 @@
-{{> header title='Installation | ' style1='
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/obsidian.min.css">' }}
+{{> header title='Installation | ' style1='<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/obsidian.min.css">' }}
 
 <main class="grey-bg">
 
@@ -7,16 +6,13 @@
 
   <div class="align-left align">
     <div class="margin-bottom">
-      <p>AdoptOpenJDK binaries are available for <a href="./releases.html">download</a> in the following types of
-        installation package:</p>
+      <p>AdoptOpenJDK binaries are available for <a href="./releases.html">download</a> in the following types of installation package:</p>
       <ul>
         <li><a href="#archives">Archive files</a></li>
         <li><a href="#installers">Installers</a></li>
       </ul>
-      <p>The binaries are supported on the architectures and operating systems listed in <a
-          href="./supported_platforms.html">Supported Platforms</a>. If you're migrating
-        to AdoptOpenJDK, you can learn about the differences between Oracle JDK and AdoptOpenJDK in our <a
-          href="./migration.html" target="_blank">Migration Guide</a> and any
+      <p>The binaries are supported on the architectures and operating systems listed in <a href="./supported_platforms.html">Supported Platforms</a>. If you're migrating
+        to AdoptOpenJDK, you can learn about the differences between Oracle JDK and AdoptOpenJDK in our <a href="./migration.html" target="_blank">Migration Guide</a> and any
         steps that you might need to take. For example, how to use IcedTea-Web as an alternative to Web Start.
       </p>
 
@@ -102,8 +98,7 @@
       <h2 id="installers">Installers</h2>
 
       <div class="margin-bottom">
-        <p>Installers are currently available for Windows&reg;, Linux&reg;, and macOS&reg; JDK and JRE packages.
-          Installation steps
+        <p>Installers are currently available for Windows&reg;, Linux&reg;, and macOS&reg; JDK and JRE packages. Installation steps
           are covered in the following sections:
         </p>
         <ul>
@@ -118,10 +113,8 @@
 
         <h3 id="windows-msi">Windows MSI installer packages</h3>
 
-        <p>AdoptOpenJDK Windows installer packages are available as standard <tt>.msi</tt> files, which can be run with
-          an interactive user interface or run silently
-          from the command line. The installer is designed for use on a per-machine basis, not per-user basis, so you
-          can have only one installation of the MSI
+        <p>AdoptOpenJDK Windows installer packages are available as standard <tt>.msi</tt> files, which can be run with an interactive user interface or run silently
+          from the command line. The installer is designed for use on a per-machine basis, not per-user basis, so you can have only one installation of the MSI
           on a machine for all users.</p>
 
         <p>Note: Windows installer packages are supported only on Windows x64 systems.</p>
@@ -130,20 +123,16 @@
 
         <p>Instructions for running an interactive installation using the Windows MSI installer.</p>
 
-        <p>1. <a href="./releases.html">Download</a> the <tt>.msi</tt> file. Open it to launch the installation program.
-        </p>
+        <p>1. <a href="./releases.html">Download</a> the <tt>.msi</tt> file. Open it to launch the installation program.</p>
         <p>2. Read and accept the license if you are happy with the terms.</p>
-        <p>3. On the <strong>Custom Setup</strong> screen you can choose the features that you want to install and
-          optionally change the default installation
-          directory. By default, AdoptOpenJDK installs to <tt>c:\Program Files\AdoptOpenJDK\&lt;package&gt;</tt> with
-          the following features, which you can deselect, if necessary:
+        <p>3. On the <strong>Custom Setup</strong> screen you can choose the features that you want to install and optionally change the default installation
+          directory. By default, AdoptOpenJDK installs to <tt>c:\Program Files\AdoptOpenJDK\&lt;package&gt;</tt> with the following features, which you can deselect, if necessary:
           <br>
         <ul>
           <li>Add the installation to the <strong>PATH</strong> environment variable</li>
           <li>Associate <tt>.jar</tt> files with Java applications</li>
         </ul>
-        Additional features can be selected by clicking on the directory tree where you see a check mark (x). These
-        features include:
+        Additional features can be selected by clicking on the directory tree where you see a check mark (x). These features include:
         <br>
         <ul>
           <li>Updating the <strong>JAVA_HOME</strong> environment variable</li>
@@ -157,8 +146,7 @@
 
         <h4 id="windows-msi-cmdline">Command-line installation</h4>
 
-        <p>A silent installation allows you to install the Windows package with pre-selected features without user
-          interaction, which can be useful for widescale
+        <p>A silent installation allows you to install the Windows package with pre-selected features without user interaction, which can be useful for widescale
           deployment. Follow these steps:
 
         <p>1. <a href="./releases.html">Download</a> the <tt>.msi</tt> file.</p>
@@ -207,8 +195,7 @@
 
         </table>
 
-        <p>Note: <tt>FeatureOracleJavaSoft</tt> can be used to prevent Oracle Java launching from PATH when AdoptOpenJDK
-          is uninstalled. Reinstall Oracle Java if you need
+        <p>Note: <tt>FeatureOracleJavaSoft</tt> can be used to prevent Oracle Java launching from PATH when AdoptOpenJDK is uninstalled. Reinstall Oracle Java if you need
           to restore the Oracle registry keys.</p>
 
         <p>Optional parameters can be used that group some of the features together:</p>
@@ -230,16 +217,13 @@
 
           <tr>
             <td>INSTALLLEVEL=3</td>
-            <td>
-              FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome,FeatureIcedTeaWeb,FeatureJNLPFileRunWith
-            </td>
+            <td>FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome,FeatureIcedTeaWeb,FeatureJNLPFileRunWith</td>
           </tr>
         </table>
 
         <p>3. Run the command on the target workstation.</p>
 
-        <p>The following example silently installs AdoptOpenJDK, updates the PATH, associates <tt>.jar</tt> files with
-          Java applications and defines JAVA_HOME:</p>
+        <p>The following example silently installs AdoptOpenJDK, updates the PATH, associates <tt>.jar</tt> files with Java applications and defines JAVA_HOME:</p>
         <pre><code class="highlighted">msiexec /i &lt;package&gt;.msi ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome INSTALLDIR="c:\Program Files\AdoptOpenJDK\" /quiet</code></pre>
         <p>Note: You must use <tt>INSTALLDIR</tt> with <tt>FeatureMain</tt>.
         </p>
@@ -247,15 +231,10 @@
         <p>The following example silently installs all the features for <tt>INSTALLLEVEL=1</tt>:</p>
         <pre><code class="highlighted">msiexec /i &lt;package&gt;.msi INSTALLLEVEL=1 /quiet</code></pre>
 
-        <p>If you want to launch an interactive installation in another language you can use the Windows installer
-          <tt>TRANSFORMS</tt> option to set
-          your language choice. For example, to set the UI language to German, use code <tt>1031</tt>, which must be
-          preceded by a <tt>:</tt>.
-        </p>
+        <p>If you want to launch an interactive installation in another language you can use the Windows installer <tt>TRANSFORMS</tt> option to set
+          your language choice. For example, to set the UI language to German, use code <tt>1031</tt>, which must be preceded by a <tt>:</tt>.</p>
         <pre><code class="highlighted">msiexec /i &lt;package&gt;.msi INSTALLLEVEL=1 TRANSFORMS=:1031</code></pre>
-        <p>For a list of supported codes, see the <a
-            href="https://github.com/AdoptOpenJDK/openjdk-installer/blob/master/wix/Lang/LanguageList.config"
-            target="_blank">Language list</a>.
+        <p>For a list of supported codes, see the <a href="https://github.com/AdoptOpenJDK/openjdk-installer/blob/master/wix/Lang/LanguageList.config" target="_blank">Language list</a>.
         </p>
 
         <h4 id="windows-msi-upgrade">Reinstalling or upgrading</h4>
@@ -266,38 +245,29 @@
         <p>If you want to upgrade AdoptOpenJDK in silent mode, run the following command:</p>
         <pre><code class="highlighted">msiexec /i &lt;package&gt;.msi REINSTALL=ALL REINSTALLMODE=amus /quiet</code></pre>
 
-        <p><tt>REINSTALLMODE</tt> options: (from <a
-            href="https://www.advancedinstaller.com/user-guide/control-events.html" target="_blank">Control Events</a>)
-        </p>
+        <p><tt>REINSTALLMODE</tt> options: (from <a href="https://www.advancedinstaller.com/user-guide/control-events.html" target="_blank">Control Events</a>)</p>
         <ul>
           <li><tt>a</tt>: Force all files to be installed regardless of checksum or version</li>
-          <li><tt>m</tt>: Rewrite all required registry entries from the Registry Table that go to the
-            HKEY_LOCAL_MACHINE</li>
+          <li><tt>m</tt>: Rewrite all required registry entries from the Registry Table that go to the HKEY_LOCAL_MACHINE</li>
           <li><tt>o</tt>: Reinstall if the file is missing or is an older version</li>
-          <li><tt>u</tt>: Rewrite all required registry entries from the Registry Table that go to the HKEY_CURRENT_USER
-            or HKEY_USERS</li>
-          <li><tt>s</tt>: Reinstall all shortcuts and re-cache all icons overwriting any existing shortcuts or icons
-          </li>
+          <li><tt>u</tt>: Rewrite all required registry entries from the Registry Table that go to the HKEY_CURRENT_USER or HKEY_USERS</li>
+          <li><tt>s</tt>: Reinstall all shortcuts and re-cache all icons overwriting any existing shortcuts or icons</li>
         </ul>
         <p>Note: <tt>REINSTALL=ALL</tt> automatically sets <tt>REINSTALLMODE=omus</tt></p>
 
         <p><strong>Upgrade limitation</strong>:</p>
 
-        <p>Upgrading <tt>.msi</tt> files works only for the first 3 digits of the build number due to an <a
-            href="https://docs.microsoft.com/windows/desktop/Msi/productversion" target="_blank">MSI limitation</a>:</p>
+        <p>Upgrading <tt>.msi</tt> files works only for the first 3 digits of the build number due to an <a href="https://docs.microsoft.com/windows/desktop/Msi/productversion" target="_blank">MSI limitation</a>:</p>
         <ul>
           <li>Upgrading 8.0.2.1 to 8.0.3.1 works.</li>
-          <li>Upgrading 8.0.2.1 to 8.0.2.2 does not work. Uninstall the previous <tt>.msi</tt> and install the new one.
-          </li>
+          <li>Upgrading 8.0.2.1 to 8.0.2.2 does not work. Uninstall the previous <tt>.msi</tt> and install the new one.</li>
           <li>Upgrading 8.0.2.1 to 8.1.2.1 works.</li>
-          <li>Upgrading 8.0.2.1 to 11.0.2.1 does not work. AdoptOpenJDK does not provide upgrades for major versions.
-            Either keep both installations or uninstall the older one.</li>
+          <li>Upgrading 8.0.2.1 to 11.0.2.1 does not work. AdoptOpenJDK does not provide upgrades for major versions. Either keep both installations or uninstall the older one.</li>
         </ul>
 
         <h4>Reference reading</h4>
         <ul>
-          <li><a href="https://www.advancedinstaller.com/user-guide/msiexec.html" target="_blank">Msiexec.exe Command
-              Line</a></li>
+          <li><a href="https://www.advancedinstaller.com/user-guide/msiexec.html" target="_blank">Msiexec.exe Command Line</a></li>
         </ul>
 
       </div>
@@ -307,8 +277,7 @@
 
       <h3 id="macos-pkg">macOS PKG installer packages</h3>
 
-      <p>AdoptOpenJDK macOS installer packages are available as standard <tt>.pkg</tt> files, which can be run with an
-        interactive user interface or run silently
+      <p>AdoptOpenJDK macOS installer packages are available as standard <tt>.pkg</tt> files, which can be run with an interactive user interface or run silently
         from the <strong>Terminal</strong> command line.
       </p>
 
@@ -318,23 +287,19 @@
       </p>
       <p>1. <a href="./releases.html">Download</a> the <tt>.pkg</tt> file.
       </p>
-      <p>2. Navigate to the folder that contains the file and open it to launch the installation program or drag the
-        icon to your Application folder.
+      <p>2. Navigate to the folder that contains the file and open it to launch the installation program or drag the icon to your Application folder.
       </p>
-      <p>3. The <strong>Introduction</strong> screen indicates the target location for the installation, which you can
-        change later in the install process. Click <strong>Continue</strong>.
+      <p>3. The <strong>Introduction</strong> screen indicates the target location for the installation, which you can change later in the install process. Click <strong>Continue</strong>.
       </p>
       <p>4. Read the license, click <strong>Continue</strong> and accept the license if you are happy with the terms.
       </p>
-      <p>5. Change the target location for the installation. Click <strong>Install</strong> to complete the
-        installation.
+      <p>5. Change the target location for the installation. Click <strong>Install</strong> to complete the installation.
       </p>
 
 
       <h4 id="macos-pkg-cmdline">Command-line installation</h4>
 
-      <p>A silent installation allows you to install the macOS package without user interaction, which can be useful for
-        widescale
+      <p>A silent installation allows you to install the macOS package without user interaction, which can be useful for widescale
         deployment. You must have administrator privileges. Follow these steps:
       </p>
 
@@ -346,8 +311,7 @@
       <pre><code class="highlighted">installer -pkg &lt;path_to_pkg&gt;/&lt;pkg_name&gt;.pkg -target /</code></pre>
       <p>4. Enter the Administrator password.
       </p>
-      <p>5. AdoptOpenJDK installs to
-        <tt>/Library/Java/JavaVirtualMachines/AdoptOpenJDK-&lt;version&gt;.&lt;jdk|jre&gt;/</tt>
+      <p>5. AdoptOpenJDK installs to <tt>/Library/Java/JavaVirtualMachines/AdoptOpenJDK-&lt;version&gt;.&lt;jdk|jre&gt;/</tt>
       </p>
     </div>
 
@@ -444,14 +408,10 @@ sudo apt-get install adoptopenjdk-11-hotspot
         distributions</h4>
 
       <p>
-        Raspberry Pi OS (formerly known as Raspbian), Linux Mint and other Debian- and Ubuntu-based distributions are
-        usually based
-        on a specific Debian or Ubuntu release. For example, Linux Mint 20.04 (Ulyanna) is based on Ubuntu 20.04 (Focal
-        Fossa),
-        Raspberry Pi OS 10 is based on Debian GNU/Linux 10 (Buster). Because AdoptOpenJDK only offers repositories for
-        Debian and
-        Ubuntu, you need to find out which Debian or Ubuntu version your distribution is based on. This is usually
-        recorded in
+        Raspberry Pi OS (formerly known as Raspbian), Linux Mint and other Debian- and Ubuntu-based distributions are usually based
+        on a specific Debian or Ubuntu release. For example, Linux Mint 20.04 (Ulyanna) is based on Ubuntu 20.04 (Focal Fossa),
+        Raspberry Pi OS 10 is based on Debian GNU/Linux 10 (Buster). Because AdoptOpenJDK only offers repositories for Debian and
+        Ubuntu, you need to find out which Debian or Ubuntu version your distribution is based on. This is usually recorded in
         <code>/etc/os-release</code> and can usually be extracted on Debian-based distributions by running
         <code>cat /etc/os-release | grep VERSION_CODENAME | cut -d = -f 2</code>
         and on Ubuntu-based distributions by running
