@@ -336,21 +336,48 @@
         <li>Ensure the necessary packages are present:
           <pre>
             <code class="highlighted">
-sudo apt-get install wget apt-transport-https gnupg
+sudo apt-get install -y wget apt-transport-https gnupg
             </code>
           </pre>
         </li>
-        <li>Import the AdoptOpenJDK GPG key:
+        <li>Download the AdoptOpenJDK GPG key:
           <pre>
             <code class="highlighted">
-wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+wget https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
             </code>
           </pre>
         </li>
-        <li>Configure AdoptOpenJDK's apt repository by replacing the values in angle brackets:
+        <li> Make key accessible by apt (replace angle bracket and the values in it. For example --import public)
+          <pre>
+            <code class="highlighted"> 
+gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --import &lt;dowloaded-keyfile-name&gt;&lt;.ext&gt;
+            </code>
+          </pre>
+        </li>
+        <pre>
+            <code class="highlighted">
+gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --export --output adoptopenjdk-archive-keyring.gpg 
+            </code>
+          </pre>
+        <li>Clean Up
           <pre>
             <code class="highlighted">
-echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb &lt;codename&gt; main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.list
+rm adoptopenjdk-keyring.gpg
+            </code>
+          </pre>
+        </li>
+        <li> Save keyring in root directory (Create the keyrings directory)
+          <pre>
+            <code class="highlighted">
+sudo mv adoptopenjdk-archive-keyring.gpg /usr/share/keyrings 
+            </code>
+          </pre>
+        </li>
+        </li>
+        <li>Configure AdoptOpenJDK's apt repository by replacing the angle bracket and values in it:
+          <pre>
+            <code class="highlighted">
+echo "deb [signed-by=/usr/share/keyrings/adoptopenjdk-archive-keyring.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb &lt;codename&gt; main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.list
             </code>
           </pre>
         </li>
@@ -394,21 +421,48 @@ sudo apt-get install adoptopenjdk-11-hotspot
         <li>Ensure the necessary packages are present:
           <pre>
             <code class="highlighted">
-sudo apt-get install wget apt-transport-https gnupg
+sudo apt-get install -y wget apt-transport-https gnupg
             </code>
           </pre>
         </li>
-        <li>Import the AdoptOpenJDK GPG key:
+        <li>Download the AdoptOpenJDK GPG key:
           <pre>
             <code class="highlighted">
-wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add -
+wget https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public
             </code>
           </pre>
         </li>
-        <li>Configure AdoptOpenJDK's apt repository by replacing the values in angle brackets:
+        <li> Make key accessible by apt (replace angle bracket and the values in it. For example --import public)
+          <pre>
+            <code class="highlighted"> 
+gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --import &lt;dowloaded-keyfile-name&gt;&lt;.ext&gt;
+            </code>
+          </pre>
+        </li>
+        <pre>
+            <code class="highlighted">
+gpg --no-default-keyring --keyring ./adoptopenjdk-keyring.gpg --export --output adoptopenjdk-archive-keyring.gpg 
+            </code>
+          </pre>
+        <li>Clean Up
           <pre>
             <code class="highlighted">
-echo "deb https://adoptopenjdk.jfrog.io/adoptopenjdk/deb &lt;codename&gt; main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.list
+rm adoptopenjdk-keyring.gpg
+            </code>
+          </pre>
+        </li>
+        <li> Save keyring in root directory (Create the keyrings directory)
+          <pre>
+            <code class="highlighted">
+sudo mv adoptopenjdk-archive-keyring.gpg /usr/share/keyrings 
+            </code>
+          </pre>
+        </li>
+        </li>
+        <li>Configure AdoptOpenJDK's apt repository by replacing the angle bracket and values in it:
+          <pre>
+            <code class="highlighted">
+echo "deb [signed-by=/usr/share/keyrings/adoptopenjdk-archive-keyring.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb &lt;codename&gt; main" | sudo tee /etc/apt/sources.list.d/adoptopenjdk.list
             </code>
           </pre>
         </li>
