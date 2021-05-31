@@ -43,7 +43,7 @@
     "open": "^8.2.0",
     "plugin-error": "^1.0.1",
     "run-sequence": "^2.2.1",
-    "util": "^0.12.3",
+    "util": "^0.12.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
