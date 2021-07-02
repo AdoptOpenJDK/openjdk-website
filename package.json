@@ -19,7 +19,7 @@
     "babelify": "^10.0.0",
     "base64-img": "^1.0.4",
     "browser-sync": "^2.27.4",
-    "browser-sync-client": "^2.27.3",
+    "browser-sync-client": "^2.27.4",
     "browserify": "^17.0.0",
     "chai": "^4.3.4",
     "eslint": "^7.29.0",
