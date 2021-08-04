@@ -81,7 +81,11 @@
                           \{{#if early_access}}
                           <span class="early-access">AdoptOpenJDK</span>
                           \{{else}}
-                          <span class="download-last-version">AdoptOpenJDK</span>
+                              \{{#if_eq vendor 'adoptium'}}
+                              <span class="download-last-version">Temurin*</span>
+                              \{{else}}
+                              <span class="download-last-version">AdoptOpenJDK</span>
+                              \{{/if_eq}}
                           \{{/if}}
                        </td>
                        <td class="main-download__variant__os">
@@ -153,6 +157,8 @@
          </div>
       </div>
     </div>
+    <br>
+    <span>*Temurin releases are provided by the Eclipse Temurin project. Please consume these binaries from <a href="https://adoptium.net">adoptium.net</a> going forwards.</span>
 </div>
 
 </main>
