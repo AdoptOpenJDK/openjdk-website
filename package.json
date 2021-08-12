@@ -32,7 +32,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^6.0.0",
     "gulp-hash": "^4.2.2",
-    "gulp-imagemin": "^7.1.0",
+    "gulp-imagemin": "^8.0.0",
     "gulp-inject": "^5.0.5",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.1",
