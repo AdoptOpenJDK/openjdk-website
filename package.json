@@ -13,7 +13,7 @@
   "author": "Joe Brady",
   "devDependencies": {
     "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-env": "^7.15.4",
     "ajv": "^8.6.2",
     "ajv-formats": "^2.1.1",
     "babelify": "^10.0.0",
