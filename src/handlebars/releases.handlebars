@@ -107,6 +107,7 @@
                           <span class="heap_size">\{{heap_size}}</span>
                        </td>
                        <td class="main-download__variant__download">
+                          \{{#if_eq vendor 'adoptopenjdk'}}
                           <table class="main-download__variant__sub-table">
                              <tbody>
                                 <tr class="main-download__variant__sub-table__tr">
@@ -156,6 +157,13 @@
                                 \{{/each}}
                              </tbody>
                           </table>
+                          \{{else if_eq vendor 'eclipse'}}
+                          <img src="https://www.eclipse.org/org/artwork/images/wg_adoptium-logo.svg" style="width: 12em; padding: 1em" alt="Adoptium Logo">
+                          <p style="max-width: 20em;">Please download this binary from <a href="https://adoptium.net">adoptium.net</a> going forwards.</p>
+                          \{{else if_eq vendor 'ibm'}}
+                          <img src="dist/assets/ibm.svg" style="width: 8em; padding: 1em" alt="Adoptium Logo">
+                          <p style="max-width: 20em;">Please download this binary from <a href="https://developer.ibm.com/languages/java/semeru-runtimes/downloads">developer.ibm.com</a> going forwards.</p>
+                          \{{/if_eq}}
                        </td>
                     </tr>
                  </tbody>
