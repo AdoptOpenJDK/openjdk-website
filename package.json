@@ -6,6 +6,7 @@
   "scripts": {
     "start": "gulp",
     "json-validate": "gulp json-validate",
+    "assemble": "bash assemble.sh",
     "lint": "eslint src/**/*.js",
     "lint-fix": "npm run lint --- --fix",
     "test": "npm run lint && npm run json-validate"
