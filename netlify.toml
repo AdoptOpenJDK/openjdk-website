@@ -1,0 +1,6 @@
+[build]
+publish = ""
+command = "npm install; gulp build; npm run assemble"
+
+[build.environment]
+NODE_VERSION = "12.18.3"
