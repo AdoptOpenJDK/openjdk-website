@@ -95,6 +95,7 @@ function buildLatestHTML(releasesJson) {
         release_datetime: moment(releaseAsset.timestamp).format('YYYY-MM-DD hh:mm:ss'),
         early_access: detectEA(releaseAsset.version),
         vendor: releaseAsset.vendor,
+        variant: variant,
         binaries: []
       };
     }
