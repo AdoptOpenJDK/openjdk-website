@@ -41,7 +41,7 @@
     "gulp-uglify": "3.0.2",
     "mocha": "^9.1.2",
     "node-sass": "^6.0.1",
-    "open": "^8.2.1",
+    "open": "^8.3.0",
     "plugin-error": "^1.0.1",
     "run-sequence": "^2.2.1",
     "util": "^0.12.4",
