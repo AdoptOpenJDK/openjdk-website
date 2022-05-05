@@ -13,10 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return require('./index').load();
     case 'archive':
       return require('./archive').load();
-    case 'installation':
-      return require('./installation').load();
-    case 'nightly':
-      return require('./nightly').load();
     case 'releases':
       return require('./releases').load();
     case 'testimonials':
