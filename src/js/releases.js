@@ -16,6 +16,10 @@ module.exports.load = () => {
     return title.split(' ')[1]
   });
 
+  Handlebars.registerHelper('formatVersion', function(version) {
+    return version.replace(/\D/g,'');
+  });
+
   Handlebars.registerHelper('fetchExtension', function(filename) {
     let extension = `.${filename.split('.').pop()}`
     // Workaround to prevent extension returning as .gz

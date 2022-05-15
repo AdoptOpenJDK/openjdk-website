@@ -53,7 +53,8 @@ function removeRadioButtons() {
 
 function buildHomepageHTML(jvmVariant) {
   if (jvmVariant == 'hotspot') {
-    dlLatest.href = 'https://adoptium.net?variant=' + variant;
+    let version = variant.replace(/\D/g, '')
+    dlLatest.href = 'https://adoptium.net/temurin/releases?version=' + version;
     dlLatestText.textContent = 'adoptium.net';
     dlVersionText.innerHTML = 'AdoptOpenJDK has moved...';
   } else if (jvmVariant == 'openj9') {
