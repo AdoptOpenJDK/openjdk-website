@@ -40,7 +40,7 @@
     "gulp-sitemap": "^8.0.0",
     "gulp-uglify": "3.0.2",
     "mocha": "^10.0.0",
-    "node-sass": "^7.0.1",
+    "node-sass": "^7.0.3",
     "open": "^8.4.0",
     "plugin-error": "^2.0.0",
     "run-sequence": "^2.2.1",
