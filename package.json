@@ -44,7 +44,7 @@
     "open": "^8.4.0",
     "plugin-error": "^2.0.0",
     "run-sequence": "^2.2.1",
-    "util": "^0.12.4",
+    "util": "^0.12.5",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
