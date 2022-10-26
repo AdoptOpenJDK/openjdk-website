@@ -23,7 +23,7 @@ const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const sitemap = require('gulp-sitemap');
 const source = require('vinyl-source-stream');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-es').default;
 
 // clean task (deletes /dist dir)
 gulp.task('clean', () => gulp.src('dist', {
