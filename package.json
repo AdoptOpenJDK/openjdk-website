@@ -42,7 +42,7 @@
     "mocha": "^10.1.0",
     "node-sass": "^7.0.3",
     "open": "^8.4.0",
-    "plugin-error": "^2.0.0",
+    "plugin-error": "^2.0.1",
     "run-sequence": "^2.2.1",
     "util": "^0.12.5",
     "vinyl-buffer": "^1.0.1",
