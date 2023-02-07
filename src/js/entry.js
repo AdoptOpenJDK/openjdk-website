@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return require('./archive').load();
     case 'releases':
       return require('./releases').load();
-    case 'testimonials':
-      return require('./testimonials').load();
     case 'upstream':
       return require('./upstream').load();
   }
