@@ -19,9 +19,6 @@ jobs:
     - name: Install Gulp CLI
       run: npm install -g gulp-cli
 
-    - name: Inject Localize token
-      run: sed -i -e 's/localize-key/vWKzIgeZa4D3c/g' website/src/handlebars/partials/header.handlebars
-
     - name: Build
       run: |
         cd website
