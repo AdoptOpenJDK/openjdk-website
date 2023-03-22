@@ -19,7 +19,7 @@
     "ajv-formats": "^2.1.1",
     "babelify": "^10.0.0",
     "base64-img": "^1.0.4",
-    "browser-sync": "^2.29.0",
+    "browser-sync": "^2.29.1",
     "browser-sync-client": "^2.29.1",
     "browserify": "^17.0.0",
     "chai": "^4.3.7",
