@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/AdoptOpenJDK/openjdk-website.svg?branch=master)](https://travis-ci.org/AdoptOpenJDK/openjdk-website)
+[![Deploy to GitHub Pages](https://github.com/AdoptOpenJDK/openjdk-website/actions/workflows/deploy-to-gh-pages.yml/badge.svg)](https://github.com/AdoptOpenJDK/openjdk-website/actions/workflows/deploy-to-gh-pages.yml)
 # README
 
 This repository contains the source code for https://www.adoptopenjdk.net.
