@@ -208,8 +208,15 @@ module.exports.loadLatestAssets = (variant, openjdkImp, release, handleResponse,
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
-  const url = `https://api.adoptopenjdk.net/v3/assets/latest/${variant.replace(/\D/g,'')}/${openjdkImp}`;
-  queryAPI(release, url, openjdkImp, 'adoptopenjdk', errorHandler, handleResponse);
+  let vendor = 'adoptopenjdk'
+  let base = 'https://api.adoptopenjdk.net/v3/assets/latest/';
+  // if openjdkImp == hotspot and version = 8,11 or 16 change vendor to eclipse
+  if (openjdkImp === 'hotspot' && (variant === 'openjdk8' || variant === 'openjdk11' || variant === 'openjdk16')) {
+    vendor = 'eclipse'
+    base = 'https://api.adoptium.net/v3/assets/latest/';
+  }
+  const url = `${base}/${variant.replace(/\D/g,'')}/${openjdkImp}`;
+  queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse);
 }
 
 function loadUrl(url, callback) {
