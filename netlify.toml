@@ -3,4 +3,4 @@ publish = ""
 command = "npm install; gulp build; npm run assemble"
 
 [build.environment]
-NODE_VERSION = "14"
+NODE_VERSION = "20"

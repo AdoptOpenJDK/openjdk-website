@@ -2,19 +2,13 @@
 
 ## Getting set up to make changes on your fork (requires Node.js)
 
-1. Install the `gulp` CLI
-
-    ```bash
-    npm install --global gulp-cli
-    ```
-
-2. Install the project devDependencies
+1. Install the project devDependencies
 
     ```bash
     npm install
     ```
 
-3. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
+1. Start the auto-build scripts and BrowserSync (opens a new `localhost:3000` browser tab). Leave this process running during development.
 
     ```bash
     npm start
@@ -22,7 +16,7 @@
 
     > **NOTE:** These build scripts enable you to view your changes locally. The build generates new files in two places: a new `/dist` directory (JS, CSS, images, etc), and `.html` files in the root directory. However, these files are ignored by .gitignore, and will not be included in commits.
 
-4. Make changes in the `/src` directory. Every time you save a file, the script instantly picks up any new changes and displays them in your BrowserSync-connected window.
+1. Make changes in the `/src` directory. Every time you save a file, the script instantly picks up any new changes and displays them in your BrowserSync-connected window.
 
     > **NOTE:** You cannot view the website locally by, for example, opening `index.html` in a browser. The files must be served on `localhost`, and BrowserSync should do this automatically for you on `npm start`.
 

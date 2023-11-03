@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM node:20
 
 RUN \
     apt-get update; \
@@ -7,14 +7,7 @@ RUN \
     curl; \
     rm -rf /var/lib/apt/lists/*
 
-# setup nodejs
-RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
-RUN apt-get install --no-install-recommends -y nodejs
-
 RUN useradd -ms /bin/bash ubuntu
-
-# do first step from Contribution
-RUN npm install --global gulp-cli
 
 # expose ports which are being used in this project
 EXPOSE 3001
