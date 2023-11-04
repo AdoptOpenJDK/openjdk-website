@@ -1,29 +1,37 @@
-const gulp = require('gulp');
-// We'd normally use ES7 style imports but for consistency we'll use require
-const Ajv = require('ajv').default;
-const addFormats = require('ajv-formats').default;
-const assert = require('assert');
-const base64img = require('base64-img');
-const browserify = require('browserify');
-const browserSync = require('browser-sync').create();
-const buffer = require('vinyl-buffer');
-const clean = require('gulp-clean');
-const cleanCss = require('gulp-clean-css');
-const concat = require('gulp-concat');
-const eslint = require('gulp-eslint');
-const fs = require('fs');
-const handlebars = require('gulp-compile-handlebars');
-const hash = require('gulp-hash');
-const imagemin = require('gulp-imagemin');
-const inject = require('gulp-inject');
-const log = require('fancy-log');
-const PluginError = require('plugin-error');
-const prefix = require('gulp-autoprefixer');
-const rename = require('gulp-rename');
-const sass = require('gulp-sass')(require('sass'));
-const sitemap = require('gulp-sitemap');
-const source = require('vinyl-source-stream');
-const uglify = require('gulp-uglify-es').default;
+import gulp from 'gulp';
+import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
+import assert from 'assert';
+import base64img from 'base64-img';
+import browserify from 'browserify';
+import browserSyncFactory from 'browser-sync';
+const browserSync = browserSyncFactory.create();
+import buffer from 'vinyl-buffer';
+import clean from 'gulp-clean';
+import cleanCss from 'gulp-clean-css';
+import concat from 'gulp-concat';
+import eslint from 'gulp-eslint';
+import fs from 'fs';
+import handlebars from 'gulp-compile-handlebars';
+import hash from 'gulp-hash';
+import imagemin from 'gulp-imagemin';
+import inject from 'gulp-inject';
+import log from 'fancy-log';
+import PluginError from 'plugin-error';
+import prefix from 'gulp-autoprefixer';
+import rename from 'gulp-rename';
+import gulpSass from 'gulp-sass';
+import * as sass from 'sass';
+const sassCompiler = gulpSass(sass);
+import sitemap from 'gulp-sitemap';
+import source from 'vinyl-source-stream';
+import uglify_ from 'gulp-uglify-es'
+const uglify = uglify_.default
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // clean task (deletes /dist dir)
 gulp.task('clean', () => gulp.src('dist', {
@@ -101,7 +109,7 @@ gulp.task('scripts', () => {
 // styles task
 gulp.task('styles', () => {
   return gulp.src('./src/scss/*.scss')
-    .pipe(sass())
+    .pipe(sassCompiler())
     .on('error', log)
     .pipe(prefix('last 2 versions'))
     .on('error', log)
