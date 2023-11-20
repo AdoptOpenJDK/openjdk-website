@@ -23,7 +23,7 @@
     "browser-sync-client": "^2.29.3",
     "browserify": "^17.0.0",
     "chai": "^4.3.10",
-    "core-js": "^3.33.2",
+    "core-js": "^3.33.3",
     "eslint": "^8.54.0",
     "fancy-log": "^2.0.0",
     "gulp": "^4.0.2",
