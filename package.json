@@ -24,7 +24,7 @@
     "browserify": "^17.0.0",
     "chai": "^5.1.0",
     "core-js": "^3.36.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "fancy-log": "^2.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^9.0.0",
