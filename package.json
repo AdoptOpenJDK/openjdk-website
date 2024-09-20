@@ -46,7 +46,7 @@
     "open": "^10.1.0",
     "plugin-error": "^2.0.1",
     "run-sequence": "^2.2.1",
-    "sass": "^1.79.1",
+    "sass": "^1.79.3",
     "util": "^0.12.5",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
