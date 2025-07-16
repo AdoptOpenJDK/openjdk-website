@@ -23,7 +23,7 @@ jobs:
         npm install
         npm run build
 
-    - name: Create Directory Stucture
+    - name: Create Directory Structure
       run: |
         mkdir tmp
         mv website/sitemap.xml tmp/
@@ -39,7 +39,7 @@ jobs:
         echo "These files are ready to be moved onto the production web server:"
         ls
 
-    # Package the artefacts using actions/upload-pages-artifact
+    # Package the artifacts using actions/upload-pages-artifact
     - name: Upload Pages Artifact
       uses: actions/upload-pages-artifact@v3
       with:

@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import process from 'process';
 import { resolve } from 'path';
 import viteImagemin from 'vite-plugin-imagemin';
 import eslintPlugin from 'vite-plugin-eslint';
