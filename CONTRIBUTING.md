@@ -88,7 +88,7 @@ npm start
 
 **IMPORTANT:** Node will run source code and all that is needed inside container. In order to see website and changes you are doing point browser to http://localhost:3000 and for UI http://localhost:3001
 
-Modify code in your preferd IDE outside docker, it will be picked up automaticly
+Modify code in your preferred IDE outside docker, it will be picked up automatically
 
 ---
 

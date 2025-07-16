@@ -34,21 +34,15 @@ function handlebarsPlugin() {
           const templateName = file.split('/').pop().replace('.handlebars', '');
           const templateContent = fs.readFileSync(file, 'utf-8');
           const template = Handlebars.compile(templateContent);
-          
-          // Render with context
+          // Set production flag based on NODE_ENV
           const context = { 
             title: 'AdoptOpenJDK',
-            // Add any other context data you need here
+            production: process.env.NODE_ENV === 'production',
           };
-          
           const html = template(context);
-          
-          // Ensure the dist directory exists
           if (!fs.existsSync('dist')) {
             fs.mkdirSync('dist');
           }
-          
-          // Write HTML to file
           fs.writeFileSync(`dist/${templateName}.html`, html);
           console.log(`Compiled: ${templateName}.html`);
         });
