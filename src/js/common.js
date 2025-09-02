@@ -1,10 +1,10 @@
 // prefix for assets (e.g. logo)
 
-const {platforms, installCommands, variants} = require('../json/config');
+import { platforms, installCommands, variants } from '../json/config';
 
 // Enables things like 'lookup["X64_MAC"]'
 const lookup = {};
-platforms.forEach((platform) => lookup[platform.searchableName] = platform);
+platforms.forEach((platform) => (lookup[platform.searchableName] = platform));
 
 let defaultVariant;
 
@@ -15,32 +15,37 @@ for (let variant of variants) {
   }
 }
 
-let variant = module.exports.variant = getQueryByName('variant') || defaultVariant;
-let jvmVariant = module.exports.jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
+const variant = getQueryByName('variant') || defaultVariant;
+const jvmVariant = getQueryByName('jvmVariant') || 'hotspot';
 
-module.exports.getVariantObject = (variantName) => variants.find((variant) => variant.searchableName === variantName);
+export const getVariantObject = (variantName) =>
+  variants.find((variant) => variant.searchableName === variantName);
 
-module.exports.findPlatform = (binaryData) => {
+export const findPlatform = (binaryData) => {
   const matchedPlatform = platforms.filter((platform) => {
-      return Object.prototype.hasOwnProperty.call(platform, 'attributes')
-        && Object.keys(platform.attributes).every((attr) => platform.attributes[attr] === binaryData[attr])
-    })[0];
+    return (
+      Object.prototype.hasOwnProperty.call(platform, 'attributes') &&
+      Object.keys(platform.attributes).every(
+        (attr) => platform.attributes[attr] === binaryData[attr]
+      )
+    );
+  })[0];
 
   return matchedPlatform === undefined ? null : matchedPlatform.searchableName;
-}
+};
 
 // gets the OFFICIAL NAME when you pass in 'searchableName'
-module.exports.getOfficialName = (searchableName) => lookup[searchableName].officialName;
+export const getOfficialName = (searchableName) =>
+  lookup[searchableName].officialName;
 
-module.exports.getPlatformOrder = (searchableName) => {
-  return platforms.findIndex((platform) => platform.searchableName == searchableName);
-}
+export const getPlatformOrder = (searchableName) =>
+  platforms.findIndex((platform) => platform.searchableName === searchableName);
 
-module.exports.orderPlatforms = (input, attr = 'thisPlatformOrder') => {
+export const orderPlatforms = (input, attr = 'thisPlatformOrder') => {
   return sortByProperty(input, attr);
 };
 
-const sortByProperty = module.exports.sortByProperty = (input, property, descending) => {
+const sortByProperty = (input, property, descending) => {
   const invert = descending ? -1 : 1;
   const sorter = (a, b) => {
     return invert * (a[property] > b[property] ? 1 : a[property] < b[property] ? -1 : 0);
@@ -51,55 +56,55 @@ const sortByProperty = module.exports.sortByProperty = (input, property, descend
   } else {
     // Preserve the source object key as '_key'
     return Object.keys(input)
-      .map(_key => Object.assign(input[_key], {_key}))
+      .map((_key) => Object.assign(input[_key], { _key }))
       .sort(sorter);
   }
 };
 
 // gets the Supported Version WITH PATH when you pass in 'searchableName'
 // Version numbers use >= logic and need to be specified in ascending order
-module.exports.getSupportedVersion = (searchableName) => {
+export const getSupportedVersion = (searchableName) => {
   let supported_version = lookup[searchableName].supported_version;
   if (typeof supported_version === 'object') {
-    supported_version = supported_version[jvmVariant]
+    supported_version = supported_version[jvmVariant];
     if (typeof supported_version === 'object') {
-      let major_version = parseInt(variant.replace(/\D/g,''))
-      let supported_version_string
+      let major_version = parseInt(variant.replace(/\D/g, ''));
+      let supported_version_string;
       for (let version in supported_version) {
         if (major_version >= parseInt(version)) {
-          supported_version_string = supported_version[version]
+          supported_version_string = supported_version[version];
         }
       }
-      supported_version = supported_version_string
+      supported_version = supported_version_string;
     }
   }
-  return supported_version
-}
+  return supported_version;
+};
 
 // gets the INSTALLATION COMMANDS when you pass in 'os'
-module.exports.getInstallCommands = (os) => {
-  let installObject
-  switch(os) {
+export const getInstallCommands = (os) => {
+  let installObject;
+  switch (os) {
     case 'windows':
-      installObject = fetchInstallObject('powershell')
+      installObject = fetchInstallObject('powershell');
       break;
     case 'aix':
-      installObject = fetchInstallObject('gunzip')
+      installObject = fetchInstallObject('gunzip');
       break;
     case 'solaris':
-      installObject = fetchInstallObject('gunzip')
+      installObject = fetchInstallObject('gunzip');
       break;
     default:
       // defaults to tar installation
-      installObject = fetchInstallObject('tar')
+      installObject = fetchInstallObject('tar');
   }
-  return installObject
-}
+  return installObject;
+};
 
 function fetchInstallObject(command) {
-  for (let installCommand of installCommands){
+  for (let installCommand of installCommands) {
     if (command == installCommand.name) {
-      return installCommand
+      return installCommand;
     }
   }
 }
@@ -107,49 +112,55 @@ function fetchInstallObject(command) {
 // This function returns an object containing all information about the user's OS.
 // The OS info comes from the 'platforms' array, which in turn comes from 'config.json'.
 // `platform` comes from `platform.js`, which should be included on the page where `detectOS` is used.
-module.exports.detectOS = () => {
-  return platforms.find((aPlatform) => {
-    /*global platform*/
-    // Workaround for Firefox on macOS which is 32 bit only
-    if (platform.os.family == 'OS X') {
-      platform.os.architecture = 64
-    }
-    return aPlatform.osDetectionString.toUpperCase().includes(platform.os.family.toUpperCase())
-      && aPlatform.attributes.architecture.endsWith(platform.os.architecture); // 32 or 64 int
-  }) || null;
-}
+export const detectOS = () => {
+  return (
+    platforms.find((aPlatform) => {
+      /*global platform*/
+      // Workaround for Firefox on macOS which is 32 bit only
+      if (platform.os.family == 'OS X') {
+        platform.os.architecture = 64;
+      }
+      return (
+        aPlatform.osDetectionString.toUpperCase().includes(
+          platform.os.family.toUpperCase()
+        ) &&
+        aPlatform.attributes.architecture.endsWith(platform.os.architecture)
+      ); // 32 or 64 int
+    }) || null
+  );
+};
 
-module.exports.detectLTS = (version) => {
+export const detectLTS = (version) => {
   for (let variant of variants) {
     if (variant.searchableName == version) {
       if (variant.lts == true) {
-        return 'LTS'
-      } else if (variant.lts == false ) {
-        return null
+        return 'LTS';
+      } else if (variant.lts == false) {
+        return null;
       } else {
-        return variant.lts
+        return variant.lts;
       }
     }
   }
-}
+};
 
-module.exports.detectEA = (version) => {
-  if ((version.pre) && (version.pre == 'ea')) {
-    return true
-  } else { 
-    return false
+export const detectEA = (version) => {
+  if (version.pre && version.pre == 'ea') {
+    return true;
+  } else {
+    return false;
   }
-}
+};
 
 function toJson(response) {
   while (typeof response === 'string') {
     try {
-      response = JSON.parse(response)
-    } catch (e) {
-      return null
+      response = JSON.parse(response);
+    } catch {
+      return null;
     }
   }
-  return response
+  return response;
 }
 
 // load latest_nightly.json/nightly.json/releases.json/latest_release.json files
@@ -159,7 +170,7 @@ function toJson(response) {
 // https://github.com/AdoptOpenJDK/openjdk10-binaries/blob/master/latest_release.json
 // https://github.com/AdoptOpenJDK/openjdk10-releases/blob/master/latest_release.json
 function queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse) {
-  if ((!url.endsWith('?')) && (!url.endsWith('&'))) {
+  if (!url.endsWith('?') && !url.endsWith('&')) {
     url += '?';
   }
   if (release !== undefined) {
@@ -170,11 +181,11 @@ function queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse
   }
 
   if (vendor !== undefined) {
-    url += `vendor=${vendor}&`
+    url += `vendor=${vendor}&`;
   }
 
   if (vendor === 'openjdk') {
-    url += 'page_size=1'
+    url += 'page_size=1';
   }
 
   loadUrl(url, (response) => {
@@ -186,57 +197,79 @@ function queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse
   });
 }
 
-module.exports.loadAssetInfo = (variant, openjdkImp, releaseType, pageSize, datePicker, release, vendor, handleResponse, errorHandler) => {
+export const loadAssetInfo = (
+  variant,
+  openjdkImp,
+  releaseType,
+  pageSize,
+  datePicker,
+  release,
+  vendor,
+  handleResponse,
+  errorHandler
+) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
 
-  let url = `https://api.adoptopenjdk.net/v3/assets/feature_releases/${variant.replace(/\D/g,'')}/${releaseType}`
+  let url = `https://api.adoptopenjdk.net/v3/assets/feature_releases/${variant.replace(
+    /\D/g,
+    ''
+  )}/${releaseType}`;
 
   if (pageSize) {
-    url += `?page_size=${pageSize}&`
+    url += `?page_size=${pageSize}&`;
   }
 
   if (datePicker) {
-    url += `before=${datePicker}&`
+    url += `before=${datePicker}&`;
   }
 
   queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse);
-}
+};
 
-module.exports.loadLatestAssets = (variant, openjdkImp, release, handleResponse, errorHandler) => {
+export const loadLatestAssets = (
+  variant,
+  openjdkImp,
+  release,
+  handleResponse,
+  errorHandler
+) => {
   if (variant === 'amber') {
     variant = 'openjdk-amber';
   }
-  let vendor = 'adoptopenjdk'
+  let vendor = 'adoptopenjdk';
   let base = 'https://api.adoptopenjdk.net/v3/assets/latest/';
   // if openjdkImp == hotspot and version = 8,11 or 16 change vendor to eclipse
-  if (openjdkImp === 'hotspot' && (variant === 'openjdk8' || variant === 'openjdk11' || variant === 'openjdk16')) {
-    vendor = 'eclipse'
+  if (
+    openjdkImp === 'hotspot' &&
+    (variant === 'openjdk8' || variant === 'openjdk11' || variant === 'openjdk16')
+  ) {
+    vendor = 'eclipse';
     base = 'https://api.adoptium.net/v3/assets/latest/';
   }
-  const url = `${base}/${variant.replace(/\D/g,'')}/${openjdkImp}`;
+  const url = `${base}/${variant.replace(/\D/g, '')}/${openjdkImp}`;
   queryAPI(release, url, openjdkImp, vendor, errorHandler, handleResponse);
-}
+};
 
 function loadUrl(url, callback) {
   const xobj = new XMLHttpRequest();
   xobj.open('GET', url, true);
   xobj.onreadystatechange = () => {
-    if (xobj.readyState == 4 && xobj.status == '200') { // if the status is 'ok', run the callback function that has been passed in.
+    if (xobj.readyState == 4 && xobj.status == '200') {
       callback(xobj.responseText);
-    } else if (
-      xobj.status != '200' && // if the status is NOT 'ok', remove the loading dots, and display an error:
-      xobj.status != '0') { // for IE a cross domain request has status 0, we're going to execute this block fist, than the above as well.
-      callback(null)
+    } else if (xobj.status != '200' && xobj.status != '0') {
+      callback(null);
     }
   };
   xobj.send(null);
 }
 
 // build the menu twisties
-module.exports.buildMenuTwisties = () => {
-  const submenus = document.getElementById('menu-content').getElementsByClassName('submenu');
+export const buildMenuTwisties = () => {
+  const submenus = document
+    .getElementById('menu-content')
+    .getElementsByClassName('submenu');
 
   for (let i = 0; i < submenus.length; i++) {
     const twisty = document.createElement('span');
@@ -249,15 +282,18 @@ module.exports.buildMenuTwisties = () => {
 
     thisLine.onclick = function () {
       this.parentNode.classList.toggle('open');
-    }
+    };
   }
-}
+};
 
-module.exports.setTickLink = () => {
+export const setTickLink = () => {
   const ticks = document.getElementsByClassName('tick');
   for (let i = 0; i < ticks.length; i++) {
     ticks[i].addEventListener('click', (event) => {
-      var win = window.open('https://en.wikipedia.org/wiki/Technology_Compatibility_Kit', '_blank');
+      var win = window.open(
+        'https://en.wikipedia.org/wiki/Technology_Compatibility_Kit',
+        '_blank'
+      );
       if (win) {
         win.focus();
       } else {
@@ -266,16 +302,18 @@ module.exports.setTickLink = () => {
       event.preventDefault();
     });
   }
-}
+};
 
 // builds up a query string (e.g. "variant=openjdk8&jvmVariant=hotspot")
-const makeQueryString = module.exports.makeQueryString = (params) => {
-  return Object.keys(params).map((key) => key + '=' + params[key]).join('&');
-}
+export const makeQueryString = (params) => {
+  return Object.keys(params)
+    .map((key) => key + '=' + params[key])
+    .join('&');
+};
 
- module.exports.setUrlQuery = (params) => {
+export const setUrlQuery = (params) => {
   window.location.search = makeQueryString(params);
-}
+};
 
 function getQueryByName(name) {
   const url = window.location.href;
@@ -288,9 +326,11 @@ function getQueryByName(name) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-module.exports.persistUrlQuery = () => {
+export const persistUrlQuery = () => {
   const links = Array.from(document.getElementsByTagName('a'));
-  const link = (window.location.hostname !== 'localhost' ? 'https://' : '') + window.location.hostname;
+  const link =
+    (window.location.hostname !== 'localhost' ? 'https://' : '') +
+    window.location.hostname;
 
   links.forEach((eachLink) => {
     if (eachLink.href.includes(link)) {
@@ -306,15 +346,18 @@ module.exports.persistUrlQuery = () => {
       }
     }
   });
-}
+};
 
-module.exports.setRadioSelectors = () => {
+export const setRadioSelectors = () => {
   const jdkSelector = document.getElementById('jdk-selector');
   const jvmSelector = document.getElementById('jvm-selector');
   const listedVariants = [];
 
   function createRadioButtons(name, group, variant, element) {
-    if (!listedVariants.length || !listedVariants.some((aVariant) => aVariant === name)) {
+    if (
+      !listedVariants.length ||
+      !listedVariants.some((aVariant) => aVariant === name)
+    ) {
       const btnLabel = document.createElement('label');
       btnLabel.setAttribute('class', 'btn-label');
 
@@ -328,7 +371,7 @@ module.exports.setRadioSelectors = () => {
       btnLabel.appendChild(input);
 
       if (group === 'jdk') {
-        if (variant.lts === true){
+        if (variant.lts === true) {
           btnLabel.innerHTML += `<span>${variant.label} (LTS)</span>`;
         } else if (variant.lts === 'latest') {
           btnLabel.innerHTML += `<span>${variant.label} (Latest)</span>`;
@@ -346,7 +389,7 @@ module.exports.setRadioSelectors = () => {
 
   for (let variant of variants) {
     for (let jvmVariantOption of variant.jvm) {
-      const jdkName =  variant.searchableName;
+      const jdkName = variant.searchableName;
       const jvmName = jvmVariantOption.toLowerCase();
       createRadioButtons(jdkName, 'jdk', variant, jdkSelector);
       if (jvmSelector) {
@@ -360,18 +403,18 @@ module.exports.setRadioSelectors = () => {
 
   jdkSelector.onchange = () => {
     const jdkButton = Array.from(jdkButtons).find((button) => button.checked);
-    module.exports.setUrlQuery({
+    setUrlQuery({
       variant: jdkButton.value.match(/(openjdk\d+|amber)/)[1],
-      jvmVariant
+      jvmVariant,
     });
   };
 
   if (jvmSelector) {
     jvmSelector.onchange = () => {
       const jvmButton = Array.from(jvmButtons).find((button) => button.checked);
-      module.exports.setUrlQuery({
+      setUrlQuery({
         variant,
-        jvmVariant: jvmButton.value.match(/([a-zA-Z0-9]+)/)[1]
+        jvmVariant: jvmButton.value.match(/([a-zA-Z0-9]+)/)[1],
       });
     };
   }
@@ -389,29 +432,43 @@ module.exports.setRadioSelectors = () => {
       break;
     }
   }
-}
+};
 
-global.renderChecksum = function(checksum) {
-  var modal = document.getElementById('myModal')
-  document.getElementById('modal-body').innerHTML = checksum
-  modal.style.display = 'inline'
-}
+window.renderChecksum = function (checksum) {
+  var modal = document.getElementById('myModal');
+  document.getElementById('modal-body').innerHTML = checksum;
+  modal.style.display = 'inline';
+};
 
-global.hideChecksum = function() {
-  var modal = document.getElementById('myModal')
-  modal.style.display = 'none'
-}
+window.hideChecksum = function () {
+  var modal = document.getElementById('myModal');
+  modal.style.display = 'none';
+};
 
-global.showHideReleaseNotes = function(notes_id) {
-  var notes_div = document.getElementById(notes_id)
+window.showHideReleaseNotes = function (notes_id) {
+  var notes_div = document.getElementById(notes_id);
   if (notes_div.classList.contains('softHide')) {
     notes_div.classList.remove('softHide');
   } else {
     notes_div.classList.add('softHide');
   }
-}
+};
 
-global.copyStringToClipboard = function() {
-  document.getElementById('modal-body').select()
-  document.execCommand('copy');
-}
+window.copyStringToClipboard = function () {
+  const modalBody = document.getElementById('modal-body');
+  if (modalBody && typeof modalBody.select === 'function') {
+    modalBody.select();
+    document.execCommand('copy');
+  } else {
+    // Fallback for elements that are not input/textarea
+    const range = document.createRange();
+    range.selectNodeContents(modalBody);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+  }
+};
+
+export { variant, jvmVariant };

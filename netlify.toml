@@ -1,6 +1,6 @@
 [build]
-publish = ""
-command = "npm install; gulp build; npm run assemble"
+publish = "dist"
+command = "npm install; npm run build"
 
 [build.environment]
 NODE_VERSION = "20"

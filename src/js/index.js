@@ -1,12 +1,4 @@
-const {
-  detectOS,
-  loadLatestAssets,
-  setRadioSelectors,
-} = require('./common');
-const {
-  jvmVariant,
-  variant
-} = require('./common');
+import { detectOS, loadLatestAssets, setRadioSelectors, variant as commonVariant, jvmVariant as commonJvmVariant } from './common';
 
 // set variables for all index page HTML elements that will be used by the JS
 const loading = document.getElementById('loading');
@@ -18,8 +10,7 @@ const dlArchive = document.getElementById('dl-archive');
 const dlOther = document.getElementById('dl-other');
 const dlVersionText = document.getElementById('dl-version-text');
 
-// When index page loads, run:
-module.exports.load = () => {
+export function load() {
   setRadioSelectors();
   removeRadioButtons();
 
@@ -31,37 +22,39 @@ module.exports.load = () => {
   }
   dlText.classList.remove('invisible');
 
-  const handleResponse = () => {
-    buildHomepageHTML(jvmVariant);
+  const handleResponse = (releases) => { // Modified to accept releases
+    buildHomepageHTML(releases); // Pass releases to buildHomepageHTML
   };
 
-  loadLatestAssets(variant, jvmVariant, 'latest', handleResponse, undefined, () => {
-    errorContainer.innerHTML = `<p>There are no releases available for ${variant} on the ${jvmVariant} JVM.
-      Please check our <a href='nightly.html?variant=${variant}&jvmVariant=${jvmVariant}' target='blank'>Nightly Builds</a>.</p>`;
+  loadLatestAssets(commonVariant, commonJvmVariant, 'latest', handleResponse, () => {
+    errorContainer.innerHTML = `<p>There are no releases available for this variant on the JVM.
+      Please check our <a href='nightly.html' target='blank'>Nightly Builds</a>.</p>`;
     loading.innerHTML = ''; // remove the loading dots
   });
 }
 
 function removeRadioButtons() {
   const buttons = document.getElementsByClassName('btn-label');
-  for (var a = 0; a < buttons.length; a++) {
-    if (buttons[a].firstChild.getAttribute('lts') === 'false') {
-      buttons[a].style.display = 'none';
+  for (let button of buttons) {
+    if (button.firstChild.getAttribute('lts') === 'false') {
+      button.style.display = 'none';
     }
   }
 }
 
-function buildHomepageHTML(jvmVariant) {
-  if (jvmVariant == 'hotspot') {
-    let version = variant.replace(/\D/g, '')
-    dlLatest.href = 'https://adoptium.net/temurin/releases?version=' + version;
-    dlLatestText.textContent = 'adoptium.net';
-    dlVersionText.innerHTML = 'AdoptOpenJDK has moved...';
-  } else if (jvmVariant == 'openj9') {
-    dlLatest.href = 'https://developer.ibm.com/languages/java/semeru-runtimes/downloads';
-    dlLatestText.textContent = 'developer.ibm.com';
-    dlVersionText.innerHTML = 'AdoptOpenJDK has moved...';
+function buildHomepageHTML(releases) { // Modified to accept releases
+  // Use the actual version from the release data if available
+  // Assuming 'releases' is an array and we take the first one,
+  // and it has a version property like 'version_data.semver' or similar.
+  // This part needs to be adjusted based on the actual structure of 'releases'
+  let version = commonVariant.replace(/\D/g, ''); // Fallback to URL variant
+  if (releases && releases.length > 0 && releases[0].version_data && releases[0].version_data.major) {
+    version = releases[0].version_data.major;
   }
+  
+  dlLatest.href = `https://adoptium.net/temurin/releases?version=${version}`;
+  dlLatestText.textContent = 'adoptium.net';
+  dlVersionText.innerHTML = 'AdoptOpenJDK has moved...';
 
   // remove the loading dots, and make all buttons visible, with animated fade-in
   loading.classList.add('hide');

@@ -1,24 +1,49 @@
-const {findPlatform, detectEA, getOfficialName, getPlatformOrder,
-  loadAssetInfo, setRadioSelectors} = require('./common');
-const {jvmVariant, variant} = require('./common');
+import { findPlatform, detectEA, getOfficialName, getPlatformOrder, loadAssetInfo, setRadioSelectors, jvmVariant as commonJvmVariant, variant as commonVariant } from './common';
+import moment from 'moment';
+import Handlebars from 'handlebars';
+import $ from 'jquery';
 
 const loading = document.getElementById('loading');
 const errorContainer = document.getElementById('error-container');
 
 // When archive page loads, run:
-module.exports.load = () => {
+export function load() {
   setRadioSelectors();
 
-  loadAssetInfo(variant, jvmVariant, 'ga', undefined, undefined, undefined, 'adoptopenjdk', buildArchiveHTML, () => {
+  loadAssetInfo(commonVariant, commonJvmVariant, 'ga', undefined, undefined, undefined, 'adoptopenjdk', buildArchiveHTML, () => {
     // if there are no releases (beyond the latest one)...
     // report an error, remove the loading dots
     loading.innerHTML = '';
-    errorContainer.innerHTML = `<p>There are no archived releases yet for ${variant} on the ${jvmVariant} JVM.
-      See the <a href='./releases.html?variant=${variant}&jvmVariant=${jvmVariant}'>Latest release</a> page.</p>`;
+    if (errorContainer) {
+      errorContainer.innerHTML = ''; // Clear existing content
+
+      const pElement = document.createElement('p');
+      pElement.appendChild(document.createTextNode('There are no archived releases yet for '));
+
+      const variantSpan = document.createElement('span');
+      variantSpan.textContent = commonVariant;
+      pElement.appendChild(variantSpan);
+
+      pElement.appendChild(document.createTextNode(' on the '));
+
+      const jvmVariantSpan = document.createElement('span');
+      jvmVariantSpan.textContent = commonJvmVariant;
+      pElement.appendChild(jvmVariantSpan);
+
+      pElement.appendChild(document.createTextNode(' JVM. See the '));
+
+      const linkElement = document.createElement('a');
+      linkElement.href = `./releases.html?variant=${encodeURIComponent(commonVariant)}&jvmVariant=${encodeURIComponent(commonJvmVariant)}`;
+      linkElement.textContent = 'Latest release';
+      pElement.appendChild(linkElement);
+
+      pElement.appendChild(document.createTextNode(' page.'));
+      errorContainer.appendChild(pElement);
+    }
   });
 }
 
-function buildArchiveHTML(aReleases) {
+export function buildArchiveHTML(aReleases) {
   const releases = [];
 
   aReleases.forEach(aRelease => {
@@ -27,7 +52,7 @@ function buildArchiveHTML(aReleases) {
     const release = {
       release_name: aRelease.release_name,
       release_link: aRelease.release_link,
-      dashboard_link: `https://dash.adoptopenjdk.net/version.html?version=${variant}`
+      dashboard_link: `https://dash.adoptopenjdk.net/version.html?version=${commonVariant}`
         + `&tag=${encodeURIComponent(aRelease.release_name)}`,
       release_day: publishedAt.format('D'),
       release_month: publishedAt.format('MMMM'),
@@ -90,7 +115,7 @@ function buildArchiveHTML(aReleases) {
   archiveList.className = archiveList.className.replace( /(?:^|\s)hide(?!\S)/g , ' animated fadeIn ' );
 }
 
-function setPagination() {
+export function setPagination() {
   const container = document.getElementById('pagination-container');
   const archiveTableBody = document.getElementById('archive-table-body');
 
